@@ -50,10 +50,12 @@ def ensure_catalogue(ws,resources,game=None):
     codex=ws.output('research/original/Codex.nob/Codex.class')
     if not codex.is_file():return {'templates':{},'sets':{},'modes':{}}
     data=codex.read_bytes();signature=hashlib.sha256(data).hexdigest()
+    source_signature=hashlib.sha256(json.dumps({'entries':resources.get('entries',[]),'templates':resources.get('templates',[])},sort_keys=True).encode('utf8')).hexdigest()
     dest=ws.output('cache/motions.json')
     if dest.is_file():
-        cached=json.loads(dest.read_text(encoding='utf8'))
-        if cached.get('version')==1 and cached.get('codex_sha256')==signature:return cached
+        try:cached=json.loads(dest.read_text(encoding='utf8'))
+        except (ValueError,UnicodeError):cached={}
+        if isinstance(cached,dict) and cached.get('version')==2 and cached.get('codex_sha256')==signature and cached.get('resources_sha256')==source_signature and all(isinstance(cached.get(k),dict) for k in ('sets','templates','modes')):return cached
     if game is None:
         from .deployment import default_game
         game=ws.game or default_game(ws.root)
@@ -75,7 +77,7 @@ def ensure_catalogue(ws,resources,game=None):
         v=records[0]
         if 9 in v:return cstring(v[9])
         return resolve(cstring(v[0]),trail+(key.casefold(),)) if 0 in v else None
-    result=dict(version=1,codex_sha256=signature,modes=modes,sets=sets,templates={t['id']:resolve(t['id']) for t in resources['templates']})
+    result=dict(version=2,codex_sha256=signature,resources_sha256=source_signature,modes=modes,sets=sets,templates={t['id']:resolve(t['id']) for t in resources['templates']})
     ws.write(dest,json.dumps(result,ensure_ascii=False,indent=2));return result
 
 
@@ -101,4 +103,6 @@ def validate_motion(mode,template,resources):
     match=next((s for s in slots(resources,template) if s['mode']==mode),None) if isinstance(mode,str) else None
     if match is None:
         raise ValueError('Animación no disponible para '+str(template)+': '+str(mode))
+    if not any(s['mode']=='stand' for s in slots(resources,template)):
+        raise ValueError('La animación requiere una pose de reposo stand para '+str(template))
     return match['value']

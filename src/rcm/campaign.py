@@ -8,6 +8,7 @@ from .model import mapping, sequence, identifier, text, parse_project, UniqueLoa
 ACTIONS = {
  'spawn': ('Mundo / Crear entidad','entity'), 'remove': ('Mundo / Retirar entidad','entity'),
  'start_conversation': ('Historia / Conversación','conversations'),
+ 'show_note': ('Historia / Mostrar nota','note'),
  'set_flag': ('Estado / Activar flag','flags'), 'clear_flag': ('Estado / Desactivar flag','flags'),
  'start_quest': ('Quest / Iniciar','quests'), 'advance_quest': ('Quest / Siguiente paso','quests'),
  'complete_quest': ('Quest / Completar','quests'),
@@ -25,7 +26,7 @@ ACTIONS = {
  'control_door': ('Puerta existente / Movimiento','door'),
  'play_sound': ('Audio / Sonido situado','spatial_sound'),
 }
-WHEN = {'scene_start':'Inicia la escena','actor_clicked':'Hablan con actor','conversation_ended':'Termina conversación',
+WHEN = {'scene_start':'Inicia la escena','actor_clicked':'Hablan con actor','object_clicked':'Usan un objeto','note_closed':'Cierran una nota','conversation_ended':'Termina conversación',
  'trigger_enter':'Entra en trigger','trigger_leave':'Sale de trigger','actor_killed':'Actor muerto (muestreo)',
  'item_picked_up':'Objeto en inventario (muestreo)','encounter_complete':'Todos los enemigos muertos',
  'timer':'Tiempo desde entrada','state_changed':'Se cumple una condición',
@@ -164,8 +165,11 @@ def parse_campaign(source, levels, resources):
             k,v=next(iter(a.items()))
             if k not in ACTIONS: raise ValueError('Acción no soportada: '+k)
             kind=ACTIONS[k][1]
-            if k in {'travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','play_sound'} and not modern: raise ValueError('Esta acción requiere formato de proyecto 9')
-            if kind=='arrival':
+            if k in {'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','play_sound'} and not modern: raise ValueError('Esta acción requiere formato de proyecto 9')
+            if kind=='note':
+                from .notes import validate_note
+                validate_note(v)
+            elif kind=='arrival':
                 mapping(v,{'scene','entry'},{'scene','entry'},'travel')
                 ref(v['scene'],scenes,'escena de destino')
                 ref(v['entry'],{r['id'] for r in scenes[v['scene']].get('entries',[])},'entrada de destino')
@@ -196,17 +200,18 @@ def parse_campaign(source, levels, resources):
                 for eid in [v] if k=='spawn' else groups[v]['actors']: spawn_owners[eid]=spawn_owners.get(eid,0)+1
         events=indexed(s['events'],label+' events')
         for e in events.values():
-            mapping(e,{'id','when','actions','conditions','actor','conversation','result','trigger','item','encounter','sequence','seconds','once'}, {'id','when','actions'},'event '+e['id'])
+            mapping(e,{'id','when','actions','conditions','actor','object','conversation','result','trigger','item','encounter','sequence','seconds','once'}, {'id','when','actions'},'event '+e['id'])
             w=e['when']
             if w not in WHEN: raise ValueError('Callback no soportado: '+str(w))
+            if w in {'object_clicked','note_closed'} and not modern:raise ValueError('Notas y clic de objeto requieren formato de proyecto 9')
             if w=='sequence_ended':
                 if not modern or e.get('sequence') not in shots:raise ValueError('Fin de secuencia requiere formato 9 y secuencia existente')
                 if not any(k in shots[e['sequence']] for k in ('steps','move_path','camera_path','prop_motion')):raise ValueError('Fin de secuencia requiere timeline o recorrido')
             if type(e.get('once',False)) is not bool: raise ValueError('event.once requiere booleano')
-            filter_key={'actor_clicked':'actor','actor_killed':'actor','conversation_ended':'conversation','trigger_enter':'trigger','trigger_leave':'trigger','item_picked_up':'item','encounter_complete':'encounter','sequence_ended':'sequence'}.get(w)
-            for fk in ('actor','conversation','trigger','item','encounter','sequence','result','seconds'):
+            filter_key={'object_clicked':'object','actor_clicked':'actor','actor_killed':'actor','conversation_ended':'conversation','trigger_enter':'trigger','trigger_leave':'trigger','item_picked_up':'item','encounter_complete':'encounter','sequence_ended':'sequence'}.get(w)
+            for fk in ('actor','object','conversation','trigger','item','encounter','sequence','result','seconds'):
                 if fk in e and fk != filter_key and not (fk=='result' and w=='conversation_ended') and not(fk=='seconds' and w=='timer'): raise ValueError('Filtro incompatible con '+w+': '+fk)
-            if filter_key: ref(e.get(filter_key), {'actor':actors,'conversation':convs,'trigger':triggers,'item':objects,'encounter':groups,'sequence':shots}[filter_key],filter_key)
+            if filter_key: ref(e.get(filter_key), {'object':objects,'actor':actors,'conversation':convs,'trigger':triggers,'item':objects,'encounter':groups,'sequence':shots}[filter_key],filter_key)
             if w=='item_picked_up': item(e['item'])
             if w=='timer' and (type(e.get('seconds')) not in (int,float) or not math.isfinite(e['seconds']) or not .15<=e['seconds']<=86400): raise ValueError('Timer requiere seconds 0.15..86400')
             if w=='state_changed' and not e.get('conditions'): raise ValueError('state_changed requiere condición')
@@ -217,6 +222,7 @@ def parse_campaign(source, levels, resources):
             actions=sequence(e['actions'],'actions')
             if not actions: raise ValueError('Evento sin acciones')
             for a in actions: action(a)
+            if any('show_note' in a for a in actions) and sum(any(k in a for k in ('show_note','start_conversation','play_sequence','travel','jump')) for a in actions)>1:raise ValueError('Una nota requiere su propio evento; continúa con Cuando cierran una nota')
             if sum('start_conversation' in a for a in actions)>1 or sum(('jump' in a or 'travel' in a) for a in actions)>1: raise ValueError('Evento inicia varias conversaciones o viajes')
             if any('jump' in a or 'travel' in a for a in actions) and not ('jump' in actions[-1] or 'travel' in actions[-1]): raise ValueError('El viaje debe ser la última acción')
             if e.get('once',w in {'actor_killed','item_picked_up','encounter_complete','timer','state_changed'}) or (w=='trigger_enter' and triggers[e['trigger']].get('once',True)): reserve('e/'+s['id']+'/'+e['id'])

@@ -119,7 +119,7 @@ def inspect_package(archive):
         if name==m['id']+'.nob':
             import io
             inner=read_archive(io.BytesIO(data))
-            if any(Path(p).suffix.lower() not in {'.nsc','.nmf','.nss','.nco','.nvo','.nls','.npc','.nai','.nqd','.nbs','.not','.nsd','.tga','.wav'} for p in inner):raise ValueError('El paquete contiene geometría/modelos/binarios originales o no admitidos')
+            if any(Path(p).suffix.lower() not in {'.nsc','.nmf','.nss','.nco','.nvo','.nls','.ntx','.npc','.nai','.nqd','.nbs','.not','.nsd','.tga','.wav'} for p in inner):raise ValueError('El paquete contiene geometría/modelos/binarios originales o no admitidos')
         elif re.fullmatch(r'codex/[A-Za-z_][A-Za-z0-9_$]*\.class',name):
             if data[:8]!=b'\xca\xfe\xba\xbe\x00\x03\x00\x2d':raise ValueError('Clase no compatible con JVM 45.3')
         else:raise ValueError('Archivo de distribución no permitido: '+name)

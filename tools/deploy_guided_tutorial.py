@@ -1,4 +1,5 @@
 """Update only the guided tutorial in the existing RCM shortcut directory."""
+import argparse
 import hashlib
 import io
 import json
@@ -17,7 +18,7 @@ from rcm.catalogue import verify_sources
 from repair_lan_templates import saved_templates, startup_templates
 
 
-def main():
+def main(include_mini=False):
     game = default_game(ROOT)
     if game is None:
         raise ValueError('No se encuentra la instalación')
@@ -32,18 +33,27 @@ def main():
     with zipfile.ZipFile(io.BytesIO(bundle)) as archive:
         payload = {n: archive.read(n) for n in archive.namelist()}
     names = startup_templates(payload)
+    sources={'rcm_tutor':source};bundles={'rcm_tutor':bundle}
+    if include_mini:
+        mini=Document.load(ws,'chronicles/mini_chronicle/project.yaml').snapshot()
+        if not Backend(ws).validate(mini).valid:raise ValueError('Mini crónica inválida')
+        sources['rcm_mini']=mini;bundles['rcm_mini']=ws.output('build/rcm_mini/bundle/rcm_mini.nob').read_bytes()
+        with zipfile.ZipFile(io.BytesIO(bundles['rcm_mini'])) as archive:
+            names.update(startup_templates({n:archive.read(n) for n in archive.namelist()}))
     profiles = {p: p.read_bytes() for p in (game/'Crypt').glob('*.npf')}
     required = {r['template'].casefold() for data in profiles.values()
                 for r in saved_templates(data)
-                if r['template'].casefold().startswith('r_rcm_tutor_')}
+                if any(r['template'].casefold().startswith('r_'+ident+'_') for ident in sources)}
     if required - names:
         raise ValueError('El personaje conserva plantillas ausentes: '+str(sorted(required-names)))
     before = verify_sources(ws, game)
-    result = deploy_many(ws, ['rcm_tutor'], 'east_demo',
-                         current_sources={'rcm_tutor': source}, preserve_siblings=True)
+    result = deploy_many(ws, list(sources), 'east_demo',
+                         current_sources=sources, preserve_siblings=True)
     target = safe_target(game, game/'RCM/east_demo/rcm_tutor.nob')
     if target.read_bytes() != bundle:
         raise ValueError('Paquete desplegado distinto del build')
+    for ident,data in bundles.items():
+        if safe_target(game,target.parent/(ident+'.nob')).read_bytes()!=data:raise ValueError('Paquete desplegado distinto: '+ident)
     manifest = json.loads(safe_target(game, target.parent/'.rcm_deployment.json').read_text(encoding='utf8'))
     for name, digest in manifest['files'].items():
         data = safe_target(game, target.parent/name).read_bytes()
@@ -65,4 +75,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser=argparse.ArgumentParser();parser.add_argument('--include-mini',action='store_true')
+    main(parser.parse_args().include_mini)

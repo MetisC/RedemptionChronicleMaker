@@ -198,7 +198,7 @@ scenes:
       - 180
     quest_item: true
   - id: barrel
-    name: Barril de decorado · no interactuable
+    name: Barril · leer la nota
     template: barrel1
     transform:
       placement: absolute
@@ -417,10 +417,10 @@ scenes:
   - id: gate
     speaker: gate
     camera: ots_speaker_close
-    prompt: '¿Ves el barril a mi derecha? Es sólo decorado, no tienes que usarlo. Ahora vamos a cambiar lo que hay
-      en esta calle: el barril desaparecerá, nosotros nos iremos y llegará otro instructor. Las calles serán las
-      mismas. En el editor lo preparas con + Escena > Nuevo layout sobre este level y un evento Viaje. Así puedes
-      reutilizar un lugar en distintos momentos de la historia.'
+    prompt: '¿Ves el barril a mi derecha? Si lo pulsas antes de hablar conmigo, puedes leer una nota. Ahora vamos
+      a cambiar lo que hay en esta calle: el barril desaparecerá, nosotros nos iremos y llegará otro instructor.
+      Las calles serán las mismas. En el editor lo preparas con + Escena > Nuevo layout sobre este level y un evento
+      Viaje. Así puedes reutilizar un lugar en distintos momentos de la historia.'
     choices:
     - text: Vale, veamos cómo cambia la calle.
       result: 1
@@ -444,6 +444,8 @@ scenes:
         goto: motions
       - text: Objetos y decisiones que se recuerdan.
         goto: objects
+      - text: Leer una nota de ejemplo.
+        result: 11
       - text: Ya volveré, gracias.
         result: 10
     - id: motion
@@ -468,9 +470,27 @@ scenes:
     - id: motions
       lines:
       - speaker: lab
-        text: Cada modelo tiene su propio archivo de movimientos. El motor usa hablar y escuchar automáticamente;
-          aquí puedes probar los gestos que este personaje realmente tiene y ver su nombre en el editor.
-        motion: gesture3
+        text: Normalmente el juego decide cuándo hablar y escuchar. Si quieres una actuación distinta, selecciona
+          un nodo en el editor y cambia Animación al hablar. Vamos a ver los movimientos básicos; también puedo
+          enseñarte mis gestos.
+      choices:
+      - text: 'Reposo: estar de pie.'
+        goto: stand
+      - text: Gesto de reposo.
+        goto: idle
+      - text: Hablar.
+        goto: talk
+      - text: Escuchar.
+        goto: listen
+      - text: Ver otros gestos.
+        goto: gestures
+      - text: Volver al laboratorio.
+        goto: opening
+    - id: gestures
+      lines:
+      - speaker: lab
+        text: 'Estos gestos pertenecen a este modelo. El nombre del archivo aparece en el editor: así puedes reconocer
+          el que acabas de ver.'
       choices:
       - text: Ver gesto 3.
         goto: gesture3
@@ -483,60 +503,100 @@ scenes:
       - text: Ver gesto 10.
         goto: gesture10
       - text: Volver.
-        goto: opening
-    - id: gesture3
+        goto: motions
+    - id: stand
+      motion: stand
       lines:
       - speaker: lab
-        text: Este nodo reproduce el gesto 3. En el editor puedes cambiar Animación al hablar por otro movimiento
-          disponible para este modelo.
-        motion: gesture3
+        text: Ahora estoy en reposo. Es la postura normal de pie.
       choices:
       - text: Elegir otro movimiento.
         goto: motions
+      - text: Volver al laboratorio.
+        goto: opening
+    - id: idle
+      motion: idle
+      lines:
+      - speaker: lab
+        text: 'Este es mi gesto de reposo: un movimiento que el personaje hace mientras espera.'
+      choices:
+      - text: Elegir otro movimiento.
+        goto: motions
+      - text: Volver al laboratorio.
+        goto: opening
+    - id: talk
+      motion: talk
+      lines:
+      - speaker: lab
+        text: Así habla este personaje. Si dejas la animación en Automática, el juego se encarga de usarla.
+      choices:
+      - text: Elegir otro movimiento.
+        goto: motions
+      - text: Volver al laboratorio.
+        goto: opening
+    - id: listen
+      motion: listen
+      lines:
+      - speaker: lab
+        text: Esta es la animación de escuchar. Aquí la fuerzo durante mi frase para que puedas verla.
+      choices:
+      - text: Elegir otro movimiento.
+        goto: motions
+      - text: Volver al laboratorio.
+        goto: opening
+    - id: gesture3
+      motion: gesture3
+      lines:
+      - speaker: lab
+        text: Este es el gesto 3. Puedes elegirlo en Animación al hablar al seleccionar este nodo en el editor.
+          Prueba otro cuando quieras.
+      choices:
+      - text: Elegir otro gesto.
+        goto: gestures
       - text: Volver al laboratorio.
         goto: opening
     - id: gesture7
+      motion: gesture7
       lines:
       - speaker: lab
-        text: Este nodo reproduce el gesto 7. En el editor puedes cambiar Animación al hablar por otro movimiento
-          disponible para este modelo.
-        motion: gesture7
+        text: Este es el gesto 7. Puedes elegirlo en Animación al hablar al seleccionar este nodo en el editor.
+          Prueba otro cuando quieras.
       choices:
-      - text: Elegir otro movimiento.
-        goto: motions
+      - text: Elegir otro gesto.
+        goto: gestures
       - text: Volver al laboratorio.
         goto: opening
     - id: gesture8
+      motion: gesture8
       lines:
       - speaker: lab
-        text: Este nodo reproduce el gesto 8. En el editor puedes cambiar Animación al hablar por otro movimiento
-          disponible para este modelo.
-        motion: gesture8
+        text: Este es el gesto 8. Puedes elegirlo en Animación al hablar al seleccionar este nodo en el editor.
+          Prueba otro cuando quieras.
       choices:
-      - text: Elegir otro movimiento.
-        goto: motions
+      - text: Elegir otro gesto.
+        goto: gestures
       - text: Volver al laboratorio.
         goto: opening
     - id: gesture9
+      motion: gesture9
       lines:
       - speaker: lab
-        text: Este nodo reproduce el gesto 9. En el editor puedes cambiar Animación al hablar por otro movimiento
-          disponible para este modelo.
-        motion: gesture9
+        text: Este es el gesto 9. Puedes elegirlo en Animación al hablar al seleccionar este nodo en el editor.
+          Prueba otro cuando quieras.
       choices:
-      - text: Elegir otro movimiento.
-        goto: motions
+      - text: Elegir otro gesto.
+        goto: gestures
       - text: Volver al laboratorio.
         goto: opening
     - id: gesture10
+      motion: gesture10
       lines:
       - speaker: lab
-        text: Este nodo reproduce el gesto 10. En el editor puedes cambiar Animación al hablar por otro movimiento
-          disponible para este modelo.
-        motion: gesture10
+        text: Este es el gesto 10. Puedes elegirlo en Animación al hablar al seleccionar este nodo en el editor.
+          Prueba otro cuando quieras.
       choices:
-      - text: Elegir otro movimiento.
-        goto: motions
+      - text: Elegir otro gesto.
+        goto: gestures
       - text: Volver al laboratorio.
         goto: opening
     - id: objects
@@ -1010,6 +1070,60 @@ scenes:
     conversation: lab
     result: 8
     once: false
+  - id: welcome_note
+    when: scene_start
+    actions:
+    - show_note:
+        title: Bienvenido al tutorial
+        text: 'Tomás te espera justo delante. Habla con él y sigue las lecciones una a una. Cada profesor vendrá
+          al mismo lugar.
+
+
+          El journal te recuerda el paso actual. Christof, a la izquierda, tiene un laboratorio opcional para experimentar.
+
+
+          Esta ventana es una nota nativa. En el editor puedes crearla en Eventos, con Historia / Mostrar nota.
+          Cierra la ventana para empezar.'
+    once: true
+  - id: lab_note
+    when: conversation_ended
+    actions:
+    - show_note:
+        title: Una carta de ejemplo
+        text: 'Querido visitante:
+
+
+          Estas ventanas sirven para cartas, prólogos, instrucciones y avisos. No necesitan un personaje ni una
+          conversación.
+
+
+          En el editor elige un objeto y pulsa Añadir nota al usar. Puedes escribir un título y varios párrafos.
+          También puedes abrir una conversación con un personaje al usar un objeto.
+
+
+          Para hacer algo cuando se cierre la ventana, crea un evento Cierran una nota; una flag permite distinguir
+          cuál se ha leído.'
+    conversation: lab
+    result: 11
+    once: false
+  - id: barrel_note
+    when: object_clicked
+    actions:
+    - show_note:
+        title: Una nota sobre el barril
+        text: 'Este barril tiene una nota. Basta con pulsarlo para leerla.
+
+
+          Selecciona barrel en Objetos del editor y pulsa Añadir nota al usar para localizar el evento. Cuando el
+          agente cambie el layout, el barril y esta interacción desaparecerán de esta calle.'
+    object: barrel
+    once: false
+  - id: door_talk
+    when: object_clicked
+    actions:
+    - start_conversation: lab
+    object: stage_door
+    once: false
   - id: reward_spawn
     when: trigger_enter
     actions:
@@ -1064,7 +1178,7 @@ scenes:
       focus: stage_door
       preset: aerial
       angle: high
-      transition: 0.8
+      transition: 0
     - at: 3
       actor: walker
       focus: stage_door
@@ -1423,8 +1537,8 @@ resources:
   textures: []
 metadata:
   author: RCM
-  version: 0.9.10
-  description: Tutorial guiado, temporizador único, puerta móvil y llave física.
+  version: 0.9.12
+  description: Tutorial guiado, notas nativas, objetos interactivos y reposo tras gestos.
   requires_game: Redemption 1.1
   dependencies: []
 build_options:

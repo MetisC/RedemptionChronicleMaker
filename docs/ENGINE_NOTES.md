@@ -1,5 +1,11 @@
 # Notas del motor y evidencia
 
+## Revisión 0.9.12: notas y final de animación
+
+**Confirmado en archivos originales:** scripts SOC1_DataPrintout1/CTD_Labyrinth llaman ExecuteText al pulsar objetos; ItemNodFragment recibe textended(owner); MP_CTD usa NTX para su prólogo. **Confirmado en SDK:** PlayMotionSetMode devuelve msec y su booleano selecciona canal, no bucle. **Inferido:** falta de pose base de un NPC con AI pausada tras gesto noloop, coherente con la desaparición observada por el usuario en 0.9.11. **Pendiente:** verificar visualmente la corrección y las notas nuevas. Investigación, cambios y límites detallados en [NOTES_AND_MOTION_FIX.md](NOTES_AND_MOTION_FIX.md).
+
+La prueba de referencia de formatos históricos conserva su hash fijado: el runtime de notas/objetos se aplica sólo al perfil moderno. No se actualiza el golden para aceptar una modificación accidental del generador legado.
+
 ## Fase 9: evidencia nueva, sin ensayo nativo de 0.9.0
 
 ### CONFIRMADO EN ARCHIVOS ORIGINALES
@@ -512,3 +518,25 @@ La 0.9.9 mejora los encuadres y las animaciones de los interlocutores; queda una
 ### INFERIDO Y PENDIENTE
 
 La cola duplicada explica el final prematuro y el tipo 7 la desaparición de la llave. Se simula ahora la cola real y se verifica la presencia del objeto tras insertarlo. La apariencia, colisión, guardado y comportamiento visual nuevos necesitan ensayo nativo.
+
+## Estabilización 0.9.11 — motions y pose
+
+### CONFIRMADO EN ARCHIVOS ORIGINALES
+
+El catálogo nuevo lee ConstantValue de Codex.class y NMS desde los NOB. PlayMotionSetMode existe en CodexThing. ST_Christof_MD dispone de talk/listen, reposo y gestos; LonCiv1 sólo ofrece los movimientos de su modelo de paraguas. Evidencia copiada: research/round0/animation_restore_fix/. La geometría y el entorno gris de EastLondon se conservan.
+
+### CONFIRMADO EN SDK/DOCUMENTACIÓN
+
+cutscene.htm explica TALK/LISTEN automáticos y overrides de motion por feedback. convreached recibe starter/event/line/duración/speaker. Detalle: docs/ANIMATION_RESTORE_FIX.md.
+
+### OBSERVADO POR EL USUARIO
+
+La 0.9.10 funciona «en general todo bastante bien». El primer encuadre de película parece estar dentro de algo; al cargar se aparece en otro punto. Se solicitan ejemplos de animación y facilidad para cambiarlos por nodo. La aceptación general no prueba cada camino de guardado, colisión o red.
+
+### INFERIDO
+
+La recreación del jugador por el motor es una posible explicación de la recolocación, todavía no demostrada en la partida concreta. Se guarda/restaura la pose local sin reejecutar la entrada por defecto. Un preset LONG/HIGH y corte inicial debería mejorar la toma, pero no acredita su apariencia.
+
+### PENDIENTE DE VERIFICAR
+
+La pose, gestos, colisión y plano aéreo deben observarse en Redemption con una partida nueva. Tests de callbacks, carga/reentrada, fallos y Qt están separados de esa prueba. Auditoría de usabilidad y cobertura: docs/STABILITY_USABILITY_AUDIT.md.

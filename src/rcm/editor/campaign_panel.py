@@ -349,13 +349,13 @@ def event_properties(ins):
         ins.line('ID',e.get('id',''),ins.rename_event,'event_id',True)
         def when(v):
             e['when']=v
-            for k in ['actor','conversation','trigger','item','encounter','sequence','result','seconds']:e.pop(k,None)
-            fk={'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters'),'sequence_ended':('sequence','sequences')}.get(v)
+            for k in ['actor','object','conversation','trigger','item','encounter','sequence','result','seconds']:e.pop(k,None)
+            fk={'object_clicked':('object','objects'),'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters'),'sequence_ended':('sequence','sequences')}.get(v)
             if fk:e[fk[0]]=next((x['id'] for x in s.get(fk[1],[])),'')
             if v=='timer':e['seconds']=1.0
             w.changed(True)
-        ins.combo('CUANDO',[(label,key) for key,label in WHEN.items()],e['when'],when,'event_when')
-        fk={'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters'),'sequence_ended':('sequence','sequences')}.get(e['when'])
+        ins.combo('CUANDO',[(label,key) for key,label in WHEN.items() if w.doc.campaign.get('project_format')==9 or key not in {'object_clicked','note_closed'}],e['when'],when,'event_when')
+        fk={'object_clicked':('object','objects'),'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters'),'sequence_ended':('sequence','sequences')}.get(e['when'])
         if fk:ins.combo('Origen',[(x.get('name',x['id']),x['id']) for x in s.get(fk[1],[])],e.get(fk[0],''),lambda v:ins.set(p+(fk[0],),v),'event_'+fk[0])
         if e['when']=='conversation_ended':ins.spin('RETURN (0 = cualquiera)',e.get('result',0),lambda v:ins.set(p+('result',),v if v else None,True),'event_result')
         if e['when']=='timer':ins.spin('Segundos',e.get('seconds',1),lambda v:ins.set(p+('seconds',),v),'event_seconds',True,.15,86400)
@@ -363,10 +363,15 @@ def event_properties(ins):
         ins.note('Las condiciones de la lista se combinan con AND; cada grupo puede usar ALL, ANY o NOT. Eventos de estado, muerte, pickup, encuentro y timer se ejecutan una vez por defecto.')
     elif p[-2]=='actions':
         a=w.at(p);kind=next(iter(a),'spawn')
-        def change(v):a.clear();a[v]={'resource':'','waypoint':'','volume':100,'min_distance':128,'max_distance':512} if v=='play_sound' else {'cast_id':'','mode':'frames','frame':1,'parameter':150,'open':True} if v=='control_door' else {'scene':'','entry':''} if v=='travel' else True if ACTIONS[v][1]=='none' else 100 if ACTIONS[v][1]=='number' else '';w.changed(True)
-        advanced={'travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','play_sound'}
+        def change(v):a.clear();a[v]={'title':'Nota','text':'Escribe aquí lo que leerá el jugador.'} if v=='show_note' else {'resource':'','waypoint':'','volume':100,'min_distance':128,'max_distance':512} if v=='play_sound' else {'cast_id':'','mode':'frames','frame':1,'parameter':150,'open':True} if v=='control_door' else {'scene':'','entry':''} if v=='travel' else True if ACTIONS[v][1]=='none' else 100 if ACTIONS[v][1]=='number' else '';w.changed(True)
+        advanced={'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','play_sound'}
         ins.combo('Acción',[(label,key) for key,(label,_) in ACTIONS.items() if w.doc.campaign.get('project_format')==9 or key not in advanced],kind,change,'action_kind');category=ACTIONS.get(kind,('','none'))[1]
-        if category=='arrival':
+        if category=='note':
+            value=a[kind]
+            ins.line('Título',value['title'],lambda v:ins.set(p+(kind,'title'),v),'note_title')
+            control=ins.text('Texto',value['text'],lambda v:ins.set(p+(kind,'text'),v),'note_text');control.setMaximumHeight(350);control.setMinimumHeight(180)
+            ins.note('Ventana del juego para prólogos, cartas y avisos. Separa los párrafos con una línea vacía. Para continuar después, usa el evento «Cierran una nota» y, si hay varias, una condición de flag.')
+        elif category=='arrival':
             value=a[kind]
             def destination(v):value['scene']=v;value['entry']='';w.changed(True)
             ins.combo('Escena destino',[('Elige…','')]+[(row['id']+' · '+row['level']['source'],row['id']) for row in w.doc.campaign['scenes']],value['scene'],destination,'travel_scene')

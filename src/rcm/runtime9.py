@@ -148,16 +148,28 @@ def extend(java,campaign,scene,project):
     # SDK convreached arguments: starter, event, line, duration, speaker GUID.
     replace('int line,int speaker,int capture)', 'int line,int duration,int speaker)')
     motions=[' private void dialogueMotion(int event,int line,int speaker) { switch(active) {']
+    has_overrides=any(l.motion_value is not None for c in project.conversations for n in c.nodes for l in n.lines)
     for ci,c in enumerate(project.conversations):
         order=[n for n in c.nodes if n.id==c.entry]+[n for n in c.nodes if n.id!=c.entry]
         animated=[(ei,li,l) for ei,n in enumerate(order) for li,l in enumerate(n.lines) if l.motion_value is not None]
         if not animated:continue
         motions.append(f' case {ci}:')
         for ei,li,l in animated:
-            motions.append(f' if(event=={ei} && line=={li}) {{ int guid=local(speaker)&&IsActorGuid(speaker)?speaker:things[{entities[l.speaker]}]; if(local(guid)&&IsActorGuid(guid)) {{ int result=new CodexThing(guid).PlayMotionSetMode({l.motion_value},false,30.0f); trace("DIALOGUE_MOTION {c.id}/{order[ei].id}/{li} {l.motion} guid="+guid+" result="+result); }} return; }}')
+            index=entities[l.speaker]
+            # bMotion selects a channel, NOT looping. AI-paused NPCs need a
+            # persistent base pose beneath the one-shot action channel.
+            motions.append(f' if(event=={ei} && line=={li}) {{ int guid=local(speaker)&&IsActorGuid(speaker)?speaker:things[{index}]; if(local(guid)&&IsActorGuid(guid)) {{ CodexThing actor=new CodexThing(guid); actor.PlayMotionSetMode(MOTION_STAND,true,30.0f); int result=actor.PlayMotionSetMode({l.motion_value},false,30.0f); if(result>=0) {{ dialogueMotionGuids[{index}]=guid; SetTimer(Math.max(0.01f,result/1000.0f),{9500+index}); }} else actor.PlayMotionSetMode(MOTION_STAND,false,30.0f); trace("DIALOGUE_MOTION {c.id}/{order[ei].id}/{li} {l.motion} guid="+guid+" result="+result); }} return; }}')
         motions.append(' break;')
     motions.append(' } }');lines.extend(motions)
-    replace('trace("CONVERSATION_LINE "+active', 'dialogueMotion(event,line,speaker); trace("CONVERSATION_LINE "+active')
+    if has_overrides:
+        lines += [f' private int[] dialogueMotionGuids=new int[{len(entities)}];',
+                  ' private void finishDialogueMotion(int i) { int guid=dialogueMotionGuids[i]; dialogueMotionGuids[i]=0; KillTimer(9500+i); if(local(guid)&&IsActorGuid(guid)&&new CodexActor(guid).GetActorHealth()>0.0f) { new CodexThing(guid).PlayMotionSetMode(MOTION_STAND,true,30.0f); new CodexThing(guid).PlayMotionSetMode(MOTION_STAND,false,30.0f); trace("DIALOGUE_MOTION_REST guid="+guid); } }',
+                  ' private void clearDialogueMotions(boolean rest) { for(int i=0;i<dialogueMotionGuids.length;i++) { if(rest) finishDialogueMotion(i); else { KillTimer(9500+i); dialogueMotionGuids[i]=0; } } }']
+        replace('trace("CONVERSATION_LINE "+active', 'clearDialogueMotions(false); dialogueMotion(event,line,speaker); trace("CONVERSATION_LINE "+active')
+        replace('if(id==9400&&!NetIsClient()&&!transitioning)', 'if(id>=9500 && id<9500+dialogueMotionGuids.length) { if(!NetIsClient()) finishDialogueMotion(id-9500); return; } if(id==9400&&!NetIsClient()&&!transitioning)')
+        replace('if(!pendingDialogueEnd) return;', 'if(!pendingDialogueEnd) return; clearDialogueMotions(true);')
+        replace('public void restored(int capture) {','public void restored(int capture) { clearDialogueMotions(true);')
+    else:replace('trace("CONVERSATION_LINE "+active','dialogueMotion(event,line,speaker); trace("CONVERSATION_LINE "+active')
     lines.append(' private boolean pendingDialogueEnd=false, endedAborted=false; private int endedConversation=-1, endedPlayer=0, endedResult=0;')
     replace('if(active!=-1 || !IsPlayerGuid(player))', 'if(active!=-1 || pendingDialogueEnd || !IsPlayerGuid(player))')
     replace('if(NetIsClient()||active!=-1||transitioning', 'if(NetIsClient()||active!=-1||pendingDialogueEnd||transitioning')
@@ -176,15 +188,16 @@ def extend(java,campaign,scene,project):
     replace('public void restore(int capture) {', 'public void restore(int capture) { trace("RESTORE_STATE '+scene['id']+'"); needsArrival=false; pendingStart=false; for(int route=0;route<patrolRunning.length;route++) { patrolRunning[route]=CodexSequence.RestoreBoolean(); patrolPoint[route]=CodexSequence.RestoreInt(); patrolWait[route]=CodexSequence.RestoreInt(); }')
     # MP restoration may recreate the player from the Crypt/entrance. Retain
     # this local player's actual save-time pose separately from arrivals.
-    pose=''' private boolean savedPose=false, restorePosePending=false; private int restorePoseDelay=0; private float[] savedPosition=new float[3],savedOrientation=new float[3];
- private void savePlayerPose() { int who=localPlayer(player); savedPose=who!=0; float[] position=who==0?null:new CodexThing(who).GetPosition(), orientation=who==0?null:new CodexThing(who).GetOrientation(); savedPose=savedPose && position!=null && orientation!=null; CodexSequence.SaveBoolean(savedPose); for(int axis=0;axis<3;axis++) CodexSequence.SaveFloat(savedPose?position[axis]:0.0f); for(int axis=0;axis<3;axis++) CodexSequence.SaveFloat(savedPose?orientation[axis]:0.0f); trace("SAVE_POSE player="+who+" xyz="+(who==0?"none":positionText(who))); }
- private void readPlayerPose() { savedPose=CodexSequence.RestoreBoolean(); for(int axis=0;axis<3;axis++) savedPosition[axis]=CodexSequence.RestoreFloat(); for(int axis=0;axis<3;axis++) savedOrientation[axis]=CodexSequence.RestoreFloat(); restorePosePending=savedPose; restorePoseDelay=1; }
- private boolean restorePlayerPose() { if(!restorePosePending) return true;
+    pose=''' private boolean savedPose=false, restorePosePending=false; private int restorePoseDelay=0,restorePoseAttempts=0; private float[] savedPosition=new float[3],savedOrientation=new float[3];
+ private boolean finitePose(float[] v) { if(v==null || v.length!=3) return false; for(int axis=0;axis<3;axis++) if(Float.isNaN(v[axis]) || Float.isInfinite(v[axis])) return false; return true; }
+ private void savePlayerPose() { int who=localPlayer(player); float[] position=who==0?null:new CodexThing(who).GetPosition(), orientation=who==0?null:new CodexThing(who).GetOrientation(); savedPose=who!=0 && finitePose(position) && finitePose(orientation); CodexSequence.SaveBoolean(savedPose); for(int axis=0;axis<3;axis++) CodexSequence.SaveFloat(savedPose?position[axis]:0.0f); for(int axis=0;axis<3;axis++) CodexSequence.SaveFloat(savedPose?orientation[axis]:0.0f); trace("SAVE_POSE player="+who+" xyz="+(who==0?"none":positionText(who))); }
+ private void readPlayerPose() { savedPose=CodexSequence.RestoreBoolean(); for(int axis=0;axis<3;axis++) savedPosition[axis]=CodexSequence.RestoreFloat(); for(int axis=0;axis<3;axis++) savedOrientation[axis]=CodexSequence.RestoreFloat(); restorePosePending=savedPose && finitePose(savedPosition) && finitePose(savedOrientation); restorePoseDelay=1; restorePoseAttempts=0; if(savedPose&&!restorePosePending) trace("RESTORE_POSE_INVALID"); }
+ private boolean restorePlayerPose() {
 '''
     for point in entries:
         flag=campaign.reserved['arrival/'+scene['id']+'/'+point['id']]
         pose+=f' if(CodexSequence.GetChronicleFlag({flag})) {{ restorePosePending=false; restoredState=false; needsArrival=true; pendingStart=true; trace("RESTORE_TRAVEL_ARRIVAL"); return true; }}\n'
-    pose+=''' if(restorePoseDelay>0) { restorePoseDelay--; return false; } if(player==0) return false; CodexThing actor=new CodexThing(player); if(!actor.SetPosition(savedPosition) || !actor.SetOrientation(savedOrientation)) { trace("RESTORE_POSE_RETRY"); return false; } restorePosePending=false; needsArrival=false; pendingStart=false; trace("RESTORE_POSE player="+player+" xyz="+positionText(player)); return true; }
+    pose+=''' if(!restorePosePending) return true; if(restorePoseDelay>0) { restorePoseDelay--; return false; } if(++restorePoseAttempts>20) { restorePosePending=false; needsArrival=false; pendingStart=false; trace("RESTORE_POSE_FAILED: keeping native player position"); return true; } if(player==0) return false; CodexThing actor=new CodexThing(player); if(!actor.SetPosition(savedPosition) || !actor.SetOrientation(savedOrientation)) { trace("RESTORE_POSE_RETRY"); return false; } restorePosePending=false; needsArrival=false; pendingStart=false; trace("RESTORE_POSE player="+player+" xyz="+positionText(player)); return true; }
 '''
     lines.append(pose)
     replace('public void save(int capture) {','public void save(int capture) { savePlayerPose();')
@@ -194,4 +207,8 @@ def extend(java,campaign,scene,project):
     replace('for(int i=0;i<inside.length;i++) inside[i]=false; player=localPlayer(0); poll();', 'for(int i=0;i<inside.length;i++) inside[i]=false; player=localPlayer(0); if(player!=0) CodexCamera.Release(player); for(int route=0;route<patrolRunning.length;route++) if(patrolRunning[route]&&!commandPatrol(route)) stopPatrol(patrolActor(route)); trace("RESTORED '+scene['id']+'"); poll();')
     java=java[:-2]+'\n'+factory+'\n'+'\n'.join(lines)+'\n}\n'
     from .cinematics import extend_runtime
-    return extend_runtime(java,scene,project)
+    java=extend_runtime(java,scene,project)
+    if any('show_note' in a for e in scene['events'] for a in e['actions']) or any(e['when']=='note_closed' for e in scene['events']):
+        from .notes_runtime import extend_notes
+        java=extend_notes(java)
+    return java

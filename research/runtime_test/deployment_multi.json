@@ -4,8 +4,8 @@
     "rcm_tutor",
     "rcm_mini"
   ],
-  "destination": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\tests\\tmpgo4_pv6p\\RCM\\both",
-  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_multi_1791541041007927900.zip",
+  "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\east_demo",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_multi_1791553396390094900.zip",
   "removed_owned_files": [],
   "native_engine_test": false
 }

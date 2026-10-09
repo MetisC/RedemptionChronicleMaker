@@ -141,6 +141,7 @@ class GuidedTutorial(TestCase):
           public static void main(String[] args)throws Exception{
             boolean skip=args[0].equals("skip");CE.Thing player=new CE.Thing();player.template="player";CE.world.put(1,player);CE.syncFeedback=true;
             R_rcm_tutor_s0_Scene s=new R_rcm_tutor_s0_Scene();s.beginscene(1,0);
+            s.textended(1);tick(s); // Close the native tutorial prologue.
             check(CE.quests.size()==1,"journal reveals only the first lesson");
             check(CodexThing.GuidFromCastID("R_rcm_tutor_s0_camera")==0,"future teachers are not spawned at start");
             answer(s,"mentor",skip?2:1);check(CE.quests.size()==2,"lesson 2 revealed");

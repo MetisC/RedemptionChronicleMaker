@@ -1,5 +1,7 @@
 # Tutorial paso a paso: un escenario, siete lecciones
 
+Revisión 0.9.12: al empezar aparece un prólogo en la ventana de texto del juego. Ciérralo y habla con Tomás. Christof ofrece **Leer una nota de ejemplo** en su laboratorio opcional. En el paso 5, pulsa el barril antes de hablar con el agente para leer otra nota. En el editor, selecciona el objeto y usa **Añadir nota al usar**; el botón muestra el evento existente. Los gestos deben acabar en reposo sin hacer desaparecer a Christof. La visualización de estos cambios necesita confirmación en el juego.
+
 Empieza una **partida nueva** en «RCM · Tutorial paso a paso». Esta revisión cambia el progreso respecto a los guardados anteriores.
 
 El journal muestra el objetivo actual. Delante del punto de inicio aparece su profesor. Al completar u omitir una lección aparece el siguiente en el mismo sitio. El laboratorio está a la izquierda de los profesores, en la misma calle: no necesitas visitarlo para avanzar.
@@ -46,6 +48,13 @@ Vera empieza con ese plano y te deja cambiar, sin prisa, por todos los encuadres
 - Probar [EASTOttoVan](rcm://workshop/sequences/original_path), un travelling original **experimental**; no representa un writer NCP.
 - Acercarte a la [zona del libro](rcm://workshop/triggers/station) para recoger un objeto. Debug → Leer trace muestra entrada, salida y pickup.
 - Activar/desactivar una flag sin cambiar las siete lecciones.
+- Hablar con el **profesor de animación** → **Animaciones de conversación**. Ofrece reposo, gesto de reposo, hablar, escuchar y cinco gestos del modelo ST_Christof_MD. Los nombres de los archivos permiten identificarlos.
+
+Para cambiar una actuación, abre [su conversación](rcm://workshop/conversations/lab), selecciona un nodo como `gesture10` y elige **Propiedades → Animación al hablar**. Una línea puede elegir otra animación; si no eliges ninguna, conserva la del nodo. Un nodo sin animación usa hablar/escuchar del motor. Sólo se ofrecen movimientos disponibles para sus personajes, no una lista universal.
+
+La película comienza con **Vista aérea amplia en picado** y transición inicial de cero segundos. Cambia cada plano en [walk_scene](rcm://workshop/sequences/walk_scene). El aspecto y la ausencia de obstáculos aún deben comprobarse dentro del juego.
+
+Esta revisión guarda la posición y orientación del jugador local. Al cargar, se recuperan después de la creación del personaje. Un viaje explícito usa su entrada elegida. Si el motor rechaza repetidamente la posición, se conserva la posición nativa y se registra el fallo, sin bloquear toda la lógica. **Usa una partida nueva de 0.9.12; los saves anteriores no son compatibles.**
 
 ## Verificación y límites
 

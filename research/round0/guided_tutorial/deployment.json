@@ -2,17 +2,19 @@
   "deployment": {
     "chronicle": "rcm_tutor",
     "chronicles": [
-      "rcm_tutor"
+      "rcm_tutor",
+      "rcm_mini"
     ],
     "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\east_demo",
-    "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_multi_1791538811812620400.zip",
+    "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_multi_1791553396390094900.zip",
     "removed_owned_files": [],
     "native_engine_test": false
   },
   "title": "RCM \u00b7 Tutorial paso a paso",
-  "installed_sha256": "1c0eae78c054cefa321330cda1e623a553661a52c0909357b81e5059169d4d9e",
-  "files_checked": 8,
+  "installed_sha256": "b8af6792b0f49b524d963b43da9f0c325c0463f7cd699b528076af7fe7360926",
+  "files_checked": 16,
   "saved_templates_retained": [
+    "r_rcm_tutor_s0_key",
     "r_rcm_tutor_s0_reward"
   ],
   "saved_profiles_unchanged": 1,

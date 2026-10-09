@@ -1,0 +1,39 @@
+{
+  "window": [
+    1100,
+    720
+  ],
+  "tabs": [
+    {
+      "tab": "Espacio 3D",
+      "y": 51
+    },
+    {
+      "tab": "Historia / Recursos",
+      "y": 51
+    },
+    {
+      "tab": "Campa\u00f1a / Quests",
+      "y": 51
+    },
+    {
+      "tab": "Templates / AI propios",
+      "y": 51
+    },
+    {
+      "tab": "Playtest / Debug",
+      "y": 51
+    },
+    {
+      "tab": "Gr\u00e1fico de historia",
+      "y": 51
+    },
+    {
+      "tab": "Tutorial / Ayuda",
+      "y": 51
+    }
+  ],
+  "route_form_height": 190,
+  "offscreen": true,
+  "native_engine_test": false
+}

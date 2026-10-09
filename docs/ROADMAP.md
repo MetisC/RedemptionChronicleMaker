@@ -1,5 +1,9 @@
 # Roadmap
 
+Actualización 0.9.12: texto modal NTX generado directamente y clic de objeto en perfil moderno; recuperación de reposo tras gesto usando el contrato real de canales/duración. Nueva evidencia en NOTES_AND_MOTION_FIX.md. Se conserva el generador histórico y el circuito aceptado; queda la confirmación visual de Christof y de las notas. Build conserva sólo las dos crónicas actuales y el editor, con acceso directo en la raíz.
+
+Estado de estabilización 0.9.11: se conserva el tutorial aceptado y se añaden pruebas de carga/reentrada, cancelación cinematográfica y animaciones por nodo. Auditoría de simplicidad del editor en STABILITY_USABILITY_AUDIT.md, con prioridades y huecos de cobertura explícitos. La siguiente actividad es verificar visualmente esta revisión, antes de aplicar una a una las simplificaciones propuestas. No se inicia otra fase ni se declara cerrada la aceptación nativa de Fase 9.
+
 Actualización Fase9/0.9.0: autoría directa de campañas, entradas visuales/llegadas, recorridos, controles limitados de puertas/exits, presets de cámara, sonido situado y diagnósticos. Un circuito único sustituye las demos desplegadas. Pruebas manuales de juego aplazadas por petición del usuario; no se inicia otra fase ni se declara aceptación. Pendientes prioritarios: B1/B2/B3, static/puertas completas y máquina independiente. Detalles en AUTHORING_MATURITY_REPORT.md.
 
 Fases 1–3 conservadas con pruebas y evidencia histórica. Fase 4 implementa campañas sobre geometría original, quests nativas con pasos separados, inventario, encuentros, condiciones/acciones, Jump, cámara de actor, música y deploy. La demo completa se crea desde la GUI; los detalles verificados y pendientes están en PHASE4_REPORT.md.

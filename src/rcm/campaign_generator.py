@@ -88,10 +88,11 @@ def runtime(campaign,scene,p):
         code += [f' case {ti}: {{ double x=v[0]-({t.transform.position[0]}),y=v[1]-({t.transform.position[1]}),z=v[2]-({t.transform.position[2]}); if({test}) return true; break; }}']
     code+=[' } } return false; }',' private void dispatch(String kind,String target,int result) { if(transitioning) return;']
     for ei,e in enumerate(scene['events']):
-        if e['when'] not in {'scene_start','actor_clicked','conversation_ended','trigger_enter','trigger_leave','sequence_ended'}: continue
-        fk={'actor_clicked':'actor','conversation_ended':'conversation','trigger_enter':'trigger','trigger_leave':'trigger','sequence_ended':'sequence'}.get(e['when'])
+        if e['when'] not in {'scene_start','actor_clicked','object_clicked','note_closed','conversation_ended','trigger_enter','trigger_leave','sequence_ended'}: continue
+        fk={'object_clicked':'object','actor_clicked':'actor','conversation_ended':'conversation','trigger_enter':'trigger','trigger_leave':'trigger','sequence_ended':'sequence'}.get(e['when'])
         test=f'kind.equals({js(e["when"])})'+(f' && target.equals({js(e[fk])})' if fk else '')+(f' && result=={e["result"]}' if 'result' in e else '')
-        code+=[f' if({test}) {{ if(event{ei}() && (transitioning || kind.equals("actor_clicked"))) return; }}']
+        extra=' || kind.equals("object_clicked")' if campaign.source.get('runtime_profile')=='phase9' else ''
+        code+=[f' if({test}) {{ if(event{ei}() && (transitioning || kind.equals("actor_clicked"){extra})) return; }}']
     code+=[' }']
     for ei,e in enumerate(scene['events']):
         marker='e/'+scene['id']+'/'+e['id'];once=marker in reserved
@@ -115,6 +116,9 @@ def runtime(campaign,scene,p):
             elif k in ('spawn_encounter','remove_encounter'):
                 statement=' '.join(f'enabled[{entities[a]}]=true; spawn({entities[a]});' if k=='spawn_encounter' else f'if(local(things[{entities[a]}])) new CodexThing(things[{entities[a]}]).Remove(); enabled[{entities[a]}]=false;' for a in groups[v]['actors'])
             elif k=='start_conversation':statement=f'if(!conversation({convs[v]})) return false;'
+            elif k=='show_note':
+                from .notes import note_id
+                statement=f'if(!showNote({js(note_id(p.prefix,ei,ai))})) return false;'
             elif k=='jump':statement=f'releaseCamera(); transitioning=true; KillTimer(9400); CodexSequence.Jump({js(v)},0);'
             elif k=='travel':statement=f'if(!travel({js(v["scene"])},{js(v["entry"])})) return false;'
             elif k=='start_patrol':statement=f'if(!startPatrol({next(i for i,row in enumerate(scene["paths"]) if row["id"]==v)})) return false;'
@@ -153,7 +157,8 @@ def runtime(campaign,scene,p):
     code+=[' } } catch(Throwable error) { trace("conversation failed: "+error); } if(!ok && active==index && starter==conversationPlayer) { active=-1; starter=0; CodexCamera.Release(conversationPlayer); cameraPlayer=0; cameraTicks=0; trace("conversation failed to start"); } return ok; }',
              ' public void clicked(int target,int clicker,int capture) { if(NetIsClient()||active!=-1||transitioning||!IsPlayerGuid(clicker)||!local(clicker)) return; player=clicker;']
     for eid,i in entities.items():
-        code+=[f' if(target==things[{i}]) {{ dispatch("actor_clicked",{js(eid)},0);']
+        kind='object_clicked' if eid not in actors and campaign.source.get('runtime_profile')=='phase9' else 'actor_clicked'
+        code+=[f' if(target==things[{i}]) {{ dispatch({js(kind)},{js(eid)},0);']
         e=next(e for e in p.entities if e.id==eid)
         if e.conversation:
             select=str(convs[e.conversation]) if not e.when_flag else f'CodexSequence.GetChronicleFlag({flags[e.when_flag]})?{convs[e.after_conversation]}:{convs[e.conversation]}'
@@ -243,6 +248,11 @@ def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress
             nls += [name+'S '+title,name+'L '+desc]
     payload['strings/_'+prefix+'.nls']=('\r\n'.join(nls)+'\r\n').encode('cp1252')
     payload['chronicles/'+prefix+'.nmf']+=('NLS _'+prefix+'.nls\r\n').encode('cp1252')
+    from .notes import encode_notes,note_id
+    notes=[(note_id(p.prefix,ei,ai),a['show_note']) for scene,p in campaign.scenes for ei,e in enumerate(scene['events']) for ai,a in enumerate(e['actions']) if 'show_note' in a]
+    if notes:
+        payload['strings/'+prefix+'.ntx']=encode_notes(notes)
+        payload['chronicles/'+prefix+'.nmf']+=('NTX '+prefix+'.ntx\r\n').encode('cp1252')
     # Keep the diagnostic runtime tree in sync as well as the published bundle.
     # This prevents a removed conversation/resource from being mistaken for a
     # current generated input during later inspections or deployments.

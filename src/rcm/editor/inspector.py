@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QFormLayout, QLabel, QLineEdit,
     QPlainTextEdit, QComboBox, QSpinBox, QDoubleSpinBox, QPushButton, QCheckBox, QSizePolicy)
 
+from PySide6.QtCore import Qt
 from ..model import identifier
 
 
@@ -160,6 +161,10 @@ class Inspector(QWidget):
             self.note("Entorno y contenido pertenecen a la escena. La geometría sigue siendo la del level original.")
         elif p[0] in {"actors", "objects"} and len(p) == 2:
             self.actor()
+            if p[0]=='objects' and hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format')==9:
+                self.button('Añadir nota al usar…',lambda:self.object_interaction('show_note'),'object_note')
+                self.button('Añadir conversación al usar…',lambda:self.object_interaction('start_conversation'),'object_dialogue')
+                self.note('Una nota no necesita personaje. Una conversación usa un NPC de esta escena como hablante; el objeto sirve para abrirla.')
         elif p[0] == 'triggers' and len(p) == 2:
             self.trigger()
         elif p[0] in ('entries','waypoints') and len(p)==2:
@@ -187,6 +192,15 @@ class Inspector(QWidget):
             self.note("Estado booleano de la crónica. El backend actual admite índices 0–255; los índices deben ser únicos.")
         else:
             self.note("Selecciona un elemento de la lista para editarlo.")
+
+    def object_interaction(self,kind):
+        ident=self.win.at(self.path)['id'];data=self.win.doc.data
+        existing=next((i for i,e in enumerate(data['events']) if e['when']=='object_clicked' and e.get('object')==ident),None)
+        if existing is not None:
+            self.win.select(('events',existing));return
+        value={'title':'Nota','text':'Escribe aquí lo que leerá el jugador.'} if kind=='show_note' else next((c['id'] for c in data['conversations']),'')
+        data['events'].append(dict(id=self.win.doc.unique_id('events','use'),when='object_clicked',object=ident,once=False,actions=[{kind:value}]))
+        self.win.selection=('events',len(data['events'])-1,'actions',0);self.win.changed(True)
 
     def actor(self):
         p = self.path
@@ -371,12 +385,16 @@ class Inspector(QWidget):
     def dialogue_motion(self,path,row,speaker,line=False):
         if not hasattr(self.win.doc,'campaign') or self.win.doc.campaign.get('project_format')!=9:return
         from ..motions import slots,label
-        actor=next((a for a in self.win.doc.data['actors'] if a['id']==speaker),None)
-        options=slots(self.win.backend.resources,actor['template']) if actor else []
+        speakers=[speaker] if line else [l.get('speaker',speaker) for l in row.get('lines',[]) if l.get('motion') is None]
+        available=[]
+        for key in speakers:
+            actor=next((a for a in self.win.doc.data['actors'] if a['id']==key),None)
+            available.append(slots(self.win.backend.resources,actor['template']) if actor else [])
+        options=[s for s in available[0] if all(any(o['mode']==s['mode'] for o in group) for group in available[1:])] if available else []
         default='Heredar animación del nodo' if line else 'Automática del motor (hablar / escuchar)'
         control=self.combo('Animación al hablar',[(default,None)]+[(label(s),s['mode']) for s in options],row.get('motion'),lambda v:self.set(path+('motion',),v,True),'dialogue_motion')
-        for i,s in enumerate(options,1):control.setItemData(i,s['animation']+'\n'+', '.join(s['flags']),__import__('PySide6.QtCore',fromlist=['Qt']).Qt.ItemDataRole.ToolTipRole)
-        self.note('Sólo se ofrecen movimientos de este modelo. Un gesto sin bucle termina por sí solo. Las líneas pueden sustituir la animación del nodo; el motor mantiene hablar/escuchar cuando no eliges ninguna.')
+        for i,s in enumerate(options,1):control.setItemData(i,s['animation']+'\n'+', '.join(s['flags']),Qt.ItemDataRole.ToolTipRole)
+        self.note('Elige un movimiento o deja que el personaje hable de forma automática. En un nodo con varios personajes se muestran sus movimientos comunes. Puedes elegir otro para cada línea.')
 
     def conversation(self):
         p = self.path

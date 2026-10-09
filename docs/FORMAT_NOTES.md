@@ -280,7 +280,7 @@ Los contenedores nuevos `.rcmproject` y `.rcmpack` son ZIP con manifest JSON, ha
 
 Conversaciones admiten camera: native (no cámara propia) o un preset de camera_presets.PRESETS. Desde 0.9.9, si falta camera se usa ots_speaker_close; native es una elección explícita experimental. Secuencias admiten steps: lista ordenada de {at, actor, preset, angle?, transition?}; primer plano en 0, tiempos crecientes dentro de duration, actores/presets válidos y valores finitos. move_path referencia un recorrido local existente. camera_path referencia un NCP original único; es excluyente con steps. path_speed: 0.01..100. No se generan NCP.
 
-La timeline usa timer nativo de 150 ms; los tiempos se cuantizan a ticks. Captura/restauración guarda el índice del actor movido por una cutscene, además de los records de patrol; restore cancela la película y detiene ese recorrido. service.py incluye cinema_record_v1 por escena en la firma del contrato de saves. Sin migración nativa entre contratos.
+La timeline usa timer nativo de 150 ms; los tiempos se cuantizan a ticks. Desde 0.9.11, captura/restauración guarda una marca de película activa y el índice del actor movido por una cutscene, además de los records de patrol; restore cancela la película y detiene ese recorrido. service.py incluye cinema_record_v2 por escena en la firma del contrato de saves. Sin migración nativa entre contratos.
 
 El inventario gráfico crea IDs distintos, cada uno con su plantilla de entidad generada, aunque hereden del mismo template original. Propiedad de creación única; props, objetos con spawn y objetos de otro inventario no se ofrecen como reutilizables.
 
@@ -295,3 +295,17 @@ Se generan NQD y textos NLS directamente. start_quest carga sólo qNs0, advance_
 En una timeline, cada plano puede indicar focus: ID de un objeto local; actor sigue siendo el interlocutor/segundo foco. prop_motion contiene object, at, duration y translation [x,y,z]. Requiere un objeto absoluto, tiempos finitos dentro de la película y traslación finita acotada. Se interpola el transform con SetPosition; no se genera geometría ni se inventan frames NSD. move_at retrasa el inicio de move_path hasta el instante indicado. Estos campos se editan desde Cámaras y participan en referencias, renombrado y protección de borrado.
 
 NOT tag 20 se expone como item_type uint32. Las plantillas de misión originales usan 7; la inserción nativa lo consume sin dejarlo en la cuadrícula. La variante propia T_tutor_key hereda BoneKey y escribe 0 para que se conserve físicamente. Icono/modelo/otros campos se heredan sin reescribir los originales. El runtime moderno verifica inventario tras AddToActorInventory antes de considerar entregado el objeto. Evidencia y límites: CTD_CINEMA_INVENTORY_FIX.md.
+
+## Motion por nodo/línea y pose guardada (0.9.11)
+
+Sólo formato 9: `nodes[].motion` elige un slot del NMS real del speaker; `nodes[].lines[].motion` lo sustituye para esa línea. Ausencia conserva la herencia; ausencia en ambos usa la actuación del motor. La validación comprueba el slot en cada actor afectado. El callback usa el orden EVENT serializado (entrada primero) y LINE, con el quinto argumento como GUID del hablante. NCO/NVO mantienen su formato; el override se genera en Java con PlayMotionSetMode.
+
+`cache/motions.json` v2 contiene constantes de Codex, NMS encontrados con procedencia, slots/NAD/flags y herencia de templates; su huella incluye Codex.class y catálogo de recursos. Una caché JSON corrupta se reconstruye. No hay editor NMS/NAD propio en esta revisión.
+
+### NTX propio y final de animación (0.9.12)
+
+`show_note` genera `strings/R_<id>.ntx` y su referencia `NTX` en NMF. Gramática original contrastada con MP_CTD: `<TEXT id none 0>`, `<TITLE título>`, `<P 0xFFFFFFFF>`, texto, `</TEXT>`. Writer y reader propios del subconjunto sin voz, con validación de marcado, párrafos, IDs y codificación Windows-1252. No se usa NLS para sustituir las ventanas de texto. `object_clicked` admite un filtro `object`; `note_closed` recibe la continuación diferida de `textended(owner)`.
+
+La documentación original confirma que el booleano de PlayMotionSetMode elige canal; el retorno es duración en msec. Los overrides explícitos tienen ahora stand en el canal base y recuperación tras el retorno temporal, cancelada al entrar en otra línea. No cambian NCO/NVO ni la actuación automática sin overrides. Ver NOTES_AND_MOTION_FIX.md.
+
+El record `player_pose_record_v1` consta de SaveBoolean y seis SaveFloat: XYZ y orientación. Se escribe antes de los records de patrol/entidades. En escenas con cinematics, preceden SaveBoolean(cinema activo) y SaveInt(actor), contrato cinema_record_v2. El motor conserva flags por sus APIs originales. Esto es un contrato de serialización de nuestro script, no un escritor NSG/NSW completo. Nuevos records requieren partida nueva.

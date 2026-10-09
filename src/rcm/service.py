@@ -225,8 +225,8 @@ class Backend:
                     contract['runtime_profile']='phase9-v1'
                     contract['player_pose_record_v1']=[s['id'] for s,project in p.scenes]
                     contract['movement']=[{'scene':s['id'],'paths':s.get('paths',[]),'entries':s.get('entries',[])} for s,project in p.scenes]
-                    cinematic_scenes=[s['id'] for s,project in p.scenes if any(any(k in seq for k in ('steps','move_path','camera_path')) for seq in s.get('sequences',[]))]
-                    if cinematic_scenes:contract['cinema_record_v1']=cinematic_scenes
+                    cinematic_scenes=[s['id'] for s,project in p.scenes if any(any(k in seq for k in ('steps','move_path','camera_path','prop_motion')) for seq in s.get('sequences',[]))]
+                    if cinematic_scenes:contract['cinema_record_v2']=cinematic_scenes
                 report['save_schema_sha256']=source_fingerprint(contract)
                 report['new_game_required']=bool(prior) and prior.get('save_schema_sha256')!=report['save_schema_sha256']
                 if report['new_game_required']:report['save_warning']='La estructura persistida ha cambiado o no tiene firma previa. Inicia una partida nueva; no hay migrador de saves nativos.'

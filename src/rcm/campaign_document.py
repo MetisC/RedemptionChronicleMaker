@@ -65,6 +65,11 @@ class CampaignDocument(Document):
             if not isinstance(s.get('events'),list) or any(not isinstance(e,dict) or not isinstance(e.get('actions'),list) or not isinstance(e.get('conditions',[]),list) for e in s['events']):raise ValueError('Forma de evento inválida')
             for e in s['events']:
                 strings(e,['id','when'],'Evento');records(e['actions'],'Acciones')
+                for action in e['actions']:
+                    if 'show_note' in action:
+                        value=action['show_note']
+                        if not isinstance(value,dict):raise ValueError('Nota: requiere título y texto')
+                        strings(value,['title','text'],'Nota')
                 for c in e.get('conditions',[]):condition(c)
             for a in s['actors']:
                 if 'inventory' in a and (not isinstance(a['inventory'],list) or any(not isinstance(i,str) for i in a['inventory'])):raise ValueError('Inventario: requiere IDs de objetos')

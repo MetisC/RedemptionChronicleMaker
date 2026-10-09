@@ -1,6 +1,8 @@
 # Ronda 0 — editor y dos ejemplos
 
-Versión 0.9.6. Abrir muestra únicamente Tutorial y Mini crónica. Espacio 3D → **Inicio** selecciona la llegada del jugador; Ayuda → **Tutorial del proyecto** abre la guía. La cámara automática entra en modo de conversación sin imponer un preset; el selector permite primeros planos y perfiles documentados por el SDK. Las cutscenes propias usan `BeginCutscene`/`EndCutscene`, bloquean la entrada de la escena mientras duran y toleran que el primer waypoint coincida con la posición inicial. Al cambiar al layout de combate, la guía confirma el cambio y explica la rata opcional. Consulta [TUTORIAL_CUTSCENE_LAYOUT_FIX.md](TUTORIAL_CUTSCENE_LAYOUT_FIX.md). Empieza una partida nueva; las partidas anteriores conservan entradas del journal y otra distribución de flags.
+Actualización 0.9.12: acceso directo **Redemption Chronicle Maker.lnk** en la raíz. Los objetos ofrecen **Añadir nota al usar** y **Añadir conversación al usar**. En Eventos, **Historia / Mostrar nota** edita título y párrafos; **Cierran una nota** permite continuar después. El tutorial muestra el prólogo al iniciar, una carta en el laboratorio y una nota al pulsar el barril del paso 5. Los gestos de Christof vuelven al reposo usando la duración que devuelve el motor. Ver [NOTES_AND_MOTION_FIX.md](NOTES_AND_MOTION_FIX.md).
+
+Versión 0.9.11. Abrir muestra únicamente Tutorial y Mini crónica. Espacio 3D → **Inicio** selecciona la llegada del jugador; Ayuda → **Tutorial del proyecto** abre la guía. La cámara predeterminada de conversación es **sobre el hombro**; el selector permite primeros planos y perfiles documentados por el SDK. Las cutscenes propias usan `BeginCutscene`/`EndCutscene` y bloquean la entrada de la escena mientras duran. La revisión añade animaciones por nodo, plano aéreo inicial y recuperación de la posición guardada. Consulta [ANIMATION_RESTORE_FIX.md](ANIMATION_RESTORE_FIX.md). Empieza una partida nueva; no hay migración de los saves anteriores.
 
 Consulta la pestaña **Tutorial / Ayuda** de cada proyecto: hay instrucciones y enlaces a sus elementos, no sólo un resultado generado. Tutorial: un level, tres layouts. Mini crónica: dos levels, tres escenas con historia, llave, quests, flags y regreso. Ambos usan una rata básica y combate elegido expresamente.
 
@@ -30,7 +32,9 @@ Controles más compactos. Campaña tiene separador vertical ajustable y un míni
 
 ## Cámaras y cutscenes
 
-En conversación: **Automática del juego** usa SetupCutscene para bloquear los controles y elegir el encuadre predeterminado del motor; no impone SetShot. Los presets aplican ambos mediante la API real. Las conversaciones antiguas sin la propiedad camera conservan el comportamiento previo. En secuencias formato 9, `steps` encadena planos por tiempo, actor/preset/transición; `move_path` usa navegación del motor. El final, diálogo nuevo, viaje o restore libera cámara y detiene el movimiento iniciado por la cutscene. No se reanuda una cutscene guardada a medias.
+En conversación formato 9: **Sobre hombro cercano hacia quien habla** es la opción predeterminada, también cuando falta `camera`. **Automática del motor (experimental)** conserva el encuadre nativo como elección explícita. En secuencias formato 9, `steps` encadena planos por tiempo, actor/preset/ángulo/transición; `move_path` usa navegación del motor. El final, viaje o restore libera cámara y detiene el movimiento iniciado por la cutscene. No se reanuda una cutscene guardada a medias. El tutorial deja avanzar los trece encuadres de conversación uno a uno.
+
+Selecciona un nodo o una línea de conversación → **Animación al hablar**. Las opciones provienen del NMS real del modelo y de las constantes Codex. Deja Automática para conservar la actuación normal. El laboratorio contiene ejemplos identificables; su apariencia sigue pendiente de prueba visual.
 
 `camera_path` reproduce un NCP original único con PlayPath; no crea o edita sus puntos. Debe corresponder al escenario. Sólo se incluye EASTOttoVan en el tutorial como opción experimental separada. Writer NCP, cámara desde viewport y puertas físicas completas siguen pendientes. No se declara paridad con Embrace.
 

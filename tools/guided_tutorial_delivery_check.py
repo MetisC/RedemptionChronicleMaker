@@ -60,15 +60,18 @@ def main():
     assert full['successful'] and full['tests']>=230
     gui = json.loads(ws.output('research/round0/gui/report.json').read_text(encoding='utf8'))
     assert gui['success'] and gui['real_gl']
+    forms=json.loads(ws.output('research/round0/stability_usability/form_probe.json').read_text(encoding='utf8'))
+    assert forms['safe_mode'] and not forms['native_engine_test']
     spatial = json.loads((evidence/'spatial_check.json').read_text(encoding='utf8'))
-    quality = json.loads(ws.output('build/tests/quality_report.json').read_text(encoding='utf8'))
+    quality = json.loads((evidence/'final_quality/quality_report.json').read_text(encoding='utf8'))
     assert quality['successful']
     result = dict(version=__version__,title=source['chronicle']['name'],
                   executable=str(exe),exe_sha256=hashlib.sha256(exe.read_bytes()).hexdigest(),
                   windows_icon_verified=True,examples_match_sources=True,
                   seven_lessons=len(source['quests'][0]['steps']),
                   deployment_matches_build=True,installed_files=len(manifest['owners']['rcm_tutor']),
-                  portable_compilation=probe,source_gui_real_gl=gui['real_gl'],
+                  portable_compilation=probe,historical_gui_real_gl=gui['real_gl'],
+                  current_form_probe=forms,current_real_gl_test=False,
                   floor_and_headroom_positions=len(spatial),full_regressions=full,
                   static_checks_passed=quality['successful'],native_engine_test=False)
     ws.write(evidence/'delivery.json',json.dumps(result,indent=2))

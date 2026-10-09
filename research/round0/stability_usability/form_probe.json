@@ -1,0 +1,60 @@
+{
+  "forms": [
+    {
+      "requested_size": [
+        1100,
+        720
+      ],
+      "actual_size": [
+        1100,
+        720
+      ],
+      "font_points": 10,
+      "effective_font_points": 10.0,
+      "route_form_height": 190,
+      "route_rows_visible": 2.764705882352941,
+      "route_list_height": 100,
+      "buttons_with_possible_text_clipping": []
+    },
+    {
+      "requested_size": [
+        1430,
+        900
+      ],
+      "actual_size": [
+        1430,
+        900
+      ],
+      "font_points": 10,
+      "effective_font_points": 10.0,
+      "route_form_height": 285,
+      "route_rows_visible": 5.764705882352941,
+      "route_list_height": 100,
+      "buttons_with_possible_text_clipping": [],
+      "minimum_card_text_contrast": 13.30334812782738
+    },
+    {
+      "requested_size": [
+        1430,
+        900
+      ],
+      "actual_size": [
+        1430,
+        900
+      ],
+      "font_points": 15,
+      "effective_font_points": 15.0,
+      "route_form_height": 224,
+      "route_rows_visible": 2.4444444444444446,
+      "route_list_height": 100,
+      "buttons_with_possible_text_clipping": []
+    }
+  ],
+  "font": "Segoe UI",
+  "render": "Qt offscreen / Fusion",
+  "safe_mode": true,
+  "real_gl": false,
+  "native_engine_test": false,
+  "physical_dpi_test": false,
+  "notes": "Font sizes simulate large text; they are not a physical Windows DPI or mouse test."
+}

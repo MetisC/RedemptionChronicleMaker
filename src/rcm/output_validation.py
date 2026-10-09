@@ -43,7 +43,10 @@ def verify_output(ws, report, catalogue):
                 if not exists(reference):raise ValueError('Metafile ausente')
         elif suffix == '.nmf':
             for _, fields in rows(data.decode('cp1252')):
-                if fields[0] in {'NOT','NLS','NVO'} and (len(fields)!=2 or not exists(fields[1])):raise ValueError('Recurso NMF ausente: '+name)
+                if fields[0] in {'NOT','NLS','NVO','NTX'} and (len(fields)!=2 or not exists(fields[1])):raise ValueError('Recurso NMF ausente: '+name)
+        elif suffix == '.ntx':
+            from .notes import read_notes
+            read_notes(data)
         elif suffix == '.nco':
             commands = [fields for _, fields in rows(data.decode('cp1252'))]
             events = [f[1] for f in commands if f[0]=='EVENT:' and len(f)==2]

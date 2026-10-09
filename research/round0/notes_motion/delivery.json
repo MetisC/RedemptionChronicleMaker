@@ -1,0 +1,50 @@
+{
+  "version": "0.9.12",
+  "tests": {
+    "tests": 278,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 201.88064200000372,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "packages": {
+    "rcm_tutor": {
+      "sha256": "88dc519827837ce183f7eb9f1ff8c02fcb5008aa4ff3d2e54cdc5fa9d7e1d466",
+      "requires_rcm": "0.9.12"
+    },
+    "rcm_mini": {
+      "sha256": "a1bd1a9acf00c46f863bd6b6812bf86dd571649e697924305fa8d1ff13f69f49",
+      "requires_rcm": "0.9.12"
+    }
+  },
+  "note_titles": [
+    "Bienvenido al tutorial",
+    "Una carta de ejemplo",
+    "Una nota sobre el barril"
+  ],
+  "exe_sha256": "618cf55b2678f5613792b6d475c89303b8e47161a9487c68c3ff59d6c9c69f79",
+  "shortcut": "H:\\Repositorios\\RedemptionChronicleMaker\\Redemption Chronicle Maker.lnk",
+  "retained_build": [
+    "portable",
+    "rcm_tutor",
+    "rcm_mini"
+  ],
+  "removed_bytes": 4509841714.0,
+  "originals_unchanged": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "previous_deployment_backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\notes_motion\\previous_deployment.zip",
+  "portable_compilation_verified": true,
+  "native_engine_test": false,
+  "pending_native_checks": [
+    "Christof visible after gesture",
+    "native note UI and closure"
+  ]
+}

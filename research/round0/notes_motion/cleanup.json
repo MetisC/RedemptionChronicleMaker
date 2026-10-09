@@ -1,0 +1,874 @@
+{
+  "applied": true,
+  "paths": [
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\.staging",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\build_check",
+      "bytes": 550779,
+      "files": 16
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\c4_all",
+      "bytes": 1547775,
+      "files": 41
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\c4_all_s0",
+      "bytes": 778795,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\c4_all_s1",
+      "bytes": 751561,
+      "files": 20
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\c4_test",
+      "bytes": 1538500,
+      "files": 41
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\c4_test_s0",
+      "bytes": 775311,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\c4_test_s1",
+      "bytes": 751716,
+      "files": 20
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\campaign",
+      "bytes": 3380115,
+      "files": 4
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\diagnostics",
+      "bytes": 4814,
+      "files": 7
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\east_demo",
+      "bytes": 745054,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\editor",
+      "bytes": 490059,
+      "files": 13
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\editor_demo",
+      "bytes": 756603,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\editor_playtest",
+      "bytes": 754859,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\event_test",
+      "bytes": 757766,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\failed_attempts",
+      "bytes": 5579190,
+      "files": 810
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\failed_check",
+      "bytes": 264,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\graph_check",
+      "bytes": 755635,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\note_check",
+      "bytes": 2025812,
+      "files": 41
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\note_check_s0",
+      "bytes": 819976,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\note_check_s1",
+      "bytes": 788649,
+      "files": 19
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p4_probe",
+      "bytes": 763368,
+      "files": 27
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p4_probe_s0",
+      "bytes": 761544,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p5_test",
+      "bytes": 1557875,
+      "files": 48
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p5_test_s0",
+      "bytes": 782158,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p5_test_s1",
+      "bytes": 755721,
+      "files": 20
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_atomic",
+      "bytes": 1616571,
+      "files": 54
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_atomic_s0",
+      "bytes": 806079,
+      "files": 24
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_atomic_s1",
+      "bytes": 794232,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_badjava",
+      "bytes": 1114,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_clifail",
+      "bytes": 199,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_contract",
+      "bytes": 1639390,
+      "files": 54
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_contract_s0",
+      "bytes": 807417,
+      "files": 24
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_contract_s1",
+      "bytes": 795286,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_e2e",
+      "bytes": 1633171,
+      "files": 56
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_e2e_s0",
+      "bytes": 804905,
+      "files": 25
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_e2e_s1",
+      "bytes": 793479,
+      "files": 23
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_failure",
+      "bytes": 1617673,
+      "files": 54
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_failure_s0",
+      "bytes": 806541,
+      "files": 24
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p6_failure_s1",
+      "bytes": 794552,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p7_multi",
+      "bytes": 1089798,
+      "files": 26
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p7_multi_s0",
+      "bytes": 544323,
+      "files": 14
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p7_multi_s1",
+      "bytes": 544315,
+      "files": 14
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p7_scene",
+      "bytes": 551502,
+      "files": 16
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p9_gui",
+      "bytes": 786126,
+      "files": 24
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p9_gui_s0",
+      "bytes": 777364,
+      "files": 20
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p9_test",
+      "bytes": 1627537,
+      "files": 41
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p9_test_s0",
+      "bytes": 818353,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\p9_test_s1",
+      "bytes": 788177,
+      "files": 20
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\performance",
+      "bytes": 81122,
+      "files": 3
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase3_demo",
+      "bytes": 766521,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase4_demo",
+      "bytes": 1570605,
+      "files": 40
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase4_demo_s0",
+      "bytes": 779073,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase4_demo_s1",
+      "bytes": 778229,
+      "files": 20
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase5_acceptance",
+      "bytes": 244976,
+      "files": 2
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase5_demo",
+      "bytes": 2012119,
+      "files": 50
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase5_demo_s0",
+      "bytes": 800072,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase5_demo_s1",
+      "bytes": 787642,
+      "files": 20
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase7_portable_probe",
+      "bytes": 46432273,
+      "files": 1662
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791484967162553600",
+      "bytes": 46853857,
+      "files": 1674
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791485839187737800",
+      "bytes": 46908452,
+      "files": 1682
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791492083631714300",
+      "bytes": 46911725,
+      "files": 1683
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791492349097923000",
+      "bytes": 46912170,
+      "files": 1683
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791518570842161500",
+      "bytes": 46800129,
+      "files": 1669
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791520344012413900",
+      "bytes": 46816697,
+      "files": 1670
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791521099366339700",
+      "bytes": 46817065,
+      "files": 1670
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791522415078365700",
+      "bytes": 46870805,
+      "files": 1673
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791522792662230000",
+      "bytes": 46871405,
+      "files": 1673
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791524116641479600",
+      "bytes": 46890768,
+      "files": 1674
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791525963203215900",
+      "bytes": 46913033,
+      "files": 1676
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791526136668459200",
+      "bytes": 46917485,
+      "files": 1677
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_backups",
+      "bytes": 3569201660,
+      "files": 6342
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_final_098",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_notices",
+      "bytes": 287649,
+      "files": 23
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_probe",
+      "bytes": 44658501,
+      "files": 1619
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_091",
+      "bytes": 915,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_0910",
+      "bytes": 1026,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_0911",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_0912",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_092",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_093",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_094",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_095",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_096",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_097",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_098",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_099",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\pyinstaller_spec",
+      "bytes": 1331,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\pyinstaller_work",
+      "bytes": 14161826,
+      "files": 16
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_circuit",
+      "bytes": 3140736,
+      "files": 69
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_circuit_s0",
+      "bytes": 829161,
+      "files": 23
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_circuit_s1",
+      "bytes": 809535,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_circuit_s2",
+      "bytes": 821296,
+      "files": 23
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_golden",
+      "bytes": 2033368,
+      "files": 55
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_golden_s0",
+      "bytes": 806554,
+      "files": 24
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_golden_s1",
+      "bytes": 794567,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_large",
+      "bytes": 5855369,
+      "files": 165
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_large_s0",
+      "bytes": 920844,
+      "files": 30
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_large_s1",
+      "bytes": 921015,
+      "files": 30
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_large_s2",
+      "bytes": 921078,
+      "files": 30
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_large_s3",
+      "bytes": 921099,
+      "files": 30
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_large_s4",
+      "bytes": 921084,
+      "files": 30
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_mini_s0",
+      "bytes": 839312,
+      "files": 24
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_mini_s1",
+      "bytes": 838376,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_mini_s2",
+      "bytes": 840088,
+      "files": 24
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_stable",
+      "bytes": 2983111,
+      "files": 66
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_stable_s0",
+      "bytes": 805266,
+      "files": 23
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_stable_s1",
+      "bytes": 792949,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_stable_s2",
+      "bytes": 773477,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_system",
+      "bytes": 2020340,
+      "files": 52
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_system_s0",
+      "bytes": 805122,
+      "files": 23
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_system_s1",
+      "bytes": 792785,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_tutor_s0",
+      "bytes": 1111436,
+      "files": 41
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_tutor_s1",
+      "bytes": 826325,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\rcm_tutor_s2",
+      "bytes": 811277,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\spatial_test",
+      "bytes": 765133,
+      "files": 22
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\tests",
+      "bytes": 25998531,
+      "files": 696
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\viewport",
+      "bytes": 8721410,
+      "files": 15
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_build_report.json",
+      "bytes": 414,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_build.log",
+      "bytes": 9690,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_entry.py",
+      "bytes": 681,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_probe_pid.txt",
+      "bytes": 7,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\workspace\\build\\.staging",
+      "bytes": 0,
+      "files": 0
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\workspace\\build\\diagnostics",
+      "bytes": 836,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\workspace\\build\\rcm_tutor_s0",
+      "bytes": 1109070,
+      "files": 38
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\workspace\\build\\rcm_tutor_s1",
+      "bytes": 826197,
+      "files": 21
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\workspace\\build\\rcm_tutor_s2",
+      "bytes": 811407,
+      "files": 20
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\workspace\\build\\portable_smoke.json",
+      "bytes": 466,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\checkpoints",
+      "bytes": 2176448,
+      "files": 14
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\package_backups",
+      "bytes": 2134,
+      "files": 97
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\build_backups",
+      "bytes": 123275042,
+      "files": 902
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups",
+      "bytes": 4883958,
+      "files": 214
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791518545131804400.zip",
+      "bytes": 258164,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791520335140093500.zip",
+      "bytes": 609516,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791521086073649500.zip",
+      "bytes": 617101,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791522405864965800.zip",
+      "bytes": 620232,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791522586875561600.zip",
+      "bytes": 635596,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791522783520914600.zip",
+      "bytes": 635756,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791524080763835800.zip",
+      "bytes": 638750,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791525821143169800.zip",
+      "bytes": 643078,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791526099689751000.zip",
+      "bytes": 649690,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791527204559086400.zip",
+      "bytes": 649843,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791527557994201200.zip",
+      "bytes": 645751,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791532047105576200.zip",
+      "bytes": 649037,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791532784682860600.zip",
+      "bytes": 666998,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791534593334242400.zip",
+      "bytes": 673265,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791538143768166300.zip",
+      "bytes": 705182,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791538779197337200.zip",
+      "bytes": 709928,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791547763463595400.zip",
+      "bytes": 720519,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\examples_refresh_1791553305470630900.zip",
+      "bytes": 846700,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\retired_user_projects.zip",
+      "bytes": 28705,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791530538890864300.zip",
+      "bytes": 9076,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791530596641319700.zip",
+      "bytes": 9491,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791530623880148300.zip",
+      "bytes": 9501,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791532511532220400.zip",
+      "bytes": 7308,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791534070741496700.zip",
+      "bytes": 7315,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791536888527994400.zip",
+      "bytes": 9243,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791537140818114800.zip",
+      "bytes": 9466,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791541163513926800.zip",
+      "bytes": 9720,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791541186609426400.zip",
+      "bytes": 10180,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791541199756853700.zip",
+      "bytes": 10183,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791541217642838300.zip",
+      "bytes": 10062,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791546587923814000.zip",
+      "bytes": 10064,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791551066087778100.zip",
+      "bytes": 10912,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\round0\\guided_tutorial\\sources_before_1791551782047657000.zip",
+      "bytes": 11482,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\phase9\\after_implementation.zip",
+      "bytes": 543303,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\phase9\\before_implementation.zip",
+      "bytes": 489886,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\phase9\\retired_all_demos.zip",
+      "bytes": 146450,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\phase9\\retired_rcm_1791484323330260400.zip",
+      "bytes": 145893,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\phase9\\retired_rcm_1791484377077608400.zip",
+      "bytes": 34726,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\phase9\\editor_fixes\\sources_0.9.1.zip",
+      "bytes": 558443,
+      "files": 1
+    },
+    {
+      "path": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\lan_crash\\before_startup_repair_1791528622558054400.zip",
+      "bytes": 7071,
+      "files": 1
+    }
+  ],
+  "removed_bytes": 4509841714.0,
+  "planned_bytes": 4509841714.0,
+  "retained_build": [
+    "portable",
+    "rcm_tutor",
+    "rcm_mini"
+  ],
+  "user_projects_and_settings_preserved": true,
+  "original_game_modified": false
+}

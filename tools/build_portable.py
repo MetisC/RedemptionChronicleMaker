@@ -24,7 +24,9 @@ jdk=Path(r'C:\Program Files\Eclipse Adoptium\jdk-21.0.11.10-hotspot');runtime=ap
 if not runtime.exists():
     subprocess.run([str(jdk/'bin/jlink.exe'),'--add-modules','java.base,java.compiler,jdk.unsupported','--strip-debug','--no-header-files','--no-man-pages','--output',str(runtime)],check=True)
 for name in ['README.md','requirements.txt']:shutil.copy2(ROOT/name,app/name)
-if (ROOT/'build/portable_notices').is_dir():shutil.copytree(ROOT/'build/portable_notices',app/'THIRD_PARTY_NOTICES',dirs_exist_ok=True)
+notices=ROOT/'docs/licenses/portable'
+if not notices.is_dir():notices=ROOT/'build/portable_notices'
+if notices.is_dir():shutil.copytree(notices,app/'THIRD_PARTY_NOTICES',dirs_exist_ok=True)
 shutil.copytree(ROOT/'docs',app/'docs',dirs_exist_ok=True)
 shutil.copytree(ROOT/'chronicles',app/'examples',dirs_exist_ok=True,ignore=shutil.ignore_patterns('*.backup','*.autosave','*.pre_format5','__pycache__'))
 report={'executable':str(app/'RedemptionChronicleMaker.exe'),'original_game_assets_included':False,'original_tools_included':False,'jvm_bundled':str(runtime),'native_game_test':False,'clean_machine_test':False}

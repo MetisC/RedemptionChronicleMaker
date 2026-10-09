@@ -366,6 +366,7 @@ class MainWindow(QMainWindow):
                 detail = value.get("flag", "") + (" activado" if value.get("is_set") else " desactivado")
                 return f"SI {path[-1]+1}", detail
             if path[-2] == "actions":
+                if isinstance(value.get('show_note'),dict):return f'HACER {path[-1]+1}', 'Mostrar nota · '+value['show_note'].get('title','Sin título')
                 return f"HACER {path[-1]+1}", " · ".join(f"{ACTION_LABELS.get(k, k)}: {v}" for k, v in value.items())
         if len(path) == 2 and path[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints"}:
             label = value.get("name", value.get("id", f"Evento {path[1]+1}"))
@@ -952,7 +953,9 @@ class MainWindow(QMainWindow):
         if not self.doc or self.selection[0] != "events" or len(self.selection) < 2:
             return
         event = self.at(self.selection[:2])
-        if event["when"] == "actor_clicked":
+        if event['when']=='object_clicked':
+            action={'show_note':{'title':'Nota','text':'Escribe aquí lo que leerá el jugador.'}}
+        elif event["when"] == "actor_clicked":
             action = {"start_conversation": next((c["id"] for c in self.doc.data["conversations"] if c["speaker"] == event.get("actor")), "")}
         elif event["when"] == "conversation_ended":
             action = {"set_flag": next(iter(self.doc.data.get("state", {}).get("flags", {})), "")}

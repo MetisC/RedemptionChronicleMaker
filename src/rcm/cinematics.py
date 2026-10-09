@@ -50,7 +50,7 @@ def extend_runtime(java,scene,project):
     if not any(any(k in r for k in ('steps','move_path','camera_path','prop_motion')) for r in rows):return java
     entities={e.id:i for i,e in enumerate(project.entities)}
     routes=scene.get('paths',[])
-    code=[' private int cinema=-1, cinemaAge=0, cinemaStep=-1, cinemaActor=-1; private boolean cinemaMoving=false;',
+    code=[' private int cinema=-1, cinemaAge=0, cinemaStep=-1, cinemaActor=-1; private boolean cinemaMoving=false, cinemaRestored=false;',
           ' private boolean beginCinema(int index) { if(active!=-1 || player==0) return false; releaseCamera(); BeginCutscene(player,0); AIOff(); cinema=index; cinemaAge=0; cinemaStep=-1; cameraPlayer=player; cameraTicks=0; switch(index) {']
     for i,row in enumerate(rows):
         code.append(f' case {i}: if(!alive({entities[row["actor"]]})) {{ stopCinema(); return false; }}')
@@ -105,6 +105,7 @@ def extend_runtime(java,scene,project):
     # Restore cancels the transient film and stops the route it was driving.
     # This record is included in the versioned save contract, not guessed from
     # whether a general NPC patrol happened to be running during the save.
-    java=java.replace('public void save(int capture) {','public void save(int capture) { CodexSequence.SaveInt(cinemaActor);')
-    java=java.replace('public void restore(int capture) {','public void restore(int capture) { cinemaActor=CodexSequence.RestoreInt(); cinema=-1;')
+    replace('public void save(int capture) {','public void save(int capture) { CodexSequence.SaveBoolean(cinema>=0); CodexSequence.SaveInt(cinemaActor);')
+    replace('public void restore(int capture) {','public void restore(int capture) { cinemaRestored=CodexSequence.RestoreBoolean(); cinemaActor=CodexSequence.RestoreInt(); cinema=-1;')
+    replace('player=localPlayer(0); if(player!=0) CodexCamera.Release(player);', 'player=localPlayer(0); if(cinemaRestored) { if(player!=0) EndCutscene(player,0); AIOn(); if(cinemaActor>=0) stopPatrol(cinemaActor); cinemaActor=-1; cinemaRestored=false; trace("RESTORE_CINEMA_CANCELLED"); } if(player!=0) CodexCamera.Release(player);')
     return java[:-2]+'\n'+'\n'.join(code)+'\n}\n'
