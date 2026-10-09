@@ -1,0 +1,10 @@
+{
+  "source": "https://web.archive.org/cdx/search/cdx?url=e-mods.net/nodsdk/Docs/index.html&output=json&filter=statuscode:200&collapse=digest",
+  "final_url": "https://web.archive.org/cdx/search/cdx?url=e-mods.net/nodsdk/Docs/index.html&output=json&filter=statuscode:200&collapse=digest",
+  "downloaded_at": "2026-10-08T18:20:29+0200",
+  "file": "research\\phase7\\embrace\\sdk_archive_index.json",
+  "bytes": 3,
+  "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+  "content_type": "application/json",
+  "executed": false
+}

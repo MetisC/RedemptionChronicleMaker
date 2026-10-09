@@ -1,0 +1,34 @@
+NOD Engine SDK 1
+NOD Engine SDK 1.0
+NMF File Specifications
+Introduction
+The meta-file lists specific information and files to load and reference when
+running a particular chronicle.
+Format
+Field
+Format
+PLAYER
+template used as the starting control character for this chronicle
+NLS
+an NLS file to load for this chronicle (game.nls and system.nls are
+loaded by the game automatically)
+NVO
+an NVO file used for this chronicle
+NSS
+an NSS file used for this chronicle
+SPEAKER
+default speaker in conversations
+CASH
+template(s) to be used when enemies drop "cash"
+NTX
+an NTX file to use for this chronicle
+NOT
+a NOT file to load for this chronicle (the game loads global.not,
+darkages.not, modernday.not, and multiplayer.not by default)
+Sample File
+PLAYER Christof
+NLS prague.nls
+NVO game.nvo
+SPEAKER Christof
+CASH GoldBag GoldCoins
+NTX prague.ntx

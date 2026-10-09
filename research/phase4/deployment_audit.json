@@ -1,0 +1,54 @@
+{
+  "standalone": {
+    "chronicle": "phase4_demo",
+    "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\phase4_demo",
+    "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_phase4_demo_1791455034190370900.zip",
+    "files": {
+      "phase4_demo\\codex\\R_phase4_demo_s0_Passive.class": "c0372e547800d2abe09dbeb6f9069e0e612ceb984298c3e3d4edbc9c32077393",
+      "phase4_demo\\codex\\R_phase4_demo_s0_Scene.class": "dbfe17623310bf908cfc313cde2c80a0c6ed8dd90117f91145aea549a6e77ded",
+      "phase4_demo\\codex\\R_phase4_demo_s1_Passive.class": "7bb6c89f1615f27f15290c21706e9d6001176798bb8ffb3a49c3cc3171387870",
+      "phase4_demo\\codex\\R_phase4_demo_s1_Scene.class": "4f1f80af8c5a2c68d8476543495c65f0551abbaba2aa9c93eb2ecd685f3eea59",
+      "phase4_demo\\phase4_demo.nob": "d1772f0aaf4fb069a2569fef5b06b7ac97d7f818bb53b07729458523ed72d7ba"
+    },
+    "native_engine_test": false
+  },
+  "existing_shortcut": {
+    "chronicle": "phase4_demo",
+    "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\east_demo",
+    "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_phase4_demo_1791455034333225400.zip",
+    "files": {
+      "east_demo\\codex\\R_phase4_demo_s0_Passive.class": "c0372e547800d2abe09dbeb6f9069e0e612ceb984298c3e3d4edbc9c32077393",
+      "east_demo\\codex\\R_phase4_demo_s0_Scene.class": "dbfe17623310bf908cfc313cde2c80a0c6ed8dd90117f91145aea549a6e77ded",
+      "east_demo\\codex\\R_phase4_demo_s1_Passive.class": "7bb6c89f1615f27f15290c21706e9d6001176798bb8ffb3a49c3cc3171387870",
+      "east_demo\\codex\\R_phase4_demo_s1_Scene.class": "4f1f80af8c5a2c68d8476543495c65f0551abbaba2aa9c93eb2ecd685f3eea59",
+      "east_demo\\phase4_demo.nob": "d1772f0aaf4fb069a2569fef5b06b7ac97d7f818bb53b07729458523ed72d7ba"
+    },
+    "native_engine_test": false
+  },
+  "previous_files_preserved": 12,
+  "changed_files": [
+    "east_demo/codex/R_phase4_demo_s0_Passive.class",
+    "east_demo/codex/R_phase4_demo_s0_Scene.class",
+    "east_demo/codex/R_phase4_demo_s1_Passive.class",
+    "east_demo/codex/R_phase4_demo_s1_Scene.class",
+    "east_demo/phase4_demo.nob",
+    "phase4_demo/codex/R_phase4_demo_s0_Passive.class",
+    "phase4_demo/codex/R_phase4_demo_s0_Scene.class",
+    "phase4_demo/codex/R_phase4_demo_s1_Passive.class",
+    "phase4_demo/codex/R_phase4_demo_s1_Scene.class",
+    "phase4_demo/phase4_demo.nob"
+  ],
+  "originals_before": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "originals_after": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "native_engine_test": false
+}

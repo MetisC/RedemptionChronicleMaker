@@ -1,0 +1,144 @@
+Compiled from "CodexQuest.java"
+public class CodexQuest extends Codex {
+  public native int SetFlags(int);
+
+  public native int GetItemFlags(int);
+
+  public native int ClearItemFlags(int, int);
+
+  public native int GetItemCurStep(int);
+
+  public boolean AreAllItemsComplete();
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method GetNumItems:()I
+       4: istore_1
+       5: iconst_0
+       6: istore_2
+       7: goto          23
+      10: aload_0
+      11: iload_2
+      12: invokevirtual #18                 // Method IsItemComplete:(I)Z
+      15: ifne          20
+      18: iconst_0
+      19: ireturn
+      20: iinc          2, 1
+      23: iload_2
+      24: iload_1
+      25: if_icmplt     10
+      28: iconst_1
+      29: ireturn
+
+  public static native int Load(java.lang.String);
+
+  public void Complete();
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: invokevirtual #27                 // Method SetFlags:(I)I
+       5: pop
+       6: return
+
+  public void CompleteItem(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iconst_1
+       3: invokevirtual #31                 // Method SetItemFlags:(II)I
+       6: pop
+       7: return
+
+  public native int GetFlags();
+
+  public native boolean Destroy();
+
+  public native int ClearFlags(int);
+
+  public native java.lang.String GetItemDescription(int, boolean);
+
+  public CodexQuest(int);
+    Code:
+       0: aload_0
+       1: invokespecial #36                 // Method Codex."<init>":()V
+       4: iload_1
+       5: ifge          16
+       8: aload_0
+       9: iconst_m1
+      10: putfield      #39                 // Field Codex.guid:I
+      13: goto          21
+      16: aload_0
+      17: iload_1
+      18: putfield      #39                 // Field Codex.guid:I
+      21: return
+
+  public boolean IsItemComplete(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokevirtual #43                 // Method GetItemFlags:(I)I
+       5: istore_2
+       6: iload_2
+       7: iconst_m1
+       8: if_icmpne     13
+      11: iconst_0
+      12: ireturn
+      13: iload_2
+      14: iconst_1
+      15: iand
+      16: ifne          21
+      19: iconst_0
+      20: ireturn
+      21: iconst_1
+      22: ireturn
+
+  public native int SetItemNumSteps(int, int);
+
+  public native java.lang.String GetDescription(boolean);
+
+  public native int SetItemCurStep(int, int);
+
+  public boolean IsComplete();
+    Code:
+       0: aload_0
+       1: invokevirtual #47                 // Method GetFlags:()I
+       4: istore_1
+       5: iload_1
+       6: iconst_m1
+       7: if_icmpne     12
+      10: iconst_0
+      11: ireturn
+      12: iload_1
+      13: iconst_1
+      14: iand
+      15: ifne          20
+      18: iconst_0
+      19: ireturn
+      20: iconst_1
+      21: ireturn
+
+  public boolean IsItemHidden(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokevirtual #43                 // Method GetItemFlags:(I)I
+       5: istore_2
+       6: iload_2
+       7: iconst_m1
+       8: if_icmpne     13
+      11: iconst_0
+      12: ireturn
+      13: iload_2
+      14: iconst_2
+      15: iand
+      16: ifne          21
+      19: iconst_0
+      20: ireturn
+      21: iconst_1
+      22: ireturn
+
+  public native int GetNumItems();
+
+  public native int GetItemNumSteps(int);
+
+  public native int SetItemFlags(int, int);
+}

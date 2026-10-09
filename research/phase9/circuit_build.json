@@ -1,0 +1,227 @@
+{
+  "source": "chronicles/circuit/project.yaml",
+  "curated_source": true,
+  "gui_authored_adventure": false,
+  "package": "build/rcm_circuit/rcm_circuit.rcmpack",
+  "scenes": [
+    "quay",
+    "archive",
+    "return"
+  ],
+  "npc": 6,
+  "enemies": 4,
+  "quests": 2,
+  "patrols": 2,
+  "ground_checks": [
+    {
+      "scene": "quay",
+      "kind": "entries",
+      "id": "safe",
+      "position": [
+        1016.0,
+        -210.0,
+        7.105427357601002e-15
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "quay",
+      "kind": "actors",
+      "id": "victoria",
+      "position": [
+        1016.0,
+        -54.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "quay",
+      "kind": "actors",
+      "id": "guide",
+      "position": [
+        850.0,
+        -210.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "quay",
+      "kind": "actors",
+      "id": "enemy1",
+      "position": [
+        850.0,
+        -550.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "quay",
+      "kind": "actors",
+      "id": "enemy2",
+      "position": [
+        950.0,
+        -550.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "quay",
+      "kind": "actors",
+      "id": "enemy3",
+      "position": [
+        850.0,
+        -650.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "quay",
+      "kind": "actors",
+      "id": "enemy4",
+      "position": [
+        950.0,
+        -650.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "quay",
+      "kind": "waypoints",
+      "id": "guide_a",
+      "position": [
+        850.0,
+        -210.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "quay",
+      "kind": "waypoints",
+      "id": "guide_b",
+      "position": [
+        850.0,
+        -320.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "archive",
+      "kind": "entries",
+      "id": "safe",
+      "position": [
+        200.0,
+        790.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "archive",
+      "kind": "actors",
+      "id": "archivist",
+      "position": [
+        200.0,
+        944.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "archive",
+      "kind": "actors",
+      "id": "keeper",
+      "position": [
+        340.0,
+        850.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "archive",
+      "kind": "objects",
+      "id": "book",
+      "position": [
+        300.0,
+        900.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "archive",
+      "kind": "waypoints",
+      "id": "sound",
+      "position": [
+        200.0,
+        790.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "return",
+      "kind": "entries",
+      "id": "safe",
+      "position": [
+        1016.0,
+        -210.0,
+        7.105427357601002e-15
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "return",
+      "kind": "actors",
+      "id": "witness",
+      "position": [
+        1016.0,
+        -54.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "return",
+      "kind": "actors",
+      "id": "courier",
+      "position": [
+        850.0,
+        -210.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "return",
+      "kind": "waypoints",
+      "id": "courier_a",
+      "position": [
+        850.0,
+        -210.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    },
+    {
+      "scene": "return",
+      "kind": "waypoints",
+      "id": "courier_b",
+      "position": [
+        850.0,
+        -320.0,
+        0.0
+      ],
+      "native_collision_verified": false
+    }
+  ],
+  "native_engine_test": false
+}

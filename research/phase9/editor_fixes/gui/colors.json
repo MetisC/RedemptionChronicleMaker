@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "rendered_windows": [
+    {
+      "mode": "dark",
+      "alternate_row_pixel": "#303844",
+      "expected_alternate": "#303844",
+      "info_text_color": "#91c7ff"
+    },
+    {
+      "mode": "light",
+      "alternate_row_pixel": "#edf2f7",
+      "expected_alternate": "#edf2f7",
+      "info_text_color": "#17527d"
+    }
+  ],
+  "real_window": true,
+  "real_gl": false,
+  "native_engine_test": false
+}

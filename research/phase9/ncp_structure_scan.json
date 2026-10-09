@@ -1,0 +1,1399 @@
+{
+  "files": [
+    {
+      "path": "paths/AhzraLair.ncp",
+      "archive": "Resource.nob",
+      "sha256": "ec1be5a4daf0c068e350789b10116a90fc297b6c9fb7db7a568a73c372c887b6",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/AnezkaRoom.ncp",
+      "archive": "Resource.nob",
+      "sha256": "868ad5bd96c0179008e34f591ca64eea6147696c4a4ea90c90d4247eb64f063f",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/AnezkaRunning.ncp",
+      "archive": "Resource.nob",
+      "sha256": "4b24f83517a780259a866b6565d13289a07e1a39b5b69fa396fa27f534eceeab",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/ANZKChrisDreams.ncp",
+      "archive": "Resource.nob",
+      "sha256": "a361b0c8c95b0fb4fa150074fa52e16591519cfb1d0d0e3dbb8053feb0f00e5a",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/ARC3ErikFreedom.ncp",
+      "archive": "Resource.nob",
+      "sha256": "b2f9947986d68a56748c2882491964ae56e9704f9cd64401ad413cd1bbed22d2",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/AwakenGetUp.ncp",
+      "archive": "Resource.nob",
+      "sha256": "324cf3e557e7855595a6f03fccbf8dbc6c38aa624814955b21ed42f327250a0c",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/AwakenWater.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e3633f8b45cd4058dd218729c7e9be03434b701757c7b0f5799ea07159dd2f8c",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/BigAlOffice.ncp",
+      "archive": "Resource.nob",
+      "sha256": "502896ac5988d17d9ca1da12f863d7df307a0927e9df40781251440da03cf03f",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/bodyRegionMine.ncp",
+      "archive": "Resource.nob",
+      "sha256": "b3b1c3b0aa83c426c13b421560d862418e1e72a03724184a4aa032ce203e742a",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/BrandlChair.ncp",
+      "archive": "Resource.nob",
+      "sha256": "37850d22a84abc5fd97df21ab1ae5c69400e50ab616812063c0eafe4fce94ca9",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CARGInterpolDie.ncp",
+      "archive": "Resource.nob",
+      "sha256": "850d9df2708c0c414cc195d8d6599b1d63ce5bb14790869f12d098e2a6d6fe69",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CARGLilyHoldChris.ncp",
+      "archive": "Resource.nob",
+      "sha256": "c0b23ddda66c3801c19c864cf5b731ecf0b12bc659fbfdd818f63d6acce8c335",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CARGLilyIdent.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e9028f30f950e86457f1dc5f6943204327fe8306d050c0e7ee16a2707e428cfa",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/cargPanAnezka.ncp",
+      "archive": "Resource.nob",
+      "sha256": "b7658b5a016c4c7407060084076ce0f72d17c3f698630fbf95217dae739cd187",
+      "size": 320,
+      "first_u32": 3,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CARGPanShip.ncp",
+      "archive": "Resource.nob",
+      "sha256": "04994f8471db70785407017314a3441c190b0df1719eaf94bbad66e22c5f084d",
+      "size": 320,
+      "first_u32": 3,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/cargStowaway.ncp",
+      "archive": "Resource.nob",
+      "sha256": "2f51f2f286c90592e3ef48fe24df94df378ca64a9da6526a0e17e86f0dd636fa",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/ChokeKazi.ncp",
+      "archive": "Resource.nob",
+      "sha256": "233819b69bd909cfb48cb8ef7b9efc32bb5c2e1f79f96ea7ee003b93665f761b",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/ChrisRevealed.ncp",
+      "archive": "Resource.nob",
+      "sha256": "ce0915beada93a0a9327640eee221f8ebeb64e8f767e46f021ad883d9e4e81fa",
+      "size": 424,
+      "first_u32": 4,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/ChrisSearch.ncp",
+      "archive": "Resource.nob",
+      "sha256": "1e1e115985ce8b531e45389705e4f167ec1f3775c3cef94e8ee7ea449184f052",
+      "size": 320,
+      "first_u32": 3,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/ClockTowerByNight.ncp",
+      "archive": "Resource.nob",
+      "sha256": "a9ba6919b98eef69f6c556426d4d070824cf30f7e99ec246b6dd58343c74ab21",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CNVTAttack.ncp",
+      "archive": "Resource.nob",
+      "sha256": "ac3809bd2d26367e15c9a3871442dfc9c3f8e1db2fe69191d025047373de3ba1",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CobraChange.ncp",
+      "archive": "Resource.nob",
+      "sha256": "83df408905ba0fe8e765de513edae50e99e2b6f5d843503750653932fd02040a",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CorpseGetUp.ncp",
+      "archive": "Resource.nob",
+      "sha256": "78ffbe4e7d1a9a2979293cbbfe9494695a8d1c64dd090396b7545ed3a41545b3",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CorpseWalk.ncp",
+      "archive": "Resource.nob",
+      "sha256": "45b87d8e796cfefd339c0ee7c9c330edca1e1f7eebefbd3079415324559a6d71",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CrossToss.ncp",
+      "archive": "Resource.nob",
+      "sha256": "f9a23f7d84ca9bc415ad0d0fb9db46ba5cba3d70f608276333cf03174e60d743",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CTDBeggar.ncp",
+      "archive": "Resource.nob",
+      "sha256": "495f374325a6fe5d5a32871a28a280ae40ddca21997fc7ad9b5f9acf03e19c03",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CTDEglanSheriff.ncp",
+      "archive": "Resource.nob",
+      "sha256": "1d7c08d9e6667e1c2ac5bd604e2d2db5d56a2269fc533cf4b2fb5a37b4242b68",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CTDEglanSheriffWatch.ncp",
+      "archive": "Resource.nob",
+      "sha256": "aee26571e825cf611cf372285f69f11e98eef7010c954523190b79df14d4f878",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CTDLeComte.ncp",
+      "archive": "Resource.nob",
+      "sha256": "42e5b3fe5effae69002d5fe4570f18ed341b942fc05e4bfb9d375287128afb84",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CTDOubliette.ncp",
+      "archive": "Resource.nob",
+      "sha256": "8128c521b8048e21904bac15473765284bbf3d78003771fb7880c9b8155fe19d",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CTDRagwick.ncp",
+      "archive": "Resource.nob",
+      "sha256": "56244ca5ab046ddebbfd2940de9a1b7352250a8ebc33a54ecfc1f64e8da6e9b3",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CTDRebecca.ncp",
+      "archive": "Resource.nob",
+      "sha256": "18cea0d92bdc12fbfe10668d72576628b797624420097e47a3d286c5fd4186ab",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CTDSorvena.ncp",
+      "archive": "Resource.nob",
+      "sha256": "f913012e2e67933f74c8f7df979486a37ed972f8f4e2854edc8dda4fc71baf74",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/CTDUdolpho.ncp",
+      "archive": "Resource.nob",
+      "sha256": "38d35cc2b0116700bdd564cf2f2d6f519572396b7898c9e9499e7ae84f165011",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/DevNullArray.ncp",
+      "archive": "Resource.nob",
+      "sha256": "27943613c1a47258a5cac6aa20fcf4428e4a60a9d13bcfab45774e4f88dab836",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/DevNullOverhead.ncp",
+      "archive": "Resource.nob",
+      "sha256": "74a1c617ebb7c81ac43a9ead3ceaed09fbf6b26879cecf5db03c81020f1eacdf",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/DevNullPOV.ncp",
+      "archive": "Resource.nob",
+      "sha256": "2788b51dbb4ba8a0c9cd168ecfb415bdc222ee481ef829231da7024f6ee21387",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/DevNullSide.ncp",
+      "archive": "Resource.nob",
+      "sha256": "99207b4638d910b40c9aed35f99c63e9e55011ee297b032e71049356df8d87dc",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/DoorOpen.ncp",
+      "archive": "Resource.nob",
+      "sha256": "ad2dd59d18b58a882e1707dc11b570f72dbad786f6ea4f20ad6ead82b2c22648",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/EASTOttoVan.ncp",
+      "archive": "Resource.nob",
+      "sha256": "a2f57646cc444a4d6e86c0b785a25ffa9e855893770a854fc490be213a065e62",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Embrace.ncp",
+      "archive": "Resource.nob",
+      "sha256": "540fefd971f9b5910c1c75a0c817dd1a027b5ac59dc4f13ceccbdd942a570e76",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/EnterEcaterina.ncp",
+      "archive": "Resource.nob",
+      "sha256": "614ab4f2a746965268a6c1361f292dc84ba5818ff01927fccef3fc4f5fb0883a",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/EnterSewers.ncp",
+      "archive": "Resource.nob",
+      "sha256": "70fd2d2d4a5f68b0e0dc480f8e13d45e8d379ea0026260bbf413285b5db19ea0",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Fealty.ncp",
+      "archive": "Resource.nob",
+      "sha256": "a406066bef37db9e4725952e419c65e8159a4d66dbe2033e9b1ea86bfc41c31a",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/FleshPartyReaction.ncp",
+      "archive": "Resource.nob",
+      "sha256": "621f49ee4e79fad1b92567317268974751fbd51c1c896c51cc89c89bdab019b4",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/FLS3Fall.ncp",
+      "archive": "Resource.nob",
+      "sha256": "c7da2fc7927f142e9abf0c78deb45adcef83a1bb0163b845691a63e9c36486f1",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/FrogIntro.ncp",
+      "archive": "Resource.nob",
+      "sha256": "464594329cd90e880a564fa81f402fd9ce82f9c25dde5346e442d279cbff9295",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/gearMove.ncp",
+      "archive": "Resource.nob",
+      "sha256": "a299825b14f912c95a1e5920d13ca5af301290bdf07e7c12872229791d1d4fcc",
+      "size": 320,
+      "first_u32": 3,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/GetUpChris.ncp",
+      "archive": "Resource.nob",
+      "sha256": "56e69e61824f2048728ee748d853a6536d11c5b6f599f72acc085f10bbae39f6",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/GetUpVuk.ncp",
+      "archive": "Resource.nob",
+      "sha256": "6a02a3df8ec51eaf4d5daff006c9c1cc4ce8bd45422a4859ccb58b7208e24b1e",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/GlorifyCainWindow.ncp",
+      "archive": "Resource.nob",
+      "sha256": "de5f8a0d29fed00e5ab11f9b5cb568cec709e8234ee4903e8137c3d438aed666",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/golem1.ncp",
+      "archive": "Resource.nob",
+      "sha256": "8e9f743e88dc2c363756c63edbc6b085294a7ab33ab59ca7b290ad0e78193d64",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Grapple.ncp",
+      "archive": "Resource.nob",
+      "sha256": "735cec39d3f5e7dd5efd8a4600fae1982093b73facd987e4d0864ebbb0fad59a",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/HankDoors.ncp",
+      "archive": "Resource.nob",
+      "sha256": "c74e409177c2be009cd3c806c51bd960eb609b5805d1313fcc1a1149a2e16b9e",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/HatedVentrue.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e07c3ab06f76d4771099dc642d90f06f81c93ccb54564fb84aac3fcfbbffecf3",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/HexEtriusAppear.ncp",
+      "archive": "Resource.nob",
+      "sha256": "b1b028049a43a1c1d19205b0d6a7cc807067638cb29341884d1415e30e5534ef",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/HexEtriusLookAtErik.ncp",
+      "archive": "Resource.nob",
+      "sha256": "be8abdb18aca3129a0158958320f15b6bdc571aa31f4a84ebce0b57a2a540274",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/HexPartyReaction.ncp",
+      "archive": "Resource.nob",
+      "sha256": "7ba504b8def140d9f9845df7dd5d972b4fcaba3cede1b98d45701aa660114f59",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/HHX1Arcanulum.ncp",
+      "archive": "Resource.nob",
+      "sha256": "9eebb7ee692e3f5b88b02aa1b10733eb36ccaf42d217467587be5b5ebee0672c",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/HILLBehold.ncp",
+      "archive": "Resource.nob",
+      "sha256": "4320aabe2062c3ea00b3f3f3883bfb6716df578579e76ea106b4d65753bd9b77",
+      "size": 320,
+      "first_u32": 3,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/InFabledCarthage.ncp",
+      "archive": "Resource.nob",
+      "sha256": "588338749b9016432e81c3010c66a81116f81488363210403025976f317fd895",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/intro.ncp",
+      "archive": "Resource.nob",
+      "sha256": "0a97e82401fe3956eba4a2ea5ab0510ce3d188add7c0edd5aeb0d9e1921510ea",
+      "size": 944,
+      "first_u32": 9,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Intro1.ncp",
+      "archive": "Resource.nob",
+      "sha256": "3b3373b230a6a016c3c71278e6fc1e56ecc6df8654d1606146081444dafaf7be",
+      "size": 424,
+      "first_u32": 4,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Intro2.ncp",
+      "archive": "Resource.nob",
+      "sha256": "0637a889a6481dbbb8c93d8ace0e9d1b5cbeefa2ff2e1a1cf9df9ec3de261164",
+      "size": 528,
+      "first_u32": 5,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/JosefDrinksVitae.ncp",
+      "archive": "Resource.nob",
+      "sha256": "dbea6aa2e8bb71521bb755824958fb2743f28bea5ddc036e84e8663c4b8ecd4a",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/judithnight.ncp",
+      "archive": "Resource.nob",
+      "sha256": "7b4eb62abb54e19b05dcc88bb1198613b4f02d71ab0c677c3df051c9a036ca31",
+      "size": 4168,
+      "first_u32": 40,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/KaziNods.ncp",
+      "archive": "Resource.nob",
+      "sha256": "f970fa6eb2bc43fa2cf0d697266cdd54e15118802ba76cdaf01efa16f57a209d",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/KaziTetaAndZil.ncp",
+      "archive": "Resource.nob",
+      "sha256": "7a0b578d216c55ac319be504d55f77aea1133f0f927c0aa3c2af11bbcaa015e4",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Knights.ncp",
+      "archive": "Resource.nob",
+      "sha256": "26d2dfbad6f8fb4d1eb74faecd1f71b61337ca69bc7fab4510353e4e544fad6b",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LeoVitae.ncp",
+      "archive": "Resource.nob",
+      "sha256": "eb690dad06f14040cfb35ca1799b1fb1743a55210d58d37d8d005c23fce5984b",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LibussaCrazed.ncp",
+      "archive": "Resource.nob",
+      "sha256": "afe8e3e9c41d9eb367fd56fe23f3902f63a3b5a1c01341b0da88cf2a5d26c9a7",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/lobbyDesk.ncp",
+      "archive": "Resource.nob",
+      "sha256": "d0178305672afc1127f91827bac626b393224952991f7bcffc8e8879ae0986a1",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/lobbyElevator.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e77626217b8ca301a2ce9afeae5fa10c22822e1abc8e65bf5245bba49c427c42",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/lobbyEntrance.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e96e591bd2b83cf72a22de9b2db198e76a08026af10e22a0edf1a4f59db75504",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LOTBillBloodHunt.ncp",
+      "archive": "Resource.nob",
+      "sha256": "f58b40cf47b67fd3d8a722c7e6910fc7d198af49232fa0d25ec45b1f7dc795f7",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LOTBillIntro.ncp",
+      "archive": "Resource.nob",
+      "sha256": "6f9c04b7dfee5adeba8f52f4416d23d20eae459df6479e64c1888cab4dc6b407",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LOTConclave1.ncp",
+      "archive": "Resource.nob",
+      "sha256": "11f82bc6d3e93246097615e508129628b0f008b8440a90a9a6c292fb0adcca66",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LOTConclave2.ncp",
+      "archive": "Resource.nob",
+      "sha256": "5a3dce15885302753b338a7bc2c7717a4be3ecae54ea89aae36496e149f206b7",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LOTDomTrip.ncp",
+      "archive": "Resource.nob",
+      "sha256": "633094e61c682847e633d966b871887020bf9e801328ba3439b790f191a62c8a",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LOTLukeSave.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e617c1d509507ce1b8aa8077a72faf4ce8b02f5ffcec164d27b4a96824228bfb",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LOTMeetDominic.ncp",
+      "archive": "Resource.nob",
+      "sha256": "b6d8dbc8bef446152ded10acbda6f14a95e3e76bb162aacd91787d930a54b942",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LOTShowHaven.ncp",
+      "archive": "Resource.nob",
+      "sha256": "1336535fa0c952cada1584e5e699183131d1f9cc8dc29967312d032e4fbb4378",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LOTSlumTriplets.ncp",
+      "archive": "Resource.nob",
+      "sha256": "4fc30741737a78dc402c3c5b96a16fe22567bd005371be3fa26a8bae04b96a9f",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LOTSmashface.ncp",
+      "archive": "Resource.nob",
+      "sha256": "11a25cd0aad9a5291a6c48fadbf6916156abdb9b8dea63400f03d81f297fd250",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LucretiaBarter.ncp",
+      "archive": "Resource.nob",
+      "sha256": "542f64de9af57bf27c9c396abe8dfdabfa2d89031156f01138db86c4de3099f9",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LutherDeath.ncp",
+      "archive": "Resource.nob",
+      "sha256": "260ad97b1bbc55c6932d5f69810a357f82d7dfacd1d0aec7ca30828141f29bf4",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/LutherPOV.ncp",
+      "archive": "Resource.nob",
+      "sha256": "2b2ec93ffbbfa47b22071f2107297e28e2dc76935ac1b424c0514e20d63e6500",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/MeetOrsi.ncp",
+      "archive": "Resource.nob",
+      "sha256": "5df82ba15599eb3e456ca5791f763324705955dc8a644dcfef78f14ccd51072c",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/MeetVuk.ncp",
+      "archive": "Resource.nob",
+      "sha256": "8d1ed8f5e6f2498c6ea1a1f50040bcf32ae1576ca0a82edba87c1da85c12c982",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/MeetVukOverhead.ncp",
+      "archive": "Resource.nob",
+      "sha256": "590b9f8cf6fe443243142825fb76baec356887a9a1f3e6a25cd4996eec223f72",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/MON1Fight.ncp",
+      "archive": "Resource.nob",
+      "sha256": "3c51e42c113b414639ca4445b3ccbcb6ad0081d6ddba438fc7bc4f233cea8ae8",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Mugger.ncp",
+      "archive": "Resource.nob",
+      "sha256": "98074fb5b7f46a8715a14f8f02041e67a71c3ae1b93068c9cf6c3d1cacebf479",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/NewMoonRegister.ncp",
+      "archive": "Resource.nob",
+      "sha256": "6e9357269bd69f93fe1e189783476b1b77fbdbbdbb72d4d9fc4831d7f6eda532",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Nightmare.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e3f4f651a994b430188d62ad0b40730ac2e408cafc65a024fff8fdd9084957b8",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/northquarter.ncp",
+      "archive": "Resource.nob",
+      "sha256": "438c9ebf3864d2f87deddf538a207f035c6953a400ee242449f2b457f5f3b747",
+      "size": 5000,
+      "first_u32": 48,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/oldtownday.ncp",
+      "archive": "Resource.nob",
+      "sha256": "49e87a4f0863c8f8b40cea8cc6057bd44075b7fd79401c34efd1015943398142",
+      "size": 5312,
+      "first_u32": 51,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/oldtownnight.ncp",
+      "archive": "Resource.nob",
+      "sha256": "08a6b39bb22c67f6c47b9945602655dafd1b23c6458c4ad36abbcc2db89e5e86",
+      "size": 3544,
+      "first_u32": 34,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OpenDoors.ncp",
+      "archive": "Resource.nob",
+      "sha256": "3651669a0d5f2bf1ae5389f128a92cbe64f44318626546b9bdaa566aba0ce534",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OrderOfHermes.ncp",
+      "archive": "Resource.nob",
+      "sha256": "29a2b2bdf48f18bac428fc3ff77f6702b0a3d7b6007070b1e9e642c7a8718554",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Orsi.ncp",
+      "archive": "Resource.nob",
+      "sha256": "8f38175ede5790347ebf75d7c2fb15d7cc7691cd2f7240c150c3e5e96b2d167e",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OrsiDies.ncp",
+      "archive": "Resource.nob",
+      "sha256": "f68a651ce51a8d014e60233521d50c41836d862c76b1855e1989a71542a0a4cc",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OrsiElevator.ncp",
+      "archive": "Resource.nob",
+      "sha256": "1b786a0e602cb4b38ab884a84324ab49641e87b3134904b699e72b70ec2071c1",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OrsiFall.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e0adbe8825ecf6f59469ec2b5106f3eb6c30c696899c1dcde4985f5100db3cdf",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OrsiMission.ncp",
+      "archive": "Resource.nob",
+      "sha256": "facd441df2da46d101b618e0c637db006afbaa593d10edd91184c221d86c441c",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OrsiToss.ncp",
+      "archive": "Resource.nob",
+      "sha256": "c6ecf7f8761f9d69251bf80c6d6548c6f4e7351f9a6a7220d88e8099109761d4",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OTDYFourStags.ncp",
+      "archive": "Resource.nob",
+      "sha256": "27025e8732a8a8d81605716cce8bc49294af9028a9d338986adca6b7ba76c309",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OTDYResidents.ncp",
+      "archive": "Resource.nob",
+      "sha256": "5d290bdd91dc6f9fed6ee1846e96eba3f5761e2dfe295b4d2c6c2ca221080355",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OTDYStable.ncp",
+      "archive": "Resource.nob",
+      "sha256": "a918d2b0f48d899c49b8794f092089eb15a416cb9e9024903f88462e4fa45730",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/outsideMine.ncp",
+      "archive": "Resource.nob",
+      "sha256": "7fe4490e16c4d012e99ce608a79b3bd266a86e9571f6c0adc6946ce6b71571ab",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/OverLutherAtParty.ncp",
+      "archive": "Resource.nob",
+      "sha256": "861c6d71c2926d51a75dad7b107a5015943f137c56a1776d2e1aa3d1ba5f474a",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/petrinhill2.ncp",
+      "archive": "Resource.nob",
+      "sha256": "21618e4c44dd0a3732dae09f2b2ba9237f3194d098401cb09284618eef8449ee",
+      "size": 1984,
+      "first_u32": 19,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/PinkAttack.ncp",
+      "archive": "Resource.nob",
+      "sha256": "423982fb313496657574674217ad60cfceba60de0bc6e6fdb2c9ddc53d6f7e17",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/PinkModern.ncp",
+      "archive": "Resource.nob",
+      "sha256": "68c71dbcb240ef2ca2ac44b1aa21483a6336ba1f2dd0f0b3eefd520ae722b440",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/PinkRunning.ncp",
+      "archive": "Resource.nob",
+      "sha256": "68a0973988b77729a57fe963171a161b4a65f6695a361bb6c843e21b32cc47f6",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Prague_3_1_ChristofLook.ncp",
+      "archive": "Resource.nob",
+      "sha256": "a85d66037b6f7f7a59263d68e82c8d81b86bd8a7334b3ec56295ee5ef9991e02",
+      "size": 320,
+      "first_u32": 3,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Prague_3_1_IntroCamera.ncp",
+      "archive": "Resource.nob",
+      "sha256": "157dd4b47c11eedd1223a3a26e26a45fc800897db058c77f02892af04ebb9e77",
+      "size": 736,
+      "first_u32": 7,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/prague_3_1_lookszlachta.ncp",
+      "archive": "Resource.nob",
+      "sha256": "b976955b92926730bc85823384cebe3a197e9bc3af2834bc8a89fb5491418708",
+      "size": 840,
+      "first_u32": 8,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/prague_3_1_sfight.ncp",
+      "archive": "Resource.nob",
+      "sha256": "9ad9c4643aacf5b8a3eeac40a3fd0098bfb6366f942b8826e0ceb739c96fe2cd",
+      "size": 840,
+      "first_u32": 8,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/prague_3_3_bed.ncp",
+      "archive": "Resource.nob",
+      "sha256": "7b8e2e95cd0ad5ae46a7625de55898e273ad8333b32479e96b8ec6a20661c88d",
+      "size": 1880,
+      "first_u32": 18,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/prague_3_3_bed2.ncp",
+      "archive": "Resource.nob",
+      "sha256": "d77eb56489331552041024b2535367aa56987bcf6c8500768d4b6415fb642f30",
+      "size": 944,
+      "first_u32": 9,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Prague_7_1_Setup.ncp",
+      "archive": "Resource.nob",
+      "sha256": "46259616487bb55ef5640042812eec5d19aa4c6069bb36dd983c30194f535fa7",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/PragueCastle.ncp",
+      "archive": "Resource.nob",
+      "sha256": "71499e5450334537b0cce8e210f330b65dbe75b76e5ef1313f489510927db1c1",
+      "size": 2712,
+      "first_u32": 26,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/ratAttackMine.ncp",
+      "archive": "Resource.nob",
+      "sha256": "ce406a5cda0032b4fc2466f3367d69fb8229e4ea030bdcdeb3d437056170a454",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/RunPed.ncp",
+      "archive": "Resource.nob",
+      "sha256": "8547e6b3a272d7eec68e70b6ee1a124b90b17e6945ece933f7707dba83efe1f6",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/SaveSamuelCloseUp.ncp",
+      "archive": "Resource.nob",
+      "sha256": "545896e464402562a282d804fd8dda4841a8570f49d1e947fb7ffbca0d80ea44",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/SaveSamuelOTS.ncp",
+      "archive": "Resource.nob",
+      "sha256": "d168f46b4dba6b6411ae2e8f187a74d1ba8e0b9f533c51df5f2bc10902442325",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/SerenaCast.ncp",
+      "archive": "Resource.nob",
+      "sha256": "b403442e9c34fe41e4b39c00b618b2f228136d9fb6f98ee8717aee7dcfdfe5f3",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/SET4LucretiaVipers.ncp",
+      "archive": "Resource.nob",
+      "sha256": "02970076da5fbd8388f3f99488627157e656f8624a4afb1997efc8d78942ae78",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/SewerLakeAlligator.ncp",
+      "archive": "Resource.nob",
+      "sha256": "3cc22e7845f634c2c0b7bb9bb3fdfbdd51e9241d5a0a8740c394ccc7f961f17b",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/SewerLakeSkiff.ncp",
+      "archive": "Resource.nob",
+      "sha256": "b3196bb8246acf16a29c8c700eb2ecfe1924d5fa44f3818aa7772dd8ab5f732c",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/stenchMine.ncp",
+      "archive": "Resource.nob",
+      "sha256": "0e30c5b4c1576b8e7b3fa056af6468bcc83d247a5ac77b1c7303403bf6ddf571",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/StThomasByNight.ncp",
+      "archive": "Resource.nob",
+      "sha256": "13bbfebbc818ac72b5423b51d89a930294eaf1835f8a1eaaed8ec8b7fb2b2cb0",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/TEU2MapRoom.ncp",
+      "archive": "Resource.nob",
+      "sha256": "cb59dfc703aaa29d3b9b2177647be1d3d392dcc83f1245b42df6d046517d9044",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Transponder.ncp",
+      "archive": "Resource.nob",
+      "sha256": "f82f2076eee752a164173fa65b4b67461f15931f986c1145ba7941f77e11fdfe",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Underprince.ncp",
+      "archive": "Resource.nob",
+      "sha256": "08536e5e3c04503249cd7288c51a1de0aed893636855b5ae8d4453ed373da252",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/UnivBalcony.ncp",
+      "archive": "Resource.nob",
+      "sha256": "d9dcb8e20a5c2b16672001bc21f594eec5fb14f87b7d1970845e20a1ba03c3d6",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/Unorna.ncp",
+      "archive": "Resource.nob",
+      "sha256": "b6854618211c41888448d1b5c2042a06308dcced7faa0ff325212787c360595e",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/UTWNClock1.ncp",
+      "archive": "Resource.nob",
+      "sha256": "cd3784b307d34bed49f085648018b1887599b9e1cd1e68b33633641ea97364be",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/UTWNClock2.ncp",
+      "archive": "Resource.nob",
+      "sha256": "a5ed6bdf6a89eb49d188f7989b3471774eb1bebfc1ea36effbbb16e71e266be3",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/UTWNClock3.ncp",
+      "archive": "Resource.nob",
+      "sha256": "32bf75d52f8de7a59c3038656ae477017483ff982670e9dd272c6889c7dfe05a",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/UTWNExtCathedral.ncp",
+      "archive": "Resource.nob",
+      "sha256": "35e35ddc7bfbb3ebe40519a222eb67d30be20c97cea0fbb411499c63f6c74fe5",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/UTWNOutside1.ncp",
+      "archive": "Resource.nob",
+      "sha256": "ebd05c23a6c947c09cbf3e5815b580d2ec491148d64908dc72cfc97f707cd957",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/UTWNOutside2.ncp",
+      "archive": "Resource.nob",
+      "sha256": "c7637b658ab5526bf0299d2c5ed86f88b1919bd846c5236bd083e232c2af25cc",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/V1_HausHexe1.ncp",
+      "archive": "Resource.nob",
+      "sha256": "5843a1724fcd4b790a1bb400a2f1adb0c552fe6b83cccb528a2c901b18532a6c",
+      "size": 1256,
+      "first_u32": 12,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/V1_HausLook.ncp",
+      "archive": "Resource.nob",
+      "sha256": "f3921b26d3b0855e2f00cc56a63d3814bf02483cc93c7a4379ed14205c40f16c",
+      "size": 320,
+      "first_u32": 3,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/V1_OrsiParty.ncp",
+      "archive": "Resource.nob",
+      "sha256": "ceb233e27f78f2b7351dff50dba01e7b4c384982ba8b94335e29aa1aeec0e636",
+      "size": 320,
+      "first_u32": 3,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/v1_outter.ncp",
+      "archive": "Resource.nob",
+      "sha256": "b916cdd3b74e1d6487f7a35fef3d47a7a7784e04415b1f76739ba88884293ac6",
+      "size": 1984,
+      "first_u32": 19,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VaclavPOV.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e54f3b7c0e3c170ed7f7427c9838687f7ad6f247ce15376b8d121b620cb3e1d7",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VukFullShot.ncp",
+      "archive": "Resource.nob",
+      "sha256": "f1a2532aa7735e5ebfc1125c561e2bc2ed8f1699f86ce474206c92cb6da2df68",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VukHand.ncp",
+      "archive": "Resource.nob",
+      "sha256": "a494606a1f34f6ce734641cf80ff3eaef6682de041e89fa149c4dc63cc957890",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VukHeadShot.ncp",
+      "archive": "Resource.nob",
+      "sha256": "d2950054a0041c0af551ae55f9f40137cdcd180a1fde769020832257085c4628",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VYC3VozhdIntro.ncp",
+      "archive": "Resource.nob",
+      "sha256": "c3fb6cfeb9d3a164aef6c3389cc9aa110627cf06d0223e61bf0b086bbaf44670",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VysAnezkaLookAtChris.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e65472951a021085cc4f1dc0918e89c6c1f30c649d3f4b388238194a70505118",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VysChrisAndAnezka.ncp",
+      "archive": "Resource.nob",
+      "sha256": "052e4839a8b207b77f54f2ac26f0a2f38bcb827679598820799d56586b9dc20f",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VysChrisLookAtAnezka.ncp",
+      "archive": "Resource.nob",
+      "sha256": "31ff2b1ecdf56f6cfdf28d656e88d9622a1f9f550ce231d048c032e35e181b31",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VysLibussaLookAtChris.ncp",
+      "archive": "Resource.nob",
+      "sha256": "53de5ad7ae505adf10fd4bcb469fb5abbb7908bc8d59d9ff0631b325ad4f69c6",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VysLibussaZoom.ncp",
+      "archive": "Resource.nob",
+      "sha256": "50e784d51a36a96d5dfcf9b3dbd4ab07754522eca42add8773cfa82ff124bec7",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VYSM_Mob.ncp",
+      "archive": "Resource.nob",
+      "sha256": "ebfd4a0c4ac4bc36c566f49e15ff16a2f994f95dac1a5bc88bc415941cd07efe",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VysRotateCam.ncp",
+      "archive": "Resource.nob",
+      "sha256": "59f6dbad953086bffdfee4666a5bf45796698a5ae5db5e1806436b8e65dc00f9",
+      "size": 1048,
+      "first_u32": 10,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/VysWallsFall.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e29fd3697e916e310570661744622ff7ef6184d1c7422ed2e28b242b956d0a69",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/WakeUpChris.ncp",
+      "archive": "Resource.nob",
+      "sha256": "c0ea7f0e739c2882c25a132f8be2ec6a494d626b4aa24d931c6a6efe5a6285be",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/wall1.ncp",
+      "archive": "Resource.nob",
+      "sha256": "1cf1035ee70feadda62c395bbe302d043b1a8fb89f7e7f6bda50430323027553",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/wall2.ncp",
+      "archive": "Resource.nob",
+      "sha256": "3907406b2dbf4b5bc2095da7c43c161eae9e6fabaf6676818e47f17673ba2038",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/wall3.ncp",
+      "archive": "Resource.nob",
+      "sha256": "25f6f97b477c626de11902717f72c5d5254ec1c7e936322d809b60fc632d15a4",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/wall4.ncp",
+      "archive": "Resource.nob",
+      "sha256": "7aa354e7622ee3badb8a2f829bc2f0f491c2ccbd2a407d315258a2657259e352",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/wall5.ncp",
+      "archive": "Resource.nob",
+      "sha256": "c787886fd5a6e87a1be495baf6b10f388197e7fb421ce360a71fd055948e0341",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/wall6.ncp",
+      "archive": "Resource.nob",
+      "sha256": "540d204c43514bb776e7e844feca39a60a0e71d2137da0157c1be68a02fe3f32",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/wall7.ncp",
+      "archive": "Resource.nob",
+      "sha256": "e478a017671befe2d9ee42973855ae7bb4d5883f26849abd035e9bcb3eeb242c",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/wall8.ncp",
+      "archive": "Resource.nob",
+      "sha256": "ed81b82b702da414fb5a704bdb30c78926c261e00c773ece03d432319e4c604b",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/WAR3AlPartyAngB.ncp",
+      "archive": "Resource.nob",
+      "sha256": "c96d9f0839a9e1edde0cabfb309df2bcd7090c9074a1d8ae6f3951abd293a759",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/WAR3AlPOV.ncp",
+      "archive": "Resource.nob",
+      "sha256": "dcd751cd151c540ffbf114f5be681b4bbc7fe7763622e71c169abfbf91e93538",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/WesternRingStrasse.ncp",
+      "archive": "Resource.nob",
+      "sha256": "3ec42a46e0a13f927e1a949cb894e0b1021e000b6646443b83837dc508588d78",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/ZuloFullShot.ncp",
+      "archive": "Resource.nob",
+      "sha256": "3dea6f9a7fef5cd41130a2940ada131fc8aac707af36db411c801974defe1598",
+      "size": 112,
+      "first_u32": 1,
+      "matches_8_plus_104n": true
+    },
+    {
+      "path": "paths/ZuloHeadShot.ncp",
+      "archive": "Resource.nob",
+      "sha256": "9aeeb3ad1e5e318da533c84a0d4badedcad74a9cd83334d0bd130c90c96263ba",
+      "size": 216,
+      "first_u32": 2,
+      "matches_8_plus_104n": true
+    }
+  ],
+  "all_count_size_match": true,
+  "writer_implemented": false,
+  "native_engine_test": false
+}

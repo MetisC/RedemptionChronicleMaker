@@ -1,0 +1,404 @@
+b'NSD\x00' 0x51b024 0x4a6bb5
+004a6b8d: and al, 0x56
+004a6b8f: push 1
+004a6b91: push 4
+004a6b93: push eax
+004a6b94: call 0x4cb560
+004a6b99: lea ecx, [esp + 0x38]
+004a6b9d: push 0x20
+004a6b9f: lea edx, [esp + 0x9c]
+004a6ba6: push ecx
+004a6ba7: push edx
+004a6ba8: call 0x4dd480
+004a6bad: lea eax, [esp + 0xa4]
+004a6bb4: push 0x51b024
+004a6bb9: push eax
+004a6bba: mov byte ptr [esp + 0xcb], 0
+004a6bc2: call 0x4cbd90
+004a6bc7: push 8
+004a6bc9: lea ecx, [esp + 0xb0]
+004a6bd0: push 0x51b028
+004a6bd5: push ecx
+004a6bd6: call 0x4cb0f0
+004a6bdb: mov esi, eax
+004a6bdd: add esp, 0x30
+004a6be0: test esi, esi
+004a6be2: je 0x4a6c42
+004a6be4: mov edx, dword ptr [esp + 0x24]
+004a6be8: push 0
+004a6bea: push edx
+004a6beb: push esi
+004a6bec: call 0x4cb720
+004a6bf1: push esi
+004a6bf2: push ebp
+004a6bf3: call 0x4a84b0
+004a6bf8: mov edi, dword ptr [ebp + 0x12c]
+004a6bfe: add esp, 0x14
+004a6c01: test edi, edi
+004a6c03: je 0x4a6c39
+004a6c05: mov eax, dword ptr [esp + 0xc]
+004a6c09: test eax, eax
+004a6c0b: je 0x4a6c2e
+004a6c0d: mov eax, dword ptr [esp + 0x14]
+004a6c11: test eax, eax
+004a6c13: je 0x4a6c2e
+004a6c15: push 0
+004a6c17: push eax
+004a6c18: push esi
+004a6c19: call 0x4cb720
+004a6c1e: mov eax, dword ptr [esp + 0x18]
+004a6c22: add esp, 0xc
+004a6c25: mov ecx, edi
+004a6c27: push esi
+004a6c28: push eax
+004a6c29: call 0x4c44c0
+004a6c2e: test edi, edi
+004a6c30: je 0x4a6c39
+004a6c32: mov ecx, dword ptr [esp + 0x18]
+004a6c36: mov dword ptr [edi + 0x14], ecx
+004a6c39: push esi
+004a6c3a: call 0x4cb450
+004a6c3f: add esp, 4
+004a6c42: mov eax, dword ptr [ebp + 0x12c]
+004a6c48: pop edi
+004a6c49: pop esi
+004a6c4a: pop ebp
+004a6c4b: test eax, eax
+004a6c4d: je 0x4a6c71
+004a6c4f: mov ecx, dword ptr [eax + 0x134]
+
+b'NSD\x00' 0x51b02c 0x4a6a4c
+004a6a24: inc esp
+004a6a25: and al, 0x10
+004a6a27: push ebx
+004a6a28: test eax, eax
+004a6a2a: je 0x4a6abe
+004a6a30: lea edx, [esp + 0x2c]
+004a6a34: push 0x20
+004a6a36: lea eax, [esp + 0x90]
+004a6a3d: push edx
+004a6a3e: push eax
+004a6a3f: call 0x4dd480
+004a6a44: lea ecx, [esp + 0x98]
+004a6a4b: push 0x51b02c
+004a6a50: push ecx
+004a6a51: mov byte ptr [esp + 0xbf], 0
+004a6a59: call 0x4cbd90
+004a6a5e: mov ebx, dword ptr [ebp + 0x12c]
+004a6a64: add esp, 0x14
+004a6a67: test ebx, ebx
+004a6a69: je 0x4a6abe
+004a6a6b: mov eax, dword ptr [esp + 0x10]
+004a6a6f: test eax, eax
+004a6a71: je 0x4a6abe
+004a6a73: mov eax, dword ptr [esp + 0x18]
+004a6a77: test eax, eax
+004a6a79: je 0x4a6abe
+004a6a7b: push 8
+004a6a7d: lea edx, [esp + 0x90]
+004a6a84: push 0x51b030
+004a6a89: push edx
+004a6a8a: call 0x4cb0f0
+004a6a8f: mov edi, eax
+004a6a91: add esp, 0xc
+004a6a94: test edi, edi
+004a6a96: je 0x4a6abe
+004a6a98: mov eax, dword ptr [esp + 0x18]
+004a6a9c: push 0
+004a6a9e: push eax
+004a6a9f: push edi
+004a6aa0: call 0x4cb720
+004a6aa5: mov ecx, dword ptr [esp + 0x1c]
+004a6aa9: add esp, 0xc
+004a6aac: push edi
+004a6aad: push ecx
+004a6aae: mov ecx, ebx
+004a6ab0: call 0x4c44c0
+004a6ab5: push edi
+004a6ab6: call 0x4cb450
+004a6abb: add esp, 4
+004a6abe: push esi
+004a6abf: push 1
+004a6ac1: lea edx, [esp + 0x2c]
+004a6ac5: push 4
+004a6ac7: push edx
+004a6ac8: call 0x4cb560
+004a6acd: mov eax, dword ptr [esp + 0x34]
+004a6ad1: add esp, 0x10
+004a6ad4: test eax, eax
+004a6ad6: pop ebx
+004a6ad7: je 0x4a6c42
+004a6add: push esi
+004a6ade: push 0x20
+004a6ae0: lea eax, [esp + 0x50]
+004a6ae4: push 1
+004a6ae6: push eax
+004a6ae7: call 0x4cb560
+
+b'NSD\x00' 0x51e310 0x4b30ca
+004b30a2: push ebp
+004b30a3: mov eax, dword ptr [esi + 0x90]
+004b30a9: inc edi
+004b30aa: add ebx, 0x138
+004b30b0: cmp edi, eax
+004b30b2: jb 0x4b3079
+004b30b4: push esi
+004b30b5: call 0x4a1060
+004b30ba: mov al, byte ptr [esp + 0x64]
+004b30be: add esp, 4
+004b30c1: test al, 3
+004b30c3: jne 0x4b30e5
+004b30c5: lea eax, [esp + 0x18]
+004b30c9: push 0x51e310
+004b30ce: push eax
+004b30cf: call 0x4cbf20
+004b30d4: lea ecx, [esp + 0x20]
+004b30d8: push esi
+004b30d9: push ecx
+004b30da: call 0x4a7de0
+004b30df: add esp, 0x10
+004b30e2: mov dword ptr [esi + 0x30], eax
+004b30e5: push ebp
+004b30e6: call 0x4cb450
+004b30eb: add esp, 4
+004b30ee: mov eax, esi
+004b30f0: pop edi
+004b30f1: pop esi
+004b30f2: pop ebp
+004b30f3: pop ebx
+004b30f4: add esp, 0x48
+004b30f7: ret 
+004b30f8: push ebp
+004b30f9: call 0x4cb450
+004b30fe: add esp, 4
+004b3101: xor eax, eax
+004b3103: pop edi
+004b3104: pop esi
+004b3105: pop ebp
+004b3106: pop ebx
+004b3107: add esp, 0x48
+004b310a: ret 
+004b310b: nop 
+004b310c: nop 
+004b310d: nop 
+004b310e: nop 
+004b310f: nop 
+004b3110: push ebx
+004b3111: push ebp
+004b3112: push esi
+004b3113: push edi
+004b3114: mov edi, ecx
+004b3116: test edi, edi
+004b3118: jne 0x4b3131
+004b311a: push 0xe5
+004b311f: push 0x51e314
+004b3124: push 0x51e340
+004b3129: call 0x4c12a0
+004b312e: add esp, 0xc
+004b3131: mov ecx, dword ptr [edi + 0x30]
+004b3134: test ecx, ecx
+004b3136: je 0x4b313d
+004b3138: call 0x4a8350
+004b313d: mov esi, dword ptr [edi + 0xa0]
+004b3143: test esi, esi
+004b3145: je 0x4b315f
+004b3147: mov ebx, dword ptr [esi + 8]
+004b314a: push 1
+004b314c: mov ecx, esi
+004b314e: call 0x4af680
+004b3153: mov eax, dword ptr [esi]
+004b3155: mov ecx, esi
+004b3157: call dword ptr [eax]
+004b3159: test ebx, ebx
+004b315b: mov esi, ebx
+004b315d: jne 0x4b3147
+004b315f: mov ebx, dword ptr [edi + 0x84]
+004b3165: test ebx, ebx
+004b3167: je 0x4b31a1
+
+b'sky\x00' 0x4f65b8 0x405fd2
+00405faa: add cl, byte ptr [ecx + 0x30b8000c]
+00405fb0: test dword ptr [eax], eax
+00405fb3: add esp, 0xc
+00405fb6: test eax, eax
+00405fb8: jne 0x405fd1
+00405fba: push 0x9e5
+00405fbf: push 0x4f68a0
+00405fc4: push 0x4f68c8
+00405fc9: call 0x4c12a0
+00405fce: add esp, 0xc
+00405fd1: mov ecx, 0x4f65b8
+00405fd6: test ecx, ecx
+00405fd8: jne 0x405ff1
+00405fda: push 0x9e6
+00405fdf: push 0x4f68d0
+00405fe4: push 0x4f68f8
+00405fe9: call 0x4c12a0
+00405fee: add esp, 0xc
+00405ff1: mov edx, dword ptr [0x52ff4c]
+00405ff7: push 0x408530
+00405ffc: push 0x4f65b8
+00406001: push edx
+00406002: call 0x4ce8b0
+00406007: mov eax, 0x4085b0
+0040600c: add esp, 0xc
+0040600f: test eax, eax
+00406011: jne 0x40602a
+00406013: push 0x9e5
+00406018: push 0x4f68a0
+0040601d: push 0x4f68c8
+00406022: call 0x4c12a0
+00406027: add esp, 0xc
+0040602a: mov ecx, 0x4f65bc
+0040602f: test ecx, ecx
+00406031: jne 0x40604a
+00406033: push 0x9e6
+00406038: push 0x4f68d0
+0040603d: push 0x4f68f8
+00406042: call 0x4c12a0
+00406047: add esp, 0xc
+0040604a: mov edx, dword ptr [0x52ff4c]
+00406050: push 0x4085b0
+00406055: push 0x4f65bc
+0040605a: push edx
+0040605b: call 0x4ce8b0
+00406060: mov eax, 0x408600
+00406065: add esp, 0xc
+00406068: test eax, eax
+0040606a: jne 0x406083
+0040606c: push 0x9e5
+
+b'sky\x00' 0x4f65b8 0x405ffd
+00405fd5: add byte ptr [ebp + 0x681775c9], al
+00405fdb: out 9, al
+00405fdd: add byte ptr [eax], al
+00405fdf: push 0x4f68d0
+00405fe4: push 0x4f68f8
+00405fe9: call 0x4c12a0
+00405fee: add esp, 0xc
+00405ff1: mov edx, dword ptr [0x52ff4c]
+00405ff7: push 0x408530
+00405ffc: push 0x4f65b8
+00406001: push edx
+00406002: call 0x4ce8b0
+00406007: mov eax, 0x4085b0
+0040600c: add esp, 0xc
+0040600f: test eax, eax
+00406011: jne 0x40602a
+00406013: push 0x9e5
+00406018: push 0x4f68a0
+0040601d: push 0x4f68c8
+00406022: call 0x4c12a0
+00406027: add esp, 0xc
+0040602a: mov ecx, 0x4f65bc
+0040602f: test ecx, ecx
+00406031: jne 0x40604a
+00406033: push 0x9e6
+00406038: push 0x4f68d0
+0040603d: push 0x4f68f8
+00406042: call 0x4c12a0
+00406047: add esp, 0xc
+0040604a: mov edx, dword ptr [0x52ff4c]
+00406050: push 0x4085b0
+00406055: push 0x4f65bc
+0040605a: push edx
+0040605b: call 0x4ce8b0
+00406060: mov eax, 0x408600
+00406065: add esp, 0xc
+00406068: test eax, eax
+0040606a: jne 0x406083
+0040606c: push 0x9e5
+00406071: push 0x4f68a0
+00406076: push 0x4f68c8
+0040607b: call 0x4c12a0
+00406080: add esp, 0xc
+00406083: mov ecx, 0x4f65c4
+00406088: test ecx, ecx
+0040608a: jne 0x4060a3
+0040608c: push 0x9e6
+00406091: push 0x4f68d0
+00406096: push 0x4f68f8
+
+b'sky\x00' 0x52d540 0x52d480
+0052d458: arpl word ptr [eax + 0x70], si
+0052d45b: add byte ptr [eax + ebp*2 + 0x69], dh
+0052d45f: jae 0x52d461
+0052d461: add byte ptr [eax], al
+0052d463: add byte ptr [edx], al
+0052d465: add byte ptr [eax], al
+0052d467: add byte ptr [ecx], al
+0052d469: add byte ptr [eax], al
+0052d46b: add byte ptr [eax], al
+0052d46d: add byte ptr [eax], al
+0052d46f: add byte ptr [edx], al
+0052d471: add byte ptr [eax], al
+0052d473: add byte ptr [ecx], al
+0052d475: add byte ptr [eax], al
+0052d477: add byte ptr [eax], al
+0052d479: add byte ptr [eax], al
+0052d47b: add byte ptr [edx*8 - 0x2abfffae], dh
+0052d482: push edx
+0052d483: add byte ptr [ebp + edx*8 + 0x52], al
+0052d487: add byte ptr [eax - 0x2b], dl
+0052d48a: push edx
+0052d48b: add byte ptr [ebp + edx*8 + 0x52], dl
+0052d48f: add byte ptr [ebp + edx*8 + 0x52], bl
+0052d493: add byte ptr [ebp + edx*8 + 0x52], ch
+0052d497: add byte ptr [ebp + edx*8 + 0x52], bh
+0052d49b: add byte ptr [eax - 0x67ffad2b], cl
+0052d4a1: aad 0x52
+0052d4a3: add byte ptr [ebp + edx*8 - 0x2a53ffae], ah
+0052d4aa: push edx
+0052d4ab: add byte ptr [eax - 0x3bffad2b], bh
+0052d4b1: aad 0x52
+0052d4b3: add ah, cl
+0052d4b5: aad 0x52
+0052d4b7: add al, bl
+0052d4b9: aad 0x52
+0052d4bb: add ah, ah
+0052d4bd: aad 0x52
+0052d4bf: add ah, dh
+0052d4c1: aad 0x52
+0052d4c3: add byte ptr [eax], al
+0052d4c5: salc 
+0052d4c6: push edx
+0052d4c7: add byte ptr [esi + edx*8], cl
+0052d4ca: push edx
+0052d4cb: add byte ptr [esi + edx*8], bl
+0052d4ce: push edx
+0052d4cf: add byte ptr [esi + edx*8], ah
+0052d4d2: push edx
+0052d4d3: add byte ptr [esi + edx*8], dh
+0052d4d6: push edx
+0052d4d7: add byte ptr [eax - 0x2a], al
+0052d4da: push edx
+0052d4db: add byte ptr [esi + edx*8 + 0x52], cl
+0052d4df: add byte ptr [esi + edx*8 + 0x52], bl
+0052d4e3: add byte ptr [eax - 0x2a], ch
+0052d4e6: push edx
+0052d4e7: add byte ptr [eax - 0x2a], bh
+0052d4ea: push edx
+0052d4eb: add byte ptr [esi + edx*8 - 0x295fffae], cl
+0052d4f2: push edx
+0052d4f3: add byte ptr [esi + edx*8 - 0x294bffae], ch
+0052d4fa: push edx
+0052d4fb: add byte ptr [esi + edx*8 - 0x292fffae], bh
+0052d502: push edx
+0052d503: add al, ah
+0052d505: salc 
+0052d506: push edx
+0052d507: add al, dh
+0052d509: salc 
+0052d50a: push edx
+0052d50b: add ah, bh
+0052d50d: salc 
+0052d50e: push edx
+0052d50f: add byte ptr [edi + edx*8], al
+0052d512: push edx
+0052d513: add byte ptr [edi + edx*8], dl
+0052d516: push edx
+0052d517: add byte ptr [edi + edx*8], ah
+0052d51a: push edx
+0052d51b: add byte ptr [eax], bh
+0052d51d: xlatb 
+0052d51e: push edx

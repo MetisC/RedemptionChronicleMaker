@@ -1,0 +1,26 @@
+[
+  {
+    "file": "darkAges.not",
+    "templates": 726,
+    "roundtrip_exact": true,
+    "opaque_trailing_bytes": 0
+  },
+  {
+    "file": "Global.not",
+    "templates": 915,
+    "roundtrip_exact": true,
+    "opaque_trailing_bytes": 0
+  },
+  {
+    "file": "modernDay.not",
+    "templates": 776,
+    "roundtrip_exact": true,
+    "opaque_trailing_bytes": 0
+  },
+  {
+    "file": "Multiplayer.not",
+    "templates": 202,
+    "roundtrip_exact": true,
+    "opaque_trailing_bytes": 6786
+  }
+]

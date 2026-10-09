@@ -1,0 +1,1181 @@
+[
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/ANZK_14_1.nsd",
+    "size": 788,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/ANZK_8_4.nsd",
+    "size": 812,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/CAST_15_1.nsd",
+    "size": 1548,
+    "sky": [
+      "PragueCastleNight",
+      "PragueCastleNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/CTDY_4_1.nsd",
+    "size": 2292,
+    "sky": [
+      "sky",
+      "sky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/DEVN_33_2.nsd",
+    "size": 1568,
+    "sky": [
+      "NewYorkDocks",
+      "NewYorkDocks"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/DEVN_36_1.nsd",
+    "size": 1568,
+    "sky": [
+      "NewYorkDocks",
+      "NewYorkDocks"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/DEVN_LOT_8_1.nsd",
+    "size": 612,
+    "sky": [
+      "NewYorkDocks",
+      "NewYorkDocks"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/DOCK_33_1.nsd",
+    "size": 7234,
+    "sky": [
+      "NewYorkDocks",
+      "NewYorkDocks"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/DOCK_LOT_1_1.nsd",
+    "size": 2262,
+    "sky": [
+      "NewYorkDocks",
+      "NewYorkDocks"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/EAST_28_1.nsd",
+    "size": 10970,
+    "sky": [
+      "",
+      ""
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/EAST_28_4.nsd",
+    "size": 15820,
+    "sky": [
+      "",
+      ""
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/EAST_30_1.nsd",
+    "size": 10802,
+    "sky": [
+      "",
+      ""
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/EAST_32_1.nsd",
+    "size": 27242,
+    "sky": [
+      "",
+      ""
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/EGAT_5_1.nsd",
+    "size": 5286,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/EGNT_25_1.nsd",
+    "size": 5402,
+    "sky": [
+      "Prague2Night",
+      "Prague2Night"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/EGNT_7_1.nsd",
+    "size": 444,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/FAC2_37_4.nsd",
+    "size": 8952,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/FAC2_LOT_5_1.nsd",
+    "size": 8616,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/FAC4_37_4.nsd",
+    "size": 125476,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/FAC4_LOT_5_1.nsd",
+    "size": 59064,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/FLS1_40_1.nsd",
+    "size": 53906,
+    "sky": [
+      "sky",
+      "sky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/GOLD_7_1.nsd",
+    "size": 1512,
+    "sky": [
+      "praguewestnight",
+      "praguewestnight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/GOLD_8_1.nsd",
+    "size": 1368,
+    "sky": [
+      "praguewestnight",
+      "praguewestnight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/GOLDD_4_1.nsd",
+    "size": 3562,
+    "sky": [
+      "praguewestday",
+      "praguewestday"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/HHX2_23_1.nsd",
+    "size": 10844,
+    "sky": [
+      "ViennaSky",
+      "ViennaSky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/HHX3_23_1.nsd",
+    "size": 22896,
+    "sky": [
+      "ViennaSky",
+      "ViennaSky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/HHX4_23_1.nsd",
+    "size": 15948,
+    "sky": [
+      "ViennaSky",
+      "ViennaSky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/HILL_13_1.nsd",
+    "size": 2358,
+    "sky": [
+      "pragueWestNight",
+      "pragueWestNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/HILL_7_1.nsd",
+    "size": 276,
+    "sky": [
+      "praguewestnight",
+      "praguewestnight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/HILL_8_1.nsd",
+    "size": 3868,
+    "sky": [
+      "pragueWestNight",
+      "pragueWestNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/HILLD_4_1.nsd",
+    "size": 780,
+    "sky": [
+      "praguewestday",
+      "praguewestday"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/JOS1_15_1.nsd",
+    "size": 18648,
+    "sky": [
+      "PragueWestNight",
+      "PragueWestNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/JOS1_CTD_3_1.nsd",
+    "size": 18648,
+    "sky": [
+      "PragueWestNight",
+      "PragueWestNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/JUDB_7_1.nsd",
+    "size": 612,
+    "sky": [
+      "judithbridgenight",
+      "judithbridgenight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/JUDB_7_8.nsd",
+    "size": 4188,
+    "sky": [
+      "judithbridgenight",
+      "judithbridgenight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/JUDBD_4_1.nsd",
+    "size": 1152,
+    "sky": [
+      "judithbridgeday",
+      "judithbridgeday"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/l1_east.nsd",
+    "size": 49495,
+    "sky": [
+      "",
+      ""
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/l1_tol1.nsd",
+    "size": 132664,
+    "sky": [
+      "LondonTower",
+      "LondonTower"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/l1_tol2.nsd",
+    "size": 191978,
+    "sky": [
+      "LondonTower",
+      "LondonTower"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/l1_tol3.nsd",
+    "size": 106892,
+    "sky": [
+      "LondonTower",
+      "LondonTower"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/l1_tol4.nsd",
+    "size": 37032,
+    "sky": [
+      "LondonTower",
+      "LondonTower"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/N1_DEVN.nsd",
+    "size": 11892,
+    "sky": [
+      "NewYorkDocks",
+      "NewYorkDocks"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/n1_dock.nsd",
+    "size": 51070,
+    "sky": [
+      "NewYorkDocks",
+      "NewYorkDocks"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/n1_fac2.nsd",
+    "size": 96472,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/n1_fac4.nsd",
+    "size": 58138,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/N1_FLS1.nsd",
+    "size": 20942,
+    "sky": [
+      "sky",
+      "sky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/N1_ORSI.nsd",
+    "size": 11778,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/N1_SEW1.nsd",
+    "size": 42778,
+    "sky": [
+      "newYorkDocks",
+      "newYorkDocks"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/N1_SEW4.nsd",
+    "size": 20676,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/n1_utwn.nsd",
+    "size": 52642,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/NQTR_11_1.nsd",
+    "size": 49432,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/NQTR_14_3.nsd",
+    "size": 4148,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/NQTR_CTD_1_1.nsd",
+    "size": 10264,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/NRTH_23_1.nsd",
+    "size": 18118,
+    "sky": [
+      "Viennasky",
+      "Viennasky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/OLDT_11_1.nsd",
+    "size": 3732,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/OLDT_18_1.nsd",
+    "size": 3168,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/OLDT_25_1.nsd",
+    "size": 1656,
+    "sky": [
+      "Prague2Night",
+      "Prague2Night"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/OLDT_7_1.nsd",
+    "size": 10180,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/OLDT_7_4.nsd",
+    "size": 4558,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/OLDT_7_7.nsd",
+    "size": 6456,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/ORSI_37_4.nsd",
+    "size": 896,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/OTDY_4_1.nsd",
+    "size": 3906,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/OTDY_6_1.nsd",
+    "size": 1580,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/OUTR_20_1.nsd",
+    "size": 3874,
+    "sky": [
+      "viennasky",
+      "viennasky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_ANZK.nsd",
+    "size": 21986,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_CAST.nsd",
+    "size": 9564,
+    "sky": [
+      "PragueCastleNight",
+      "PragueCastleNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_CTDY.nsd",
+    "size": 26799,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_EGAT.nsd",
+    "size": 12178,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_EGNT.nsd",
+    "size": 12916,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_GOLD.nsd",
+    "size": 48572,
+    "sky": [
+      "praguewestnight",
+      "praguewestnight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_GOLDD.nsd",
+    "size": 30040,
+    "sky": [
+      "praguewestday",
+      "praguewestday"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_HILL.nsd",
+    "size": 43094,
+    "sky": [
+      "praguewestnight",
+      "praguewestnight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_HILLD.nsd",
+    "size": 43572,
+    "sky": [
+      "pragueWestDay",
+      "pragueWestday"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/p1_jos1.nsd",
+    "size": 84468,
+    "sky": [
+      "PragueWestNight",
+      "PragueWestNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_JUDB.nsd",
+    "size": 38962,
+    "sky": [
+      "judithbridgenight",
+      "judithbridgenight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_JUDBD.nsd",
+    "size": 39702,
+    "sky": [
+      "judithbridgeday",
+      "judithbridgeday"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/p1_nqtr.nsd",
+    "size": 80366,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_OLDT.nsd",
+    "size": 39583,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_OTDY.nsd",
+    "size": 38278,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_SIM1.nsd",
+    "size": 55516,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_SIMN.nsd",
+    "size": 55444,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_SMTY.nsd",
+    "size": 17206,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P1_SMYD.nsd",
+    "size": 16690,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P2_OLDT.nsd",
+    "size": 33709,
+    "sky": [
+      "Prague2Night",
+      "Prague2Night"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P2_VYC1.nsd",
+    "size": 34276,
+    "sky": [
+      "Prague2NightVysehrad",
+      "Prague2NightVysehrad"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P2_VYC2.nsd",
+    "size": 44138,
+    "sky": [
+      "Prague2NightVysehrad",
+      "Prague2NightVysehrad"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/P2_VYSM.nsd",
+    "size": 6300,
+    "sky": [
+      "Prague2NightVysehrad",
+      "Prague2NightVysehrad"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/SEW1_35_1.nsd",
+    "size": 198914,
+    "sky": [
+      "newYorkDocks",
+      "newYorkDocks"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/SEW1_LOT_12_1.nsd",
+    "size": 110536,
+    "sky": [
+      "newYorkDocks",
+      "newYorkDocks"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/SEW4_35_1.nsd",
+    "size": 12286,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/SEW4_LOT_12_1.nsd",
+    "size": 4624,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/SIM1_5_1.nsd",
+    "size": 48739,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/SIMN_7_1.nsd",
+    "size": 5244,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/SMTY_7_1.nsd",
+    "size": 720,
+    "sky": [
+      "pragueEastNight",
+      "pragueEastNight"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/SMYD_4_1.nsd",
+    "size": 744,
+    "sky": [
+      "pragueDaySky",
+      "pragueDaySky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/SOUT_20_1.nsd",
+    "size": 9336,
+    "sky": [
+      "viennasky",
+      "viennasky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/STE1_21_1.nsd",
+    "size": 54944,
+    "sky": [
+      "ViennaDay1",
+      "ViennaDay1"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/STE2_21_1.nsd",
+    "size": 20550,
+    "sky": [
+      "ViennaDay1",
+      "ViennaDay1"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/STE3_21_1.nsd",
+    "size": 38884,
+    "sky": [
+      "ViennaDay1",
+      "ViennaDay1"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/TEU1_22_1.nsd",
+    "size": 25576,
+    "sky": [
+      "ViennaSky",
+      "ViennaSky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/TEU2_22_1.nsd",
+    "size": 14668,
+    "sky": [
+      "ViennaSky",
+      "ViennaSky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/TEU4_22_1.nsd",
+    "size": 41302,
+    "sky": [
+      "ViennaNight1",
+      "ViennaNight1"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/TOL1_30_1.nsd",
+    "size": 12504,
+    "sky": [
+      "LondonTower",
+      "LondonTower"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/TOL2_30_1.nsd",
+    "size": 7728,
+    "sky": [
+      "LondonTower",
+      "LondonTower"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/TOL3_30_1.nsd",
+    "size": 10476,
+    "sky": [
+      "LondonTower",
+      "LondonTower"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/TOL4_30_1.nsd",
+    "size": 3146,
+    "sky": [
+      "LondonTower",
+      "LondonTower"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/UTWN_33_1.nsd",
+    "size": 2504,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/UTWN_38_1.nsd",
+    "size": 4438,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/UTWN_40_1.nsd",
+    "size": 7614,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/UTWN_LOT_9_1.nsd",
+    "size": 5206,
+    "sky": [
+      "NewYorkUptown",
+      "NewYorkUptown"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_EAST.nsd",
+    "size": 33804,
+    "sky": [
+      "viennasky",
+      "viennasky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_HHX2.nsd",
+    "size": 28692,
+    "sky": [
+      "ViennaSky",
+      "ViennaSky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_HHX3.nsd",
+    "size": 58482,
+    "sky": [
+      "ViennaSky",
+      "ViennaSky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_HHX4.nsd",
+    "size": 51680,
+    "sky": [
+      "ViennaSky",
+      "ViennaSky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_NRTH.nsd",
+    "size": 37728,
+    "sky": [
+      "Viennasky",
+      "Viennasky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_OUTR.nsd",
+    "size": 73070,
+    "sky": [
+      "viennasky",
+      "viennasky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_SOUT.nsd",
+    "size": 30232,
+    "sky": [
+      "viennasky",
+      "viennasky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_STE1.nsd",
+    "size": 364206,
+    "sky": [
+      "ViennaDay1",
+      "ViennaDay1"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_STE2.nsd",
+    "size": 54850,
+    "sky": [
+      "ViennaDay1",
+      "ViennaDay1"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_STE3.nsd",
+    "size": 15942,
+    "sky": [
+      "ViennaDay1",
+      "ViennaDay1"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/v1_teu1.nsd",
+    "size": 59152,
+    "sky": [
+      "ViennaSky",
+      "ViennaSky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/v1_teu2.nsd",
+    "size": 38616,
+    "sky": [
+      "ViennaSky",
+      "ViennaSky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/v1_teu4.nsd",
+    "size": 188768,
+    "sky": [
+      "ViennaNight1",
+      "ViennaNight1"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/V1_WEST.nsd",
+    "size": 5532,
+    "sky": [
+      "viennasky",
+      "viennasky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/VEST_20_1.nsd",
+    "size": 444,
+    "sky": [
+      "viennasky",
+      "viennasky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/VYC1_25_1.nsd",
+    "size": 39170,
+    "sky": [
+      "Prague2NightVysehrad",
+      "Prague2NightVysehrad"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/VYC2_25_1.nsd",
+    "size": 13980,
+    "sky": [
+      "Prague2NightVysehrad",
+      "Prague2NightVysehrad"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/VYC3_25_1.nsd",
+    "size": 24248,
+    "sky": [
+      "sky",
+      "sky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/VYC4_25_1.nsd",
+    "size": 18332,
+    "sky": [
+      "sky",
+      "sky"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/VYSM_25_1.nsd",
+    "size": 2434,
+    "sky": [
+      "Prague2NightVysehrad",
+      "Prague2NightVysehrad"
+    ]
+  },
+  {
+    "archive": "Resource.nob",
+    "file": "scenes/WEST_20_5.nsd",
+    "size": 2746,
+    "sky": [
+      "viennasky",
+      "viennasky"
+    ]
+  }
+]

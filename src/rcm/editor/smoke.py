@@ -1,0 +1,22 @@
+"""Exercise this application's controllers; never automates native game input."""
+import json,time
+from PySide6.QtCore import QTimer
+
+
+def start(win,app):
+    state={'started':False,'started_at':time.monotonic(),'errors':[]}
+    timer=QTimer(win);timer.setInterval(100)
+    def finish(report):
+        result={'valid_project':win.backend.validate(win.doc.snapshot()).valid,'build_status':report.get('status'),'class_versions':report.get('class_versions'),'real_gl':bool(win.spatial.viewport and win.spatial.viewport.isValid()),'safe_mode':bool(getattr(win.backend,'safe_mode',False)),'native_engine_test':False,'elapsed_seconds':time.monotonic()-state['started_at']}
+        win.backend.ws.write('build/portable_smoke.json',json.dumps(result,indent=2))
+        successful=result['valid_project'] and result['build_status']=='compiled-unverified-in-game' and (result['real_gl'] or result['safe_mode'])
+        def close():win.doc=None;win.close();app.exit(0 if successful else 1)
+        QTimer.singleShot(500,close)
+    win.build_completed.connect(finish)
+    def tick():
+        if time.monotonic()-state['started_at']>120:
+            timer.stop();win.backend.ws.write('build/portable_smoke.json',json.dumps({'status':'timeout','native_engine_test':False}));app.exit(1);return
+        if state['started'] or win.spatial.loading:return
+        if win.spatial.viewport and win.spatial.viewport.level is None:return
+        state['started']=True;timer.stop();win.actions['build'].trigger()
+    timer.timeout.connect(tick);timer.start()

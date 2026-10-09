@@ -1,0 +1,284 @@
+{
+  "nsd": {
+    "scenes/EAST_28_1.nsd": {
+      "sky_model": "",
+      "sky_anim": "",
+      "metadata_hex": "4c6f6e646f6e5f4875622e6d7033000000000000000000000000000000000000616d625f6c6f6e646f6e5374726565742e57415600000000000000000000000000000000500000003c00000000000000010000000000c8410000c8410000c841000048420000fa44004003450000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "header_hex": "4e53441008000000454153545f32385f31530007da180b0cc8570b0cfce530075c00000000003007454153545f32385f314c00000000000000000000000000000000000000000000000000000000000009000000"
+    },
+    "scenes/l1_east.nsd": {
+      "sky_model": "",
+      "sky_anim": "",
+      "metadata_hex": "4c6f6e646f6e5f4875622e6d7033000000000000000000000000000000000000616d625f6c6f6e646f6e5374726565742e57415600000000000000000000000000000000500000003c00000000000000010000000000c8410000c8410000c841000048420000fa44004003450000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "header_hex": "4e5344100800000053000b0c1540090c70e63007d640090cde40090c6d000000a0390d0c80330d0c4c003007f41e0d0c70e63007da180b0cc8570b0cfce530075c0000000000300700000000000000003e000000"
+    },
+    "scenes/l1_west.nsd": {
+      "sky_model": "",
+      "sky_anim": "",
+      "metadata_hex": "4c6f6e646f6e5f4875622e6d7033000000000000000000000000000000000000616d625f6c6f6e646f6e5374726565742e57415600000000000000000000000000000000320000005000000000000000010000000000c8410000c8410000c841000048420000fa44004003450000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "header_hex": "4e5344100800000064e812530000000000000000f8e81200d4e81200d4e81200eca6040ff4a6040f64e8124c001f080fd4e81200da18060fc857060f60e812005c0000000000120000000000000000002a000000"
+    }
+  },
+  "resources": [
+    {
+      "path": "scenes/EAST_28_1.nsd",
+      "size": 10970,
+      "strings": [
+        "EAST_28_1S",
+        "EAST_28_1L",
+        "ghost",
+        "Vienna\\ERfloor2_3_v",
+        "lonciv3",
+        "bobbie",
+        "EAST_Otto",
+        "ottovan",
+        "gothgirl1",
+        "lonciv1",
+        "bobbie",
+        "WalkCycleLawmen",
+        "bobbie",
+        "WalkCycleLawmen",
+        "London_Hub.mp3",
+        "amb_londonStreet.WAV"
+      ]
+    },
+    {
+      "path": "scenes/l1_east.nsd",
+      "size": 49495,
+      "strings": [
+        "trigger_region_exit",
+        "on_exit",
+        "Con_exit",
+        "EAST_EXIT_DESC_0",
+        "London\\wall01_9_L",
+        "exit_message_short",
+        "_short",
+        "C_short",
+        "C_short",
+        "ClickExit",
+        "C_short",
+        "EAST_EXIT_DESC_0",
+        "bouy1",
+        "ironbench",
+        "dumpster1",
+        "weather_effects",
+        "Weather",
+        "tracker_thing",
+        "ClickExit",
+        "EAST_EXIT_DESC_1",
+        "London\\SLcrate3_2_L",
+        "tire2",
+        "tire1",
+        "palette3",
+        "palette5",
+        "dumpster1",
+        "ghost",
+        "StingerSound",
+        "harbor_horn_01.WAV",
+        "lightcaged_lit",
+        "phonebooth_l",
+        "trigger_region_exit",
+        "on_exit",
+        "Con_exit",
+        "London\\wall01_9_L",
+        "London\\wall01_6_L",
+        "tracker_thing",
+        "ClickExit",
+        "EAST_EXIT_DESC_4",
+        "Vienna\\wall06_4_v",
+        "London\\SBdoor1_1_L",
+        "tracker_thing",
+        "ClickExit",
+        "EAST_EXIT_DESC_3",
+        "London\\ship1_L",
+        "New_York\\steelPlate1_NY",
+        "tracker_thing",
+        "ClickExit",
+        "EAST_EXIT_DESC_2",
+        "New_York\\steelPlate1_NY",
+        "cobra",
+        "oildrum",
+        "phonebooth_l",
+        "trashcan",
+        "streetlight2_l",
+        "stanchion_l",
+        "flamelarge",
+        "stanchion_l",
+        "streetlight2_l",
+        "streetlight2_l"
+      ]
+    },
+    {
+      "path": "scenes/l1_west.nsd",
+      "size": 31594,
+      "strings": [
+        "exit_message_short",
+        "_short",
+        "_short",
+        "_short",
+        "ClickExit",
+        "_short",
+        "WEST_EXIT_DESC_2",
+        "weather_effects",
+        "cameraclip_region",
+        "egion",
+        "Cegion",
+        "London\\wall01_1_L",
+        "s1_2_NY",
+        "policecarlondon",
+        "buslondon",
+        "creepytree",
+        "thinoaktree",
+        "lamp2_l",
+        "trigger_region_exit",
+        "on_exit",
+        "on_exit",
+        "London\\wall01_1_L",
+        "s1_2_NY",
+        "tenebraegargoyle",
+        "aCoyle",
+        "Coyle",
+        "Coyle",
+        "tracker_thing",
+        "ClickExit",
+        "WEST_EXIT_DESC_3",
+        "London\\SLwall2_1_L",
+        "s1_2_NY",
+        "London\\CTdoor_L",
+        "Filler_NY",
+        "tracker_thing",
+        "ClickExit",
+        "WEST_EXIT_DESC_1",
+        "London\\door2_1_L",
+        "s1_2_NY",
+        "London\\CSdoor",
+        "Filler_NY",
+        "tracker_thing",
+        "ClickExit",
+        "WEST_EXIT_DESC_0",
+        "London\\SLfacadeDoor_L",
+        "s1_2_NY",
+        "London\\door2_1_L",
+        "Filler_NY",
+        "phonebooth_l",
+        "stanchion_l",
+        "stanchion_l",
+        "phonebooth_l",
+        "phonebooth_l",
+        "streetlight2_l",
+        "streetlight2_l",
+        "streetlight2_l",
+        "streetlight2_l",
+        "streetlight2_l",
+        "streetlight2_l",
+        "streetlight2_l"
+      ]
+    },
+    {
+      "path": "3d/Anims/LondonNightSky.nad",
+      "size": 516,
+      "strings": []
+    },
+    {
+      "path": "3d/Anims/mayasky1e.nad",
+      "size": 1020,
+      "strings": []
+    },
+    {
+      "path": "3d/Anims/pragueDaySky.nad",
+      "size": 516,
+      "strings": []
+    },
+    {
+      "path": "3d/Anims/Sky.nad",
+      "size": 908,
+      "strings": []
+    },
+    {
+      "path": "3d/Anims/ViennaSky.nad",
+      "size": 516,
+      "strings": []
+    },
+    {
+      "path": "3d/Models/LondonNightSky.nod",
+      "size": 4430,
+      "strings": [
+        "highLevelCloudsLondon",
+        "wispyCloudsNight",
+        "fogLine",
+        "c_cloudsShape1",
+        "d_cloudsShape",
+        "e_fogLineShape",
+        "FRDRF"
+      ]
+    },
+    {
+      "path": "3d/Models/mayaSky1e.nod",
+      "size": 6262,
+      "strings": [
+        "clouds1",
+        "StarField2",
+        "matte1",
+        "d_CloudLayerShape",
+        "b_MoonShape",
+        "a_SkyShape1",
+        "c_SkylineShape"
+      ]
+    },
+    {
+      "path": "3d/Models/pragueDaySky.nod",
+      "size": 5078,
+      "strings": [
+        "highLevelDay",
+        "PragueDayClouds1",
+        "blueSky",
+        "Range1",
+        "vysehrad1",
+        "pragueCastle1",
+        "a_blueSkyShape",
+        "b_SunShape",
+        "c_cloudsShape1",
+        "d_cloudsShape",
+        "e_rangeShape",
+        "f_PragueCastleShape",
+        "g_vysehradShape"
+      ]
+    },
+    {
+      "path": "3d/Models/Sky.nod",
+      "size": 6014,
+      "strings": [
+        "clouds1",
+        "StarField2",
+        "dfltMatte",
+        "a_SkyShape1",
+        "b_MoonShape",
+        "c_CloudLayerShape",
+        "d_SkylineShape"
+      ]
+    },
+    {
+      "path": "3d/Models/ViennaSky.nod",
+      "size": 3522,
+      "strings": [
+        "highLevelCloudsNight3",
+        "black",
+        "RangeVienna",
+        "a_starsShape",
+        "d_cloudsShape",
+        "e_rangeShape",
+        "Dl6E4",
+        "Dl6E4"
+      ]
+    },
+    {
+      "path": "3d/Models/whiskyBottle.nod",
+      "size": 2356,
+      "strings": [
+        "whiskyBottle",
+        "pCubeShape1"
+      ]
+    }
+  ],
+  "generated_footer": "4c6f6e646f6e5f4875622e6d7033000000000000000000000000000000000000616d625f6c6f6e646f6e5374726565742e57415600000000000000000000000000000000500000003c00000000000000010000000000c8410000c8410000c841000048420000fa4400400345000000004c6f6e646f6e4e69676874536b790000000000000000000000000000000000004c6f6e646f6e4e69676874536b79000000000000000000000000000000000000"
+}

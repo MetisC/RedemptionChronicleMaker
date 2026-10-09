@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-08T06:40:09.0891969+02:00",
+  "retired_loose_files": [],
+  "original_files_modified": false,
+  "game_process_absent": true,
+  "revision": 5,
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\20261008_064008_893",
+  "files": [
+    {
+      "sha256": "db147fb53e535749ec263d02c2b77f8c1c89480d8f928f8a0dee32e7bd900b92",
+      "path": "east_demo.nob"
+    },
+    {
+      "sha256": "941dbb82b427b127507c2499e4799232a21adf99856126fc220e69b29d5f6d8f",
+      "path": "codex\\R_east_demo_Scene.class"
+    },
+    {
+      "sha256": "276b5b15ea0fe9ae8ddf38f313f27ef52f383104710c92cb10537136a3fd6d57",
+      "path": "codex\\R_east_demo_Passive.class"
+    }
+  ],
+  "native_test": "User confirms both original comparison cases show grey background; revision 5 removes added sky and awaits visual confirmation of demo",
+  "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\east_demo"
+}

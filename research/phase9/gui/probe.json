@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "steps": [
+    "new campaign from dialog fields",
+    "mouse surface placement: entries",
+    "entry yaw edited through inspector",
+    "mouse surface placement: waypoints",
+    "mouse surface placement: waypoints",
+    "mouse surface placement: actors",
+    "route created from waypoint order with panel controls",
+    "conversation linked with inspector selector",
+    "quest title committed through panel",
+    "saved, reopened, validated and compiled against original API"
+  ],
+  "real_gl": true,
+  "viewport_error": "",
+  "source": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\phase9\\gui\\authored\\project.yaml",
+  "class_versions": {
+    "R_p9_gui_s0_Scene": "45.3",
+    "R_p9_gui_s0_Passive": "45.3"
+  },
+  "gui_authored_basic_project": true,
+  "full_adventure_gui_acceptance": false,
+  "native_engine_test": false
+}

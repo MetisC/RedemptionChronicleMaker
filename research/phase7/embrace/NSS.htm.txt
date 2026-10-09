@@ -1,0 +1,26 @@
+NSS
+NOD Engine SDK 1.0
+NSS File Specifications
+Introduction
+This file is used by the game in the Scenes UI pane of the Storyteller
+interface. There will be one entry in that UI pane for every entry in this file.
+There must be corresponding scripting done in the advance handler in the
+chronicle script to process each one of these lines.
+Format
+scene
+<scene #>
+<subscene #>
+<scene description>
+scene
+keyword
+scene #
+the scene that this line will prepare the game for
+subscene #
+the subscene that this line will prepare the game for
+scene description
+an NLS key that will display in the ST Scene UI pane describing the
+scene
+Sample NSS FIle
+Scene 2 1 CTD_SCENE_2_1
+Scene 3 1 CTD_SCENE_3_1
+Scene 5 1 CTD_SCENE_5_1

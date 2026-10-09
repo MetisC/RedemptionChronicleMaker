@@ -1,0 +1,8 @@
+{
+  "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_091\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+  "original_game_assets_included": false,
+  "original_tools_included": false,
+  "jvm_bundled": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_update_091\\RedemptionChronicleMaker\\runtime",
+  "native_game_test": false,
+  "clean_machine_test": false
+}

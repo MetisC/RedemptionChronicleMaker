@@ -1,0 +1,220 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>NOD Engine SDK 1</title>
+<meta name="Microsoft Theme" content="zero 101, default">
+</head>
+
+<body background="../_themes/zero/zertxtr.gif" bgcolor="#000000" text="#FFFFFF" link="#669966" vlink="#6699CC" alink="#999999"><!--mstheme--><font face="Arial, Arial, Helvetica">
+<h2 ALIGN="CENTER"><!--mstheme--><font color="#6699CC">NOD Engine SDK 1.0<!--mstheme--></font></h2>
+<h2 ALIGN="CENTER"><!--mstheme--><font color="#6699CC">NSC File Specifications<!--mstheme--></font></h2>
+<h3><!--mstheme--><font color="#6699CC">Introduction<!--mstheme--></font></h3>
+<p>The chronicle file is what holds everything together. It lists names for
+locations or levels, exits and entrances between levels, and a few other details
+about the chronicle. The very first location listed in the chronicle file is the
+starting location for the chronicle (with the exception of clients joining a
+multiplayer game – see reviveloc below).</p>
+<h3><!--mstheme--><font color="#6699CC">Format<!--mstheme--></font></h3>
+<p>location:</p>
+<!--mstheme--></font><table BORDER="1" CELLSPACING="1" CELLPADDING="7" WIDTH="590" bordercolordark="#666666" bordercolorlight="#CCCCCC">
+  <tr>
+    <td WIDTH="11%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>location<!--mstheme--></font></td>
+    <td WIDTH="14%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>&lt;name&gt;<!--mstheme--></font></td>
+    <td WIDTH="12%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>&lt;level&gt;<!--mstheme--></font></td>
+    <td WIDTH="18%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>&lt;initial scene&gt;<!--mstheme--></font></td>
+    <td WIDTH="14%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>&lt;nui file&gt;<!--mstheme--></font></td>
+    <td WIDTH="18%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>&lt;nui location&gt;<!--mstheme--></font></td>
+    <td WIDTH="11%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>&lt;flags&gt;<!--mstheme--></font></td>
+  </tr>
+</table><!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font><table BORDER="1" CELLSPACING="1" CELLPADDING="7" WIDTH="590" bordercolordark="#666666" bordercolorlight="#CCCCCC">
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>name<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>the name given here will be the one used to reference this location
+      from within Codex (and from the console in-game for a couple commands)<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>level<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>filename of the level<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>initial scene<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>filename of the scene this location starts in<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>nui file<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>filename of the main NUI file where this location exists<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>nui location<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>the location with the NUI file that describes the coordinates for this
+      location on the map<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2" HEIGHT="7"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>these describe different behavior and display options for each location<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p></p>
+    <!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="14%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x0001<!--mstheme--></font></td>
+    <td WIDTH="70%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>Objects are not saved in this location<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="14%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x0002<!--mstheme--></font></td>
+    <td WIDTH="70%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>Location is normally loaded briefly, so don't free origin world<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="14%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x0004<!--mstheme--></font></td>
+    <td WIDTH="70%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>Location should not be freed<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="14%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x0008<!--mstheme--></font></td>
+    <td WIDTH="70%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>Location should be shown on the map<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="14%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x0010<!--mstheme--></font></td>
+    <td WIDTH="70%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>Location is a haven and should be indicated as such on the map<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="14%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x0020<!--mstheme--></font></td>
+    <td WIDTH="70%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>Teleports cannot be created in this location<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="14%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x0040<!--mstheme--></font></td>
+    <td WIDTH="70%" VALIGN="TOP" HEIGHT="1"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>Clearing the buffer is required<!--mstheme--></font></td>
+  </tr>
+</table><!--mstheme--><font face="Arial, Arial, Helvetica">
+<p>Old Town in Prague looks like this in prague.nsc:</p>
+<!--mstheme--></font><pre>location OldTown P1_OLDT.nil OLDT_7_1.nsd mapPragueOT.nui mapOldTownCenter 0x0060</pre><!--mstheme--><font face="Arial, Arial, Helvetica">
+<p>exit:</p>
+<!--mstheme--></font><table BORDER="1" CELLSPACING="1" CELLPADDING="7" WIDTH="590" bordercolordark="#666666" bordercolorlight="#CCCCCC">
+  <tr>
+    <td WIDTH="33%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>exit<!--mstheme--></font></td>
+    <td WIDTH="33%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>&lt;location1&gt;, &lt;exit&gt;<!--mstheme--></font></td>
+    <td WIDTH="33%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>&lt;location2&gt;, &lt;entrance&gt;<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>location1<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>the name of one of the above specificed &quot;locations&quot;<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">exit<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2"><!--mstheme--><font face="Arial, Arial, Helvetica">the number of the entrance/exit in
+      the level<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">location2<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2"><!--mstheme--><font face="Arial, Arial, Helvetica">the name of one of the above
+      specified &quot;locations&quot;<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">exit<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP" COLSPAN="2"><!--mstheme--><font face="Arial, Arial, Helvetica">the number of hte entrance/exit in
+      the level<!--mstheme--></font></td>
+  </tr>
+</table><!--mstheme--><font face="Arial, Arial, Helvetica">
+<p>This combination completely describes the transition between two locations.
+There will be an exit from location1 that takes you the specified entrance in
+location2. There will also be an exit from location2 that takes you to location1
+created by the game when it loads the chronicle (where &lt;entrance&gt; is the
+exit from location2 and &lt;exit&gt; is the entrance into location1).</p>
+<p>This is how the transition between Old Town and East Gate in Prague are
+described in prague.nsc:</p>
+<!--mstheme--></font><pre>exit OldTown,3 EastGateNight,2</pre><!--mstheme--><font face="Arial, Arial, Helvetica">
+<p>This is creating an exit 3 from OldTown that will take you to entrance 2 in
+EastGateNight. Because the game creates the &quot;backward link&quot;, exit 2
+from EastGateNight will take you to entrance 3 in OldTown.</p>
+<p>script:</p>
+<p>This field tells the game which class file to use as its chronicle script.</p>
+<p>metafile:</p>
+<p>The metafile tells the chronicle more specific information about what extra
+files the game might need to load or reference when running this chronicle. This
+field tells the game the name of that file.</p>
+<p>portal:</p>
+<p>This is the field that tells the game which location to take the player to
+when they use the Walk the Abyss discipline. It consists of a location and an
+entrance number.</p>
+<p>flags:</p>
+<p>These flags give the game some extra information about this particular
+chronicle.</p>
+<!--mstheme--></font><table BORDER="1" CELLSPACING="1" CELLPADDING="7" WIDTH="590" bordercolordark="#666666" bordercolorlight="#CCCCCC">
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">Flag<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP" bgcolor="#000080"><!--mstheme--><font face="Arial, Arial, Helvetica">Description<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x1<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>chronicle is modern day (UI changes, etc.)<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x2<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>chronicle is meant for multiplayer<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x4<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>chronicle is meant to be played with a ST<!--mstheme--></font></td>
+  </tr>
+  <tr>
+    <td WIDTH="15%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>0x8<!--mstheme--></font></td>
+    <td WIDTH="85%" VALIGN="TOP"><!--mstheme--><font face="Arial, Arial, Helvetica">
+      <p>chronicle is only meant to be chained from another and should not
+      appear in selection UIs<!--mstheme--></font></td>
+  </tr>
+</table><!--mstheme--><font face="Arial, Arial, Helvetica">
+<p>reviveloc:</p>
+<p>This field is only used in multiplayer chronicles. It tells the game where to
+revive the character when they use the &quot;Revive&quot; menu option in the
+Escape Menu. This field also tells the game where to start clients in a
+multiplayer game. You can change this field from within Codex</p>
+<!--mstheme--></font></body>
+
+</html>

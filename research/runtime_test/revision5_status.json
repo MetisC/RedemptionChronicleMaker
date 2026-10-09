@@ -1,0 +1,13 @@
+{
+  "revision": 5,
+  "comparison_user_confirmed": {
+    "base_null_background": "grey, visually satisfactory",
+    "original_scene_background": "grey, visually satisfactory"
+  },
+  "changes": "Remove explicit level.sky; NSD retains all 176 original environment bytes",
+  "java_and_other_package_resources_unchanged": true,
+  "nil_modified": false,
+  "native_demo_revision5": "pending visual confirmation",
+  "checks": "26 Python tests including Java harness pass",
+  "phase2_started": false
+}

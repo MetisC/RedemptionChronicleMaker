@@ -1,0 +1,48 @@
+{
+  "version": "0.7.0",
+  "created_at": "2026-10-08T18:49:46+0200",
+  "full_tests": {
+    "tests": 188,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 156.23826839998947,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "quality": true,
+  "originals": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "portable_probe": {
+    "valid_project": true,
+    "build_status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_rcm_stable_s0_Scene": "45.3",
+      "R_rcm_stable_s0_Passive": "45.3",
+      "R_rcm_stable_s1_Scene": "45.3",
+      "R_rcm_stable_s1_Passive": "45.3",
+      "R_rcm_stable_s2_Scene": "45.3",
+      "R_rcm_stable_s2_Passive": "45.3",
+      "RCM7Actor": "45.3"
+    },
+    "real_gl": true,
+    "safe_mode": false,
+    "native_engine_test": false,
+    "elapsed_seconds": 9.35899999999674
+  },
+  "package_sha256": "b067e2ea4622ad9950f0f58b6c666eed2958c2537bfdd8564091c4ea2010c244",
+  "package_requires_rcm": "0.7.0",
+  "portable_executable_sha256": "a295116ecad21471a1ef428d70ae4f3c4252cf16eb12de0d3890188496e1a89b",
+  "source_checkpoint": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\checkpoints\\phase7_source_final.zip",
+  "source_files": 166,
+  "deployed_hashes_match": true,
+  "native_acceptance": false,
+  "clean_machine_test": false,
+  "private_beta_accepted": false
+}

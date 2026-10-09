@@ -1,0 +1,618 @@
+NOD Engine SDK 1
+NOD Engine SDK 1.0
+Creating An In-Game Cutscene
+Introduction
+For demonstration purposes, a sample script and conversation
+file from the Redemption Single-Player Chronicle have been included at
+the bottom of this document.  They are
+from the post-Embrace scene where Christof is introduced to Wilhem and given
+the quest to retrieve the Nod Fragment.
+In-game cutscenes in the Redemption Single-Player
+Chronicle typically involve conversations between the actors, and are
+controlled by convreached messages from the game’s conversation
+system.  Exceptions to this rule are the
+various transformation cinematics, which are generally handled by timers since
+there is little dialogue.  To create an
+in-game cutscene, the user will primarily need to be familiar with the Java™
+scripting tools, and the structure behind conversations.
+Conversation (NCO) and Voiceover (NVO) Files
+A conversation within Vampire The Masquerade: Redemption™
+is defined by its NCO or conversation file.
+Each line in an NCO references the castid of the actor who is “speaking”
+and a line of text in the chronicle’s NVO or voiceover file.  These lines of dialogue are played in
+succession, each one generating a convreached message to the
+system.  It is at these convreached messages
+that the bulk of work in the cutscene is handled:  it’s a good place to trigger events, change camera angles and
+positions or start cameras moving, make actors play special animations, etc.
+Conversations may be linear events or have branching paths
+that rely on the user to make choices.
+The UNIV_7_7 scene provided in this document is an example of a
+branching conversation.  By using an
+ANSWERGOTO handler that string becomes an option for the player to choose.
+NCO Handlers
+LINE
+NVO string name
+castid of speaker
+ANSWERGOTO
+NVO string name
+event name
+JUMP
+event name
+DELAY
+time in seconds
+Camera Positions and Movement
+Camera positions and movement within in-game cutscenes can
+be handled by the game’s predefined camera system, or by creating path cameras
+(NCP files).
+Redemption’s Predefined Camera System
+Vampire The Masquerade: Redemption™ comes with a
+nifty predefined camera system.  The
+camera system requires the world-position of at least one actor, and a series
+of parameters telling the camera how far to position itself from the subject,
+what angle, etc.  By passing the system
+the positions of two actors, a series of traditional cinematic camera shots can
+be created.  In a script, the verb used
+to pass this information is called SetupCutscene.  The first position passed is Actor A, and the second is Actor
+C.  These two positions create what’s
+referred to as a “line of action” between the two actors.  Typically, that line is not crossed during a
+conversation to prevent spatial confusion to the viewer.  (For more information on traditional camera
+setups and storytelling in cinematic cutscenes, please see Steven Katz’s
+excellent book, Film Directing Shot By Shot: Visualizing From Concept To
+Screen, 1991, Michael Wiese Productions.)
+A quick example from our script below:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, wilhemGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);
+Codex Camera Constants
+Camera Shots:
+CAM_SHOT_ANGULAR_A
+Near Actor A, looking at Actor C.
+CAM_SHOT_ANGULAR_B
+The classic “Two Shot”, both actors from the side.
+CAM_SHOT_ANGULAR_C
+Near Actor C, looking at Actor A.
+CAM_SHOT_OTS_A
+Behind Actor A, looking at Actor C.
+CAM_SHOT_OTS_C
+Behind Actor C, looking at Actor A.
+CAM_SHOT_POV_A
+Actor A, from Actor C’s point-of-view.
+CAM_SHOT_POV_C
+Actor C, from Actor A’s point-of-view.
+CAM_SHOT_PROFILE_A
+A profile shot of Actor A (Not sure if this is supported.)
+CAM_SHOT_PROFILE_C
+A profile shot of Actor C (Not sure if this is supported.)
+Camera Angles:
+CAM_ANGLE_LOW
+A low-angle shot.
+CAM_ANGLE_MEDIUMLOW
+A medium-low-angle shot.
+CAM_ANGLE_MEDIUM
+A medium or level shot.
+CAM_ANGLE_MEDIUMHIGH
+A medium-high shot.
+CAM_ANGLE_HIGH
+A high shot.
+Camera Distances:
+CAM_DIST_EXTREMECLOSEUP
+An extreme close-up shot, typically the actor’s eyes and
+head.
+CAM_DIST_CLOSEUP
+A close-up shot, typically the actor’s head and shoulders.
+CAM_DIST_MEDIUM
+A medium shot, typically the actor from the waist up.
+CAM_DIST_FULL
+A full shot, typically the actor’s entire body.
+CAM_DIST_LONG
+A long shot: typically the actor’s entire body and a lot
+of background.
+NOTE: The camera positions can be incorrect if the actors
+are placed too close together, or too far apart.  If you aren’t getting the results you expected, try moving the
+start-positions of the actors around in the level.
+Path Cameras (NCP files)
+Path cameras consist of a series of key-frames defined by
+the user within the game.  A single
+key-frame is a static camera, and multiple key-frames give the camera positions
+to move from and to, in the order in which they are created.  You can specify the rate at which the camera
+moves between these key-frames in the script.
+To create a path camera, first make sure you are running
+-devmode in the command line of your Vampire executable.  Load a level in which you want to create a
+path camera, and use F11 to remove the UI.
+(This allows you to fully frame the shot.)  Then type CTRL-P to go into the debug flying-camera mode.  You can navigate using these commands:
+Debug Camera Commands
+Hide UI
+F11
+Toggle debug/normal camera
+CTRL-P
+Forward
+W
+Backward
+S
+Strafe Left/Right
+A/D
+Look Up
+Down Arrow
+Look Down
+Up Arrow
+Turn Left/Right
+Left/Right Arrow
+Strafe Up/Down
+X/C
+Camera Path Controls
+Add key-frame (replaces if not at end of path)
+SPACE
+Step through key-frames
++/-
+Delete all key-frames
+SHIFT-BACKSPACE
+Delete current key-frame
+DEL
+Insert new key-frame after current
+INS
+Change playback speed
++/- (during playback)
+Save path to disk
+“savepath <name.ncp>” in console
+Load path from disk
+“loadpath <name.ncp>” in console
+Once you’ve framed your shot, hit the spacebar to add a
+key-frame.  If you want to create a
+moving camera, navigate to a second position and hit the spacebar again to
+create a second key-frame.  Bring up the
+console by hitting the tilda (`), and type “savepath  <name.ncp>”.  This
+path is now available to be called upon in a script.  The line in the script will look something like this:
+CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(),
+GetGUID(), "UnivBalcony.ncp", 30);
+The last value, 30, is the rate at which a camera moves
+between key-frames.
+Special Animations and Motion (NMS) Files
+At each convreached message, the conversation system
+automatically plays a “talk” animation on the actor who is speaking, and a
+“listen” animation on the other actors involved in that conversation.  It is also possible to play a special
+animation on an actor, for example to make them speak more passionately, or
+angrily; make them appear to be wounded, etc.
+You’ll want to check the motionset or NMS of the actor you intend to use
+to see  what’s available to be played,
+but some common ones are defined below.
+In our sample scene, Wilhem cordially bows to Ecaterina as he interrupts
+her, to signify his respect.  Looking in
+Wilhem’s template in DarkAges.not (under _player_DA), we see Wilhem uses
+Christof’s motionset file (Christof.nms).
+Opening up Christof.nms, we find the motion Christof_BowFealty.nad is
+assigned to gesture4.  So, in the
+UNIV_7_7 script we use:
+_Wilhem.PlayMotionSetMode(MOTION_GESTURE4, false,
+(float)30.0);
+This particular animation is defined as “noloop” in
+Christof.nms, so at the end of the animation where Wilhem has not yet finished
+“talking” (i.e the mp3 has not finished playing) the conversation system falls
+back into the standard “talk” animation.
+Some Sample Special Motions for Christof
+GESTURE1          Christof
+is distraught
+GESTURE2          Christof
+talks with purpose
+GESTURE3          Christof
+gives something away
+GESTURE4          Christof’s
+bow of fealty
+GESTURE5          Christof
+talks with passion
+GESTURE6          Christof
+talks with more passion
+GESTURE7          Christof’s
+second bow of fealty
+GESTURE8          Christof
+menaces
+GESTURE9          Christof
+taunts
+GESTURE0          Christof
+waves
+Sample Scene:  UNIV_7_7 (Search For
+The Nod Fragment)
+/**
+* University scene 7.7 script.
+* <BR>Copyright (c) Nihilistic Software, Inc. 1998-1999
+*
+*/
+public class UNIV_7_7 extends Codex
+{
+private PragueChronicle        chronScript;
+private static final int TIMER_ID_SUBMISSIONCONV1               = 1;
+private static final int TIMER_ID_SUBMISSIONCONV2               = 2;
+private static final int TIMER_ID_WILHEMINTERVENE               = 5;
+private static final int TIMER_ID_MOVECHRISWILHEM               = 6;
+private       CodexActor         _Christof;
+private       CodexActor         _Ecaterina;
+private       CodexActor         _Cosmas;
+private       CodexPlayer       _Wilhem;
+private int                          christofGUID;
+private int                          cosmasGUID;
+private int                          ecaterinaGUID;
+private int                          wilhemGUID;
+private float[]                     pos;
+private boolean                   bSubmissionConversation1   = false;
+private boolean                   bSubmissionConversation2   = false;
+public boolean                    bCosmasReturnConversation = false;
+public boolean                    bEcatReturn1Conversation    = false;
+public static String _params[] = {"Ecaterina", "Cosmas", "Wilhem"};
+public UNIV_7_7(CodexActor Ecaterina, CodexActor Cosmas, CodexPlayer Wilhem)
+{
+chronScript = (PragueChronicle)GetChronicleScript(0);
+_Ecaterina = new CodexActor(Ecaterina.GetGUID());
+_Cosmas = new CodexActor(Cosmas.GetGUID());
+_Wilhem = new CodexPlayer(Wilhem.GetGUID());
+CaptureThing(_Ecaterina.GetGUID());
+CaptureThing(_Cosmas.GetGUID());
+CaptureThing(_Wilhem.GetGUID());
+pos = new float[3];
+}
+public void beginscene(int clientGuid, int captureID)
+{
+// change haven to an "empty" scene
+CodexSequence.ChangeScene("Haven", "HAVN_7_7.nsd");
+// open the university, haven, and petrin hill exits
+CodexSequence.OpenExit("OldTown", 1);
+CodexSequence.OpenExit("OldTown", 2);
+// open monastery exits
+CodexSequence.OpenExit("PetrinHill", 1);
+CodexSequence.OpenExit("Monastery", 0);
+christofGUID = CodexThing.GuidFromCastID("Christof");
+cosmasGUID = _Cosmas.GetGUID();
+ecaterinaGUID = _Ecaterina.GetGUID();
+wilhemGUID = _Wilhem.GetGUID();
+_Christof = new CodexActor(christofGUID);
+if(!CodexSequence.GetChronicleFlag(chronScript.UNIV_CONVDONE))
+{
+// Fade in from awakening scene
+CodexCamera.AddFade(CodexPlayer.GetCurrentPlayer(), (float)0.0, (float)255.0, (float)3.0, false);
+SetTimer((float)0.1, TIMER_ID_SUBMISSIONCONV1);
+}
+}
+public void clicked(int guid, int clickerGuid, int captureID)
+{
+if(guid == _Ecaterina.GetGUID())
+{
+// play default line here
+EcatReturn1Conversation(clickerGuid, 0);
+}
+else if(guid == _Cosmas.GetGUID())
+{
+// play default line here
+CosmasReturnConversation(clickerGuid, 0);
+}
+}
+public void timer(int timerID, float arg0, float arg1, float arg2, float arg3)
+{
+switch(timerID)
+{
+case TIMER_ID_SUBMISSIONCONV1:
+SubmissionConversation1(CodexPlayer.GetCurrentPlayer(), 0);
+break;
+case TIMER_ID_SUBMISSIONCONV2:
+SubmissionConversation2(CodexPlayer.GetCurrentPlayer(), 0);
+break;
+case TIMER_ID_WILHEMINTERVENE:
+pos = _Wilhem.GetFramePosition(1);
+_Wilhem.SendActorToPos(pos, (float)90.0);
+break;
+case TIMER_ID_MOVECHRISWILHEM:
+CodexPlayer.TeleportPartyToConversation(CodexPlayer.GetCurrentPlayer(), 0);
+_Wilhem.SetPosition(_Wilhem.GetFramePosition(1));
+_Wilhem.LookAtThing(ecaterinaGUID);
+break;
+}
+}
+public void SubmissionConversation1(int starterGuid, int npcGuid)
+{
+CodexSound.PushMusic("DA_Conversation_1.mp3", 50);
+bSubmissionConversation1 = true;
+AIOff();
+CodexPlayer.TeleportPartyToConversation(CodexPlayer.GetCurrentPlayer(), 0);
+ExecuteConversation(starterGuid, npcGuid, "7_7_Fealty", "7_7_Fealty.nco", CONV_XFLAG_WANTFEEDBACK);
+}
+public void SubmissionConversation2(int starterGuid, int npcGuid)
+{
+bSubmissionConversation2 = true;
+AIOff();
+ExecuteConversation(starterGuid, npcGuid, "7_7_Fealty2", "7_7_Fealty2.nco", CONV_XFLAG_WANTFEEDBACK);
+}
+public void EcatReturn1Conversation(int starterGuid, int npcGuid)
+{
+bEcatReturn1Conversation = true;
+AIOff();
+ExecuteConversation(starterGuid, npcGuid, "8_1_EcatReturn1", "8_1_EcatReturn1.nco", CONV_XFLAG_WANTFEEDBACK);
+}
+public void CosmasReturnConversation(int starterGuid, int npcGuid)
+{
+bCosmasReturnConversation = true;
+AIOff();
+ExecuteConversation(starterGuid, npcGuid, "7_7_CosmasReturn", "7_7_CosmasReturn.nco", CONV_XFLAG_WANTFEEDBACK);
+}
+public void convended(int starterGuid,  boolean bAborted , int returnValue)
+{
+if(bSubmissionConversation1)
+{
+//AIOn();
+bSubmissionConversation1 = false;
+//CodexCamera.Release(starterGuid);
+if(CodexSequence.GetChronicleFlag(chronScript.UNIV_SHUNANSWER))
+{
+CodexCamera.AddFade(CodexPlayer.GetCurrentPlayer(), (float)255.0, (float)0.0, (float)4.0, true);
+SetTimer(2, TIMER_ID_MOVECHRISWILHEM);
+SetTimer(4, TIMER_ID_SUBMISSIONCONV2);
+}
+else
+{
+SetTimer(0, TIMER_ID_SUBMISSIONCONV2);
+}
+}
+if(bSubmissionConversation2)
+{
+CodexSound.PopMusic();
+AIOn();
+bSubmissionConversation2 = false;
+CodexCamera.Release(starterGuid);
+// award conversation XP
+CodexPlayer.AwardPartyExperience(50);
+// NOTE: do NOT get rid of this flag, it's checked in a couple other scripts
+CodexSequence.SetChronicleFlag(chronScript.UNIV_CONVDONE);
+// Add Wilhem to the party
+_Wilhem.AddToParty();
+// add nod fragment quest
+CodexQuest q = new CodexQuest(CodexQuest.Load("P1_NodFragment"));
+// show petrin on map
+CodexSequence.SetLocationFlags("PetrinHill", LOCATION_FLAG_SHOWINMAP);
+// set up scene in old town
+CodexSequence.ChangeScene("OldTown", "OLDT_7_7.nsd");
+// change scene in petrin for this mission
+CodexSequence.ChangeScene("PetrinHill", "HILL_8_1.nsd");
+}
+if(bEcatReturn1Conversation)
+{
+AIOn();
+bEcatReturn1Conversation = false;
+CodexCamera.Release(starterGuid);
+}
+if(bCosmasReturnConversation)
+{
+AIOn();
+bCosmasReturnConversation = false;
+CodexCamera.Release(starterGuid);
+}
+}
+public void convreached(int starterGuid, int curEvent, int curLine, int lineDuration, int speakerGuid)
+{
+if(bSubmissionConversation1)
+{
+switch(curEvent)
+{
+case 0:
+switch(curLine)
+{
+case 0:
+_Ecaterina.LookAtThing(christofGUID);
+CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), "Fealty.ncp", 30);
+break;
+case 1:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+case 2:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+case 3:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+}
+break;
+case 1:
+switch(curLine)
+{
+case 0:
+CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), "Fealty.ncp", 30);
+break;
+case 1:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, cosmasGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+case 2:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+}
+break;
+case 2:
+switch(curLine)
+{
+case 0:
+CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), "Fealty.ncp", 30);
+break;
+case 1:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, cosmasGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+case 2:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+}
+break;
+case 3:
+switch(curLine)
+{
+case 0:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+case 1:
+CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), "Fealty.ncp", 30);
+break;
+case 2:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_CLOSEUP, 0, 0);
+break;
+case 3:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, cosmasGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_CLOSEUP, 0, 0);
+break;
+case 4:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);
+break;
+case 5:
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);
+break;
+}
+break;
+case 4:
+switch(curLine)
+{
+case 0:
+// set this so we know chris has chosen to shun ecaterina
+CodexSequence.SetChronicleFlag(chronScript.UNIV_SHUNANSWER);
+// move wilhem to "catch" chris
+pos = _Wilhem.GetFramePosition(4);
+_Christof.SendActorToPos(pos, (float)210.0);
+pos = _Wilhem.GetFramePosition(3);
+_Wilhem.SendActorToPos(pos, (float)210.0);
+CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), "UnivBalcony.ncp", 30);
+break;
+case 1:
+_Wilhem.LookAtThing(christofGUID);
+_Christof.LookAtThing(wilhemGUID);
+CodexCamera.SetupCutscene(starterGuid, christofGUID, wilhemGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_ANGULAR_B, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+}
+break;
+} // switch(curEvent)
+} // if(bSubmissionConversation1)
+if(bSubmissionConversation2)
+{
+switch(curLine)
+{
+case 0:
+CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), "Fealty.ncp", 30);
+// Set timer to move Wilhem near end of Ecat line
+SetTimer((float)3.0, TIMER_ID_WILHEMINTERVENE);
+break;
+case 1:
+_Wilhem.LookAtThing(ecaterinaGUID);
+_Wilhem.PlayMotionSetMode(MOTION_GESTURE4, false, (float)30.0);
+CodexCamera.SetupCutscene(starterGuid, christofGUID, wilhemGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);
+break;
+case 2:
+_Wilhem.StopActorAction();
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_ANGULAR_C, CAM_ANGLE_MEDIUM, CAM_DIST_CLOSEUP, 1, 0);
+break;
+case 3:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, wilhemGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);
+break;
+case 4:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);
+break;
+case 5:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, cosmasGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);
+break;
+case 6:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_ANGULAR_C, CAM_ANGLE_MEDIUM, CAM_DIST_CLOSEUP, 1, 0);
+break;
+case 7:
+CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), "UnivBalcony.ncp", 30);
+// Move Wilhem near Christof
+pos = _Wilhem.GetFramePosition(2);
+_Wilhem.SendActorToPos(pos, (float)90.0);
+break;
+case 8:
+CodexCamera.SetupCutscene(starterGuid, christofGUID, wilhemGUID);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_ANGULAR_B, CAM_ANGLE_MEDIUM, CAM_DIST_CLOSEUP, 0, 0);
+break;
+}
+} // if(bSubmissionConversation2)
+if(bEcatReturn1Conversation)
+{
+switch(curLine)
+{
+case 0:
+CodexCamera.SetupCutscene(starterGuid, speakerGuid, 0);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+}
+}
+if(bCosmasReturnConversation)
+{
+switch(curLine)
+{
+case 0:
+CodexCamera.SetupCutscene(starterGuid, speakerGuid, 0);
+CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);
+break;
+}
+}
+}
+}
+Sample Conversation File: 7_7_Fealty.nco
+// *********************************************************************************
+//
+// 7_7_Fealty.nco (conversation file)
+//
+// This file has been generated by the Voice DB Exporter.
+//
+// Copyright (c) 1999-2000 Nihilistic Software, Inc.
+//
+// *********************************************************************************
+CONVERSATION: 7_7_Fealty 0
+EVENT: ev_0
+LINE:         Ecat_7_7_280                 Ecat
+ANSWERGOTO:   Christof_7_7_282             ev_tentative
+ANSWERGOTO:   Christof_7_7_283             ev_wimp
+ANSWERGOTO:   Christof_7_7_281             ev_shun
+EVENT: ev_tentative
+LINE:         Ecat_7_7_284                 Ecat
+LINE:         Cosmas_7_7_285               Cosmas
+LINE:         Ecat_7_7_286                 Ecat
+EVENT: ev_wimp
+LINE:         Ecat_7_7_287                 Ecat
+LINE:         Cosmas_7_7_288               Cosmas
+LINE:         Ecat_7_7_289                 Ecat
+EVENT: ev_shun
+LINE:         Ecat_7_7_290                 Ecat
+LINE:         Cosmas_7_7_291               Cosmas
+LINE:         Ecat_7_7_292                 Ecat
+LINE:         Cosmas_7_7_293               Cosmas
+LINE:         Ecat_7_7_294                 Ecat
+LINE:         Christof_7_7_2515            Christof
+JUMP:                                      ev_suicide
+EVENT: ev_suicide
+DELAY:        3
+LINE:         Wilhem_7_7_300               Wilhem
+// *********************************************************************************
+// Ecat_7_7_280                Thou needs must pledge fealty to thy new Mistress.
+// Christof_7_7_281            I do NOT agree to serve thee. I reject thee and shun thy evil works! I take my leave of thee!
+// Christof_7_7_282            I am newly remade, and know little of this world. I agree only to follow thy lead for the present.
+// Christof_7_7_283            I submit to thee in all things. I am thine to command.
+// Ecat_7_7_290                Insolent whelp! I forbid it! Tempt not my wrath.
+// Ecat_7_7_284                Such rebelliousness is unseemly in a Brujah. I do not like such willfulness in my Childer.
+// Ecat_7_7_287                Thou knowest well thy place.
+// Cosmas_7_7_285              He displays as much fealty as can be expected from such a one, Ecaterina.
+// Cosmas_7_7_288              Humph. I had expected more fire in him. Mayhap thou misjudged his spine, Ecaterina.
+// Cosmas_7_7_291              The man he was can do little else, Ecaterina.
+// Ecat_7_7_289                We shall see. Mayhap he takes instruction with more spirit.
+// Ecat_7_7_286                Very well, Cosmas. Then thou may hold his leash. We shall see if he takes instruction with more deference.
+// Ecat_7_7_292                The vampire he is must do otherwise, Cosmas.
+// Cosmas_7_7_293              He will learn…should he survive his own folly.
+// Ecat_7_7_294                Thou speakest sagely, Cosmas. Very well, Christof. I shall not strike thee down for this one act of disobedience. And if thou leavest now, I shall not move to stop thee. But neither shall I lift my hand to save thee from reaping the fruits of such
+// Christof_7_7_2515           Then, farewell, fair cruelty. I take my leave of thy damnable house and my own damnable un-life! For only in death can I find solace for the loss of my soul!
+// Wilhem_7_7_300              Such a death would not end thy accursed existence but curse it even further. Shouldst thou ever meet a wraith, thou would understand that thy present torment is paradise compared to the anguish of those in the Shadowlands. Thou dost owe
+Reference
+Film directing shot by shot: visualizing from concept to
+screen (Steven D. Katz, 1991, Michael Wiese Productions)

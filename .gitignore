@@ -1,0 +1,120 @@
+# ============================================================
+# Redemption Chronicle Maker
+# ============================================================
+
+# ------------------------------------------------------------
+# Python
+# ------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# ------------------------------------------------------------
+# Test / lint / type-check caches
+# ------------------------------------------------------------
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyright/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# ------------------------------------------------------------
+# Build / packaging
+# ------------------------------------------------------------
+build/
+dist/
+*.spec
+
+# Generated packages / releases
+*.rcmpack
+
+# ------------------------------------------------------------
+# RCM generated cache
+# Everything here must be reconstructible from the game install
+# ------------------------------------------------------------
+cache/
+
+# ------------------------------------------------------------
+# Local workspace / runtime state
+# ------------------------------------------------------------
+workspace/
+runtime_trace.log
+*.log
+
+# Temporary / backup files
+*.tmp
+*.temp
+*.bak
+*.old
+*~
+~$*
+
+# ------------------------------------------------------------
+# Reverse-engineering material copied/extracted from Redemption
+# Do NOT commit original game assets/binaries
+# ------------------------------------------------------------
+research/original/
+research/user_directory/Vampire.exe
+
+# Generated binary-analysis dumps
+research/*.bytecode.txt
+research/ALL_CODEX.bytecode.txt
+research/Vampire.strings.txt
+
+# ------------------------------------------------------------
+# Generated backups / checkpoints
+# ------------------------------------------------------------
+research/build_backups/
+research/runtime_test/backups/
+research/checkpoints/
+
+# Phase snapshots / generated archives
+research/phase*/before_*.zip
+research/phase*/after_*.zip
+research/phase*/retired_*.zip
+
+# ------------------------------------------------------------
+# Runtime/deployment scratch data
+# ------------------------------------------------------------
+research/runtime_test/runtime_trace.log
+research/runtime_test/*.log
+
+# ------------------------------------------------------------
+# IDE / editor
+# ------------------------------------------------------------
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ------------------------------------------------------------
+# Windows
+# ------------------------------------------------------------
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ------------------------------------------------------------
+# macOS, por si algún día alguien se pone creativo
+# ------------------------------------------------------------
+.DS_Store
+
+# ------------------------------------------------------------
+# Secrets / local configuration
+# ------------------------------------------------------------
+.env
+.env.*
+!.env.example

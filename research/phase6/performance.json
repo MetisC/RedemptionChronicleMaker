@@ -1,0 +1,55 @@
+{
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.14",
+  "projects": {
+    "system_test": {
+      "load_seconds": 0.15099999999802094,
+      "save_seconds": 0.03488659999857191,
+      "validation_seconds": 0.8394836999941617,
+      "references_seconds": 0.0013956000038888305,
+      "reference_count": 63,
+      "search_links_seconds": 0.0010789999942062423,
+      "search_hits": 28,
+      "build_seconds": 3.5404288999998244,
+      "distribution_bytes": 394605,
+      "distribution_sha256": "ee80101564e89ee79c2d00d0717dd751e62fb6981b2c343a03505baab043d119",
+      "source_unchanged": true,
+      "native_engine_test": false
+    },
+    "golden": {
+      "load_seconds": 0.14035810000495985,
+      "save_seconds": 0.03208479999739211,
+      "validation_seconds": 0.8593143000034615,
+      "references_seconds": 0.00132379999558907,
+      "reference_count": 63,
+      "search_links_seconds": 0.0010803000041050836,
+      "search_hits": 28,
+      "build_seconds": 3.46658129998832,
+      "distribution_bytes": 394610,
+      "distribution_sha256": "c8d9b0acb528d88f4fa858330fd8813b203d824c81219dc51661f9e32bd1fba2",
+      "source_unchanged": true,
+      "native_engine_test": false
+    },
+    "large_fixture": {
+      "load_seconds": 1.1799142000090797,
+      "save_seconds": 0.24824739999894518,
+      "validation_seconds": 2.4017315999954008,
+      "references_seconds": 0.011826600006315857,
+      "reference_count": 486,
+      "search_links_seconds": 0.008279700006823987,
+      "search_hits": 205,
+      "build_seconds": 8.14710550000018,
+      "distribution_bytes": 1089675,
+      "distribution_sha256": "4bab009a24ce01d85f986efdf9eeafe061c4fe8a429a8481946f92bc2b640c1f",
+      "source_unchanged": true,
+      "native_engine_test": false
+    }
+  },
+  "repeated_loads": {
+    "iterations": 30,
+    "retained_python_bytes_delta": 1711,
+    "traced_peak_bytes": 5296409,
+    "gpu_memory_measured": false,
+    "proves_no_leaks": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "summary": "El acceso exacto del escritorio abrió Vampire 1.1 y llegó al menú principal sin pedir CD-key. La captura muestra el menú; Tab/flecha arriba no cambiaron selección y el clic automatizado sobre Multiplayer no lo activó. No se inició RCM System Test, por lo que no hay aceptación actual de conversación, cámara, save/load ni NOT/AI. Se ha solicitado ayuda para iniciar la partida.",
+  "created_at": "2026-10-08T17:54:19.6348522+02:00",
+  "original_hashes_match": true,
+  "runtime_cases_failed": [],
+  "runtime_cases_passed": [],
+  "launch_exact_shortcut": "PASS OBSERVED",
+  "original_files_checked": 43,
+  "status": "BLOCKED AT MENU",
+  "game_shortcut": "C:\\Users\\Usuario\\Desktop\\Vampire.exe - Acceso directo.lnk"
+}

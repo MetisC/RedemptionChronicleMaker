@@ -1,0 +1,18 @@
+{
+  "chronicle": "rcm_circuit",
+  "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\east_demo",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_rcm_circuit_1791485720180045200.zip",
+  "removed_owned_files": [],
+  "files": {
+    "east_demo\\codex\\R_rcm_circuit_s0_Passive.class": "49b664421d6f445f5b10286b8f2163acdbe4f53316c91ba8b3e8d0806e54da96",
+    "east_demo\\codex\\R_rcm_circuit_s0_Scene.class": "1eaf9086ff61161f71f778612bad8580e9760fe9669f66696e918c141f08725c",
+    "east_demo\\codex\\R_rcm_circuit_s1_Passive.class": "9177fee6bf16825cbff8e5ae39d4ffe629dba6ab32ae380f1fe6efaef7733498",
+    "east_demo\\codex\\R_rcm_circuit_s1_Scene.class": "85ced6b7c1357cbdb85e7b2765fe8a3f104e68651c3577eb0cf061d8704fe43a",
+    "east_demo\\codex\\R_rcm_circuit_s2_Passive.class": "877afca4a9a08d5c840b200d7e6cc0ba9368254768968a6db283e710f6fdb046",
+    "east_demo\\codex\\R_rcm_circuit_s2_Scene.class": "2a1ca581a2404657eedc699000261c14df2da6696f47967e5e988313963ddde1",
+    "east_demo\\codex\\RCM9Actor.class": "68509d68f5cc92aaf550edff7bc639bbedb00086c2847d19057ff61d37ea1fde",
+    "east_demo\\rcm_circuit.nob": "00d8551d5caba45b63dd27572c84517c745e207e1347addb4588bbfc67184dba",
+    "east_demo\\.rcm_deployment.json": "6529bbf2d5ddab1bb2fab33402493f3febd512871022b49c9f9c37846ac7cd21"
+  },
+  "native_engine_test": false
+}

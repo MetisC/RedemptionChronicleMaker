@@ -1,0 +1,722 @@
+[
+  {
+    "candidate_tag": 0,
+    "name": "basedon",
+    "executable_offset": 974968,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 1,
+    "name": "orientation",
+    "executable_offset": 975008,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 2,
+    "name": "position",
+    "executable_offset": 975048,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 3,
+    "name": "sector",
+    "executable_offset": 975088,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 4,
+    "name": "model",
+    "executable_offset": 975128,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 5,
+    "name": "editorcategory",
+    "executable_offset": 975168,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 6,
+    "name": "foley",
+    "executable_offset": 975208,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 7,
+    "name": "thingflags",
+    "executable_offset": 975248,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 8,
+    "name": "renderflags",
+    "executable_offset": 975288,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 9,
+    "name": "motionset",
+    "executable_offset": 975328,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 10,
+    "name": "modelflags",
+    "executable_offset": 975368,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 11,
+    "name": "script",
+    "executable_offset": 975408,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 12,
+    "name": "collide",
+    "executable_offset": 975448,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 13,
+    "name": "radius",
+    "executable_offset": 975488,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 14,
+    "name": "height",
+    "executable_offset": 975528,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 15,
+    "name": "movespeed",
+    "executable_offset": 975568,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 16,
+    "name": "type",
+    "executable_offset": 975608,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 17,
+    "name": "iconsize",
+    "executable_offset": 975648,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 18,
+    "name": "icontype",
+    "executable_offset": 975688,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 19,
+    "name": "icon",
+    "executable_offset": 975728,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 20,
+    "name": "item_type",
+    "executable_offset": 975768,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 21,
+    "name": "item_flags",
+    "executable_offset": 975808,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 22,
+    "name": "item_amount",
+    "executable_offset": 975848,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 23,
+    "name": "ITEM_MINPERCEPTION",
+    "executable_offset": 975888,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 24,
+    "name": "ITEM_ID",
+    "executable_offset": 975928,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 25,
+    "name": "ITEM_TAG",
+    "executable_offset": 975968,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 26,
+    "name": "ACTOR_CLAN",
+    "executable_offset": 976008,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 27,
+    "name": "ACTOR_AURA",
+    "executable_offset": 976048,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 28,
+    "name": "ITEM_SCROLLDISC",
+    "executable_offset": 976088,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 29,
+    "name": "ITEM_SCROLLLEVEL",
+    "executable_offset": 976128,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 30,
+    "name": "ITEM_TEXT",
+    "executable_offset": 976168,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 31,
+    "name": "STAT_MANA",
+    "executable_offset": 976208,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 32,
+    "name": "STAT_MANAPOOL",
+    "executable_offset": 976248,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 33,
+    "name": "ITEM_IDENTIFIEDDESC",
+    "executable_offset": 976288,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 34,
+    "name": "ITEM_SPECIALDESC",
+    "executable_offset": 976328,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 35,
+    "name": "editorsizemins",
+    "executable_offset": 976368,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 36,
+    "name": "editorsizemaxs",
+    "executable_offset": 976408,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 37,
+    "name": "editorcolor",
+    "executable_offset": 976448,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 38,
+    "name": "codexclass",
+    "executable_offset": 976488,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 39,
+    "name": "WEAPON_FLAGS",
+    "executable_offset": 976528,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 40,
+    "name": "WEAPON_TYPE1",
+    "executable_offset": 976568,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 41,
+    "name": "WEAPON_TYPE2",
+    "executable_offset": 976608,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 42,
+    "name": "WEAPON_DEFENSETYPE",
+    "executable_offset": 976648,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 43,
+    "name": "WEAPON_DAMAGE1",
+    "executable_offset": 976688,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 44,
+    "name": "WEAPON_DAMAGE2",
+    "executable_offset": 976728,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 45,
+    "name": "WEAPON_STRIKETIME1",
+    "executable_offset": 976768,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 46,
+    "name": "WEAPON_STRIKETIME2",
+    "executable_offset": 976808,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 47,
+    "name": "WEAPON_RELOADTIME",
+    "executable_offset": 976848,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 48,
+    "name": "WEAPON_MINDISTANCE",
+    "executable_offset": 976888,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 49,
+    "name": "WEAPON_MAXDISTANCE",
+    "executable_offset": 976928,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 50,
+    "name": "WEAPON_PROJECTILE",
+    "executable_offset": 976968,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 51,
+    "name": "WEAPON_MODEL",
+    "executable_offset": 977008,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 52,
+    "name": "ACTOR_HEALTH",
+    "executable_offset": 977048,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 53,
+    "name": "ACTOR_XP",
+    "executable_offset": 977088,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 54,
+    "name": "ACTOR_WALKSPEED",
+    "executable_offset": 977128,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 55,
+    "name": "ACTOR_RUNSPEED",
+    "executable_offset": 977168,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 56,
+    "name": "ACTOR_AI",
+    "executable_offset": 977208,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 57,
+    "name": "PLAYER_HEADMODEL",
+    "executable_offset": 977248,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 58,
+    "name": "PLAYER_HEADMOTION",
+    "executable_offset": 977288,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 59,
+    "name": "PLAYER_RPGSTATS",
+    "executable_offset": 977328,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 60,
+    "name": "ACTOR_MAXHEALTH",
+    "executable_offset": 977368,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 61,
+    "name": "TEMPLATE_PARTICLE_TYPE",
+    "executable_offset": 977408,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 62,
+    "name": "TEMPLATE_PARTICLE_BITMAP",
+    "executable_offset": 977448,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 63,
+    "name": "TEMPLATE_PARTICLE_LIFESPAN",
+    "executable_offset": 977488,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 64,
+    "name": "TEMPLATE_PARTICLE_RATE",
+    "executable_offset": 977528,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 65,
+    "name": "TEMPLATE_PARTICLE_SIZE",
+    "executable_offset": 977568,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 66,
+    "name": "TEMPLATE_PARTICLE_MINDIST",
+    "executable_offset": 977608,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 67,
+    "name": "TEMPLATE_PARTICLE_MAXDIST",
+    "executable_offset": 977648,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 68,
+    "name": "TEMPLATE_PARTICLE_VECA",
+    "executable_offset": 977688,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 69,
+    "name": "TEMPLATE_PARTICLE_VECB",
+    "executable_offset": 977728,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 70,
+    "name": "TEMPLATE_PARTICLE_FLOATA",
+    "executable_offset": 977768,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 71,
+    "name": "TEMPLATE_PARTICLE_FLOATB",
+    "executable_offset": 977808,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 72,
+    "name": "TEMPLATE_PARTICLE_FLOATC",
+    "executable_offset": 977848,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 73,
+    "name": "TEMPLATE_PARTICLE_FLOATD",
+    "executable_offset": 977888,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 74,
+    "name": "TEMPLATE_PARTICLE_INTA",
+    "executable_offset": 977928,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 75,
+    "name": "TEMPLATE_PARTICLE_INTB",
+    "executable_offset": 977968,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 76,
+    "name": "TEMPLATE_PARTICLE_INTC",
+    "executable_offset": 978008,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 77,
+    "name": "TEMPLATE_PARTICLE_INTD",
+    "executable_offset": 978048,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 78,
+    "name": "TEMPLATE_MOVETYPE",
+    "executable_offset": 978088,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 79,
+    "name": "ARMOR_MODEL",
+    "executable_offset": 978128,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 80,
+    "name": "ARMOR_TYPE",
+    "executable_offset": 978168,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 81,
+    "name": "CASTID",
+    "executable_offset": 978208,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 82,
+    "name": "DESCRIPTIONID",
+    "executable_offset": 978248,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 83,
+    "name": "TIMER",
+    "executable_offset": 978288,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 84,
+    "name": "PROJECT_FLAGS",
+    "executable_offset": 978328,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 85,
+    "name": "PROJECT_DAMAGE",
+    "executable_offset": 978368,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 86,
+    "name": "PROJECT_DAMAGETYPE",
+    "executable_offset": 978408,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 87,
+    "name": "PHYSICS_FLAGS",
+    "executable_offset": 978448,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 88,
+    "name": "PHYSICS_VELOCITY",
+    "executable_offset": 978488,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 89,
+    "name": "PHYSICS_ROTVEL",
+    "executable_offset": 978528,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 90,
+    "name": "ITEM_BASECOST",
+    "executable_offset": 978568,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 91,
+    "name": "REGION_FLAGS",
+    "executable_offset": 978608,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 92,
+    "name": "TREASURECLASS",
+    "executable_offset": 978648,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 93,
+    "name": "ACTOR_WEAPON",
+    "executable_offset": 978688,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 94,
+    "name": "ACTOR_FIREPOS",
+    "executable_offset": 978728,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 95,
+    "name": "ITEM_FIREPOS",
+    "executable_offset": 978768,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 96,
+    "name": "HALO_MATERIAL",
+    "executable_offset": 978808,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 97,
+    "name": "HALO_SIZE",
+    "executable_offset": 978848,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 98,
+    "name": "HALO_COLOR",
+    "executable_offset": 978888,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 99,
+    "name": "STAT_STRENGTH",
+    "executable_offset": 978928,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 100,
+    "name": "STAT_DEXTERITY",
+    "executable_offset": 978968,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 101,
+    "name": "STAT_STAMINA",
+    "executable_offset": 979008,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 102,
+    "name": "STAT_PERCEPTION",
+    "executable_offset": 979048,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 103,
+    "name": "STAT_INTELLIGENCE",
+    "executable_offset": 979088,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 104,
+    "name": "STAT_WITS",
+    "executable_offset": 979128,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 105,
+    "name": "STAT_BLOOD",
+    "executable_offset": 979168,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 106,
+    "name": "STAT_HUMANITY",
+    "executable_offset": 979208,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 107,
+    "name": "STAT_FRENZY",
+    "executable_offset": 979248,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 108,
+    "name": "STAT_GENERATION",
+    "executable_offset": 979288,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 109,
+    "name": "STAT_FAITH",
+    "executable_offset": 979328,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 110,
+    "name": "SOUND_TYPE",
+    "executable_offset": 979368,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 111,
+    "name": "ITEM_MODDUR1",
+    "executable_offset": 979408,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 112,
+    "name": "ITEM_MODDUR2",
+    "executable_offset": 979448,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 113,
+    "name": "ITEM_MODDUR3",
+    "executable_offset": 979488,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 114,
+    "name": "ACTOR_FLAGS",
+    "executable_offset": 979528,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 115,
+    "name": "DROPITEM",
+    "executable_offset": 979568,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 116,
+    "name": "CONTAINERHEALTH",
+    "executable_offset": 979608,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 117,
+    "name": "DESTROYTEMPLATE",
+    "executable_offset": 979648,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 118,
+    "name": "SKELETON_ID",
+    "executable_offset": 979688,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  },
+  {
+    "candidate_tag": 119,
+    "name": "PARTICLENAME",
+    "executable_offset": 979728,
+    "status": "ordered native strings + original NOT value comparison; no SDK header available"
+  }
+]

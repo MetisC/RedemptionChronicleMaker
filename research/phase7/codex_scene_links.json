@@ -1,0 +1,317 @@
+[
+  {
+    "location": "University",
+    "scene": "UNIV_14_1.nsd",
+    "line": 617,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "Convent",
+    "scene": "CNVT_3_3.nsd",
+    "line": 5490,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "OldTown",
+    "scene": "OLDT_7_4.nsd",
+    "line": 8288,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "OldTown",
+    "scene": "OLDT_7_1.nsd",
+    "line": 9021,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "NewYorkUptown",
+    "scene": "UTWN_40_1.nsd",
+    "line": 49209,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "University",
+    "scene": "UNIV_7_7.nsd",
+    "line": 58771,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "Inn4Stags",
+    "scene": "INN4_7_7.nsd",
+    "line": 58774,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "GoldenLane",
+    "scene": "GOLD_8_1.nsd",
+    "line": 58777,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "University",
+    "scene": "UNIV_8_1.nsd",
+    "line": 62470,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "AnezkaRoom",
+    "scene": "ANZK_8_4.nsd",
+    "line": 62533,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "University",
+    "scene": "UNIV_9_1.nsd",
+    "line": 63555,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "PetrinHill",
+    "scene": "HILL_13_1.nsd",
+    "line": 63681,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "PrinceBrandl",
+    "scene": "PRIN_16_1.nsd",
+    "line": 65548,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "BarclayLobby",
+    "scene": "LOBY_LOT_2_1.nsd",
+    "line": 76591,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "BarclayLobby",
+    "scene": "LOBY_LOT_3_1.nsd",
+    "line": 76619,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "BarclayLobby",
+    "scene": "LOBY_LOT_5_1.nsd",
+    "line": 76639,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "NewYorkUptown",
+    "scene": "UTWN_LOT_9_1.nsd",
+    "line": 76698,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "BarclayLobby",
+    "scene": "LOBY_LOT_12_1.nsd",
+    "line": 76775,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "Haven",
+    "scene": "HAVN_11_1.nsd",
+    "line": 79383,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "University",
+    "scene": "UNIV_14_3.nsd",
+    "line": 80603,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "Convent",
+    "scene": "CNVT_7_1.nsd",
+    "line": 82093,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "JudithBridge",
+    "scene": "JUDB_7_8.nsd",
+    "line": 82102,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "Haven",
+    "scene": "HAVN_7_4.nsd",
+    "line": 82919,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "JudithBridge",
+    "scene": "JUDB_7_8.nsd",
+    "line": 83084,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "JudithBridge",
+    "scene": "JUDB_7_8.nsd",
+    "line": 83126,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "BarclayLobby",
+    "scene": "LOBY_38_1.nsd",
+    "line": 86102,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "NQuarter",
+    "scene": "NQTR_14_3.nsd",
+    "line": 87380,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "EastLondon",
+    "scene": "EAST_32_1.nsd",
+    "line": 90447,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "DevNullApartment",
+    "scene": "DEVN_36_1.nsd",
+    "line": 95594,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "StThomas",
+    "scene": "STHM_6_1.nsd",
+    "line": 97409,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "OrsiMansion",
+    "scene": "ORSI_20_6.nsd",
+    "line": 104716,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "ConventDay",
+    "scene": "CTDY_6_1.nsd",
+    "line": 105333,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "OldTownDay",
+    "scene": "OTDY_6_1.nsd",
+    "line": 105336,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "WestLondon",
+    "scene": "WEST_28_4.nsd",
+    "line": 107609,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "EastLondon",
+    "scene": "EAST_28_4.nsd",
+    "line": 107612,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "Brothel",
+    "scene": "BROT_31_1.nsd",
+    "line": 111328,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "SetiteTemple4",
+    "scene": "SET4_31_1.nsd",
+    "line": 111331,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "OldTown",
+    "scene": "OLDT_18_1.nsd",
+    "line": 114186,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "OldTown",
+    "scene": "OLDT_7_7.nsd",
+    "line": 115508,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "PetrinHill",
+    "scene": "HILL_8_1.nsd",
+    "line": 115511,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "Haven",
+    "scene": "HAVN_7_7.nsd",
+    "line": 115538,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "OldTown",
+    "scene": "OLDT_11_1.nsd",
+    "line": 116750,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "BarclayLobby",
+    "scene": "LOBY_37_4.nsd",
+    "line": 122424,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "BarclayLobby",
+    "scene": "LOBY_37_4.nsd",
+    "line": 122632,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  },
+  {
+    "location": "NewYorkUptown",
+    "scene": "UTWN_38_1.nsd",
+    "line": 122635,
+    "source": "research/ALL_CODEX.bytecode.txt",
+    "association": "literal arguments to ChangeScene; not an NSS index"
+  }
+]

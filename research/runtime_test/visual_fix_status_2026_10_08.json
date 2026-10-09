@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-08",
+  "source": "User report; agent has not run game",
+  "observed_before_revision": {
+    "listed": true,
+    "label": "east_demo",
+    "map_loaded": true,
+    "map_identity": "Modern map; user unsure which; package references EastLondon/l1_east.nil",
+    "npc": "Not located; not proven absent",
+    "sky": "Missing; geometry halo reported"
+  },
+  "current_revision": {
+    "menu_table": "strings/_R_east_demo.nls",
+    "spawn": "SpawnThingNear on a valid local player; deferred retry; SetOrientation",
+    "sky_model": "LondonNightSky",
+    "sky_animation": "LondonNightSky",
+    "native_result": "Pending"
+  },
+  "deployed_files": [
+    {
+      "path": "codex/R_east_demo_Passive.class",
+      "matches_current_build": true
+    },
+    {
+      "path": "codex/R_east_demo_Scene.class",
+      "matches_current_build": true
+    },
+    {
+      "path": "east_demo.nob",
+      "matches_current_build": true
+    }
+  ],
+  "tests": {
+    "tests": 26,
+    "failures": 0,
+    "errors": 0,
+    "successful": true,
+    "native_engine_test": false
+  }
+}

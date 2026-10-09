@@ -1,0 +1,15 @@
+{
+  "successful": true,
+  "tests": 111,
+  "gui_cli_identical": true,
+  "deployed_files_checked": 10,
+  "originals": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "phase3_source_matches_checkpoint": true,
+  "native_engine_run": false,
+  "phase5_started": false
+}

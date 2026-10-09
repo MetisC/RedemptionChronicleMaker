@@ -1,0 +1,77 @@
+{
+  "source": "chronicles/phase7_demo/project.yaml",
+  "scenes": [
+    "london",
+    "west",
+    "east_return"
+  ],
+  "class_versions": {
+    "R_rcm_stable_s0_Scene": "45.3",
+    "R_rcm_stable_s0_Passive": "45.3",
+    "R_rcm_stable_s1_Scene": "45.3",
+    "R_rcm_stable_s1_Passive": "45.3",
+    "R_rcm_stable_s2_Scene": "45.3",
+    "R_rcm_stable_s2_Passive": "45.3",
+    "RCM7Actor": "45.3"
+  },
+  "environment_profiles": {
+    "london": {
+      "id": "EAST_28_1.nsd",
+      "source": {
+        "id": "EAST_28_1",
+        "archive": "Resource.nob",
+        "path": "scenes/EAST_28_1.nsd",
+        "extension": ".nsd",
+        "size": 10970,
+        "crc32": "45279f58",
+        "sha256": "7dff92dd515bda22e739ee9bc8b3e5398a12fea4c6b6c29d6b62cbf51f80495e"
+      },
+      "source_sha256": "7dff92dd515bda22e739ee9bc8b3e5398a12fea4c6b6c29d6b62cbf51f80495e",
+      "environment_sha256": "52ea8952aec1cefa54627d6bc6d684977d03023ad1a669f1274f5e1762f8eac5",
+      "sky_model": "",
+      "sky_animation": "",
+      "unknown_bytes_preserved": true,
+      "sky_override": false
+    },
+    "west": {
+      "id": "WEST_28_1.nsd",
+      "source": {
+        "id": "WEST_28_1",
+        "archive": "Resource.nob",
+        "path": "scenes/WEST_28_1.nsd",
+        "extension": ".nsd",
+        "size": 4222,
+        "crc32": "1ce9576f",
+        "sha256": "39c8cd9d28059995bfbcc418ae648d3ee5d92528429f26a0c02e1831b3efa886"
+      },
+      "source_sha256": "39c8cd9d28059995bfbcc418ae648d3ee5d92528429f26a0c02e1831b3efa886",
+      "environment_sha256": "34180f3aaf4ce9d247e9f06c4f92ab840cea09eae6195a4ca146d34887e739ed",
+      "sky_model": "",
+      "sky_animation": "",
+      "unknown_bytes_preserved": true,
+      "sky_override": false
+    },
+    "east_return": {
+      "id": "EAST_28_1.nsd",
+      "source": {
+        "id": "EAST_28_1",
+        "archive": "Resource.nob",
+        "path": "scenes/EAST_28_1.nsd",
+        "extension": ".nsd",
+        "size": 10970,
+        "crc32": "45279f58",
+        "sha256": "7dff92dd515bda22e739ee9bc8b3e5398a12fea4c6b6c29d6b62cbf51f80495e"
+      },
+      "source_sha256": "7dff92dd515bda22e739ee9bc8b3e5398a12fea4c6b6c29d6b62cbf51f80495e",
+      "environment_sha256": "52ea8952aec1cefa54627d6bc6d684977d03023ad1a669f1274f5e1762f8eac5",
+      "sky_model": "",
+      "sky_animation": "",
+      "unknown_bytes_preserved": true,
+      "sky_override": false
+    }
+  },
+  "geometry_in_package": false,
+  "package": "build/rcm_stable/rcm_stable.rcmpack",
+  "requires_rcm": "0.7.0",
+  "native_engine_test": false
+}

@@ -1,0 +1,24 @@
+{
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\20261008_061549_496",
+  "game_process_absent": true,
+  "revision": 4,
+  "native_test": "Revision 3 accepted by user: NPC, dialogue, choices and buffer clear; revision 4 Sky background pending",
+  "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\east_demo",
+  "retired_loose_files": [],
+  "original_files_modified": false,
+  "files": [
+    {
+      "sha256": "275fdccb97928cdc86527b20a48b22023328c5d5f15ce09159c921b0509e2914",
+      "path": "east_demo.nob"
+    },
+    {
+      "sha256": "941dbb82b427b127507c2499e4799232a21adf99856126fc220e69b29d5f6d8f",
+      "path": "codex\\R_east_demo_Scene.class"
+    },
+    {
+      "sha256": "276b5b15ea0fe9ae8ddf38f313f27ef52f383104710c92cb10537136a3fd6d57",
+      "path": "codex\\R_east_demo_Passive.class"
+    }
+  ],
+  "date": "2026-10-08T06:15:49.7231318+02:00"
+}

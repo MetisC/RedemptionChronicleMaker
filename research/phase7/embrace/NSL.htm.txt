@@ -1,0 +1,32 @@
+NSL
+NOD Engine SDK 1.0
+NSC File Specifications
+Introduction
+You will need these files when using Embrace, the level editor for Vampire
+(they are not used by the game at all). To create scenes in your levels, you
+will first have to create a scene list file that will tell Embrace what to call
+your scenes.
+Format
+Field
+Description
+[SCENE_NAME]
+name of the scene and what you will see when you select scenes from the
+Scene Editor within Embrace
+SHORTDESC
+a short description of the scene (entered as a key in an NLS file)
+LONGDESC
+a long description of the scene (entered as a key in an NLS file)
+Sampe File
+[CNVT_3_1]
+SHORTDESC=CNVT_3_1S
+LONGDESC=CNVT_3_1L
+[CNVT_3_3]
+SHORTDESC=CNVT_3_3S
+LONGDESC=CNVT_3_3L
+[INN4_7_1]
+SHORTDESC=IN4D_7_1S
+LONGDESC=IN4D_7_1L
+The first listing is the entry for scene 3.1 in the Convent, the second for scene 3.3 in the Convent, and the last for scene 7.1 in the Inn of Four Stags. Your own entry could look like this:
+[myscene_1_1]
+SHORTDESC=myscene_short_desc_1_1
+LONGDESC=myscene_long_desc_1_1

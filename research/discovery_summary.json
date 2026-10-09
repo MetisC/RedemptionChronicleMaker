@@ -1,0 +1,98 @@
+{
+  "archive_counts": {
+    "Codex.nob": {
+      ".bat": 1,
+      ".class": 465,
+      ".dsp": 1,
+      ".scc": 1,
+      ".exe": 3,
+      ".dll": 1
+    },
+    "Levels.nob": {
+      ".nil": 112
+    },
+    "LMaterials.nob": {
+      ".nam": 1947,
+      ".tga": 1966
+    },
+    "Local_Eng.nob": {
+      ".wav": 1462,
+      ".nui": 63,
+      ".nfd": 6,
+      ".tga": 1705,
+      ".nls": 13,
+      ".nvo": 3,
+      ".ntx": 7
+    },
+    "Resource.nob": {
+      ".nsd": 291,
+      ".nco": 310,
+      ".ncp": 174,
+      ".nqd": 45,
+      ".nbs": 15,
+      ".nad": 1424,
+      ".tga": 1173,
+      ".nam": 274,
+      ".nod": 1476,
+      ".nms": 214,
+      ".npc": 18,
+      ".ned": 1,
+      ".ncd": 1,
+      ".ndd": 1,
+      ".ndg": 1,
+      ".npd": 1,
+      ".ntt": 1,
+      ".txt": 1,
+      ".nai": 136,
+      ".nex": 36,
+      ".nag": 222,
+      ".not": 4
+    },
+    "Sounds.nob": {
+      ".wav": 1323,
+      ".sfk": 1
+    }
+  },
+  "levels": 130,
+  "nil_files": 112,
+  "templates": 2619,
+  "template_kind_counts": {
+    "actors": 663,
+    "containers": 25,
+    "props": 914,
+    "projectiles": 151,
+    "items": 360,
+    "armour": 136,
+    "weapons": 275,
+    "players": 33,
+    "unknown": 56,
+    "regions": 6
+  },
+  "nsd_supported_roundtrips": [
+    "scenes/DEVN_LOT_8_1.nsd",
+    "scenes/EGNT_7_1.nsd",
+    "scenes/FAC1_37_4.nsd",
+    "scenes/FAC1_LOT_5_1.nsd",
+    "scenes/FAC2_37_4.nsd",
+    "scenes/FAC2_LOT_5_1.nsd",
+    "scenes/FAC3_37_4.nsd",
+    "scenes/FAC3_LOT_5_1.nsd",
+    "scenes/FRO1_20_1.nsd",
+    "scenes/GUNH_LOT_1_1.nsd",
+    "scenes/HILL_7_1.nsd",
+    "scenes/HILLD_4_1.nsd",
+    "scenes/INN4_CTD_1_1.nsd",
+    "scenes/JOS1_15_1.nsd",
+    "scenes/JOS1_CTD_3_1.nsd",
+    "scenes/JUDB_7_1.nsd",
+    "scenes/JUDBD_4_1.nsd",
+    "scenes/NEWM_LOT_1_1.nsd",
+    "scenes/OLDT_25_1.nsd",
+    "scenes/RABI_CTD_1_1.nsd",
+    "scenes/ROOF_20_1.nsd",
+    "scenes/TOL2_30_1.nsd",
+    "scenes/UNIV_4_1.nsd",
+    "scenes/VEST_20_1.nsd"
+  ],
+  "sdk_present": false
+}

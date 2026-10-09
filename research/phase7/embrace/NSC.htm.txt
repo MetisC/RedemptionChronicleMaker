@@ -1,0 +1,102 @@
+NOD Engine SDK 1
+NOD Engine SDK 1.0
+NSC File Specifications
+Introduction
+The chronicle file is what holds everything together. It lists names for
+locations or levels, exits and entrances between levels, and a few other details
+about the chronicle. The very first location listed in the chronicle file is the
+starting location for the chronicle (with the exception of clients joining a
+multiplayer game – see reviveloc below).
+Format
+location:
+location
+<name>
+<level>
+<initial scene>
+<nui file>
+<nui location>
+<flags>
+name
+the name given here will be the one used to reference this location
+from within Codex (and from the console in-game for a couple commands)
+level
+filename of the level
+initial scene
+filename of the scene this location starts in
+nui file
+filename of the main NUI file where this location exists
+nui location
+the location with the NUI file that describes the coordinates for this
+location on the map
+these describe different behavior and display options for each location
+0x0001
+Objects are not saved in this location
+0x0002
+Location is normally loaded briefly, so don't free origin world
+0x0004
+Location should not be freed
+0x0008
+Location should be shown on the map
+0x0010
+Location is a haven and should be indicated as such on the map
+0x0020
+Teleports cannot be created in this location
+0x0040
+Clearing the buffer is required
+Old Town in Prague looks like this in prague.nsc:
+location OldTown P1_OLDT.nil OLDT_7_1.nsd mapPragueOT.nui mapOldTownCenter 0x0060
+exit:
+exit
+<location1>, <exit>
+<location2>, <entrance>
+location1
+the name of one of the above specificed "locations"
+exit
+the number of the entrance/exit in
+the level
+location2
+the name of one of the above
+specified "locations"
+exit
+the number of hte entrance/exit in
+the level
+This combination completely describes the transition between two locations.
+There will be an exit from location1 that takes you the specified entrance in
+location2. There will also be an exit from location2 that takes you to location1
+created by the game when it loads the chronicle (where <entrance> is the
+exit from location2 and <exit> is the entrance into location1).
+This is how the transition between Old Town and East Gate in Prague are
+described in prague.nsc:
+exit OldTown,3 EastGateNight,2
+This is creating an exit 3 from OldTown that will take you to entrance 2 in
+EastGateNight. Because the game creates the "backward link", exit 2
+from EastGateNight will take you to entrance 3 in OldTown.
+script:
+This field tells the game which class file to use as its chronicle script.
+metafile:
+The metafile tells the chronicle more specific information about what extra
+files the game might need to load or reference when running this chronicle. This
+field tells the game the name of that file.
+portal:
+This is the field that tells the game which location to take the player to
+when they use the Walk the Abyss discipline. It consists of a location and an
+entrance number.
+flags:
+These flags give the game some extra information about this particular
+chronicle.
+Flag
+Description
+0x1
+chronicle is modern day (UI changes, etc.)
+0x2
+chronicle is meant for multiplayer
+0x4
+chronicle is meant to be played with a ST
+0x8
+chronicle is only meant to be chained from another and should not
+appear in selection UIs
+reviveloc:
+This field is only used in multiplayer chronicles. It tells the game where to
+revive the character when they use the "Revive" menu option in the
+Escape Menu. This field also tells the game where to start clients in a
+multiplayer game. You can change this field from within Codex

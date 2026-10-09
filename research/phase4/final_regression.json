@@ -1,0 +1,64 @@
+[
+  {
+    "project": "chronicles/east_demo.yaml",
+    "sha256": "a3f3c001c4065f5c1b114eb02c7469fe6dce9a0ceac27f47b5036b282b9bb8a5",
+    "source_unchanged": true,
+    "real_gl": true,
+    "triangles": 45927,
+    "materials": 109,
+    "class_versions": {
+      "R_east_demo_Scene": "45.3",
+      "R_east_demo_Passive": "45.3"
+    }
+  },
+  {
+    "project": "chronicles/editor_acceptance/project.yaml",
+    "sha256": "90b41cb0b203510fafadde9f08bef5afe484aaefcb2cc8aaafbc636b88ca86ab",
+    "source_unchanged": true,
+    "real_gl": true,
+    "triangles": 45927,
+    "materials": 109,
+    "class_versions": {
+      "R_editor_demo_Scene": "45.3",
+      "R_editor_demo_Passive": "45.3"
+    }
+  },
+  {
+    "project": "chronicles/editor_playtest/project.yaml",
+    "sha256": "60470c159b3a92710d630291a850e16a56edcff537502fdc819e7f3e5b766343",
+    "source_unchanged": true,
+    "real_gl": true,
+    "triangles": 45927,
+    "materials": 109,
+    "class_versions": {
+      "R_editor_playtest_Scene": "45.3",
+      "R_editor_playtest_Passive": "45.3"
+    }
+  },
+  {
+    "project": "chronicles/phase3_demo/project.yaml",
+    "sha256": "90b499f3ca47fa1289da5a52168b9fe47279b014b3def94efcca554cbf9b3f0c",
+    "source_unchanged": true,
+    "real_gl": true,
+    "triangles": 45927,
+    "materials": 109,
+    "class_versions": {
+      "R_phase3_demo_Scene": "45.3",
+      "R_phase3_demo_Passive": "45.3"
+    }
+  },
+  {
+    "project": "chronicles/phase4_demo/project.yaml",
+    "sha256": "99739741f22096f912c5e8f01ed2bf1e2c555b4ebe0be3a1faf17d54d2039d3d",
+    "source_unchanged": true,
+    "real_gl": true,
+    "triangles": 45927,
+    "materials": 109,
+    "class_versions": {
+      "R_phase4_demo_s0_Scene": "45.3",
+      "R_phase4_demo_s0_Passive": "45.3",
+      "R_phase4_demo_s1_Scene": "45.3",
+      "R_phase4_demo_s1_Passive": "45.3"
+    }
+  }
+]

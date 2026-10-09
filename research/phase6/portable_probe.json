@@ -1,0 +1,15 @@
+{
+  "valid_project": true,
+  "build_status": "compiled-unverified-in-game",
+  "class_versions": {
+    "R_rcm_system_s0_Scene": "45.3",
+    "R_rcm_system_s0_Passive": "45.3",
+    "R_rcm_system_s1_Scene": "45.3",
+    "R_rcm_system_s1_Passive": "45.3",
+    "RCM6Actor": "45.3"
+  },
+  "real_gl": true,
+  "safe_mode": false,
+  "native_engine_test": false,
+  "elapsed_seconds": 7.98399999999674
+}

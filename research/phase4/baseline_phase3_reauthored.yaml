@@ -1,0 +1,143 @@
+schema: 1
+chronicle:
+  id: phase3_demo
+  name: 'RCM: Londres, autoría espacial'
+  description: Escena creada con Resource Browser, colocación sobre el suelo y gizmos. El pacto con Victoria habilita
+    un encuentro al entrar en el trigger.
+level:
+  source: EastLondon
+  name: 'Londres: escenas sobre el mapa'
+state:
+  flags:
+    alliance: 1
+    entered: 0
+actors:
+- id: victoria
+  name: Victoria
+  template: businessWoman
+  transform:
+    placement: absolute
+    orientation:
+    - 0
+    - 0
+    - 180.0
+    position:
+    - 1016.0
+    - -54.0
+    - 0
+  comment: Posición de referencia original. La colisión debe comprobarse dentro del juego.
+- id: actor1
+  name: businessWoman
+  template: businessWoman
+  transform:
+    placement: absolute
+    position:
+    - 457.088636578089
+    - -97.62527097565322
+    - 0.0
+    orientation:
+    - 0.0
+    - 0.0
+    - 15.0
+conversations:
+- id: intro
+  speaker: victoria
+  entry: opening
+  nodes:
+  - id: opening
+    lines:
+    - speaker: victoria
+      text: Londres guarda secretos. ¿Quieres saber quién soy?
+    choices:
+    - text: ¿Quién eres?
+      goto: identity
+    - text: Me voy.
+      result: 2
+  - id: identity
+    lines:
+    - speaker: victoria
+      text: Me llaman Victoria. Necesito un aliado para esta noche.
+    choices:
+    - text: Cuenta conmigo.
+      result: 3
+      set_flag: alliance
+    - text: No quiero involucrarme.
+      result: 4
+- id: ally
+  speaker: victoria
+  entry: opening
+  nodes:
+  - id: opening
+    lines:
+    - speaker: victoria
+      text: Recuerdo nuestro pacto. Gracias por volver.
+    choices:
+    - text: Seguimos juntos.
+      result: 1
+    - text: El pacto termina aquí.
+      result: 2
+      clear_flag: alliance
+events:
+- id: event1
+  when: scene_start
+  actions:
+  - spawn: victoria
+  - spawn: object1
+- id: greet_new
+  when: actor_clicked
+  actions:
+  - start_conversation: intro
+  actor: victoria
+  conditions:
+  - flag: alliance
+    is_set: false
+- id: greet_ally
+  when: actor_clicked
+  actions:
+  - start_conversation: ally
+  actor: victoria
+  conditions:
+  - flag: alliance
+    is_set: true
+- id: event2
+  when: trigger_enter
+  trigger: trigger1
+  conditions:
+  - flag: alliance
+    is_set: true
+  actions:
+  - set_flag: entered
+  - spawn: actor1
+objects:
+- id: object1
+  name: barrel1
+  template: barrel1
+  transform:
+    placement: absolute
+    position:
+    - 394.40279710512607
+    - -15.889271809605702
+    - 0.0
+    orientation:
+    - 0.0
+    - 0.0
+    - 15.0
+triggers:
+- id: trigger1
+  name: Entrada del pacto
+  shape: box
+  transform:
+    position:
+    - 348.1752945610074
+    - -98.56404623175376
+    - 60.00000000000003
+    orientation:
+    - 0
+    - 0
+    - 0
+    placement: absolute
+  size:
+  - 278.3203079624968
+  - 160.0
+  - 120.0
+  once: true

@@ -1,0 +1,96 @@
+NOD Engine SDK 1
+NOD Engine SDK 1.0
+NIL File Specifications
+Introduction
+The NIL file format contains the level geometry data used in the run-time
+game. It is similar to the BSP file used by Quake3 in purpose, but has probably
+no similarity in structure.
+Each location in the game consists of a NIL file to describe the geometry and
+lighting, and one or more NSD files, used to describe the contents of the world.
+Since the NIL file doesn’t actually contain object placement information,
+most NIL files have a corresponding NSD file using the same file name. This is
+called the "static" scene and is normally loaded automatically
+whenever the NIL is loaded. This is useful for placing objects that are key to
+the location, such as decorations, furniture, or pieces of geometry that for
+whatever reason are modeled as objects rather than world surfaces.
+Format
+Field
+Size
+Comment
+MagicNumber
+Unsigned int (UINT, 4 bytes)
+Ignored
+Version
+UINT
+Version number, current version is 27
+GlobalLight
+cRenderLight
+The definition of the global lightsource (sunlight, moonlight). See
+separate description for cRenderLight contents
+AmbientColor
+Vector3 (3 floats, 12 bytes)
+An RGB color (red, green, blue) representing the ambient light in the
+level
+NumMaterials
+UINT
+The number of materials used in the level
+MaterialName[]
+Char[32] * NumMaterials
+For each material, the file contains a 32-character material name
+NumSectors
+UINT
+Number of sectors in the level
+Sector Definitions
+The sector definitions are used to defined each small section of the level.
+Most levels are broken into about 100+ sectors, and each sector contains its own
+data about geometry and rendering.
+Field
+Size
+Comment
+SectorFlags
+UINT
+Game-specific flags controlling the behavior of the sector in the game
+engine (see other table)
+AmbientColor
+Vector3
+Per-sector ambient color information (RGB color, three floats)
+NumSectorPlanes
+BYTE
+Number of plane definitions contained in the sector (max 256)
+ASectorPlanes[]
+cPlane3D * NumSectorPlanes
+Structure containing information on the 3D planes that define the
+boundaries of the sector itself. Each plane definition contains a vector3
+for plane normal and a float for plane distance from origin (4 floats, 15
+bytes)
+NumSurfacePlanes
+WORD
+Number of surface planes used in the sector (max 216)
+ASurfacePlanes[]
+cPlane3D * NumSurfacePlanes
+Contains information on each of the planes used by the various surfaces
+in the sector. Planes are stored separately so redundant information isn’t
+stored for each surface, and also for fast BSP collision purposes.
+NumBSPNodes
+WORD
+Number of BSP tree nodes. The BSP tree is used only for faster
+collision detection, it is not used for rendering.
+aBSPNodes[]
+cBSPNode * NumBSPNodes
+Each BSP node consists of 4 WORD data elements or 8 bytes each. See
+separate table for explanation.
+NumVertices
+WORD
+Number of vertices that define the sector geometry
+aVertices[]
+Vector3
+This vertex array defines only the 3D positions of the vertices, it
+does not contain information about lighting, textures, etc. This array is
+just 3 floats (12 bytes) * NumVertices.
+NumSectorVerts
+WORD
+Number of SECTOR vertices that define the geometry. Sector vertices
+define the more specific information about each surface’s corners,
+separate from the actual 3D position information in the previous array.
+aSectorVertices[]
+cSectorVertex

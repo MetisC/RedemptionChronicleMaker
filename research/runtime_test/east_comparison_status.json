@@ -1,0 +1,16 @@
+{
+  "user_reported_revision4": {
+    "sky_visible": true,
+    "appearance": "Stars perceived as enormous and appearing suddenly; unsuitable dock background",
+    "exact_original_comparison": false
+  },
+  "next_step": "Restore demo original environment; revision 5 removes optional sky",
+  "diagnostic_package": "4a0ac9f84ed12ac631b691d2a5d04dc065b2d3739fc56176d5db9ea5ed8d8a77",
+  "native_comparison_pending": false,
+  "demo_changed_this_turn": false,
+  "user_reported_comparison": {
+    "base": "grey",
+    "original_scene": "grey",
+    "appearance": "Both visually satisfactory; user retracts assumption of missing skybox"
+  }
+}

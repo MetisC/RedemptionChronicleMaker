@@ -1,0 +1,2354 @@
+[
+  {
+    "path": "levels/L1_BROT.nil",
+    "sectors": 119,
+    "triangles": 22721,
+    "materials": 46,
+    "geometry_end": 1661526,
+    "bytes": 2214916,
+    "bounds": [
+      [
+        -1744.0,
+        -1907.000244140625,
+        -264.0
+      ],
+      [
+        1792.0,
+        1472.0,
+        968.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/L1_CARG.nil",
+    "sectors": 5,
+    "triangles": 7660,
+    "materials": 32,
+    "geometry_end": 434172,
+    "bytes": 609314,
+    "bounds": [
+      [
+        -2616.0,
+        -1272.0,
+        -72.0
+      ],
+      [
+        1848.0,
+        1328.0,
+        1080.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/L1_CURI.nil",
+    "sectors": 2,
+    "triangles": 4888,
+    "materials": 27,
+    "geometry_end": 289103,
+    "bytes": 422307,
+    "bounds": [
+      [
+        -1472.0,
+        -456.0,
+        64.0
+      ],
+      [
+        -72.0,
+        896.0,
+        704.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/l1_east.nil",
+    "sectors": 131,
+    "triangles": 45927,
+    "materials": 109,
+    "geometry_end": 3096883,
+    "bytes": 5586623,
+    "bounds": [
+      [
+        -5120.0,
+        -4608.0,
+        -80.0
+      ],
+      [
+        4288.0,
+        5824.0,
+        1952.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/l1_havn.nil",
+    "sectors": 5,
+    "triangles": 3081,
+    "materials": 27,
+    "geometry_end": 199924,
+    "bytes": 256740,
+    "bounds": [
+      [
+        -704.0,
+        -448.0000915527344,
+        -208.0
+      ],
+      [
+        640.0,
+        768.0,
+        512.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/L1_SET1.nil",
+    "sectors": 226,
+    "triangles": 15873,
+    "materials": 26,
+    "geometry_end": 1323586,
+    "bytes": 2051002,
+    "bounds": [
+      [
+        -3968.0,
+        -2240.0,
+        -464.0
+      ],
+      [
+        3040.0,
+        1792.0,
+        1077.1431884765625
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/L1_SET2.nil",
+    "sectors": 191,
+    "triangles": 32059,
+    "materials": 32,
+    "geometry_end": 2136770,
+    "bytes": 3076546,
+    "bounds": [
+      [
+        -2496.0,
+        -1864.0,
+        -1256.0
+      ],
+      [
+        5064.0,
+        4744.0,
+        432.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/L1_SET3.nil",
+    "sectors": 175,
+    "triangles": 17074,
+    "materials": 20,
+    "geometry_end": 1302322,
+    "bytes": 2110470,
+    "bounds": [
+      [
+        -3695.470703125,
+        -4262.38232421875,
+        -376.0
+      ],
+      [
+        2343.0,
+        4804.0,
+        977.1431274414062
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/L1_SET4.nil",
+    "sectors": 118,
+    "triangles": 7228,
+    "materials": 18,
+    "geometry_end": 651522,
+    "bytes": 1061542,
+    "bounds": [
+      [
+        -200.0,
+        -1444.0,
+        -832.0
+      ],
+      [
+        4464.0,
+        2304.0,
+        460.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/L1_SOC1.nil",
+    "sectors": 202,
+    "triangles": 70923,
+    "materials": 56,
+    "geometry_end": 4763351,
+    "bytes": 5841083,
+    "bounds": [
+      [
+        -1920.0,
+        -3506.0,
+        -691.0
+      ],
+      [
+        1536.0,
+        1016.0,
+        426.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/L1_SOC2.nil",
+    "sectors": 77,
+    "triangles": 30137,
+    "materials": 71,
+    "geometry_end": 1909964,
+    "bytes": 2735880,
+    "bounds": [
+      [
+        -3314.0,
+        -1536.0,
+        304.0
+      ],
+      [
+        2312.0,
+        2880.0,
+        944.5944213867188
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/L1_SOC3.nil",
+    "sectors": 83,
+    "triangles": 37581,
+    "materials": 63,
+    "geometry_end": 2359038,
+    "bytes": 3157494,
+    "bounds": [
+      [
+        -1664.0,
+        -2096.0,
+        -8.129867553710938
+      ],
+      [
+        2840.0,
+        2496.0,
+        604.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/L1_TEN1.nil",
+    "sectors": 34,
+    "triangles": 10855,
+    "materials": 27,
+    "geometry_end": 809509,
+    "bytes": 1035921,
+    "bounds": [
+      [
+        -36.510498046875,
+        -1251.4586181640625,
+        -520.0
+      ],
+      [
+        1408.0,
+        240.0,
+        306.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/l1_tol1.nil",
+    "sectors": 35,
+    "triangles": 20432,
+    "materials": 17,
+    "geometry_end": 1333794,
+    "bytes": 2255242,
+    "bounds": [
+      [
+        -2368.0,
+        -2368.0,
+        0.0
+      ],
+      [
+        2016.0,
+        2328.0,
+        1040.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/l1_tol2.nil",
+    "sectors": 55,
+    "triangles": 27415,
+    "materials": 20,
+    "geometry_end": 1827534,
+    "bytes": 2688062,
+    "bounds": [
+      [
+        -2304.0,
+        -2304.0,
+        -528.0
+      ],
+      [
+        2304.0,
+        2304.0,
+        1056.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/l1_tol3.nil",
+    "sectors": 64,
+    "triangles": 21355,
+    "materials": 17,
+    "geometry_end": 1523558,
+    "bytes": 2353472,
+    "bounds": [
+      [
+        -2304.0,
+        -2304.0,
+        -528.0
+      ],
+      [
+        2304.0,
+        2304.0,
+        1472.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/l1_tol4.nil",
+    "sectors": 10,
+    "triangles": 9504,
+    "materials": 22,
+    "geometry_end": 606865,
+    "bytes": 869857,
+    "bounds": [
+      [
+        -1472.0,
+        -1600.0,
+        -776.0
+      ],
+      [
+        1504.0,
+        1440.0,
+        1344.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/l1_west.nil",
+    "sectors": 114,
+    "triangles": 38559,
+    "materials": 103,
+    "geometry_end": 2766550,
+    "bytes": 4329822,
+    "bounds": [
+      [
+        -2688.0,
+        -4320.0,
+        -384.0
+      ],
+      [
+        2624.0,
+        1920.0,
+        1760.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_DEVN.nil",
+    "sectors": 10,
+    "triangles": 5225,
+    "materials": 27,
+    "geometry_end": 321988,
+    "bytes": 468476,
+    "bounds": [
+      [
+        -472.0,
+        -808.0,
+        -336.0
+      ],
+      [
+        1352.0,
+        1152.0,
+        580.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/n1_dock.nil",
+    "sectors": 51,
+    "triangles": 31897,
+    "materials": 111,
+    "geometry_end": 2025966,
+    "bytes": 3978082,
+    "bounds": [
+      [
+        -5248.0,
+        -5936.0,
+        -128.0
+      ],
+      [
+        6080.0,
+        4736.0,
+        1408.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/n1_fac1.nil",
+    "sectors": 24,
+    "triangles": 13585,
+    "materials": 35,
+    "geometry_end": 867397,
+    "bytes": 1666923,
+    "bounds": [
+      [
+        -2496.0,
+        -2168.0,
+        256.0
+      ],
+      [
+        1344.0,
+        3440.0,
+        1408.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/n1_fac2.nil",
+    "sectors": 54,
+    "triangles": 12352,
+    "materials": 33,
+    "geometry_end": 874241,
+    "bytes": 1612511,
+    "bounds": [
+      [
+        -3400.0,
+        -2176.0,
+        512.0
+      ],
+      [
+        3200.0,
+        2288.0,
+        1408.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/n1_fac3.nil",
+    "sectors": 47,
+    "triangles": 17635,
+    "materials": 25,
+    "geometry_end": 1124291,
+    "bytes": 2067219,
+    "bounds": [
+      [
+        -1136.0,
+        -2640.0,
+        1024.0
+      ],
+      [
+        3568.0,
+        2552.0,
+        2048.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/n1_fac4.nil",
+    "sectors": 11,
+    "triangles": 8489,
+    "materials": 35,
+    "geometry_end": 532953,
+    "bytes": 1187577,
+    "bounds": [
+      [
+        -1088.0,
+        -1088.0,
+        0.0
+      ],
+      [
+        1088.0,
+        2824.0,
+        2568.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_FLS1.nil",
+    "sectors": 44,
+    "triangles": 33007,
+    "materials": 27,
+    "geometry_end": 2118682,
+    "bytes": 3287568,
+    "bounds": [
+      [
+        -2048.0,
+        -4904.0,
+        -272.0492858886719
+      ],
+      [
+        2176.0,
+        2880.0,
+        1160.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_FLS2.nil",
+    "sectors": 37,
+    "triangles": 45651,
+    "materials": 26,
+    "geometry_end": 3345725,
+    "bytes": 4582099,
+    "bounds": [
+      [
+        -3392.0,
+        -3352.0,
+        -1536.0
+      ],
+      [
+        1920.0,
+        3496.0,
+        680.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_FLS3.nil",
+    "sectors": 20,
+    "triangles": 23159,
+    "materials": 13,
+    "geometry_end": 1661719,
+    "bytes": 2705295,
+    "bounds": [
+      [
+        -1888.032958984375,
+        -4496.0,
+        -600.0
+      ],
+      [
+        3424.0,
+        3328.0,
+        1344.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_GUNH.nil",
+    "sectors": 5,
+    "triangles": 3080,
+    "materials": 27,
+    "geometry_end": 179374,
+    "bytes": 272464,
+    "bounds": [
+      [
+        -336.0,
+        -128.0,
+        0.0
+      ],
+      [
+        768.0,
+        1096.0,
+        456.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_LOBY.nil",
+    "sectors": 17,
+    "triangles": 12200,
+    "materials": 33,
+    "geometry_end": 747129,
+    "bytes": 1240265,
+    "bounds": [
+      [
+        -512.0003051757812,
+        -640.0,
+        -8.0
+      ],
+      [
+        3904.0,
+        2624.0,
+        712.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_NEWM.nil",
+    "sectors": 2,
+    "triangles": 3951,
+    "materials": 19,
+    "geometry_end": 249904,
+    "bytes": 335446,
+    "bounds": [
+      [
+        -599.9996337890625,
+        -320.0003967285156,
+        -64.0
+      ],
+      [
+        600.0,
+        448.0,
+        448.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_ORSI.nil",
+    "sectors": 20,
+    "triangles": 9413,
+    "materials": 21,
+    "geometry_end": 580046,
+    "bytes": 1640200,
+    "bounds": [
+      [
+        -3904.0,
+        -512.0,
+        -2760.0
+      ],
+      [
+        4224.0,
+        3776.0,
+        1792.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_SEW1.nil",
+    "sectors": 45,
+    "triangles": 21992,
+    "materials": 51,
+    "geometry_end": 1539434,
+    "bytes": 2501650,
+    "bounds": [
+      [
+        -4168.0,
+        -4024.0,
+        -960.0009765625
+      ],
+      [
+        4032.0,
+        4544.0,
+        768.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_SEW2.nil",
+    "sectors": 66,
+    "triangles": 31420,
+    "materials": 60,
+    "geometry_end": 2174251,
+    "bytes": 4310085,
+    "bounds": [
+      [
+        -6016.0,
+        -4992.0,
+        -1584.0010986328125
+      ],
+      [
+        5822.63623046875,
+        4088.0,
+        384.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_SEW3.nil",
+    "sectors": 97,
+    "triangles": 34797,
+    "materials": 28,
+    "geometry_end": 2579463,
+    "bytes": 5328119,
+    "bounds": [
+      [
+        -5688.0,
+        -4544.0,
+        -2944.0
+      ],
+      [
+        5824.0,
+        4608.0,
+        1088.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_SEW4.nil",
+    "sectors": 25,
+    "triangles": 9434,
+    "materials": 49,
+    "geometry_end": 699074,
+    "bytes": 1197162,
+    "bounds": [
+      [
+        -3776.00048828125,
+        -2240.0009765625,
+        -1232.0
+      ],
+      [
+        3320.0,
+        4640.0,
+        320.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_SLUM.nil",
+    "sectors": 2,
+    "triangles": 841,
+    "materials": 10,
+    "geometry_end": 49600,
+    "bytes": 117522,
+    "bounds": [
+      [
+        72.0,
+        512.0,
+        256.0
+      ],
+      [
+        1216.0,
+        1536.0,
+        768.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/n1_stor.nil",
+    "sectors": 9,
+    "triangles": 1729,
+    "materials": 9,
+    "geometry_end": 109357,
+    "bytes": 202833,
+    "bounds": [
+      [
+        -1280.0,
+        -512.0,
+        -16.0
+      ],
+      [
+        288.0,
+        640.0,
+        528.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_SUIT.nil",
+    "sectors": 1,
+    "triangles": 2271,
+    "materials": 11,
+    "geometry_end": 130627,
+    "bytes": 195529,
+    "bounds": [
+      [
+        -440.0,
+        -384.0,
+        0.0
+      ],
+      [
+        512.0,
+        400.0,
+        704.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/n1_utwn.nil",
+    "sectors": 165,
+    "triangles": 75581,
+    "materials": 138,
+    "geometry_end": 5032564,
+    "bytes": 6793222,
+    "bounds": [
+      [
+        -4800.0,
+        -5440.0,
+        -512.0
+      ],
+      [
+        5424.0,
+        5120.0,
+        4768.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_WAR1.nil",
+    "sectors": 212,
+    "triangles": 31561,
+    "materials": 28,
+    "geometry_end": 2123240,
+    "bytes": 2797016,
+    "bounds": [
+      [
+        -1076.0,
+        -1192.0,
+        123.5
+      ],
+      [
+        1720.0,
+        2552.0,
+        848.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_WAR2.nil",
+    "sectors": 437,
+    "triangles": 25579,
+    "materials": 43,
+    "geometry_end": 2168422,
+    "bytes": 3025488,
+    "bounds": [
+      [
+        -3132.0,
+        -2375.0,
+        -1108.0
+      ],
+      [
+        2784.0,
+        1752.5,
+        560.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/N1_WAR3.nil",
+    "sectors": 35,
+    "triangles": 9034,
+    "materials": 22,
+    "geometry_end": 598048,
+    "bytes": 822530,
+    "bounds": [
+      [
+        -1154.5,
+        -810.0,
+        -408.0
+      ],
+      [
+        1698.0,
+        1724.0,
+        300.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_ANZK.nil",
+    "sectors": 5,
+    "triangles": 3535,
+    "materials": 16,
+    "geometry_end": 206771,
+    "bytes": 315523,
+    "bounds": [
+      [
+        -1536.0,
+        -256.0,
+        -64.0
+      ],
+      [
+        1024.0,
+        2112.0,
+        576.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/p1_arc1.nil",
+    "sectors": 70,
+    "triangles": 47820,
+    "materials": 32,
+    "geometry_end": 3322160,
+    "bytes": 4492390,
+    "bounds": [
+      [
+        -2568.0,
+        -3776.0,
+        -352.0
+      ],
+      [
+        2560.166015625,
+        3392.0,
+        1280.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/p1_arc2.nil",
+    "sectors": 85,
+    "triangles": 44048,
+    "materials": 21,
+    "geometry_end": 3264408,
+    "bytes": 4209364,
+    "bounds": [
+      [
+        -2336.0,
+        -1664.00048828125,
+        -424.0
+      ],
+      [
+        5952.0,
+        2112.0,
+        1032.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/p1_arc3.nil",
+    "sectors": 17,
+    "triangles": 16689,
+    "materials": 12,
+    "geometry_end": 1190737,
+    "bytes": 1607617,
+    "bounds": [
+      [
+        -2816.000244140625,
+        -1088.0001220703125,
+        -128.0
+      ],
+      [
+        912.0,
+        2368.0,
+        1408.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/p1_arc4.nil",
+    "sectors": 9,
+    "triangles": 8417,
+    "materials": 18,
+    "geometry_end": 590006,
+    "bytes": 770180,
+    "bounds": [
+      [
+        -2832.0,
+        -64.0,
+        -256.0
+      ],
+      [
+        -1536.0,
+        2256.0,
+        512.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_CAST.nil",
+    "sectors": 13,
+    "triangles": 15033,
+    "materials": 30,
+    "geometry_end": 909450,
+    "bytes": 1728942,
+    "bounds": [
+      [
+        -2240.0,
+        -3400.0,
+        -1536.0
+      ],
+      [
+        2016.0,
+        2496.0,
+        2240.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_CNVT.nil",
+    "sectors": 10,
+    "triangles": 7122,
+    "materials": 21,
+    "geometry_end": 420900,
+    "bytes": 619492,
+    "bounds": [
+      [
+        -304.0,
+        -608.0,
+        -864.0
+      ],
+      [
+        2504.0,
+        2304.0,
+        488.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_CTDY.nil",
+    "sectors": 8,
+    "triangles": 4815,
+    "materials": 16,
+    "geometry_end": 285613,
+    "bytes": 405557,
+    "bounds": [
+      [
+        -304.0,
+        -552.0,
+        -8.0
+      ],
+      [
+        1176.0,
+        384.0,
+        488.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_EGAT.nil",
+    "sectors": 29,
+    "triangles": 8970,
+    "materials": 27,
+    "geometry_end": 643833,
+    "bytes": 1339543,
+    "bounds": [
+      [
+        -3136.0,
+        -320.0,
+        -128.0
+      ],
+      [
+        3424.0,
+        3712.0,
+        1216.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_EGNT.nil",
+    "sectors": 29,
+    "triangles": 8888,
+    "materials": 27,
+    "geometry_end": 644007,
+    "bytes": 1366325,
+    "bounds": [
+      [
+        -3136.0,
+        -320.0,
+        -128.00010681152344
+      ],
+      [
+        3424.0,
+        3712.0,
+        1216.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_GOLD.nil",
+    "sectors": 139,
+    "triangles": 23971,
+    "materials": 87,
+    "geometry_end": 1773905,
+    "bytes": 2226691,
+    "bounds": [
+      [
+        -1333.0,
+        -1952.0,
+        -80.0
+      ],
+      [
+        2261.17919921875,
+        1749.2230224609375,
+        792.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_GOLDD.nil",
+    "sectors": 134,
+    "triangles": 24211,
+    "materials": 87,
+    "geometry_end": 1696812,
+    "bytes": 2275560,
+    "bounds": [
+      [
+        -1284.0,
+        -1952.0,
+        -80.0
+      ],
+      [
+        2261.17919921875,
+        1749.2230224609375,
+        792.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_HAVN.nil",
+    "sectors": 4,
+    "triangles": 3713,
+    "materials": 16,
+    "geometry_end": 221961,
+    "bytes": 351755,
+    "bounds": [
+      [
+        -704.0,
+        -896.0,
+        -864.0
+      ],
+      [
+        448.0,
+        840.0,
+        128.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_HILL.nil",
+    "sectors": 179,
+    "triangles": 14567,
+    "materials": 39,
+    "geometry_end": 1256539,
+    "bytes": 1604509,
+    "bounds": [
+      [
+        -1864.0,
+        -1412.0001220703125,
+        -232.0
+      ],
+      [
+        1668.0,
+        1301.7998046875,
+        896.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_HILLD.nil",
+    "sectors": 178,
+    "triangles": 14617,
+    "materials": 39,
+    "geometry_end": 1161097,
+    "bytes": 1627067,
+    "bounds": [
+      [
+        -1864.0,
+        -1412.0001220703125,
+        -232.0
+      ],
+      [
+        1668.0,
+        1312.0,
+        896.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_IN4D.nil",
+    "sectors": 9,
+    "triangles": 4334,
+    "materials": 16,
+    "geometry_end": 254595,
+    "bytes": 362581,
+    "bounds": [
+      [
+        -528.0,
+        -432.0,
+        -8.0
+      ],
+      [
+        504.0,
+        520.0,
+        752.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_INN4.nil",
+    "sectors": 9,
+    "triangles": 4286,
+    "materials": 15,
+    "geometry_end": 253324,
+    "bytes": 356634,
+    "bounds": [
+      [
+        -528.0,
+        -432.0,
+        -8.0
+      ],
+      [
+        504.0,
+        520.0,
+        752.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/p1_jos1.nil",
+    "sectors": 144,
+    "triangles": 35620,
+    "materials": 46,
+    "geometry_end": 2699905,
+    "bytes": 3942141,
+    "bounds": [
+      [
+        -904.0,
+        -1584.000244140625,
+        -464.0
+      ],
+      [
+        5168.0,
+        4544.0,
+        1120.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/p1_jos2.nil",
+    "sectors": 37,
+    "triangles": 24488,
+    "materials": 48,
+    "geometry_end": 1740834,
+    "bytes": 2707488,
+    "bounds": [
+      [
+        -1583.9998779296875,
+        -3296.0,
+        -144.0
+      ],
+      [
+        1776.0,
+        4752.0,
+        704.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/p1_jos3.nil",
+    "sectors": 78,
+    "triangles": 34066,
+    "materials": 45,
+    "geometry_end": 2305937,
+    "bytes": 2985937,
+    "bounds": [
+      [
+        -3599.99951171875,
+        -6032.00048828125,
+        -784.0
+      ],
+      [
+        1088.0,
+        560.0,
+        1472.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_JUDB.nil",
+    "sectors": 91,
+    "triangles": 21839,
+    "materials": 49,
+    "geometry_end": 1476687,
+    "bytes": 2290067,
+    "bounds": [
+      [
+        -2779.05908203125,
+        -2704.0,
+        -800.0
+      ],
+      [
+        5344.0,
+        3512.0,
+        1472.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_JUDBD.nil",
+    "sectors": 92,
+    "triangles": 23048,
+    "materials": 50,
+    "geometry_end": 1511426,
+    "bytes": 2926076,
+    "bounds": [
+      [
+        -2776.0,
+        -2704.0,
+        -800.0
+      ],
+      [
+        5256.0,
+        3512.0,
+        1472.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_MON1.nil",
+    "sectors": 215,
+    "triangles": 34968,
+    "materials": 48,
+    "geometry_end": 2525120,
+    "bytes": 3316052,
+    "bounds": [
+      [
+        -1728.0001220703125,
+        -2481.7255859375,
+        -1392.0
+      ],
+      [
+        3633.725341796875,
+        2189.7255859375,
+        644.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_MON2.nil",
+    "sectors": 183,
+    "triangles": 56627,
+    "materials": 44,
+    "geometry_end": 3782320,
+    "bytes": 5004716,
+    "bounds": [
+      [
+        -4353.02734375,
+        -3062.0,
+        -336.0
+      ],
+      [
+        2840.0,
+        2616.199951171875,
+        848.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_MON3.nil",
+    "sectors": 208,
+    "triangles": 40275,
+    "materials": 50,
+    "geometry_end": 2776561,
+    "bytes": 3561531,
+    "bounds": [
+      [
+        -4992.0,
+        0.0,
+        -450.0
+      ],
+      [
+        706.601806640625,
+        4512.0,
+        972.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/p1_nqtr.nil",
+    "sectors": 202,
+    "triangles": 74667,
+    "materials": 110,
+    "geometry_end": 5136130,
+    "bytes": 7351366,
+    "bounds": [
+      [
+        -1392.0,
+        -2544.0,
+        -496.0
+      ],
+      [
+        5744.0,
+        4736.0,
+        1600.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_OLDT.nil",
+    "sectors": 183,
+    "triangles": 44030,
+    "materials": 90,
+    "geometry_end": 3089660,
+    "bytes": 4637644,
+    "bounds": [
+      [
+        -1792.0,
+        -2440.0,
+        -272.0
+      ],
+      [
+        4416.0,
+        3952.0,
+        1600.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_OTDY.nil",
+    "sectors": 183,
+    "triangles": 43988,
+    "materials": 87,
+    "geometry_end": 3017748,
+    "bytes": 4575040,
+    "bounds": [
+      [
+        -1792.0,
+        -2440.0,
+        -272.0
+      ],
+      [
+        4416.0,
+        3952.0,
+        1600.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/p1_oubl.nil",
+    "sectors": 1,
+    "triangles": 1110,
+    "materials": 8,
+    "geometry_end": 68765,
+    "bytes": 160307,
+    "bounds": [
+      [
+        -736.0,
+        -416.00018310546875,
+        -16.0
+      ],
+      [
+        416.0,
+        416.0,
+        640.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_PRIN.nil",
+    "sectors": 7,
+    "triangles": 4679,
+    "materials": 21,
+    "geometry_end": 315236,
+    "bytes": 584596,
+    "bounds": [
+      [
+        -2144.0,
+        -896.0,
+        -752.0
+      ],
+      [
+        2176.0,
+        768.0,
+        736.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/p1_rabi.nil",
+    "sectors": 11,
+    "triangles": 1986,
+    "materials": 19,
+    "geometry_end": 135328,
+    "bytes": 192534,
+    "bounds": [
+      [
+        -1224.0,
+        -384.0,
+        -8.0
+      ],
+      [
+        -447.9997863769531,
+        528.0,
+        768.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_SIM1.nil",
+    "sectors": 56,
+    "triangles": 20667,
+    "materials": 12,
+    "geometry_end": 1376083,
+    "bytes": 2884521,
+    "bounds": [
+      [
+        -4488.0,
+        -2880.0,
+        -1672.0
+      ],
+      [
+        2336.0,
+        3008.0,
+        1288.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_SIM2.nil",
+    "sectors": 56,
+    "triangles": 25318,
+    "materials": 11,
+    "geometry_end": 1616086,
+    "bytes": 3540618,
+    "bounds": [
+      [
+        -3328.0,
+        -2624.0,
+        0.0
+      ],
+      [
+        5304.0,
+        4416.0,
+        3720.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_SIM3.nil",
+    "sectors": 16,
+    "triangles": 12134,
+    "materials": 21,
+    "geometry_end": 806515,
+    "bytes": 1644393,
+    "bounds": [
+      [
+        -1088.0003662109375,
+        -896.0007934570312,
+        -1600.0
+      ],
+      [
+        3200.0,
+        2624.0,
+        896.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_SIMN.nil",
+    "sectors": 56,
+    "triangles": 20717,
+    "materials": 12,
+    "geometry_end": 1378444,
+    "bytes": 2887356,
+    "bounds": [
+      [
+        -4488.0,
+        -2880.0,
+        -1672.0
+      ],
+      [
+        2336.0,
+        3008.0,
+        1288.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_SMTY.nil",
+    "sectors": 2,
+    "triangles": 1349,
+    "materials": 11,
+    "geometry_end": 80136,
+    "bytes": 156244,
+    "bounds": [
+      [
+        -776.0,
+        -384.0,
+        -8.0
+      ],
+      [
+        200.0,
+        408.0,
+        736.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_SMYD.nil",
+    "sectors": 2,
+    "triangles": 1367,
+    "materials": 12,
+    "geometry_end": 80876,
+    "bytes": 151636,
+    "bounds": [
+      [
+        -776.0,
+        -384.0,
+        -8.0
+      ],
+      [
+        200.0,
+        408.0,
+        736.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_STHM.nil",
+    "sectors": 4,
+    "triangles": 5672,
+    "materials": 11,
+    "geometry_end": 349291,
+    "bytes": 513223,
+    "bounds": [
+      [
+        -784.0,
+        -2112.0,
+        -8.0
+      ],
+      [
+        272.0,
+        504.0,
+        1248.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_UNIV.nil",
+    "sectors": 11,
+    "triangles": 5018,
+    "materials": 19,
+    "geometry_end": 297958,
+    "bytes": 514488,
+    "bounds": [
+      [
+        168.0,
+        -352.0,
+        64.0
+      ],
+      [
+        1856.0,
+        1344.0,
+        704.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_UNOR.nil",
+    "sectors": 1,
+    "triangles": 2680,
+    "materials": 17,
+    "geometry_end": 160923,
+    "bytes": 213601,
+    "bounds": [
+      [
+        -347.0,
+        -233.0,
+        24.0
+      ],
+      [
+        275.0,
+        383.0,
+        555.7020263671875
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P1_UNORD.nil",
+    "sectors": 1,
+    "triangles": 2687,
+    "materials": 18,
+    "geometry_end": 161712,
+    "bytes": 217938,
+    "bounds": [
+      [
+        -347.0,
+        -233.0,
+        24.0
+      ],
+      [
+        275.0,
+        383.0,
+        555.7020263671875
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P2_OLDT.nil",
+    "sectors": 182,
+    "triangles": 44201,
+    "materials": 86,
+    "geometry_end": 3125430,
+    "bytes": 4659476,
+    "bounds": [
+      [
+        -1792.0,
+        -2440.0,
+        -272.0
+      ],
+      [
+        4416.0,
+        3952.0,
+        1600.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P2_VYC1.nil",
+    "sectors": 55,
+    "triangles": 29992,
+    "materials": 27,
+    "geometry_end": 1812482,
+    "bytes": 2979084,
+    "bounds": [
+      [
+        -1920.0,
+        -2879.99951171875,
+        -864.0
+      ],
+      [
+        3152.0,
+        3968.0,
+        1160.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P2_VYC2.nil",
+    "sectors": 52,
+    "triangles": 24289,
+    "materials": 19,
+    "geometry_end": 1525906,
+    "bytes": 2471272,
+    "bounds": [
+      [
+        -3960.0,
+        -1920.0,
+        -1472.0
+      ],
+      [
+        3968.0,
+        2400.0,
+        -216.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P2_VYC3.nil",
+    "sectors": 29,
+    "triangles": 12033,
+    "materials": 17,
+    "geometry_end": 776512,
+    "bytes": 1275690,
+    "bounds": [
+      [
+        -704.0003051757812,
+        -3200.0,
+        -504.0
+      ],
+      [
+        1152.0,
+        440.0,
+        896.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P2_VYC4.nil",
+    "sectors": 9,
+    "triangles": 6374,
+    "materials": 18,
+    "geometry_end": 392706,
+    "bytes": 596612,
+    "bounds": [
+      [
+        -768.0,
+        0.0,
+        -456.0
+      ],
+      [
+        1216.0,
+        2816.0,
+        432.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/P2_VYSM.nil",
+    "sectors": 15,
+    "triangles": 6264,
+    "materials": 20,
+    "geometry_end": 424540,
+    "bytes": 1120864,
+    "bounds": [
+      [
+        -1920.000244140625,
+        -2880.0,
+        -1088.0
+      ],
+      [
+        2688.0,
+        256.0,
+        3016.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_EAST.nil",
+    "sectors": 13,
+    "triangles": 14658,
+    "materials": 55,
+    "geometry_end": 892459,
+    "bytes": 1183295,
+    "bounds": [
+      [
+        -832.0,
+        -1704.0,
+        -336.0
+      ],
+      [
+        1368.0,
+        1116.0,
+        600.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_FROG.nil",
+    "sectors": 13,
+    "triangles": 5954,
+    "materials": 18,
+    "geometry_end": 372205,
+    "bytes": 509097,
+    "bounds": [
+      [
+        -504.0,
+        -416.0,
+        -340.0
+      ],
+      [
+        776.0,
+        592.0,
+        544.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_HAVN.nil",
+    "sectors": 11,
+    "triangles": 2093,
+    "materials": 12,
+    "geometry_end": 133240,
+    "bytes": 221890,
+    "bounds": [
+      [
+        -312.0,
+        -848.0,
+        -224.0
+      ],
+      [
+        440.0,
+        888.0,
+        648.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_HHX1.nil",
+    "sectors": 8,
+    "triangles": 4830,
+    "materials": 18,
+    "geometry_end": 317006,
+    "bytes": 584084,
+    "bounds": [
+      [
+        -760.0,
+        -2104.0,
+        -1800.0
+      ],
+      [
+        1056.0,
+        1688.0,
+        2048.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_HHX2.nil",
+    "sectors": 44,
+    "triangles": 12529,
+    "materials": 33,
+    "geometry_end": 861334,
+    "bytes": 1854168,
+    "bounds": [
+      [
+        -4648.0,
+        -3712.0,
+        -576.0000610351562
+      ],
+      [
+        2956.0,
+        2728.0,
+        1408.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_HHX3.nil",
+    "sectors": 47,
+    "triangles": 31034,
+    "materials": 24,
+    "geometry_end": 1923508,
+    "bytes": 3091456,
+    "bounds": [
+      [
+        -2688.0,
+        -3852.0,
+        -704.0
+      ],
+      [
+        3112.0,
+        4544.0,
+        512.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_HHX4.nil",
+    "sectors": 51,
+    "triangles": 20003,
+    "materials": 26,
+    "geometry_end": 1281280,
+    "bytes": 2315924,
+    "bounds": [
+      [
+        -3456.0,
+        -3200.0,
+        -1220.0
+      ],
+      [
+        1216.0,
+        3816.0,
+        448.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_INNR.nil",
+    "sectors": 243,
+    "triangles": 36621,
+    "materials": 75,
+    "geometry_end": 2727650,
+    "bytes": 4175414,
+    "bounds": [
+      [
+        -3062.0,
+        -5198.38818359375,
+        0.0
+      ],
+      [
+        3412.96875,
+        2752.0,
+        3168.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_NRTH.nil",
+    "sectors": 56,
+    "triangles": 8989,
+    "materials": 29,
+    "geometry_end": 654422,
+    "bytes": 983474,
+    "bounds": [
+      [
+        -3808.0,
+        -508.0,
+        -26.0
+      ],
+      [
+        972.0,
+        3152.0,
+        1096.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_ORDR.nil",
+    "sectors": 9,
+    "triangles": 3749,
+    "materials": 18,
+    "geometry_end": 224094,
+    "bytes": 291226,
+    "bounds": [
+      [
+        -456.0,
+        -215.0,
+        -296.0
+      ],
+      [
+        376.0,
+        424.0,
+        242.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_ORSI.nil",
+    "sectors": 20,
+    "triangles": 5470,
+    "materials": 21,
+    "geometry_end": 377510,
+    "bytes": 625564,
+    "bounds": [
+      [
+        -2144.0,
+        -370.0,
+        184.0
+      ],
+      [
+        -64.0,
+        2016.0,
+        928.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_OUTR.nil",
+    "sectors": 177,
+    "triangles": 42074,
+    "materials": 112,
+    "geometry_end": 2969598,
+    "bytes": 4179326,
+    "bounds": [
+      [
+        -2326.0,
+        -12288.0,
+        -145.0
+      ],
+      [
+        3404.789794921875,
+        2585.863525390625,
+        1400.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_ROOF.nil",
+    "sectors": 76,
+    "triangles": 6110,
+    "materials": 14,
+    "geometry_end": 491581,
+    "bytes": 659153,
+    "bounds": [
+      [
+        -632.0,
+        -344.0,
+        -296.0
+      ],
+      [
+        588.0,
+        336.0,
+        856.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_SOUT.nil",
+    "sectors": 290,
+    "triangles": 17145,
+    "materials": 31,
+    "geometry_end": 1485511,
+    "bytes": 2021771,
+    "bounds": [
+      [
+        -3527.999755859375,
+        -4144.0,
+        -1520.0
+      ],
+      [
+        1216.0,
+        -544.0,
+        1704.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_STE1.nil",
+    "sectors": 49,
+    "triangles": 18508,
+    "materials": 68,
+    "geometry_end": 1167405,
+    "bytes": 2021453,
+    "bounds": [
+      [
+        -1728.0,
+        -344.0,
+        -1120.0
+      ],
+      [
+        3360.0,
+        3712.0,
+        584.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_STE2.nil",
+    "sectors": 29,
+    "triangles": 9596,
+    "materials": 30,
+    "geometry_end": 616027,
+    "bytes": 1278341,
+    "bounds": [
+      [
+        -4264.0,
+        -3208.0,
+        -1120.0003662109375
+      ],
+      [
+        2048.0,
+        512.0,
+        576.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_STE3.nil",
+    "sectors": 31,
+    "triangles": 11691,
+    "materials": 32,
+    "geometry_end": 737825,
+    "bytes": 1547541,
+    "bounds": [
+      [
+        -1668.0,
+        -1088.0,
+        -704.0
+      ],
+      [
+        2080.0,
+        960.0,
+        1816.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/v1_teu1.nil",
+    "sectors": 54,
+    "triangles": 17784,
+    "materials": 54,
+    "geometry_end": 1148219,
+    "bytes": 1819309,
+    "bounds": [
+      [
+        -1776.0,
+        -3064.0,
+        -640.0
+      ],
+      [
+        2480.0,
+        416.0,
+        1408.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/v1_teu2.nil",
+    "sectors": 74,
+    "triangles": 24780,
+    "materials": 40,
+    "geometry_end": 1656953,
+    "bytes": 2309131,
+    "bounds": [
+      [
+        -1408.0,
+        -1424.0,
+        -368.0
+      ],
+      [
+        2512.0,
+        4512.0,
+        640.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/v1_teu3.nil",
+    "sectors": 62,
+    "triangles": 32575,
+    "materials": 24,
+    "geometry_end": 2145308,
+    "bytes": 2865424,
+    "bounds": [
+      [
+        -1120.0,
+        -1792.0,
+        -136.0
+      ],
+      [
+        3516.0,
+        2036.0,
+        958.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/v1_teu4.nil",
+    "sectors": 101,
+    "triangles": 21311,
+    "materials": 14,
+    "geometry_end": 1398181,
+    "bytes": 2045977,
+    "bounds": [
+      [
+        -1216.0,
+        -2176.0,
+        -208.0
+      ],
+      [
+        3072.0,
+        1336.0,
+        1152.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_WEAP.nil",
+    "sectors": 6,
+    "triangles": 3635,
+    "materials": 15,
+    "geometry_end": 240491,
+    "bytes": 318391,
+    "bounds": [
+      [
+        -384.0000305175781,
+        -480.0,
+        160.0
+      ],
+      [
+        368.0,
+        480.0,
+        664.0
+      ]
+    ],
+    "success": true
+  },
+  {
+    "path": "levels/V1_WEST.nil",
+    "sectors": 57,
+    "triangles": 11142,
+    "materials": 44,
+    "geometry_end": 795058,
+    "bytes": 1004882,
+    "bounds": [
+      [
+        -168.0,
+        -753.5384521484375,
+        1.0
+      ],
+      [
+        1600.0,
+        1043.45458984375,
+        1752.0
+      ]
+    ],
+    "success": true
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "shortcut": "C:\\Users\\Usuario\\Desktop\\Vampire.exe - Acceso directo.lnk",
+  "target": "H:\\GOG\\Vampire The Masquerade - Redemption\\Vampire.exe",
+  "arguments": "-user RCM\\east_demo",
+  "working_directory": "H:\\GOG\\Vampire The Masquerade - Redemption",
+  "launch_method": "Explorer address bar opens the original desktop .lnk, no argument overrides",
+  "screenshot_result": "pending",
+  "native_template_verified": false
+}

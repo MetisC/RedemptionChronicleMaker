@@ -1,0 +1,14 @@
+{
+  "east_demo/east_compare.nob": "4a0ac9f84ed12ac631b691d2a5d04dc065b2d3739fc56176d5db9ea5ed8d8a77",
+  "east_demo/east_demo.nob": "71f2aeb281f64255bf87c485e03feb638b4a039ef0ea553b7365092b9874c4ef",
+  "east_demo/editor_playtest.nob": "a5305be793cd947a1c239c9df73922dd2230ff1ccf7cdc6edabd8a2b45ec1f79",
+  "east_demo/phase3_demo.nob": "61efc9e413c797c2569d382e89c1e7a14676eb397ce66a08f5868469430cab62",
+  "east_demo/runtime_trace.log": "8f4dce2bbc48b0f76b9fbe26de4b25c524e2f71cbcdd066ee2521fb10c69b0bc",
+  "editor_playtest/runtime_trace.log": "73e5f48f7d4319158592ded364f3844da327f496f323a6558b0c4791ac95f9fe",
+  "east_demo/codex/R_east_demo_Passive.class": "276b5b15ea0fe9ae8ddf38f313f27ef52f383104710c92cb10537136a3fd6d57",
+  "east_demo/codex/R_east_demo_Scene.class": "941dbb82b427b127507c2499e4799232a21adf99856126fc220e69b29d5f6d8f",
+  "east_demo/codex/R_editor_playtest_Passive.class": "c78cb09bd6e971062c65d00f6d62b17f73c2655394db4118734da4b468a77ccc",
+  "east_demo/codex/R_editor_playtest_Scene.class": "e9279ee1e9e4e576ac18a712366140478d084e324112cf8ccb0842250fefe874",
+  "east_demo/codex/R_phase3_demo_Passive.class": "f28ade14b5885931d0bf6f0b304b77eaa5a9362572f887d695055c357c79e99c",
+  "east_demo/codex/R_phase3_demo_Scene.class": "c35c496fc214628fb5ff651f59c19c627b6fe2d6bc71d94073cfa7d918d8dfab"
+}

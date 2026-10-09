@@ -1,0 +1,15 @@
+{
+  "chronicle": "c4_test",
+  "destination": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\tests\\tmp5cavnis6\\RCM\\c4_test",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_c4_test_1791491725089997700.zip",
+  "removed_owned_files": [],
+  "files": {
+    "c4_test\\c4_test.nob": "98f9bf639d7e9c3ef47b1dd20b89f79b51fc00fc55b02c8a176da9d5a86f923b",
+    "c4_test\\codex\\R_c4_test_s0_Passive.class": "54894224fe57b55c4603e3553f962a61c41694f8b053580a014e187c4af561f1",
+    "c4_test\\codex\\R_c4_test_s0_Scene.class": "d4b9c2b2e1e102458da40b71f13ccc578da8cc7601899b9866c193e369019e7e",
+    "c4_test\\codex\\R_c4_test_s1_Passive.class": "af9630a7de8171af1965a06fb6d5c375c0fadc5345d3624c0e585dc46ce51a0c",
+    "c4_test\\codex\\R_c4_test_s1_Scene.class": "faa272c4e1ab7af73ee38f713f197ee9680cab7437af71ead7128e1aa884cce2",
+    "c4_test\\.rcm_deployment.json": "81d7feacd94b06ae3fd26e6fd6e609081d9faf60d3b0e8f2896e482cf3861a9d"
+  },
+  "native_engine_test": false
+}

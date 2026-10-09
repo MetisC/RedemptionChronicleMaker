@@ -1,0 +1,58 @@
+{
+  "standalone": {
+    "chronicle": "phase5_demo",
+    "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\phase5_demo",
+    "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_phase5_demo_1791466282696481200.zip",
+    "files": {
+      "phase5_demo\\codex\\R_phase5_demo_s0_Passive.class": "91e5b62616b2eb6755f0641e54b77f64d998efeb2b58bcfd3108efa4718ac76d",
+      "phase5_demo\\codex\\R_phase5_demo_s0_Scene.class": "b51ef2ddf0b8ed152d64b112b4bc460eac2106e744505d29aafb29422fe43f78",
+      "phase5_demo\\codex\\R_phase5_demo_s1_Passive.class": "efcd6da7f12651c3e3479e23d89e12cfd25c9dd13e47a6e1bfe5875b8de4fddd",
+      "phase5_demo\\codex\\R_phase5_demo_s1_Scene.class": "a3f7e45f5129d3a3e1d09545eaf22f4607ef4c9f664f9a73d15e70e018fea20c",
+      "phase5_demo\\codex\\RCM5Actor.class": "4cf01e6eb065ea43bc22b3b7cbbc1baf571d3e825b445a4d1dbfea4617abaef0",
+      "phase5_demo\\phase5_demo.nob": "d442f731da53f3f62e310de5bce8c6fc47c88e695f83d2eb37356ff6f89f7991"
+    },
+    "native_engine_test": false
+  },
+  "existing_shortcut": {
+    "chronicle": "phase5_demo",
+    "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\east_demo",
+    "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_phase5_demo_1791466282843852100.zip",
+    "files": {
+      "east_demo\\codex\\R_phase5_demo_s0_Passive.class": "91e5b62616b2eb6755f0641e54b77f64d998efeb2b58bcfd3108efa4718ac76d",
+      "east_demo\\codex\\R_phase5_demo_s0_Scene.class": "b51ef2ddf0b8ed152d64b112b4bc460eac2106e744505d29aafb29422fe43f78",
+      "east_demo\\codex\\R_phase5_demo_s1_Passive.class": "efcd6da7f12651c3e3479e23d89e12cfd25c9dd13e47a6e1bfe5875b8de4fddd",
+      "east_demo\\codex\\R_phase5_demo_s1_Scene.class": "a3f7e45f5129d3a3e1d09545eaf22f4607ef4c9f664f9a73d15e70e018fea20c",
+      "east_demo\\codex\\RCM5Actor.class": "4cf01e6eb065ea43bc22b3b7cbbc1baf571d3e825b445a4d1dbfea4617abaef0",
+      "east_demo\\phase5_demo.nob": "d442f731da53f3f62e310de5bce8c6fc47c88e695f83d2eb37356ff6f89f7991"
+    },
+    "native_engine_test": false
+  },
+  "previous_files_preserved": 22,
+  "changed_files": [
+    "east_demo/codex/RCM5Actor.class",
+    "east_demo/codex/R_phase5_demo_s0_Passive.class",
+    "east_demo/codex/R_phase5_demo_s0_Scene.class",
+    "east_demo/codex/R_phase5_demo_s1_Passive.class",
+    "east_demo/codex/R_phase5_demo_s1_Scene.class",
+    "east_demo/phase5_demo.nob",
+    "phase5_demo/codex/RCM5Actor.class",
+    "phase5_demo/codex/R_phase5_demo_s0_Passive.class",
+    "phase5_demo/codex/R_phase5_demo_s0_Scene.class",
+    "phase5_demo/codex/R_phase5_demo_s1_Passive.class",
+    "phase5_demo/codex/R_phase5_demo_s1_Scene.class",
+    "phase5_demo/phase5_demo.nob"
+  ],
+  "originals_before": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "originals_after": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "native_engine_test": false
+}

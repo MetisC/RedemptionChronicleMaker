@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-08",
+  "user_observation": "Chronicle absent from Multiplayer New Game list",
+  "deployment": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\east_demo",
+  "inspection": "read-only",
+  "loose_files": [
+    {
+      "path": "chronicles/R_east_demo.nmf",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "chronicles/east_demo.nsc",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "codex/R_east_demo_Passive.class",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "codex/R_east_demo_Scene.class",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "conversations/R_east_demo_ally.nco",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "conversations/R_east_demo_intro.nco",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "misc/templates/R_east_demo.not",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "scenes/R_east_demo.nsd",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "sounds/voice/R_east_demo_silence.wav",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "strings/R_east_demo.nls",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "strings/R_east_demo.nvo",
+      "present": true,
+      "matches_generated_payload": true
+    },
+    {
+      "path": "strings/chronicles.nls",
+      "present": true,
+      "matches_generated_payload": true
+    }
+  ],
+  "root_nob_files": [],
+  "shortcut_from_user_image": {
+    "arguments": "-user RCM\\east_demo",
+    "working_directory": "H:\\GOG\\Vampire The Masquerade - Redemption"
+  },
+  "process_command_line": "CIM read denied; no process inspection performed",
+  "diagnosis": "Native loose-file enumerator omits user prefix; NSC discovery uses registered NOB indices",
+  "corrected_distribution": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\east_demo\\east_demo_distribution.zip",
+  "corrected_native_test": "pending"
+}

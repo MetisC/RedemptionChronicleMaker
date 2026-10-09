@@ -1,0 +1,14 @@
+{
+  "chronicle": "phase5_demo",
+  "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\east_demo",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_phase5_demo_1791474130346781400.zip",
+  "files": {
+    "east_demo\\codex\\R_phase5_demo_s0_Passive.class": "91e5b62616b2eb6755f0641e54b77f64d998efeb2b58bcfd3108efa4718ac76d",
+    "east_demo\\codex\\R_phase5_demo_s0_Scene.class": "cfa4ce5dc77ac0b6df97a014c9968c8e2722e6551f33925252dbb2638d530458",
+    "east_demo\\codex\\R_phase5_demo_s1_Passive.class": "efcd6da7f12651c3e3479e23d89e12cfd25c9dd13e47a6e1bfe5875b8de4fddd",
+    "east_demo\\codex\\R_phase5_demo_s1_Scene.class": "bdcdffad743abfa3ddddab9e1f5e4346426400fa27ccf20e809f99bf82fa99bf",
+    "east_demo\\codex\\RCM5Actor.class": "4cf01e6eb065ea43bc22b3b7cbbc1baf571d3e825b445a4d1dbfea4617abaef0",
+    "east_demo\\phase5_demo.nob": "d442f731da53f3f62e310de5bce8c6fc47c88e695f83d2eb37356ff6f89f7991"
+  },
+  "native_engine_test": false
+}

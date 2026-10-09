@@ -1,0 +1,28 @@
+{
+  "revision": 3,
+  "date": "2026-10-08",
+  "user_observation_of_revision2": {
+    "menu_title_correct": true,
+    "npc_visible_near_start": false,
+    "background_correct": false,
+    "halo_cursor_motion_persists": true,
+    "npc_creation_actually_failed": "Unknown; not located by user"
+  },
+  "original_evidence": {
+    "NOT_load": "NMF NOT directive 0x4979cd calls 0x4dcf20; autoload NOT requires underscore 0x4dce68",
+    "CLEARBUFFER": "Codex constant 64; original London.nsc EastLondon=0x0060; previous generated value=0x0020"
+  },
+  "revision3_changes": [
+    "Explicit NMF NOT library load",
+    "Preserve original CLEARBUFFER bit",
+    "Native Java trace within RCM only"
+  ],
+  "native_verification": "Pending; agent has not run the game",
+  "checks": {
+    "tests": 26,
+    "failures": 0,
+    "errors": 0,
+    "successful": true,
+    "native_engine_test": false
+  }
+}

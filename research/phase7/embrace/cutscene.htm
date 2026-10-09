@@ -1,0 +1,3226 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>NOD Engine SDK 1</title>
+<meta name="Microsoft Theme" content="zero 101, default">
+</head>
+
+
+<body background="../_themes/zero/zertxtr.gif" bgcolor="#000000" text="#FFFFFF" link="#669966" vlink="#6699CC" alink="#999999"><!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<div class=Section1>
+
+<!--mstheme--></font>
+
+<h2 align=center style='text-align:center'><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">NOD Engine SDK 1.0<!--mstheme--></font></h2>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<h2 align=center style='text-align:center'><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Creating An In-Game Cutscene<!--mstheme--></font></h2>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<h2><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Introduction<!--mstheme--></font></h2>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p >For demonstration purposes, a sample script and conversation
+file from the <i>Redemption</i> Single-Player Chronicle have been included at
+the bottom of this document.<span style="mso-spacerun: yes">  </span>They are
+from the post-Embrace scene where Christof is introduced to Wilhem and given
+the quest to retrieve the Nod Fragment.</p>
+
+<p >In-game cutscenes in the <i>Redemption </i>Single-Player
+Chronicle typically involve conversations between the actors, and are
+controlled by <i>convreached </i>messages from the game’s conversation
+system.<span style="mso-spacerun: yes">  </span>Exceptions to this rule are the
+various transformation cinematics, which are generally handled by timers since
+there is little dialogue.<span style="mso-spacerun: yes">  </span>To create an
+in-game cutscene, the user will primarily need to be familiar with the Java™
+scripting tools, and the structure behind conversations.</p>
+
+<p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<!--mstheme--></font>
+
+<h2><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Conversation (NCO) and Voiceover (NVO) Files<!--mstheme--></font></h2>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p >A conversation within <b>Vampire The Masquerade: Redemption™</b>
+is defined by its NCO or conversation file.<span style="mso-spacerun: yes"> 
+</span>Each line in an NCO references the castid of the actor who is “speaking”
+and a line of text in the chronicle’s NVO or voiceover file. <b><span
+style="mso-spacerun: yes"> </span></b>These lines of dialogue are played in
+succession, each one generating a <i>convreached</i> message to the
+system.<span style="mso-spacerun: yes">  </span>It is at these <i>convreached </i>messages
+that the bulk of work in the cutscene is handled:<span style="mso-spacerun:
+yes">  </span>it’s a good place to trigger events, change camera angles and
+positions or start cameras moving, make actors play special animations, etc.</p>
+
+<p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p >Conversations may be linear events or have branching paths
+that rely on the user to make choices.<span style="mso-spacerun: yes"> 
+</span>The UNIV_7_7 scene provided in this document is an example of a
+branching conversation.<span style="mso-spacerun: yes">  </span>By using an
+ANSWERGOTO handler that string becomes an option for the player to choose.</p>
+
+<!--mstheme--></font>
+
+<h4><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">NCO Handlers<!--mstheme--></font></h4>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+ border:none;mso-border-alt:solid #999999 .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt' bordercolorlight="#CCCCCC" bordercolordark="#666666">
+ <tr>
+  <td width=197 valign=top style='width:2.05in;border:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >LINE</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=197 valign=top style='width:2.05in;border:solid #999999 .5pt;
+  border-left:none;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >NVO string name</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=197 valign=top style='width:2.05in;border:solid #999999 .5pt;
+  border-left:none;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >castid of speaker</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=197 valign=top style='width:2.05in;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >ANSWERGOTO</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=197 valign=top style='width:2.05in;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >NVO string name</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=197 valign=top style='width:2.05in;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >event name</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=197 valign=top style='width:2.05in;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >JUMP<span style='mso-tab-count:1'> </span></p>
+  <!--mstheme--></font>
+  </td>
+  <td width=197 valign=top style='width:2.05in;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  <!--mstheme--></font>
+  </td>
+  <td width=197 valign=top style='width:2.05in;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >event name</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=197 valign=top style='width:2.05in;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >DELAY</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=197 valign=top style='width:2.05in;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >time in seconds</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=197 valign=top style='width:2.05in;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+</table>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<!--mstheme--></font>
+
+<h2><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Camera Positions and Movement<!--mstheme--></font></h2>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p >Camera positions and movement within in-game cutscenes can
+be handled by the game’s predefined camera system, or by creating path cameras
+(NCP files).</p>
+
+<!--mstheme--></font>
+
+<h3><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Redemption’s Predefined Camera System<!--mstheme--></font></h3>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p ><b>Vampire The Masquerade: Redemption™</b> comes with a
+nifty predefined camera system.<span style="mso-spacerun: yes">  </span>The
+camera system requires the world-position of at least one actor, and a series
+of parameters telling the camera how far to position itself from the subject,
+what angle, etc.<span style="mso-spacerun: yes">  </span>By passing the system
+the positions of two actors, a series of traditional cinematic camera shots can
+be created.<span style="mso-spacerun: yes">  </span>In a script, the verb used
+to pass this information is called SetupCutscene.<span style="mso-spacerun:
+yes">  </span>The first position passed is Actor A, and the second is Actor
+C.<span style="mso-spacerun: yes">  </span>These two positions create what’s
+referred to as a “line of action” between the two actors.<span
+style="mso-spacerun: yes">  </span>Typically, that line is not crossed during a
+conversation to prevent spatial confusion to the viewer.<span
+style="mso-spacerun: yes">  </span>(For more information on traditional camera
+setups and storytelling in cinematic cutscenes, please see Steven Katz’s
+excellent book, <b>Film Directing Shot By Shot: Visualizing From Concept To
+Screen</b>, 1991, Michael Wiese Productions.)</p>
+
+<p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p >A quick example from our script below:</p>
+
+<!--mstheme--></font>
+
+<pre >CodexCamera.SetupCutscene(starterGuid, christofGUID, wilhemGUID);<o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre >CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<h4><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC"><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p><!--mstheme--></font></h4>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<h4><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Codex Camera Constants<!--mstheme--></font></h4>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p >Camera Shots:</p>
+
+<!--mstheme--></font>
+
+<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+ border:none;mso-border-alt:solid #999999 .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt' bordercolorlight="#CCCCCC" bordercolordark="#666666">
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_SHOT_ANGULAR_A</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border:solid #999999 .5pt;
+  border-left:none;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Near Actor A, looking at Actor C.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_SHOT_ANGULAR_B</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >The classic “Two Shot”, both actors from the side.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_SHOT_ANGULAR_C</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Near Actor C, looking at Actor A.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_SHOT_OTS_A</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Behind Actor A, looking at Actor C.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_SHOT_OTS_C</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Behind Actor C, looking at Actor A.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_SHOT_POV_A</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Actor A, from Actor C’s point-of-view.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_SHOT_POV_C</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Actor C, from Actor A’s point-of-view.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_SHOT_PROFILE_A<span style='mso-tab-count:1'> </span></p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A profile shot of Actor A (Not sure if this is supported.)</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_SHOT_PROFILE_C<span style='mso-tab-count:1'> </span></p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A profile shot of Actor C (Not sure if this is supported.)</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+</table>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p >Camera Angles:</p>
+
+<!--mstheme--></font>
+
+<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+ border:none;mso-border-alt:solid #999999 .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt' bordercolorlight="#CCCCCC" bordercolordark="#666666">
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_ANGLE_LOW</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border:solid #999999 .5pt;
+  border-left:none;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A low-angle shot.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_ANGLE_MEDIUMLOW</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A medium-low-angle shot.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_ANGLE_MEDIUM<span style='mso-tab-count:1'>   </span></p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A medium or level shot.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_ANGLE_MEDIUMHIGH</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A medium-high shot.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_ANGLE_HIGH</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A high shot.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+</table>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p >Camera Distances:</p>
+
+<!--mstheme--></font>
+
+<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+ border:none;mso-border-alt:solid #999999 .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt' bordercolorlight="#CCCCCC" bordercolordark="#666666">
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_DIST_EXTREMECLOSEUP</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border:solid #999999 .5pt;
+  border-left:none;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >An extreme close-up shot, typically the actor’s eyes and
+  head.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_DIST_CLOSEUP</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A close-up shot, typically the actor’s head and shoulders.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_DIST_MEDIUM</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A medium shot, typically the actor from the waist up.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_DIST_FULL</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A full shot, typically the actor’s entire body.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=295 valign=top style='width:221.4pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CAM_DIST_LONG</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=664 valign=top style='width:498.2pt;border-top:none;border-left:
+  none;border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;
+  mso-border-top-alt:solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A long shot: typically the actor’s entire body and a lot
+  of background.</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+</table>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p >NOTE: The camera positions can be incorrect if the actors
+are placed too close together, or too far apart.<span style="mso-spacerun:
+yes">  </span>If you aren’t getting the results you expected, try moving the
+start-positions of the actors around in the level.</p>
+
+<!--mstheme--></font>
+
+<h3><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Path Cameras (NCP files)<!--mstheme--></font></h3>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p >Path cameras consist of a series of key-frames defined by
+the user within the game.<span style="mso-spacerun: yes">  </span>A single
+key-frame is a static camera, and multiple key-frames give the camera positions
+to move from and to, in the order in which they are created.<span
+style="mso-spacerun: yes">  </span>You can specify the rate at which the camera
+moves between these key-frames in the script.</p>
+
+<p >To create a path camera, first make sure you are running
+-devmode in the command line of your Vampire executable.<span
+style="mso-spacerun: yes">  </span>Load a level in which you want to create a
+path camera, and use F11 to remove the UI.<span style="mso-spacerun: yes"> 
+</span>(This allows you to fully frame the shot.)<span style="mso-spacerun:
+yes">  </span>Then type CTRL-P to go into the debug flying-camera mode.<span
+style="mso-spacerun: yes">  </span>You can navigate using these commands:</p>
+
+<!--mstheme--></font>
+
+<h4><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Debug Camera Commands<!--mstheme--></font></h4>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+ border:none;mso-border-alt:solid #999999 .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt' bordercolorlight="#CCCCCC" bordercolordark="#666666">
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Hide UI</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border:solid #999999 .5pt;
+  border-left:none;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >F11</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Toggle debug/normal camera</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >CTRL-P</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Forward</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >W</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Backward</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >S</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Strafe Left/Right</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >A/D</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Look Up</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Down Arrow</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Look Down</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Up Arrow</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Turn Left/Right</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Left/Right Arrow</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Strafe Up/Down</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >X/C</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+</table>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<!--mstheme--></font>
+
+<h4><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Camera Path Controls<!--mstheme--></font></h4>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+ border:none;mso-border-alt:solid #999999 .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt' bordercolorlight="#CCCCCC" bordercolordark="#666666">
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Add key-frame (replaces if not at end of path)</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border:solid #999999 .5pt;
+  border-left:none;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >SPACE</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Step through key-frames</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >+/-</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Delete all key-frames</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >SHIFT-BACKSPACE</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Delete current key-frame</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >DEL</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Insert new key-frame after current</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >INS</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Change playback speed</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >+/- (during playback)</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Save path to disk</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >“savepath &lt;name.ncp&gt;” in console</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+ <tr>
+  <td width=443 valign=top style='width:332.6pt;border:solid #999999 .5pt;
+  border-top:none;mso-border-top-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >Load path from disk</p>
+  <!--mstheme--></font>
+  </td>
+  <td width=432 valign=top style='width:4.5in;border-top:none;border-left:none;
+  border-bottom:solid #999999 .5pt;border-right:solid #999999 .5pt;mso-border-top-alt:
+  solid #999999 .5pt;mso-border-left-alt:solid #999999 .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <!--mstheme--><font face="Arial, Arial, Helvetica">
+  <p >“loadpath &lt;name.ncp&gt;” in console</p>
+  <!--mstheme--></font>
+  </td>
+ </tr>
+</table>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p >Once you’ve framed your shot, hit the spacebar to add a
+key-frame.<span style="mso-spacerun: yes">  </span>If you want to create a
+moving camera, navigate to a second position and hit the spacebar again to
+create a second key-frame.<span style="mso-spacerun: yes">  </span>Bring up the
+console by hitting the tilda (`), and type “savepath<span style="mso-spacerun:
+yes">  </span>&lt;name.ncp&gt;”.<span style="mso-spacerun: yes">  </span>This
+path is now available to be called upon in a script.<span style="mso-spacerun:
+yes">  </span>The line in the script will look something like this:</p>
+
+<p class=MsoBodyText>CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(),
+GetGUID(), &quot;UnivBalcony.ncp&quot;, 30);</p>
+
+<p >The last value, 30, is the rate at which a camera moves
+between key-frames.</p>
+
+<p ><span style="mso-spacerun: yes"> </span></p>
+
+<!--mstheme--></font>
+
+<h2><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Special Animations and Motion (NMS) Files<!--mstheme--></font></h2>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p >At each convreached message, the conversation system
+automatically plays a “talk” animation on the actor who is speaking, and a
+“listen” animation on the other actors involved in that conversation.<span
+style="mso-spacerun: yes">  </span>It is also possible to play a special
+animation on an actor, for example to make them speak more passionately, or
+angrily; make them appear to be wounded, etc.<span style="mso-spacerun: yes"> 
+</span>You’ll want to check the motionset or NMS of the actor you intend to use
+to see<span style="mso-spacerun: yes">  </span>what’s available to be played,
+but some common ones are defined below.<span style="mso-spacerun: yes"> 
+</span>In our sample scene, Wilhem cordially bows to Ecaterina as he interrupts
+her, to signify his respect.<span style="mso-spacerun: yes">  </span>Looking in
+Wilhem’s template in DarkAges.not (under _player_DA), we see Wilhem uses
+Christof’s motionset file (Christof.nms).<span style="mso-spacerun: yes"> 
+</span>Opening up Christof.nms, we find the motion Christof_BowFealty.nad is
+assigned to gesture4.<span style="mso-spacerun: yes">  </span>So, in the
+UNIV_7_7 script we use:</p>
+
+<p class=MsoBodyText>_Wilhem.PlayMotionSetMode(MOTION_GESTURE4, false,
+(float)30.0);</p>
+
+<p >This particular animation is defined as “noloop” in
+Christof.nms, so at the end of the animation where Wilhem has not yet finished
+“talking” (i.e the mp3 has not finished playing) the conversation system falls
+back into the standard “talk” animation.</p>
+
+<!--mstheme--></font>
+
+<h3><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Some Sample Special Motions for Christof<!--mstheme--></font></h3>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p >GESTURE1<span style='mso-tab-count:2'>          </span>Christof
+is distraught</p>
+
+<p >GESTURE2<span style='mso-tab-count:2'>          </span>Christof
+talks with purpose</p>
+
+<p >GESTURE3<span style='mso-tab-count:2'>          </span>Christof
+gives something away</p>
+
+<p >GESTURE4<span style='mso-tab-count:2'>          </span>Christof’s
+bow of fealty</p>
+
+<p >GESTURE5<span style='mso-tab-count:2'>          </span>Christof
+talks with passion</p>
+
+<p >GESTURE6<span style='mso-tab-count:2'>          </span>Christof
+talks with more passion</p>
+
+<p >GESTURE7<span style='mso-tab-count:2'>          </span>Christof’s
+second bow of fealty</p>
+
+<p >GESTURE8<span style='mso-tab-count:2'>          </span>Christof
+menaces</p>
+
+<p >GESTURE9<span style='mso-tab-count:2'>          </span>Christof
+taunts</p>
+
+<p >GESTURE0<span style='mso-tab-count:2'>          </span>Christof
+waves</p>
+
+<!--mstheme--></font>
+
+<h2><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Sample Scene:<span style="mso-spacerun: yes">  </span>UNIV_7_7 (Search For
+The Nod Fragment)<!--mstheme--></font></h2>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre >/**</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style="mso-spacerun: yes"> </span>* University scene 7.7 script.</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style="mso-spacerun: yes"> </span>* &lt;BR&gt;Copyright (c) Nihilistic Software, Inc. 1998-1999</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style="mso-spacerun: yes"> </span>*</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre >*/</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre >public class UNIV_7_7 extends Codex</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre >{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private PragueChronicle<span style='mso-tab-count:1'>        </span>chronScript;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private static final int TIMER_ID_SUBMISSIONCONV1<span style='mso-tab-count:2'>               </span>= 1;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private static final int TIMER_ID_SUBMISSIONCONV2<span style='mso-tab-count:2'>               </span>= 2;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private static final int TIMER_ID_WILHEMINTERVENE<span style='mso-tab-count:2'>               </span>= 5;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private static final int TIMER_ID_MOVECHRISWILHEM<span style='mso-tab-count:2'>               </span>= 6;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private <span
+style='mso-tab-count:1'>      </span>CodexActor<span style='mso-tab-count:2'>         </span>_Christof;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private<span
+style='mso-tab-count:1'>       </span>CodexActor<span style='mso-tab-count:
+2'>         </span>_Ecaterina;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private<span
+style='mso-tab-count:1'>       </span>CodexActor<span style='mso-tab-count:
+2'>         </span>_Cosmas;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private<span
+style='mso-tab-count:1'>       </span>CodexPlayer<span style='mso-tab-count:
+1'>       </span>_Wilhem;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private int<span
+style='mso-tab-count:4'>                          </span>christofGUID;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private int<span
+style='mso-tab-count:4'>                          </span>cosmasGUID;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private int<span
+style='mso-tab-count:4'>                          </span>ecaterinaGUID;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private int<span
+style='mso-tab-count:4'>                          </span>wilhemGUID;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private float[]<span
+style='mso-tab-count:3'>                     </span>pos;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private boolean<span
+style='mso-tab-count:3'>                   </span>bSubmissionConversation1<span
+style='mso-tab-count:1'>   </span>= false;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>private boolean<span
+style='mso-tab-count:3'>                   </span>bSubmissionConversation2<span
+style='mso-tab-count:1'>   </span>= false;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public boolean<span
+style='mso-tab-count:3'>                    </span>bCosmasReturnConversation<span
+style='mso-tab-count:1'> </span>= false;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public boolean<span
+style='mso-tab-count:3'>                    </span>bEcatReturn1Conversation<span
+style='mso-tab-count:1'>    </span>= false;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public static String _params[] = {&quot;Ecaterina&quot;, &quot;Cosmas&quot;, &quot;Wilhem&quot;};</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public UNIV_7_7(CodexActor Ecaterina, CodexActor Cosmas, CodexPlayer Wilhem)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>chronScript = (PragueChronicle)GetChronicleScript(0);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>_Ecaterina = new CodexActor(Ecaterina.GetGUID());</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>_Cosmas = new CodexActor(Cosmas.GetGUID());</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>_Wilhem = new CodexPlayer(Wilhem.GetGUID());</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>CaptureThing(_Ecaterina.GetGUID());</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>CaptureThing(_Cosmas.GetGUID());</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>CaptureThing(_Wilhem.GetGUID());</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>pos = new float[3];</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public void beginscene(int clientGuid, int captureID)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>// change haven to an &quot;empty&quot; scene</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>CodexSequence.ChangeScene(&quot;Haven&quot;, &quot;HAVN_7_7.nsd&quot;);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>// open the university, haven, and petrin hill exits</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>CodexSequence.OpenExit(&quot;OldTown&quot;, 1);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>CodexSequence.OpenExit(&quot;OldTown&quot;, 2);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>               </span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>// open monastery exits</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>CodexSequence.OpenExit(&quot;PetrinHill&quot;, 1);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>CodexSequence.OpenExit(&quot;Monastery&quot;, 0);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>christofGUID = CodexThing.GuidFromCastID(&quot;Christof&quot;);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>cosmasGUID = _Cosmas.GetGUID();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>ecaterinaGUID = _Ecaterina.GetGUID();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>wilhemGUID = _Wilhem.GetGUID();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>_Christof = new CodexActor(christofGUID);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>if(!CodexSequence.GetChronicleFlag(chronScript.UNIV_CONVDONE))</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>// Fade in from awakening scene</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexCamera.AddFade(CodexPlayer.GetCurrentPlayer(), (float)0.0, (float)255.0, (float)3.0, false);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>SetTimer((float)0.1, TIMER_ID_SUBMISSIONCONV1);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public void clicked(int guid, int clickerGuid, int captureID)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>if(guid == _Ecaterina.GetGUID())</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>// play default line here</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>EcatReturn1Conversation(clickerGuid, 0);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>else if(guid == _Cosmas.GetGUID())</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>// play default line here</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CosmasReturnConversation(clickerGuid, 0);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public void timer(int timerID, float arg0, float arg1, float arg2, float arg3)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>switch(timerID)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>case TIMER_ID_SUBMISSIONCONV1:</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>SubmissionConversation1(CodexPlayer.GetCurrentPlayer(), 0);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>break;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>case TIMER_ID_SUBMISSIONCONV2:</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>SubmissionConversation2(CodexPlayer.GetCurrentPlayer(), 0);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>break;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>case TIMER_ID_WILHEMINTERVENE:</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>pos = _Wilhem.GetFramePosition(1);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>_Wilhem.SendActorToPos(pos, (float)90.0);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>break;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>case TIMER_ID_MOVECHRISWILHEM:</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>CodexPlayer.TeleportPartyToConversation(CodexPlayer.GetCurrentPlayer(), 0);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>_Wilhem.SetPosition(_Wilhem.GetFramePosition(1));</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>_Wilhem.LookAtThing(ecaterinaGUID);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>break;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public void SubmissionConversation1(int starterGuid, int npcGuid)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>CodexSound.PushMusic(&quot;DA_Conversation_1.mp3&quot;, 50);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>bSubmissionConversation1 = true;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>AIOff();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>CodexPlayer.TeleportPartyToConversation(CodexPlayer.GetCurrentPlayer(), 0);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>ExecuteConversation(starterGuid, npcGuid, &quot;7_7_Fealty&quot;, &quot;7_7_Fealty.nco&quot;, CONV_XFLAG_WANTFEEDBACK);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public void SubmissionConversation2(int starterGuid, int npcGuid)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>bSubmissionConversation2 = true;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>AIOff();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>ExecuteConversation(starterGuid, npcGuid, &quot;7_7_Fealty2&quot;, &quot;7_7_Fealty2.nco&quot;, CONV_XFLAG_WANTFEEDBACK);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public void EcatReturn1Conversation(int starterGuid, int npcGuid)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>bEcatReturn1Conversation = true;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>AIOff();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>ExecuteConversation(starterGuid, npcGuid, &quot;8_1_EcatReturn1&quot;, &quot;8_1_EcatReturn1.nco&quot;, CONV_XFLAG_WANTFEEDBACK);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public void CosmasReturnConversation(int starterGuid, int npcGuid)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>bCosmasReturnConversation = true;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>AIOff();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>ExecuteConversation(starterGuid, npcGuid, &quot;7_7_CosmasReturn&quot;, &quot;7_7_CosmasReturn.nco&quot;, CONV_XFLAG_WANTFEEDBACK);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>public void convended(int starterGuid,<span style="mso-spacerun: yes">  </span>boolean bAborted , int returnValue)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>if(bSubmissionConversation1)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>//AIOn();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>bSubmissionConversation1 = false;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>//CodexCamera.Release(starterGuid);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>if(CodexSequence.GetChronicleFlag(chronScript.UNIV_SHUNANSWER))</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>CodexCamera.AddFade(CodexPlayer.GetCurrentPlayer(), (float)255.0, (float)0.0, (float)4.0, true);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>SetTimer(2, TIMER_ID_MOVECHRISWILHEM);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>SetTimer(4, TIMER_ID_SUBMISSIONCONV2);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>else</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:4'>                                </span>SetTimer(0, TIMER_ID_SUBMISSIONCONV2);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>if(bSubmissionConversation2)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexSound.PopMusic();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>AIOn();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>bSubmissionConversation2 = false;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexCamera.Release(starterGuid);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>// award conversation XP</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexPlayer.AwardPartyExperience(50);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>// NOTE: do NOT get rid of this flag, it's checked in a couple other scripts</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexSequence.SetChronicleFlag(chronScript.UNIV_CONVDONE);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>// Add Wilhem to the party</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>_Wilhem.AddToParty();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>// add nod fragment quest</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexQuest q = new CodexQuest(CodexQuest.Load(&quot;P1_NodFragment&quot;));</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>// show petrin on map</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexSequence.SetLocationFlags(&quot;PetrinHill&quot;, LOCATION_FLAG_SHOWINMAP);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>// set up scene in old town</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexSequence.ChangeScene(&quot;OldTown&quot;, &quot;OLDT_7_7.nsd&quot;);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>// change scene in petrin for this mission</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexSequence.ChangeScene(&quot;PetrinHill&quot;, &quot;HILL_8_1.nsd&quot;);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>if(bEcatReturn1Conversation)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>AIOn();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>bEcatReturn1Conversation = false;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexCamera.Release(starterGuid);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>if(bCosmasReturnConversation)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>{</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>AIOn();</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>bCosmasReturnConversation = false;</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:3'>                        </span>CodexCamera.Release(starterGuid);</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:2'>                </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:1'>          </span>public void convreached(int starterGuid, int curEvent, int curLine, int lineDuration, int speakerGuid)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:1'>          </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>if(bSubmissionConversation1)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre><span style='mso-tab-count:3'>                             </span>switch(curEvent)</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 0:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>switch(curLine)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 0:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>_Ecaterina.LookAtThing(christofGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), &quot;Fealty.ncp&quot;, 30);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 1:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 2:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 3:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>}<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 1:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>switch(curLine)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 0:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), &quot;Fealty.ncp&quot;, 30);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 1:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, cosmasGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 2:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>}<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span><span
+style='mso-tab-count:1'>          </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 2:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>switch(curLine)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 0:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), &quot;Fealty.ncp&quot;, 30);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 1:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, cosmasGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 2:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>}<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 3:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>switch(curLine)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 0:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 1:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), &quot;Fealty.ncp&quot;, 30);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 2:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_CLOSEUP, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 3:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, cosmasGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_CLOSEUP, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 4:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 5:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>}<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 4:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>switch(curLine)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 0:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>// set this so we know chris has chosen to shun ecaterina<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexSequence.SetChronicleFlag(chronScript.UNIV_SHUNANSWER);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>// move wilhem to &quot;catch&quot; chris<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>pos = _Wilhem.GetFramePosition(4);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>_Christof.SendActorToPos(pos, (float)210.0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>pos = _Wilhem.GetFramePosition(3);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>_Wilhem.SendActorToPos(pos, (float)210.0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), &quot;UnivBalcony.ncp&quot;, 30);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:6'>                                                          </span>case 1:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>_Wilhem.LookAtThing(christofGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span><span
+style='mso-tab-count:4'>                                      </span>_Christof.LookAtThing(wilhemGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, wilhemGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_ANGULAR_B, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:7'>                                                                   </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>}<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>} // switch(curEvent)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>} // if(bSubmissionConversation1)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>if(bSubmissionConversation2)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>switch(curLine)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 0:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), &quot;Fealty.ncp&quot;, 30);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>// Set timer to move Wilhem near end of Ecat line<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>SetTimer((float)3.0, TIMER_ID_WILHEMINTERVENE);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 1:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>_Wilhem.LookAtThing(ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>_Wilhem.PlayMotionSetMode(MOTION_GESTURE4, false, (float)30.0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, wilhemGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 2:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>_Wilhem.StopActorAction();<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_ANGULAR_C, CAM_ANGLE_MEDIUM, CAM_DIST_CLOSEUP, 1, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 3:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, wilhemGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 4:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 5:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, cosmasGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_C, CAM_ANGLE_MEDIUM, CAM_DIST_FULL, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 6:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, ecaterinaGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_ANGULAR_C, CAM_ANGLE_MEDIUM, CAM_DIST_CLOSEUP, 1, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 7:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.PlayPath(CodexPlayer.GetCurrentPlayer(), GetGUID(), &quot;UnivBalcony.ncp&quot;, 30);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>// Move Wilhem near Christof<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span><span
+style='mso-tab-count:3'>                             </span>pos = _Wilhem.GetFramePosition(2);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>_Wilhem.SendActorToPos(pos, (float)90.0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 8:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetupCutscene(starterGuid, christofGUID, wilhemGUID);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_ANGULAR_B, CAM_ANGLE_MEDIUM, CAM_DIST_CLOSEUP, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>}<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>} // if(bSubmissionConversation2)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>if(bEcatReturn1Conversation)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>switch(curLine)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 0:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetupCutscene(starterGuid, speakerGuid, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>}<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>}<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>if(bCosmasReturnConversation)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>switch(curLine)<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>{<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:4'>                                      </span>case 0:<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetupCutscene(starterGuid, speakerGuid, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>CodexCamera.SetShot(starterGuid, CAM_SHOT_POV_A, CAM_ANGLE_MEDIUM, CAM_DIST_MEDIUM, 0, 0);<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:5'>                                                </span>break;<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:3'>                             </span>}<o:p></o:p></b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><b><span style='mso-tab-count:2'>                   </span>}</b></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='mso-tab-count:1'>        </span>}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre >}</pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<!--mstheme--></font>
+
+<h2><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Sample Conversation File: 7_7_Fealty.nco<!--mstheme--></font></h2>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// *********************************************************************************<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>//<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// 7_7_Fealty.nco (conversation file)<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>//<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// This file has been generated by the Voice DB Exporter.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>//<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Copyright (c) 1999-2000 Nihilistic Software, Inc.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>//<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// *********************************************************************************<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>CONVERSATION: 7_7_Fealty 0<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>EVENT: ev_0<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>LINE:<span style="mso-spacerun:
+yes">         </span>Ecat_7_7_280<span style="mso-spacerun:
+yes">                 </span>Ecat<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style="mso-spacerun: yes">        </span><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>ANSWERGOTO:<span style="mso-spacerun:
+yes">   </span>Christof_7_7_282<span style="mso-spacerun: yes">             </span>ev_tentative<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>ANSWERGOTO:<span style="mso-spacerun:
+yes">   </span>Christof_7_7_283<span style="mso-spacerun: yes">             </span>ev_wimp<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>ANSWERGOTO:<span style="mso-spacerun:
+yes">   </span>Christof_7_7_281<span style="mso-spacerun: yes">             </span>ev_shun<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>EVENT: ev_tentative<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>LINE:<span style="mso-spacerun:
+yes">         </span>Ecat_7_7_284<span style="mso-spacerun: yes">       </span><span
+style="mso-spacerun: yes">          </span>Ecat<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style="mso-spacerun: yes">   </span><span style='mso-tab-count:1'>  </span>LINE:<span
+style="mso-spacerun: yes">         </span>Cosmas_7_7_285<span
+style="mso-spacerun: yes">               </span>Cosmas<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style="mso-spacerun: yes">   </span><span style='mso-tab-count:1'>  </span>LINE:<span
+style="mso-spacerun: yes">         </span>Ecat_7_7_286<span
+style="mso-spacerun: yes">                 </span>Ecat<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>EVENT: ev_wimp<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style="mso-spacerun: yes">   </span><span style='mso-tab-count:1'>  </span>LINE:<span
+style="mso-spacerun: yes">         </span>Ecat_7_7_287<span
+style="mso-spacerun: yes">                 </span>Ecat<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style="mso-spacerun: yes">   </span><span style='mso-tab-count:1'>  </span>LINE:<span
+style="mso-spacerun: yes">         </span>Cosmas_7_7_288<span
+style="mso-spacerun: yes">               </span>Cosmas<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style="mso-spacerun: yes">   </span><span style='mso-tab-count:1'>  </span>LINE:<span
+style="mso-spacerun: yes">   </span><span style="mso-spacerun:
+yes">      </span>Ecat_7_7_289<span style="mso-spacerun: yes">                 </span>Ecat<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>EVENT: ev_shun<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style="mso-spacerun: yes">   </span><span style='mso-tab-count:1'>  </span>LINE:<span
+style="mso-spacerun: yes">         </span>Ecat_7_7_290<span
+style="mso-spacerun: yes">                 </span>Ecat<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>LINE:<span style="mso-spacerun:
+yes">         </span>Cosmas_7_7_291<span style="mso-spacerun:
+yes">               </span>Cosmas<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>LINE:<span style="mso-spacerun:
+yes">         </span>Ecat_7_7_292<span style="mso-spacerun:
+yes">                 </span>Ecat<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>LINE:<span style="mso-spacerun:
+yes">         </span>Cosmas_7_7_293<span style="mso-spacerun:
+yes">               </span>Cosmas<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>LINE:<span style="mso-spacerun:
+yes">         </span>Ecat_7_7_294<span style="mso-spacerun:
+yes">                 </span>Ecat<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>LINE:<span style="mso-spacerun:
+yes">         </span>Christof_7_7_2515<span style="mso-spacerun:
+yes">            </span>Christof<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style="mso-spacerun: yes">   </span><span style='mso-tab-count:1'>  </span>JUMP:<span
+style="mso-spacerun: yes">                                      </span>ev_suicide<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>EVENT: ev_suicide<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style="mso-spacerun: yes">   </span><span style='mso-tab-count:1'>  </span>DELAY:<span
+style="mso-spacerun: yes">        </span>3<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>LINE:<span style="mso-spacerun:
+yes">         </span>Wilhem_7_7_300<span style="mso-spacerun:
+yes">               </span>Wilhem<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// *********************************************************************************<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Ecat_7_7_280<span
+style="mso-spacerun: yes">                </span>Thou needs must pledge fealty to thy new Mistress.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Christof_7_7_281<span style="mso-spacerun: yes">            </span>I do NOT agree to serve thee. I reject thee and shun thy evil works! I take my leave of thee!<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Christof_7_7_282<span style="mso-spacerun: yes">            </span>I am newly remade, and know little of this world. I agree only to follow thy lead for the present.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Christof_7_7_283<span style="mso-spacerun: yes">            </span>I submit to thee in all things. I am thine to command.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Ecat_7_7_290<span
+style="mso-spacerun: yes">                </span>Insolent whelp! I forbid it! Tempt not my wrath.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Ecat_7_7_284<span
+style="mso-spacerun: yes">                </span>Such rebelliousness is unseemly in a Brujah. I do not like such willfulness in my Childer.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Ecat_7_7_287<span
+style="mso-spacerun: yes">                </span>Thou knowest well thy place.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Cosmas_7_7_285<span style="mso-spacerun: yes">              </span>He displays as much fealty as can be expected from such a one, Ecaterina.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Cosmas_7_7_288<span style="mso-spacerun: yes">              </span>Humph. I had expected more fire in him. Mayhap thou misjudged his spine, Ecaterina.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Cosmas_7_7_291<span style="mso-spacerun: yes">             </span><span
+style="mso-spacerun: yes"> </span>The man he was can do little else, Ecaterina.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Ecat_7_7_289<span
+style="mso-spacerun: yes">                </span>We shall see. Mayhap he takes instruction with more spirit.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Ecat_7_7_286<span
+style="mso-spacerun: yes">                </span>Very well, Cosmas. Then thou may hold his leash. We shall see if he takes instruction with more deference.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Ecat_7_7_292<span
+style="mso-spacerun: yes">                </span>The vampire he is must do otherwise, Cosmas.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Cosmas_7_7_293<span style="mso-spacerun: yes">              </span>He will learn…should he survive his own folly.<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Ecat_7_7_294<span
+style="mso-spacerun: yes">                </span>Thou speakest sagely, Cosmas. Very well, Christof. I shall not strike thee down for this one act of disobedience. And if thou leavest now, I shall not move to stop thee. But neither shall I lift my hand to save thee from reaping the fruits of such <o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Christof_7_7_2515<span style="mso-spacerun: yes">           </span>Then, farewell, fair cruelty. I take my leave of thy damnable house and my own damnable un-life! For only in death can I find solace for the loss of my soul!<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica"><!--mstheme--></font>
+
+<pre ><span style='font-family:"Courier New"'>// Wilhem_7_7_300<span style="mso-spacerun: yes">              </span>Such a death would not end thy accursed existence but curse it even further. Shouldst thou ever meet a wraith, thou would understand that thy present torment is paradise compared to the anguish of those in the Shadowlands. Thou dost owe<o:p></o:p></span></pre>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p ><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<!--mstheme--></font>
+
+<h2><!--mstheme--><font face="Arial, Arial, Helvetica" color="#6699CC">Reference<!--mstheme--></font></h2>
+
+<!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<p ><b>Film directing shot by shot: visualizing from concept to
+screen</b> (Steven D. Katz, 1991, Michael Wiese Productions)</p>
+
+</div>
+
+<!--mstheme--></font>
+
+</body>
+
+</html>
