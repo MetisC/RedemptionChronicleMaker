@@ -39,6 +39,23 @@ class Phase9GuiTests(TestCase):
         combo=self.w.campaign_panel.findChild(QComboBox,'path_loop');combo.setCurrentIndex(combo.findData(True));self.assertTrue(self.w.doc.campaign['scenes'][0]['paths'][0]['loop'])
         from rcm.safe_edit import delete_candidate
         with self.assertRaises(ValueError):delete_candidate(self.w.doc,('scenes',0,'waypoints',0),self.backend)
+
+    def test_cinematic_door_controls_and_rename_preserve_references(self):
+        self.w.doc=Document.load(self.backend.ws,'chronicles/tutorial/project.yaml');self.w.refresh()
+        self.w.campaign_panel.navigate(('scenes',0,'sequences',0))
+        self.assertEqual(self.w.campaign_panel.findChild(QComboBox,'sequence_moving_prop').currentData(),'stage_door')
+        source=self.w.doc.snapshot()
+        self.assertEqual(source['scenes'][0]['sequences'][0]['move_at'],6)
+        index=next(i for i,o in enumerate(self.w.doc.data['objects']) if o['id']=='stage_door')
+        self.w.doc.rename('objects',index,'opening_door')
+        movie=self.w.doc.campaign['scenes'][0]['sequences'][0]
+        self.assertEqual(movie['prop_motion']['object'],'opening_door')
+        self.assertEqual(movie['steps'][0]['focus'],'opening_door')
+        from rcm.safe_edit import delete_candidate
+        with self.assertRaises(ValueError):delete_candidate(self.w.doc,('scenes',0,'objects',index),self.backend)
+        self.w.campaign_panel.navigate(('scenes',0,'sequences',0))
+        combo=self.w.campaign_panel.findChild(QComboBox,'sequence_move_path');combo.setCurrentIndex(combo.findData(None))
+        self.assertNotIn('move_at',self.w.doc.campaign['scenes'][0]['sequences'][0])
     def test_debug_format9_navigation_to_action_conversation_and_quest(self):
         self.w.doc=CampaignDocument(self.backend.ws,modern());self.w.refresh();panel=self.w.debug_panel
         self.assertTrue(panel.enabled.isEnabled());panel.enabled.setChecked(False);self.assertFalse(self.w.doc.campaign['build_options']['debug'])

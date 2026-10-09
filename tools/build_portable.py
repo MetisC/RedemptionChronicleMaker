@@ -17,6 +17,7 @@ env=dict(os.environ,PYTHONPATH=os.pathsep.join([str(ROOT/'cache/devtools'),str(R
 env['PATH']=os.pathsep.join([str(ROOT/'cache/vendor/PySide6'),str(Path(os.environ.get('SystemRoot',r'C:\Windows'))/'System32')])
 command=[sys.executable,'-m','PyInstaller','--noconfirm','--onedir','--windowed','--name','RedemptionChronicleMaker','--distpath',str(destination),'--workpath',str(ws.output('build/pyinstaller_work')),'--specpath',str(ws.output('build/pyinstaller_spec')),'--paths',str(ROOT/'src'),'--paths',str(ROOT/'cache/vendor'),'--hidden-import','numpy','--hidden-import','PIL.Image','--hidden-import','yaml','--hidden-import','PySide6.QtOpenGLWidgets','--add-data',str(ROOT/'cache/toolchain/ecj-3.26.0.jar')+';toolchain',str(entry)]
 command.insert(4,'--clean')
+command[4:4]=['--icon',str(ROOT/'src/rcm/editor/assets/chronicle.ico'),'--add-data',str(ROOT/'src/rcm/editor/assets')+';rcm/editor/assets']
 run=subprocess.run(command,cwd=ROOT,env=env,capture_output=True,text=True);ws.write('build/portable_build.log',run.stdout+run.stderr)
 if run.returncode:raise SystemExit('PyInstaller falló; consulta build/portable_build.log')
 jdk=Path(r'C:\Program Files\Eclipse Adoptium\jdk-21.0.11.10-hotspot');runtime=app/'runtime'

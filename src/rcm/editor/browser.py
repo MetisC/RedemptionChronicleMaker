@@ -1,6 +1,6 @@
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QComboBox,
-    QTableWidget, QTableWidgetItem, QHeaderView, QLabel, QPushButton, QDialog, QDialogButtonBox)
+    QTableWidget, QTableWidgetItem, QHeaderView, QLabel, QPushButton, QDialog, QDialogButtonBox,QCheckBox)
 
 
 class ResourceBrowser(QWidget):
@@ -30,6 +30,7 @@ class ResourceBrowser(QWidget):
         self.available = QComboBox(); self.available.setObjectName('resource_available')
         self.available.addItem('Todos',False); self.available.addItem('Sólo seleccionables',True)
         for control in (self.family,self.origin,self.available): filters.addWidget(control); control.currentIndexChanged.connect(self.refresh)
+        self.bases=QCheckBox('Incluir plantillas base');self.bases.setToolTip('Las plantillas con prefijo _ suelen ser bases de herencia. Actívalo para inspeccionarlas o clonarlas.');self.bases.toggled.connect(self.refresh);filters.addWidget(self.bases)
         layout.addLayout(filters)
         self.table = QTableWidget(0, 4)
         self.table.setObjectName("resource_table")
@@ -89,6 +90,7 @@ class ResourceBrowser(QWidget):
             for t in templates:
                 counts[t["id"]] = counts.get(t["id"], 0) + 1
             for item in sorted(templates, key=lambda t: t["id"].casefold()):
+                if item['id'].startswith('_') and not self.bases.isChecked():continue
                 if item["kind"] not in ({"actors"} if kind == "actors" else {"items", "props", "weapons", "armour"}):
                     continue
                 if hasattr(self,'allowed_families') and item['kind'] not in self.allowed_families:continue
@@ -106,8 +108,8 @@ class ResourceBrowser(QWidget):
                 rows.append((item["id"], item["path"], item["archive"], "Consulta", item["id"],
                              f"ID exacto: {item['id']}\n{item['archive']} / {item['path']}", True))
         rows = [r for r in rows if query in " ".join(str(v) for v in r[:6]).casefold()]
-        self.family.setEnabled(kind in {'actors','items'}); self.origin.setEnabled(kind in {'actors','items'})
-        rows = [r for r in rows if (kind not in {'actors','items'} or (not self.family.currentData() or r[1]==self.family.currentData()) and (not self.origin.currentData() or r[2].startswith(self.origin.currentData()))) and (not self.available.currentData() or r[6])]
+        self.family.setEnabled(kind=='items'); self.origin.setEnabled(kind in {'actors','items'})
+        rows = [r for r in rows if (kind!='items' or not self.family.currentData() or r[1]==self.family.currentData()) and (kind not in {'actors','items'} or not self.origin.currentData() or r[2].startswith(self.origin.currentData())) and (not self.available.currentData() or r[6])]
         self.table.setRowCount(len(rows))
         for i, row in enumerate(rows):
             for j, value in enumerate(row[:4]):

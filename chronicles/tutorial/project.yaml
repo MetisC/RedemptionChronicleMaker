@@ -1,0 +1,1438 @@
+schema: 2
+project_format: 9
+chronicle:
+  id: rcm_tutor
+  name: RCM · Tutorial paso a paso
+  description: Siete lecciones cortas y un laboratorio opcional separado. Un level con tres layouts.
+entry: workshop
+state:
+  flags:
+    step1: 1
+    step2: 2
+    step3: 3
+    step4: 4
+    step5: 5
+    step6: 6
+    step7: 7
+    has_key: 8
+    rat_spawned: 9
+    rat_killed: 10
+    finished: 11
+    entered_zone: 12
+    picked_up: 13
+    left_zone: 14
+    lab_ready: 15
+scenes:
+- id: workshop
+  level:
+    source: EastLondon
+    name: Tutorial · lecciones 1 a 5
+    environment_scene: EAST_28_1.nsd
+  actors:
+  - id: mentor
+    name: '01 · Tomás: empezar'
+    template: T_tutor_mentor
+    transform:
+      placement: absolute
+      position:
+      - -176
+      - -612
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: menu
+  - id: camera
+    name: '02 · Vera: conversación y cámara'
+    template: gothGirl1
+    transform:
+      placement: absolute
+      position:
+      - -176
+      - -612
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: camera
+  - id: director
+    name: '03 · Anezka: una cutscene'
+    template: Anezka
+    transform:
+      placement: absolute
+      position:
+      - -176
+      - -612
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: cinema
+  - id: keeper
+    name: '04 · Elena: inventario y llave'
+    template: LonCiv2
+    transform:
+      placement: absolute
+      position:
+      - -176
+      - -612
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: inventory
+    inventory:
+    - npc_key
+    - npc_book
+  - id: gate
+    name: '05 · Agente: cambiar el layout'
+    template: Bobbie
+    transform:
+      placement: absolute
+      position:
+      - -176
+      - -612
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: gate
+  - id: walker
+    name: Paseante de la lección 3
+    template: LonCiv3
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -1018
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+  - id: lab
+    name: Laboratorio opcional · profesor de animación
+    template: ST_Christof_MD
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -612
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: lab
+  - id: labwalker
+    name: Paseante del laboratorio
+    template: LonCiv3
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -730
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+  objects:
+  - id: npc_key
+    name: Llave de hueso del tutorial
+    template: T_tutor_key
+    transform:
+      placement: absolute
+      position:
+      - -62.0
+      - -768.0
+      - 368.0
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: npc_book
+    name: Libro en inventario de la custodia
+    template: ledger
+    transform:
+      placement: absolute
+      position:
+      - -62.0
+      - -768.0
+      - 368.0
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: key
+    name: Llave de hueso del tutorial
+    template: T_tutor_key
+    transform:
+      placement: absolute
+      position:
+      - -176.0
+      - -768.0
+      - 384.0
+      orientation:
+      - 0
+      - 0
+      - 180
+    quest_item: true
+  - id: barrel
+    name: Barril de decorado · no interactuable
+    template: barrel1
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -768
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: reward
+    name: Libro recogible · laboratorio
+    template: ledger
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -800
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: stage_door
+    name: Puerta del decorado · se eleva durante la película
+    template: testdoor
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -950
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  conversations:
+  - id: menu
+    speaker: mentor
+    camera: ots_speaker_close
+    prompt: 'Bienvenido. Soy Tomás y te acompañaré al empezar. No hace falta que recorras Londres buscando a los
+      demás: cada profesor vendrá a esta misma esquina. El journal te recordará qué toca hacer. Si quieres cambiar
+      dónde empieza tu personaje, abre Espacio 3D > Inicio en el editor y mueve la entrada safe. ¿Seguimos con Vera?'
+    choices:
+    - text: Sí, vamos con Vera.
+      result: 1
+    - text: Omitir esta parte y continuar.
+      result: 2
+  - id: camera
+    speaker: camera
+    camera: ots_speaker_close
+    prompt: 'Hola, soy Vera. Vamos a ver cómo cambia una conversación según dónde pongamos la cámara. Te enseñaré
+      los planos uno a uno: pulsa Siguiente cuando quieras cambiar y tómate el tiempo que necesites. En el editor
+      están en Cámara de diálogo, al seleccionar la conversación. El plano sobre el hombro es el que usamos por
+      defecto.'
+    choices:
+    - text: Enséñame los planos.
+      result: 1
+    - text: Omitir esta parte y continuar.
+      result: 2
+  - id: framed
+    speaker: camera
+    camera: ots_speaker_close
+    prompt: '1 de 13 · Sobre hombro cercano hacia quien habla. Estamos sobre tu hombro, cerca de Vera. Ves a quien
+      habla y un poco de quien escucha: es nuestro plano habitual.'
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_2
+    speaker: camera
+    camera: speaker_extreme
+    prompt: 2 de 13 · Primerísimo primer plano de quien habla. Ahora nos acercamos mucho al rostro de Vera. Va bien
+      para una reacción importante, pero puede resultar demasiado intenso para una charla larga.
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_3
+    speaker: camera
+    camera: listener_extreme
+    prompt: 3 de 13 · Primerísimo primer plano de quien escucha. Este mismo acercamiento mira ahora a tu personaje.
+      Sirve para enseñar su reacción mientras escucha.
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_4
+    speaker: camera
+    camera: speaker_close
+    prompt: 4 de 13 · Primer plano de quien habla. Este es un primer plano de Vera. Su rostro tiene el protagonismo;
+      suele funcionar bien en los diálogos.
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_5
+    speaker: camera
+    camera: listener_close
+    prompt: 5 de 13 · Primer plano de quien escucha. Ahora el primer plano es de tu personaje. Puedes alternar entre
+      quien habla y quien escucha.
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_6
+    speaker: camera
+    camera: ots_listener_close
+    prompt: '6 de 13 · Sobre hombro cercano hacia quien escucha. Hemos pasado al otro hombro: miramos hacia tu personaje
+      desde el lado de Vera.'
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_7
+    speaker: camera
+    camera: ots_speaker
+    prompt: 7 de 13 · Sobre hombro hacia quien habla. Volvemos a mirar a Vera sobre tu hombro, pero con algo más
+      de espacio alrededor.
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_8
+    speaker: camera
+    camera: ots_listener
+    prompt: 8 de 13 · Sobre hombro hacia quien escucha. El mismo plano más abierto, desde el hombro de Vera hacia
+      tu personaje.
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_9
+    speaker: camera
+    camera: profile_speaker
+    prompt: 9 de 13 · Perfil de quien habla. Vemos a Vera de perfil. Un cambio lateral puede dar variedad a una
+      conversación.
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_10
+    speaker: camera
+    camera: profile_listener
+    prompt: 10 de 13 · Perfil de quien escucha. Aquí vemos de perfil a tu personaje. Es la otra mitad del plano
+      anterior.
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_11
+    speaker: camera
+    camera: two_shot
+    prompt: 11 de 13 · Dos personajes. Ahora entráis los dos en el encuadre. Este plano ayuda a mostrar la distancia
+      y la relación entre ambos.
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_12
+    speaker: camera
+    camera: medium
+    prompt: 12 de 13 · Plano medio. El plano medio deja ver más del cuerpo y de la calle. Es útil si importan los
+      gestos o el lugar donde habláis.
+    choices:
+    - text: Siguiente plano.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: frame_13
+    speaker: camera
+    camera: full
+    prompt: 13 de 13 · Plano entero. Nos alejamos para ver el cuerpo entero. Así puedes mostrar a los personajes
+      dentro del escenario. Eso es todo. Puedes elegir el que más te guste en Cámara de diálogo. Anezka nos espera
+      para enseñarnos una escena con movimiento.
+    choices:
+    - text: Ya los he visto. Vamos con Anezka.
+      result: 1
+    - text: Omitir los demás planos y continuar.
+      result: 2
+  - id: cinema
+    speaker: director
+    camera: ots_speaker_close
+    prompt: 'Soy Anezka. Vamos a contar una pequeña historia sin movernos de esta calle: alguien espera detrás de
+      una puerta, la puerta se levanta y le deja pasar. Verás el lugar, la apertura y su paseo desde varios planos.
+      Dura doce segundos. En Cámaras > walk_scene puedes cambiar los planos, cuándo se abre la puerta y cuándo empieza
+      a caminar el personaje. ¿La vemos?'
+    choices:
+    - text: Sí, vamos a verla.
+      result: 1
+    - text: Omitir esta parte y continuar.
+      result: 2
+  - id: inventory
+    speaker: keeper
+    camera: ots_speaker_close
+    prompt: 'Hola, soy Elena. Llevo una llave y un libro; puedes preparar lo que lleva cualquier personaje en Editar
+      inventario inicial > + Del catálogo. Voy a darte una llave. Mira después tu inventario: un evento puede comprobar
+      si la tienes para dejarte pasar. Si prefieres omitirlo, te la daré igualmente para que puedas seguir.'
+    choices:
+    - text: Gracias, dame la llave.
+      result: 1
+    - text: Omitir esta parte y continuar.
+      result: 2
+  - id: gate
+    speaker: gate
+    camera: ots_speaker_close
+    prompt: '¿Ves el barril a mi derecha? Es sólo decorado, no tienes que usarlo. Ahora vamos a cambiar lo que hay
+      en esta calle: el barril desaparecerá, nosotros nos iremos y llegará otro instructor. Las calles serán las
+      mismas. En el editor lo preparas con + Escena > Nuevo layout sobre este level y un evento Viaje. Así puedes
+      reutilizar un lugar en distintos momentos de la historia.'
+    choices:
+    - text: Vale, veamos cómo cambia la calle.
+      result: 1
+    - text: Omitir esta parte y continuar.
+      result: 2
+  - id: lab
+    speaker: lab
+    camera: ots_speaker_close
+    entry: opening
+    nodes:
+    - id: opening
+      lines:
+      - speaker: lab
+        text: Aquí puedes probar cosas a tu aire. No hace falta que hagas nada de esto para seguir con los profesores.
+          ¿Qué te apetece probar?
+        motion: gesture10
+      choices:
+      - text: Movimiento y cámaras.
+        goto: motion
+      - text: Animaciones de conversación.
+        goto: motions
+      - text: Objetos y decisiones que se recuerdan.
+        goto: objects
+      - text: Ya volveré, gracias.
+        result: 10
+    - id: motion
+      lines:
+      - speaker: lab
+        text: Ese paseante es sólo para nuestras pruebas. Podemos hacerlo caminar o detenerlo. También hay un travelling
+          del juego original; ese ejemplo todavía necesita más pruebas.
+        motion: gesture7
+      choices:
+      - text: Que empiece a caminar.
+        result: 1
+      - text: Que se detenga.
+        result: 2
+      - text: Pausar su AI.
+        result: 3
+      - text: Reanudar su AI.
+        result: 4
+      - text: Ver el travelling original (experimental).
+        result: 5
+      - text: Volver.
+        goto: opening
+    - id: motions
+      lines:
+      - speaker: lab
+        text: Cada modelo tiene su propio archivo de movimientos. El motor usa hablar y escuchar automáticamente;
+          aquí puedes probar los gestos que este personaje realmente tiene y ver su nombre en el editor.
+        motion: gesture3
+      choices:
+      - text: Ver gesto 3.
+        goto: gesture3
+      - text: Ver gesto 7.
+        goto: gesture7
+      - text: Ver gesto 8.
+        goto: gesture8
+      - text: Ver gesto 9.
+        goto: gesture9
+      - text: Ver gesto 10.
+        goto: gesture10
+      - text: Volver.
+        goto: opening
+    - id: gesture3
+      lines:
+      - speaker: lab
+        text: Este nodo reproduce el gesto 3. En el editor puedes cambiar Animación al hablar por otro movimiento
+          disponible para este modelo.
+        motion: gesture3
+      choices:
+      - text: Elegir otro movimiento.
+        goto: motions
+      - text: Volver al laboratorio.
+        goto: opening
+    - id: gesture7
+      lines:
+      - speaker: lab
+        text: Este nodo reproduce el gesto 7. En el editor puedes cambiar Animación al hablar por otro movimiento
+          disponible para este modelo.
+        motion: gesture7
+      choices:
+      - text: Elegir otro movimiento.
+        goto: motions
+      - text: Volver al laboratorio.
+        goto: opening
+    - id: gesture8
+      lines:
+      - speaker: lab
+        text: Este nodo reproduce el gesto 8. En el editor puedes cambiar Animación al hablar por otro movimiento
+          disponible para este modelo.
+        motion: gesture8
+      choices:
+      - text: Elegir otro movimiento.
+        goto: motions
+      - text: Volver al laboratorio.
+        goto: opening
+    - id: gesture9
+      lines:
+      - speaker: lab
+        text: Este nodo reproduce el gesto 9. En el editor puedes cambiar Animación al hablar por otro movimiento
+          disponible para este modelo.
+        motion: gesture9
+      choices:
+      - text: Elegir otro movimiento.
+        goto: motions
+      - text: Volver al laboratorio.
+        goto: opening
+    - id: gesture10
+      lines:
+      - speaker: lab
+        text: Este nodo reproduce el gesto 10. En el editor puedes cambiar Animación al hablar por otro movimiento
+          disponible para este modelo.
+        motion: gesture10
+      choices:
+      - text: Elegir otro movimiento.
+        goto: motions
+      - text: Volver al laboratorio.
+        goto: opening
+    - id: objects
+      lines:
+      - speaker: lab
+        text: 'Acércate a la zona que hay un poco más allá de mí: aparecerá un libro que puedes recoger. En Debug
+          > Leer trace queda anotado cuándo entras, sales y lo recoges. También puedes activar una flag: es una
+          marca con la que la crónica recuerda lo que has hecho.'
+      choices:
+      - text: Voy a buscar el libro.
+        result: 6
+      - text: Activar la flag del laboratorio.
+        result: 7
+      - text: Desactivarla.
+        result: 8
+      - text: Volver.
+        goto: opening
+  events:
+  - id: arrival
+    when: scene_start
+    actions:
+    - start_quest: guide
+    - spawn: mentor
+    - spawn: lab
+    - spawn: labwalker
+    - start_music: London_Hub
+    - start_ambient: amb_londonStreet
+  - id: finish_menu
+    when: conversation_ended
+    actions:
+    - set_flag: step1
+    conversation: menu
+    conditions:
+    - quest: guide
+      step: 0
+    once: false
+  - id: finish_inventory
+    when: conversation_ended
+    actions:
+    - set_flag: step4
+    conversation: inventory
+    conditions:
+    - quest: guide
+      step: 3
+    once: false
+  - id: show_frame
+    when: conversation_ended
+    actions:
+    - start_conversation: framed
+    conversation: camera
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_camera
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: camera
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: film
+    when: conversation_ended
+    actions:
+    - play_sequence: walk_scene
+    conversation: cinema
+    result: 1
+    conditions:
+    - quest: guide
+      step: 2
+    once: false
+  - id: skip_film
+    when: conversation_ended
+    actions:
+    - set_flag: step3
+    conversation: cinema
+    result: 2
+    conditions:
+    - quest: guide
+      step: 2
+    once: false
+  - id: film_finished
+    when: sequence_ended
+    actions:
+    - set_flag: step3
+    sequence: walk_scene
+    conditions:
+    - quest: guide
+      step: 2
+    once: false
+  - id: next_framed
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_2
+    conversation: framed
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_framed
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: framed
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_2
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_3
+    conversation: frame_2
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_2
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_2
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_3
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_4
+    conversation: frame_3
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_3
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_3
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_4
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_5
+    conversation: frame_4
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_4
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_4
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_5
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_6
+    conversation: frame_5
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_5
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_5
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_6
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_7
+    conversation: frame_6
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_6
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_6
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_7
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_8
+    conversation: frame_7
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_7
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_7
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_8
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_9
+    conversation: frame_8
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_8
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_8
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_9
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_10
+    conversation: frame_9
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_9
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_9
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_10
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_11
+    conversation: frame_10
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_10
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_10
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_11
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_12
+    conversation: frame_11
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_11
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_11
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_12
+    when: conversation_ended
+    actions:
+    - start_conversation: frame_13
+    conversation: frame_12
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_12
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_12
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_frame_13
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_13
+    result: 1
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: skip_frame_13
+    when: conversation_ended
+    actions:
+    - set_flag: step2
+    conversation: frame_13
+    result: 2
+    conditions:
+    - quest: guide
+      step: 1
+    once: false
+  - id: next_1
+    when: state_changed
+    actions:
+    - advance_quest: guide
+    - remove: mentor
+    - spawn: camera
+    conditions:
+    - flag: step1
+      is_set: true
+    - quest: guide
+      step: 0
+    once: true
+  - id: next_2
+    when: state_changed
+    actions:
+    - advance_quest: guide
+    - remove: camera
+    - spawn: walker
+    - spawn: stage_door
+    - spawn: director
+    conditions:
+    - flag: step2
+      is_set: true
+    - quest: guide
+      step: 1
+    once: true
+  - id: next_3
+    when: state_changed
+    actions:
+    - advance_quest: guide
+    - remove: director
+    - remove: walker
+    - remove: stage_door
+    - spawn: keeper
+    conditions:
+    - flag: step3
+      is_set: true
+    - quest: guide
+      step: 2
+    once: true
+  - id: next_4
+    when: state_changed
+    actions:
+    - give_item: key
+    - set_flag: has_key
+    - advance_quest: guide
+    - remove: keeper
+    - spawn: barrel
+    - spawn: gate
+    conditions:
+    - flag: step4
+      is_set: true
+    - quest: guide
+      step: 3
+    once: true
+  - id: change_layout
+    when: conversation_ended
+    actions:
+    - set_flag: step5
+    - remove: barrel
+    - advance_quest: guide
+    - travel:
+        scene: combat
+        entry: safe
+    conversation: gate
+    conditions:
+    - quest: guide
+      step: 4
+    - owns_item: key
+    once: true
+  - id: lab_1
+    when: conversation_ended
+    actions:
+    - start_patrol: lab_walk
+    conversation: lab
+    result: 1
+    once: false
+  - id: lab_2
+    when: conversation_ended
+    actions:
+    - stop_patrol: labwalker
+    conversation: lab
+    result: 2
+    once: false
+  - id: lab_3
+    when: conversation_ended
+    actions:
+    - disable_ai: labwalker
+    conversation: lab
+    result: 3
+    once: false
+  - id: lab_4
+    when: conversation_ended
+    actions:
+    - enable_ai: labwalker
+    conversation: lab
+    result: 4
+    once: false
+  - id: lab_5
+    when: conversation_ended
+    actions:
+    - play_sequence: original_path
+    conversation: lab
+    result: 5
+    once: false
+  - id: lab_7
+    when: conversation_ended
+    actions:
+    - set_flag: lab_ready
+    conversation: lab
+    result: 7
+    once: false
+  - id: lab_8
+    when: conversation_ended
+    actions:
+    - clear_flag: lab_ready
+    conversation: lab
+    result: 8
+    once: false
+  - id: reward_spawn
+    when: trigger_enter
+    actions:
+    - spawn: reward
+    - set_flag: entered_zone
+    trigger: station
+    once: true
+  - id: pickup
+    when: item_picked_up
+    actions:
+    - set_flag: picked_up
+    - reward_xp: 10
+    item: reward
+    once: true
+  - id: zone_left
+    when: trigger_leave
+    actions:
+    - set_flag: left_zone
+    trigger: station
+    once: false
+  triggers:
+  - id: station
+    name: Laboratorio · zona del libro
+    shape: box
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -800
+      - 444
+      orientation:
+      - 0
+      - 0
+      - 180
+    size:
+    - 100
+    - 100
+    - 120
+    once: true
+  encounters: []
+  sequences:
+  - id: walk_scene
+    name: Cutscene · caminante y cambios de plano
+    actor: walker
+    duration: 12
+    shot: medium
+    angle: medium
+    move_path: walker_walk
+    steps:
+    - at: 0
+      actor: walker
+      focus: stage_door
+      preset: aerial
+      angle: high
+      transition: 0.8
+    - at: 3
+      actor: walker
+      focus: stage_door
+      preset: full
+      transition: 0.7
+    - at: 6
+      actor: walker
+      preset: full
+      transition: 0.6
+    - at: 9
+      actor: director
+      preset: two_shot
+      transition: 0.5
+    move_at: 6
+    prop_motion:
+      object: stage_door
+      at: 3
+      duration: 3
+      translation:
+      - 0
+      - 0
+      - 208
+  - id: original_path
+    name: Travelling ORIGINAL · EASTOttoVan · experimental
+    actor: lab
+    duration: 8
+    shot: medium
+    angle: medium
+    camera_path: EASTOttoVan
+    path_speed: 1
+  entries:
+  - id: safe
+    name: Inicio del jugador · calle de EastLondon
+    transform:
+      placement: absolute
+      position:
+      - -176.0
+      - -768.0
+      - 384.0
+      orientation:
+      - 0
+      - 0
+      - 0
+  default_entry: safe
+  waypoints:
+  - id: walker_a
+    name: 'Puerta: esperar detrás'
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -1018
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: walker_b
+    name: 'Puerta: salir hacia la calle'
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -878
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: lab_a
+    name: 'Laboratorio: inicio'
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -730
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: lab_b
+    name: 'Laboratorio: final'
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -800
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  paths:
+  - id: walker_walk
+    name: Lección 3 · recorrido corto
+    actor: walker
+    points:
+    - walker_a
+    - walker_b
+    loop: false
+    speed: 60
+    tolerance: 24
+  - id: lab_walk
+    name: Laboratorio · paseo
+    actor: labwalker
+    points:
+    - lab_a
+    - lab_b
+    loop: true
+    speed: 60
+    tolerance: 24
+- id: combat
+  level:
+    source: EastLondon
+    name: 'Tutorial · lección 6: otro layout'
+    environment_scene: EAST_28_1.nsd
+  actors:
+  - id: guide
+    name: '06 · Instructor: encuentro opcional'
+    template: LonCiv3
+    transform:
+      placement: absolute
+      position:
+      - -176
+      - -612
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: layout
+      when_flag: rat_spawned
+      then: fighting
+  - id: rat
+    name: Rata básica · combate opcional
+    template: Rat
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -878
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: enemy
+  objects: []
+  conversations:
+  - id: layout
+    speaker: guide
+    camera: ots_speaker_close
+    prompt: La calle sigue aquí, pero el barril y los otros profesores ya se han ido. Eso es cambiar de layout.
+      Para probar un encuentro voy a hacer aparecer una sola rata, cerca de donde llegaste. Es un enemigo sencillo.
+      En el editor la encontrarás en combat > Encuentros > one_rat. ¿La hacemos aparecer?
+    choices:
+    - text: Sí, vamos a probar el combate.
+      result: 1
+    - text: Omitir esta parte y continuar.
+      result: 2
+  - id: fighting
+    speaker: guide
+    camera: ots_speaker_close
+    prompt: La rata está ahí cerca. Cierra esta conversación para poder atacarla. Cuando la mates pasaremos al último
+      paso. Si no te apetece combatir, también puedes omitirlo.
+    choices:
+    - text: Vamos allá.
+      result: 1
+    - text: Omitir esta parte y continuar.
+      result: 2
+  events:
+  - id: arrival
+    when: scene_start
+    actions:
+    - spawn: guide
+  - id: fight
+    when: conversation_ended
+    actions:
+    - spawn_encounter: one_rat
+    - set_flag: rat_spawned
+    conversation: layout
+    result: 1
+    once: true
+  - id: skip
+    when: conversation_ended
+    actions:
+    - remove_encounter: one_rat
+    - set_flag: step6
+    conversation: layout
+    result: 2
+    once: false
+  - id: skip_started
+    when: conversation_ended
+    actions:
+    - remove_encounter: one_rat
+    - set_flag: step6
+    conversation: fighting
+    result: 2
+    once: false
+  - id: cleared
+    when: encounter_complete
+    actions:
+    - set_flag: rat_killed
+    - set_flag: step6
+    - reward_xp: 10
+    encounter: one_rat
+    once: true
+  - id: next
+    when: state_changed
+    actions:
+    - advance_quest: guide
+    - travel:
+        scene: finished
+        entry: safe
+    conditions:
+    - flag: step6
+      is_set: true
+    - quest: guide
+      step: 5
+    once: true
+  triggers: []
+  encounters:
+  - id: one_rat
+    name: Una rata básica
+    actors:
+    - rat
+  sequences: []
+  entries:
+  - id: safe
+    name: Inicio del jugador · calle de EastLondon
+    transform:
+      placement: absolute
+      position:
+      - -176.0
+      - -768.0
+      - 384.0
+      orientation:
+      - 0
+      - 0
+      - 0
+  default_entry: safe
+  waypoints: []
+  paths: []
+- id: finished
+  level:
+    source: EastLondon
+    name: 'Tutorial · lección 7: guardar y comprobar'
+    environment_scene: EAST_28_1.nsd
+  actors:
+  - id: mentor
+    name: '07 · Tomás: guardar y terminar'
+    template: LonCiv3
+    transform:
+      placement: absolute
+      position:
+      - -176
+      - -612
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: final
+  objects: []
+  conversations:
+  - id: final
+    speaker: mentor
+    camera: ots_speaker_close
+    prompt: 'Ya has llegado al final. Antes de terminar, prueba a guardar la partida y volver a cargarla: deberías
+      seguir aquí y conservar la llave. Las flags sirven para recordar decisiones como las que has tomado. En el
+      editor, Guardar conserva tu proyecto y BUILD CHRONICLE prepara los archivos para el juego. Para repetir estas
+      lecciones desde el principio, crea una partida nueva.'
+    choices:
+    - text: Gracias, hemos terminado.
+      result: 1
+    - text: Omitir esta parte y continuar.
+      result: 2
+  events:
+  - id: arrival
+    when: scene_start
+    actions:
+    - spawn: mentor
+  - id: finish
+    when: conversation_ended
+    actions:
+    - set_flag: step7
+    - advance_quest: guide
+    - complete_quest: guide
+    - set_flag: finished
+    conversation: final
+    conditions:
+    - quest: guide
+      step: 6
+    once: true
+  triggers: []
+  encounters: []
+  sequences: []
+  entries:
+  - id: safe
+    name: Inicio del jugador · calle de EastLondon
+    transform:
+      placement: absolute
+      position:
+      - -176.0
+      - -768.0
+      - 384.0
+      orientation:
+      - 0
+      - 0
+      - 0
+  default_entry: safe
+  waypoints: []
+  paths: []
+quests:
+- id: guide
+  title: Tutorial RCM · paso a paso
+  description: Siete lecciones; sólo se muestra la actual.
+  steps:
+  - 1/7 · Tomás te espera delante de ti. Habla con él para empezar; los demás vendrán a esta misma esquina.
+  - 2/7 · Ahora habla con Vera. Te enseñará los encuadres uno a uno. Pulsa Siguiente cuando quieras cambiar, o salta
+    los demás.
+  - '3/7 · Habla con Anezka: una puerta se abrirá y un personaje pasará por ella. La película dura doce segundos;
+    puedes omitirla antes de empezar.'
+  - 4/7 · Elena te dará una llave. Habla con ella y mira después tu inventario.
+  - 5/7 · Habla con el agente y fíjate en el barril. Vais a cambiar lo que hay en la calle sin cambiar sus edificios.
+  - 6/7 · El instructor puede hacer aparecer una rata cerca de ti. Pídeselo y mátala para seguir, o dile que prefieres
+    omitir el combate.
+  - 7/7 · Tomás ha vuelto para despedirse. Prueba a guardar y cargar la partida; después habla con él para terminar.
+  reward_xp: 20
+resources:
+  templates:
+  - id: T_tutor_mentor
+    base: LonCiv3
+    mode: inherit
+    properties:
+      ai: AI_tutor
+      script: RCMTutorActor
+  - id: T_tutor_key
+    base: BoneKey
+    mode: inherit
+    properties:
+      item_type: 0
+  ai_profiles:
+  - id: AI_tutor
+    base: civilian
+    properties:
+      wanderRadius: 0
+  scripts:
+  - id: RCMTutorActor
+    source: chronicles/tutorial/resources/RCMTutorActor.java
+  textures: []
+metadata:
+  author: RCM
+  version: 0.9.10
+  description: Tutorial guiado, temporizador único, puerta móvil y llave física.
+  requires_game: Redemption 1.1
+  dependencies: []
+build_options:
+  debug: true
+playtests:
+- id: tutorial
+  name: Siete lecciones
+  instructions: Partida nueva. Seguir los objetivos 1 a 7; repetir en otra partida usando Omitir en cada profesor.
+    Verificar cutscene de doce segundos tras los 13 planos, apertura de puerta, paseo tras apertura, cámara y HUD
+    restaurados, llave visible en inventario, laboratorio accesible a la izquierda, barril desaparecido, rata junto
+    al inicio, final y save/load.

@@ -8,12 +8,12 @@ from rcm.document import Document
 
 
 def system_source(ws):
-    root=Document.load(ws,'chronicles/phase5_demo/project.yaml').snapshot()
+    root=Document.load(ws,'tests/fixtures/chronicles/phase5_demo/project.yaml').snapshot()
     root['chronicle']={'id':'rcm_system','name':'RCM System Test','description':'NPC, decisiones, flags, quests, objetos, cámaras y cambio de mapa'}
     root['metadata']={'author':'Redemption Chronicle Maker','version':'0.6.0','requires_game':'Redemption 1.1','description':'Fixture oficial de regresión; checklist en docs/RUNTIME_TEST_MATRIX.md','dependencies':[]}
     root['resources']['templates'][0].update(id='T_rcm6_victoria',properties={'ai':'AI_rcm6','script':'RCM6Actor'})
     root['resources']['ai_profiles'][0]['id']='AI_rcm6'
-    root['resources']['scripts']=[{'id':'RCM6Actor','source':'chronicles/system_test/resources/RCM6Actor.java'}]
+    root['resources']['scripts']=[{'id':'RCM6Actor','source':'tests/fixtures/chronicles/system_test/resources/RCM6Actor.java'}]
     ws.write(root['resources']['scripts'][0]['source'],'public class RCM6Actor extends Codex { public RCM6Actor() { CodexConsole.Print(0,0,"RCM6 custom actor constructed"); } }\n')
     root['scenes'][0]['actors'][0]['template']='T_rcm6_victoria'
     for scene in root['scenes']:
@@ -55,7 +55,7 @@ def create():
         if not result.valid:raise ValueError(folder+': '+'; '.join(p.message for p in result.problems if p.severity=='ERROR'))
         ws.write('chronicles/'+folder+'/project.yaml',source_text(root))
     # A generator run must not silently reset an independently accepted baseline.
-    if not ws.output('chronicles/golden/expected.json').exists():raise ValueError('Falta baseline Golden: recuperar expected.json del proyecto antes de generar fixtures')
+    if not ws.output('tests/fixtures/chronicles/golden/expected.json').exists():raise ValueError('Falta baseline Golden: recuperar expected.json del proyecto antes de generar fixtures')
     print('SystemTest, Golden y fixture grande validados y guardados')
 
 

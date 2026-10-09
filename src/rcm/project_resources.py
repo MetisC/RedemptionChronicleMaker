@@ -71,7 +71,8 @@ def prepare(ws,source,catalogue):
     ts=indexed(owned.get('templates',[]),'templates');ais=indexed(owned.get('ai_profiles',[]),'ai_profiles');scripts=indexed(owned.get('scripts',[]),'scripts');textures=indexed(owned.get('textures',[]),'textures')
     originals={}
     for t in catalogue['templates']:originals.setdefault(t['id'].casefold(),[]).append(t)
-    not_path='misc/templates/R_'+root['chronicle']['id']+'_custom.not'
+    # Custom inventory templates must exist during LAN character restoration.
+    not_path='misc/templates/_R_'+root['chronicle']['id']+'_custom.not'
     entries=copy.deepcopy(catalogue['entries']);templates=copy.deepcopy(catalogue['templates']);payload={};resolved={};visiting=set()
     for name,row in ais.items():
         mapping(row,{'id','base','properties'},{'id','base'},'AI '+name)
@@ -113,9 +114,17 @@ def prepare(ws,source,catalogue):
         if mode=='inherit':new=Template(name,[Tag.text(0,parent.name)],b'RCM custom template\0')
         elif mode=='copy':new=copy.deepcopy(parent);new.name=name;new.name_field=None
         else:raise ValueError('Template mode: inherit/copy')
-        new=patch_template(new,{'cast_id':name,'description_id':name,**props});record={**record,'id':name,'parent':base,'archive':'PROJECT','path':not_path,'project_owned':True}
+        engine_props=dict(props)
+        for key,extension in [('ai','.nai'),('model','.nod')]:
+            if modern and key in engine_props:
+                entry=original_entry({'entries':entries},extension,engine_props[key])
+                # The editor selects catalogue IDs; NOT stores filenames,
+                # as in businessWoman's inherited original "ped.nai" field.
+                engine_props[key]=Path(entry['path']).name
+        new=patch_template(new,{'cast_id':name,'description_id':name,**engine_props});record={**record,'id':name,'parent':base,'archive':'PROJECT','path':not_path,'project_owned':True}
+        if 'motions' in engine_props:record['motions']=engine_props['motions']
         for k in ('model','ai','script'):
-            if k in props:record[k]=props[k]
+            if k in engine_props:record[k]=engine_props[k]
             if record.get(k):original_entry({'entries':entries},{'model':'.nod','ai':'.nai','script':'.class'}[k],record[k])
         if props.get('script'):record['custom_script']=props['script']
         resolved[name]=(new,record);visiting.remove(name);return new,record

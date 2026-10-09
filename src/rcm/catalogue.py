@@ -176,6 +176,9 @@ def discover(ws: Workspace, game: Path, disassemble: bool = True):
         ws.write("research/ALL_CODEX.bytecode.txt", result.stdout)
         api = subprocess.run(["javap", "-classpath", str(classes), "-constants", *[n for n in names if n.startswith("Codex")]], capture_output=True, text=True, check=True)
         ws.write("research/API_SIGNATURES.txt", api.stdout)
+    from .motions import ensure_catalogue
+    ws.output('cache/motions.json').unlink(missing_ok=True)
+    ensure_catalogue(ws,resources,game)
     return summary
 
 

@@ -1,0 +1,50 @@
+{
+  "source_backup": {
+    "circuit/project.yaml": "d3a086f1f5a0f243eab7155de2f2344b1dd882a9f2d85a24159aa27b0aa01345",
+    "circuit/resources/RCM9Actor.java": "37b2c0504d7777310e13a0812fca280206385f4ba25e38ffebb72256ede7a575",
+    "east_demo.yaml": "1458a46632e9794ce7a6ca3bd2223fd751336f3d5a21079fa2765ff56c6d7931",
+    "editor_acceptance/project.yaml": "9a9b39046f1374116ae11b53cef700052793d2a0e9191daf5aefa808d264018f",
+    "editor_playtest/project.yaml": "590077b587751cae47e4ef3963ce6064d027aab844fac0359a5956778698c334",
+    "golden/expected.json": "36a67f13b323f250ec56d66919ce79b22f15b9e09247eaf810526fa60ea09b96",
+    "golden/project.yaml": "9ee347f7cff963dee37368918b45d335d7e7d507e22e0a1966d8a9cc3d7b54a3",
+    "large_fixture/project.yaml": "36dc2c683145f9e7ec78af4d3d798e63f668a59316c41cda85a9d7cd15d0dd11",
+    "phase3_demo/project.yaml": "6c15a0bea10e5fcff3ce9b42684004300df58617abb18f4590a1d2681639f418",
+    "phase4_demo/project.yaml": "50cb31b280b8067b386a283bc9a44d21edfb36c028ce4addcc4fb7131b8c8156",
+    "phase4_demo/project.yaml.backup": "50cb31b280b8067b386a283bc9a44d21edfb36c028ce4addcc4fb7131b8c8156",
+    "phase5_demo/project.yaml": "fd36887f43fbee144a8cbdc8fb553dc8237ea837cdb030e4ddaa0274a3b81ea1",
+    "phase5_demo/project.yaml.backup": "fd36887f43fbee144a8cbdc8fb553dc8237ea837cdb030e4ddaa0274a3b81ea1",
+    "phase5_demo/project.yaml.pre_format5": "50cb31b280b8067b386a283bc9a44d21edfb36c028ce4addcc4fb7131b8c8156",
+    "phase5_demo/resources/RCM5Actor.java": "affaae0ec7342ff9a27242f3793ffe4798f93ad429a74fe16ba2b7d398ea8257",
+    "phase5_demo/resources/RCM5Actor.java.backup": "affaae0ec7342ff9a27242f3793ffe4798f93ad429a74fe16ba2b7d398ea8257",
+    "phase7_demo/project.yaml": "2430d3bee87eefb40cb0a014c1530b750de8665f0de3bf02b91decbf3b7fcb50",
+    "phase7_demo/resources/RCM7Actor.java": "5529be19484425b99f56d6e82a264e3ab91fc4edce7efb9907526e0e4da5f30f",
+    "system_test/project.yaml": "3b8fa2d6f8ecf5a7f94d4d5be1147a709c9e557a7a6c690c3822f3d9087d1e7a",
+    "system_test/resources/RCM6Actor.java": "7ffe16daac776907ef76f546f1793f9ab04058d35520c66a96d0d36ff768a3c0",
+    "system_test/resources/RCM6Actor.java.backup": "7ffe16daac776907ef76f546f1793f9ab04058d35520c66a96d0d36ff768a3c0"
+  },
+  "user_backup": {
+    "circuit/project.yaml": "d3a086f1f5a0f243eab7155de2f2344b1dd882a9f2d85a24159aa27b0aa01345",
+    "circuit/project.yaml.autosave": "b6030b35987e0eb862c19fe91abba0988a303781df0d2af345e625e8a1d4df5b",
+    "circuit/resources/RCM9Actor.java": "37b2c0504d7777310e13a0812fca280206385f4ba25e38ffebb72256ede7a575",
+    "east_demo.yaml": "1458a46632e9794ce7a6ca3bd2223fd751336f3d5a21079fa2765ff56c6d7931",
+    "editor_acceptance/project.yaml": "9a9b39046f1374116ae11b53cef700052793d2a0e9191daf5aefa808d264018f",
+    "editor_playtest/project.yaml": "590077b587751cae47e4ef3963ce6064d027aab844fac0359a5956778698c334",
+    "golden/expected.json": "36a67f13b323f250ec56d66919ce79b22f15b9e09247eaf810526fa60ea09b96",
+    "golden/project.yaml": "9ee347f7cff963dee37368918b45d335d7e7d507e22e0a1966d8a9cc3d7b54a3",
+    "large_fixture/project.yaml": "36dc2c683145f9e7ec78af4d3d798e63f668a59316c41cda85a9d7cd15d0dd11",
+    "phase3_demo/project.yaml": "6c15a0bea10e5fcff3ce9b42684004300df58617abb18f4590a1d2681639f418",
+    "phase4_demo/project.yaml": "50cb31b280b8067b386a283bc9a44d21edfb36c028ce4addcc4fb7131b8c8156",
+    "phase5_demo/project.yaml": "fd36887f43fbee144a8cbdc8fb553dc8237ea837cdb030e4ddaa0274a3b81ea1",
+    "phase5_demo/resources/RCM5Actor.java": "affaae0ec7342ff9a27242f3793ffe4798f93ad429a74fe16ba2b7d398ea8257",
+    "phase7_demo/project.yaml": "2430d3bee87eefb40cb0a014c1530b750de8665f0de3bf02b91decbf3b7fcb50",
+    "phase7_demo/resources/RCM7Actor.java": "5529be19484425b99f56d6e82a264e3ab91fc4edce7efb9907526e0e4da5f30f",
+    "system_test/project.yaml": "3b8fa2d6f8ecf5a7f94d4d5be1147a709c9e557a7a6c690c3822f3d9087d1e7a",
+    "system_test/project.yaml.autosave": "19bee8e84c2c418e2bc102102b5bfdd290a124100eb52c14915005bf6bcbf322",
+    "system_test/resources/RCM6Actor.java": "7ffe16daac776907ef76f546f1793f9ab04058d35520c66a96d0d36ff768a3c0"
+  },
+  "visible_projects": [
+    "mini_chronicle",
+    "tutorial"
+  ],
+  "original_game_modified": false
+}

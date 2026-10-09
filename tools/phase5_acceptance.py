@@ -32,8 +32,8 @@ def choose_resource(ident):
   d=app.activeModalWidget();assert isinstance(d,ResourceDialog),type(d);d.browser.search.setText(ident);pump(.01);row=next(i for i in range(d.browser.table.rowCount()) if d.browser.table.item(i,0).data(Qt.ItemDataRole.UserRole)[0]==ident);d.browser.table.selectRow(row);d.browser.choose()
  QTimer.singleShot(50,select)
 def check(value,label):assert value,label;checks.append(label);print(label,flush=True)
-win.open_path(ROOT/'chronicles/phase4_demo/project.yaml');pump();win.center_tabs.setCurrentIndex(1)
-with patch('rcm.editor.window.QFileDialog.getSaveFileName',return_value=(str(ROOT/'chronicles/phase5_demo/project.yaml'),'YAML')):win.actions['save_as'].trigger();pump()
+win.open_path(ROOT/'tests/fixtures/chronicles/phase4_demo/project.yaml');pump();win.center_tabs.setCurrentIndex(1)
+with patch('rcm.editor.window.QFileDialog.getSaveFileName',return_value=(str(ROOT/'tests/fixtures/chronicles/phase5_demo/project.yaml'),'YAML')):win.actions['save_as'].trigger();pump()
 win.select(('chronicle',));line('chronicle_id','phase5_demo');line('chronicle_name','RCM: Las voces de Londres');prop(QPlainTextEdit,'chronicle_description').setPlainText('Dos mapas, dos quests y Victoria con template, AI y script propios.');pump()
 rp=win.project_resources_panel;click(rp.findChild(QPushButton,'upgrade_format'));check(win.doc.campaign['project_format']==5,'Explicit project upgrade with backup')
 # Clone an ORIGINAL template via the Resource Browser command.

@@ -1,0 +1,17 @@
+{
+  "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable_backups\\before_round0_npc_journal_fix_1791522882427871500",
+  "workspace_preserved": true,
+  "user_files_checked": 1750,
+  "components": [
+    "README.md",
+    "RedemptionChronicleMaker.exe",
+    "THIRD_PARTY_NOTICES",
+    "_internal",
+    "docs",
+    "examples",
+    "requirements.txt",
+    "runtime"
+  ],
+  "native_engine_test": false
+}

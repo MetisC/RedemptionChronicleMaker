@@ -334,3 +334,181 @@ Los campos opacos del tail deben contener parte de las opciones Sound/Render doc
 
 La demo de tres escenas, recuperación de cursor/cámara, save/load, NOT/AI, inventario, reentrada y red en la versión 0.7.0. También entrada distinta de 0, sustitución de estática base, paths/regiones/audio espacial/luces propias y offsets individuales de entorno. No se ha obtenido ni ejecutado Embrace.exe; el contraste de sus funciones procede de su manual original.
 
+
+
+## Ronda 0 — cámaras y layouts (0.9.2)
+
+### CONFIRMADO EN ARCHIVOS ORIGINALES
+
+API_SIGNATURES.txt contiene SetupCutscene, SetShot, Release, PlayPath y GetGUID. La plantilla Rat de Global.not usa Rat.nod/enemyGhoulRat.nai; scene_hints registra rat en SIM1_5_1 (detección de tags, no parse completo de esa escena). Rat se reutiliza sin modificar sus bytes originales.
+
+### CONFIRMADO EN SDK/DOCUMENTACIÓN
+
+CodexCamera.htm documenta PlayPath(clientGuid, scriptGuid, pathName, speed) para paths precomputados y SetShot con lerpTime. Se usan esos métodos, sin API inventada.
+
+### INFERIDO
+
+Una única rata básica debería resultar más fácil que cuatro brujahFled_MD; no es una medición nativa de dificultad. Dejar el callback de diálogo sin SetupCutscene conserva la selección automática que haga el motor durante ExecuteConversation (sin NOAUTOBEGIN).
+
+### PENDIENTE DE VERIFICAR
+
+Diálogo automático vs presets, timeline, movimiento y restore de cutscene, PlayPath EASTOttoVan sobre EastLondon, multiplicidad de inventario y nuevo recorrido completo. Pruebas manuales aplazadas. No se ha creado un writer NCP ni puertas físicas completas.
+
+
+## Ronda 0 — journal y cierre de diálogo (0.9.5)
+
+### CONFIRMADO EN ARCHIVOS ORIGINALES
+
+SetupCutscene llama a BeginCutscene interno (0x431e10 → 0x42f580). Release y EndCutscene convergen en 0x42f6d0, que devuelve cámara y controles. La limpieza nativa de conversación 0x458e40 retira recursos y al final borra su puntero global. Evidencia sobre la copia original, sin ejecutarla: research/round0/dialogue_journal_fix/native_methods.txt, native_lifecycle.txt y native_end_order.txt. Firmas: API_SIGNATURES.txt.
+
+### CONFIRMADO EN SDK/DOCUMENTACIÓN
+
+CodexCamera.htm.txt describe entrar en modo cutscene y liberar controles. UNIV_7_7 en cutscene.htm.txt encadena conversaciones desde convended mediante SetTimer; no inicia la siguiente directamente. Se conserva este orden en formato 9.
+
+### INFERIDO
+
+Omitir SetupCutscene en cámara native conserva controles de juego: concuerda con el movimiento observado. La inferencia de 0.9.2 sobre omitir completamente SetupCutscene queda invalidada por la prueba del usuario. Reabrir diálogo dentro de convended puede interferir con la limpieza de su predecesor. Que compilen Release y el timer no prueba por sí solo que vuelva el cursor real.
+
+### PENDIENTE DE VERIFICAR
+
+Usuario confirma en 0.9.4 PNJ, journal y diálogo; falla caminar durante diálogo, Ayuda/Volver y recuperación de HUD/cursor. Se corrige en 0.9.5 con entrada en cutscene automática y cierre/acciones diferidos. Los pasos NQD se cargan sin duplicar la ficha general; aceptar completa la guía inicial y revela la lección. Las regresiones Java modelan callback, limpieza posterior, abortos, fallos, dobles cierres, resultados sin duplicación y restore. Falta confirmar visualmente la revisión nueva dentro de Redemption con partida nueva. PATH_FAILED route=0 sigue siendo evidencia de recorrido pendiente, no aceptación nativa.
+
+## Ronda 0 — cutscene y layout visible (0.9.6)
+
+### CONFIRMADO EN ARCHIVOS ORIGINALES
+
+Los scripts compilados de `MP_LeavesThree` usan `BeginCutscene`/`EndCutscene` junto con `AIOff`/`AIOn` para secuencias con movimiento y cámara. Su documentación enumera los planos y distancias disponibles. La evidencia copiada está en `research/phase7/embrace/cutscene.htm.txt` y `research/round0/cutscene_layout_fix/MP_LeavesThree_bytecode.txt`.
+
+### CONFIRMADO EN SDK/DOCUMENTACIÓN
+
+La API declara `Codex.BeginCutscene(int,int)`, `Codex.EndCutscene(int,int)`, `Codex.AIOff()` y `Codex.AIOn()`. Los presets nuevos del editor sólo emiten las constantes documentadas `CAM_SHOT_*`, `CAM_ANGLE_*` y `CAM_DIST_*`.
+
+### INFERIDO
+
+La causa más probable de que mover el ratón sacara al usuario de una cutscene era iniciar sólo la cámara sin reclamar el modo de cutscene. La timeline propia reclama ahora ese modo y lo libera por duración. La orden de movimiento acepta el primer waypoint si el actor ya está dentro de su tolerancia; así no confunde una posición inicial válida con un fallo del pathfinder.
+
+### PENDIENTE DE VERIFICAR
+
+La revisión 0.9.6 necesita una partida nueva para confirmar visualmente el bloqueo del ratón/HUD, los tres planos de `walk_scene`, el fin limpio de la secuencia y el mensaje de llegada al layout `combat`. El travelling NCP original continúa siendo experimental.
+### Investigación de crash LAN — diagnóstico mediante volcados (09/10/2026)
+
+#### CONFIRMADO EN ARCHIVOS ORIGINALES
+
+Cuatro volcados de Windows de Vampire.exe fallan en la misma dirección
+`0x004a7a40`, con EAX=0: `mov [eax+0x224],edi`. El motor intenta escribir
+en un objeto nulo durante la restauración del inventario/equipamiento de un
+actor. La pila contiene `0x0048a415`, retorno del cargador de perfil de jugador.
+La copia desensamblada del ejecutable tiene el mismo SHA256 que la instalada.
+
+El perfil `Crypt/npf000000.npf`, leído y copiado al workspace sin modificarlo,
+contiene `r_rcm_tutor_s0_reward` como plantilla de un objeto en el offset 908.
+El cargador base de objetos busca la plantilla antes de continuar leyendo el
+registro (`0x4a540d`); si falta, retorna fallo antes de consumirlo completo.
+El cargador de inventario no verifica el retorno nulo en la instrucción del crash.
+
+Al arrancar, el motor carga global/medieval/modernDay/multiplayer y las NOT
+cuyo nombre comienza por `_` (`0x4dce68`). Antes de la reparación, las cuatro
+NOT propias de la demo no tenían ese prefijo: se cargaban únicamente desde
+el NMF de la crónica. El cargador de NOT conserva una tabla por nombre de
+biblioteca y evita cargarla dos veces (`0x4dcf7e–0x4dcf88`).
+
+Evidencia: `research/runtime_test/lan_crash/`: dump_analysis.json,
+executable_identity.json, desensamblados y startup_repair.json.
+
+#### CONFIRMADO EN SDK/DOCUMENTACIÓN
+
+No se añade una API Java ni se atribuye esta reparación al SDK. La evidencia
+es el ejecutable real y los datos del personaje; las herramientas originales
+de autoría no se ejecutan.
+
+#### INFERIDO
+
+La plantilla de recompensa ausente al restaurar el personaje es la causa
+que mejor explica los cuatro crashes: la lectura falla a mitad de un objeto,
+se desajusta la lectura posterior y el motor no comprueba el puntero nulo.
+Esto explica que ni revertir Java/recursos ni retirar carpetas vacías lo
+solucionara: el objeto ya estaba persistido en el perfil del jugador.
+El usuario confirmó posteriormente «Funciona», tras la reparación instalada.
+La aceptación se conserva en research/runtime_test/lan_crash/native_acceptance.json.
+
+Se retira la hipótesis de un límite de 640 bytes en NLS/NVO, y su validación
+arbitraria: no había evidencia de ese límite en el motor. Tampoco se conserva
+la hipótesis de las carpetas vacías como causa. El historial de aislamiento
+queda marcado como superado por este análisis.
+
+#### PENDIENTE DE VERIFICAR
+
+La reparación instalada cambia sólo los nombres de las cuatro NOT propias
+para permitir su carga inicial y las líneas NOT de los NMF que las referencian.
+Conserva cada byte de las plantillas y del resto de recursos, y todas las clases
+Java previas. El perfil del jugador permanece idéntico. Está respaldada antes
+de reemplazarse dentro de RCM. El generador y el validador de salida incorporan
+el contrato de carga inicial para futuras crónicas.
+
+El usuario ha confirmado la recuperación del acceso LAN. Inventario, guardado
+y reapertura siguen requiriendo verificación específica. Eliminar una
+crónica con objetos propios persistidos puede volver a dejar referencias sin
+resolver: ese ciclo de desinstalación necesita conservar sus bibliotecas o un
+procedimiento de migración del personaje expresamente autorizado.
+
+
+## Tutorial guiado, interlocutores y secuencias — 09/10/2026
+
+### CONFIRMADO EN ARCHIVOS ORIGINALES
+
+MP_LeavesThree gira personajes con `LookAtThing` y usa `SetupCutscene` con
+tercer argumento 0; ver research/round0/cutscene_layout_fix/MP_LeavesThree_bytecode.txt.
+La clase original usa tanto `Jump` como `ChangeScene`. La API extraída contiene
+LookAtThing, StopActorMotion, PlayActorMotionSetMode y MOTION_IDLE=49.
+
+### CONFIRMADO EN SDK/DOCUMENTACIÓN
+
+research/phase7/embrace/cutscene.htm.txt documenta actores, línea de acción y
+SetShot. Los scripts del SDK muestran LookAtThing, SendActorToPos, AIOff,
+liberación diferida de cámara y selección del NSD con ChangeScene.
+Se estudian como evidencia; no se ejecutan herramientas originales de autoría.
+
+### INFERIDO
+
+Usar al jugador también como tercer actor de la cámara automática explica el
+encuadre central extraño. El giro recíproco y el tercer argumento 0 reproducen
+patrones originales, sin garantizar que todos los diálogos originales giren
+siempre a ambos actores. Dejar el actor en idle al terminar el recorrido debería
+eliminar la pose estática observada; su apariencia aún requiere ensayo nativo.
+
+### PENDIENTE DE VERIFICAR
+
+La revisión 0.9.8 está compilada contra Codex. Los recorridos completos y de
+omisión se verifican con doubles, incluidos clics durante la película, avance
+del paseo, selección de NSD y journal secuencial. Falta observar en Redemption
+el encuadre automático/primer plano, animación final, bloqueo de movimiento de
+cámara durante la película, desaparición del barril y aparición de la rata.
+Detalles, instrucciones y límites: docs/GUIDED_TUTORIAL_FIX.md.
+
+
+## Conversación y animación — revisión 0.9.9
+
+El usuario informó que los dos interlocutores entraban en pose en T tras la
+revisión 0.9.8. La llamada StopActorMotion añadida al giro se retira: la tabla
+nativa y el desensamblado confirman que borra campos del controlador de motion.
+Se usa StopActorAction antes de iniciar el diálogo, como en un ejemplo original
+del SDK, y se conserva la animación al cambiar de línea. La cámara predeterminada
+pasa a sobre el hombro; Vera enseña los trece encuadres al pulsar Siguiente.
+La evidencia original, la inferencia causal y la comprobación visual pendiente
+se separan en docs/DIALOGUE_MOTION_CAMERA_FIX.md. No se declara ya verificado
+nativamente el retorno a reposo que se propuso en 0.9.8.
+
+
+## Revisión 0.9.10 — MP_CTD, cola de timers y llave física
+
+### CONFIRMADO EN ARCHIVOS ORIGINALES
+
+SetTimer añade entradas incluso con el mismo ID; KillTimer retira las del script/ID. BoneKey hereda tipo 7 y la inserción nativa consume ese tipo en vez de conservarlo en la cuadrícula. CTD_Oubliette_Main y CTD_LeComte controlan cámaras y movimiento desde feedback; CTD_ChamberSkulls abre una puerta con RotatePivot y flags. Evidencia detallada: CTD_CINEMA_INVENTORY_FIX.md y research/round0/ctd_cinema_fix/.
+
+### OBSERVADO POR EL USUARIO
+
+La 0.9.9 mejora los encuadres y las animaciones de los interlocutores; queda una pose rara de Otto. La película finaliza antes de lo esperado, la llave no se ve en inventario y el laboratorio es inaccesible. La 0.9.10 corrige esas causas y cambia Otto por Anezka; aún no ha recibido una comprobación visual.
+
+### INFERIDO Y PENDIENTE
+
+La cola duplicada explica el final prematuro y el tipo 7 la desaparición de la llave. Se simula ahora la cola real y se verifica la presencia del objeto tras insertarlo. La apariencia, colisión, guardado y comportamiento visual nuevos necesitan ensayo nativo.

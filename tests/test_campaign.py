@@ -14,7 +14,7 @@ from rcm.not_inspector import inspect_not
 from rcm.deployment import deploy,safe_target
 
 def source():
-    ws=Workspace(ROOT);d=CampaignDocument.convert(Document.load(ws,'chronicles/editor_acceptance/project.yaml'));root=d.snapshot();root['chronicle']['id']='c4_test'
+    ws=Workspace(ROOT);d=CampaignDocument.convert(Document.load(ws,'tests/fixtures/chronicles/editor_acceptance/project.yaml'));root=d.snapshot();root['chronicle']['id']='c4_test'
     root['quests']=[dict(id='mission',title='El libro',description='Recupera el libro',steps=['Aceptar','Recuperar','Entregar'],reward_xp=500)]
     s=root['scenes'][0];s['objects']=[dict(id='book',name='Libro',template='ledger',quest_item=True,transform=dict(placement='near_player',orientation=[0,0,0]))]
     s['events'][0]['actions'].append({'spawn':'book'})

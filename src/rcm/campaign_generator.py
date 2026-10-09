@@ -36,7 +36,7 @@ def runtime(campaign,scene,p):
           f' private int[] things=new int[{len(entities)}];',f' private boolean[] enabled=new boolean[{len(entities)}];',f' private boolean[] createdOnce=new boolean[{len(entities)}];',
           f' private boolean[] inside=new boolean[{len(p.triggers)}];',f' private boolean[] previous=new boolean[{len(scene["events"])}];',
           ' private int active=-1, starter=0, ticks=0, player=0; private boolean restoredState=false, transitioning=false; private int cameraTicks=0, cameraPlayer=0; private boolean pendingStart=false;',
-          f' private void trace(String s) {{ CodexConsole.Print(0,0,"RCM: "+s); try {{ java.io.File current=new java.io.File({js("RCM/"+campaign.id+"/runtime_trace.log")}); if(current.length()>1048576L) {{ java.io.File old=new java.io.File(current.getPath()+".1"); if(old.exists()&&!old.delete()) return; if(!current.renameTo(old)) return; }} java.io.PrintStream log=new java.io.PrintStream(new java.io.FileOutputStream(current.getPath(),true)); log.println(s); log.close(); }} catch(Exception error) {{ CodexConsole.PrintError("RCM trace: "+error); }} }}',
+          f' private void trace(String s) {{ CodexConsole.Print(0,0,"RCM: "+s); try {{ java.io.File current=new java.io.File({js("RCM/"+campaign.id+"/runtime_trace.log")}); new java.io.File(current.getParent()).mkdirs(); if(current.length()>1048576L) {{ java.io.File old=new java.io.File(current.getPath()+".1"); if(old.exists()&&!old.delete()) return; if(!current.renameTo(old)) return; }} java.io.PrintStream log=new java.io.PrintStream(new java.io.FileOutputStream(current.getPath(),true)); log.println(s); log.close(); }} catch(Exception error) {{ CodexConsole.PrintError("RCM trace: "+error); }} }}',
           ' private boolean local(int g) { return g!=0 && (IsPlayerGuid(g)||IsActorGuid(g)||IsItemGuid(g)||IsPropGuid(g)||IsWeaponGuid(g)||IsArmorGuid(g)) && new CodexThing(g).GetLocationNum()==CodexSequence.GetCurrentLocation(); }',
           ' private int localPlayer(int g) { if(IsPlayerGuid(g)&&local(g)) return g; g=CodexPlayer.GetCurrentPlayer(); if(IsPlayerGuid(g)&&local(g)) return g; for(int i=0;i<CodexPlayer.GetNumMPPlayers();i++) { g=CodexPlayer.GetMPPlayer(i); if(IsPlayerGuid(g)&&local(g)) return g; } return 0; }',
           ' private boolean alive(int i) { return IsActorGuid(things[i]) && local(things[i]) && new CodexActor(things[i]).GetActorHealth()>0.0f; }',
@@ -88,8 +88,8 @@ def runtime(campaign,scene,p):
         code += [f' case {ti}: {{ double x=v[0]-({t.transform.position[0]}),y=v[1]-({t.transform.position[1]}),z=v[2]-({t.transform.position[2]}); if({test}) return true; break; }}']
     code+=[' } } return false; }',' private void dispatch(String kind,String target,int result) { if(transitioning) return;']
     for ei,e in enumerate(scene['events']):
-        if e['when'] not in {'scene_start','actor_clicked','conversation_ended','trigger_enter','trigger_leave'}: continue
-        fk={'actor_clicked':'actor','conversation_ended':'conversation','trigger_enter':'trigger','trigger_leave':'trigger'}.get(e['when'])
+        if e['when'] not in {'scene_start','actor_clicked','conversation_ended','trigger_enter','trigger_leave','sequence_ended'}: continue
+        fk={'actor_clicked':'actor','conversation_ended':'conversation','trigger_enter':'trigger','trigger_leave':'trigger','sequence_ended':'sequence'}.get(e['when'])
         test=f'kind.equals({js(e["when"])})'+(f' && target.equals({js(e[fk])})' if fk else '')+(f' && result=={e["result"]}' if 'result' in e else '')
         code+=[f' if({test}) {{ if(event{ei}() && (transitioning || kind.equals("actor_clicked"))) return; }}']
     code+=[' }']
@@ -137,6 +137,8 @@ def runtime(campaign,scene,p):
                     from .camera_presets import shot_arguments
                     args=shot_arguments(seq['preset'],seq['angle'])
                     statement=f'if(!alive({entities[seq["actor"]]}) || player==0 || active!=-1) return false; CodexCamera.SetupCutscene(player,things[{entities[seq["actor"]]}],player); CodexCamera.SetShot(player,{args},0,0.3f); cameraPlayer=player; cameraTicks={math.ceil(seq["duration"]/.15)};'
+                if any(k in seq for k in ('steps','camera_path','move_path','prop_motion')):
+                    statement=f'if(!beginCinema({scene["sequences"].index(seq)})) return false;'
             elif k in ('enable_ai','disable_ai'):statement=f'if(IsActorGuid(things[{entities[v]}])) new CodexActor(things[{entities[v]}]).{"ClearActorFlags" if k=="enable_ai" else "SetActorFlags"}(THING_AF_AIPAUSED);'
             action_marker='action/'+scene['id']+'/'+e['id']+'/'+str(ai)
             if action_marker in reserved:
@@ -241,6 +243,18 @@ def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress
             nls += [name+'S '+title,name+'L '+desc]
     payload['strings/_'+prefix+'.nls']=('\r\n'.join(nls)+'\r\n').encode('cp1252')
     payload['chronicles/'+prefix+'.nmf']+=('NLS _'+prefix+'.nls\r\n').encode('cp1252')
+    # Keep the diagnostic runtime tree in sync as well as the published bundle.
+    # This prevents a removed conversation/resource from being mistaken for a
+    # current generated input during later inspections or deployments.
+    old=ws.output(root/'build_report.json')
+    if old.exists():
+        for path in json.loads(old.read_text(encoding='utf8')).get('files',{}):
+            relative=Path(path)
+            if relative.is_absolute() or '..' in relative.parts:
+                raise ValueError('Ruta insegura en informe de build anterior')
+            previous=ws.output(root/'runtime'/relative)
+            if path not in payload and previous.is_file():
+                previous.unlink()
     for path,data in payload.items():ws.write(root/'runtime'/path,data)
     nob=zip_bytes({k:v for k,v in payload.items() if not k.startswith('codex/')})
     distribution={campaign.id+'.nob':nob,**{k:v for k,v in payload.items() if k.startswith('codex/')}}

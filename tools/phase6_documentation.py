@@ -22,7 +22,7 @@ Distribución portable: `build/portable/RedemptionChronicleMaker/RedemptionChron
 Para trabajar directamente con este workspace:
 
 ```powershell
-python editor.py chronicles/system_test/project.yaml
+python editor.py tests/fixtures/chronicles/system_test/project.yaml
 ```
 
 Si Python no está en PATH, en este equipo está en `C:\Users\Usuario\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe`.
@@ -31,7 +31,7 @@ Si falla el controlador gráfico: `python editor.py --safe-mode`. Puedes editar,
 
 ## Probar una crónica
 
-Abre `chronicles/system_test/project.yaml`, **Guardar → Validar → Build → Deploy**. En este equipo Deploy del editor usa la carpeta indicada por tu acceso directo existente: `RCM/east_demo`. **Ejecutar** abre exactamente ese `.lnk`, conservando destino, argumentos y carpeta de inicio. Puedes elegirlo mediante **Acceso del juego…**. El acceso no se reescribe.
+Abre `tests/fixtures/chronicles/system_test/project.yaml`, **Guardar → Validar → Build → Deploy**. En este equipo Deploy del editor usa la carpeta indicada por tu acceso directo existente: `RCM/east_demo`. **Ejecutar** abre exactamente ese `.lnk`, conservando destino, argumentos y carpeta de inicio. Puedes elegirlo mediante **Acceso del juego…**. El acceso no se reescribe.
 
 En tu acceso del escritorio: **Multiplayer → New Game → RCM System Test**. Inicia una partida nueva. Victoria, Witness y la guía son pruebas de diálogo; hay quests, libro, cámaras y viaje al oeste. Las nuevas conversaciones de Witness/Keeper hacen que esos personajes ya no sean simples marcadores. El checklist completo está en [RUNTIME_TEST_MATRIX.md](docs/RUNTIME_TEST_MATRIX.md). Su resultado nativo actual se mantiene explícito allí; compilar no equivale a probar la partida.
 
@@ -46,8 +46,8 @@ Las campañas históricas se conservan. **RCM: Victoria y el pacto de Londres** 
 ## Comandos de desarrollo
 
 ```powershell
-python tools/rcm.py validate chronicles/system_test/project.yaml
-python tools/rcm.py build chronicles/system_test/project.yaml
+python tools/rcm.py validate tests/fixtures/chronicles/system_test/project.yaml
+python tools/rcm.py build tests/fixtures/chronicles/system_test/project.yaml
 python tools/rcm.py package rcm_system build/rcm_system/rcm_system.rcmpack
 python tools/rcm.py inspect-package build/rcm_system/rcm_system.rcmpack
 python tools/quality.py --fast
@@ -93,7 +93,7 @@ python tools/rcm.py verify-originals
 | OPENGL / PERFORMANCE | phase6_viewport, phase6_performance, phase4_regression | Ventana real del editor y recursos originales de lectura |
 | RUNTIME NATIVO | RUNTIME_TEST_MATRIX | Redemption, partida y observaciones reales; nunca marcado por unittest |
 
-Fixtures temporales permanecen bajo `build/tests`; se eliminan al acabar cuando es posible. Fuentes oficiales de regresión: `chronicles/system_test`, `golden`, `large_fixture`. `phase6_fixtures` recrea exclusivamente esas fuentes y su Java propio. No ejecutar acceptance histórico que reescribe su demo sin conservarla primero.
+Fixtures temporales permanecen bajo `build/tests`; se eliminan al acabar cuando es posible. Fuentes oficiales de regresión: `tests/fixtures/chronicles/system_test`, `golden`, `large_fixture`. `phase6_fixtures` recrea exclusivamente esas fuentes y su Java propio. No ejecutar acceptance histórico que reescribe su demo sin conservarla primero.
 
 Cobertura: `build/tests/coverage.json` y `coverage_html/index.html`. Los porcentajes incluyen líneas y ramas. No persigue 100% global: revisar huecos en lógica crítica, negativos y errores reales. La cobertura de subprocess Java no aparece como Python; sus contratos tienen harness independiente. OpenGL y portable se ensayan aparte.
 
@@ -168,7 +168,7 @@ Antes de invitar usuarios: quality PASS, regresión de fuentes PASS, originales 
 write('docs/RUNTIME_TEST_MATRIX.md',r'''
 # Aceptación en Redemption · RCM System Test
 
-Fuente `chronicles/system_test/project.yaml`, paquete `build/rcm_system/rcm_system.rcmpack`. **Cada casilla necesita observación en el juego.** El estado actualizado del intento está en `research/phase6/native_status.json`, si existe. No convertir resultados de doubles en PASS nativo.
+Fuente `tests/fixtures/chronicles/system_test/project.yaml`, paquete `build/rcm_system/rcm_system.rcmpack`. **Cada casilla necesita observación en el juego.** El estado actualizado del intento está en `research/phase6/native_status.json`, si existe. No convertir resultados de doubles en PASS nativo.
 
 Abrir exactamente el acceso `Vampire.exe - Acceso directo.lnk` del escritorio, con su carpeta y `-user RCM\east_demo`. Multiplayer → New Game → **RCM System Test**. Siempre partida nueva después de actualización estructural.
 
@@ -194,7 +194,7 @@ Abrir exactamente el acceso `Vampire.exe - Acceso directo.lnk` del escritorio, c
 
 Save/load: guardar antes de alianza; rechazar; recargar y aceptar; guardar con libro; cambiar mapa y recargar; completar quest; guardar/cargar y verificar que XP y objetos no se repitan. Registrar partida, revisión, acción y log; resultado PASS/FAIL/NOT TESTED por caso.
 
-Prueba XYZ independiente: fuente `chronicles/editor_acceptance/project.yaml`; observar altura, posición y yaw, suelo y colisión. El viewport mide coordenadas reales pero no prueba la colisión del motor. Los triggers son muestreo en Java cada 150 ms y orientación yaw para cajas; probar borde, reentrada y `once`.
+Prueba XYZ independiente: fuente `tests/fixtures/chronicles/editor_acceptance/project.yaml`; observar altura, posición y yaw, suelo y colisión. El viewport mide coordenadas reales pero no prueba la colisión del motor. Los triggers son muestreo en Java cada 150 ms y orientación yaw para cajas; probar borde, reentrada y `once`.
 
 Copiar únicamente logs propios desde RCM al workspace como evidencia. No leer memoria ni inventar un inspector de estado en vivo. `runtime_trace.log` es observación de callbacks, no prueba por sí sola de HUD, cámara, audio o journal visible.
 ''')
@@ -301,7 +301,7 @@ matrix='# Matriz de funciones · versión actual\n\nPASS se refiere al alcance d
 matrix+='\n'.join('| '+' | '.join(row)+' |' for row in rows)
 write('docs/FEATURE_MATRIX.md',matrix)
 (ROOT/'research/phase6/feature_matrix.json').write_text(json.dumps([dict(zip(['feature','model','gui','serialization','validation','generator','build','deploy','runtime','evidence'],row)) for row in rows],indent=2),encoding='utf8')
-write('docs/PERFORMANCE.md','# Rendimiento local\n\nEquipo Windows 11, Python 3.12.14. Tiempos de load/save/validate/references/search medidos con tracemalloc activo; compilación sin tracing. No son promesa para otros equipos. Search aquí mide filtro de enlaces, no toda la UI de búsqueda.\n\n| Fixture | Load s | Save s | Validate s | References s | Build s | ZIP bytes |\n|---|---|---|---|---|---|---|\n'+'\n'.join('| '+name+' | '+' | '.join(str(round(p[k],4)) for k in ['load_seconds','save_seconds','validation_seconds','references_seconds','build_seconds'])+' | '+str(p['distribution_bytes'])+' |' for name,p in perf.get('projects',{}).items())+'\n\nFixture grande: 5 levels, 100 actores, 50 conversaciones, 20 quests, 100 eventos, 50 triggers, 30 objetos y 5 planos. 486 enlaces en esta revisión. Fuente YAML guardada en chronicles/large_fixture.\n\n`research/phase6/viewport.json`: cargas reales GL y repintados síncronos del editor; no equivale a FPS constante ni mide GPU memory. Las repeticiones de cargas conservan ~'+str(perf.get('repeated_loads',{}).get('retained_python_bytes_delta','pendiente'))+' bytes Python adicionales tras GC; no demuestra ausencia completa de fugas de Qt/GPU.\n\nEvidencia reproducible: phase6_performance.py y phase6_viewport.py. No se introdujo cache incremental de relaciones sin necesidad medida.\n')
+write('docs/PERFORMANCE.md','# Rendimiento local\n\nEquipo Windows 11, Python 3.12.14. Tiempos de load/save/validate/references/search medidos con tracemalloc activo; compilación sin tracing. No son promesa para otros equipos. Search aquí mide filtro de enlaces, no toda la UI de búsqueda.\n\n| Fixture | Load s | Save s | Validate s | References s | Build s | ZIP bytes |\n|---|---|---|---|---|---|---|\n'+'\n'.join('| '+name+' | '+' | '.join(str(round(p[k],4)) for k in ['load_seconds','save_seconds','validation_seconds','references_seconds','build_seconds'])+' | '+str(p['distribution_bytes'])+' |' for name,p in perf.get('projects',{}).items())+'\n\nFixture grande: 5 levels, 100 actores, 50 conversaciones, 20 quests, 100 eventos, 50 triggers, 30 objetos y 5 planos. 486 enlaces en esta revisión. Fuente YAML guardada en tests/fixtures/chronicles/large_fixture.\n\n`research/phase6/viewport.json`: cargas reales GL y repintados síncronos del editor; no equivale a FPS constante ni mide GPU memory. Las repeticiones de cargas conservan ~'+str(perf.get('repeated_loads',{}).get('retained_python_bytes_delta','pendiente'))+' bytes Python adicionales tras GC; no demuestra ausencia completa de fugas de Qt/GPU.\n\nEvidencia reproducible: phase6_performance.py y phase6_viewport.py. No se introdujo cache incremental de relaciones sin necesidad medida.\n')
 write('docs/DEPENDENCIES_LICENSES.md',r'''
 # Dependencias y avisos
 

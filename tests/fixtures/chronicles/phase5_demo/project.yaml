@@ -1,0 +1,374 @@
+schema: 2
+chronicle:
+  id: phase5_demo
+  name: 'RCM: Las voces de Londres'
+  description: Dos mapas, dos quests y Victoria con template, AI y script propios.
+state:
+  flags:
+    alliance: 1
+entry: london
+scenes:
+- level:
+    source: EastLondon
+    name: 'Londres: el pacto del libro'
+  actors:
+  - id: victoria
+    name: Victoria
+    template: T_phase5_victoria
+    transform:
+      placement: near_player
+      orientation:
+      - 0
+      - 0
+      - 180.0
+    comment: Posición de referencia original. La colisión debe comprobarse dentro del juego.
+    inventory: []
+  - id: witness
+    name: Witness
+    template: businessWoman
+    transform:
+      placement: near_player
+      orientation:
+      - 0
+      - 0
+      - 0
+    inventory: []
+  - id: guide
+    name: Guía de Londres
+    template: businessWoman
+    transform:
+      placement: near_player
+      orientation:
+      - 0
+      - 0
+      - 0
+    inventory: []
+    conversation:
+      default: guide
+  conversations:
+  - id: intro
+    speaker: victoria
+    entry: opening
+    nodes:
+    - id: opening
+      lines:
+      - speaker: victoria
+        text: Londres guarda secretos. ¿Quieres saber quién soy?
+      choices:
+      - text: ¿Quién eres?
+        goto: identity
+      - text: Me voy.
+        result: 2
+    - id: identity
+      lines:
+      - speaker: victoria
+        text: Me llaman Victoria. Necesito un aliado para esta noche.
+      choices:
+      - text: Cuenta conmigo.
+        result: 3
+        set_flag: alliance
+      - text: No quiero involucrarme.
+        result: 4
+  - id: ally
+    speaker: victoria
+    entry: opening
+    nodes:
+    - id: opening
+      lines:
+      - speaker: victoria
+        text: Si has recuperado el libro, el encargo termina aquí. Gracias por tu ayuda.
+      choices:
+      - text: Seguimos juntos.
+        result: 1
+      - text: El pacto termina aquí.
+        result: 2
+        clear_flag: alliance
+      - text: Vamos al oeste de Londres.
+        result: 3
+  - id: guide
+    speaker: guide
+    entry: opening
+    nodes:
+    - id: opening
+      lines:
+      - speaker: guide
+        text: Victoria tiene una nueva voz. Habla con ella, acepta su encargo y viaja al oeste.
+      choices:
+      - text: Continuar.
+        result: 1
+      - text: Me voy.
+        result: 2
+  events:
+  - id: event1
+    when: scene_start
+    actions:
+    - spawn: victoria
+    - spawn: witness
+    - spawn: guide
+  - id: greet_new
+    when: actor_clicked
+    actions:
+    - start_conversation: intro
+    actor: victoria
+    conditions:
+    - flag: alliance
+      is_set: false
+  - id: greet_ally
+    when: actor_clicked
+    actions:
+    - start_conversation: ally
+    actor: victoria
+    conditions:
+    - flag: alliance
+      is_set: true
+  - id: quick_travel
+    when: conversation_ended
+    actions:
+    - jump: west
+    conversation: ally
+    result: 3
+    conditions:
+    - flag: alliance
+      is_set: true
+  - id: accept_mission
+    when: conversation_ended
+    actions:
+    - start_quest: ledger_quest
+    - advance_quest: ledger_quest
+    conversation: intro
+    result: 3
+    once: true
+  - id: travel_west
+    when: trigger_enter
+    actions:
+    - jump: west
+    trigger: west_gate
+    conditions:
+    - flag: alliance
+      is_set: true
+  - id: quest_finish
+    when: conversation_ended
+    actions:
+    - take_item: west.book
+    - advance_quest: ledger_quest
+    - complete_quest: ledger_quest
+    - start_music: Haven
+    conversation: ally
+    result: 1
+    once: true
+    conditions:
+    - flag: alliance
+      is_set: true
+    - quest: ledger_quest
+      step: 2
+    - owns_item: west.book
+  - id: guide_begin
+    when: scene_start
+    actions:
+    - start_quest: guide_quest
+    once: true
+  - id: guide_finish
+    when: conversation_ended
+    actions:
+    - advance_quest: guide_quest
+    - complete_quest: guide_quest
+    conversation: guide
+    once: true
+    result: 1
+  id: london
+  objects: []
+  triggers:
+  - id: west_gate
+    name: Paso al oeste
+    shape: box
+    transform:
+      position:
+      - 1965.7003761891979
+      - 5201.969852727093
+      - -4.0
+      orientation:
+      - 0
+      - 0
+      - 0
+    size:
+    - 160
+    - 160
+    - 120
+    once: true
+- id: west
+  level:
+    source: WestLondon
+    name: 'Londres: el libro robado'
+  actors:
+  - id: contact
+    name: Contact
+    template: businessWoman
+    transform:
+      placement: near_player
+      orientation:
+      - 0
+      - 0
+      - 0
+    inventory: []
+    conversation:
+      default: home
+  - id: keeper
+    name: Keeper
+    template: businessWoman
+    transform:
+      placement: near_player
+      orientation:
+      - 0
+      - 0
+      - 0
+    inventory: []
+  - id: guard1
+    name: Guard1
+    template: brujahFled_MD
+    transform:
+      placement: near_player
+      orientation:
+      - 0
+      - 0
+      - 0
+    inventory: []
+    behavior: enemy
+  - id: guard2
+    name: Guard2
+    template: brujahFled_MD
+    transform:
+      placement: near_player
+      orientation:
+      - 0
+      - 0
+      - 0
+    inventory: []
+    behavior: enemy
+  - id: guard3
+    name: Guard3
+    template: brujahFled_MD
+    transform:
+      placement: near_player
+      orientation:
+      - 0
+      - 0
+      - 0
+    inventory: []
+    behavior: enemy
+  objects:
+  - id: book
+    name: Libro de Victoria
+    template: ledger
+    transform:
+      placement: near_player
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  conversations:
+  - id: home
+    speaker: contact
+    entry: opening
+    nodes:
+    - id: opening
+      lines:
+      - speaker: contact
+        text: El libro está aquí. Habla conmigo para regresar con Victoria.
+      choices:
+      - text: Continuar.
+        result: 1
+      - text: Me voy.
+        result: 2
+  events:
+  - id: event1
+    when: scene_start
+    actions:
+    - spawn: contact
+    - spawn: keeper
+    - spawn: book
+  - id: ambush_begin
+    when: scene_start
+    actions:
+    - spawn_encounter: ambush
+    - start_music: DA_Boss_1_Modern
+    - play_sequence: arrival
+    once: true
+  - id: book_found
+    when: item_picked_up
+    actions:
+    - advance_quest: ledger_quest
+    item: book
+  - id: guards_defeated
+    when: encounter_complete
+    actions:
+    - start_music: London_Hub
+    - reward_xp: 100
+    encounter: ambush
+  - id: return_london
+    when: conversation_ended
+    actions:
+    - jump: london
+    conversation: home
+    result: 1
+  triggers: []
+  encounters:
+  - id: ambush
+    name: Los custodios del libro
+    actors:
+    - guard1
+    - guard2
+    - guard3
+  sequences:
+  - id: arrival
+    name: Nuevo plano
+    actor: contact
+    duration: 3.0
+    shot: wide
+    angle: medium
+quests:
+- id: ledger_quest
+  title: El libro desaparecido
+  description: Victoria necesita recuperar su libro del oeste de Londres.
+  steps:
+  - Aceptar el encargo de Victoria
+  - Recuperar el libro en West London
+  - Regresar y entregar el libro
+  reward_xp: 500
+- id: guide_quest
+  title: Las voces de Londres
+  description: Habla con la guía para conocer la historia.
+  steps:
+  - Hablar con la guía
+  reward_xp: 50
+project_format: 5
+metadata:
+  author: ''
+  version: 0.1.0
+  requires_game: Redemption 1.1
+  dependencies: []
+resources:
+  templates:
+  - id: T_phase5_victoria
+    base: businessWoman
+    mode: inherit
+    properties:
+      ai: AI_phase5_civilian
+      script: RCM5Actor
+      model: businesswoman
+  ai_profiles:
+  - id: AI_phase5_civilian
+    base: civilian
+    properties:
+      wanderRadius: 0.0
+  scripts:
+  - id: RCM5Actor
+    source: tests/fixtures/chronicles/phase5_demo/resources/RCM5Actor.java
+  textures: []
+build_options:
+  debug: true
+playtests:
+- id: test1
+  name: Template propio, quests y viaje
+  instructions: Nueva partida. Ver Victoria junto al jugador; hablar con la guía y con Victoria; recuperar libro
+    al oeste; regresar y entregar. Guardar/cargar antes y después del viaje.

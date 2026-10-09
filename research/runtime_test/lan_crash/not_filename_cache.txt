@@ -1,0 +1,32 @@
+004dcf20: sub esp, 0x90
+004dcf26: push ebx
+004dcf27: push ebp
+004dcf28: push esi
+004dcf29: mov esi, dword ptr [esp + 0xa0]
+004dcf30: test esi, esi
+004dcf32: push edi
+004dcf33: jne 0x4dcf4c
+004dcf35: push 0x1fb
+004dcf3a: push 0x52df70
+004dcf3f: push 0x52dfa0
+004dcf44: call 0x4c12a0
+004dcf49: add esp, 0xc
+004dcf4c: push 0x80
+004dcf51: lea eax, [esp + 0x24]
+004dcf55: push esi
+004dcf56: push eax
+004dcf57: call 0x4dd480
+004dcf5c: lea ecx, [esp + 0x2c]
+004dcf60: push 0x52dfac
+004dcf65: push ecx
+004dcf66: mov byte ptr [esp + 0xb3], 0
+004dcf6e: call 0x4cbd90
+004dcf73: mov eax, dword ptr [0x71e908]
+004dcf78: lea edx, [esp + 0x34]
+004dcf7c: push edx
+004dcf7d: push eax
+004dcf7e: call 0x4cea00
+004dcf83: add esp, 0x1c
+004dcf86: test eax, eax
+004dcf88: jne 0x4dd1be
+004dcf8e: push 7

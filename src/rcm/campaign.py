@@ -28,7 +28,8 @@ ACTIONS = {
 WHEN = {'scene_start':'Inicia la escena','actor_clicked':'Hablan con actor','conversation_ended':'Termina conversación',
  'trigger_enter':'Entra en trigger','trigger_leave':'Sale de trigger','actor_killed':'Actor muerto (muestreo)',
  'item_picked_up':'Objeto en inventario (muestreo)','encounter_complete':'Todos los enemigos muertos',
- 'timer':'Tiempo desde entrada','state_changed':'Se cumple una condición'}
+ 'timer':'Tiempo desde entrada','state_changed':'Se cumple una condición',
+ 'sequence_ended':'Termina una secuencia de cámara'}
 
 @dataclass(frozen=True)
 class Campaign:
@@ -97,6 +98,10 @@ def parse_campaign(source, levels, resources):
         if any(k in s for k in ('entries','default_entry','waypoints','paths')) and not modern: raise ValueError('Entradas y recorridos requieren formato de proyecto 9')
         actors=indexed(s['actors'],label+' actors'); objects=indexed(s.get('objects',[]),label+' objects')
         entities={**actors,**objects}; convs=indexed(s['conversations'],label+' conversations')
+        from .camera_presets import PRESETS,CINEMA_PRESETS
+        for conversation in convs.values():
+            if 'camera' in conversation and (not modern or conversation['camera'] not in ('native','medium',*PRESETS)):
+                raise ValueError('Cámara de conversación requiere formato 9 y preset conocido')
         if set(actors)&set(objects): raise ValueError(label+': IDs compartidos actor/objeto')
         groups=indexed(s.get('encounters',[]),label+' encounters'); shots=indexed(s.get('sequences',[]),label+' sequences')
         triggers=indexed(s.get('triggers',[]),label+' triggers')
@@ -124,11 +129,13 @@ def parse_campaign(source, levels, resources):
                 ref(a,actors,'actor de encuentro')
                 if actors[a].get('behavior')!='enemy': raise ValueError('Miembro de encuentro debe ser enemigo')
         for seq in shots.values():
-            mapping(seq,{'id','name','actor','duration','shot','angle','preset'},{'id','name','actor','duration','shot','angle'},'sequence')
+            mapping(seq,{'id','name','actor','duration','shot','angle','preset','steps','move_path','camera_path','path_speed','move_at','prop_motion'},{'id','name','actor','duration','shot','angle'},'sequence')
             text(seq['name'],'sequence.name');ref(seq['actor'],actors,'actor de cámara')
             if type(seq['duration']) not in (float,int) or not math.isfinite(seq['duration']) or not .1<=seq['duration']<=120: raise ValueError('Duración de cámara 0.1..120 s')
             if seq['shot'] not in ('medium','close','wide') or seq['angle'] not in ('low','medium','high'): raise ValueError('Plano/ángulo de cámara inválido')
-            if 'preset' in seq and (not modern or seq['preset'] not in {'speaker_close','listener_close','ots_speaker','ots_listener','two_shot','medium','full'}):raise ValueError('Preset de cámara requiere formato 9 y valor conocido')
+            if 'preset' in seq and (not modern or seq['preset'] not in CINEMA_PRESETS):raise ValueError('Preset de cámara requiere formato 9 y valor conocido')
+            from .cinematics import validate_sequence
+            validate_sequence(seq,actors,paths,resources,modern,objects)
         def condition(c,depth=0):
             if depth>12: raise ValueError('Condiciones demasiado anidadas')
             if not isinstance(c,dict): raise ValueError('Condición debe ser un objeto')
@@ -189,14 +196,17 @@ def parse_campaign(source, levels, resources):
                 for eid in [v] if k=='spawn' else groups[v]['actors']: spawn_owners[eid]=spawn_owners.get(eid,0)+1
         events=indexed(s['events'],label+' events')
         for e in events.values():
-            mapping(e,{'id','when','actions','conditions','actor','conversation','result','trigger','item','encounter','seconds','once'}, {'id','when','actions'},'event '+e['id'])
+            mapping(e,{'id','when','actions','conditions','actor','conversation','result','trigger','item','encounter','sequence','seconds','once'}, {'id','when','actions'},'event '+e['id'])
             w=e['when']
             if w not in WHEN: raise ValueError('Callback no soportado: '+str(w))
+            if w=='sequence_ended':
+                if not modern or e.get('sequence') not in shots:raise ValueError('Fin de secuencia requiere formato 9 y secuencia existente')
+                if not any(k in shots[e['sequence']] for k in ('steps','move_path','camera_path','prop_motion')):raise ValueError('Fin de secuencia requiere timeline o recorrido')
             if type(e.get('once',False)) is not bool: raise ValueError('event.once requiere booleano')
-            filter_key={'actor_clicked':'actor','actor_killed':'actor','conversation_ended':'conversation','trigger_enter':'trigger','trigger_leave':'trigger','item_picked_up':'item','encounter_complete':'encounter'}.get(w)
-            for fk in ('actor','conversation','trigger','item','encounter','result','seconds'):
+            filter_key={'actor_clicked':'actor','actor_killed':'actor','conversation_ended':'conversation','trigger_enter':'trigger','trigger_leave':'trigger','item_picked_up':'item','encounter_complete':'encounter','sequence_ended':'sequence'}.get(w)
+            for fk in ('actor','conversation','trigger','item','encounter','sequence','result','seconds'):
                 if fk in e and fk != filter_key and not (fk=='result' and w=='conversation_ended') and not(fk=='seconds' and w=='timer'): raise ValueError('Filtro incompatible con '+w+': '+fk)
-            if filter_key: ref(e.get(filter_key), {'actor':actors,'conversation':convs,'trigger':triggers,'item':objects,'encounter':groups}[filter_key],filter_key)
+            if filter_key: ref(e.get(filter_key), {'actor':actors,'conversation':convs,'trigger':triggers,'item':objects,'encounter':groups,'sequence':shots}[filter_key],filter_key)
             if w=='item_picked_up': item(e['item'])
             if w=='timer' and (type(e.get('seconds')) not in (int,float) or not math.isfinite(e['seconds']) or not .15<=e['seconds']<=86400): raise ValueError('Timer requiere seconds 0.15..86400')
             if w=='state_changed' and not e.get('conditions'): raise ValueError('state_changed requiere condición')
@@ -219,9 +229,9 @@ def parse_campaign(source, levels, resources):
         legacy={'schema':1,'chronicle':{**chron,'id':chron['id']+'_s'+str(si)},'state':{'flags':flags},'level':s['level'],
                 'actors':[{k:v for k,v in a.items() if k not in {'behavior','inventory'}} for a in actors.values()],
                 'objects':[{k:v for k,v in a.items() if k!='quest_item'} for a in objects.values()],
-                'conversations':s['conversations'],'triggers':s.get('triggers',[]),
+                'conversations':[{k:v for k,v in c.items() if k!='camera'} for c in s['conversations']],'triggers':s.get('triggers',[]),
                 'events':[{'when':'scene_start','actions':[{'spawn':eid} for eid in entities]}] if entities else []}
-        parsed.append((s,parse_project(yaml.safe_dump(legacy,sort_keys=False),levels,resources,allow_empty=True)))
+        parsed.append((s,parse_project(yaml.safe_dump(legacy,sort_keys=False),levels,resources,allow_empty=True,allow_motions=modern)))
     if modern:
         for s in scenes.values():
             for point in s.get('entries',[]): reserve('arrival/'+s['id']+'/'+point['id'])

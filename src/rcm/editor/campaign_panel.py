@@ -177,7 +177,7 @@ class CampaignPanel(QWidget):
                         from ..model import identifier
                         identifier(w.text(),'ID',16);old=row[key];coll=self.path[-2]
                         if any(x is not row and x['id']==w.text() for x in root['scenes'][self.path[1]][coll]):raise ValueError('ID duplicado')
-                        row[key]=w.text();keys={'encounters':{'spawn_encounter','remove_encounter','encounter'},'sequences':{'play_sequence'},'paths':{'start_patrol'}}[coll]
+                        row[key]=w.text();keys={'encounters':{'spawn_encounter','remove_encounter','encounter'},'sequences':{'play_sequence'},'paths':{'start_patrol','move_path'}}[coll]
                         self.win.doc._replace(root['scenes'][self.path[1]],keys,old,w.text())
                     else:row[key]=w.text()
                 return self.win.guard(lambda:self.mutate(change))
@@ -189,10 +189,15 @@ class CampaignPanel(QWidget):
             w.editingFinished.connect(lambda:safe_commit() if w._rcm_pending else True);form.addRow(label,w)
         def combo(label,key,choices,name):
             w=QComboBox();w.setObjectName(name)
-            for label,value in choices:w.addItem(label,value)
+            for choice_label,value in choices:w.addItem(choice_label,value)
             def update():
                 value=w.currentData()
-                self.mutate(lambda:row.pop(key,None) if value is None else row.__setitem__(key,value))
+                def change():
+                    if value is None:
+                        row.pop(key,None)
+                        if key=='move_path':row.pop('move_at',None)
+                    else:row[key]=value
+                self.mutate(change,True if key=='move_path' else False)
             w.setCurrentIndex(max(0,w.findData(row.get(key))));w.currentIndexChanged.connect(update);form.addRow(label,w)
         line('ID','id','campaign_id',True)
         if self.path[0]=='quests':
@@ -222,17 +227,71 @@ class CampaignPanel(QWidget):
             combo('Actor enfocado','actor',[(a['name'],a['id']) for a in s['actors']],'sequence_actor')
             combo('Plano','shot',[('Medio','medium'),('Cercano','close'),('Amplio','wide')],'sequence_shot');combo('Ángulo','angle',[('Bajo','low'),('Medio','medium'),('Alto','high')],'sequence_angle')
             if root.get('project_format')==9:
-                from ..camera_presets import PRESETS
+                from ..camera_presets import CINEMA_PRESETS as PRESETS
                 combo('Preset narrativo','preset',[('Usar plano simple',None)]+[(v[0],k) for k,v in PRESETS.items()],'sequence_preset')
+                combo('Actor en movimiento','move_path',[('Sin movimiento',None)]+[(p['name'],p['id']) for p in s.get('paths',[])],'sequence_move_path')
+                if row.get('move_path'):
+                    when=QDoubleSpinBox();when.setRange(0,max(0,row['duration']-.1));when.setSuffix(' s');when.setValue(row.get('move_at',0));when.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('move_at',v)));form.addRow('Empieza a caminar',when)
+                prop=QComboBox();prop.setObjectName('sequence_moving_prop');prop.addItem('Sin decorado móvil',None)
+                for obj in s.get('objects',[]):
+                    if obj['transform'].get('placement')=='absolute':prop.addItem(obj['name'],obj['id'])
+                prop.setCurrentIndex(prop.findData(row.get('prop_motion',{}).get('object')))
+                def choose_prop():
+                    def change():
+                        value=prop.currentData()
+                        if value is None:row.pop('prop_motion',None)
+                        else:row['prop_motion']={**row.get('prop_motion',dict(at=0,duration=min(3,row['duration']),translation=[0,0,192])),'object':value};row.pop('camera_path',None);row.setdefault('steps',[dict(at=0,actor=row['actor'],preset=row.get('preset','full'))])
+                    self.mutate(change,True)
+                prop.currentIndexChanged.connect(choose_prop);form.addRow('Mover decorado',prop)
+                if row.get('prop_motion'):
+                    motion=row['prop_motion']
+                    for key,label in [('at','Apertura empieza'),('duration','Apertura dura')]:
+                        value=QDoubleSpinBox();value.setRange(0 if key=='at' else .1,row['duration']);value.setSuffix(' s');value.setValue(motion[key]);value.valueChanged.connect(lambda v,key=key:self.mutate(lambda:motion.__setitem__(key,v)));form.addRow(label,value)
+                    axes=QWidget();axisbar=QHBoxLayout(axes);axisbar.setContentsMargins(0,0,0,0)
+                    for axis,label in enumerate(['X','Y','Z']):
+                        value=QDoubleSpinBox();value.setRange(-10000,10000);value.setPrefix(label+' ');value.setValue(motion['translation'][axis]);value.valueChanged.connect(lambda v,axis=axis:self.mutate(lambda:motion['translation'].__setitem__(axis,v)));axisbar.addWidget(value)
+                    form.addRow('Desplazamiento',axes)
+                if not row.get('steps'):
+                    combo('Travelling original NCP','camera_path',[('Sin recorrido de cámara',None)]+[(e['id'],e['id']) for e in self.win.backend.resources['entries'] if e['extension'].lower()=='.ncp'],'sequence_camera_path')
+                if not row.get('camera_path'):
+                    def add_shot():
+                        def change():
+                            steps=row.setdefault('steps',[dict(at=0,actor=row['actor'],preset=row.get('preset','medium'))]);at=steps[-1]['at']+2
+                            steps.append(dict(at=at,actor=row['actor'],preset='speaker_close',transition=.3));row['duration']=max(row['duration'],at+2)
+                        self.mutate(change,True)
+                    b=QPushButton('+ Plano en timeline');b.setObjectName('sequence_add_shot');b.clicked.connect(add_shot);form.addRow(b)
+                    for i,step in enumerate(row.get('steps',[])):
+                        controls=QWidget();bar=QHBoxLayout(controls);bar.setContentsMargins(0,0,0,0)
+                        at=QDoubleSpinBox();at.setRange(0,119.9);at.setSuffix(' s');at.setValue(step['at']);at.setEnabled(i>0);at.valueChanged.connect(lambda v,st=step:self.mutate(lambda:st.__setitem__('at',v)));bar.addWidget(at)
+                        actor=QComboBox()
+                        for a in s['actors']:actor.addItem(a['name'],a['id'])
+                        actor.setCurrentIndex(actor.findData(step['actor']));actor.currentIndexChanged.connect(lambda _,c=actor,st=step:self.mutate(lambda:st.__setitem__('actor',c.currentData())));bar.addWidget(actor)
+                        focus=QComboBox();focus.addItem('Enfocar actor',None)
+                        for obj in s.get('objects',[]):focus.addItem(obj['name'],obj['id'])
+                        focus.setCurrentIndex(focus.findData(step.get('focus')))
+                        focus.currentIndexChanged.connect(lambda _,c=focus,st=step:self.mutate(lambda:st.__setitem__('focus',c.currentData()) if c.currentData() else st.pop('focus',None)))
+                        preset=QComboBox()
+                        for key,value in PRESETS.items():preset.addItem(value[0],key)
+                        preset.setCurrentIndex(preset.findData(step['preset']));preset.currentIndexChanged.connect(lambda _,c=preset,st=step:self.mutate(lambda:st.__setitem__('preset',c.currentData())));bar.addWidget(preset)
+                        transition=QDoubleSpinBox();transition.setRange(0,10);transition.setValue(step.get('transition',.3));transition.setToolTip('Transición entre planos, segundos');transition.valueChanged.connect(lambda v,st=step:self.mutate(lambda:st.__setitem__('transition',v)));bar.addWidget(transition)
+                        if i>0:
+                            remove=QPushButton('−');remove.clicked.connect(lambda checked=False,i=i:self.mutate(lambda:row['steps'].pop(i),True));bar.addWidget(remove)
+                        form.addRow('Plano '+str(i+1),controls)
+                        form.addRow('Enfocar decorado (plano '+str(i+1)+')',focus)
+                        angle=QComboBox();angle.setObjectName('sequence_step_angle_'+str(i))
+                        for name,key in [('Bajo','low'),('Medio','medium'),('Picado','high')]:angle.addItem(name,key)
+                        angle.setCurrentIndex(angle.findData(step.get('angle','medium')))
+                        angle.currentIndexChanged.connect(lambda _,c=angle,st=step:self.mutate(lambda:st.__setitem__('angle',c.currentData())))
+                        form.addRow('Ángulo (plano '+str(i+1)+')',angle)
             w=QDoubleSpinBox();w.setObjectName('sequence_duration');w.setRange(.1,120);w.setValue(row['duration']);w.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('duration',v)));form.addRow('Duración (s)',w)
             b=QPushButton('Enfocar actor en viewport');b.clicked.connect(lambda:self.preview_sequence(row));form.addRow(b)
-            form.addRow(QLabel('El preview enfoca el actor; no reproduce el algoritmo de cámara del motor.'))
+            note=QLabel('Los planos y el movimiento se ejecutan con la API del motor. Travelling NCP reutiliza un recorrido original: comprueba que corresponda al escenario. El preview sólo enfoca al actor. Al cargar partida se cancela la cutscene y se devuelve el control.');note.setWordWrap(True);form.addRow(note)
         elif self.path[2]=='paths':
             line('Nombre','name','path_name');s=root['scenes'][self.path[1]]
             combo('Actor','actor',[(a['name'],a['id']) for a in s['actors']],'path_actor')
             combo('Repetir','loop',[('Una vez',False),('Bucle',True)],'path_loop')
             # Ordered list supports repeated waypoints and explicit reordering.
-            route=QListWidget();route.setObjectName('path_points')
+            route=QListWidget();route.setObjectName('path_points');route.setMinimumHeight(100)
             for key in row['points']:route.addItem(key)
             form.addRow('Orden de waypoints',route)
             available=QComboBox();available.setObjectName('path_available')
@@ -290,13 +349,13 @@ def event_properties(ins):
         ins.line('ID',e.get('id',''),ins.rename_event,'event_id',True)
         def when(v):
             e['when']=v
-            for k in ['actor','conversation','trigger','item','encounter','result','seconds']:e.pop(k,None)
-            fk={'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters')}.get(v)
+            for k in ['actor','conversation','trigger','item','encounter','sequence','result','seconds']:e.pop(k,None)
+            fk={'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters'),'sequence_ended':('sequence','sequences')}.get(v)
             if fk:e[fk[0]]=next((x['id'] for x in s.get(fk[1],[])),'')
             if v=='timer':e['seconds']=1.0
             w.changed(True)
         ins.combo('CUANDO',[(label,key) for key,label in WHEN.items()],e['when'],when,'event_when')
-        fk={'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters')}.get(e['when'])
+        fk={'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters'),'sequence_ended':('sequence','sequences')}.get(e['when'])
         if fk:ins.combo('Origen',[(x.get('name',x['id']),x['id']) for x in s.get(fk[1],[])],e.get(fk[0],''),lambda v:ins.set(p+(fk[0],),v),'event_'+fk[0])
         if e['when']=='conversation_ended':ins.spin('RETURN (0 = cualquiera)',e.get('result',0),lambda v:ins.set(p+('result',),v if v else None,True),'event_result')
         if e['when']=='timer':ins.spin('Segundos',e.get('seconds',1),lambda v:ins.set(p+('seconds',),v),'event_seconds',True,.15,86400)
@@ -379,14 +438,53 @@ def render_condition(ins,c,path,depth=0):
             choices += [(sc['id']+' / '+o['name'],sc['id']+'.'+o['id']) for sc in w.doc.campaign['scenes'] for o in sc.get('objects',[]) if templates.get(o['template']) in {'items','weapons','armour'}]
         ins.combo('Entidad',[('Elige…','')]+choices,c.get(kind,''),lambda v:ins.set(path+(kind,),v),'condition_entity')
 
+class InventoryDialog(QDialog):
+    """Stage catalogue additions until Apply; each item has one creation owner."""
+    def __init__(self,win,actor):
+        super().__init__(win);self.win=win;self.actor=actor;self.additions=[];self.selected_ids=list(actor.get('inventory',[]))
+        self.setWindowTitle('Inventario inicial · '+actor['name']);self.resize(760,520)
+        layout=QVBoxLayout(self);layout.addWidget(QLabel('Añade directamente del catálogo; cada copia es un objeto independiente.'))
+        bar=QHBoxLayout();add=QPushButton('+ Del catálogo…');add.setObjectName('inventory_add');add.clicked.connect(self.add_catalogue)
+        remove=QPushButton('Quitar del inventario');remove.setObjectName('inventory_remove');remove.clicked.connect(self.remove_selected)
+        bar.addWidget(add);bar.addWidget(remove);bar.addStretch();layout.addLayout(bar)
+        self.items=QListWidget();self.items.setObjectName('inventory_items');layout.addWidget(self.items,1)
+        reuse=QHBoxLayout();self.existing=QComboBox();self.existing.setObjectName('inventory_existing');reuse.addWidget(self.existing,1)
+        b=QPushButton('Añadir objeto existente');b.clicked.connect(self.add_existing);reuse.addWidget(b);layout.addLayout(reuse)
+        note=QLabel('Se crean dentro del NPC, sin colocarlos también en el suelo. Los objetos de otros inventarios o con spawn no se ofrecen. Aplicar conserva una única operación que puedes deshacer.');note.setWordWrap(True);layout.addWidget(note)
+        buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Apply|QDialogButtonBox.StandardButton.Cancel);buttons.button(QDialogButtonBox.StandardButton.Apply).setObjectName('apply_inventory');buttons.button(QDialogButtonBox.StandardButton.Apply).setText('Aplicar');buttons.button(QDialogButtonBox.StandardButton.Apply).clicked.connect(self.accept);buttons.rejected.connect(self.reject);layout.addWidget(buttons);self.refresh()
+
+    def refresh(self):
+        scene=self.win.doc.data;objects=scene.get('objects',[])+self.additions;by_id={o['id']:o for o in objects}
+        self.items.clear()
+        for ident in self.selected_ids:
+            row=by_id[ident];item=QListWidgetItem(row['name']+' · '+row['template']);item.setData(ROLE,ident);item.setToolTip(row['name']+'\nID: '+ident+'\nPlantilla: '+row['template']);self.items.addItem(item)
+        used={x for a in scene['actors'] if a is not self.actor for x in a.get('inventory',[])}|{ac['spawn'] for ev in scene['events'] for ac in ev['actions'] if 'spawn' in ac}
+        kinds={t['id']:t['kind'] for t in self.win.backend.resources['templates']};self.existing.clear()
+        for row in scene.get('objects',[]):
+            if row['id'] not in used|set(self.selected_ids) and kinds.get(row['template']) in {'items','weapons','armour'}:self.existing.addItem(row['name']+' · '+row['template'],row['id'])
+
+    def add_catalogue(self):
+        dialog=ResourceDialog(self.win.backend,'items',self);dialog.browser.allowed_families={'items','weapons','armour'};dialog.browser.refresh()
+        if dialog.exec()!=QDialog.DialogCode.Accepted:return
+        ids={e['id'] for k in ('actors','objects') for e in self.win.doc.data.get(k,[])}|{o['id'] for o in self.additions};i=1
+        while 'inv'+str(i) in ids:i+=1
+        ident='inv'+str(i);self.additions.append(dict(id=ident,name=dialog.selection,template=dialog.selection,transform=dict(placement='absolute',position=[0,0,0],orientation=[0,0,0])))
+        self.selected_ids.append(ident);self.refresh()
+
+    def add_existing(self):
+        ident=self.existing.currentData()
+        if ident:self.selected_ids.append(ident);self.refresh()
+
+    def remove_selected(self):
+        item=self.items.currentItem()
+        if item:self.selected_ids.remove(item.data(ROLE));self.refresh()
+
+    def apply(self):
+        self.win.history_time=0
+        self.win.doc.data.setdefault('objects',[]).extend(o for o in self.additions if o['id'] in self.selected_ids)
+        self.actor['inventory']=self.selected_ids[:];self.win.changed(True)
+
+
 def inventory_dialog(win,actor):
-    dialog=QDialog(win);dialog.setWindowTitle('Inventario inicial · '+actor['name']);layout=QVBoxLayout(dialog);lst=QListWidget();layout.addWidget(lst)
-    kinds={t['id']:t['kind'] for t in win.backend.resources['templates']}
-    for o in win.doc.data.get('objects',[]):
-        if kinds.get(o['template']) not in {'items','weapons','armour'}:continue
-        item=QListWidgetItem(o['name']);item.setData(ROLE,o['id']);item.setFlags(item.flags()|Qt.ItemFlag.ItemIsUserCheckable);item.setCheckState(Qt.CheckState.Checked if o['id'] in actor.get('inventory',[]) else Qt.CheckState.Unchecked);lst.addItem(item)
-    label=QLabel('Los objetos seleccionados se crean en este inventario, sin un spawn adicional. No se asignan slots/equipo no verificados.');label.setWordWrap(True);layout.addWidget(label)
-    button=QPushButton('Aplicar');button.setObjectName('apply_inventory');button.clicked.connect(dialog.accept);layout.addWidget(button)
-    if dialog.exec()==QDialog.DialogCode.Accepted:
-        actor['inventory']=[lst.item(i).data(ROLE) for i in range(lst.count()) if lst.item(i).checkState()==Qt.CheckState.Checked]
-        win.changed(True)
+    dialog=InventoryDialog(win,actor)
+    if dialog.exec()==QDialog.DialogCode.Accepted:dialog.apply()

@@ -46,7 +46,7 @@ try:
     report=w.backend.build(source);steps.append('saved, reopened, validated and compiled against original API')
     w.center_tabs.setCurrentIndex(0);w.select(('entries',0));QTest.qWait(250);w.grab().save(str(out/'authored_editor.png'));v.grabFramebuffer().save(str(out/'authored_viewport.png'))
     # Inspect the actual circuit spatially as a separate curated source.
-    w.open_path(ws.output('chronicles/circuit/project.yaml'));w.center_tabs.setCurrentIndex(0)
+    w.open_path(ws.output('tests/fixtures/chronicles/circuit/project.yaml'));w.center_tabs.setCurrentIndex(0)
     deadline=time.monotonic()+45
     while w.spatial.loading or w.spatial.loaded_name!='EastLondon':
         if time.monotonic()>deadline:raise ValueError('Carga del circuito agotó el plazo')

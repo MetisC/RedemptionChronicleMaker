@@ -1,0 +1,11 @@
+{
+  "version": "0.9.6",
+  "source_build": "compiled-unverified-in-game",
+  "portable_update": "build/portable_update_096",
+  "portable_editor_updated": true,
+  "portable_probe": "research/round0/cutscene_layout_fix/portable_probe.json",
+  "native_game_test": false,
+  "native_deployment": "rolled_back",
+  "native_deployment_reason": "El paquete 0.9.6 fue retirado después de un crash al pulsar LAN. RCM/east_demo coincide byte a byte con el backup anterior conocido como funcional; la corrección Java queda en el workspace pendiente de una nueva prueba nativa.",
+  "original_authoring_tools_used": false
+}

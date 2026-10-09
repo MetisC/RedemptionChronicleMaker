@@ -74,6 +74,10 @@ class CampaignDocument(Document):
             for seq in records(s.get('sequences',[]),'Secuencias'):
                 strings(seq,['id','name','actor','shot','angle'],'Secuencia')
                 if type(seq.get('duration')) not in (int,float):raise ValueError('Duración: requiere un número')
+                if 'camera_path' in seq and not isinstance(seq['camera_path'],str):raise ValueError('Recorrido de cámara requiere ID')
+                for step in records(seq.get('steps',[]),'Planos'):
+                    strings(step,['actor','preset'],'Plano')
+                    if type(step.get('at')) not in (int,float):raise ValueError('Tiempo del plano requiere número')
             if data.get('project_format')==9:
                 from .authoring9 import validate_markers
                 # Loading semantic drafts permits unresolved path/entry references,
@@ -106,7 +110,7 @@ class CampaignDocument(Document):
         identifier(new,'ID',16);rows=self.data[collection];old=rows[index]['id']
         if any(i!=index and v['id']==new for i,v in enumerate(rows)):raise ValueError('ID duplicado')
         rows[index]['id']=new
-        keys={'actors':{'speaker','actor','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists'},'conversations':{'default','then','start_conversation','conversation'},'events':set(),'triggers':{'trigger'},'entries':{'default_entry'},'waypoints':set()}[collection]
+        keys={'actors':{'speaker','actor','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus'},'conversations':{'default','then','start_conversation','conversation'},'events':set(),'triggers':{'trigger'},'entries':{'default_entry'},'waypoints':set()}[collection]
         self._replace(self.campaign['scenes'][self.active],keys,old,new)
         if collection=='entries':
             sid=self.campaign['scenes'][self.active]['id']

@@ -1,0 +1,406 @@
+[
+  {
+    "anchor": [
+      -1720,
+      -2136,
+      128
+    ],
+    "points": [
+      {
+        "point": [
+          -1720,
+          -2136,
+          128
+        ],
+        "floor": [
+          -1720.0,
+          -2136.0,
+          128.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -1720,
+          -1980,
+          128
+        ],
+        "floor": [
+          -1720.0,
+          -1980.0,
+          144.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -1886,
+          -2136,
+          128
+        ],
+        "floor": null,
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -1606,
+          -2136,
+          128
+        ],
+        "floor": [
+          -1606.0,
+          -2136.0,
+          128.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -1720,
+          -2296,
+          128
+        ],
+        "floor": [
+          -1720.0,
+          -2296.0,
+          128.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -1886,
+          -2246,
+          128
+        ],
+        "floor": null,
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -1636,
+          -2136,
+          128
+        ],
+        "floor": [
+          -1636.0,
+          -2136.0,
+          128.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -1636,
+          -2236,
+          128
+        ],
+        "floor": [
+          -1636.0,
+          -2236.0,
+          128.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -1886,
+          -2386,
+          128
+        ],
+        "floor": null,
+        "headroom_hits": [],
+        "nearby_static": []
+      }
+    ]
+  },
+  {
+    "anchor": [
+      -176,
+      -768,
+      384
+    ],
+    "points": [
+      {
+        "point": [
+          -176,
+          -768,
+          384
+        ],
+        "floor": [
+          -176.0,
+          -768.0,
+          384.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -176,
+          -612,
+          384
+        ],
+        "floor": [
+          -176.0,
+          -612.0,
+          384.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -342,
+          -768,
+          384
+        ],
+        "floor": [
+          -342.0,
+          -768.0,
+          384.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -62,
+          -768,
+          384
+        ],
+        "floor": [
+          -62.0,
+          -768.0,
+          368.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -176,
+          -928,
+          384
+        ],
+        "floor": [
+          -176.0,
+          -928.0,
+          384.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -342,
+          -878,
+          384
+        ],
+        "floor": [
+          -342.0,
+          -878.0,
+          384.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -92,
+          -768,
+          384
+        ],
+        "floor": [
+          -92.0,
+          -768.0,
+          368.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -92,
+          -868,
+          384
+        ],
+        "floor": [
+          -92.0,
+          -868.0,
+          384.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -342,
+          -1018,
+          384
+        ],
+        "floor": [
+          -342.0,
+          -1018.0,
+          384.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      }
+    ]
+  },
+  {
+    "anchor": [
+      -2208,
+      -32,
+      512
+    ],
+    "points": [
+      {
+        "point": [
+          -2208,
+          -32,
+          512
+        ],
+        "floor": [
+          -2208.0,
+          -32.0,
+          512.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -2208,
+          124,
+          512
+        ],
+        "floor": [
+          -2208.0,
+          124.0,
+          512.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": [
+          {
+            "template": "ironbench",
+            "position": [
+              -2208.0,
+              160.0,
+              512.0
+            ]
+          }
+        ]
+      },
+      {
+        "point": [
+          -2374,
+          -32,
+          512
+        ],
+        "floor": [
+          -2374.0,
+          -32.0,
+          544.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -2094,
+          -32,
+          512
+        ],
+        "floor": [
+          -2094.0,
+          -32.0,
+          512.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -2208,
+          -192,
+          512
+        ],
+        "floor": [
+          -2208.0,
+          -192.0,
+          512.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -2374,
+          -142,
+          512
+        ],
+        "floor": [
+          -2374.0,
+          -142.0,
+          512.0
+        ],
+        "headroom_hits": [
+          31.0
+        ],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -2124,
+          -32,
+          512
+        ],
+        "floor": [
+          -2124.0,
+          -32.0,
+          512.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -2124,
+          -132,
+          512
+        ],
+        "floor": [
+          -2124.0,
+          -132.0,
+          512.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      },
+      {
+        "point": [
+          -2374,
+          -282,
+          512
+        ],
+        "floor": [
+          -2374.0,
+          -282.0,
+          512.0
+        ],
+        "headroom_hits": [],
+        "nearby_static": []
+      }
+    ]
+  }
+]

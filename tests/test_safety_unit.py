@@ -158,14 +158,26 @@ class SafetyUnitTests(unittest.TestCase):
     def test_generated_formats_broken_links_are_rejected(self):
         from rcm.output_validation import verify_output
         from rcm.formats import Scene,NotFile,Template
-        base={'chronicles/demo.nsc':b'location a level.nil demo.nsd map label 0x20\r\nmetafile demo.nmf\r\n','chronicles/demo.nmf':b'NOT demo.not\r\nNLS demo.nls\r\nNVO demo.nvo\r\n','scenes/demo.nsd':Scene('demo','level.nod',[]).encode(),'misc/demo.not':NotFile([Template('own',[])]).encode(),'strings/demo.nls':b'key Text\r\n','strings/demo.nvo':b'voice silence Text\r\n','sounds/silence.wav':b'fixture','conversations/demo.nco':b'CONVERSATION: demo 0\r\nEVENT: ev_start\r\nLINE: voice own\r\nANSWERRETURN: voice 1\r\n'}
+        base={'chronicles/demo.nsc':b'location a level.nil demo.nsd map label 0x20\r\nmetafile demo.nmf\r\n','chronicles/demo.nmf':b'NOT _demo.not\r\nNLS demo.nls\r\nNVO demo.nvo\r\n','scenes/demo.nsd':Scene('demo','level.nod',[]).encode(),'misc/_demo.not':NotFile([Template('own',[])]).encode(),'strings/demo.nls':b'key Text\r\n','strings/demo.nvo':b'voice silence Text\r\n','sounds/silence.wav':b'fixture','conversations/demo.nco':b'CONVERSATION: demo 0\r\nEVENT: ev_start\r\nLINE: voice own\r\nANSWERRETURN: voice 1\r\n'}
         catalogue={'entries':[{'path':'level.nil'}]};report={'chronicle':'demo','class_versions':{},'distribution_files':{}}
         self.ws.write('build/demo/demo.nob',zip_bytes(base));self.assertGreater(verify_output(self.ws,report,catalogue)['files_checked'],0)
-        broken=[('strings/demo.nls',b'key A\r\nkey B\r\n'),('strings/demo.nvo',b'voice missing Text\r\n'),('chronicles/demo.nmf',b'NOT missing.not\r\n'),('conversations/demo.nco',b'EVENT: ev_start\r\nANSWERGOTO: voice ev_missing\r\n'),('conversations/demo.nco',b'EVENT: ev_start\r\nANSWERRETURN: voice abc\r\n'),('conversations/demo.nco',b'EVENT: ev_start\r\nLINE: missing own\r\n'),('scenes/demo.nsd',b'bad'),('misc/demo.not',b'bad'),('quests/demo.nqd',b'QUEST 0 0 missing other marker 0\r\n')]
+        broken=[('strings/demo.nls',b'key A\r\nkey B\r\n'),('strings/demo.nvo',b'voice missing Text\r\n'),('chronicles/demo.nmf',b'NOT missing.not\r\n'),('conversations/demo.nco',b'EVENT: ev_start\r\nANSWERGOTO: voice ev_missing\r\n'),('conversations/demo.nco',b'EVENT: ev_start\r\nANSWERRETURN: voice abc\r\n'),('conversations/demo.nco',b'EVENT: ev_start\r\nLINE: missing own\r\n'),('scenes/demo.nsd',b'bad'),('misc/_demo.not',b'bad'),('quests/demo.nqd',b'QUEST 0 0 missing other marker 0\r\n')]
         for name,data in broken:
             with self.subTest(name=name,data=data):
                 payload=dict(base);payload[name]=data;self.ws.write('build/demo/demo.nob',zip_bytes(payload))
                 with self.assertRaises(ValueError):verify_output(self.ws,report,catalogue)
+        # An invented 640-byte limit is unsupported by native evidence.
+        large = dict(base)
+        large['strings/demo.nls'] = ('key ' + ('x' * 1000) + '\r\n').encode('cp1252')
+        self.ws.write('build/demo/demo.nob', zip_bytes(large))
+        verify_output(self.ws, report, catalogue)
+        # Character inventory restoration precedes chronicle selection.
+        late = dict(base)
+        late['misc/demo.not'] = late.pop('misc/_demo.not')
+        late['chronicles/demo.nmf'] = late['chronicles/demo.nmf'].replace(b'_demo.not', b'demo.not')
+        self.ws.write('build/demo/demo.nob', zip_bytes(late))
+        with self.assertRaisesRegex(ValueError, 'restaurar personajes'):
+            verify_output(self.ws, report, catalogue)
     def test_newer_package_requirement_rejected(self):
         files=read_archive(io.BytesIO(package()));m=json.loads(files['manifest.json']);m['requires_rcm']='9.0.0';files['manifest.json']=json.dumps(m).encode()
         with self.assertRaisesRegex(ValueError,'otra versión'):inspect_package(io.BytesIO(zip_bytes(files)))

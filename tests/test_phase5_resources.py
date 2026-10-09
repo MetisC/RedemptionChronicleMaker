@@ -6,7 +6,7 @@ from rcm.formats import NotFile,Template,Tag,cstring
 from rcm.not_library import NotLibrary,patch_template
 from rcm.paths import Workspace
 from rcm.service import Backend
-from rcm.project_resources import ai_edit
+from rcm.project_resources import ai_edit,prepare
 
 def custom_source():
     d=source();d['chronicle']['id']='p5_test';d['project_format']=5;d['metadata']={'version':'0.1.0','author':'RCM','dependencies':[]}
@@ -46,8 +46,16 @@ class Phase5ResourceTests(TestCase):
  def test_custom_templates_validation_and_real_build(self):
   d=custom_source();v=self.b.validate(d);self.assertTrue(v.valid,[p.message for p in v.problems]);report=self.b.build(d);self.assertIn('P5TestActor',report['class_versions']);self.assertEqual(report['class_versions']['P5TestActor'],'45.3')
   with zipfile.ZipFile(ROOT/'build/p5_test/p5_test.nob') as z:
-   nf=NotFile.read(z.read('misc/templates/R_p5_test_custom.not'));row=nf.templates[0];self.assertEqual(cstring(row.values()[56]),'AI_p5');self.assertEqual(cstring(row.values()[11]),'P5TestActor');self.assertIn(b'NOT R_p5_test_custom.not',z.read('chronicles/R_p5_test.nmf'));self.assertIn(b'wanderRadius',z.read('misc/AI/AI_p5.nai'))
-   child=NotFile.read(z.read('misc/templates/R_p5_test_s0.not')).templates[0];self.assertEqual(cstring(child.values()[11]),'P5TestActor')
+   nf=NotFile.read(z.read('misc/templates/_R_p5_test_custom.not'));row=nf.templates[0];self.assertEqual(cstring(row.values()[56]),'AI_p5');self.assertEqual(cstring(row.values()[11]),'P5TestActor');self.assertIn(b'NOT _R_p5_test_custom.not',z.read('chronicles/R_p5_test.nmf'));self.assertIn(b'wanderRadius',z.read('misc/AI/AI_p5.nai'))
+   child=NotFile.read(z.read('misc/templates/_R_p5_test_s0.not')).templates[0];self.assertEqual(cstring(child.values()[11]),'P5TestActor')
+ def test_format9_catalogue_ids_become_real_not_filenames(self):
+  for ai,model in [('AI_p5','Rat'),('AI_p5.nai','Rat.nod')]:
+   d=custom_source();d['project_format']=9;d['resources']['templates'][0]['properties'].update(ai=ai,model=model)
+   _,catalogue,payload,_=prepare(self.ws,d,self.b.original_resources)
+   row=NotFile.read(payload['misc/templates/_R_p5_test_custom.not']).templates[0]
+   self.assertEqual(cstring(row.values()[56]),'AI_p5.nai');self.assertEqual(cstring(row.values()[4]),'Rat.nod');self.assertEqual(cstring(row.values()[11]),'P5TestActor')
+   self.assertEqual(d['resources']['templates'][0]['properties']['ai'],ai)
+   entry=next(t for t in catalogue['templates'] if t['id']=='T_p5_actor');self.assertEqual(entry['ai'],'AI_p5.nai')
  def test_invalid_custom_resources_fail_closed(self):
   for update in [lambda d:d['resources']['templates'][0].update(base='missing'),lambda d:d['resources']['templates'][0]['properties'].update(model='missing'),lambda d:d['resources']['templates'][0]['properties'].update(health=10),lambda d:d['resources']['templates'][0].update(base='T_p5_actor'),lambda d:d['resources']['ai_profiles'][0]['properties'].update(attackRate=-1),lambda d:d.update(project_format=99)]:
    d=custom_source();update(d);self.assertFalse(self.b.validate(d).valid)

@@ -1,0 +1,33 @@
+{
+  "observed": "Crash al pulsar LAN antes de abrir New Game",
+  "native_test": false,
+  "failed_deployment": {
+    "backup": "research/runtime_test/backups/deploy_multi_1791526201487414900.zip",
+    "tutorial_nob_entries": 39,
+    "tutorial_nob_delta": [
+      "conversations/R_rcm_tutor_s0_locked.nco (added, 190 bytes)",
+      "strings/R_rcm_tutor_s0.nvo (3289 -> 3723 bytes)",
+      "strings/_R_rcm_tutor.nls (2159 -> 2221 bytes)"
+    ],
+    "max_lines": {
+      "strings/_R_rcm_tutor.nls": 669,
+      "strings/R_rcm_tutor_s0.nvo": 303
+    }
+  },
+  "previous_known_good": {
+    "backup": "research/runtime_test/backups/deploy_multi_1791526416309664100.zip",
+    "tutorial_nob_entries": 38,
+    "max_lines": {
+      "strings/_R_rcm_tutor.nls": 638,
+      "strings/R_rcm_tutor_s0.nvo": 266
+    }
+  },
+  "workspace_rebuild": {
+    "path": "build/rcm_tutor/rcm_tutor.nob",
+    "sha256": "51d3c3e298bc179ad906be2b34cc9c427130b4ff719a0c260f06a93e43b6b15f",
+    "matches_previous_known_good": true,
+    "locked_conversation_removed": true
+  },
+  "inference": "SUPERSEDED: la hipótesis del límite de 640 bytes no tenía evidencia y se ha retirado. Cuatro dumps confirman crash de restauración de inventario; véase research/runtime_test/lan_crash/startup_repair.json y docs/ENGINE_NOTES.md.",
+  "superseded_by": "research/runtime_test/lan_crash"
+}

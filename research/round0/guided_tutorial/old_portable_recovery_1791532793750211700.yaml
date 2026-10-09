@@ -1,0 +1,788 @@
+schema: 2
+project_format: 9
+chronicle:
+  id: rcm_tutor
+  name: RCM · Tutorial de creación
+  description: Un único level, tres layouts. Estaciones de autoría, cine, inventario, llave, flags, quest y rata
+    opcional.
+entry: workshop
+state:
+  flags:
+    access: 1
+    has_key: 2
+    unlocked: 3
+    entered_zone: 4
+    picked_up: 5
+    left_zone: 6
+    timer_done: 7
+    ready: 8
+    combat_done: 9
+    rat_killed: 10
+    finished: 11
+scenes:
+- id: workshop
+  level:
+    source: EastLondon
+    name: Tutorial RCM · taller junto al muelle
+    environment_scene: EAST_28_1.nsd
+  actors:
+  - id: mentor
+    name: 01 · Mentora / decisiones y flags
+    template: T_tutor_mentor
+    transform:
+      placement: absolute
+      position:
+      - 1016.0
+      - -54.0
+      - 0.0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: menu
+  - id: camera
+    name: 02 · Cineasta / cámaras y movimiento
+    template: businessWoman
+    transform:
+      placement: absolute
+      position:
+      - 850.0
+      - -210.0
+      - 0.0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: camera
+  - id: keeper
+    name: 03 · Custodia / inventario y llaves
+    template: businessWoman
+    transform:
+      placement: absolute
+      position:
+      - 1130.0
+      - -210.0
+      - 7.105427357601002e-15
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: inventory
+    inventory:
+    - npc_key
+    - npc_book
+  - id: gate
+    name: 04 · Guardiana / cambio de scene
+    template: businessWoman
+    transform:
+      placement: absolute
+      position:
+      - 1016.0
+      - -370.0
+      - 7.105427357601002e-15
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: gate
+  - id: walker
+    name: 05 · Caminante / waypoints y AI
+    template: businessWoman
+    transform:
+      placement: absolute
+      position:
+      - 850.0
+      - -320.0
+      - 0.0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+  objects:
+  - id: npc_key
+    name: Llave en inventario de la custodia
+    template: IronKeyLondon
+    transform:
+      placement: absolute
+      position:
+      - 1130.0
+      - -210.0
+      - 7.105427357601002e-15
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: npc_book
+    name: Libro en inventario de la custodia
+    template: ledger
+    transform:
+      placement: absolute
+      position:
+      - 1130.0
+      - -210.0
+      - 7.105427357601002e-15
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: key
+    name: Llave del jugador
+    template: BoneKey
+    transform:
+      placement: absolute
+      position:
+      - 1016.0
+      - -210.0
+      - 7.105427357601002e-15
+      orientation:
+      - 0
+      - 0
+      - 180
+    quest_item: true
+  - id: barrel
+    name: Prop · barril reutilizado
+    template: barrel1
+    transform:
+      placement: absolute
+      position:
+      - 1100.0
+      - -210.0
+      - 7.105427357601002e-15
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: reward
+    name: Libro recogible de prueba
+    template: ledger
+    transform:
+      placement: absolute
+      position:
+      - 1100.0
+      - -310.0
+      - 7.105427357601002e-15
+      orientation:
+      - 0
+      - 0
+      - 180
+  conversations:
+  - id: menu
+    speaker: mentor
+    camera: native
+    entry: opening
+    nodes:
+    - id: opening
+      lines:
+      - speaker: mentor
+        text: Bienvenido. Cada personaje es una estación del tutorial. Inicia la quest, habla con cineasta y custodia
+          y lleva una llave a la guardiana. El otro layout usa exactamente este mismo muelle.
+      choices:
+      - text: Iniciar quest y activar el flag de acceso.
+        result: 1
+      - text: ¿Dónde se edita todo esto?
+        result: 2
+      - text: 'Herramientas: AI, movimiento, prop y flag.'
+        goto: tools
+      - text: Cerrar y volver después.
+        result: 3
+    - id: tools
+      lines:
+      - speaker: mentor
+        text: Estas acciones afectan al caminante y al barril. Puedes repetir pausa/reanudar; retirar el barril
+          es permanente para esta partida.
+      choices:
+      - text: Pausar AI del caminante.
+        result: 4
+      - text: Reanudar AI del caminante.
+        result: 5
+      - text: Detener recorrido.
+        result: 6
+      - text: Iniciar recorrido.
+        result: 7
+      - text: Retirar barril.
+        result: 8
+      - text: Desactivar flag ready.
+        result: 9
+      - text: Volver al menú.
+        goto: opening
+  - id: camera
+    speaker: camera
+    prompt: 'Puedes comparar la cámara automática del juego, un plano propio, una cutscene con caminante y tres
+      planos, o el travelling original EASTOttoVan. La última opción es experimental: no hemos creado ese recorrido.'
+    camera: native
+    choices:
+    - text: Diálogo con plano propio.
+      result: 1
+    - text: 'Cutscene: caminante y tres planos, 8 segundos.'
+      result: 2
+    - text: Travelling original, 8 segundos.
+      result: 3
+    - text: Cerrar.
+      result: 4
+  - id: framed
+    speaker: camera
+    prompt: Este diálogo usa el preset sobre el hombro. En el editor selecciona la conversación y cambia Cámara
+      de diálogo; Automática deja que decida el motor.
+    camera: ots_speaker
+    choices:
+    - text: Volver a los controles.
+      result: 1
+    - text: Terminar.
+      result: 2
+  - id: inventory
+    speaker: keeper
+    prompt: Mi inventario inicial contiene una llave y un libro; selecciónalos en el editor, Editar inventario inicial,
+      + Del catálogo. Para la salida te doy una llave distinta.
+    camera: native
+    choices:
+    - text: Recibir la llave del jugador.
+      result: 1
+    - text: Cerrar.
+      result: 2
+  - id: gate
+    speaker: gate
+    prompt: Para entrar en el layout de combate necesitas iniciar la quest y llevar la llave. El combate es una
+      sola rata básica de las primeras minas; sólo aparece en el otro layout. Si te falta algo, vuelve a mentora
+      o custodia.
+    camera: native
+    choices:
+    - text: Abrir salida lógica con flag Y objeto; cambiar layout.
+      result: 1
+    - text: Cerrar.
+      result: 2
+  - id: help
+    speaker: mentor
+    prompt: 'Tutorial / Ayuda contiene enlaces a cada entidad y los pasos exactos del editor. Las puertas físicas
+      originales y el writer de travelling NCP siguen pendientes: no son funciones completas.'
+    camera: native
+    choices:
+    - text: Volver.
+      result: 1
+    - text: Cerrar.
+      result: 2
+  events:
+  - id: arrival
+    when: scene_start
+    actions:
+    - spawn: mentor
+    - spawn: camera
+    - spawn: keeper
+    - spawn: gate
+    - spawn: walker
+    - spawn: barrel
+    - start_music: London_Hub
+    - start_ambient: amb_londonStreet
+    - start_patrol: walker_walk
+  - id: accept
+    when: conversation_ended
+    actions:
+    - start_quest: lesson
+    - advance_quest: lesson
+    - set_flag: access
+    conversation: menu
+    result: 1
+    once: true
+  - id: help
+    when: conversation_ended
+    actions:
+    - start_conversation: help
+    conversation: menu
+    result: 2
+  - id: framed
+    when: conversation_ended
+    actions:
+    - start_conversation: framed
+    conversation: camera
+    result: 1
+  - id: cutscene
+    when: conversation_ended
+    actions:
+    - play_sequence: walk_scene
+    - play_sound:
+        resource: thunder_01
+        waypoint: walker_a
+        volume: 50
+        min_distance: 128
+        max_distance: 512
+    conversation: camera
+    result: 2
+  - id: travelling
+    when: conversation_ended
+    actions:
+    - play_sequence: original_path
+    conversation: camera
+    result: 3
+  - id: key
+    when: conversation_ended
+    actions:
+    - give_item: key
+    - set_flag: has_key
+    conversation: inventory
+    result: 1
+    once: true
+  - id: unlock
+    when: conversation_ended
+    actions:
+    - set_flag: unlocked
+    - travel:
+        scene: combat
+        entry: safe
+    conversation: gate
+    result: 1
+    once: false
+    conditions:
+    - all:
+      - flag: access
+        is_set: true
+      - owns_item: key
+  - id: reward_spawn
+    when: trigger_enter
+    actions:
+    - spawn: reward
+    - set_flag: entered_zone
+    trigger: station
+    once: true
+  - id: pickup
+    when: item_picked_up
+    actions:
+    - set_flag: picked_up
+    - reward_xp: 10
+    item: reward
+  - id: zone_left
+    when: trigger_leave
+    actions:
+    - set_flag: left_zone
+    trigger: station
+    once: false
+  - id: timer
+    when: timer
+    actions:
+    - set_flag: timer_done
+    seconds: 4
+  - id: key_seen
+    when: state_changed
+    actions:
+    - set_flag: ready
+    conditions:
+    - all:
+      - flag: has_key
+        is_set: true
+      - any:
+        - flag: access
+          is_set: true
+        - not:
+            flag: picked_up
+            is_set: true
+  - id: tool0
+    when: conversation_ended
+    actions:
+    - disable_ai: walker
+    conversation: menu
+    result: 4
+    once: false
+  - id: tool1
+    when: conversation_ended
+    actions:
+    - enable_ai: walker
+    conversation: menu
+    result: 5
+    once: false
+  - id: tool2
+    when: conversation_ended
+    actions:
+    - stop_patrol: walker
+    conversation: menu
+    result: 6
+    once: false
+  - id: tool3
+    when: conversation_ended
+    actions:
+    - start_patrol: walker_walk
+    conversation: menu
+    result: 7
+    once: false
+  - id: tool4
+    when: conversation_ended
+    actions:
+    - remove: barrel
+    conversation: menu
+    result: 8
+    once: false
+  - id: tool5
+    when: conversation_ended
+    actions:
+    - clear_flag: ready
+    conversation: menu
+    result: 9
+    once: false
+    conditions:
+    - flag: ready
+      is_set: true
+  triggers:
+  - id: station
+    name: Trigger de prop / pickup
+    shape: box
+    transform:
+      placement: absolute
+      position:
+      - 1100
+      - -310
+      - 60
+      orientation:
+      - 0
+      - 0
+      - 0
+    size:
+    - 100
+    - 100
+    - 120
+    once: true
+  encounters: []
+  sequences:
+  - id: walk_scene
+    name: Cutscene · caminante y cambios de plano
+    actor: walker
+    duration: 8
+    shot: medium
+    angle: medium
+    move_path: walker_walk
+    steps:
+    - at: 0
+      actor: walker
+      preset: full
+      transition: 0.3
+    - at: 3
+      actor: camera
+      preset: speaker_close
+      transition: 0.6
+    - at: 5
+      actor: walker
+      preset: two_shot
+      transition: 1.0
+  - id: original_path
+    name: Travelling ORIGINAL · EASTOttoVan · experimental
+    actor: camera
+    duration: 8
+    shot: medium
+    angle: medium
+    camera_path: EASTOttoVan
+    path_speed: 1
+  entries:
+  - id: safe
+    name: Inicio elegido · muelle
+    transform:
+      placement: absolute
+      position:
+      - 1016.0
+      - -210.0
+      - 7.105427357601002e-15
+      orientation:
+      - 0
+      - 0
+      - 0
+  default_entry: safe
+  waypoints:
+  - id: walker_a
+    name: 'Caminar: inicio / sonido'
+    transform:
+      placement: absolute
+      position:
+      - 850.0
+      - -442.10295407250027
+      - 0.0
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: walker_b
+    name: 'Caminar: destino'
+    transform:
+      placement: absolute
+      position:
+      - 850.0
+      - -460.0
+      - 0.0
+      orientation:
+      - 0
+      - 0
+      - 180
+  paths:
+  - id: walker_walk
+    name: Paseo del caminante
+    actor: walker
+    points:
+    - walker_a
+    - walker_b
+    loop: true
+    speed: 60
+    tolerance: 24
+- id: combat
+  level:
+    source: EastLondon
+    name: Tutorial RCM · mismo muelle, otro layout
+    environment_scene: EAST_28_1.nsd
+  actors:
+  - id: guide
+    name: Mismo level · nuevo layout
+    template: businessWoman
+    transform:
+      placement: absolute
+      position:
+      - 1016.0
+      - -54.0
+      - 0.0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: layout
+  - id: rat
+    name: Rata básica · combate opcional
+    template: Rat
+    transform:
+      placement: absolute
+      position:
+      - 850.0
+      - -550.0
+      - 0.0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: enemy
+  objects: []
+  conversations:
+  - id: layout
+    speaker: guide
+    prompt: Misma geometría, contenido nuevo. Puedes probar una única rata o volver al taller. No estás obligado
+      a combatir. Tras matarla podrás ir al layout final.
+    camera: native
+    choices:
+    - text: Crear la rata.
+      result: 1
+    - text: Ir al layout final (tras combatir).
+      result: 2
+    - text: Volver al taller.
+      result: 3
+    - text: Cerrar.
+      result: 4
+    - text: Retirar la rata sin premio y volver al taller.
+      result: 5
+  events:
+  - id: arrival
+    when: scene_start
+    actions:
+    - spawn: guide
+    - start_music: London_Hub
+  - id: fight
+    when: conversation_ended
+    actions:
+    - spawn_encounter: one_rat
+    conversation: layout
+    result: 1
+    once: true
+  - id: cleared
+    when: encounter_complete
+    actions:
+    - set_flag: combat_done
+    - advance_quest: lesson
+    - reward_xp: 10
+    encounter: one_rat
+    conditions:
+    - quest: lesson
+      state: active
+  - id: death
+    when: actor_killed
+    actions:
+    - set_flag: rat_killed
+    actor: rat
+  - id: next
+    when: conversation_ended
+    actions:
+    - travel:
+        scene: finished
+        entry: safe
+    conversation: layout
+    result: 2
+    once: false
+    conditions:
+    - flag: combat_done
+      is_set: true
+  - id: back
+    when: conversation_ended
+    actions:
+    - travel:
+        scene: workshop
+        entry: safe
+    conversation: layout
+    result: 3
+    once: false
+  - id: cancel
+    when: conversation_ended
+    actions:
+    - remove_encounter: one_rat
+    - travel:
+        scene: workshop
+        entry: safe
+    conversation: layout
+    result: 5
+    once: false
+  triggers: []
+  encounters:
+  - id: one_rat
+    name: Una rata básica
+    actors:
+    - rat
+  sequences: []
+  entries:
+  - id: safe
+    name: Inicio elegido · muelle
+    transform:
+      placement: absolute
+      position:
+      - 1016.0
+      - -210.0
+      - 7.105427357601002e-15
+      orientation:
+      - 0
+      - 0
+      - 0
+  default_entry: safe
+  waypoints: []
+  paths: []
+- id: finished
+  level:
+    source: EastLondon
+    name: Tutorial RCM · layout final
+    environment_scene: EAST_28_1.nsd
+  actors:
+  - id: mentor
+    name: Final · flags y persistencia
+    template: businessWoman
+    transform:
+      placement: absolute
+      position:
+      - 1016.0
+      - -54.0
+      - 0.0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: npc
+    conversation:
+      default: final
+  objects: []
+  conversations:
+  - id: final
+    speaker: mentor
+    prompt: El muelle tiene ahora un tercer layout. Completa la quest, guarda y carga; vuelve al taller para comprobar
+      reentrada y que la llave no se duplica.
+    camera: speaker_close
+    choices:
+    - text: Completar quest y retirar la llave.
+      result: 1
+    - text: Volver al taller.
+      result: 2
+    - text: Cerrar.
+      result: 3
+  events:
+  - id: arrival
+    when: scene_start
+    actions:
+    - spawn: mentor
+  - id: finish
+    when: conversation_ended
+    actions:
+    - advance_quest: lesson
+    - complete_quest: lesson
+    - take_item: workshop.key
+    - set_flag: finished
+    - stop_music: true
+    - stop_ambient: true
+    conversation: final
+    result: 1
+    once: true
+    conditions:
+    - quest: lesson
+      step: 2
+  - id: back
+    when: conversation_ended
+    actions:
+    - travel:
+        scene: workshop
+        entry: safe
+    conversation: final
+    result: 2
+    once: false
+  triggers: []
+  encounters: []
+  sequences: []
+  entries:
+  - id: safe
+    name: Inicio elegido · muelle
+    transform:
+      placement: absolute
+      position:
+      - 1016.0
+      - -210.0
+      - 7.105427357601002e-15
+      orientation:
+      - 0
+      - 0
+      - 0
+  default_entry: safe
+  waypoints: []
+  paths: []
+quests:
+- id: lesson
+  title: Aprender a crear
+  description: Completa el circuito del taller.
+  steps:
+  - Iniciar el tutorial
+  - Probar el encuentro de una rata
+  - Cerrar la lección
+  reward_xp: 20
+resources:
+  templates:
+  - id: T_tutor_mentor
+    base: businessWoman
+    mode: inherit
+    properties:
+      ai: AI_tutor
+      script: RCMTutorActor
+  ai_profiles:
+  - id: AI_tutor
+    base: civilian
+    properties:
+      wanderRadius: 0
+  scripts:
+  - id: RCMTutorActor
+    source: chronicles/tutorial/resources/RCMTutorActor.java
+  textures: []
+metadata:
+  author: RCM
+  version: 0.9.2
+  description: Estaciones editables. Nuevas cámaras y recorridos requieren prueba manual en motor.
+  requires_game: Redemption 1.1
+  dependencies: []
+build_options:
+  debug: true
+playtests:
+- id: tutorial
+  name: Tutorial · un único level
+  instructions: Abre Tutorial / Ayuda. Inicio seguro y NPC cerca; mentora inicia quest; cineasta compara cámaras;
+    custodia da llave; guardiana cambia layout; guía crea una rata si lo eliges; final completa quest. Guarda/carga
+    y reentra. Comparar UI/cámara, inventario, planos, rutas, sonido, flags y premios. No aceptar el travelling
+    original o puertas como verificados sin probarlos.

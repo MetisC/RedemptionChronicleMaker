@@ -20,7 +20,7 @@ def main():
     before=verify_sources(ws,game);shortcut=launch_info(ws)
     if not shortcut:raise ValueError('No se encuentra el acceso exacto del escritorio')
     backend=Backend(ws);builds={};deployments=[]
-    for source in ['chronicles/phase5_demo/project.yaml','chronicles/system_test/project.yaml']:
+    for source in ['tests/fixtures/chronicles/phase5_demo/project.yaml','tests/fixtures/chronicles/system_test/project.yaml']:
         root=Document.load(ws,source).snapshot();report=backend.build(root);ident=report['chronicle'];builds[ident]=report['status']
         archive=ws.output('build/'+ident+'/'+ident+'.rcmpack');create_package(ws,ident,archive)
         if ident=='rcm_system':deployments.append(install_package(ws,archive,True))

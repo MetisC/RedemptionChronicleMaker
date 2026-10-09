@@ -2,7 +2,7 @@
 import struct
 from .formats import NotFile,cstring,u32
 # Only properties with evidence in original bytes/engine ordered property names.
-KNOWN={0:('parent','text'),1:('orientation','vector'),2:('position','vector'),3:('sector','int'),4:('model','text'),6:('foley','text'),9:('motions','text'),11:('script','text'),16:('thing_type','int'),56:('ai','text'),81:('cast_id','text'),82:('description_id','text'),114:('actor_flags','int')}
+KNOWN={0:('parent','text'),1:('orientation','vector'),2:('position','vector'),3:('sector','int'),4:('model','text'),6:('foley','text'),9:('motions','text'),11:('script','text'),16:('thing_type','int'),20:('item_type','int'),56:('ai','text'),81:('cast_id','text'),82:('description_id','text'),114:('actor_flags','int')}
 
 def inspect_not(data):
     parsed=NotFile.read(data);rows=[]

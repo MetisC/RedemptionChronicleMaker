@@ -13,3 +13,8 @@ No hay edición de geometría ni herramientas originales de autoría en el workf
 
 Versión técnica 0.7.0 en estabilización autorizada por el usuario. [PHASE7_REPORT.md](PHASE7_REPORT.md) registra investigación de Embrace, corrección de asociaciones y perfiles de entorno. La aceptación beta depende de [RELEASE_BLOCKERS.md](RELEASE_BLOCKERS.md), que siguen abiertos. No se ha iniciado Fase 8. Las fases históricas descritas antes no sustituyen los resultados actuales ni convierten funciones pendientes en aceptadas.
 
+
+
+## Después de la ronda 0 (no ejecutado aquí)
+
+Probar manualmente los dos ejemplos y los nuevos diálogos/cámaras, inventarios, reentrada y saves; corregir cualquier regresión nativa antes de afirmar aceptación. Completar writer NCP y captura desde vista, puertas físicas originales con Cast ID/frames/scripts identificados, contenidos estáticos selectivos y AI más completa. Mantener red pendiente y no declarar paridad con Embrace. Las prioridades de la auditoría externa/Fase9 continúan vigentes; esta ronda de usabilidad no cierra automáticamente sus huecos.

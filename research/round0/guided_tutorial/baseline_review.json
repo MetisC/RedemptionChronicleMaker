@@ -1,0 +1,21 @@
+{
+  "previous": {
+    "distribution_sha256": "c8d9b0acb528d88f4fa858330fd8813b203d824c81219dc51661f9e32bd1fba2",
+    "scenes": 2,
+    "levels": [
+      "EastLondon",
+      "WestLondon"
+    ],
+    "class_version": "45.3",
+    "custom_code": true,
+    "geometry_in_package": false,
+    "unknown_not_tags_preserved": true
+  },
+  "new_distribution_sha256": "14301e15e6610462292bc63531908e8a61f9c00762cdee90578d0cc33981dc25",
+  "reason": [
+    "NOT names now begin with underscore to be loaded before saved player inventory (LAN crash repair)",
+    "Campaign trace now creates its RCM log directory; the generated Java bytecode changes"
+  ],
+  "native_acceptance": false,
+  "review": "Generator diff reviewed; geometry, template payloads and custom Java unchanged"
+}

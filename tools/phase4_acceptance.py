@@ -33,8 +33,8 @@ def warning_guard():
     d=app.activeModalWidget()
     if isinstance(d,QMessageBox):errors.append(d.text());d.accept()
 timer=QTimer();timer.timeout.connect(warning_guard);timer.start(100)
-win.open_path(ROOT/'chronicles/editor_acceptance/project.yaml');pump();win.center_tabs.setCurrentIndex(1)
-with patch('rcm.editor.window.QFileDialog.getSaveFileName',return_value=(str(ROOT/'chronicles/phase4_demo/project.yaml'),'YAML')):win.actions['save_as'].trigger();pump()
+win.open_path(ROOT/'tests/fixtures/chronicles/editor_acceptance/project.yaml');pump();win.center_tabs.setCurrentIndex(1)
+with patch('rcm.editor.window.QFileDialog.getSaveFileName',return_value=(str(ROOT/'tests/fixtures/chronicles/phase4_demo/project.yaml'),'YAML')):win.actions['save_as'].trigger();pump()
 win.select(('chronicle',));line('chronicle_id','phase4_demo');line('chronicle_name','RCM: El libro de Londres');prop(QPlainTextEdit,'chronicle_description').setPlainText('Una campaña de dos mapas: Victoria, un libro robado y tres enemigos.');pump();click(win.campaign_panel.findChild(QPushButton,'convert_campaign'));panel=win.campaign_panel
 check(hasattr(win.doc,'campaign'),'Convert through campaign control')
 # Existing branching/remembered conversations were authored by GUI in Phase2.

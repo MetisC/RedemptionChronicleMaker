@@ -26,8 +26,8 @@ def main():
     app=QApplication([]);app.setStyle('Fusion');QFontDatabase.addApplicationFont('C:/Windows/Fonts/segoeui.ttf');app.setFont(QFont('Segoe UI',10))
     w=MainWindow(Backend(Workspace(ROOT,Path(r'H:\GOG\Vampire The Masquerade - Redemption'))));w.show()
     out=ROOT/'build/viewport/acceptance';out.mkdir(parents=True,exist_ok=True)
-    source=ROOT/'chronicles/editor_acceptance/project.yaml';original=source.read_bytes()
-    target=ROOT/'chronicles/phase3_demo/project.yaml'
+    source=ROOT/'tests/fixtures/chronicles/editor_acceptance/project.yaml';original=source.read_bytes()
+    target=ROOT/'tests/fixtures/chronicles/phase3_demo/project.yaml'
     if target.exists():
         (out/('previous-'+str(time.time_ns())+'.yaml')).write_bytes(target.read_bytes())
     steps=[];errors=[]

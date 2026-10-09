@@ -27,7 +27,7 @@ def refresh_portable():
         raise ValueError('Build portable missing')
     shutil.copy2(ROOT / 'README.md', app / 'README.md')
     shutil.copytree(ROOT / 'docs', app / 'docs', dirs_exist_ok=True)
-    shutil.copytree(ROOT / 'chronicles/circuit', app / 'examples/circuit', dirs_exist_ok=True,
+    shutil.copytree(ROOT / 'tests/fixtures/chronicles/circuit', app / 'examples/circuit', dirs_exist_ok=True,
                     ignore=shutil.ignore_patterns('*.backup', '*.autosave', '__pycache__'))
     print('Portable documentation and unified circuit refreshed')
 
@@ -35,7 +35,7 @@ def refresh_portable():
 def finalize():
     ws = Workspace(ROOT, default_game(ROOT))
     evidence = ROOT / 'research/phase9'
-    source = Document.load(ws, ROOT / 'chronicles/circuit/project.yaml').snapshot()
+    source = Document.load(ws, ROOT / 'tests/fixtures/chronicles/circuit/project.yaml').snapshot()
     report = json.loads((ROOT / 'build/rcm_circuit/build_report.json').read_text())
     if report['authoring_source_sha256'] != source_fingerprint(source):
         raise ValueError('Source changed after build')

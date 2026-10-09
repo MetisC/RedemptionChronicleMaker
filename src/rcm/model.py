@@ -98,6 +98,8 @@ class Choice:
 class DialogueLine:
     speaker: str
     text: str
+    motion: str | None = None
+    motion_value: int | None = None
 
 
 @dataclass(frozen=True)
@@ -105,6 +107,7 @@ class DialogueNode:
     id: str
     lines: tuple[DialogueLine, ...]
     choices: tuple[Choice, ...]
+    motion: str | None = None
 
 
 @dataclass(frozen=True)
@@ -173,7 +176,7 @@ class Project:
         return "R_" + self.id
 
 
-def parse_project(data: str, levels: dict, resources: dict, allow_empty=False) -> Project:
+def parse_project(data: str, levels: dict, resources: dict, allow_empty=False, allow_motions=False) -> Project:
     if len(data) > 1024 * 1024:
         raise ValueError("Proyecto YAML demasiado grande")
     root = mapping(yaml.load(data, Loader=UniqueLoader), {"schema", "chronicle", "level", "state", "actors", "objects", "conversations", "events", "triggers"}, {"schema", "chronicle", "level", "actors", "conversations", "events"}, "proyecto")
@@ -268,7 +271,7 @@ def parse_project(data: str, levels: dict, resources: dict, allow_empty=False) -
         conv_ids.add(cid)
         if v["speaker"] not in entity_ids or next(e for e in entities if e.id == v["speaker"]).kind != "actor":
             raise ValueError("Speaker debe referenciar un actor declarado")
-        conversations.append(parse_conversation(v, cid, pid, entities, flags))
+        conversations.append(parse_conversation(v, cid, pid, entities, flags,resources,allow_motions))
     for e in entities:
         for cid in [e.conversation, e.after_conversation]:
             if cid is not None and (cid not in conv_ids or next(c for c in conversations if c.id == cid).speaker != e.id):
@@ -312,7 +315,7 @@ def parse_project(data: str, levels: dict, resources: dict, allow_empty=False) -
     return Project(pid, name, level, flags, tuple(entities), tuple(conversations), tuple(spawns), sky, events, description, level_name, tuple(triggers), environment_scene)
 
 
-def parse_conversation(v, cid, pid, entities, flags):
+def parse_conversation(v, cid, pid, entities, flags,resources=None,allow_motions=False):
     actors = {e.id for e in entities if e.kind == "actor"}
     results = set()
     def choices(rows, allow_goto=False):
@@ -345,21 +348,27 @@ def parse_conversation(v, cid, pid, entities, flags):
         raise ValueError(f"Conversación {cid}: no mezclar prompt/choices con nodes/entry")
     nodes, ids = [], set()
     for row in sequence(v["nodes"], "nodes"):
-        n = mapping(row, {"id", "lines", "choices"}, {"id", "lines", "choices"}, "node")
+        n = mapping(row, {"id", "lines", "choices", "motion"}, {"id", "lines", "choices"}, "node")
         nid = identifier(n["id"], "node.id")
         if nid in ids:
             raise ValueError(f"Conversación {cid}: nodo duplicado {nid}")
         ids.add(nid)
         lines = []
         for row2 in sequence(n["lines"], "lines"):
-            line = mapping(row2, {"speaker", "text"}, {"text"}, "line")
+            line = mapping(row2, {"speaker", "text", "motion"}, {"text"}, "line")
             speaker = line.get("speaker", v["speaker"])
             if speaker not in actors:
                 raise ValueError(f"Conversación {cid}, nodo {nid}: actor inexistente {speaker}")
-            lines.append(DialogueLine(speaker, text(line["text"], "line.text")))
+            motion=line.get('motion',n.get('motion'))
+            motion_value=None
+            if motion is not None:
+                if not allow_motions:raise ValueError('Animación de diálogo requiere formato de proyecto 9')
+                from .motions import validate_motion
+                motion_value=validate_motion(motion,next(e.template for e in entities if e.id==speaker),resources or {})
+            lines.append(DialogueLine(speaker, text(line["text"], "line.text"),motion,motion_value))
         if not lines or len(lines) > 64:
             raise ValueError(f"Conversación {cid}, nodo {nid}: requiere entre 1 y 64 líneas")
-        nodes.append(DialogueNode(nid, tuple(lines), choices(n["choices"], True)))
+        nodes.append(DialogueNode(nid, tuple(lines), choices(n["choices"], True),n.get('motion')))
     if not nodes or len(nodes) > 64 or v["entry"] not in ids:
         raise ValueError(f"Conversación {cid}: nodo de entrada ausente o número de nodos inválido")
     for node in nodes:

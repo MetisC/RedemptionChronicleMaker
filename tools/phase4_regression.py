@@ -12,7 +12,7 @@ def wait(test,timeout=90):
  end=time.monotonic()+timeout
  while not test() and time.monotonic()<end:pump()
  assert test(),'viewport timeout'
-for relative in ['chronicles/east_demo.yaml','chronicles/editor_acceptance/project.yaml','chronicles/editor_playtest/project.yaml','chronicles/phase3_demo/project.yaml','chronicles/phase4_demo/project.yaml']:
+for relative in ['tests/fixtures/chronicles/east_demo.yaml','tests/fixtures/chronicles/editor_acceptance/project.yaml','tests/fixtures/chronicles/editor_playtest/project.yaml','tests/fixtures/chronicles/phase3_demo/project.yaml','tests/fixtures/chronicles/phase4_demo/project.yaml']:
  path=ROOT/relative;before=path.read_bytes();w.open_path(path);w.center_tabs.setCurrentIndex(0);wait(lambda:not w.spatial.loading and w.spatial.viewport.level is not None)
  v=w.spatial.viewport;assert v.isValid();assert before==path.read_bytes();report=b.build(before.decode('utf8'));bundle=ROOT/'build'/report['chronicle']/(report['chronicle']+'_distribution.zip');sha=hashlib.sha256(bundle.read_bytes()).hexdigest()
  if report['chronicle']=='editor_demo':assert sha=='90b41cb0b203510fafadde9f08bef5afe484aaefcb2cc8aaafbc636b88ca86ab'

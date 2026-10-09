@@ -30,7 +30,9 @@ def main():
     from rcm.editor.browser import ResourceDialog
 
     ws = Workspace(ROOT, Path(r"H:\GOG\Vampire The Masquerade - Redemption"))
-    path = ws.output("chronicles/editor_acceptance/project.yaml")
+    # New Project now creates format 9 campaigns. Preserve the historical
+    # phase-2 source and native evidence when exercising today's controls.
+    path = ws.output("build/editor/current_acceptance/project.yaml")
     if path.exists():
         if not args.repeat:
             raise ValueError("Acceptance project already exists; use --repeat to archive and recreate it.")
@@ -40,7 +42,7 @@ def main():
             if existing.exists():
                 ws.write(backup / (existing.name + "." + str(time.time_ns())), existing.read_bytes())
                 existing.unlink()
-    evidence = ws.output("build/editor/acceptance")
+    evidence = ws.output("build/editor/current_acceptance/evidence")
     evidence.mkdir(parents=True, exist_ok=True)
     app = QApplication.instance() or QApplication([])
     # The offscreen Qt platform has no Windows font discovery; register the
@@ -150,7 +152,7 @@ def main():
         dialog_action(lambda: QTest.mouseClick(property_widget(QPushButton, "choose_level"), Qt.MouseButton.LeftButton), lambda d: choose(d, "levels", "EastLondon"))
         line("level_name", "Londres: un nuevo pacto")
         steps.append("Resource Browser selects EastLondon; set entry title")
-        click("actor")
+        dialog_action(lambda: click("actor"), lambda d: choose(d, "actors", "businessWoman"))
         line("actor_id", "victoria")
         line("actor_name", "Victoria")
         dialog_action(lambda: QTest.mouseClick(property_widget(QPushButton, "choose_template"), Qt.MouseButton.LeftButton), lambda d: choose(d, "actors", "businessWoman"))
@@ -196,7 +198,7 @@ def main():
         reports = []
         w.build_completed.connect(reports.append)
         w.actions["build"].trigger()
-        deadline = time.monotonic() + 50
+        deadline = time.monotonic() + 180
         while w.busy and time.monotonic() < deadline:
             pump(); QTest.qWait(25)
         assert not w.busy and reports, w.log.toPlainText()

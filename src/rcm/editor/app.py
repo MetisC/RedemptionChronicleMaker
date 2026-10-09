@@ -21,6 +21,8 @@ def main(argv=None):
     from ..deployment import default_game
     app = QApplication.instance() or QApplication(sys.argv[:1])
     app.setApplicationName("Redemption Chronicle Maker")
+    from .identity import set_identity
+    set_identity(app)
     app.setStyle("Fusion")
     from .theme import editor_palette
     app.setPalette(editor_palette(app.palette()))
@@ -52,7 +54,7 @@ def main(argv=None):
             if errors:raise ValueError(errors[0])
         backend=Backend(ws);backend.safe_mode=args.safe_mode
         window = MainWindow(backend)
-        if args.smoke_test and not args.project:args.project=ws.output('chronicles/system_test/project.yaml')
+        if args.smoke_test and not args.project:args.project=ws.output('chronicles/tutorial/project.yaml')
         if args.project:
             window.open_path(args.project)
         window.show()

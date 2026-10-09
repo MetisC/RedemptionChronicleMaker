@@ -34,7 +34,7 @@ with zipfile.ZipFile(checkpoint,'w',zipfile.ZIP_DEFLATED) as archive:
 ws.write('research/checkpoints/phase7_source_final.json',json.dumps(hashes,indent=2))
 app=ws.output('build/portable/RedemptionChronicleMaker')
 shutil.copy2(ROOT/'README.md',app/'README.md');shutil.copytree(ROOT/'docs',app/'docs',dirs_exist_ok=True)
-shutil.copytree(ROOT/'chronicles/phase7_demo',app/'examples/phase7_demo',dirs_exist_ok=True)
+shutil.copytree(ROOT/'tests/fixtures/chronicles/phase7_demo',app/'examples/phase7_demo',dirs_exist_ok=True)
 result={'version':__version__,'created_at':time.strftime('%Y-%m-%dT%H:%M:%S%z'),'full_tests':tests,'quality':quality['successful'],'originals':originals,'portable_probe':probe,'package_sha256':hashlib.sha256(package.read_bytes()).hexdigest(),'package_requires_rcm':manifest['requires_rcm'],'portable_executable_sha256':hashlib.sha256((app/'RedemptionChronicleMaker.exe').read_bytes()).hexdigest(),'source_checkpoint':str(checkpoint),'source_files':len(hashes),'deployed_hashes_match':True,'native_acceptance':False,'clean_machine_test':False,'private_beta_accepted':False}
 ws.write('research/phase7/final_integrity.json',json.dumps(result,indent=2))
 print(json.dumps({k:result[k] for k in ['version','quality','deployed_hashes_match','native_acceptance','source_files']},indent=2))

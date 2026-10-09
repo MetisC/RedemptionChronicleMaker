@@ -368,12 +368,26 @@ class Inspector(QWidget):
                         actions = [ACTION_LABELS.get(k,k)+': '+str(v) for a in event.get('actions', []) for k,v in a.items()]
                         self.note('CUANDO: '+TRIGGER_LABELS.get(event['when'],event['when'])+'\nSI: '+(' y '.join(conditions) or 'Sin condiciones')+'\nHACER:\n'+'\n'.join(actions))
 
+    def dialogue_motion(self,path,row,speaker,line=False):
+        if not hasattr(self.win.doc,'campaign') or self.win.doc.campaign.get('project_format')!=9:return
+        from ..motions import slots,label
+        actor=next((a for a in self.win.doc.data['actors'] if a['id']==speaker),None)
+        options=slots(self.win.backend.resources,actor['template']) if actor else []
+        default='Heredar animación del nodo' if line else 'Automática del motor (hablar / escuchar)'
+        control=self.combo('Animación al hablar',[(default,None)]+[(label(s),s['mode']) for s in options],row.get('motion'),lambda v:self.set(path+('motion',),v,True),'dialogue_motion')
+        for i,s in enumerate(options,1):control.setItemData(i,s['animation']+'\n'+', '.join(s['flags']),__import__('PySide6.QtCore',fromlist=['Qt']).Qt.ItemDataRole.ToolTipRole)
+        self.note('Sólo se ofrecen movimientos de este modelo. Un gesto sin bucle termina por sí solo. Las líneas pueden sustituir la animación del nodo; el motor mantiene hablar/escuchar cuando no eliges ninguna.')
+
     def conversation(self):
         p = self.path
         conv = self.win.doc.data["conversations"][p[1]]
         if len(p) == 2:
             self.line("ID", conv["id"], self.rename, "conversation_id", True)
             self.combo("Actor principal", self.ids("actors"), conv["speaker"], lambda v: self.set(p + ("speaker",), v), "conversation_speaker")
+            if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format')==9:
+                from ..camera_presets import PRESETS, DEFAULT_DIALOGUE_CAMERA
+                cameras=[(PRESETS[DEFAULT_DIALOGUE_CAMERA][0]+' (predeterminada)',DEFAULT_DIALOGUE_CAMERA)]+[(v[0],k) for k,v in PRESETS.items() if k!=DEFAULT_DIALOGUE_CAMERA]+[('Automática del motor (experimental)','native')]
+                self.combo('Cámara de diálogo',cameras,conv.get('camera',DEFAULT_DIALOGUE_CAMERA),lambda v:self.set(p+('camera',),v),'conversation_camera')
             if "nodes" in conv:
                 self.combo("Nodo de entrada", [(n["id"], n["id"]) for n in conv["nodes"]], conv.get("entry", ""), lambda v: self.set(p + ("entry",), v), "conversation_entry")
                 self.note("Las respuestas pueden llevar a otro nodo o terminar con un resultado. Las acciones de flags se aplican al terminar.")
@@ -385,11 +399,13 @@ class Inspector(QWidget):
             node = self.win.at(p)
             self.line("ID del nodo", node["id"], self.rename, "node_id", True)
             self.button("Usar como entrada", lambda: self.set(("conversations", p[1], "entry"), node["id"]), "make_entry")
+            self.dialogue_motion(p,node,node.get('lines',[{}])[0].get('speaker',conv['speaker']))
             self.note("Añade líneas y respuestas con los botones del editor central.")
         elif p[-2] == "lines":
             line = self.win.at(p)
             self.combo("Actor", self.ids("actors"), line.get("speaker", conv["speaker"]), lambda v: self.set(p + ("speaker",), v), "line_speaker")
             self.text("Texto", line["text"], lambda v: self.set(p + ("text",), v), "line_text")
+            self.dialogue_motion(p,line,line.get('speaker',conv['speaker']),True)
             self.note("Escribe un solo parlamento por línea, sin saltos de párrafo. Puedes añadir varias líneas al nodo y reordenarlas.")
         elif p[-2] == "choices":
             answer = self.win.at(p)

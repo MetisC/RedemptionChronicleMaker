@@ -274,3 +274,24 @@ La validación posterior al build relee NOT/NSD y comprueba referencias NSC/NMF/
 
 Los contenedores nuevos `.rcmproject` y `.rcmpack` son ZIP con manifest JSON, hashes SHA-256, metadatos y dependencias por versión. El primero contiene YAML/fuentes propias; el segundo NOB/clases compiladas. Rutas inseguras, duplicados por mayúsculas, geometría y formatos ejecutables ajenos se rechazan. Especificación operativa: [PACKAGES.md](PACKAGES.md).
 
+
+
+## Extensión de ronda 0 en formato 9
+
+Conversaciones admiten camera: native (no cámara propia) o un preset de camera_presets.PRESETS. Desde 0.9.9, si falta camera se usa ots_speaker_close; native es una elección explícita experimental. Secuencias admiten steps: lista ordenada de {at, actor, preset, angle?, transition?}; primer plano en 0, tiempos crecientes dentro de duration, actores/presets válidos y valores finitos. move_path referencia un recorrido local existente. camera_path referencia un NCP original único; es excluyente con steps. path_speed: 0.01..100. No se generan NCP.
+
+La timeline usa timer nativo de 150 ms; los tiempos se cuantizan a ticks. Captura/restauración guarda el índice del actor movido por una cutscene, además de los records de patrol; restore cancela la película y detiene ese recorrido. service.py incluye cinema_record_v1 por escena en la firma del contrato de saves. Sin migración nativa entre contratos.
+
+El inventario gráfico crea IDs distintos, cada uno con su plantilla de entidad generada, aunque hereden del mismo template original. Propiedad de creación única; props, objetos con spawn y objetos de otro inventario no se ofrecen como reutilizables.
+
+
+## Journal en runtime formato 9 (0.9.5)
+
+Se generan NQD y textos NLS directamente. start_quest carga sólo qNs0, advance_quest completa qNsI y carga qNs(I+1), complete_quest confirma flags/pasos y concede recompensa sin cargar el NQD padre. Las entradas completadas permanecen como historial. La ficha padre sigue generada por compatibilidad del paquete, pero no se carga en el journal de formato 9; por tanto no revela el recorrido completo al iniciar. Formatos históricos mantienen el flujo anterior. Esta es una política de nuestro runtime sobre entradas originales, no una gramática inventada de objetivos internos de NQD.
+
+
+## Decorado móvil y llave física (0.9.10)
+
+En una timeline, cada plano puede indicar focus: ID de un objeto local; actor sigue siendo el interlocutor/segundo foco. prop_motion contiene object, at, duration y translation [x,y,z]. Requiere un objeto absoluto, tiempos finitos dentro de la película y traslación finita acotada. Se interpola el transform con SetPosition; no se genera geometría ni se inventan frames NSD. move_at retrasa el inicio de move_path hasta el instante indicado. Estos campos se editan desde Cámaras y participan en referencias, renombrado y protección de borrado.
+
+NOT tag 20 se expone como item_type uint32. Las plantillas de misión originales usan 7; la inserción nativa lo consume sin dejarlo en la cuadrícula. La variante propia T_tutor_key hereda BoneKey y escribe 0 para que se conserve físicamente. Icono/modelo/otros campos se heredan sin reescribir los originales. El runtime moderno verifica inventario tras AddToActorInventory antes de considerar entregado el objeto. Evidencia y límites: CTD_CINEMA_INVENTORY_FIX.md.

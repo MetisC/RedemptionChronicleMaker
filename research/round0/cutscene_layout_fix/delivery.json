@@ -1,0 +1,55 @@
+{
+  "version": "0.9.6",
+  "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+  "executable_sha256": "68691bc7f7c1a122837342a46809341d0ba13ec263dc38ca0c60382bec04be56",
+  "windows_icon_resources": true,
+  "examples_match_sources": true,
+  "visible_projects": [
+    "mini_chronicle",
+    "tutorial"
+  ],
+  "source_sha256": {
+    "tutorial/project.yaml": "c839e15a8088f4806af92f92a32037eeadf26669d0523752cf02198fc97aa82d",
+    "tutorial/README.md": "d3521c90653b12d098f978905f049e09a3e20f73f976ced99d12f01dd4e2db43",
+    "tutorial/resources/RCMTutorActor.java": "87839aee530e1fe6a948b93d65b885e829f443ff62934ce9c29e059249d1e5b8",
+    "mini_chronicle/project.yaml": "6017acaf97ef8a1236dda6a03e6690c32bb97f77064430864a811974d97e9823",
+    "mini_chronicle/README.md": "6e824cd73e16e5e4414404090fd13e71eace88ac0b281505c246a32070a4c66f",
+    "mini_chronicle/resources/RCMMiniActor.java": "c69f3e38bb6472919a2e819926a0c066638f6a07d78a184e1d842e313c9a32a0"
+  },
+  "deployment_files_verified": 16,
+  "deployed_chronicles": [
+    "rcm_tutor",
+    "rcm_mini"
+  ],
+  "mentor_ai_filename_verified": true,
+  "initial_journal_resources_verified": true,
+  "single_initial_objective_policy_verified": true,
+  "help_returns_to_menu": true,
+  "deferred_dialogue_release_class_verified": true,
+  "automatic_cutscene_mode_verified": true,
+  "cinematic_lifecycle_verified": true,
+  "waypoint_start_tolerance_verified": true,
+  "portable_smoke": {
+    "valid_project": true,
+    "build_status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_rcm_tutor_s0_Scene": "45.3",
+      "R_rcm_tutor_s0_Passive": "45.3",
+      "R_rcm_tutor_s1_Scene": "45.3",
+      "R_rcm_tutor_s1_Passive": "45.3",
+      "R_rcm_tutor_s2_Scene": "45.3",
+      "R_rcm_tutor_s2_Passive": "45.3",
+      "RCMTutorActor": "45.3"
+    },
+    "real_gl": true,
+    "safe_mode": false,
+    "native_engine_test": false,
+    "elapsed_seconds": 13.39100000000326,
+    "exit_code": 0,
+    "workspace": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791526136668459200",
+    "global_python_jdk_path": false,
+    "clean_machine_test": false,
+    "executable": "build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe"
+  },
+  "native_game_test": false
+}

@@ -17,7 +17,7 @@ from rcm.formats import Scene
 
 
 def graph_source():
-    d = yaml.safe_load((ROOT / "chronicles/east_demo.yaml").read_text(encoding="utf8"))
+    d = yaml.safe_load((ROOT / "tests/fixtures/chronicles/east_demo.yaml").read_text(encoding="utf8"))
     d["chronicle"].update(description="Notas internas\ncon varias líneas")
     d["level"]["name"] = "Londres: el nuevo pacto"
     d["actors"][0]["comment"] = "Comentario interno\nindependiente del motor"
@@ -41,7 +41,7 @@ class Phase2Tests(unittest.TestCase):
         return graph_source()
 
     def test_legacy_source_roundtrip(self):
-        d = yaml.safe_load((ROOT / "chronicles/east_demo.yaml").read_text(encoding="utf8"))
+        d = yaml.safe_load((ROOT / "tests/fixtures/chronicles/east_demo.yaml").read_text(encoding="utf8"))
         p = self.backend.validate(d).project
         self.assertEqual(self.backend.validate(project_source(p)).project, p)
         self.assertNotIn("nodes", project_source(p)["conversations"][0])
@@ -214,11 +214,19 @@ class Phase2Tests(unittest.TestCase):
         report = json.loads(evidence.read_text(encoding="utf8"))
         self.assertTrue(report["successful"])
         self.assertFalse(report["yaml_manually_authored"])
-        cmd = [sys.executable, str(ROOT / "tools/rcm.py"), "build", report["project"]]
+        original = Path(report['project'])
+        if not original.is_absolute():original=ROOT/original
+        project = original if original.is_relative_to(ROOT/'tests/fixtures/chronicles') else ROOT/'tests/fixtures/chronicles'/original.relative_to(ROOT/'chronicles')
+        cmd = [sys.executable, str(ROOT / "tools/rcm.py"), "build", str(project)]
         run = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
         self.assertEqual(run.returncode, 0, run.stdout + run.stderr)
         package = ROOT / "build/editor_demo/editor_demo_distribution.zip"
-        self.assertEqual(hashlib.sha256(package.read_bytes()).hexdigest(), report["gui_distribution_sha256"])
+        # Keep the original GUI evidence intact. Review the runtime migration
+        # separately: NOT libraries now preload before LAN restores inventory.
+        expected = json.loads((project.parent/'expected.json').read_text(encoding='utf8'))
+        self.assertEqual(report['gui_distribution_sha256'], expected['original_gui_distribution_sha256'])
+        self.assertEqual(hashlib.sha256(project.read_bytes()).hexdigest(), expected['source_sha256'])
+        self.assertEqual(hashlib.sha256(package.read_bytes()).hexdigest(), expected['distribution_sha256'])
 
     def test_graph_packaging_references_entry_speakers_and_nvo(self):
         d = self.data(); d["chronicle"]["id"] = "graph_check"

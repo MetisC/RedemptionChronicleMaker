@@ -21,7 +21,7 @@ def graph(root):
                     for category,name in [('scene',v.get('scene')),('arrival',str(v.get('scene'))+'.'+str(v.get('entry')))]:
                         target=index.get((category,name))
                         if target:links.append(Link(source,target,'travel',path+(k,)))
-                category={'speaker':'actors','actor':'actors','actor_alive':'actors','entity_exists':'entity','item':'objects','item_global':'objects','owns_item':'objects','conversation':'conversations','default':'conversations','then':'conversations','trigger':'triggers','encounter':'encounters','quest':'quest','flag':'flag','when_flag':'flag'}.get(k)
+                category={'sequence':'sequences','move_path':'paths','focus':'objects','object':'objects','speaker':'actors','actor':'actors','actor_alive':'actors','entity_exists':'entity','item':'objects','item_global':'objects','owns_item':'objects','conversation':'conversations','default':'conversations','then':'conversations','trigger':'triggers','encounter':'encounters','quest':'quest','flag':'flag','when_flag':'flag'}.get(k)
                 if k in ACTIONS:category={'flags':'flag','quests':'quest','scenes':'scene','item':'objects','item_global':'objects'}.get(ACTIONS[k][1],ACTIONS[k][1])
                 if isinstance(v,str) and category:
                     target=index.get((category,v)) or local.get((category,v))

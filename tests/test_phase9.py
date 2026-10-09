@@ -96,3 +96,40 @@ class Phase9Tests(TestCase):
         (out/'Phase9Harness.java').write_text(harness)
         result=subprocess.run(['javac','-d',str(out),str(out/'CampaignEngine.java'),str(out/(name+'.java')),str(out/'Phase9Harness.java')],capture_output=True,text=True);self.assertEqual(result.returncode,0,result.stderr)
         result=subprocess.run(['java','-cp',str(out),'Phase9Harness'],cwd=ROOT/'build/tests',capture_output=True,text=True);(out/'harness.log').write_text(result.stdout+result.stderr);self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
+    def test_world_factory_zero_recovers_transform_and_journal_survives_failure(self):
+        data=modern();s=data['scenes'][0];s['paths']=[]
+        data['quests'].append(dict(id='guide',title='Empieza aquí',description='Habla con la mentora junto al inicio.',steps=['Hablar']))
+        s['events']=[dict(id='guide_on_arrival',when='scene_start',actions=[{'start_quest':'guide'}]),dict(id='arrival',when='scene_start',actions=[{'spawn':'victoria'}])]
+        campaign=self.valid(data);name,java=runtime(campaign,*campaign.scenes[0])
+        out=ROOT/'build/tests/spawn_recovery';out.mkdir(parents=True,exist_ok=True)
+        (out/(name+'.java')).write_text(java,encoding='utf8')
+        doubles=(ROOT/'tests/java/CampaignEngine.java').read_text()
+        doubles=doubles.replace('static boolean valid(int g)', 'static boolean failWorld=true,failNear=true,rejectPlacement=false; static boolean valid(int g)')
+        doubles=doubles.replace('return CE.make(name,p);','return CE.failWorld?0:CE.make(name,p);')
+        doubles=doubles.replace('return CE.make(id,GetPosition());','return CE.failNear?0:CE.make(id,GetPosition());')
+        doubles=doubles.replace('int SetActorTeam(int t)', 'void StopActorMotion(){} boolean SendActorToPos(float[] p,float v){return true;} int SetActorTeam(int t)')
+        doubles=doubles.replace('boolean SetOrientation(float[] a)', 'boolean SetPosition(float[] a){if(guid!=1&&CE.rejectPlacement)return false;CE.world.get(guid).pos=a.clone();return true;} boolean SetOrientation(float[] a)')
+        (out/'CampaignEngine.java').write_text(doubles)
+        position=s['actors'][0]['transform']['position']
+        harness='''public class SpawnRecoveryHarness {
+          static void check(boolean ok,String why){if(!ok)throw new AssertionError(why);System.out.println(why);}
+          public static void main(String[] args){CE.Thing p=new CE.Thing();p.template="player";CE.world.put(1,p);
+          R_p9_test_s0_Scene scene=new R_p9_test_s0_Scene();scene.beginscene(1,0);
+          check(CE.questLoads==1,"initial journal loaded despite world and near factory failure");
+          check(CodexThing.GuidFromCastID("R_p9_test_s0_victoria")==0,"failed spawn has no fabricated GUID");
+          CE.failNear=false;CE.rejectPlacement=true;scene.timer(9400,0,0,0,0);
+          check(CodexThing.GuidFromCastID("R_p9_test_s0_victoria")==0,"rejected absolute placement removes temporary actor");
+          CE.rejectPlacement=false;scene.timer(9400,0,0,0,0);int npc=CodexThing.GuidFromCastID("R_p9_test_s0_victoria");
+          check(npc!=0,"near-player factory recovers zero world result");
+          check(CE.world.get(npc).pos[0]==XPOS&&CE.world.get(npc).pos[1]==YPOS,"recovered actor uses authored absolute coordinates");
+          int count=CE.created;scene.timer(9400,0,0,0,0);check(CE.created==count&&CE.questLoads==1,"retry does not duplicate actors or journal entries");
+          scene.save(0);R_p9_test_s0_Scene restored=new R_p9_test_s0_Scene();restored.restore(0);restored.restored(0);
+          check(CE.created==count&&CodexThing.GuidFromCastID("R_p9_test_s0_victoria")==npc,"restore keeps recovered actor identity");
+        }}'''.replace('XPOS',str(position[0])).replace('YPOS',str(position[1]))
+        (out/'SpawnRecoveryHarness.java').write_text(harness)
+        result=subprocess.run(['javac','-d',str(out),str(out/'CampaignEngine.java'),str(out/(name+'.java')),str(out/'SpawnRecoveryHarness.java')],capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stderr)
+        result=subprocess.run(['java','-cp',str(out),'SpawnRecoveryHarness'],cwd=ROOT/'build/tests',capture_output=True,text=True)
+        (out/'harness.log').write_text(result.stdout+result.stderr)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)

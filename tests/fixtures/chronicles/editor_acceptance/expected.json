@@ -1,0 +1,7 @@
+{
+  "original_gui_distribution_sha256": "90b41cb0b203510fafadde9f08bef5afe484aaefcb2cc8aaafbc636b88ca86ab",
+  "source_sha256": "9a9b39046f1374116ae11b53cef700052793d2a0e9191daf5aefa808d264018f",
+  "distribution_sha256": "6aee9c9d38007d419a8a2c326edf4f26be7fbf11070751ee4229dc5915042b08",
+  "reason": "LAN startup NOT libraries renamed with underscore; reviewed generator changes, source and template payloads retained",
+  "native_engine_test": false
+}

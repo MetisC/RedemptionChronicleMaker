@@ -191,3 +191,10 @@ La biblioteca ACTIONS se comparte entre GUI/validador/generador. Condiciones ALL
 CampaignPanel amplía la ventana existente. El Event Inspector incorpora las nuevas acciones/condiciones; no hay otro formato de eventos. campaign_relations deriva dependencias globales, con nombres de ítems cualificados entre mapas. Compilación conserva comentarios de escena/evento/acción y source_map.json antes de compilar; un error en esas líneas se presenta con contexto humano y el log completo permanece disponible.
 
 Deployment es una excepción aislada de escritura autorizada dentro de RCM; Workspace.output continúa limitado al workspace. No relajar el guard del generador. Build/Deploy no afirman una ejecución nativa.
+
+
+## Ronda 0
+
+cinematics.py valida timelines y reutilización NCP y amplía únicamente runtime9. CampaignPanel edita escenas/layouts, planos y recorridos sobre el modelo compartido; InventoryDialog prepara cambios locales y sólo los aplica al confirmar. GuidePanel lee README del proyecto y sus enlaces seleccionan entidades del mismo documento. Identity usa SVG/ICO propios y AppUserModelID; el bundle incluye assets de icono, no el icono ni los ejecutables del juego.
+
+La carpeta chronicles sólo ofrece tutorial y mini_chronicle. Regresiones históricas viven en tests/fixtures/chronicles. ZIPs originales, proyectos del usuario y software reemplazado se preservan fuera del selector. deployment_many actualiza paquetes con manifest de propiedad por crónica; despliegues posteriores de una crónica conservan las hermanas y archivos ajenos.

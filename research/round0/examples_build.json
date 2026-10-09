@@ -1,0 +1,508 @@
+[
+  {
+    "project": "tutorial",
+    "id": "rcm_tutor",
+    "status": "compiled-unverified-in-game",
+    "ground_checks": [
+      {
+        "scene": "workshop",
+        "entity": "safe",
+        "position": [
+          -176.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "mentor",
+        "position": [
+          -176.0,
+          -612.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "camera",
+        "position": [
+          -342.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "keeper",
+        "position": [
+          -62.0,
+          -768.0,
+          368.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "gate",
+        "position": [
+          -176.0,
+          -928.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "walker",
+        "position": [
+          -342.0,
+          -878.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "npc_key",
+        "position": [
+          -62.0,
+          -768.0,
+          368.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "npc_book",
+        "position": [
+          -62.0,
+          -768.0,
+          368.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "key",
+        "position": [
+          -176.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "barrel",
+        "position": [
+          -92.0,
+          -768.0,
+          368.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "reward",
+        "position": [
+          -92.0,
+          -868.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "walker_a",
+        "position": [
+          -342.0,
+          -878.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "workshop",
+        "entity": "walker_b",
+        "position": [
+          -342.0,
+          -1018.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "combat",
+        "entity": "safe",
+        "position": [
+          -176.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "combat",
+        "entity": "guide",
+        "position": [
+          -176.0,
+          -612.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "combat",
+        "entity": "rat",
+        "position": [
+          -342.0,
+          -1018.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "finished",
+        "entity": "safe",
+        "position": [
+          -176.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "finished",
+        "entity": "mentor",
+        "position": [
+          -176.0,
+          -612.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      }
+    ],
+    "problems": [
+      {
+        "severity": "WARNING",
+        "message": "unlocked: el flag nunca se lee"
+      },
+      {
+        "severity": "WARNING",
+        "message": "entered_zone: el flag nunca se lee"
+      },
+      {
+        "severity": "WARNING",
+        "message": "left_zone: el flag nunca se lee"
+      },
+      {
+        "severity": "WARNING",
+        "message": "timer_done: el flag nunca se lee"
+      },
+      {
+        "severity": "WARNING",
+        "message": "rat_killed: el flag nunca se lee"
+      },
+      {
+        "severity": "WARNING",
+        "message": "finished: el flag nunca se lee"
+      },
+      {
+        "severity": "INFO",
+        "message": "workshop: 01 · Mentora / decisiones y flags: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "workshop: 02 · Cineasta / cámaras y movimiento: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "workshop: 03 · Custodia / inventario y llaves: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "workshop: 04 · Guardiana / cambio de scene: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "workshop: 05 · Caminante / waypoints y AI: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "workshop: Llave en inventario de la custodia: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "workshop: Libro en inventario de la custodia: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "workshop: Llave del jugador: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "workshop: Prop · barril reutilizado: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "workshop: Libro recogible de prueba: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "combat: Mismo level · nuevo layout: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "combat: Rata básica · combate opcional: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "finished: Final · flags y persistencia: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      }
+    ],
+    "native_game_test": false,
+    "source_curated": true,
+    "gui_authored": false
+  },
+  {
+    "project": "mini_chronicle",
+    "id": "rcm_mini",
+    "status": "compiled-unverified-in-game",
+    "ground_checks": [
+      {
+        "scene": "quay",
+        "entity": "safe",
+        "position": [
+          -176.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "quay",
+        "entity": "victoria",
+        "position": [
+          -176.0,
+          -612.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "quay",
+        "entity": "guide",
+        "position": [
+          -342.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "quay",
+        "entity": "enemy1",
+        "position": [
+          -342.0,
+          -1018.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "quay",
+        "entity": "guide_a",
+        "position": [
+          -342.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "quay",
+        "entity": "guide_b",
+        "position": [
+          -342.0,
+          -878.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "archive",
+        "entity": "safe",
+        "position": [
+          200.0,
+          790.0,
+          0.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "archive",
+        "entity": "archivist",
+        "position": [
+          200.0,
+          944.0,
+          0.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "archive",
+        "entity": "keeper",
+        "position": [
+          340.0,
+          850.0,
+          0.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "archive",
+        "entity": "book",
+        "position": [
+          300.0,
+          900.0,
+          0.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "archive",
+        "entity": "key",
+        "position": [
+          300.0,
+          900.0,
+          0.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "archive",
+        "entity": "sound",
+        "position": [
+          200.0,
+          790.0,
+          0.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "archive",
+        "entity": "keeper_a",
+        "position": [
+          340.0,
+          850.0,
+          0.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "archive",
+        "entity": "keeper_b",
+        "position": [
+          340.0,
+          960.0,
+          0.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "return",
+        "entity": "safe",
+        "position": [
+          -176.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "return",
+        "entity": "witness",
+        "position": [
+          -176.0,
+          -612.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "return",
+        "entity": "courier",
+        "position": [
+          -342.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "return",
+        "entity": "courier_a",
+        "position": [
+          -342.0,
+          -768.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      },
+      {
+        "scene": "return",
+        "entity": "courier_b",
+        "position": [
+          -342.0,
+          -878.0,
+          384.0
+        ],
+        "native_collision_verified": false
+      }
+    ],
+    "problems": [
+      {
+        "severity": "INFO",
+        "message": "quay: Victoria · empieza aquí: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "quay: Guía · viajes y combate opcional: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "quay: Rata de las minas · combate fácil y opcional: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "archive: Archivera · elige una rama: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "archive: Custodia · regreso y cámara: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "archive: El libro de la deuda: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "archive: Llave del regreso: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "return: Testigo · entrega y final: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      },
+      {
+        "severity": "INFO",
+        "message": "return: Mensajera · vuelve al comienzo: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+      }
+    ],
+    "native_game_test": false,
+    "source_curated": true,
+    "gui_authored": false
+  }
+]

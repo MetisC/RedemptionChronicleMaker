@@ -21,7 +21,7 @@ for name in ['system_test','golden','large_fixture']:
     tracemalloc.start()
 gc.collect();start=tracemalloc.get_traced_memory()[0]
 for _ in range(30):
-    d=Document.load(ws,'chronicles/large_fixture/project.yaml');graph(d.snapshot());del d
+    d=Document.load(ws,'tests/fixtures/chronicles/large_fixture/project.yaml');graph(d.snapshot());del d
 gc.collect();end,peak=tracemalloc.get_traced_memory();tracemalloc.stop()
 result={'platform':platform.platform(),'python':platform.python_version(),'projects':results,'repeated_loads':{'iterations':30,'retained_python_bytes_delta':end-start,'traced_peak_bytes':peak,'gpu_memory_measured':False,'proves_no_leaks':False}}
 ws.write('research/phase6/performance.json',json.dumps(result,indent=2));print(json.dumps(result))

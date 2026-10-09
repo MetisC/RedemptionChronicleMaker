@@ -40,6 +40,8 @@ class Backend:
         if errors:raise ValueError('Catálogos ausentes o corruptos. Ejecuta scan o abre el editor para reconstruirlos: '+'; '.join(errors))
         self.levels = json.loads(workspace.output("cache/levels.json").read_text(encoding="utf8"))
         self.resources = json.loads(workspace.output("cache/resources.json").read_text(encoding="utf8"))
+        from .motions import ensure_catalogue
+        self.resources['motion_catalogue']=ensure_catalogue(workspace,self.resources)
         self.original_resources=self.resources
         self.project_payload={}
         self.hints = json.loads(workspace.output("cache/scene_hints.json").read_text(encoding="utf8"))
@@ -221,7 +223,10 @@ class Backend:
                 contract={'flags':dict(scenes[0][1].flags),'reserved':p.reserved if isinstance(p,Campaign) else {},'scenes':[{'id':sid,'entities':[e.id for e in project.entities],'conversations':[c.id for c in project.conversations],'events':[e.id for e in project.events],'triggers':[t.id for t in project.triggers]} for sid,project in scenes]}
                 if isinstance(p,Campaign) and p.source.get('runtime_profile')=='phase9':
                     contract['runtime_profile']='phase9-v1'
+                    contract['player_pose_record_v1']=[s['id'] for s,project in p.scenes]
                     contract['movement']=[{'scene':s['id'],'paths':s.get('paths',[]),'entries':s.get('entries',[])} for s,project in p.scenes]
+                    cinematic_scenes=[s['id'] for s,project in p.scenes if any(any(k in seq for k in ('steps','move_path','camera_path')) for seq in s.get('sequences',[]))]
+                    if cinematic_scenes:contract['cinema_record_v1']=cinematic_scenes
                 report['save_schema_sha256']=source_fingerprint(contract)
                 report['new_game_required']=bool(prior) and prior.get('save_schema_sha256')!=report['save_schema_sha256']
                 if report['new_game_required']:report['save_warning']='La estructura persistida ha cambiado o no tiene firma previa. Inicia una partida nueva; no hay migrador de saves nativos.'

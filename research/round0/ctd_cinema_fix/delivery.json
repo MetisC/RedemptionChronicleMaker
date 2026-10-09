@@ -1,0 +1,46 @@
+{
+  "version": "0.9.10",
+  "title": "RCM \u00b7 Tutorial paso a paso",
+  "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+  "exe_sha256": "4c2d8950f9f18c05db116b7c2dbd60b590d9df1c574c912b0ba9b0bd874ea4d1",
+  "windows_icon_verified": true,
+  "examples_match_sources": true,
+  "seven_lessons": 7,
+  "deployment_matches_build": true,
+  "installed_files": 8,
+  "portable_compilation": {
+    "valid_project": true,
+    "build_status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_rcm_tutor_s0_Scene": "45.3",
+      "R_rcm_tutor_s0_Passive": "45.3",
+      "R_rcm_tutor_s1_Scene": "45.3",
+      "R_rcm_tutor_s1_Passive": "45.3",
+      "R_rcm_tutor_s2_Scene": "45.3",
+      "R_rcm_tutor_s2_Passive": "45.3",
+      "RCMTutorActor": "45.3"
+    },
+    "real_gl": false,
+    "safe_mode": true,
+    "native_engine_test": false,
+    "elapsed_seconds": 11.14000000001397,
+    "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+    "process_exit_code": 0,
+    "elapsed_total_seconds": 14.062999999994645
+  },
+  "source_gui_real_gl": true,
+  "floor_and_headroom_positions": 21,
+  "full_regressions": {
+    "tests": 236,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 173.02851100001135,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "static_checks_passed": true,
+  "native_engine_test": false
+}

@@ -23,7 +23,7 @@ def main():
             data=(ROOT/name).read_bytes();archive.writestr(name,data);hashes[name]=hashlib.sha256(data).hexdigest()
     ws.write('research/checkpoints/phase6_source_final.json',json.dumps(hashes,indent=2))
     app=ws.output('build/portable/RedemptionChronicleMaker')
-    shutil.copy2(ROOT/'README.md',app/'README.md');shutil.copytree(ROOT/'docs',app/'docs',dirs_exist_ok=True);shutil.copy2(ROOT/'chronicles/golden/expected.json',app/'examples/golden/expected.json')
+    shutil.copy2(ROOT/'README.md',app/'README.md');shutil.copytree(ROOT/'docs',app/'docs',dirs_exist_ok=True);shutil.copy2(ROOT/'tests/fixtures/chronicles/golden/expected.json',app/'examples/golden/expected.json')
     result={'created_at':time.strftime('%Y-%m-%dT%H:%M:%S%z'),'originals':originals,'full_tests':tests,'static_gate':quality['successful'],'portable_probe':probe,'package_sha256':hashlib.sha256(package.read_bytes()).hexdigest(),'portable_executable_sha256':hashlib.sha256((app/'RedemptionChronicleMaker.exe').read_bytes()).hexdigest(),'source_checkpoint':str(checkpoint),'source_files':len(hashes),'staging_empty':not any(ws.output('build/.staging').iterdir()),'native_acceptance':False,'private_beta_accepted':False}
     ws.write('research/phase6/final_integrity.json',json.dumps(result,indent=2));print(json.dumps(result,indent=2))
 

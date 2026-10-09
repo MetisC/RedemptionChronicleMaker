@@ -113,10 +113,12 @@ class MainWindow(QMainWindow):
         self.resize(1430, 900)
         self.setMinimumSize(1100, 720)
         self.setObjectName("chronicle_editor")
+        from .identity import application_icon
+        self.setWindowIcon(application_icon())
         from .theme import editor_palette
         self.setPalette(editor_palette(self.palette()))
         colors = {name: self.palette().color(getattr(QPalette.ColorRole, name)).name() for name in ['Base', 'AlternateBase', 'Text', 'Highlight', 'HighlightedText']}
-        self.setStyleSheet("QTreeWidget, QTableWidget { background-color: " + colors['Base'] + "; alternate-background-color: " + colors['AlternateBase'] + "; color: " + colors['Text'] + "; selection-background-color: " + colors['Highlight'] + "; selection-color: " + colors['HighlightedText'] + "; } QPushButton { min-height: 25px; padding: 3px 9px; } QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox { min-height: 24px; } QToolBar { spacing: 6px; padding: 5px; }")
+        self.setStyleSheet("QTreeWidget, QTableWidget { background-color: " + colors['Base'] + "; alternate-background-color: " + colors['AlternateBase'] + "; color: " + colors['Text'] + "; selection-background-color: " + colors['Highlight'] + "; selection-color: " + colors['HighlightedText'] + "; } QPushButton { min-height: 20px; padding: 1px 7px; } QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox { min-height: 21px; } QToolBar { spacing: 4px; padding: 3px; }")
         self._actions()
         self._layout()
         from .campaign_panel import CampaignPanel
@@ -129,6 +131,8 @@ class MainWindow(QMainWindow):
         self.debug_panel=DebugPanel(self);self.center_tabs.addTab(self.debug_panel,'Playtest / Debug')
         from .graph_panel import GraphPanel
         self.graph_panel=GraphPanel(self);self.center_tabs.addTab(self.graph_panel,'Gráfico de historia')
+        from .guide_panel import GuidePanel
+        self.guide_panel=GuidePanel(self);self.center_tabs.addTab(self.guide_panel,'Tutorial / Ayuda')
         for widget, callback in [(self.nav, self.delete_selected), (self.content, self.delete_selected),
                                  (self.graph_panel.view, self.delete_selected),
                                  (self.campaign_panel.tree, self.campaign_panel.delete)]:
@@ -184,6 +188,7 @@ class MainWindow(QMainWindow):
         build_menu.addAction(self.actions["validate"])
         build_menu.addAction(self.actions["build"])
         help_menu = self.menuBar().addMenu("Ayuda")
+        help_menu.addAction('Tutorial del proyecto',lambda:self.center_tabs.setCurrentWidget(self.guide_panel))
         help_menu.addAction("Guía del editor", lambda: QDesktopServices.openUrl(QUrl.fromLocalFile(str(self.backend.ws.root / "docs/EDITOR_GUIDE.md"))))
         from .package_panel import menu
         menu(self)
@@ -327,6 +332,7 @@ class MainWindow(QMainWindow):
                     try:
                         value = self.at(path)
                         item.setText(0, value.get("name", value.get("id", f"Evento {path[1]+1}")))
+                        item.setToolTip(0,item.text(0))
                     except (KeyError, IndexError):
                         pass
             for path, item in self.content_items.items():
@@ -334,6 +340,7 @@ class MainWindow(QMainWindow):
                     label, detail = self.content_fields(path)
                     item.setText(0, label)
                     item.setText(1, detail)
+                    item.setToolTip(0,label);item.setToolTip(1,detail)
                 except (KeyError, IndexError):
                     pass
 
@@ -434,6 +441,7 @@ class MainWindow(QMainWindow):
             self.actions[key].setEnabled(self.doc is not None and not self.busy)
         self._title()
         self.render_content()
+        self.guide_panel.refresh()
         self.inspect()
         self.spatial.sync()
         self.campaign_panel.refresh()
@@ -494,6 +502,22 @@ class MainWindow(QMainWindow):
         item = self.content.currentItem()
         if item and item.data(0, ROLE):
             self.select(tuple(item.data(0, ROLE)), False)
+
+    def focus_player_start(self):
+        if not self.doc or not hasattr(self.doc,'campaign'):
+            self.statusBar().showMessage('Esta crónica usa la entrada original del mapa; no tiene un inicio propio colocado.',8000);return
+        root=self.doc.campaign
+        si=next(i for i,row in enumerate(root['scenes']) if row['id']==root['entry'])
+        scene=root['scenes'][si]
+        ei=next((i for i,row in enumerate(scene.get('entries',[])) if row['id']==scene.get('default_entry')),-1)
+        if ei<0:
+            self.statusBar().showMessage('La escena inicial usa la entrada original 0. Crea una entrada y elígela como llegada por defecto para colocar un inicio propio.',10000);return
+        if not self.commit_properties():return
+        self.doc.active=si;self.selection=('entries',ei);self.refresh();self.select(('entries',ei));self.center_tabs.setCurrentIndex(0)
+        viewport=self.spatial.viewport
+        if viewport and self.spatial.geometry_matches():viewport.focus_selection()
+        else:self.spatial.pending_start_focus=True
+        self.statusBar().showMessage('Inicio del jugador: '+scene['entries'][ei]['name']+' · edita XYZ/orientación o arrastra el marcador en 3D.',10000)
 
     def select(self, path, render=True):
         self.selection = tuple(path)
@@ -848,6 +872,9 @@ class MainWindow(QMainWindow):
         conv = {"id": self.doc.unique_id("conversations", "conv"), "speaker": speaker, "entry": "opening",
                 "nodes": [{"id": "opening", "lines": [{"speaker": speaker, "text": "Escribe el diálogo."}],
                            "choices": [{"text": "Continuar.", "result": 1}, {"text": "Me voy.", "result": 2}]}]}
+        if hasattr(self.doc,'campaign') and self.doc.campaign.get('project_format')==9:
+            from ..camera_presets import DEFAULT_DIALOGUE_CAMERA
+            conv['camera']=DEFAULT_DIALOGUE_CAMERA
         self.doc.data["conversations"].append(conv)
         self.selection = ("conversations", len(self.doc.data["conversations"])-1)
         self.changed(True)

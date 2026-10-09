@@ -1,0 +1,81 @@
+schema: 1
+chronicle:
+  id: editor_playtest
+  name: 'RCM: Victoria y el pacto de Londres'
+  description: Crónica de aceptación de Fase 2 creada con los controles del editor.
+level:
+  source: EastLondon
+  name: 'Londres: un nuevo pacto'
+state:
+  flags:
+    alliance: 1
+actors:
+- id: victoria
+  name: Victoria
+  template: businessWoman
+  transform:
+    placement: near_player
+    orientation:
+    - 0
+    - 0
+    - 180.0
+  comment: Copia para probar la Fase 2 con Victoria junto al jugador.
+conversations:
+- id: intro
+  speaker: victoria
+  entry: opening
+  nodes:
+  - id: opening
+    lines:
+    - speaker: victoria
+      text: Londres guarda secretos. ¿Quieres saber quién soy?
+    choices:
+    - text: ¿Quién eres?
+      goto: identity
+    - text: Me voy.
+      result: 2
+  - id: identity
+    lines:
+    - speaker: victoria
+      text: Me llaman Victoria. Necesito un aliado para esta noche.
+    choices:
+    - text: Cuenta conmigo.
+      result: 3
+      set_flag: alliance
+    - text: No quiero involucrarme.
+      result: 4
+- id: ally
+  speaker: victoria
+  entry: opening
+  nodes:
+  - id: opening
+    lines:
+    - speaker: victoria
+      text: Recuerdo nuestro pacto. Gracias por volver.
+    choices:
+    - text: Seguimos juntos.
+      result: 1
+    - text: El pacto termina aquí.
+      result: 2
+      clear_flag: alliance
+events:
+- id: event1
+  when: scene_start
+  actions:
+  - spawn: victoria
+- id: greet_new
+  when: actor_clicked
+  actions:
+  - start_conversation: intro
+  actor: victoria
+  conditions:
+  - flag: alliance
+    is_set: false
+- id: greet_ally
+  when: actor_clicked
+  actions:
+  - start_conversation: ally
+  actor: victoria
+  conditions:
+  - flag: alliance
+    is_set: true

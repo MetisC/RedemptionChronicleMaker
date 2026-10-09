@@ -22,7 +22,7 @@ class CoreTests(unittest.TestCase):
     def setUpClass(cls):
         cls.levels = json.loads((ROOT / "cache/levels.json").read_text(encoding="utf8"))
         cls.resources = json.loads((ROOT / "cache/resources.json").read_text(encoding="utf8"))
-        cls.source = (ROOT / "chronicles/east_demo.yaml").read_text(encoding="utf8")
+        cls.source = (ROOT / "tests/fixtures/chronicles/east_demo.yaml").read_text(encoding="utf8")
         cls.data = yaml.safe_load(cls.source)
 
     def project(self, data=None):
@@ -135,7 +135,7 @@ class CoreTests(unittest.TestCase):
             resources=zipfile.ZipFile(io.BytesIO(z.read("east_demo.nob")))
             self.assertFalse(any(n.lower().endswith((".nil", ".class")) for n in resources.namelist()))
             self.assertEqual(len(Scene.read(resources.read("scenes/R_east_demo.nsd")).entities),1)
-            templates=NotFile.read(resources.read("misc/templates/R_east_demo.not"))
+            templates=NotFile.read(resources.read("misc/templates/_R_east_demo.not"))
             values=templates.templates[0].values()
             self.assertEqual(values[81].split(b"\0")[0],b"R_east_demo_victoria")
             self.assertEqual(values[11].split(b"\0")[0],b"R_east_demo_Passive")
@@ -155,8 +155,8 @@ class CoreTests(unittest.TestCase):
                 location_line=next(line for line in scene_list.splitlines() if line.startswith("location "))
                 self.assertEqual(int(location_line.split()[-1],0),0x60)
                 metadata=resources.read("chronicles/R_east_demo.nmf").decode("cp1252")
-                self.assertIn("NOT R_east_demo.not\r\n", metadata)
-                self.assertIn("misc/templates/R_east_demo.not", resources.namelist())
+                self.assertIn("NOT _R_east_demo.not\r\n", metadata)
+                self.assertIn("misc/templates/_R_east_demo.not", resources.namelist())
                 self.assertIn("east_demo Redemption Chronicle Maker: Londres nuevo", resources.read("strings/_R_east_demo.nls").decode("cp1252"))
                 self.assertNotIn("strings/chronicles.nls", resources.namelist())
             for path in z.namelist():

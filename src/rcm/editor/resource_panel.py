@@ -37,6 +37,7 @@ class ProjectResourcesPanel(QWidget):
     def refresh(self):
         self.list.blockSignals(True);self.list.clear()
         for row in self.rows():self.list.addItem(row['id']+' · '+row.get('base','Proyecto'))
+        for i in range(self.list.count()):self.list.item(i).setToolTip(self.list.item(i).text())
         self.index=min(self.index,len(self.rows())-1);self.list.setCurrentRow(self.index);self.list.blockSignals(False);self.render()
     def select(self,index):
         if not self.win.commit_properties():return

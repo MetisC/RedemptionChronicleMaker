@@ -19,7 +19,16 @@ if args.coverage:
     from coverage import Coverage
     coverage=Coverage(branch=True,source=[str(ROOT/'src/rcm')],data_file=str(ROOT/'build/tests/.coverage'));coverage.start()
 suite=unittest.defaultTestLoader.discover(str(ROOT / "tests"),pattern=args.pattern or ('test_safety_unit.py' if args.fast else 'test_*.py'))
-output=io.StringIO()
+class ProgressBuffer(io.StringIO):
+    """Keep the current test visible on disk even if a Qt modal blocks a run."""
+    def write(self,value):
+        result=super().write(value)
+        with (ROOT/'build/tests/progress.log').open('a',encoding='utf8') as log:
+            log.write(value)
+        return result
+(ROOT/'build/tests').mkdir(parents=True,exist_ok=True)
+(ROOT/'build/tests/progress.log').write_text('',encoding='utf8')
+output=ProgressBuffer()
 started=time.perf_counter()
 result=unittest.TextTestRunner(stream=output,verbosity=2).run(suite)
 text=output.getvalue()

@@ -11,13 +11,13 @@ class Phase6CliTests(unittest.TestCase):
         with contextlib.redirect_stdout(out),contextlib.redirect_stderr(error):code=main(['--workspace',str(ROOT),*args])
         return code,out.getvalue(),error.getvalue()
     def test_validate_campaign_lists_all_levels(self):
-        code,out,err=self.command('validate','chronicles/system_test/project.yaml');self.assertEqual(code,0,err);self.assertEqual(json.loads(out)['levels'],['EastLondon','WestLondon'])
+        code,out,err=self.command('validate','tests/fixtures/chronicles/system_test/project.yaml');self.assertEqual(code,0,err);self.assertEqual(json.loads(out)['levels'],['EastLondon','WestLondon'])
     def test_invalid_yaml_error_is_concise(self):
         path=ROOT/'build/tests/cli_bad.yaml';path.write_text('chronicle: [bad',encoding='utf8');code,out,err=self.command('validate',str(path));self.assertEqual(code,1);self.assertIn('YAML',err);self.assertNotIn('Traceback',err)
     def test_corrupt_package_is_concise(self):
         path=ROOT/'build/tests/cli_bad.rcmpack';path.write_bytes(b'bad');code,out,err=self.command('inspect-package',str(path));self.assertEqual(code,1);self.assertIn('corrupto',err);self.assertNotIn('Traceback',err)
     def test_export_import_commands_roundtrip(self):
-        path=ROOT/'build/tests/cli_export.rcmproject';code,out,err=self.command('export-project','chronicles/system_test/project.yaml',str(path));self.assertEqual(code,0,err)
+        path=ROOT/'build/tests/cli_export.rcmproject';code,out,err=self.command('export-project','tests/fixtures/chronicles/system_test/project.yaml',str(path));self.assertEqual(code,0,err)
         with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as tmp:
             code,out,err=self.command('import-project',str(path),tmp);self.assertEqual(code,0,err);self.assertTrue(Path(json.loads(out)['project']).exists())
     def test_diagnostics_and_clean_commands(self):

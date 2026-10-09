@@ -6,7 +6,7 @@ parser=argparse.ArgumentParser();parser.add_argument('--executable',type=Path,de
 exe=args.executable
 workspace=ROOT/'build'/('phase9_portable_probe_'+str(time.time_ns()))
 environment=dict(os.environ);environment['PATH']=str(Path(os.environ.get('SystemRoot','C:/Windows'))/'System32')
-command=[str(exe),str(workspace/'chronicles/circuit/project.yaml'),'--workspace',str(workspace),'--game',r'H:\GOG\Vampire The Masquerade - Redemption','--smoke-test']
+command=[str(exe),str(workspace/'chronicles/tutorial/project.yaml'),'--workspace',str(workspace),'--game',r'H:\GOG\Vampire The Masquerade - Redemption','--smoke-test']
 result=subprocess.run(command,cwd=ROOT,env=environment,capture_output=True,text=True,timeout=180)
 path=workspace/'build/portable_smoke.json';report=json.loads(path.read_text()) if path.exists() else {}
 report.update(exit_code=result.returncode,workspace=str(workspace),global_python_jdk_path=False,clean_machine_test=False,native_engine_test=False,executable=str(exe))

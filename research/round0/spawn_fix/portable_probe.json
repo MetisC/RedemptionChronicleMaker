@@ -1,0 +1,22 @@
+{
+  "valid_project": true,
+  "build_status": "compiled-unverified-in-game",
+  "class_versions": {
+    "R_rcm_tutor_s0_Scene": "45.3",
+    "R_rcm_tutor_s0_Passive": "45.3",
+    "R_rcm_tutor_s1_Scene": "45.3",
+    "R_rcm_tutor_s1_Passive": "45.3",
+    "R_rcm_tutor_s2_Scene": "45.3",
+    "R_rcm_tutor_s2_Passive": "45.3",
+    "RCMTutorActor": "45.3"
+  },
+  "real_gl": true,
+  "safe_mode": false,
+  "native_engine_test": false,
+  "elapsed_seconds": 13.078000000008615,
+  "exit_code": 0,
+  "workspace": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\phase9_portable_probe_1791521099366339700",
+  "global_python_jdk_path": false,
+  "clean_machine_test": false,
+  "executable": "build\\portable_update_093\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe"
+}

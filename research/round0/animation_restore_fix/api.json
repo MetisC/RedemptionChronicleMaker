@@ -1,0 +1,58 @@
+[
+  {
+    "class": "CodexActor",
+    "declaration": "public native int PlayActorMotionSetMode(int, boolean, float);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native int AddFlash(int, float, float, float, int, boolean);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native void ShotAngle(int);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native void ClearAllEffects(int);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native void ShotType(int);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native void Release(int);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native boolean PlayPath(int, int, java.lang.String, float);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native int AddFade(int, float, float, float, boolean);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public CodexCamera(int);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native void SetShot(int, int, int, int, int, float);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native void SetupOneShot(int);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native int AddFilter(int, float, int);"
+  },
+  {
+    "class": "CodexCamera",
+    "declaration": "public static native void SetupCutscene(int, int, int);"
+  },
+  {
+    "class": "CodexThing",
+    "declaration": "public native int PlayMotionSetMode(int, boolean, float);"
+  }
+]

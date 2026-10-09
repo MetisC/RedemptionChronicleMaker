@@ -1,0 +1,23 @@
+{
+  "revision": "0.9.4",
+  "evidence": [
+    "source_094.yaml",
+    "native_094.log"
+  ],
+  "native_confirmed": {
+    "walkable_start": true,
+    "dynamic_npcs": true,
+    "conversation_present": true,
+    "journal_loaded": true
+  },
+  "native_failures": [
+    "Two initial journal rows, with full route disclosed in summary",
+    "Native camera dialogue permits gameplay movement",
+    "Help > Volver closes dialogue and leaves HUD/cursor invisible"
+  ],
+  "other_unresolved": [
+    "PATH_FAILED route=0 on arrival: no claim of native patrol acceptance"
+  ],
+  "fixed_revision": "0.9.5",
+  "fixed_revision_native_test": false
+}

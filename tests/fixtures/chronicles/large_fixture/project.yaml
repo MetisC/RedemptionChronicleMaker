@@ -1,0 +1,4044 @@
+schema: 2
+chronicle:
+  id: rcm_large
+  name: RCM Large Fixture
+state:
+  flags:
+    f0: 1
+    f1: 2
+    f2: 3
+    f3: 4
+    f4: 5
+    f5: 6
+    f6: 7
+    f7: 8
+    f8: 9
+    f9: 10
+    f10: 11
+    f11: 12
+    f12: 13
+    f13: 14
+    f14: 15
+    f15: 16
+    f16: 17
+    f17: 18
+    f18: 19
+    f19: 20
+entry: map0
+scenes:
+- id: map0
+  level:
+    source: EastLondon
+  actors:
+  - id: actor0
+    name: Actor 0
+    template: businessWoman
+    transform:
+      position:
+      - -500
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    behavior: npc
+    conversation:
+      default: conv0
+  - id: actor1
+    name: Actor 1
+    template: businessWoman
+    transform:
+      position:
+      - -400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 10
+    behavior: npc
+    conversation:
+      default: conv1
+  - id: actor2
+    name: Actor 2
+    template: businessWoman
+    transform:
+      position:
+      - -300
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 20
+    behavior: npc
+    conversation:
+      default: conv2
+  - id: actor3
+    name: Actor 3
+    template: businessWoman
+    transform:
+      position:
+      - -200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 30
+    behavior: npc
+    conversation:
+      default: conv3
+  - id: actor4
+    name: Actor 4
+    template: businessWoman
+    transform:
+      position:
+      - -100
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 40
+    behavior: npc
+    conversation:
+      default: conv4
+  - id: actor5
+    name: Actor 5
+    template: businessWoman
+    transform:
+      position:
+      - 0
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 50
+    behavior: npc
+    conversation:
+      default: conv5
+  - id: actor6
+    name: Actor 6
+    template: businessWoman
+    transform:
+      position:
+      - 100
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 60
+    behavior: npc
+    conversation:
+      default: conv6
+  - id: actor7
+    name: Actor 7
+    template: businessWoman
+    transform:
+      position:
+      - 200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 70
+    behavior: npc
+    conversation:
+      default: conv7
+  - id: actor8
+    name: Actor 8
+    template: businessWoman
+    transform:
+      position:
+      - 300
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 80
+    behavior: npc
+    conversation:
+      default: conv8
+  - id: actor9
+    name: Actor 9
+    template: businessWoman
+    transform:
+      position:
+      - 400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 90
+    behavior: npc
+    conversation:
+      default: conv9
+  - id: actor10
+    name: Actor 10
+    template: businessWoman
+    transform:
+      position:
+      - 500
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 100
+    behavior: npc
+  - id: actor11
+    name: Actor 11
+    template: businessWoman
+    transform:
+      position:
+      - 600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 110
+    behavior: npc
+  - id: actor12
+    name: Actor 12
+    template: businessWoman
+    transform:
+      position:
+      - 700
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 120
+    behavior: npc
+  - id: actor13
+    name: Actor 13
+    template: businessWoman
+    transform:
+      position:
+      - 800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 130
+    behavior: npc
+  - id: actor14
+    name: Actor 14
+    template: businessWoman
+    transform:
+      position:
+      - 900
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 140
+    behavior: npc
+  - id: actor15
+    name: Actor 15
+    template: businessWoman
+    transform:
+      position:
+      - 1000
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 150
+    behavior: npc
+  - id: actor16
+    name: Actor 16
+    template: businessWoman
+    transform:
+      position:
+      - 1100
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 160
+    behavior: npc
+  - id: actor17
+    name: Actor 17
+    template: businessWoman
+    transform:
+      position:
+      - 1200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 170
+    behavior: enemy
+  - id: actor18
+    name: Actor 18
+    template: businessWoman
+    transform:
+      position:
+      - 1300
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: enemy
+  - id: actor19
+    name: Actor 19
+    template: businessWoman
+    transform:
+      position:
+      - 1400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 190
+    behavior: enemy
+  objects:
+  - id: item0
+    name: Objeto 0
+    template: ledger
+    transform:
+      position:
+      - 0
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item1
+    name: Objeto 1
+    template: ledger
+    transform:
+      position:
+      - 80
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item2
+    name: Objeto 2
+    template: ledger
+    transform:
+      position:
+      - 160
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item3
+    name: Objeto 3
+    template: ledger
+    transform:
+      position:
+      - 240
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item4
+    name: Objeto 4
+    template: ledger
+    transform:
+      position:
+      - 320
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item5
+    name: Objeto 5
+    template: ledger
+    transform:
+      position:
+      - 400
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  conversations:
+  - id: conv0
+    speaker: actor0
+    prompt: Diálogo sintético 0
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f0
+    - text: Rechazar
+      result: 2
+  - id: conv1
+    speaker: actor1
+    prompt: Diálogo sintético 1
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f1
+    - text: Rechazar
+      result: 2
+  - id: conv2
+    speaker: actor2
+    prompt: Diálogo sintético 2
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f2
+    - text: Rechazar
+      result: 2
+  - id: conv3
+    speaker: actor3
+    prompt: Diálogo sintético 3
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f3
+    - text: Rechazar
+      result: 2
+  - id: conv4
+    speaker: actor4
+    prompt: Diálogo sintético 4
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f4
+    - text: Rechazar
+      result: 2
+  - id: conv5
+    speaker: actor5
+    prompt: Diálogo sintético 5
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f5
+    - text: Rechazar
+      result: 2
+  - id: conv6
+    speaker: actor6
+    prompt: Diálogo sintético 6
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f6
+    - text: Rechazar
+      result: 2
+  - id: conv7
+    speaker: actor7
+    prompt: Diálogo sintético 7
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f7
+    - text: Rechazar
+      result: 2
+  - id: conv8
+    speaker: actor8
+    prompt: Diálogo sintético 8
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f8
+    - text: Rechazar
+      result: 2
+  - id: conv9
+    speaker: actor9
+    prompt: Diálogo sintético 9
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f9
+    - text: Rechazar
+      result: 2
+  events:
+  - id: start
+    when: scene_start
+    actions:
+    - spawn: actor0
+    - spawn: actor1
+    - spawn: actor2
+    - spawn: actor3
+    - spawn: actor4
+    - spawn: actor5
+    - spawn: actor6
+    - spawn: actor7
+    - spawn: actor8
+    - spawn: actor9
+    - spawn: actor10
+    - spawn: actor11
+    - spawn: actor12
+    - spawn: actor13
+    - spawn: actor14
+    - spawn: actor15
+    - spawn: actor16
+    - spawn: item0
+    - spawn: item1
+    - spawn: item2
+    - spawn: item3
+    - spawn: item4
+    - spawn: item5
+    - spawn_encounter: guards
+    - start_quest: q0
+  - id: enter0
+    when: trigger_enter
+    trigger: area0
+    once: false
+    actions:
+    - set_flag: f0
+  - id: enter1
+    when: trigger_enter
+    trigger: area1
+    once: false
+    actions:
+    - set_flag: f1
+  - id: enter2
+    when: trigger_enter
+    trigger: area2
+    once: false
+    actions:
+    - set_flag: f2
+  - id: enter3
+    when: trigger_enter
+    trigger: area3
+    once: false
+    actions:
+    - set_flag: f3
+  - id: enter4
+    when: trigger_enter
+    trigger: area4
+    once: false
+    actions:
+    - set_flag: f4
+  - id: enter5
+    when: trigger_enter
+    trigger: area5
+    once: false
+    actions:
+    - set_flag: f5
+  - id: enter6
+    when: trigger_enter
+    trigger: area6
+    once: false
+    actions:
+    - set_flag: f6
+  - id: enter7
+    when: trigger_enter
+    trigger: area7
+    once: false
+    actions:
+    - set_flag: f7
+  - id: enter8
+    when: trigger_enter
+    trigger: area8
+    once: false
+    actions:
+    - set_flag: f8
+  - id: enter9
+    when: trigger_enter
+    trigger: area9
+    once: false
+    actions:
+    - set_flag: f9
+  - id: timer0
+    when: timer
+    seconds: 1.0
+    once: false
+    conditions:
+    - flag: f0
+      is_set: true
+    actions:
+    - clear_flag: f0
+  - id: timer1
+    when: timer
+    seconds: 2.0
+    once: false
+    conditions:
+    - flag: f1
+      is_set: true
+    actions:
+    - clear_flag: f1
+  - id: timer2
+    when: timer
+    seconds: 3.0
+    once: false
+    conditions:
+    - flag: f2
+      is_set: true
+    actions:
+    - clear_flag: f2
+  - id: timer3
+    when: timer
+    seconds: 4.0
+    once: false
+    conditions:
+    - flag: f3
+      is_set: true
+    actions:
+    - clear_flag: f3
+  - id: timer4
+    when: timer
+    seconds: 5.0
+    once: false
+    conditions:
+    - flag: f4
+      is_set: true
+    actions:
+    - clear_flag: f4
+  - id: timer5
+    when: timer
+    seconds: 6.0
+    once: false
+    conditions:
+    - flag: f5
+      is_set: true
+    actions:
+    - clear_flag: f5
+  - id: timer6
+    when: timer
+    seconds: 7.0
+    once: false
+    conditions:
+    - flag: f6
+      is_set: true
+    actions:
+    - clear_flag: f6
+  - id: timer7
+    when: timer
+    seconds: 8.0
+    once: false
+    conditions:
+    - flag: f7
+      is_set: true
+    actions:
+    - clear_flag: f7
+  - id: timer8
+    when: timer
+    seconds: 9.0
+    once: false
+    conditions:
+    - flag: f8
+      is_set: true
+    actions:
+    - clear_flag: f8
+  triggers:
+  - id: area0
+    name: Trigger 0
+    shape: sphere
+    transform:
+      position:
+      - 0
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area1
+    name: Trigger 1
+    shape: sphere
+    transform:
+      position:
+      - 200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area2
+    name: Trigger 2
+    shape: sphere
+    transform:
+      position:
+      - 400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area3
+    name: Trigger 3
+    shape: sphere
+    transform:
+      position:
+      - 600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area4
+    name: Trigger 4
+    shape: sphere
+    transform:
+      position:
+      - 800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area5
+    name: Trigger 5
+    shape: sphere
+    transform:
+      position:
+      - 1000
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area6
+    name: Trigger 6
+    shape: sphere
+    transform:
+      position:
+      - 1200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area7
+    name: Trigger 7
+    shape: sphere
+    transform:
+      position:
+      - 1400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area8
+    name: Trigger 8
+    shape: sphere
+    transform:
+      position:
+      - 1600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area9
+    name: Trigger 9
+    shape: sphere
+    transform:
+      position:
+      - 1800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  encounters:
+  - id: guards
+    name: Encuentro
+    actors:
+    - actor17
+    - actor18
+    - actor19
+  sequences:
+  - id: shot
+    name: Plano
+    actor: actor0
+    duration: 1.5
+    shot: wide
+    angle: high
+- id: map1
+  level:
+    source: WestLondon
+  actors:
+  - id: actor0
+    name: Actor 0
+    template: businessWoman
+    transform:
+      position:
+      - -500
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    behavior: npc
+    conversation:
+      default: conv0
+  - id: actor1
+    name: Actor 1
+    template: businessWoman
+    transform:
+      position:
+      - -400
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 10
+    behavior: npc
+    conversation:
+      default: conv1
+  - id: actor2
+    name: Actor 2
+    template: businessWoman
+    transform:
+      position:
+      - -300
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 20
+    behavior: npc
+    conversation:
+      default: conv2
+  - id: actor3
+    name: Actor 3
+    template: businessWoman
+    transform:
+      position:
+      - -200
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 30
+    behavior: npc
+    conversation:
+      default: conv3
+  - id: actor4
+    name: Actor 4
+    template: businessWoman
+    transform:
+      position:
+      - -100
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 40
+    behavior: npc
+    conversation:
+      default: conv4
+  - id: actor5
+    name: Actor 5
+    template: businessWoman
+    transform:
+      position:
+      - 0
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 50
+    behavior: npc
+    conversation:
+      default: conv5
+  - id: actor6
+    name: Actor 6
+    template: businessWoman
+    transform:
+      position:
+      - 100
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 60
+    behavior: npc
+    conversation:
+      default: conv6
+  - id: actor7
+    name: Actor 7
+    template: businessWoman
+    transform:
+      position:
+      - 200
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 70
+    behavior: npc
+    conversation:
+      default: conv7
+  - id: actor8
+    name: Actor 8
+    template: businessWoman
+    transform:
+      position:
+      - 300
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 80
+    behavior: npc
+    conversation:
+      default: conv8
+  - id: actor9
+    name: Actor 9
+    template: businessWoman
+    transform:
+      position:
+      - 400
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 90
+    behavior: npc
+    conversation:
+      default: conv9
+  - id: actor10
+    name: Actor 10
+    template: businessWoman
+    transform:
+      position:
+      - 500
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 100
+    behavior: npc
+  - id: actor11
+    name: Actor 11
+    template: businessWoman
+    transform:
+      position:
+      - 600
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 110
+    behavior: npc
+  - id: actor12
+    name: Actor 12
+    template: businessWoman
+    transform:
+      position:
+      - 700
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 120
+    behavior: npc
+  - id: actor13
+    name: Actor 13
+    template: businessWoman
+    transform:
+      position:
+      - 800
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 130
+    behavior: npc
+  - id: actor14
+    name: Actor 14
+    template: businessWoman
+    transform:
+      position:
+      - 900
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 140
+    behavior: npc
+  - id: actor15
+    name: Actor 15
+    template: businessWoman
+    transform:
+      position:
+      - 1000
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 150
+    behavior: npc
+  - id: actor16
+    name: Actor 16
+    template: businessWoman
+    transform:
+      position:
+      - 1100
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 160
+    behavior: npc
+  - id: actor17
+    name: Actor 17
+    template: businessWoman
+    transform:
+      position:
+      - 1200
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 170
+    behavior: enemy
+  - id: actor18
+    name: Actor 18
+    template: businessWoman
+    transform:
+      position:
+      - 1300
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: enemy
+  - id: actor19
+    name: Actor 19
+    template: businessWoman
+    transform:
+      position:
+      - 1400
+      - 80
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 190
+    behavior: enemy
+  objects:
+  - id: item0
+    name: Objeto 0
+    template: ledger
+    transform:
+      position:
+      - 0
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item1
+    name: Objeto 1
+    template: ledger
+    transform:
+      position:
+      - 80
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item2
+    name: Objeto 2
+    template: ledger
+    transform:
+      position:
+      - 160
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item3
+    name: Objeto 3
+    template: ledger
+    transform:
+      position:
+      - 240
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item4
+    name: Objeto 4
+    template: ledger
+    transform:
+      position:
+      - 320
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item5
+    name: Objeto 5
+    template: ledger
+    transform:
+      position:
+      - 400
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  conversations:
+  - id: conv0
+    speaker: actor0
+    prompt: Diálogo sintético 0
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f0
+    - text: Rechazar
+      result: 2
+  - id: conv1
+    speaker: actor1
+    prompt: Diálogo sintético 1
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f1
+    - text: Rechazar
+      result: 2
+  - id: conv2
+    speaker: actor2
+    prompt: Diálogo sintético 2
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f2
+    - text: Rechazar
+      result: 2
+  - id: conv3
+    speaker: actor3
+    prompt: Diálogo sintético 3
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f3
+    - text: Rechazar
+      result: 2
+  - id: conv4
+    speaker: actor4
+    prompt: Diálogo sintético 4
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f4
+    - text: Rechazar
+      result: 2
+  - id: conv5
+    speaker: actor5
+    prompt: Diálogo sintético 5
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f5
+    - text: Rechazar
+      result: 2
+  - id: conv6
+    speaker: actor6
+    prompt: Diálogo sintético 6
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f6
+    - text: Rechazar
+      result: 2
+  - id: conv7
+    speaker: actor7
+    prompt: Diálogo sintético 7
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f7
+    - text: Rechazar
+      result: 2
+  - id: conv8
+    speaker: actor8
+    prompt: Diálogo sintético 8
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f8
+    - text: Rechazar
+      result: 2
+  - id: conv9
+    speaker: actor9
+    prompt: Diálogo sintético 9
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f9
+    - text: Rechazar
+      result: 2
+  events:
+  - id: start
+    when: scene_start
+    actions:
+    - spawn: actor0
+    - spawn: actor1
+    - spawn: actor2
+    - spawn: actor3
+    - spawn: actor4
+    - spawn: actor5
+    - spawn: actor6
+    - spawn: actor7
+    - spawn: actor8
+    - spawn: actor9
+    - spawn: actor10
+    - spawn: actor11
+    - spawn: actor12
+    - spawn: actor13
+    - spawn: actor14
+    - spawn: actor15
+    - spawn: actor16
+    - spawn: item0
+    - spawn: item1
+    - spawn: item2
+    - spawn: item3
+    - spawn: item4
+    - spawn: item5
+    - spawn_encounter: guards
+    - start_quest: q4
+  - id: enter0
+    when: trigger_enter
+    trigger: area0
+    once: false
+    actions:
+    - set_flag: f0
+  - id: enter1
+    when: trigger_enter
+    trigger: area1
+    once: false
+    actions:
+    - set_flag: f1
+  - id: enter2
+    when: trigger_enter
+    trigger: area2
+    once: false
+    actions:
+    - set_flag: f2
+  - id: enter3
+    when: trigger_enter
+    trigger: area3
+    once: false
+    actions:
+    - set_flag: f3
+  - id: enter4
+    when: trigger_enter
+    trigger: area4
+    once: false
+    actions:
+    - set_flag: f4
+  - id: enter5
+    when: trigger_enter
+    trigger: area5
+    once: false
+    actions:
+    - set_flag: f5
+  - id: enter6
+    when: trigger_enter
+    trigger: area6
+    once: false
+    actions:
+    - set_flag: f6
+  - id: enter7
+    when: trigger_enter
+    trigger: area7
+    once: false
+    actions:
+    - set_flag: f7
+  - id: enter8
+    when: trigger_enter
+    trigger: area8
+    once: false
+    actions:
+    - set_flag: f8
+  - id: enter9
+    when: trigger_enter
+    trigger: area9
+    once: false
+    actions:
+    - set_flag: f9
+  - id: timer0
+    when: timer
+    seconds: 1.0
+    once: false
+    conditions:
+    - flag: f0
+      is_set: true
+    actions:
+    - clear_flag: f0
+  - id: timer1
+    when: timer
+    seconds: 2.0
+    once: false
+    conditions:
+    - flag: f1
+      is_set: true
+    actions:
+    - clear_flag: f1
+  - id: timer2
+    when: timer
+    seconds: 3.0
+    once: false
+    conditions:
+    - flag: f2
+      is_set: true
+    actions:
+    - clear_flag: f2
+  - id: timer3
+    when: timer
+    seconds: 4.0
+    once: false
+    conditions:
+    - flag: f3
+      is_set: true
+    actions:
+    - clear_flag: f3
+  - id: timer4
+    when: timer
+    seconds: 5.0
+    once: false
+    conditions:
+    - flag: f4
+      is_set: true
+    actions:
+    - clear_flag: f4
+  - id: timer5
+    when: timer
+    seconds: 6.0
+    once: false
+    conditions:
+    - flag: f5
+      is_set: true
+    actions:
+    - clear_flag: f5
+  - id: timer6
+    when: timer
+    seconds: 7.0
+    once: false
+    conditions:
+    - flag: f6
+      is_set: true
+    actions:
+    - clear_flag: f6
+  - id: timer7
+    when: timer
+    seconds: 8.0
+    once: false
+    conditions:
+    - flag: f7
+      is_set: true
+    actions:
+    - clear_flag: f7
+  - id: timer8
+    when: timer
+    seconds: 9.0
+    once: false
+    conditions:
+    - flag: f8
+      is_set: true
+    actions:
+    - clear_flag: f8
+  triggers:
+  - id: area0
+    name: Trigger 0
+    shape: sphere
+    transform:
+      position:
+      - 0
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area1
+    name: Trigger 1
+    shape: sphere
+    transform:
+      position:
+      - 200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area2
+    name: Trigger 2
+    shape: sphere
+    transform:
+      position:
+      - 400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area3
+    name: Trigger 3
+    shape: sphere
+    transform:
+      position:
+      - 600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area4
+    name: Trigger 4
+    shape: sphere
+    transform:
+      position:
+      - 800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area5
+    name: Trigger 5
+    shape: sphere
+    transform:
+      position:
+      - 1000
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area6
+    name: Trigger 6
+    shape: sphere
+    transform:
+      position:
+      - 1200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area7
+    name: Trigger 7
+    shape: sphere
+    transform:
+      position:
+      - 1400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area8
+    name: Trigger 8
+    shape: sphere
+    transform:
+      position:
+      - 1600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area9
+    name: Trigger 9
+    shape: sphere
+    transform:
+      position:
+      - 1800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  encounters:
+  - id: guards
+    name: Encuentro
+    actors:
+    - actor17
+    - actor18
+    - actor19
+  sequences:
+  - id: shot
+    name: Plano
+    actor: actor0
+    duration: 1.5
+    shot: wide
+    angle: high
+- id: map2
+  level:
+    source: AnezkaRoom
+  actors:
+  - id: actor0
+    name: Actor 0
+    template: businessWoman
+    transform:
+      position:
+      - -500
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    behavior: npc
+    conversation:
+      default: conv0
+  - id: actor1
+    name: Actor 1
+    template: businessWoman
+    transform:
+      position:
+      - -400
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 10
+    behavior: npc
+    conversation:
+      default: conv1
+  - id: actor2
+    name: Actor 2
+    template: businessWoman
+    transform:
+      position:
+      - -300
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 20
+    behavior: npc
+    conversation:
+      default: conv2
+  - id: actor3
+    name: Actor 3
+    template: businessWoman
+    transform:
+      position:
+      - -200
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 30
+    behavior: npc
+    conversation:
+      default: conv3
+  - id: actor4
+    name: Actor 4
+    template: businessWoman
+    transform:
+      position:
+      - -100
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 40
+    behavior: npc
+    conversation:
+      default: conv4
+  - id: actor5
+    name: Actor 5
+    template: businessWoman
+    transform:
+      position:
+      - 0
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 50
+    behavior: npc
+    conversation:
+      default: conv5
+  - id: actor6
+    name: Actor 6
+    template: businessWoman
+    transform:
+      position:
+      - 100
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 60
+    behavior: npc
+    conversation:
+      default: conv6
+  - id: actor7
+    name: Actor 7
+    template: businessWoman
+    transform:
+      position:
+      - 200
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 70
+    behavior: npc
+    conversation:
+      default: conv7
+  - id: actor8
+    name: Actor 8
+    template: businessWoman
+    transform:
+      position:
+      - 300
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 80
+    behavior: npc
+    conversation:
+      default: conv8
+  - id: actor9
+    name: Actor 9
+    template: businessWoman
+    transform:
+      position:
+      - 400
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 90
+    behavior: npc
+    conversation:
+      default: conv9
+  - id: actor10
+    name: Actor 10
+    template: businessWoman
+    transform:
+      position:
+      - 500
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 100
+    behavior: npc
+  - id: actor11
+    name: Actor 11
+    template: businessWoman
+    transform:
+      position:
+      - 600
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 110
+    behavior: npc
+  - id: actor12
+    name: Actor 12
+    template: businessWoman
+    transform:
+      position:
+      - 700
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 120
+    behavior: npc
+  - id: actor13
+    name: Actor 13
+    template: businessWoman
+    transform:
+      position:
+      - 800
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 130
+    behavior: npc
+  - id: actor14
+    name: Actor 14
+    template: businessWoman
+    transform:
+      position:
+      - 900
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 140
+    behavior: npc
+  - id: actor15
+    name: Actor 15
+    template: businessWoman
+    transform:
+      position:
+      - 1000
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 150
+    behavior: npc
+  - id: actor16
+    name: Actor 16
+    template: businessWoman
+    transform:
+      position:
+      - 1100
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 160
+    behavior: npc
+  - id: actor17
+    name: Actor 17
+    template: businessWoman
+    transform:
+      position:
+      - 1200
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 170
+    behavior: enemy
+  - id: actor18
+    name: Actor 18
+    template: businessWoman
+    transform:
+      position:
+      - 1300
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: enemy
+  - id: actor19
+    name: Actor 19
+    template: businessWoman
+    transform:
+      position:
+      - 1400
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 190
+    behavior: enemy
+  objects:
+  - id: item0
+    name: Objeto 0
+    template: ledger
+    transform:
+      position:
+      - 0
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item1
+    name: Objeto 1
+    template: ledger
+    transform:
+      position:
+      - 80
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item2
+    name: Objeto 2
+    template: ledger
+    transform:
+      position:
+      - 160
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item3
+    name: Objeto 3
+    template: ledger
+    transform:
+      position:
+      - 240
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item4
+    name: Objeto 4
+    template: ledger
+    transform:
+      position:
+      - 320
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item5
+    name: Objeto 5
+    template: ledger
+    transform:
+      position:
+      - 400
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  conversations:
+  - id: conv0
+    speaker: actor0
+    prompt: Diálogo sintético 0
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f0
+    - text: Rechazar
+      result: 2
+  - id: conv1
+    speaker: actor1
+    prompt: Diálogo sintético 1
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f1
+    - text: Rechazar
+      result: 2
+  - id: conv2
+    speaker: actor2
+    prompt: Diálogo sintético 2
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f2
+    - text: Rechazar
+      result: 2
+  - id: conv3
+    speaker: actor3
+    prompt: Diálogo sintético 3
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f3
+    - text: Rechazar
+      result: 2
+  - id: conv4
+    speaker: actor4
+    prompt: Diálogo sintético 4
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f4
+    - text: Rechazar
+      result: 2
+  - id: conv5
+    speaker: actor5
+    prompt: Diálogo sintético 5
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f5
+    - text: Rechazar
+      result: 2
+  - id: conv6
+    speaker: actor6
+    prompt: Diálogo sintético 6
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f6
+    - text: Rechazar
+      result: 2
+  - id: conv7
+    speaker: actor7
+    prompt: Diálogo sintético 7
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f7
+    - text: Rechazar
+      result: 2
+  - id: conv8
+    speaker: actor8
+    prompt: Diálogo sintético 8
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f8
+    - text: Rechazar
+      result: 2
+  - id: conv9
+    speaker: actor9
+    prompt: Diálogo sintético 9
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f9
+    - text: Rechazar
+      result: 2
+  events:
+  - id: start
+    when: scene_start
+    actions:
+    - spawn: actor0
+    - spawn: actor1
+    - spawn: actor2
+    - spawn: actor3
+    - spawn: actor4
+    - spawn: actor5
+    - spawn: actor6
+    - spawn: actor7
+    - spawn: actor8
+    - spawn: actor9
+    - spawn: actor10
+    - spawn: actor11
+    - spawn: actor12
+    - spawn: actor13
+    - spawn: actor14
+    - spawn: actor15
+    - spawn: actor16
+    - spawn: item0
+    - spawn: item1
+    - spawn: item2
+    - spawn: item3
+    - spawn: item4
+    - spawn: item5
+    - spawn_encounter: guards
+    - start_quest: q8
+  - id: enter0
+    when: trigger_enter
+    trigger: area0
+    once: false
+    actions:
+    - set_flag: f0
+  - id: enter1
+    when: trigger_enter
+    trigger: area1
+    once: false
+    actions:
+    - set_flag: f1
+  - id: enter2
+    when: trigger_enter
+    trigger: area2
+    once: false
+    actions:
+    - set_flag: f2
+  - id: enter3
+    when: trigger_enter
+    trigger: area3
+    once: false
+    actions:
+    - set_flag: f3
+  - id: enter4
+    when: trigger_enter
+    trigger: area4
+    once: false
+    actions:
+    - set_flag: f4
+  - id: enter5
+    when: trigger_enter
+    trigger: area5
+    once: false
+    actions:
+    - set_flag: f5
+  - id: enter6
+    when: trigger_enter
+    trigger: area6
+    once: false
+    actions:
+    - set_flag: f6
+  - id: enter7
+    when: trigger_enter
+    trigger: area7
+    once: false
+    actions:
+    - set_flag: f7
+  - id: enter8
+    when: trigger_enter
+    trigger: area8
+    once: false
+    actions:
+    - set_flag: f8
+  - id: enter9
+    when: trigger_enter
+    trigger: area9
+    once: false
+    actions:
+    - set_flag: f9
+  - id: timer0
+    when: timer
+    seconds: 1.0
+    once: false
+    conditions:
+    - flag: f0
+      is_set: true
+    actions:
+    - clear_flag: f0
+  - id: timer1
+    when: timer
+    seconds: 2.0
+    once: false
+    conditions:
+    - flag: f1
+      is_set: true
+    actions:
+    - clear_flag: f1
+  - id: timer2
+    when: timer
+    seconds: 3.0
+    once: false
+    conditions:
+    - flag: f2
+      is_set: true
+    actions:
+    - clear_flag: f2
+  - id: timer3
+    when: timer
+    seconds: 4.0
+    once: false
+    conditions:
+    - flag: f3
+      is_set: true
+    actions:
+    - clear_flag: f3
+  - id: timer4
+    when: timer
+    seconds: 5.0
+    once: false
+    conditions:
+    - flag: f4
+      is_set: true
+    actions:
+    - clear_flag: f4
+  - id: timer5
+    when: timer
+    seconds: 6.0
+    once: false
+    conditions:
+    - flag: f5
+      is_set: true
+    actions:
+    - clear_flag: f5
+  - id: timer6
+    when: timer
+    seconds: 7.0
+    once: false
+    conditions:
+    - flag: f6
+      is_set: true
+    actions:
+    - clear_flag: f6
+  - id: timer7
+    when: timer
+    seconds: 8.0
+    once: false
+    conditions:
+    - flag: f7
+      is_set: true
+    actions:
+    - clear_flag: f7
+  - id: timer8
+    when: timer
+    seconds: 9.0
+    once: false
+    conditions:
+    - flag: f8
+      is_set: true
+    actions:
+    - clear_flag: f8
+  triggers:
+  - id: area0
+    name: Trigger 0
+    shape: sphere
+    transform:
+      position:
+      - 0
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area1
+    name: Trigger 1
+    shape: sphere
+    transform:
+      position:
+      - 200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area2
+    name: Trigger 2
+    shape: sphere
+    transform:
+      position:
+      - 400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area3
+    name: Trigger 3
+    shape: sphere
+    transform:
+      position:
+      - 600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area4
+    name: Trigger 4
+    shape: sphere
+    transform:
+      position:
+      - 800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area5
+    name: Trigger 5
+    shape: sphere
+    transform:
+      position:
+      - 1000
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area6
+    name: Trigger 6
+    shape: sphere
+    transform:
+      position:
+      - 1200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area7
+    name: Trigger 7
+    shape: sphere
+    transform:
+      position:
+      - 1400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area8
+    name: Trigger 8
+    shape: sphere
+    transform:
+      position:
+      - 1600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area9
+    name: Trigger 9
+    shape: sphere
+    transform:
+      position:
+      - 1800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  encounters:
+  - id: guards
+    name: Encuentro
+    actors:
+    - actor17
+    - actor18
+    - actor19
+  sequences:
+  - id: shot
+    name: Plano
+    actor: actor0
+    duration: 1.5
+    shot: wide
+    angle: high
+- id: map3
+  level:
+    source: Apartment
+  actors:
+  - id: actor0
+    name: Actor 0
+    template: businessWoman
+    transform:
+      position:
+      - -500
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    behavior: npc
+    conversation:
+      default: conv0
+  - id: actor1
+    name: Actor 1
+    template: businessWoman
+    transform:
+      position:
+      - -400
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 10
+    behavior: npc
+    conversation:
+      default: conv1
+  - id: actor2
+    name: Actor 2
+    template: businessWoman
+    transform:
+      position:
+      - -300
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 20
+    behavior: npc
+    conversation:
+      default: conv2
+  - id: actor3
+    name: Actor 3
+    template: businessWoman
+    transform:
+      position:
+      - -200
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 30
+    behavior: npc
+    conversation:
+      default: conv3
+  - id: actor4
+    name: Actor 4
+    template: businessWoman
+    transform:
+      position:
+      - -100
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 40
+    behavior: npc
+    conversation:
+      default: conv4
+  - id: actor5
+    name: Actor 5
+    template: businessWoman
+    transform:
+      position:
+      - 0
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 50
+    behavior: npc
+    conversation:
+      default: conv5
+  - id: actor6
+    name: Actor 6
+    template: businessWoman
+    transform:
+      position:
+      - 100
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 60
+    behavior: npc
+    conversation:
+      default: conv6
+  - id: actor7
+    name: Actor 7
+    template: businessWoman
+    transform:
+      position:
+      - 200
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 70
+    behavior: npc
+    conversation:
+      default: conv7
+  - id: actor8
+    name: Actor 8
+    template: businessWoman
+    transform:
+      position:
+      - 300
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 80
+    behavior: npc
+    conversation:
+      default: conv8
+  - id: actor9
+    name: Actor 9
+    template: businessWoman
+    transform:
+      position:
+      - 400
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 90
+    behavior: npc
+    conversation:
+      default: conv9
+  - id: actor10
+    name: Actor 10
+    template: businessWoman
+    transform:
+      position:
+      - 500
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 100
+    behavior: npc
+  - id: actor11
+    name: Actor 11
+    template: businessWoman
+    transform:
+      position:
+      - 600
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 110
+    behavior: npc
+  - id: actor12
+    name: Actor 12
+    template: businessWoman
+    transform:
+      position:
+      - 700
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 120
+    behavior: npc
+  - id: actor13
+    name: Actor 13
+    template: businessWoman
+    transform:
+      position:
+      - 800
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 130
+    behavior: npc
+  - id: actor14
+    name: Actor 14
+    template: businessWoman
+    transform:
+      position:
+      - 900
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 140
+    behavior: npc
+  - id: actor15
+    name: Actor 15
+    template: businessWoman
+    transform:
+      position:
+      - 1000
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 150
+    behavior: npc
+  - id: actor16
+    name: Actor 16
+    template: businessWoman
+    transform:
+      position:
+      - 1100
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 160
+    behavior: npc
+  - id: actor17
+    name: Actor 17
+    template: businessWoman
+    transform:
+      position:
+      - 1200
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 170
+    behavior: enemy
+  - id: actor18
+    name: Actor 18
+    template: businessWoman
+    transform:
+      position:
+      - 1300
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: enemy
+  - id: actor19
+    name: Actor 19
+    template: businessWoman
+    transform:
+      position:
+      - 1400
+      - 240
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 190
+    behavior: enemy
+  objects:
+  - id: item0
+    name: Objeto 0
+    template: ledger
+    transform:
+      position:
+      - 0
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item1
+    name: Objeto 1
+    template: ledger
+    transform:
+      position:
+      - 80
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item2
+    name: Objeto 2
+    template: ledger
+    transform:
+      position:
+      - 160
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item3
+    name: Objeto 3
+    template: ledger
+    transform:
+      position:
+      - 240
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item4
+    name: Objeto 4
+    template: ledger
+    transform:
+      position:
+      - 320
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item5
+    name: Objeto 5
+    template: ledger
+    transform:
+      position:
+      - 400
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  conversations:
+  - id: conv0
+    speaker: actor0
+    prompt: Diálogo sintético 0
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f0
+    - text: Rechazar
+      result: 2
+  - id: conv1
+    speaker: actor1
+    prompt: Diálogo sintético 1
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f1
+    - text: Rechazar
+      result: 2
+  - id: conv2
+    speaker: actor2
+    prompt: Diálogo sintético 2
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f2
+    - text: Rechazar
+      result: 2
+  - id: conv3
+    speaker: actor3
+    prompt: Diálogo sintético 3
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f3
+    - text: Rechazar
+      result: 2
+  - id: conv4
+    speaker: actor4
+    prompt: Diálogo sintético 4
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f4
+    - text: Rechazar
+      result: 2
+  - id: conv5
+    speaker: actor5
+    prompt: Diálogo sintético 5
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f5
+    - text: Rechazar
+      result: 2
+  - id: conv6
+    speaker: actor6
+    prompt: Diálogo sintético 6
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f6
+    - text: Rechazar
+      result: 2
+  - id: conv7
+    speaker: actor7
+    prompt: Diálogo sintético 7
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f7
+    - text: Rechazar
+      result: 2
+  - id: conv8
+    speaker: actor8
+    prompt: Diálogo sintético 8
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f8
+    - text: Rechazar
+      result: 2
+  - id: conv9
+    speaker: actor9
+    prompt: Diálogo sintético 9
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f9
+    - text: Rechazar
+      result: 2
+  events:
+  - id: start
+    when: scene_start
+    actions:
+    - spawn: actor0
+    - spawn: actor1
+    - spawn: actor2
+    - spawn: actor3
+    - spawn: actor4
+    - spawn: actor5
+    - spawn: actor6
+    - spawn: actor7
+    - spawn: actor8
+    - spawn: actor9
+    - spawn: actor10
+    - spawn: actor11
+    - spawn: actor12
+    - spawn: actor13
+    - spawn: actor14
+    - spawn: actor15
+    - spawn: actor16
+    - spawn: item0
+    - spawn: item1
+    - spawn: item2
+    - spawn: item3
+    - spawn: item4
+    - spawn: item5
+    - spawn_encounter: guards
+    - start_quest: q12
+  - id: enter0
+    when: trigger_enter
+    trigger: area0
+    once: false
+    actions:
+    - set_flag: f0
+  - id: enter1
+    when: trigger_enter
+    trigger: area1
+    once: false
+    actions:
+    - set_flag: f1
+  - id: enter2
+    when: trigger_enter
+    trigger: area2
+    once: false
+    actions:
+    - set_flag: f2
+  - id: enter3
+    when: trigger_enter
+    trigger: area3
+    once: false
+    actions:
+    - set_flag: f3
+  - id: enter4
+    when: trigger_enter
+    trigger: area4
+    once: false
+    actions:
+    - set_flag: f4
+  - id: enter5
+    when: trigger_enter
+    trigger: area5
+    once: false
+    actions:
+    - set_flag: f5
+  - id: enter6
+    when: trigger_enter
+    trigger: area6
+    once: false
+    actions:
+    - set_flag: f6
+  - id: enter7
+    when: trigger_enter
+    trigger: area7
+    once: false
+    actions:
+    - set_flag: f7
+  - id: enter8
+    when: trigger_enter
+    trigger: area8
+    once: false
+    actions:
+    - set_flag: f8
+  - id: enter9
+    when: trigger_enter
+    trigger: area9
+    once: false
+    actions:
+    - set_flag: f9
+  - id: timer0
+    when: timer
+    seconds: 1.0
+    once: false
+    conditions:
+    - flag: f0
+      is_set: true
+    actions:
+    - clear_flag: f0
+  - id: timer1
+    when: timer
+    seconds: 2.0
+    once: false
+    conditions:
+    - flag: f1
+      is_set: true
+    actions:
+    - clear_flag: f1
+  - id: timer2
+    when: timer
+    seconds: 3.0
+    once: false
+    conditions:
+    - flag: f2
+      is_set: true
+    actions:
+    - clear_flag: f2
+  - id: timer3
+    when: timer
+    seconds: 4.0
+    once: false
+    conditions:
+    - flag: f3
+      is_set: true
+    actions:
+    - clear_flag: f3
+  - id: timer4
+    when: timer
+    seconds: 5.0
+    once: false
+    conditions:
+    - flag: f4
+      is_set: true
+    actions:
+    - clear_flag: f4
+  - id: timer5
+    when: timer
+    seconds: 6.0
+    once: false
+    conditions:
+    - flag: f5
+      is_set: true
+    actions:
+    - clear_flag: f5
+  - id: timer6
+    when: timer
+    seconds: 7.0
+    once: false
+    conditions:
+    - flag: f6
+      is_set: true
+    actions:
+    - clear_flag: f6
+  - id: timer7
+    when: timer
+    seconds: 8.0
+    once: false
+    conditions:
+    - flag: f7
+      is_set: true
+    actions:
+    - clear_flag: f7
+  - id: timer8
+    when: timer
+    seconds: 9.0
+    once: false
+    conditions:
+    - flag: f8
+      is_set: true
+    actions:
+    - clear_flag: f8
+  triggers:
+  - id: area0
+    name: Trigger 0
+    shape: sphere
+    transform:
+      position:
+      - 0
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area1
+    name: Trigger 1
+    shape: sphere
+    transform:
+      position:
+      - 200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area2
+    name: Trigger 2
+    shape: sphere
+    transform:
+      position:
+      - 400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area3
+    name: Trigger 3
+    shape: sphere
+    transform:
+      position:
+      - 600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area4
+    name: Trigger 4
+    shape: sphere
+    transform:
+      position:
+      - 800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area5
+    name: Trigger 5
+    shape: sphere
+    transform:
+      position:
+      - 1000
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area6
+    name: Trigger 6
+    shape: sphere
+    transform:
+      position:
+      - 1200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area7
+    name: Trigger 7
+    shape: sphere
+    transform:
+      position:
+      - 1400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area8
+    name: Trigger 8
+    shape: sphere
+    transform:
+      position:
+      - 1600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area9
+    name: Trigger 9
+    shape: sphere
+    transform:
+      position:
+      - 1800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  encounters:
+  - id: guards
+    name: Encuentro
+    actors:
+    - actor17
+    - actor18
+    - actor19
+  sequences:
+  - id: shot
+    name: Plano
+    actor: actor0
+    duration: 1.5
+    shot: wide
+    angle: high
+- id: map4
+  level:
+    source: ArdanChantry
+  actors:
+  - id: actor0
+    name: Actor 0
+    template: businessWoman
+    transform:
+      position:
+      - -500
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    behavior: npc
+    conversation:
+      default: conv0
+  - id: actor1
+    name: Actor 1
+    template: businessWoman
+    transform:
+      position:
+      - -400
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 10
+    behavior: npc
+    conversation:
+      default: conv1
+  - id: actor2
+    name: Actor 2
+    template: businessWoman
+    transform:
+      position:
+      - -300
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 20
+    behavior: npc
+    conversation:
+      default: conv2
+  - id: actor3
+    name: Actor 3
+    template: businessWoman
+    transform:
+      position:
+      - -200
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 30
+    behavior: npc
+    conversation:
+      default: conv3
+  - id: actor4
+    name: Actor 4
+    template: businessWoman
+    transform:
+      position:
+      - -100
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 40
+    behavior: npc
+    conversation:
+      default: conv4
+  - id: actor5
+    name: Actor 5
+    template: businessWoman
+    transform:
+      position:
+      - 0
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 50
+    behavior: npc
+    conversation:
+      default: conv5
+  - id: actor6
+    name: Actor 6
+    template: businessWoman
+    transform:
+      position:
+      - 100
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 60
+    behavior: npc
+    conversation:
+      default: conv6
+  - id: actor7
+    name: Actor 7
+    template: businessWoman
+    transform:
+      position:
+      - 200
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 70
+    behavior: npc
+    conversation:
+      default: conv7
+  - id: actor8
+    name: Actor 8
+    template: businessWoman
+    transform:
+      position:
+      - 300
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 80
+    behavior: npc
+    conversation:
+      default: conv8
+  - id: actor9
+    name: Actor 9
+    template: businessWoman
+    transform:
+      position:
+      - 400
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 90
+    behavior: npc
+    conversation:
+      default: conv9
+  - id: actor10
+    name: Actor 10
+    template: businessWoman
+    transform:
+      position:
+      - 500
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 100
+    behavior: npc
+  - id: actor11
+    name: Actor 11
+    template: businessWoman
+    transform:
+      position:
+      - 600
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 110
+    behavior: npc
+  - id: actor12
+    name: Actor 12
+    template: businessWoman
+    transform:
+      position:
+      - 700
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 120
+    behavior: npc
+  - id: actor13
+    name: Actor 13
+    template: businessWoman
+    transform:
+      position:
+      - 800
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 130
+    behavior: npc
+  - id: actor14
+    name: Actor 14
+    template: businessWoman
+    transform:
+      position:
+      - 900
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 140
+    behavior: npc
+  - id: actor15
+    name: Actor 15
+    template: businessWoman
+    transform:
+      position:
+      - 1000
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 150
+    behavior: npc
+  - id: actor16
+    name: Actor 16
+    template: businessWoman
+    transform:
+      position:
+      - 1100
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 160
+    behavior: npc
+  - id: actor17
+    name: Actor 17
+    template: businessWoman
+    transform:
+      position:
+      - 1200
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 170
+    behavior: enemy
+  - id: actor18
+    name: Actor 18
+    template: businessWoman
+    transform:
+      position:
+      - 1300
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 180
+    behavior: enemy
+  - id: actor19
+    name: Actor 19
+    template: businessWoman
+    transform:
+      position:
+      - 1400
+      - 320
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 190
+    behavior: enemy
+  objects:
+  - id: item0
+    name: Objeto 0
+    template: ledger
+    transform:
+      position:
+      - 0
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item1
+    name: Objeto 1
+    template: ledger
+    transform:
+      position:
+      - 80
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item2
+    name: Objeto 2
+    template: ledger
+    transform:
+      position:
+      - 160
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item3
+    name: Objeto 3
+    template: ledger
+    transform:
+      position:
+      - 240
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item4
+    name: Objeto 4
+    template: ledger
+    transform:
+      position:
+      - 320
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  - id: item5
+    name: Objeto 5
+    template: ledger
+    transform:
+      position:
+      - 400
+      - 160
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    quest_item: true
+  conversations:
+  - id: conv0
+    speaker: actor0
+    prompt: Diálogo sintético 0
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f0
+    - text: Rechazar
+      result: 2
+  - id: conv1
+    speaker: actor1
+    prompt: Diálogo sintético 1
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f1
+    - text: Rechazar
+      result: 2
+  - id: conv2
+    speaker: actor2
+    prompt: Diálogo sintético 2
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f2
+    - text: Rechazar
+      result: 2
+  - id: conv3
+    speaker: actor3
+    prompt: Diálogo sintético 3
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f3
+    - text: Rechazar
+      result: 2
+  - id: conv4
+    speaker: actor4
+    prompt: Diálogo sintético 4
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f4
+    - text: Rechazar
+      result: 2
+  - id: conv5
+    speaker: actor5
+    prompt: Diálogo sintético 5
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f5
+    - text: Rechazar
+      result: 2
+  - id: conv6
+    speaker: actor6
+    prompt: Diálogo sintético 6
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f6
+    - text: Rechazar
+      result: 2
+  - id: conv7
+    speaker: actor7
+    prompt: Diálogo sintético 7
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f7
+    - text: Rechazar
+      result: 2
+  - id: conv8
+    speaker: actor8
+    prompt: Diálogo sintético 8
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f8
+    - text: Rechazar
+      result: 2
+  - id: conv9
+    speaker: actor9
+    prompt: Diálogo sintético 9
+    choices:
+    - text: Aceptar
+      result: 1
+      set_flag: f9
+    - text: Rechazar
+      result: 2
+  events:
+  - id: start
+    when: scene_start
+    actions:
+    - spawn: actor0
+    - spawn: actor1
+    - spawn: actor2
+    - spawn: actor3
+    - spawn: actor4
+    - spawn: actor5
+    - spawn: actor6
+    - spawn: actor7
+    - spawn: actor8
+    - spawn: actor9
+    - spawn: actor10
+    - spawn: actor11
+    - spawn: actor12
+    - spawn: actor13
+    - spawn: actor14
+    - spawn: actor15
+    - spawn: actor16
+    - spawn: item0
+    - spawn: item1
+    - spawn: item2
+    - spawn: item3
+    - spawn: item4
+    - spawn: item5
+    - spawn_encounter: guards
+    - start_quest: q16
+  - id: enter0
+    when: trigger_enter
+    trigger: area0
+    once: false
+    actions:
+    - set_flag: f0
+  - id: enter1
+    when: trigger_enter
+    trigger: area1
+    once: false
+    actions:
+    - set_flag: f1
+  - id: enter2
+    when: trigger_enter
+    trigger: area2
+    once: false
+    actions:
+    - set_flag: f2
+  - id: enter3
+    when: trigger_enter
+    trigger: area3
+    once: false
+    actions:
+    - set_flag: f3
+  - id: enter4
+    when: trigger_enter
+    trigger: area4
+    once: false
+    actions:
+    - set_flag: f4
+  - id: enter5
+    when: trigger_enter
+    trigger: area5
+    once: false
+    actions:
+    - set_flag: f5
+  - id: enter6
+    when: trigger_enter
+    trigger: area6
+    once: false
+    actions:
+    - set_flag: f6
+  - id: enter7
+    when: trigger_enter
+    trigger: area7
+    once: false
+    actions:
+    - set_flag: f7
+  - id: enter8
+    when: trigger_enter
+    trigger: area8
+    once: false
+    actions:
+    - set_flag: f8
+  - id: enter9
+    when: trigger_enter
+    trigger: area9
+    once: false
+    actions:
+    - set_flag: f9
+  - id: timer0
+    when: timer
+    seconds: 1.0
+    once: false
+    conditions:
+    - flag: f0
+      is_set: true
+    actions:
+    - clear_flag: f0
+  - id: timer1
+    when: timer
+    seconds: 2.0
+    once: false
+    conditions:
+    - flag: f1
+      is_set: true
+    actions:
+    - clear_flag: f1
+  - id: timer2
+    when: timer
+    seconds: 3.0
+    once: false
+    conditions:
+    - flag: f2
+      is_set: true
+    actions:
+    - clear_flag: f2
+  - id: timer3
+    when: timer
+    seconds: 4.0
+    once: false
+    conditions:
+    - flag: f3
+      is_set: true
+    actions:
+    - clear_flag: f3
+  - id: timer4
+    when: timer
+    seconds: 5.0
+    once: false
+    conditions:
+    - flag: f4
+      is_set: true
+    actions:
+    - clear_flag: f4
+  - id: timer5
+    when: timer
+    seconds: 6.0
+    once: false
+    conditions:
+    - flag: f5
+      is_set: true
+    actions:
+    - clear_flag: f5
+  - id: timer6
+    when: timer
+    seconds: 7.0
+    once: false
+    conditions:
+    - flag: f6
+      is_set: true
+    actions:
+    - clear_flag: f6
+  - id: timer7
+    when: timer
+    seconds: 8.0
+    once: false
+    conditions:
+    - flag: f7
+      is_set: true
+    actions:
+    - clear_flag: f7
+  - id: timer8
+    when: timer
+    seconds: 9.0
+    once: false
+    conditions:
+    - flag: f8
+      is_set: true
+    actions:
+    - clear_flag: f8
+  triggers:
+  - id: area0
+    name: Trigger 0
+    shape: sphere
+    transform:
+      position:
+      - 0
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area1
+    name: Trigger 1
+    shape: sphere
+    transform:
+      position:
+      - 200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area2
+    name: Trigger 2
+    shape: sphere
+    transform:
+      position:
+      - 400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area3
+    name: Trigger 3
+    shape: sphere
+    transform:
+      position:
+      - 600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area4
+    name: Trigger 4
+    shape: sphere
+    transform:
+      position:
+      - 800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area5
+    name: Trigger 5
+    shape: sphere
+    transform:
+      position:
+      - 1000
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area6
+    name: Trigger 6
+    shape: sphere
+    transform:
+      position:
+      - 1200
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area7
+    name: Trigger 7
+    shape: sphere
+    transform:
+      position:
+      - 1400
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area8
+    name: Trigger 8
+    shape: sphere
+    transform:
+      position:
+      - 1600
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  - id: area9
+    name: Trigger 9
+    shape: sphere
+    transform:
+      position:
+      - 1800
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 64
+    once: false
+  encounters:
+  - id: guards
+    name: Encuentro
+    actors:
+    - actor17
+    - actor18
+    - actor19
+  sequences:
+  - id: shot
+    name: Plano
+    actor: actor0
+    duration: 1.5
+    shot: wide
+    angle: high
+quests:
+- id: q0
+  title: Quest 0
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q1
+  title: Quest 1
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q2
+  title: Quest 2
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q3
+  title: Quest 3
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q4
+  title: Quest 4
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q5
+  title: Quest 5
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q6
+  title: Quest 6
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q7
+  title: Quest 7
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q8
+  title: Quest 8
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q9
+  title: Quest 9
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q10
+  title: Quest 10
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q11
+  title: Quest 11
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q12
+  title: Quest 12
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q13
+  title: Quest 13
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q14
+  title: Quest 14
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q15
+  title: Quest 15
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q16
+  title: Quest 16
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q17
+  title: Quest 17
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q18
+  title: Quest 18
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10
+- id: q19
+  title: Quest 19
+  description: Stress test
+  steps:
+  - Objetivo
+  reward_xp: 10

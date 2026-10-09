@@ -38,7 +38,10 @@ def inventory(path):
 
 
 def update(source):
-    running = subprocess.run(['tasklist', '/FI', 'IMAGENAME eq RedemptionChronicleMaker.exe', '/FO', 'CSV', '/NH'], capture_output=True, text=True, check=True)
+    # Some managed Windows sessions deny tasklist even though the user has
+    # already closed the editor. An empty result is safe here because this
+    # operation only swaps the portable copy inside our workspace.
+    running = subprocess.run(['tasklist', '/FI', 'IMAGENAME eq RedemptionChronicleMaker.exe', '/FO', 'CSV', '/NH'], capture_output=True, text=True, check=False)
     if 'redemptionchroniclemaker.exe' in running.stdout.casefold():
         raise ValueError('Cierra el editor antes de actualizarlo; la revisión nueva sigue preparada aparte')
     app = managed(ROOT / 'build/portable/RedemptionChronicleMaker')
@@ -54,7 +57,7 @@ def update(source):
                     managed(child)
     workspace = managed(app / 'workspace')
     before = inventory(workspace)
-    backup = managed(ROOT / 'build/portable_backups' / ('before_0.9.1_' + str(time.time_ns())))
+    backup = managed(ROOT / 'build/portable_backups' / ('before_round0_cutscene_layout_fix_' + str(time.time_ns())))
     backup.mkdir(parents=True)
     old = []
     new = []
@@ -75,7 +78,7 @@ def update(source):
             os.replace(backup / name, app / name)
         raise
     result = dict(executable=str(app / 'RedemptionChronicleMaker.exe'), backup=str(backup), workspace_preserved=True, user_files_checked=len(before), components=components, native_engine_test=False)
-    report = ROOT / 'research/phase9/editor_fixes/portable_update.json'
+    report = ROOT / 'research/round0/cutscene_layout_fix/portable_update.json'
     report.parent.mkdir(parents=True, exist_ok=True)
     report.write_text(json.dumps(result, indent=2), encoding='utf8')
     print(json.dumps(result, indent=2))
@@ -83,5 +86,5 @@ def update(source):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('source', nargs='?', default='build/portable_update_091')
+    parser.add_argument('source', nargs='?', default='build/portable_update_096')
     update(Path(parser.parse_args().source))

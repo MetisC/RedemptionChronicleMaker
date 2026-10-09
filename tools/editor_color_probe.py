@@ -20,7 +20,7 @@ out=ROOT/'research/phase9/editor_fixes/gui';out.mkdir(parents=True,exist_ok=True
 records=[]
 for mode,color in [('dark','#20242b'),('light','#ffffff')]:
     source=QPalette();source.setColor(QPalette.ColorRole.Window,QColor(color));app.setPalette(editor_palette(source))
-    w=MainWindow(backend);w.autosave_timer.stop();w.doc=Document.load(backend.ws,ROOT/'chronicles/circuit/project.yaml');w.refresh();w.select(('actors',0));w.center_tabs.setCurrentIndex(1);w.show();w.activateWindow();QTest.qWait(150)
+    w=MainWindow(backend);w.autosave_timer.stop();w.doc=Document.load(backend.ws,ROOT/'tests/fixtures/chronicles/circuit/project.yaml');w.refresh();w.select(('actors',0));w.center_tabs.setCurrentIndex(1);w.show();w.activateWindow();QTest.qWait(150)
     try:
         item=w.content.topLevelItem(1);rect=w.content.visualItemRect(item);pixmap=w.content.viewport().grab();img=pixmap.toImage();scale=pixmap.devicePixelRatio()
         sample=img.pixelColor(int((rect.right()-10)*scale),int(rect.center().y()*scale)).name()

@@ -1,0 +1,216 @@
+EndConversation method table 0x10dcac fn=0x46eea0
+0046eea0: mov eax, dword ptr [esp + 0xc]
+0046eea4: push eax
+0046eea5: call 0x4b4780
+0046eeaa: add esp, 4
+0046eead: test eax, eax
+0046eeaf: jne 0x46eeb6
+0046eeb1: xor al, al
+0046eeb3: ret 0x14
+0046eeb6: mov ecx, dword ptr [esp + 0x10]
+0046eeba: mov edx, dword ptr [esp + 0x14]
+0046eebe: push ecx
+0046eebf: push edx
+0046eec0: call 0x458de0
+0046eec5: add esp, 8
+0046eec8: test eax, eax
+0046eeca: setne al
+0046eecd: ret 0x14
+0046eed0: mov eax, dword ptr [esp + 0xc]
+0046eed4: sub esp, 0x40
+0046eed7: push ebx
+0046eed8: push eax
+0046eed9: call 0x4b4780
+0046eede: add esp, 4
+0046eee1: test eax, eax
+0046eee3: jne 0x46eeee
+0046eee5: xor al, al
+0046eee7: pop ebx
+0046eee8: add esp, 0x40
+0046eeeb: ret 0x28
+0046eeee: mov ecx, dword ptr [esp + 0x58]
+0046eef2: push ecx
+0046eef3: call 0x4ae420
+0046eef8: mov ebx, eax
+0046eefa: add esp, 4
+0046eefd: test ebx, ebx
+0046eeff: jne 0x46ef0a
+0046ef01: xor al, al
+0046ef03: pop ebx
+0046ef04: add esp, 0x40
+0046ef07: ret 0x28
+0046ef0a: push ebp
+0046ef0b: mov ebp, dword ptr [esp + 0x58]
+0046ef0f: push esi
+0046ef10: mov esi, dword ptr [esp + 0x50]
+0046ef14: push edi
+0046ef15: push 0
+0046ef17: mov edx, dword ptr [esi]
+0046ef19: push ebp
+0046ef1a: push esi
+0046ef1b: call dword ptr [edx + 0x2a4]
+0046ef21: mov edi, eax
+0046ef23: push 0x20
+0046ef25: lea eax, [esp + 0x34]
+0046ef29: push edi
+0046ef2a: push eax
+0046ef2b: call 0x4dd480
+0046ef30: mov ecx, dword ptr [esi]
+0046ef32: add esp, 0xc
+0046ef35: mov byte ptr [esp + 0x4f], 0
+0046ef3a: push edi
+0046ef3b: push ebp
+0046ef3c: push esi
+0046ef3d: call dword ptr [ecx + 0x2a8]
+0046ef43: mov edx, dword ptr [esi]
+0046ef45: push 0
+0046ef47: mov ebp, dword ptr [esp + 0x6c]
+0046ef4b: push ebp
+0046ef4c: push esi
+0046ef4d: call dword ptr [edx + 0x2a4]
+0046ef53: mov edi, eax
+0046ef55: push 0x20
+0046ef57: lea eax, [esp + 0x14]
+0046ef5b: push edi
+0046ef5c: push eax
+0046ef5d: call 0x4dd480
+0046ef62: mov ecx, dword ptr [esi]
+0046ef64: add esp, 0xc
+0046ef67: mov byte ptr [esp + 0x2f], 0
+0046ef6c: push edi
+0046ef6d: push ebp
+0046ef6e: push esi
+0046ef6f: call dword ptr [ecx + 0x2a8]
+0046ef75: push 0
+0046ef77: push 0
+0046ef79: mov edx, dword ptr [esp + 0x80]
+0046ef80: mov eax, dword ptr [esp + 0x7c]
+0046ef84: mov ecx, dword ptr [esp + 0x78]
+0046ef88: push edx
+0046ef89: mov edx, dword ptr [esp + 0x78]
+0046ef8d: push eax
+0046ef8e: push ecx
+0046ef8f: lea eax, [esp + 0x24]
+0046ef93: push edx
+0046ef94: push eax
+0046ef95: lea ecx, [esp + 0x4c]
+0046ef99: push ebx
+0046ef9a: push ecx
+0046ef9b: call 0x456510
+0046efa0: add esp, 0x24
+0046efa3: test eax, eax
+0046efa5: pop edi
+0046efa6: pop esi
+0046efa7: pop ebp
+0046efa8: pop ebx
+0046efa9: setne al
+
+BeginConversation method table 0x10dca0 fn=0x46ee80
+0046ee80: mov eax, dword ptr [esp + 0xc]
+0046ee84: push eax
+0046ee85: call 0x4b4780
+0046ee8a: add esp, 4
+0046ee8d: test eax, eax
+0046ee8f: setne al
+0046ee92: ret 0x14
+0046ee95: nop 
+0046ee96: nop 
+0046ee97: nop 
+0046ee98: nop 
+0046ee99: nop 
+0046ee9a: nop 
+0046ee9b: nop 
+0046ee9c: nop 
+0046ee9d: nop 
+0046ee9e: nop 
+0046ee9f: nop 
+0046eea0: mov eax, dword ptr [esp + 0xc]
+0046eea4: push eax
+0046eea5: call 0x4b4780
+0046eeaa: add esp, 4
+0046eead: test eax, eax
+0046eeaf: jne 0x46eeb6
+0046eeb1: xor al, al
+0046eeb3: ret 0x14
+0046eeb6: mov ecx, dword ptr [esp + 0x10]
+0046eeba: mov edx, dword ptr [esp + 0x14]
+0046eebe: push ecx
+0046eebf: push edx
+0046eec0: call 0x458de0
+0046eec5: add esp, 8
+0046eec8: test eax, eax
+0046eeca: setne al
+0046eecd: ret 0x14
+0046eed0: mov eax, dword ptr [esp + 0xc]
+0046eed4: sub esp, 0x40
+0046eed7: push ebx
+0046eed8: push eax
+0046eed9: call 0x4b4780
+0046eede: add esp, 4
+0046eee1: test eax, eax
+0046eee3: jne 0x46eeee
+0046eee5: xor al, al
+0046eee7: pop ebx
+0046eee8: add esp, 0x40
+0046eeeb: ret 0x28
+0046eeee: mov ecx, dword ptr [esp + 0x58]
+0046eef2: push ecx
+0046eef3: call 0x4ae420
+0046eef8: mov ebx, eax
+0046eefa: add esp, 4
+0046eefd: test ebx, ebx
+0046eeff: jne 0x46ef0a
+0046ef01: xor al, al
+0046ef03: pop ebx
+0046ef04: add esp, 0x40
+0046ef07: ret 0x28
+0046ef0a: push ebp
+0046ef0b: mov ebp, dword ptr [esp + 0x58]
+0046ef0f: push esi
+0046ef10: mov esi, dword ptr [esp + 0x50]
+0046ef14: push edi
+0046ef15: push 0
+0046ef17: mov edx, dword ptr [esi]
+0046ef19: push ebp
+0046ef1a: push esi
+0046ef1b: call dword ptr [edx + 0x2a4]
+0046ef21: mov edi, eax
+0046ef23: push 0x20
+0046ef25: lea eax, [esp + 0x34]
+0046ef29: push edi
+0046ef2a: push eax
+0046ef2b: call 0x4dd480
+0046ef30: mov ecx, dword ptr [esi]
+0046ef32: add esp, 0xc
+0046ef35: mov byte ptr [esp + 0x4f], 0
+0046ef3a: push edi
+0046ef3b: push ebp
+0046ef3c: push esi
+0046ef3d: call dword ptr [ecx + 0x2a8]
+0046ef43: mov edx, dword ptr [esi]
+0046ef45: push 0
+0046ef47: mov ebp, dword ptr [esp + 0x6c]
+0046ef4b: push ebp
+0046ef4c: push esi
+0046ef4d: call dword ptr [edx + 0x2a4]
+0046ef53: mov edi, eax
+0046ef55: push 0x20
+0046ef57: lea eax, [esp + 0x14]
+0046ef5b: push edi
+0046ef5c: push eax
+0046ef5d: call 0x4dd480
+0046ef62: mov ecx, dword ptr [esi]
+0046ef64: add esp, 0xc
+0046ef67: mov byte ptr [esp + 0x2f], 0
+0046ef6c: push edi
+0046ef6d: push ebp
+0046ef6e: push esi
+0046ef6f: call dword ptr [ecx + 0x2a8]
+0046ef75: push 0
+0046ef77: push 0
+0046ef79: mov edx, dword ptr [esp + 0x80]
+0046ef80: mov eax, dword ptr [esp + 0x7c]
+0046ef84: mov ecx, dword ptr [esp + 0x78]
+0046ef88: push edx
+0046ef89: mov edx, dword ptr [esp + 0x78]
+0046ef8d: push eax

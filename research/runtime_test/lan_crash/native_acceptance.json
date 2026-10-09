@@ -1,0 +1,7 @@
+{
+  "user_report": "Funciona",
+  "accepted": "LAN abre después de cargar las NOT propias al inicio",
+  "scope": "LAN; no acredita las nuevas cutscenes ni layouts",
+  "profile_reset": false,
+  "original_game_files_modified": false
+}

@@ -23,6 +23,10 @@ class Codex {
         THING_FLAG_SAVESUSPEND=2, THING_FLAG_SAVEALWAYS=8, THING_AF_AIPAUSED=4,
         THING_AF_NEUTRAL=262144, THING_AF_NOFEED=8, THING_AF_TALKTO=128,
         TEAM_PEDESTRIANS=10, CONV_XFLAG_WANTFEEDBACK=4, CONV_XFLAG_ALLOWABORT=8;
+    public void BeginCutscene(int player, int flags) { }
+    public void EndCutscene(int player, int flags) { }
+    public void AIOff() { }
+    public void AIOn() { }
     public static boolean NetIsClient() { return MockEngine.client; }
     public static boolean IsPlayerGuid(int guid) { return guid == 1 || guid == 2; }
     public static boolean IsActorGuid(int guid) { return MockEngine.valid(guid); }

@@ -17,7 +17,7 @@ app = QApplication([])
 QFontDatabase.addApplicationFont('C:/Windows/Fonts/segoeui.ttf')
 app.setFont(QFont('Segoe UI', 10));app.setStyle('Fusion')
 w = MainWindow(Backend(Workspace(ROOT, Path(r'H:\GOG\Vampire The Masquerade - Redemption'))))
-w.open_path(ROOT/'chronicles/editor_acceptance/project.yaml')
+w.open_path(ROOT/'tests/fixtures/chronicles/editor_acceptance/project.yaml')
 w.show()
 w.center_tabs.setCurrentIndex(0)
 until = time.monotonic()+25

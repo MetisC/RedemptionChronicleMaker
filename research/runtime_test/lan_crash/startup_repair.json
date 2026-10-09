@@ -1,0 +1,48 @@
+{
+  "target": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\east_demo\\rcm_tutor.nob",
+  "original_sha256": "51d3c3e298bc179ad906be2b34cc9c427130b4ff719a0c260f06a93e43b6b15f",
+  "repaired_sha256": "aa854f9b31f8dde192402775f9d65cc025218b464e9336032f2f9612f3ccee4b",
+  "renames": {
+    "misc/templates/R_rcm_tutor_custom.not": "misc/templates/_R_rcm_tutor_custom.not",
+    "misc/templates/R_rcm_tutor_s0.not": "misc/templates/_R_rcm_tutor_s0.not",
+    "misc/templates/R_rcm_tutor_s1.not": "misc/templates/_R_rcm_tutor_s1.not",
+    "misc/templates/R_rcm_tutor_s2.not": "misc/templates/_R_rcm_tutor_s2.not"
+  },
+  "modified_resources": [
+    "chronicles/R_rcm_tutor.nmf",
+    "chronicles/R_rcm_tutor_s0.nmf",
+    "chronicles/R_rcm_tutor_s1.nmf",
+    "chronicles/R_rcm_tutor_s2.nmf"
+  ],
+  "template_bytes_preserved": true,
+  "other_resource_bytes_preserved": true,
+  "saved_character": {
+    "path": "H:\\GOG\\Vampire The Masquerade - Redemption\\Crypt\\npf000000.npf",
+    "sha256": "f1670e5e1cd86b1f1ac3f63ca90a9b5207f874cc08bd474292c9f71e32cc019f",
+    "references": [
+      {
+        "offset": 120,
+        "template": "mp_serena"
+      },
+      {
+        "offset": 908,
+        "template": "r_rcm_tutor_s0_reward"
+      },
+      {
+        "offset": 1380,
+        "template": "punch"
+      }
+    ],
+    "unavailable_before": [
+      {
+        "offset": 908,
+        "template": "r_rcm_tutor_s0_reward"
+      }
+    ],
+    "unavailable_after": []
+  },
+  "java_replaced": false,
+  "applied": true,
+  "native_LAN_test": "pending",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\lan_crash\\before_startup_repair_1791528622558054400.zip"
+}

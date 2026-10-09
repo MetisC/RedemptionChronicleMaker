@@ -20,7 +20,7 @@ def main():
     from rcm.editor.window import MainWindow
 
     ws = Workspace(ROOT, Path(r"H:\GOG\Vampire The Masquerade - Redemption"))
-    target = ws.output("chronicles/editor_playtest/project.yaml")
+    target = ws.output("tests/fixtures/chronicles/editor_playtest/project.yaml")
     if target.exists():
         raise ValueError("Playtest project already exists; open it in the editor instead of replacing it.")
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -29,7 +29,7 @@ def main():
     QFontDatabase.addApplicationFont("C:/Windows/Fonts/segoeui.ttf")
     app.setFont(QFont("Segoe UI", 10))
     w = MainWindow(Backend(ws))
-    w.open_path(ROOT / "chronicles/editor_acceptance/project.yaml")
+    w.open_path(ROOT / "tests/fixtures/chronicles/editor_acceptance/project.yaml")
     w.show(); app.processEvents()
     failures = []
 
@@ -69,7 +69,7 @@ def main():
     assert not w.busy and reports and reports[0]["status"] == "compiled-unverified-in-game", w.log.toPlainText()
     assert not w.doc.modified
     ws.write("build/editor/playtest_preparation.json", json.dumps({
-        "source": str(target.relative_to(ROOT)), "parent": "chronicles/editor_acceptance/project.yaml",
+        "source": str(target.relative_to(ROOT)), "parent": "tests/fixtures/chronicles/editor_acceptance/project.yaml",
         "created_using": "Qt editor Save As dialog, chronicle ID and actor placement controls; GUI build",
         "placement": "near_player", "class_versions": reports[0]["class_versions"], "native_engine_test": False
     }, ensure_ascii=False, indent=2))

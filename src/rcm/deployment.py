@@ -43,6 +43,10 @@ def configured_game(ws):
 def deploy(ws,chronicle,directory=None,current_source=None):
     from .model import identifier
     identifier(chronicle,'Crónica',18);game=configured_game(ws)
+    previous=safe_target(game,game/'RCM'/(directory or chronicle)/'.rcm_deployment.json')
+    if previous.is_file() and 'owners' in json.loads(previous.read_text(encoding='utf8')):
+        from .deployment_many import deploy_many
+        return deploy_many(ws,[chronicle],directory or chronicle,{chronicle:current_source} if current_source is not None else None,preserve_siblings=True)
     if game_running():raise ValueError('Cierra Vampire antes de actualizar la crónica')
     root=ws.output(Path('build')/chronicle);report=json.loads((root/'build_report.json').read_text(encoding='utf8'))
     if report.get('status')!='compiled-unverified-in-game':raise ValueError('Haz un build compilado válido antes de deploy')

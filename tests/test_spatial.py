@@ -19,7 +19,7 @@ from rcm.generator import runtime_java
 import yaml
 
 def spatial_source():
-    data=yaml.safe_load((ROOT/'chronicles/east_demo.yaml').read_text(encoding='utf8'))
+    data=yaml.safe_load((ROOT/'tests/fixtures/chronicles/east_demo.yaml').read_text(encoding='utf8'))
     data['chronicle']['id']='spatial_test'
     data['state']['flags'].update(entered=2,sphere=3)
     data['actors'].append(dict(id='actor2',name='Segunda Victoria',template='businessWoman',transform=dict(position=[128,0,0],orientation=[0,0,90])))

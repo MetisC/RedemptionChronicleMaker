@@ -71,6 +71,21 @@ class GpuMesh:
             t.destroy()
         self.buffer.destroy()
 
+class ViewportHelpers(QWidget):
+    """Composite authoring markers above GL without inheriting its render state."""
+    def __init__(self, viewport):
+        super().__init__(viewport)
+        self.viewport = viewport
+        self.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
+        self.setAttribute(Qt.WidgetAttribute.WA_NoSystemBackground)
+        self.setAutoFillBackground(False)
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        self.viewport.paint_helpers(painter)
+        painter.end()
+
 class Viewport(QOpenGLWidget):
     selected = Signal(tuple)
     transformed = Signal(tuple, object)
@@ -113,6 +128,8 @@ class Viewport(QOpenGLWidget):
         self.right_origin = None
         self.right_dragged = False
         self.left_pending = None
+        self.left_origin = None
+        self.orbit_center = None
         self.fov = 60.
         self.gpu = None
         self.model_gpu = {}
@@ -123,6 +140,8 @@ class Viewport(QOpenGLWidget):
         self.frame_count = 0
         self.frame_times = []
         self.tick_time = time.perf_counter()
+        self.helpers = ViewportHelpers(self)
+        self.helpers.setGeometry(self.rect())
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.tick)
         self.timer.start(16)
@@ -316,8 +335,20 @@ class Viewport(QOpenGLWidget):
             except Exception:
                 self.error = traceback.format_exc()
                 self.message.emit(self.error)
-        painter = QPainter(self)
-        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        self.frame_count += 1
+        self.frame_times.append(time.perf_counter() - started)
+        self.frame_times = self.frame_times[-120:]
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.helpers.setGeometry(self.rect())
+
+    def update(self, *args):
+        super().update(*args)
+        if hasattr(self, 'helpers'):
+            self.helpers.update()
+
+    def paint_helpers(self, painter):
         if self.error:
             painter.setPen(QColor('#ef8e8e'))
             painter.drawText(self.rect().adjusted(15, 15, -15, -15), Qt.TextFlag.TextWordWrap, 'OpenGL: ' + self.error[-600:])
@@ -326,10 +357,6 @@ class Viewport(QOpenGLWidget):
             painter.drawText(self.rect(), Qt.AlignmentFlag.AlignCenter, 'Selecciona un level y abre el espacio 3D')
         else:
             self.overlays(painter)
-        painter.end()
-        self.frame_count += 1
-        self.frame_times.append(time.perf_counter() - started)
-        self.frame_times = self.frame_times[-120:]
 
     def box_corners(self, low, high):
         return [np.array([x, y, z]) for z in (low[2], high[2]) for y in (low[1], high[1]) for x in (low[0], high[0])]
@@ -474,19 +501,28 @@ class Viewport(QOpenGLWidget):
         self.update()
 
     def keyPressEvent(self,event):
+        key=self.navigation_key(event)
         if event.key()==Qt.Key.Key_F:
             self.focus_selection()
         elif event.key()==Qt.Key.Key_Escape:
             self.placing=None;self.drag=None;self.looking=False;self.warp_target=None;self.releaseMouse();self.unsetCursor();self.message.emit('Operación cancelada')
-        elif event.key() in (Qt.Key.Key_1,Qt.Key.Key_2,Qt.Key.Key_3):
-            self.mode_requested.emit({Qt.Key.Key_1:'move',Qt.Key.Key_2:'rotate',Qt.Key.Key_3:'scale'}[event.key()])
+        elif key in (Qt.Key.Key_1,Qt.Key.Key_2,Qt.Key.Key_3):
+            self.mode_requested.emit({Qt.Key.Key_1:'move',Qt.Key.Key_2:'rotate',Qt.Key.Key_3:'scale'}[key])
         else:
-            self.keys.add(event.key())
+            self.keys.add(key)
+            if self.looking:self.right_dragged=True
+    @staticmethod
+    def navigation_key(event):
+        aliases={Qt.Key.Key_Up:Qt.Key.Key_W,Qt.Key.Key_Down:Qt.Key.Key_S,Qt.Key.Key_Left:Qt.Key.Key_A,Qt.Key.Key_Right:Qt.Key.Key_D,Qt.Key.Key_PageUp:Qt.Key.Key_E,Qt.Key.Key_PageDown:Qt.Key.Key_Q}
+        if event.modifiers() & Qt.KeyboardModifier.KeypadModifier:
+            aliases.update({Qt.Key.Key_8:Qt.Key.Key_W,Qt.Key.Key_2:Qt.Key.Key_S,Qt.Key.Key_4:Qt.Key.Key_A,Qt.Key.Key_6:Qt.Key.Key_D,Qt.Key.Key_9:Qt.Key.Key_E,Qt.Key.Key_7:Qt.Key.Key_Q,Qt.Key.Key_1:Qt.Key.Key_Z,Qt.Key.Key_3:Qt.Key.Key_C})
+        return aliases.get(event.key(),event.key())
     def keyReleaseEvent(self,event):
         if not event.isAutoRepeat():
-            self.keys.discard(event.key())
+            self.keys.discard(self.navigation_key(event))
     def focusOutEvent(self,event):
         self.keys.clear();self.looking=False;self.orbiting=False;self.warp_target=None;self.releaseMouse();self.unsetCursor()
+        self.right_origin=None;self.right_dragged=False;self.left_pending=None;self.left_origin=None;self.nav_buttons=Qt.MouseButton.NoButton;self.fov=60.
         super().focusOutEvent(event)
     def wheelEvent(self,event):
         if self.looking:
@@ -512,6 +548,7 @@ class Viewport(QOpenGLWidget):
         if event.button()!=Qt.MouseButton.LeftButton or not self.level:
             return
         if event.modifiers() & Qt.KeyboardModifier.AltModifier:
+            self.orbit_center=self.pos+self.forward()*500
             self.orbiting=True;return
         if self.placing:
             o,d=self.screen_ray(event.position().x(),event.position().y());hit=self.raycaster.cast(o,d)
@@ -544,7 +581,7 @@ class Viewport(QOpenGLWidget):
             t=ray_sphere(o-pos,d,e['radius']) if path[0]=='triggers' and e['shape']=='sphere' else ray_box(inv@(o-pos),inv@d,low,high)
             if t is not None and t<distance:
                 distance=t;chosen=path
-        self.left_pending=chosen
+        self.left_pending=chosen;self.left_origin=event.position()
 
     def mouseMoveEvent(self,event):
         if self.last_mouse is None:
@@ -582,8 +619,8 @@ class Viewport(QOpenGLWidget):
                 center=self.rect().center();self.warp_target=QPointF(center);QCursor.setPos(self.mapToGlobal(center));self.last_mouse=QPointF(center);self.update();return
         elif self.orbiting:
             selected=next(((p,e) for p,e,ro in self.entities() if p==self.selection[:2]),None)
-            if selected:
-                center=self.position(*selected)+[0,0,50];v=self.pos-center
+            if selected or self.orbit_center is not None:
+                center=self.position(*selected)+[0,0,50] if selected else self.orbit_center;v=self.pos-center
                 radius=max(1.,float(np.linalg.norm(v)))
                 azimuth=math.atan2(v[1],v[0])-math.radians(delta.x()*.3)
                 elevation=max(math.radians(-88),min(math.radians(88),math.atan2(v[2],np.linalg.norm(v[:2]))+math.radians(delta.y()*.3)))
@@ -620,6 +657,7 @@ class Viewport(QOpenGLWidget):
                         resized=list(size);resized[axis]=max(1.,size[axis]+amount*2);change['size']=resized
             self.transformed.emit(path,change)
         elif buttons & Qt.MouseButton.LeftButton:
+            if self.left_origin is not None and (event.position()-self.left_origin).manhattanLength()<4:return
             self.left_pending=None
             self.yaw=(self.yaw-delta.x()*.22)%360
             self.pos-=unit(self.forward()*[1,1,0])*delta.y()*self.speed*.004
@@ -632,7 +670,7 @@ class Viewport(QOpenGLWidget):
             show_menu=self.right_origin is not None and not self.right_dragged
             self.looking=False;self.warp_target=None;self.right_origin=None;self.fov=60.;self.releaseMouse();self.unsetCursor()
             if show_menu:self.menu_requested.emit(event.globalPosition().toPoint())
-        self.nav_buttons=event.buttons();self.left_pending=None;self.orbiting=False;self.drag=None
+        self.nav_buttons=event.buttons();self.left_pending=None;self.left_origin=None;self.orbiting=False;self.drag=None
 
 class SpatialPanel(QWidget):
     def __init__(self,window):
@@ -645,6 +683,7 @@ class SpatialPanel(QWidget):
         for label,mode in [('Mover','move'),('Girar','rotate'),('Tamaño','scale')]:
             b=QPushButton(label);b.setCheckable(True);b.setChecked(mode=='move');self.mode_buttons[mode]=b;b.setObjectName('gizmo_'+mode);b.clicked.connect(lambda checked=False,m=mode:self.set_mode(m));toolbar.addWidget(b)
         b=QPushButton('Enfocar');b.clicked.connect(lambda:self.viewport.focus_selection() if self.viewport else None);toolbar.addWidget(b)
+        b=QPushButton('Inicio');b.setObjectName('focus_player_start');b.setToolTip('Ver el punto de aparición del jugador al comenzar la crónica');b.clicked.connect(lambda:self.win.guard(self.win.focus_player_start));toolbar.addWidget(b)
         b=QPushButton('+ Actor');b.setObjectName('place_actor');b.clicked.connect(lambda:self.win.guard(self.win.add_actor));toolbar.addWidget(b)
         b=QPushButton('+ Trigger');b.setObjectName('place_trigger');b.clicked.connect(self.add_trigger);toolbar.addWidget(b)
         b=QPushButton('Eliminar');b.setObjectName('spatial_delete');b.clicked.connect(lambda:self.win.guard(self.win.delete_selected));toolbar.addWidget(b)
@@ -742,6 +781,7 @@ class SpatialPanel(QWidget):
         if not self.win.doc or level.name!=self.win.doc.data['level'].get('source'):
             return
         self.assets=assets;self.loaded_name=level.name;self.viewport.set_level(level);self.sync()
+        if getattr(self,'pending_start_focus',False):self.pending_start_focus=False;self.viewport.focus_selection()
         self.status.setText(f'{level.name} · {sum(m.warning is None for m in level.materials)}/{len(level.materials)} materiales con textura · geometría original de sólo lectura')
         for warning in level.warnings:
             self.win.log.appendPlainText('Viewport warning: '+warning)

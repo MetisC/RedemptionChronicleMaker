@@ -1,0 +1,46 @@
+; female.nms
+
+; also known as Anezka.nms
+;
+; Nihilistic Motion Set file for generic female character (07/16/99 - ac)
+;
+stand				serena_listen.nad		lowpriority
+
+walk				serenaWalk.nad		  	movespeed
+
+run				serenaRun.nad  		movespeed  
+
+swordslash     SerenaDaggerAttack.nad	noloop
+
+hurt				serena_damagefront.nad	noloop
+	 
+embraced			Civ05YoungLadyAttacked.nad		noloop endtag
+draining			Civ05YoungLadySucked.nad
+feedreleased	Civ05YoungLadyReleased.nad		noloop
+deathdrained	Civ05YoungLadyDeath.nad			noloop endpause  
+confused			Civ06milkmaid_woozy.nad
+	 
+deathquick		serena_Death.nad	noloop endpause 
+deathslow		serena_Death.nad	noloop endpause 
+
+talk				serena_Talk.nad
+listen			serena_listen.nad
+
+; tags section
+tag             LFoot           8
+tag             RFoot           3
+tag             Head           21
+tag             Helmet         22
+tag             Jaw            23
+tag             User0          17      0.0    27.5   0.0
+
+mouth a 23 (0.0,0.0,0.0)  
+mouth b 23 (-1.0,0.0,0.0) 
+mouth c 23 (-3.5,0.0,0.0) 
+mouth d 23 (-6.0,0.0,0.0) 
+mouth e 23 (-4.2,0.0,0.0) 
+mouth f 23 (-4.5,0.0,0.0) 
+mouth g 23 (-2.5,0.0,0.0) 
+mouth h 23 (0.7,0.0,0.0)  
+mouth i 23 (-4.0,0.0,0.0) 
+

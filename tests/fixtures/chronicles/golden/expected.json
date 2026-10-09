@@ -1,0 +1,12 @@
+{
+  "distribution_sha256": "14301e15e6610462292bc63531908e8a61f9c00762cdee90578d0cc33981dc25",
+  "scenes": 2,
+  "levels": [
+    "EastLondon",
+    "WestLondon"
+  ],
+  "class_version": "45.3",
+  "custom_code": true,
+  "geometry_in_package": false,
+  "unknown_not_tags_preserved": true
+}

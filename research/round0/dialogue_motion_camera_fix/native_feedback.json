@@ -1,0 +1,11 @@
+{
+  "version_observed": "0.9.8",
+  "reported_by": "user",
+  "observations": [
+    "Player and NPC enter T pose when speaking",
+    "Native automatic camera cuts through player model",
+    "Request default shoulder camera and one-by-one examples"
+  ],
+  "correction_version": "0.9.9",
+  "correction_native_verified": false
+}

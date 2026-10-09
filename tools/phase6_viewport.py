@@ -11,7 +11,7 @@ def wait(test):
     end=time.monotonic()+60
     while not test() and time.monotonic()<end:app.processEvents();time.sleep(.005)
     assert test(),'GL load timeout'
-for project in ['chronicles/system_test/project.yaml','chronicles/large_fixture/project.yaml','chronicles/system_test/project.yaml']:
+for project in ['tests/fixtures/chronicles/system_test/project.yaml','tests/fixtures/chronicles/large_fixture/project.yaml','tests/fixtures/chronicles/system_test/project.yaml']:
     path=ROOT/project;before=path.read_bytes();start=time.perf_counter();win.open_path(path);win.center_tabs.setCurrentIndex(0);wait(lambda:not win.spatial.loading and win.spatial.viewport.level is not None)
     viewport=win.spatial.viewport;assert viewport.isValid();load=time.perf_counter()-start
     win.select(('actors',0));win.spatial.transform(('actors',0),{'position':[123.125,-45.5,32.75],'orientation':[0,0,90]});assert win.doc.data['actors'][0]['transform']['position']==[123.125,-45.5,32.75];win.undo_project();assert path.read_bytes()==before

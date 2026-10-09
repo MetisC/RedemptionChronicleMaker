@@ -1,0 +1,20 @@
+{
+  "tests": 224,
+  "failures": 1,
+  "errors": 1,
+  "skipped": 0,
+  "successful": false,
+  "elapsed_seconds": 290.0272246000095,
+  "category": "offline-integration-gui-model-build-format",
+  "native_engine_test": false,
+  "failures_detail": [
+    {
+      "test": "test_golden_build_matches_pinned_artifact_and_contract (test_phase6_integration.Phase6IntegrationTests.test_golden_build_matches_pinned_artifact_and_contract)",
+      "traceback": "Traceback (most recent call last):\n  File \"H:\\Repositorios\\RedemptionChronicleMaker\\tests\\test_phase6_integration.py\", line 88, in test_golden_build_matches_pinned_artifact_and_contract\n    archive=self.ws.output('build/rcm_golden/rcm_golden_distribution.zip');self.assertEqual(hashlib.sha256(archive.read_bytes()).hexdigest(),expected['distribution_sha256'],'Golden output changed: review generator changes and update the baseline explicitly after acceptance')\n                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '269337414f5f9a6c2e50bddb3309078ae96c2a560a5d9750359c13536ae79e87' != 'c8d9b0acb528d88f4fa858330fd8813b203d824c81219dc51661f9e32bd1fba2'\n- 269337414f5f9a6c2e50bddb3309078ae96c2a560a5d9750359c13536ae79e87\n+ c8d9b0acb528d88f4fa858330fd8813b203d824c81219dc51661f9e32bd1fba2\n : Golden output changed: review generator changes and update the baseline explicitly after acceptance\n"
+    },
+    {
+      "test": "test_workspace_hardlink_blocked (test_safety_unit.SafetyUnitTests.test_workspace_hardlink_blocked)",
+      "traceback": "Traceback (most recent call last):\n  File \"H:\\Repositorios\\RedemptionChronicleMaker\\tests\\test_safety_unit.py\", line 83, in test_workspace_hardlink_blocked\n    a=self.ws.write('a',b'A');os.link(a,self.root/'b')\n                              ^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: [WinError 5] Acceso denegado: 'H:\\\\Repositorios\\\\RedemptionChronicleMaker\\\\build\\\\tests\\\\tmp4ta2b9rg\\\\a' -> 'H:\\\\Repositorios\\\\RedemptionChronicleMaker\\\\build\\\\tests\\\\tmp4ta2b9rg\\\\b'\n"
+    }
+  ]
+}

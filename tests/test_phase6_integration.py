@@ -83,6 +83,6 @@ class Phase6IntegrationTests(unittest.TestCase):
         import hashlib
         from rcm.document import Document
         self.source()  # Restore the fixture's known custom Java bytes.
-        root=Document.load(self.ws,'chronicles/golden/project.yaml').snapshot();expected=json.loads(self.ws.output('chronicles/golden/expected.json').read_text(encoding='utf8'));report=self.backend.build(root)
+        root=Document.load(self.ws,'tests/fixtures/chronicles/golden/project.yaml').snapshot();expected=json.loads(self.ws.output('tests/fixtures/chronicles/golden/expected.json').read_text(encoding='utf8'));report=self.backend.build(root)
         self.assertEqual(len(report['scenes']),expected['scenes']);self.assertFalse(report['geometry_in_package']);self.assertTrue(all(v==expected['class_version'] for v in report['class_versions'].values()))
         archive=self.ws.output('build/rcm_golden/rcm_golden_distribution.zip');self.assertEqual(hashlib.sha256(archive.read_bytes()).hexdigest(),expected['distribution_sha256'],'Golden output changed: review generator changes and update the baseline explicitly after acceptance')

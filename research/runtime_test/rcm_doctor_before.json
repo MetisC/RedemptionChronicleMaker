@@ -1,0 +1,11 @@
+{
+  "rcm_root": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM",
+  "kept": "east_demo",
+  "stale_directories": [
+    {"name": "rcm_circuit", "files": 0},
+    {"name": "rcm_mini", "files": 0},
+    {"name": "rcm_tutor", "files": 1, "file": "runtime_trace.log", "bytes": 23061}
+  ],
+  "finding": "El árbol RCM contiene tres carpetas de pruebas antiguas fuera de east_demo. No contienen NOB; rcm_tutor conserva un log runtime antiguo.",
+  "native_test": false
+}

@@ -13,7 +13,7 @@ class SceneProfileTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.ws=Workspace(ROOT);cls.backend=Backend(cls.ws)
-        cls.data=Document.load(cls.ws,'chronicles/east_demo.yaml').snapshot()
+        cls.data=Document.load(cls.ws,'tests/fixtures/chronicles/east_demo.yaml').snapshot()
     def test_static_association_does_not_treat_nss_description_as_scene(self):
         levels={'A':{'nil':'rooms.nil','scenes':['ST_SCENE_3_1.nsd'], 'references':[{'scene':'NULL'},{'scene':'night.nsd'}]}}
         associate_static_scenes(levels,{'rooms.nsd':{'source':{'path':'scenes/ROOMS.nsd'}}})
@@ -96,8 +96,10 @@ class SceneProfileTests(unittest.TestCase):
         files={'manifest.json':json.dumps({'format':1,'kind':'chronicle','id':'p7_pkg','version':'1.0.0','files':{},'custom_code':False,'requires_rcm':__version__}).encode()}
         self.assertEqual(verify_manifest(files,'chronicle')['requires_rcm'],__version__)
     def test_legacy_package_bytes_remain_pinned(self):
-        expected='90b41cb0b203510fafadde9f08bef5afe484aaefcb2cc8aaafbc636b88ca86ab'
-        d=Document.load(self.ws,'chronicles/editor_acceptance/project.yaml').snapshot()
+        # The LAN fix changes only this legacy package's NOT filename and NMF
+        # reference: underscore libraries preload before restoring player items.
+        expected='6aee9c9d38007d419a8a2c326edf4f26be7fbf11070751ee4229dc5915042b08'
+        d=Document.load(self.ws,'tests/fixtures/chronicles/editor_acceptance/project.yaml').snapshot()
         self.backend.build(d)
         package=self.ws.output('build/'+d['chronicle']['id']+'/'+d['chronicle']['id']+'_distribution.zip')
         self.assertEqual(hashlib.sha256(package.read_bytes()).hexdigest(),expected)
@@ -111,7 +113,7 @@ class SceneProfileGuiTests(unittest.TestCase):
         from PySide6.QtWidgets import QComboBox
         from rcm.editor.window import MainWindow
         backend=Backend(Workspace(ROOT));win=MainWindow(backend)
-        win.doc=Document.load(backend.ws,'chronicles/east_demo.yaml');win.doc.path=ROOT/'build/tests/p7_gui.yaml'
+        win.doc=Document.load(backend.ws,'tests/fixtures/chronicles/east_demo.yaml');win.doc.path=ROOT/'build/tests/p7_gui.yaml'
         try:
             win.refresh();win.select(('level',));self.app.processEvents()
             combo=win.properties.widget().findChild(QComboBox,'environment_scene')

@@ -28,6 +28,8 @@ def verify_output(ws, report, catalogue):
     for name, data in payload.items():
         suffix = PurePosixPath(name).suffix.lower()
         if suffix == '.not':
+            if not PurePosixPath(name).name.startswith('_'):
+                raise ValueError('NOT propia no disponible al restaurar personajes desde LAN: '+name)
             if NotFile.read(data).encode()!=data:raise ValueError('NOT no conserva bytes: '+name)
         elif suffix == '.nsd':
             if Scene.read(data).encode()!=data:raise ValueError('NSD no conserva bytes: '+name)

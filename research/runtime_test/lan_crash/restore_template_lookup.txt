@@ -1,0 +1,57 @@
+004a53b0: sub esp, 0x230
+004a53b6: push ebx
+004a53b7: push esi
+004a53b8: push edi
+004a53b9: mov edi, dword ptr [esp + 0x240]
+004a53c0: push 0x1e
+004a53c2: mov esi, ecx
+004a53c4: push edi
+004a53c5: call 0x429100
+004a53ca: push edi
+004a53cb: push 1
+004a53cd: lea eax, [esp + 0x1c]
+004a53d1: push 4
+004a53d3: push eax
+004a53d4: call 0x4cb560
+004a53d9: mov eax, dword ptr [esp + 0x24]
+004a53dd: add esp, 0x18
+004a53e0: test eax, eax
+004a53e2: jne 0x4a53fb
+004a53e4: push 0x291
+004a53e9: push 0x51af10
+004a53ee: push 0x51af3c
+004a53f3: call 0x4c12a0
+004a53f8: add esp, 0xc
+004a53fb: push edi
+004a53fc: lea ebx, [esi + 0x94]
+004a5402: push 0x20
+004a5404: push 1
+004a5406: push ebx
+004a5407: call 0x4cb560
+004a540c: push ebx
+004a540d: call 0x4dd270
+004a5412: add esp, 0x14
+004a5415: test eax, eax
+004a5417: je 0x4a56f8
+004a541d: mov ecx, dword ptr [eax + 0x28]
+004a5420: test ecx, ecx
+004a5422: je 0x4a56f8
+004a5428: mov edx, dword ptr [eax + 0x2c]
+004a542b: push 0
+004a542d: push ecx
+004a542e: lea ecx, [esp + 0x44]
+004a5432: push ecx
+004a5433: push edx
+004a5434: call 0x4adaa0
+004a5439: add esp, 0x10
+004a543c: test eax, eax
+004a543e: je 0x4a56f8
+004a5444: mov ecx, dword ptr [esp + 0x244]
+004a544b: lea edx, [esp + 0x3c]
+004a544f: push ecx
+004a5450: push eax
+004a5451: push edx
+004a5452: push esi
+004a5453: call 0x4ad870
+004a5458: push edi
+004a5459: lea ebx, [esi + 0xb4]
