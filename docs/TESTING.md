@@ -11,7 +11,7 @@ python tools/audit_spawners.py
 python tools/rcm.py verify-originals
 ```
 
-425 PASS, 0 FAIL, 0 ERROR, 0 SKIP. Ruff y mypy en paths/input_limits/file_transaction; no tipado completo. Resultados actuales archivados en research/dynamic_encounters/quality. Doubles de Java y Qt offscreen no prueban el motor, OpenGL real ni DPI físico. Los ocho recorridos empaquetados y capturas están en research/dynamic_encounters/portable.
+431 PASS, 0 FAIL, 0 ERROR, 0 SKIP. Ruff y mypy en paths/input_limits/file_transaction; no tipado completo. Resultados actuales archivados en research/dynamic_encounters/quality. Doubles de Java y Qt offscreen no prueban el motor, OpenGL real ni DPI físico. Los ocho recorridos empaquetados y capturas están en research/dynamic_encounters/portable.
 
 Stress: 25 generadores, 20 con diez oleadas, 400 entradas, tres templates, diez umbrales, callbacks y múltiples puntos. Bytecode/métodos medidos en stress.json; no rendimiento nativo certificado. Tutorial/clases, originales y archivos de usuario comparados en regression.json.
 

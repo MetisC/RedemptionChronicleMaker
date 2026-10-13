@@ -4,16 +4,16 @@
   "errors": [],
   "files": {
     "CHANGELOG.md": {
-      "size": 1140,
-      "sha256": "709425962f5d34cc8acab0e18eaa830d5b0c1ff28fbfdf76ad20d8dd100062ed"
+      "size": 1385,
+      "sha256": "d57b910c93043e0dae2fe8fb991304ac7cb363f42d98c5571a5aa4aa4b6c6a36"
     },
     "README.txt": {
       "size": 532,
       "sha256": "fef656495d40d61c98fe4588509464d2c99767c542b2bf659d5e2cdbc1b9b5b1"
     },
     "RedemptionChronicleMaker.exe": {
-      "size": 4322815,
-      "sha256": "534ec0f61d5e23d3fb1ef6121114f6284be3d35bd75d7b23e7ad23d8dc740d51"
+      "size": 4325127,
+      "sha256": "bf8c4d16201c3d220ddd5901035dce665874d42f6fe30ec90b8ee539adea9241"
     },
     "RELEASE_NOTES.md": {
       "size": 1725,
@@ -96,12 +96,12 @@
       "sha256": "5c707b2b9df69257cdfa742f0ad88be18f67909af8838dae203aced2222dceec"
     },
     "docs/TROUBLESHOOTING.en.md": {
-      "size": 1149,
-      "sha256": "0a87f046f69669ee278321745c09da830f7da7c358be99843f453d778557f05d"
+      "size": 1577,
+      "sha256": "c5432e421798dfa693a4247d9857d14d0200c414a5da91d0d3ffdd8dc5568c18"
     },
     "docs/TROUBLESHOOTING.md": {
-      "size": 1346,
-      "sha256": "ecbd566d644b13ebceffddcffdd03422ee050a0a8e41341cc8ce9e6289bfcbcd"
+      "size": 1806,
+      "sha256": "b46112591ae014c28851b14aaa16bd72cd2980fe3b09679dee9c416372b584ae"
     },
     "docs/TUTORIAL.en.md": {
       "size": 2025,
@@ -633,7 +633,7 @@
     },
     "_internal/base_library.zip": {
       "size": 880490,
-      "sha256": "262bae30c857fdba33a9f2734159a1c6f0d2db55a374160c4c92e1b3b129d38b"
+      "sha256": "1ee856c8eb7f26f198410aaee5adee6e6493c39a1727b58b52cb31f0b374375c"
     },
     "_internal/libcrypto-1_1.dll": {
       "size": 3439512,
@@ -1436,8 +1436,8 @@
       "sha256": "64d133dc8fff64da79b3671e02c6bdda3f83944c4984e196a1a748a2497409ef"
     },
     "_internal/rcm/editor/assets/en.json": {
-      "size": 118836,
-      "sha256": "406753aee78a3c407c5d000a0b0cf8efa632aef41181430592565a441762ce56"
+      "size": 119453,
+      "sha256": "eb7b3239e268ae675752e8569382aa7183713cf1eb1a1b06970ba8faf593476a"
     },
     "_internal/shiboken6/Shiboken.pyd": {
       "size": 33080,

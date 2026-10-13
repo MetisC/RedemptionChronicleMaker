@@ -3,7 +3,7 @@
     "language": "en",
     "phase": "fresh",
     "returncode": 0,
-    "elapsed_seconds": 38.830806300000404,
+    "elapsed_seconds": 40.18118460000551,
     "report": {
       "rc3": {
         "welcome": true,
@@ -36,8 +36,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 13.86750629999733,
-      "total_seconds": 37.61612449999666,
+      "setup_seconds": 14.443921899990528,
+      "total_seconds": 38.97234429999662,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -52,8 +52,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 89008.1681896,
-      "showcase_open_timestamp": 89009.2795923,
+      "tutorial_open_timestamp": 95679.4451458,
+      "showcase_open_timestamp": 95680.5155612,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -76,7 +76,7 @@
     "language": "en",
     "phase": "second",
     "returncode": 0,
-    "elapsed_seconds": 26.006714599992847,
+    "elapsed_seconds": 26.740801599997212,
     "report": {
       "rc3": {
         "welcome": true,
@@ -99,8 +99,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.4108742000098573,
-      "total_seconds": 25.576787400001194,
+      "setup_seconds": 2.413791599989054,
+      "total_seconds": 26.32687089999672,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -115,8 +115,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 89033.97639,
-      "showcase_open_timestamp": 89034.9993862,
+      "tutorial_open_timestamp": 95706.108389,
+      "showcase_open_timestamp": 95707.1299629,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -160,8 +160,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.355196000004071,
-      "total_seconds": 25.577816200006055,
+      "setup_seconds": 2.3846320000011474,
+      "total_seconds": 26.024485299989465,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -176,8 +176,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 89059.8630004,
-      "showcase_open_timestamp": 89060.8716151,
+      "tutorial_open_timestamp": 95732.4937629,
+      "showcase_open_timestamp": 95733.5220414,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -220,8 +220,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.423046099997009,
-      "total_seconds": 26.1005773999932,
+      "setup_seconds": 2.421552599989809,
+      "total_seconds": 26.622991800002637,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -236,8 +236,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 89086.1634701,
-      "showcase_open_timestamp": 89087.1876577,
+      "tutorial_open_timestamp": 95759.093477,
+      "showcase_open_timestamp": 95760.1118068,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -280,8 +280,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.3776656999980332,
-      "total_seconds": 26.096865100000286,
+      "setup_seconds": 2.4130302000121446,
+      "total_seconds": 26.910137000013492,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -296,8 +296,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 89112.6099302,
-      "showcase_open_timestamp": 89113.6356965,
+      "tutorial_open_timestamp": 95786.1306667,
+      "showcase_open_timestamp": 95787.1715418,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -340,8 +340,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.401166399999056,
-      "total_seconds": 26.84537409999757,
+      "setup_seconds": 2.3954483000125038,
+      "total_seconds": 27.63437060000433,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -356,8 +356,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 89139.4057875,
-      "showcase_open_timestamp": 89140.464714,
+      "tutorial_open_timestamp": 95813.7007097,
+      "showcase_open_timestamp": 95814.7332389,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -379,7 +379,7 @@
     "language": "es",
     "phase": "fresh",
     "returncode": 0,
-    "elapsed_seconds": 38.828215799992904,
+    "elapsed_seconds": 39.3483336000063,
     "report": {
       "rc3": {
         "welcome": true,
@@ -412,8 +412,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 13.762165700012702,
-      "total_seconds": 37.633304200004204,
+      "setup_seconds": 14.035081099995296,
+      "total_seconds": 38.0261954000016,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -428,8 +428,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 89180.0361332,
-      "showcase_open_timestamp": 89181.0719336,
+      "tutorial_open_timestamp": 95855.3423561,
+      "showcase_open_timestamp": 95856.3657944,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -452,7 +452,7 @@
     "language": "es",
     "phase": "second",
     "returncode": 0,
-    "elapsed_seconds": 25.621892299997853,
+    "elapsed_seconds": 26.75766119999753,
     "report": {
       "rc3": {
         "welcome": true,
@@ -475,8 +475,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.3416250000009313,
-      "total_seconds": 25.235887900009402,
+      "setup_seconds": 2.432384900006582,
+      "total_seconds": 26.310163200003444,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -491,8 +491,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 89205.4319757,
-      "showcase_open_timestamp": 89206.4437503,
+      "tutorial_open_timestamp": 95881.5057004,
+      "showcase_open_timestamp": 95882.5573621,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,

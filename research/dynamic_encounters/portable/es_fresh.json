@@ -2,7 +2,7 @@
   "language": "es",
   "phase": "fresh",
   "returncode": 0,
-  "elapsed_seconds": 38.828215799992904,
+  "elapsed_seconds": 39.3483336000063,
   "report": {
     "rc3": {
       "welcome": true,
@@ -35,8 +35,8 @@
       "Preparando el compilador…",
       "Preparando tus copias de los ejemplos…"
     ],
-    "setup_seconds": 13.762165700012702,
-    "total_seconds": 37.633304200004204,
+    "setup_seconds": 14.035081099995296,
+    "total_seconds": 38.0261954000016,
     "gui_authored_valid": true,
     "build_status": "compiled-unverified-in-game",
     "class_versions": {
@@ -51,8 +51,8 @@
     "clean_machine_test": false,
     "real_opengl": false,
     "game_originals_written": false,
-    "tutorial_open_timestamp": 89180.0361332,
-    "showcase_open_timestamp": 89181.0719336,
+    "tutorial_open_timestamp": 95855.3423561,
+    "showcase_open_timestamp": 95856.3657944,
     "rc4": {
       "wizard_four_pages": true,
       "advanced_collapsed": true,

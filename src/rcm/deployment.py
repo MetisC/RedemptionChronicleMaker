@@ -70,15 +70,14 @@ def deploy(ws,chronicle,directory=None,current_source=None):
         if hashlib.sha256(data).hexdigest()!=record['sha256']:raise ValueError('El build cambió después de compilar')
         files[safe_target(game,dest/path)]=data
     compatibility={}
-    if not directory:
-        from .profile_compatibility import compatibility_files
-        compatibility=compatibility_files(game,files[safe_target(game,dest/(chronicle+'.nob'))])
-        for name,data in compatibility.items():
-            target=safe_target(game,dest/name)
-            if target in files:
-                # Current classes/definitions have authority over compatibility.
-                continue
-            files[target]=data
+    from .profile_compatibility import compatibility_files
+    compatibility=compatibility_files(game,files[safe_target(game,dest/(chronicle+'.nob'))])
+    for name,data in compatibility.items():
+        target=safe_target(game,dest/name)
+        if target in files:
+            # Current classes/definitions have authority over compatibility.
+            continue
+        files[target]=data
     # Ownership belongs to the deployment directory, so changing campaign IDs
     # cannot leave another selectable chronicle behind. Foreign files stay put.
     manifest=safe_target(game,dest/'.rcm_deployment.json');obsolete=[]
@@ -103,9 +102,8 @@ def deploy(ws,chronicle,directory=None,current_source=None):
         from .product import ensure_runtime_root
         ensure_runtime_root(game)
     ownership={'format':1,'chronicle':chronicle,'compatibility_files':list(compatibility),'files':{str(p.relative_to(dest)).replace('\\','/'):hashlib.sha256(d).hexdigest() for p,d in files.items()}}
-    if not directory:
-        from .profile_compatibility import profile_signature
-        ownership['profile_refs_sha256']=profile_signature(game)
+    from .profile_compatibility import profile_signature
+    ownership['profile_refs_sha256']=profile_signature(game)
     files[manifest]=json.dumps(ownership,indent=2).encode('utf8')
     # Check every destination before making any mutation.
     backup=ws.output(Path('research/runtime_test/backups')/('deploy_'+chronicle+'_'+str(time.time_ns())+'.zip'));backup.parent.mkdir(parents=True,exist_ok=True)

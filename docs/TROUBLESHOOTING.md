@@ -6,6 +6,8 @@
 
 **Cambios sin aparecer:** guarda y pulsa F5. Si hay errores, el editor los muestra y no inicia el juego. Cambiar recursos propios también invalida la construcción anterior.
 
+**El juego se cierra antes de elegir personaje:** el personaje puede conservar un objeto propio de otra crónica. Redemption necesita su definición al arrancar. RCM conserva esas bibliotecas al preparar pruebas, también en carpetas compartidas, y las actualiza al terminar una prueba desde el editor. Si aparece un aviso sobre el inventario guardado, revisa el registro antes de cambiar de crónica. No borres el personaje ni sus objetos para resolverlo.
+
 **El visor falla:** activa Iniciar sin visor 3D en Configuración y reinicia. La edición de datos sigue disponible. Diagnóstico de instalación permite revisar el estado o reconstruir catálogos; no modifica recursos originales.
 
 **Recuperar trabajo:** abre Versiones guardadas. Si existe recuperación automática, puedes recuperarla o dejarla para después. Duplicar crónica copia también sus recursos propios.

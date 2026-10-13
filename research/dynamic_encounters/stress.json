@@ -11,7 +11,7 @@
   "thresholds": 10,
   "callbacks": 40,
   "slots": 85,
-  "build_seconds": 2.0383705999993253,
+  "build_seconds": 2.262710099996184,
   "class_metrics": {
     "R_dyn_stress_s0_Passive.class": {
       "version": "45.3",

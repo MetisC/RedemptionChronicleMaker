@@ -1,0 +1,14 @@
+{
+  "updated": [
+    "east_demo",
+    "rcm_showcase"
+  ],
+  "files": [
+    "east_demo/rcm_compat.nob",
+    "east_demo/codex/R_rcm_showcase_s1_Passive.class",
+    "east_demo/.rcm_deployment.json",
+    "rcm_showcase/.rcm_deployment.json"
+  ],
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\profile_libraries_1791917039725661800.zip",
+  "native_engine_test": false
+}

@@ -1,10 +1,10 @@
 {
-  "tests": 425,
+  "tests": 431,
   "failures": 0,
   "errors": 0,
   "skipped": 0,
   "successful": true,
-  "elapsed_seconds": 365.81303740000294,
+  "elapsed_seconds": 375.5883504000085,
   "category": "offline-integration-gui-model-build-format",
   "native_engine_test": false,
   "failures_detail": []

@@ -34,13 +34,23 @@ def deploy_many(ws,chronicles,directory,current_sources=None,preserve_siblings=F
                 if hashlib.sha256(data).hexdigest()!=previous['files'].get(relative):raise ValueError('Crónica conservada modificada: '+relative)
                 if target in files and files[target]!=data:raise ValueError('Cambiaría un recurso de otra crónica: '+relative)
                 files[target]=data
+    from .profile_compatibility import compatibility_files,profile_signature
+    compatibility=compatibility_files(game,[data for p,data in files.items() if p.suffix=='.nob'])
+    for name,data in compatibility.items():
+        target=safe_target(game,dest/name)
+        if target not in files:files[target]=data
+    for target,data in files.items():
+        if target.exists():
+            digest=hashlib.sha256(target.read_bytes()).hexdigest()
+            owned=previous['files'].get(target.relative_to(dest).as_posix())
+            if digest!=hashlib.sha256(data).hexdigest() and digest!=owned:raise ValueError('Archivo ajeno o modificado: '+target.name)
     obsolete=[]
     for relative,digest in previous['files'].items():
         archive_path(relative);target=safe_target(game,dest/relative)
         if target in files or not target.exists():continue
         if not target.is_file() or hashlib.sha256(target.read_bytes()).hexdigest()!=digest:raise ValueError('Archivo modificado: se conserva '+relative)
         obsolete.append(target)
-    ownership=dict(format=1,chronicle=chronicles[0],chronicles=list(owners),owners=owners,files={p.relative_to(dest).as_posix():hashlib.sha256(d).hexdigest() for p,d in files.items()})
+    ownership=dict(format=1,chronicle=chronicles[0],chronicles=list(owners),owners=owners,compatibility_files=list(compatibility),profile_refs_sha256=profile_signature(game),files={p.relative_to(dest).as_posix():hashlib.sha256(d).hexdigest() for p,d in files.items()})
     files[manifest]=json.dumps(ownership,indent=2).encode('utf8')
     from .file_transaction import replace_files
     backup=ws.output('research/runtime_test/backups/deploy_multi_'+str(time.time_ns())+'.zip');backup.parent.mkdir(parents=True,exist_ok=True)

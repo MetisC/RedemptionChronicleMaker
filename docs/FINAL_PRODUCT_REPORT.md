@@ -37,7 +37,7 @@ Sin solapamiento/avance manual dentro de una lista de oleadas (usar generadores 
 
 ## 9. Tests
 
-**425 PASS, 0 FAIL, 0 ERROR, 0 SKIP**; Ruff y alcance mypy configurado PASS. Doubles ejecutan Java generado, save/load, cruces, lethal skip, ownership, retry, transforms, callbacks, políticas, cooldown, batch, contador y un timer. Widgets prueban crear/editar/backup/cancelar/deshacer/referencias/gráfico/idiomas. Stress compila 25 generadores (20 con diez oleadas), 400 entradas, tres templates, dos puntos, diez thresholds y cuarenta callbacks; mayor método 1659/65535 bytes, clases 45.3. No benchmark nativo. Suite y receipts: research/dynamic_encounters/quality, stress.json, regression.json. El EXE se prueba en ocho recorridos offscreen ES/EN/rutas movidas/PATH restringido/escalado Qt; mismo PC, no prueba de Windows DPI real.
+**431 PASS, 0 FAIL, 0 ERROR, 0 SKIP**; Ruff y alcance mypy configurado PASS. Doubles ejecutan Java generado, save/load, cruces, lethal skip, ownership, retry, transforms, callbacks, políticas, cooldown, batch, contador y un timer. Widgets prueban crear/editar/backup/cancelar/deshacer/referencias/gráfico/idiomas. Stress compila 25 generadores (20 con diez oleadas), 400 entradas, tres templates, dos puntos, diez thresholds y cuarenta callbacks; mayor método 1659/65535 bytes, clases 45.3. No benchmark nativo. Suite y receipts: research/dynamic_encounters/quality, stress.json, regression.json. El EXE se prueba en ocho recorridos offscreen ES/EN/rutas movidas/PATH restringido/escalado Qt; mismo PC, no prueba de Windows DPI real.
 
 ## 10. Ejemplos / Showcase
 
@@ -58,3 +58,7 @@ RedemptionChronicleMaker-1.0.0-rc4-win64.zip: programa, JVM/Qt/ECJ, veintidós g
 ## 14. Workspace Archive
 
 RedemptionChronicleMaker-1.0.0-rc4-workspace.zip, copia privada con fuentes, tests, dependencias, evidencia/build vigente y datos de usuario, sin .git. Incluye investigación extraída para uso privado; no es distribución pública. tools/release_workspace.py comprueba cada archivo. Su recibo queda en research/product_close/workspace_archive.json. Versiones y resultados desechables anteriores retirados tras verificar RC4.
+
+## Corrección posterior: inventario al arrancar
+
+El acceso habitual cargaba el tutorial/mini en una carpeta compartida sin la definición de la llave que el perfil había recogido en Showcase. Se restauró la biblioteca de arranque y su clase dentro de RCM, con copia de lo sustituido, sin modificar Crypt ni los paquetes del tutorial/mini. Deploy compartido/personalizado y cierre de pruebas desde el editor ahora conservan las definiciones. Seis regresiones nuevas; total 431 PASS, ocho recorridos de EXE PASS. Nueva confirmación LAN pendiente. Evidencia en research/runtime_test/profile_startup_repair.json; originales 43 y archivos protegidos 1798 conservados.

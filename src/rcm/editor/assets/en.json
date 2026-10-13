@@ -1657,5 +1657,10 @@
   "Vida: {0}..{1}": "Health: {0}..{1}",
   "Contador: {0}..{1}": "Counter: {0}..{1}",
   "Script original": "Original script",
-  "Encuentros dinámicos…": "Dynamic encounters…"
+  "Encuentros dinámicos…": "Dynamic encounters…",
+  "No se pudo preparar el inventario guardado": "Could not prepare saved inventory",
+  "Revisa el registro antes de abrir otra crónica. Tu personaje guardado no se ha modificado.": "Check the log before opening another chronicle. Your saved character has not been modified.",
+  "Falta la definición de un objeto RCM del personaje guardado: ": "A saved character is missing an RCM item definition: ",
+  "Cierra Vampire antes de actualizar las bibliotecas de inventario": "Close Vampire before updating inventory libraries",
+  "Archivo administrado ausente o modificado: ": "Managed file missing or modified: "
 }
