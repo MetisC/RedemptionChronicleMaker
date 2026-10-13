@@ -51,6 +51,10 @@ Save and load, return to the start and repeat an interaction. Check that the jou
 
 Guide links select project elements in the editor. The following index retains all reference links; you do not need it to play the adventure.
 
+### Dynamic encounters (optional)
+
+Talk to the guide and choose the dynamic encounter laboratory. Try [two rats](rcm://quay/generators/dyn_rats), [the phased boss](rcm://quay/generators/dyn_boss) and [a reinforcement](rcm://quay/generators/dyn_add), or start/stop [continuous spawning](rcm://quay/generators/dyn_portal). The book story is unchanged. Save/load mid-test and compare the group.
+
 ## Complete technical index
 
 - [quay · safe](rcm://quay/entries/safe)

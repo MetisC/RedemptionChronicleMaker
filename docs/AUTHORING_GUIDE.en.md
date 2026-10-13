@@ -21,3 +21,5 @@ The first answer of **NPC sends you somewhere** must end with RETURN 1 to arm th
 **Playtest in Redemption (F5):** saves and validates, builds only when changed, prepares your chronicle folder and opens the game. Close Redemption before updating. Separate build and diagnostic tools remain available.
 
 Open chronicles/mini_chronicle/project.yaml for a complete example adventure, editable using the same panels and assistants.
+
+**Dynamic encounters:** Campaign → + Dynamic encounter…, assistants or the 3D ground context menu. Choose Ambush/Waves/Continuous/Reinforcements/Boss, enemies/count, points/activation and completion actions. Advanced stays collapsed. [Guide and laboratory](DYNAMIC_ENCOUNTERS.en.md). First use in format 9 makes a backup and opts into format 10; opening the tutorial does not convert it.

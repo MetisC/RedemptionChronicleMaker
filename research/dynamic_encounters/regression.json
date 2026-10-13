@@ -1,0 +1,82 @@
+{
+  "builds": {
+    "tutorial": {
+      "id": "rcm_tutor",
+      "status": "compiled-unverified-in-game",
+      "class_versions": {
+        "R_rcm_tutor_s0_Scene": "45.3",
+        "R_rcm_tutor_s0_Passive": "45.3",
+        "R_rcm_tutor_s1_Scene": "45.3",
+        "R_rcm_tutor_s1_Passive": "45.3",
+        "RCMTutorActor": "45.3"
+      },
+      "geometry_in_package": false
+    },
+    "showcase": {
+      "id": "rcm_showcase",
+      "status": "compiled-unverified-in-game",
+      "class_versions": {
+        "R_rcm_showcase_s0_Scene": "45.3",
+        "R_rcm_showcase_s0_Passive": "45.3",
+        "R_rcm_showcase_s1_Scene": "45.3",
+        "R_rcm_showcase_s1_Passive": "45.3",
+        "R_rcm_showcase_s2_Scene": "45.3",
+        "R_rcm_showcase_s2_Passive": "45.3",
+        "RCMShowcaseActor": "45.3"
+      },
+      "geometry_in_package": false
+    },
+    "mini_chronicle": {
+      "id": "rcm_mini",
+      "status": "compiled-unverified-in-game",
+      "class_versions": {
+        "R_rcm_mini_s0_Scene": "45.3",
+        "R_rcm_mini_s0_Passive": "45.3",
+        "R_rcm_mini_s1_Scene": "45.3",
+        "R_rcm_mini_s1_Passive": "45.3",
+        "R_rcm_mini_s2_Scene": "45.3",
+        "R_rcm_mini_s2_Passive": "45.3",
+        "RCMMiniActor": "45.3"
+      },
+      "geometry_in_package": false
+    },
+    "dynamic_lab": {
+      "id": "rcm_dynamic",
+      "status": "compiled-unverified-in-game",
+      "class_versions": {
+        "R_rcm_dynamic_s0_Scene": "45.3",
+        "R_rcm_dynamic_s0_Passive": "45.3"
+      },
+      "geometry_in_package": false
+    }
+  },
+  "tutorial_classes": {
+    "R_rcm_tutor_s0_Scene": true,
+    "R_rcm_tutor_s0_Passive": true,
+    "R_rcm_tutor_s1_Scene": true,
+    "R_rcm_tutor_s1_Passive": true,
+    "RCMTutorActor": true
+  },
+  "tutorial_sources": {
+    "chronicles/tutorial/project.yaml": true,
+    "chronicles/tutorial/README.en.md": true,
+    "chronicles/tutorial/README.md": true,
+    "chronicles/tutorial/resources/RCMTutorActor.java": true
+  },
+  "mini_sources": {
+    "chronicles/mini_chronicle/README.en.md": true,
+    "chronicles/mini_chronicle/README.md": true,
+    "chronicles/mini_chronicle/project.yaml": true,
+    "chronicles/mini_chronicle/resources/RCMMiniActor.java": true
+  },
+  "originals": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "user_files_verified": 1794,
+  "user_files_unchanged": true,
+  "native_engine_test": false,
+  "game_written": false
+}

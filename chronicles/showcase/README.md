@@ -51,6 +51,10 @@ Prueba guardar y cargar, volver al comienzo y repetir una interacción. Comprueb
 
 Los enlaces de la guía seleccionan elementos del proyecto en el editor. El índice siguiente conserva todos los enlaces de referencia; no necesitas leerlo para jugar la aventura.
 
+### Encuentros dinámicos (opcional)
+
+Habla con la Guía y elige el laboratorio de encuentros dinámicos. Puedes probar [dos ratas](rcm://quay/generators/dyn_rats), [el jefe por fases](rcm://quay/generators/dyn_boss) y [un refuerzo](rcm://quay/generators/dyn_add), o iniciar y detener [el continuo](rcm://quay/generators/dyn_portal). El encargo del libro no cambia. Guarda/carga a mitad y compara el grupo.
+
 ## Índice técnico completo
 
 - [quay · safe](rcm://quay/entries/safe)

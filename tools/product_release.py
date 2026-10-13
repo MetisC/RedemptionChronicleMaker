@@ -52,4 +52,4 @@ def release(folder,output):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--folder',default='build/portable/RedemptionChronicleMaker');parser.add_argument('--output',default='RedemptionChronicleMaker-1.0.0-rc3-win64.zip');args=parser.parse_args();print(json.dumps(release(args.folder,args.output),indent=2))
+    parser=argparse.ArgumentParser();parser.add_argument('--folder',default='build/portable/RedemptionChronicleMaker');parser.add_argument('--output',default='RedemptionChronicleMaker-1.0.0-rc4-win64.zip');args=parser.parse_args();print(json.dumps(release(args.folder,args.output),indent=2))

@@ -36,6 +36,12 @@ class RecipeWizard(QWizard):
         for key, label in LABELS.items():self.kind.addItem(tr(label), key)
         self.kind.setCurrentIndex(self.kind.findData(self.saved['type'] if self.saved else kind or 'talk'))
         self.kind.setEnabled(not self.saved);layout.addWidget(self.kind)
+        if not self.saved:
+            dynamic=QPushButton(tr('Encuentros dinámicos…'));dynamic.setObjectName('recipe_dynamic');layout.addWidget(dynamic)
+            def open_dynamic():
+                from .dynamic_wizard import DynamicWizard
+                self.reject();DynamicWizard(win).exec()
+            dynamic.clicked.connect(open_dynamic)
         hint = QLabel(tr('El asistente edita los elementos normales del proyecto. Puedes ajustarlos después en Propiedades y volver aquí. Aplicar es una sola operación que puedes deshacer.'));hint.setWordWrap(True);layout.addWidget(hint)
         self.status = QLabel();self.status.setWordWrap(True);layout.addWidget(self.status)
         if self.saved:
@@ -215,7 +221,7 @@ class RecipeWizard(QWizard):
 
 def open_wizard(win,kind=None,recipe_id=None):
     if win.busy or not win.doc or not win.commit_properties():return
-    if not hasattr(win.doc,'campaign') or win.doc.campaign.get('project_format')!=9:
+    if not hasattr(win.doc,'campaign') or win.doc.campaign.get('project_format') not in (9,10):
         QMessageBox.information(win,tr('Asistentes de crónica'),tr('Crea o convierte primero una campaña de formato 9.'));return
     if recipe_id is None:
         matches=[r for r in api.recipes(win.doc.campaign) if (kind is None or r['type']==kind) and r['scene']==win.doc.campaign['scenes'][win.doc.active]['id']]

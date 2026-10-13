@@ -1,7 +1,7 @@
 """Bound project inputs before recursive parsers or resource inheritance."""
 from typing import Any, Iterable
 MAX_BYTES = 2 * 1024 * 1024
-CURRENT_PROJECT_FORMAT = 9
+CURRENT_PROJECT_FORMAT = 10
 
 
 def check_project_format(value: Any) -> Any:

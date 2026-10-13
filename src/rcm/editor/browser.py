@@ -31,6 +31,10 @@ class ResourceBrowser(QWidget):
         for label,value in [(tr('Toda procedencia'),''),('Original','Original /'),(tr('Proyecto'),'Proyecto /')]: self.origin.addItem(label,value)
         self.available = QComboBox(); self.available.setObjectName('resource_available')
         self.available.addItem(tr('Todos'),False); self.available.addItem(tr('Sólo seleccionables'),True)
+        self.enemies=QComboBox();self.enemies.setObjectName('resource_enemies')
+        self.enemies.addItem(tr('Todos los actores'),False);self.enemies.addItem(tr('Enemigos de la campaña original'),True)
+        self.enemies.setToolTip(tr('Familia original de enemigos y flags; no una dificultad inventada. El uso en escenas procede del catálogo de referencias.'))
+        self.enemies.setVisible(category in (None,'actors'));filters.addWidget(self.enemies);self.enemies.currentIndexChanged.connect(self.refresh)
         for control in (self.family,self.origin,self.available): filters.addWidget(control); control.currentIndexChanged.connect(self.refresh)
         self.bases=QCheckBox(tr('Incluir plantillas base'));self.bases.setToolTip(tr('Las plantillas con prefijo _ suelen ser bases de herencia. Actívalo para inspeccionarlas o clonarlas.'));self.bases.toggled.connect(self.refresh);filters.addWidget(self.bases)
         layout.addLayout(filters)
@@ -100,6 +104,8 @@ class ResourceBrowser(QWidget):
                 rows.append((title + tr(" · ") + ident, item["nil"], origins, tr("Disponible") if usable else tr("Solo catálogo"), ident, info, usable))
         elif kind in {"actors", "items"}:
             templates = self.backend.resources["templates"]
+            from ..enemy_catalogue import catalogue,details
+            enemies=catalogue(self.backend) if kind=='actors' else {}
             counts = {}
             for t in templates:
                 counts[t["id"]] = counts.get(t["id"], 0) + 1
@@ -107,11 +113,13 @@ class ResourceBrowser(QWidget):
                 if item['id'].startswith('_') and not self.bases.isChecked():continue
                 if item["kind"] not in ({"actors"} if kind == "actors" else {"items", "props", "weapons", "armour"}):
                     continue
+                if kind=='actors' and self.enemies.currentData() and (not enemies.get(item['id'],{}).get('enemy') or item.get('project_owned')):continue
                 if hasattr(self,'allowed_families') and item['kind'] not in self.allowed_families:continue
                 origin_text = ('Proyecto / ' if item.get('project_owned') else 'Original / ')+item["archive"] + " / " + item["path"]
                 usable = counts[item["id"]] == 1
                 display_origin=self.display_origin(origin_text)
                 info = ((tr('ID exacto: ') + f"{item['id']}" + tr('\nFamilia: ') + f"{item['kind']}" + tr('\nProcedencia: ') + display_origin + tr('\nHereda de: ') + f"{item.get('parent') or tr('Sin padre')}" + tr('\nModelo: ') + f"{item.get('model') or tr('No declarado directamente')}" + '\nAI: ' + f"{item.get('ai') or tr('No declarada directamente')}"))
+                if item['id'] in enemies:info+='\n'+tr('Script original')+': '+str(enemies[item['id']].get('script') or tr('No declarado directamente'))+'\n'+'\n'.join(tr(label)+': '+tr(value) for label,value in details(enemies[item['id']]))
                 rows.append((item["id"], item["kind"], origin_text, tr("Única") if usable else tr("Ambigua"), item["id"], info, usable))
         else:
             for item in sorted(self.backend.resources["entries"], key=lambda t: t["id"].casefold()):
@@ -121,6 +129,7 @@ class ResourceBrowser(QWidget):
                              (tr('ID exacto: ') + f"{item['id']}" + '\n' + f"{item['archive']}" + ' / ' + f"{item['path']}"), True))
         rows = [r for r in rows if query in (" ".join(str(v) for v in r[:6])+' '+self.display_origin(r[2])).casefold()]
         self.family.setEnabled(kind=='items'); self.origin.setEnabled(kind in {'actors','items'})
+        self.enemies.setVisible(kind=='actors')
         rows = [r for r in rows if (kind!='items' or not self.family.currentData() or r[1]==self.family.currentData()) and (kind not in {'actors','items'} or not self.origin.currentData() or r[2].startswith(self.origin.currentData())) and (not self.available.currentData() or r[6])]
         prefs=getattr(self.backend.ws,'app_settings',None)
         if prefs and hasattr(self,'collection') and self.collection.currentData()!='all':

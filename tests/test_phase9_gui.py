@@ -22,9 +22,9 @@ class Phase9GuiTests(TestCase):
     def test_new_project_is_campaign_and_resource_upgrade_keeps_version_and_data(self):
         with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as tmp:
             dialog=NewProjectDialog(self.backend.ws);dialog.pid.setText('p9_ui');dialog.name.setText('Nueva campaña');dialog.directory.setText(tmp)
-            self.w.create_project(dialog);self.assertIsInstance(self.w.doc,CampaignDocument);self.assertEqual(self.w.doc.campaign['project_format'],9)
+            self.w.create_project(dialog);self.assertIsInstance(self.w.doc,CampaignDocument);self.assertEqual(self.w.doc.campaign['project_format'],__import__('rcm.input_limits',fromlist=['CURRENT_PROJECT_FORMAT']).CURRENT_PROJECT_FORMAT)
             self.w.doc.campaign['resources']={'templates':[{'id':'T_own','base':'businessWoman','properties':{}}]}
-            self.w.project_resources_panel.upgrade();self.assertEqual(self.w.doc.campaign['resources']['templates'][0]['id'],'T_own');self.assertEqual(self.w.doc.campaign['project_format'],9)
+            self.w.project_resources_panel.upgrade();self.assertEqual(self.w.doc.campaign['resources']['templates'][0]['id'],'T_own');self.assertEqual(self.w.doc.campaign['project_format'],__import__('rcm.input_limits',fromlist=['CURRENT_PROJECT_FORMAT']).CURRENT_PROJECT_FORMAT)
             self.w.save_project();self.assertEqual(Document.load(self.backend.ws,self.w.doc.path).snapshot(),self.w.doc.snapshot())
             self.w.project_lock.release()
     def test_marker_edit_undo_and_named_transition_selectors(self):

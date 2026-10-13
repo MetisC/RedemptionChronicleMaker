@@ -1,0 +1,84 @@
+schema: 2
+project_format: 10
+chronicle:
+  id: dyn_lab
+  name: Dynamic Encounter Lab
+entry: lab
+scenes:
+- id: lab
+  level:
+    source: EastLondon
+    environment_scene: EAST_28_1.nsd
+  actors: []
+  objects: []
+  conversations: []
+  events:
+  - id: begin
+    when: scene_start
+    actions:
+    - start_generator: rats
+  triggers: []
+  encounters: []
+  sequences: []
+  entries:
+  - id: start
+    name: Entrada del jugador
+    transform:
+      position:
+      - -62
+      - -768
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  - id: entry1
+    name: Arrival
+    transform:
+      placement: absolute
+      position:
+      - -62
+      - -768
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  waypoints:
+  - id: spawn_a
+    name: Aparición A
+    transform:
+      position:
+      - -62
+      - -768
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  paths: []
+  default_entry: start
+  generators:
+  - id: rats
+    name: Tres ratas
+    mode: waves
+    spawn_points:
+    - spawn_a
+    max_alive: 3
+    waves:
+    - groups:
+      - role: rats
+        template: Rat
+        count: 3
+    - delay: 2
+      groups:
+      - role: rats
+        template: Rat
+        count: 2
+    persistence: once
+quests: []
+state:
+  flags: {}
+resources: {}
+metadata:
+  version: 0.1.0

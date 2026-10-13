@@ -1,13 +1,14 @@
 // Native API doubles: these checks test generated logic, not Redemption itself.
 import java.util.*;
 class CE {
- static class Thing {String template; float[] pos=new float[]{0,0,0},orientation=new float[]{0,0,0}; float health=100; int location=0; int next=0,facing=0,motion=-1,baseMotion=-1; boolean item=false; List<Integer> inventory=new ArrayList<Integer>();}
+ static class Thing {String template; float[] pos=new float[]{0,0,0},orientation=new float[]{0,0,0}; float health=100,maxHealth=100; int team=12; int location=0; int next=0,facing=0,motion=-1,baseMotion=-1; boolean item=false; List<Integer> inventory=new ArrayList<Integer>();}
  static Map<Integer,Thing> world=new HashMap<Integer,Thing>(); static boolean[] flags=new boolean[1024]; static int next=100,created=0,xp=0,location=0,released=0,questLoads=0,cameraTarget=0,conversationCalls=0;static boolean client=false,failSpawn=false,syncFeedback=false,syncEnd=false,failConversation=false,cutscene=false,aiOff=false; static String conversation="",music="",jump="";
  static Map<String,Integer> quests=new HashMap<String,Integer>();static Set<Integer> complete=new HashSet<Integer>();static List<Integer> save=new ArrayList<Integer>();static int read=0;
  static int make(String t,float[] p){if(failSpawn)return 0;Thing x=new Thing();x.template=t;x.pos=p.clone();x.location=location;x.item=t.contains("book")||t.contains("reward");world.put(next,x);created++;return next++;}
  static boolean valid(int g){return world.containsKey(g);}
 }
 class Codex {
+ boolean CaptureThing(int g){return CE.valid(g);} boolean ReleaseThing(int g){return true;}
  boolean ExecuteText(int owner,int thing,String name){return true;}
  static boolean PreloadTemplate(String name){return !CE.failSpawn;}
  static final int CAM_SHOT_OTS_C=5,CAM_ANGLE_MEDIUM=2,CAM_DIST_CLOSEUP=1,MOTION_STAND=33,MOTION_IDLE=49,WORLD_CURRENT=12345678,THING_FLAG_SAVENEVER=1,THING_FLAG_SAVESUSPEND=2,THING_FLAG_SAVEALWAYS=8,THING_AF_AIPAUSED=4,THING_AF_NEUTRAL=8,THING_AF_TALKTO=16,TEAM_PEDESTRIANS=10,TEAM_ENEMY0=12,CONV_XFLAG_WANTFEEDBACK=4,CONV_XFLAG_ALLOWABORT=8,CAMERA_ANGLE_MEDIUM=1,CAMERA_ANGLE_LOW=0,CAMERA_ANGLE_HIGH=2,CAMERA_SHOT_MS=3,CAMERA_SHOT_CU=2,CAMERA_SHOT_WS=4;
@@ -21,7 +22,7 @@ class CodexThing extends Codex {
  static int GuidFromCastID(String id){for(Integer g:CE.world.keySet())if(CE.world.get(g).template.equals(id))return g;return 0;}
  boolean SetOrientation(float[] a){CE.world.get(guid).orientation=a.clone();return true;} int SpawnThingNear(String id,float d,int f){return CE.make(id,GetPosition());}int ClearThingFlags(int f){return f;}int SetThingFlags(int f){return f;}boolean Remove(){CE.world.remove(guid);return true;}
 }
-class CodexActor extends CodexThing {void StopActorAction(){} int PlayActorMotionSetMode(int m,boolean loop,float blend){return m;} CodexActor(int g){super(g);}int SetActorTeam(int t){return t;}int SetActorFlags(int f){return f;}int ClearActorFlags(int f){return f;}float GetActorHealth(){return CE.world.get(guid).health;}int GetActorFirstInventoryItem(){List<Integer> list=CE.world.get(guid).inventory;return list.size()==0?0:list.get(0);}boolean AddToActorInventory(int item){List<Integer> list=CE.world.get(guid).inventory;if(list.size()>0)CE.world.get(list.get(list.size()-1)).next=item;list.add(item);return true;}}
+class CodexActor extends CodexThing {float GetActorMaxHealth(){return CE.world.get(guid).maxHealth;} float SetActorMaxHealth(float h){return CE.world.get(guid).maxHealth=h;} float SetActorHealth(float h){return CE.world.get(guid).health=h;} int GetActorTeam(){return CE.world.get(guid).team;} void StopActorAction(){} int PlayActorMotionSetMode(int m,boolean loop,float blend){return m;} CodexActor(int g){super(g);}int SetActorTeam(int t){return CE.world.get(guid).team=t;}int SetActorFlags(int f){return f;}int ClearActorFlags(int f){return f;}float GetActorHealth(){return CE.world.get(guid).health;}int GetActorFirstInventoryItem(){List<Integer> list=CE.world.get(guid).inventory;return list.size()==0?0:list.get(0);}boolean AddToActorInventory(int item){List<Integer> list=CE.world.get(guid).inventory;if(list.size()>0)CE.world.get(list.get(list.size()-1)).next=item;list.add(item);return true;}}
 class CodexItem extends CodexThing {CodexItem(int g){super(g);}int GetNextInventoryItem(){return CE.world.get(guid).next;}int RemoveItemFromInventory(){for(CE.Thing t:CE.world.values())t.inventory.remove(Integer.valueOf(guid));return 1;}}
 class CodexPlayer extends CodexActor {CodexPlayer(int g){super(g);}static int GetCurrentPlayer(){return CE.valid(1)?1:0;}static int GetNumMPPlayers(){return 1;}static int GetMPPlayer(int i){return GetCurrentPlayer();}boolean AwardPlayerExperience(int n){CE.xp+=n;return true;}}
 class CodexWorld extends Codex {CodexWorld(int g){}int CreateThing(String name,float[] p,float[] o){return CE.make(name,p);}}

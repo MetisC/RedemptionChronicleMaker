@@ -169,7 +169,7 @@ def values(root, recipe):
 
 def apply(root, kind, scene_id, config, recipe_id=None, repair=False):
     """One source transaction. Repair is explicit; never silently recreate rows."""
-    if kind not in TYPES or root.get('project_format') != 9:raise ValueError('Recipes require a format 9 campaign')
+    if kind not in TYPES or root.get('project_format') not in (9,10):raise ValueError('Recipes require a format 9 campaign')
     result = copy.deepcopy(root)
     if not any(s['id']==scene_id for s in result['scenes']):raise ValueError('Recipe scene is missing')
     saved = next((r for r in recipes(result) if r['id'] == recipe_id), None)

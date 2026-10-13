@@ -1,0 +1,255 @@
+Compiled from "CodexActor.java"
+public class CodexActor extends CodexThing {
+  public native boolean ActorActionCast(int, java.lang.String);
+
+  public native java.lang.String GetActorClanShapeTemplate();
+
+  public native int AIIsDazed();
+
+  public native float GetActorSoak(int);
+
+  public native float GetActorBaseSoak(int);
+
+  public native boolean AIIsPossessed();
+
+  public native int AIIsPet();
+
+  public native int SetActorFlags(int);
+
+  public native boolean ActorUnfrenzy();
+
+  public native boolean CancelActorAction();
+
+  public native void StopActorAction();
+
+  public native int FindActorEffect(int);
+
+  public native int FindActorEffect(java.lang.String);
+
+  public native int FindActorEffect(int, int);
+
+  public native java.lang.String GetActorAura();
+
+  public native boolean IsActorRestrained();
+
+  public native boolean ActorRestrain();
+
+  public native int SetActorTeam(int);
+
+  public native int SetActorOriTeam(int);
+
+  public native float SetActorHealth(float);
+
+  public native boolean AIIsFrenzied();
+
+  public native float GetActorHealth();
+
+  public native float SetActorMaxHealth(float);
+
+  public native boolean ActorStill();
+
+  public native boolean ActorShapeShift(java.lang.String, int);
+
+  public native int GetActorDisciplineLevel(java.lang.String);
+
+  public native void StopFeeding();
+
+  public native boolean AIUnlockMode();
+
+  public native boolean AddToActorInventory(int);
+
+  public native void EnableActorShield(boolean);
+
+  public native boolean SetActorDisciplineSlot(java.lang.String, int);
+
+  public native boolean ActorActionPickup(int, int);
+
+  public native int GetActorHeldItem();
+
+  public native int AIIsPossessing();
+
+  public native boolean ActorActionActivate(int, int);
+
+  public native int SetActorType(int);
+
+  public native int GetActorClanId();
+
+  public native boolean ActorActionUnstake(int);
+
+  public native boolean AIIsModeLocked();
+
+  public native boolean HealActor(float);
+
+  public native boolean ReviveActor(float, float);
+
+  public native int AIIsMesmerized();
+
+  public CodexActor(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokespecial #14                 // Method CodexThing."<init>":(I)V
+       5: return
+
+  public native int GetActorFlags();
+
+  public native int ClearActorFlags(int);
+
+  public native int AIGetNumPets();
+
+  public native boolean ExpandActorEffect(int, int, boolean);
+
+  public native boolean ExpandActorEffect(java.lang.String, int, boolean);
+
+  public native float SetActorWalkSpeed(float);
+
+  public native float SetActorRunSpeed(float);
+
+  public native int GetActorTeam();
+
+  public native int GetActorOriTeam();
+
+  public native void SetActorPredefinedAura(int);
+
+  public native float GetActorMaxHealth();
+
+  public native boolean Feed(int);
+
+  public native int AIIsAfraid();
+
+  public native int AIGetMindFlags();
+
+  public native boolean ActorEndShapeShift();
+
+  public native boolean SetActorClan(java.lang.String);
+
+  public native int SetActorFlags2(int);
+
+  public native float GetActorWalkSpeed();
+
+  public native float GetActorRunSpeed();
+
+  public native int AddActorEffectByLevel(java.lang.String, int, int, int, int, int, float);
+
+  public native java.lang.String GetActorClan();
+
+  public native int PlayActorMotionSetMode(int, boolean, float);
+
+  public native void SetActorNoItemArmor(java.lang.String);
+
+  public native int GetActorEffectLevel(int);
+
+  public native int GetActorEffectLevel(java.lang.String);
+
+  public native int GetActorEffectIntParam(int);
+
+  public native int GetActorEffectIntParam(java.lang.String);
+
+  public native boolean DestroyActorHeldItem();
+
+  public int AddActorEffectByLevel(java.lang.String, int, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: iload_3
+       4: iload         4
+       6: iload         5
+       8: iconst_0
+       9: fconst_0
+      10: invokevirtual #22                 // Method AddActorEffectByLevel:(Ljava/lang/String;IIIIIF)I
+      13: ireturn
+
+  public native int GetActorType();
+
+  public native boolean OverrideActorWeapon(java.lang.String, boolean, boolean);
+
+  public native float ComputeActorEffectsValue(int, int);
+
+  public native java.lang.String GetActorClanBeckoningTemplate();
+
+  public native int SetActorXPValue(int);
+
+  public native int AddActorEffectByValue(java.lang.String, int, float, int, int, int, float);
+
+  public native float GetActorEffectValue(int);
+
+  public native float GetActorEffectValue(java.lang.String);
+
+  public native float GetActorEffectFloatParam(int);
+
+  public native float GetActorEffectFloatParam(java.lang.String);
+
+  public int AddActorEffectByValue(java.lang.String, int, float, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: fload_3
+       4: iload         4
+       6: iload         5
+       8: iconst_0
+       9: fconst_0
+      10: invokevirtual #32                 // Method AddActorEffectByValue:(Ljava/lang/String;IFIIIF)I
+      13: ireturn
+
+  public native void EnableActorWeapon(boolean);
+
+  public native float SetActorStat(int, float);
+
+  public native float SetActorBaseStat(int, float);
+
+  public native boolean AISetTarget(int);
+
+  public native void StopActorMotion();
+
+  public native boolean RemoveActorEffect(int);
+
+  public native boolean RemoveActorEffect(java.lang.String);
+
+  public native float GetActorStat(int);
+
+  public native float GetActorBaseStat(int);
+
+  public native int AIGetTarget();
+
+  public native void SetActorAura(java.lang.String);
+
+  public native int PlayActorFoleyMode(int);
+
+  public native boolean ActorUnrestrain();
+
+  public native boolean IsActorShapeShifted();
+
+  public native int AIGetMode();
+
+  public native boolean AILockMode();
+
+  public native boolean ActorFrenzy();
+
+  public native int GetActorFlags2();
+
+  public native int ClearActorFlags2(int);
+
+  public native boolean SetActorDisciplineLevel(java.lang.String, int);
+
+  public native void EnableActorArmor(boolean);
+
+  public native boolean SendActorToPos(float[], float);
+
+  public native int GetActorFirstInventoryItem();
+
+  public native boolean ActorActionCastPos(float[], java.lang.String);
+
+  public native boolean ActorActionAttack(int, int, int);
+
+  public native int GetActorXPValue();
+
+  public native boolean DamageActor(float, int, int);
+
+  public native float SetActorSoak(int, float);
+
+  public native float SetActorBaseSoak(int, float);
+
+  public native boolean CancelOverrideActorWeapon();
+}

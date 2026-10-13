@@ -1,0 +1,243 @@
+Compiled from "MysticSpawner.java"
+public class MysticSpawner extends Codex {
+  private java.lang.String _randomGood1;
+
+  private java.lang.String _randomGood2;
+
+  private java.lang.String _randomBad1;
+
+  private java.lang.String _randomBad2;
+
+  private CodexThing _spawnPoint;
+
+  private CodexThing _particles;
+
+  private int particlesGuid;
+
+  private boolean bStarted;
+
+  private boolean bSpawned;
+
+  public static java.lang.String[] _params;
+
+  public void beginscene(int, int);
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field bSpawned:Z
+       4: ifeq          8
+       7: return
+       8: aload_0
+       9: getfield      #17                 // Field bStarted:Z
+      12: ifeq          33
+      15: aload_0
+      16: new           #19                 // class CodexThing
+      19: dup
+      20: aload_0
+      21: getfield      #23                 // Field particlesGuid:I
+      24: invokespecial #27                 // Method CodexThing."<init>":(I)V
+      27: putfield      #31                 // Field _particles:LCodexThing;
+      30: goto          69
+      33: aload_0
+      34: new           #19                 // class CodexThing
+      37: dup
+      38: aload_0
+      39: getfield      #34                 // Field _spawnPoint:LCodexThing;
+      42: ldc           #36                 // String mysticIdleMagic
+      44: invokevirtual #40                 // Method CodexThing.SpawnThing:(Ljava/lang/String;)I
+      47: invokespecial #27                 // Method CodexThing."<init>":(I)V
+      50: putfield      #31                 // Field _particles:LCodexThing;
+      53: aload_0
+      54: aload_0
+      55: getfield      #31                 // Field _particles:LCodexThing;
+      58: invokevirtual #44                 // Method Codex.GetGUID:()I
+      61: putfield      #23                 // Field particlesGuid:I
+      64: aload_0
+      65: iconst_1
+      66: putfield      #17                 // Field bStarted:Z
+      69: return
+
+  public void restore(int);
+    Code:
+       0: aload_0
+       1: invokestatic  #54                 // Method CodexSequence.RestoreBoolean:()Z
+       4: putfield      #17                 // Field bStarted:Z
+       7: aload_0
+       8: invokestatic  #54                 // Method CodexSequence.RestoreBoolean:()Z
+      11: putfield      #14                 // Field bSpawned:Z
+      14: aload_0
+      15: invokestatic  #57                 // Method CodexSequence.RestoreInt:()I
+      18: putfield      #23                 // Field particlesGuid:I
+      21: return
+
+  public MysticSpawner(java.lang.String, java.lang.String, java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: invokespecial #61                 // Method Codex."<init>":()V
+       4: aload_0
+       5: ldc           #63                 // String
+       7: putfield      #67                 // Field _randomGood1:Ljava/lang/String;
+      10: aload_0
+      11: ldc           #63                 // String
+      13: putfield      #70                 // Field _randomGood2:Ljava/lang/String;
+      16: aload_0
+      17: ldc           #63                 // String
+      19: putfield      #73                 // Field _randomBad1:Ljava/lang/String;
+      22: aload_0
+      23: ldc           #63                 // String
+      25: putfield      #76                 // Field _randomBad2:Ljava/lang/String;
+      28: aload_0
+      29: new           #19                 // class CodexThing
+      32: dup
+      33: aload_0
+      34: invokevirtual #79                 // Method Codex.GetClassThing:()I
+      37: invokespecial #27                 // Method CodexThing."<init>":(I)V
+      40: putfield      #34                 // Field _spawnPoint:LCodexThing;
+      43: aload_0
+      44: aload_1
+      45: putfield      #67                 // Field _randomGood1:Ljava/lang/String;
+      48: aload_0
+      49: aload_2
+      50: putfield      #70                 // Field _randomGood2:Ljava/lang/String;
+      53: aload_0
+      54: aload_3
+      55: putfield      #73                 // Field _randomBad1:Ljava/lang/String;
+      58: aload_0
+      59: aload         4
+      61: putfield      #76                 // Field _randomBad2:Ljava/lang/String;
+      64: return
+
+  void touched(int, int, int);
+    Code:
+       0: iload_2
+       1: invokestatic  #87                 // Method Codex.IsPlayerGuid:(I)Z
+       4: ifeq          14
+       7: aload_0
+       8: getfield      #14                 // Field bSpawned:Z
+      11: ifeq          15
+      14: return
+      15: aload_0
+      16: getfield      #31                 // Field _particles:LCodexThing;
+      19: invokevirtual #90                 // Method CodexThing.Remove:()Z
+      22: pop
+      23: invokestatic  #96                 // Method java/lang/Math.random:()D
+      26: ldc2_w        #97                 // double 4.0d
+      29: dmul
+      30: dconst_1
+      31: dadd
+      32: d2i
+      33: istore        4
+      35: iload         4
+      37: tableswitch   { // 1 to 4
+
+                     1: 68
+
+                     2: 93
+
+                     3: 118
+
+                     4: 143
+               default: 168
+          }
+      68: aload_0
+      69: getfield      #34                 // Field _spawnPoint:LCodexThing;
+      72: aload_0
+      73: getfield      #67                 // Field _randomGood1:Ljava/lang/String;
+      76: invokevirtual #40                 // Method CodexThing.SpawnThing:(Ljava/lang/String;)I
+      79: pop
+      80: aload_0
+      81: getfield      #34                 // Field _spawnPoint:LCodexThing;
+      84: ldc           #100                // String mysticGoodMagic
+      86: invokevirtual #40                 // Method CodexThing.SpawnThing:(Ljava/lang/String;)I
+      89: pop
+      90: goto          168
+      93: aload_0
+      94: getfield      #34                 // Field _spawnPoint:LCodexThing;
+      97: aload_0
+      98: getfield      #70                 // Field _randomGood2:Ljava/lang/String;
+     101: invokevirtual #40                 // Method CodexThing.SpawnThing:(Ljava/lang/String;)I
+     104: pop
+     105: aload_0
+     106: getfield      #34                 // Field _spawnPoint:LCodexThing;
+     109: ldc           #100                // String mysticGoodMagic
+     111: invokevirtual #40                 // Method CodexThing.SpawnThing:(Ljava/lang/String;)I
+     114: pop
+     115: goto          168
+     118: aload_0
+     119: getfield      #34                 // Field _spawnPoint:LCodexThing;
+     122: aload_0
+     123: getfield      #73                 // Field _randomBad1:Ljava/lang/String;
+     126: invokevirtual #40                 // Method CodexThing.SpawnThing:(Ljava/lang/String;)I
+     129: pop
+     130: aload_0
+     131: getfield      #34                 // Field _spawnPoint:LCodexThing;
+     134: ldc           #102                // String mysticBadMagic
+     136: invokevirtual #40                 // Method CodexThing.SpawnThing:(Ljava/lang/String;)I
+     139: pop
+     140: goto          168
+     143: aload_0
+     144: getfield      #34                 // Field _spawnPoint:LCodexThing;
+     147: aload_0
+     148: getfield      #76                 // Field _randomBad2:Ljava/lang/String;
+     151: invokevirtual #40                 // Method CodexThing.SpawnThing:(Ljava/lang/String;)I
+     154: pop
+     155: aload_0
+     156: getfield      #34                 // Field _spawnPoint:LCodexThing;
+     159: ldc           #102                // String mysticBadMagic
+     161: invokevirtual #40                 // Method CodexThing.SpawnThing:(Ljava/lang/String;)I
+     164: pop
+     165: goto          168
+     168: new           #104                // class CodexSound
+     171: dup
+     172: ldc           #106                // String teleport_04.wav
+     174: ldc           #107                // float 200.0f
+     176: ldc           #108                // float 512.0f
+     178: bipush        80
+     180: iconst_0
+     181: iconst_0
+     182: iload_1
+     183: invokespecial #111                // Method CodexSound."<init>":(Ljava/lang/String;FFIIII)V
+     186: astore        5
+     188: aload_0
+     189: iconst_1
+     190: putfield      #14                 // Field bSpawned:Z
+     193: return
+
+  static {};
+    Code:
+       0: iconst_4
+       1: anewarray     #118                // class java/lang/String
+       4: dup
+       5: iconst_0
+       6: ldc           #120                // String Random Good 1 (template name)
+       8: aastore
+       9: dup
+      10: iconst_1
+      11: ldc           #122                // String Random Good 2 (template name)
+      13: aastore
+      14: dup
+      15: iconst_2
+      16: ldc           #124                // String Random Bad 1 (template name)
+      18: aastore
+      19: dup
+      20: iconst_3
+      21: ldc           #126                // String Random Bad 2 (template name)
+      23: aastore
+      24: putstatic     #130                // Field _params:[Ljava/lang/String;
+      27: return
+
+  public void save(int);
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field bStarted:Z
+       4: invokestatic  #134                // Method CodexSequence.SaveBoolean:(Z)Z
+       7: pop
+       8: aload_0
+       9: getfield      #14                 // Field bSpawned:Z
+      12: invokestatic  #134                // Method CodexSequence.SaveBoolean:(Z)Z
+      15: pop
+      16: aload_0
+      17: getfield      #23                 // Field particlesGuid:I
+      20: invokestatic  #137                // Method CodexSequence.SaveInt:(I)Z
+      23: pop
+      24: return
+}

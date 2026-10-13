@@ -81,7 +81,7 @@ def matrix(root):
     rows=[]
     for scene in root['scenes']:
         sid=scene['id']
-        for kind in ('entries','actors','objects','triggers','waypoints','paths','sequences','conversations'):
+        for kind in ('entries','actors','objects','triggers','waypoints','paths','sequences','conversations','generators'):
             for row in scene.get(kind,[]):rows.append(dict(capability=kind,classification='NORMAL',scene=sid,entity=row['id'],link='rcm://'+sid+'/'+kind+'/'+row['id'],in_game=True,in_editor=True,runtime_verified=False))
         for event in scene['events']:
             for capability in ['when:'+event['when'],*['action:'+k for action in event['actions'] for k in action]]:
@@ -96,6 +96,8 @@ def matrix(root):
 
 def main():
     ws=Workspace(ROOT);backend=Backend(ws);root=generate(backend)
+    from dynamic_examples import add_showcase_station
+    root=add_showcase_station(root)
     java=(ROOT/'chronicles/mini_chronicle/resources/RCMMiniActor.java').read_text(encoding='utf8').replace('RCMMiniActor','RCMShowcaseActor');ws.write('chronicles/showcase/resources/RCMShowcaseActor.java',java)
     validation=backend.validate(root)
     if not validation.valid:raise ValueError([p.message for p in validation.problems if p.severity=='ERROR'])

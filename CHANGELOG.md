@@ -1,12 +1,11 @@
-# Changes · 1.0.0-rc3
+# Changes · 1.0.0-rc4
 
-RC3 prunes the existing product without expanding authoring or runtime.
+- Dynamic encounter wizard: ambush, waves, continuous spawning, reinforcements and boss phases, in Campaign, assistants and the existing 3D ground menu.
+- Original enemy filtering and confirmed template health, AI, flags, clan and scene provenance.
+- Waypoint/near-player spawning, caps, bounded retries, pause/resume/stop/reset, existing event actions and health/counter/state conditions.
+- Native GUID ownership records, bounded restore reconciliation, wave/batch cursors, thresholds and cooldown. Missing ownership fails closed instead of spawning duplicates.
+- References, safe deletion, duplication, undo, graph and trace navigation include generators. English/Spanish UI.
+- Opt-in format 10 with a backup; format 9 opens unchanged. Accepted tutorial source/runtime preserved. Separate Dynamic Encounter Lab and small optional Showcase station.
+- Alias-free YAML writing now round-trips shared point lists through the existing safe loader.
 
-- Bottom panels stay hidden until needed; clean validation leaves the canvas clear.
-- Campaign conversion is offered only for legacy documents. Removed hidden global save/deploy/run/settings controls and unused CampaignPanel methods.
-- One persistent language control in Settings, clearer Help and Welcome, human status, Campaign / Overview label and consistent English/Spanish wording.
-- Import uses the normal safe opening flow, including locks and recent projects. Future project formats are refused before writes.
-- Content-based installation identity refreshes derived catalogues after changes while preserving projects, custom assets and backups; an equivalent installation at another path reuses the cache.
-- Showcase guide now leads with a short adventure and optional experiments. In-game labels are natural names; teaching labels remain in editor comments.
-
-Accepted tutorial story, generated runtime, geometry and existing save/build/deploy protections remain unchanged. Native RC3, real GPU/DPI, an independent PC and network validation remain manual.
+First-run, safe saving, deployment, cache identity and language preferences remain. Native gameplay, independent-PC and real GPU/DPI checks remain manual. Not final 1.0.

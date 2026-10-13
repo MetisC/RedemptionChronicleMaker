@@ -1,2 +1,2 @@
-7e704a7178c6ebbee44dc3aeb670514c86069f828f8f55a30a45657b8a85e2b5  RedemptionChronicleMaker-1.0.0-rc3-win64.zip
-edbebbe8c981ed09327cbd3ad3e6f90fda6a164d43767205e6de150ad0be0de3  RedemptionChronicleMaker-1.0.0-rc3-workspace.zip
+2c23d9d2b1575070899e904d32258a0c259e7a4db9a23612010dd6b6c7d217a2  RedemptionChronicleMaker-1.0.0-rc4-win64.zip
+a33b3fc98d5a1732c560cf2ff6c7267d7f3d420e81645348ba11cd6888314df6  RedemptionChronicleMaker-1.0.0-rc4-workspace.zip

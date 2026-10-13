@@ -164,9 +164,25 @@ class Inspector(QWidget):
                 if data['level'].get('sky'):
                     self.note(tr('Este proyecto tiene un override de cielo en YAML. Prevalece sobre el perfil original.'))
             self.note(tr("Entorno y contenido pertenecen a la escena. La geometría sigue siendo la del level original."))
+        elif p[0]=='generators' and len(p)==2:
+            from .dynamic_wizard import open_dynamic
+            g=data['generators'][p[1]]
+            self.line('ID',g['id'],self.rename,'dynamic_property_id',True)
+            self.line(tr('Nombre'),g['name'],lambda v:self.set(p+('name',),v),'dynamic_property_name')
+            from ..dynamic_encounters import MODES
+            self.note(tr(MODES.get(g['mode'],g['mode'])))
+            self.note(tr('Puntos de aparición')+': '+', '.join(g.get('spawn_points',[])))
+            from ..campaign import WHEN,ACTIONS
+            starts=[e for e in data['events'] if any(a.get('start_generator')==g['id'] for a in e['actions'])]
+            self.note(tr('Empieza')+': '+(', '.join(tr(WHEN[e['when']]) for e in starts) or tr('Desde otro evento')))
+            self.note(tr('Máximo enemigos vivos')+': '+str(g['max_alive']))
+            for wi,wave in enumerate(g['waves']):self.note(tr('Oleada ')+str(wi+1)+': '+', '.join(e['template']+' × '+str(e['count']) for e in wave['groups']))
+            self.button(tr('Editar encuentro dinámico…'),lambda:open_dynamic(self.win,g['id']),'edit_dynamic')
+            done=[a for e in data['events'] if e['when']=='generator_complete' and e.get('generator')==g['id'] for a in e['actions']]
+            if done:self.note(tr('Qué ocurre al terminar')+': '+', '.join(tr(ACTIONS[next(iter(a))][0]) for a in done))
         elif p[0] in {"actors", "objects"} and len(p) == 2:
             self.actor()
-            if p[0]=='objects' and hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format')==9:
+            if p[0]=='objects' and hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
                 self.button(tr('Añadir nota al usar…'),lambda:self.object_interaction('show_note'),'object_note')
                 self.button(tr('Añadir conversación al usar…'),lambda:self.object_interaction('start_conversation'),'object_dialogue')
                 self.note(tr('Una nota no necesita personaje. Una conversación usa un NPC de esta escena como hablante; el objeto sirve para abrirla.'))
@@ -388,7 +404,7 @@ class Inspector(QWidget):
                         self.note(tr('CUANDO: ')+TRIGGER_LABELS.get(event['when'],event['when'])+tr('\nSI: ')+(' y '.join(conditions) or tr('Sin condiciones'))+'\nHACER:\n'+'\n'.join(actions))
 
     def dialogue_motion(self,path,row,speaker,line=False):
-        if not hasattr(self.win.doc,'campaign') or self.win.doc.campaign.get('project_format')!=9:return
+        if not hasattr(self.win.doc,'campaign') or self.win.doc.campaign.get('project_format') not in (9,10):return
         from ..motions import slots,label
         speakers=[speaker] if line else [l.get('speaker',speaker) for l in row.get('lines',[]) if l.get('motion') is None]
         available=[]
@@ -407,7 +423,7 @@ class Inspector(QWidget):
         if len(p) == 2:
             self.line("ID", conv["id"], self.rename, "conversation_id", True)
             self.combo(tr("Actor principal"), self.ids("actors"), conv["speaker"], lambda v: self.set(p + ("speaker",), v), "conversation_speaker")
-            if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format')==9:
+            if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
                 from ..camera_presets import PRESETS, DEFAULT_DIALOGUE_CAMERA
                 cameras=[(tr(PRESETS[DEFAULT_DIALOGUE_CAMERA][0])+tr(' (predeterminada)'),DEFAULT_DIALOGUE_CAMERA)]+[(tr(v[0]),k) for k,v in PRESETS.items() if k!=DEFAULT_DIALOGUE_CAMERA]+[(tr('Automática del motor (experimental)'),'native')]
                 self.combo(tr('Cámara de diálogo'),cameras,conv.get('camera',DEFAULT_DIALOGUE_CAMERA),lambda v:self.set(p+('camera',),v),'conversation_camera')
