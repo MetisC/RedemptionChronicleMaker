@@ -60,6 +60,20 @@ def generate(backend):
     first['events'].append(dict(id='state_lab',when='state_changed',once=True,conditions=[{'all':[{'flag':'lab_note','is_set':True},{'not':{'flag':'finished','is_set':True}}]}],actions=[{'clear_flag':'zone_left'}]))
     field['conversations'][1]['prompt']='Con el libro y la llave puedes volver a la calle inicial. Allí verás otra escena sobre la misma geometría: el testigo te espera para terminar. El plano y el sonido son una prueba opcional; puedes omitirlos.'
     root['playtests']=[dict(id='tour',name='Showcase completo',instructions='Anezka → guía (laboratorio opcional) → archivo → libro y llave → custodia → regreso → testigo. Prueba guardar/cargar y volver; los premios no deben repetirse. Las estaciones de cámaras, animaciones, recorrido y audio pueden repetirse o cerrarse en cualquier momento.')]
+    names={'victoria':'Anezka','guide':'Guía','enemy1':'Rata de las minas','notice':'Cartel del taller','sample':'Libro del laboratorio','talkprop':'Atril','lab_key':'Llave de la guía','archivist':'Archivera','keeper':'Custodia','witness':'Testigo','courier':'Mensajera'}
+    for scene in root['scenes']:
+        for kind in ('actors','objects'):
+            for row in scene[kind]:
+                if row['id'] in names:
+                    row['comment']=(row['name']+'\n'+row.get('comment','')).rstrip();row['name']=names[row['id']]
+    def human_names(value):
+        if isinstance(value,dict):
+            for key,child in value.items():
+                if key in {'prompt','text','title','description'} and isinstance(child,str):value[key]=child.replace('Victoria','Anezka')
+                else:human_names(child)
+        elif isinstance(value,list):
+            for child in value:human_names(child)
+    human_names(root)
     return root
 
 

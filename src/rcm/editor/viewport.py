@@ -686,7 +686,7 @@ class SpatialPanel(QWidget):
         b=QPushButton(tr('Enfocar'));b.clicked.connect(lambda:self.viewport.focus_selection() if self.viewport else None);toolbar.addWidget(b)
         b=QPushButton(tr('Inicio'));b.setObjectName('focus_player_start');b.setToolTip(tr('Ver el punto de aparición del jugador al comenzar la crónica'));b.clicked.connect(lambda:self.win.guard(self.win.focus_player_start));toolbar.addWidget(b)
         b=QPushButton(tr('+ Actor'));b.setObjectName('place_actor');b.clicked.connect(lambda:self.win.guard(self.win.add_actor));toolbar.addWidget(b)
-        b=QPushButton('+ Trigger');b.setObjectName('place_trigger');b.clicked.connect(self.add_trigger);toolbar.addWidget(b)
+        b=QPushButton(tr('+ Zona de activación'));b.setObjectName('place_trigger');b.clicked.connect(self.add_trigger);toolbar.addWidget(b)
         b=QPushButton(tr('Eliminar'));b.setObjectName('spatial_delete');b.clicked.connect(lambda:self.win.guard(self.win.delete_selected));toolbar.addWidget(b)
         b=QPushButton(tr('Referencias'));b.clicked.connect(lambda:self.win.find_references());toolbar.addWidget(b)
         layout.addLayout(toolbar)

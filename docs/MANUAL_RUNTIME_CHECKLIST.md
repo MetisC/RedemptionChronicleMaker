@@ -1,6 +1,6 @@
-# Prueba manual · 1.0.0-rc2
+# Prueba manual · 1.0.0-rc3
 
-RCM no automatiza Redemption. La historia del tutorial ya fue aceptada; esta lista comprueba el nuevo producto.
+**MANUAL RUNTIME TEST REQUIRED.** RCM no automatiza Redemption. La historia del tutorial ya fue aceptada; esta lista comprueba el nuevo producto.
 
 1. **SETUP01/02:** descomprime el ZIP de usuario en otra carpeta. Abre el EXE, selecciona Vampire.exe y comprueba la bienvenida y tus proyectos fuera del programa.
 2. **PLAY01/TUTOR01:** abre Tutorial rápido y pulsa F5. En Multiplayer → LAN → New Game elige Una carta al amanecer; completa el encargo. Si el personaje llevaba objetos RCM de antes, comprueba especialmente que LAN abre sin error.

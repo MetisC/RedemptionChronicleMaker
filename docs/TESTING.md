@@ -5,7 +5,7 @@ Desde la raíz, con Python y dependencias locales preparados:
 ```powershell
 python tools/quality.py --fast
 python tools/quality.py --no-coverage
-python tools/test.py --pattern test_product_close.py
+python tools/test.py --pattern test_rc3_product.py
 python tools/rcm.py verify-originals
 ```
 
@@ -17,4 +17,4 @@ Los proyectos históricos necesarios para regresión están exclusivamente en te
 
 Los tres ejemplos activos están en chronicles/tutorial, chronicles/showcase y chronicles/mini_chronicle. Las dependencias están en cache/vendor, cache/devtools y cache/toolchain. tools/bootstrap.ps1 prepara el compilador y escanea el juego sin ejecutar herramientas originales de autoría.
 
-La última revisión completa pasó 357 pruebas; sus resultados están en research/product_close/final_quality. Las comprobaciones posteriores a la limpieza se conservan junto a esa evidencia. Los casos dentro de Redemption los realiza el usuario siguiendo [MANUAL_RUNTIME_CHECKLIST.md](MANUAL_RUNTIME_CHECKLIST.md). Generado, compilado, probado con doubles y verificado en el motor son estados distintos.
+La última revisión completa pasó 376 pruebas; sus resultados están en research/rc3/quality. Hay 19 casos específicos RC3 y ocho recorridos del EXE empaquetado; sus informes y capturas están en research/rc3/portable. Los casos dentro de Redemption los realiza el usuario siguiendo [MANUAL_RUNTIME_CHECKLIST.md](MANUAL_RUNTIME_CHECKLIST.md). Generado, compilado, probado con doubles y verificado en el motor son estados distintos.

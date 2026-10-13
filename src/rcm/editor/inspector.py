@@ -135,14 +135,14 @@ class Inspector(QWidget):
                     self.set(("chronicle", "id"), value)
                 return self.win.guard(operation)
             self.line(tr("ID interno"), chron["id"], change_id, "chronicle_id", True)
-            self.line(tr("Nombre"), chron["name"], lambda v: self.set(("chronicle", "name"), v), "chronicle_name")
+            name_control = self.line(tr("Nombre"), chron["name"], lambda v: self.set(("chronicle", "name"), v), "chronicle_name")
+            name_control.setToolTip(str(self.win.doc.path))
             self.text(tr("Descripción"), chron.get("description", ""), lambda v: self.set(("chronicle", "description"), v), "chronicle_description")
-            self.note(tr("Archivo: ") + str(self.win.doc.path))
-            self.note(tr("Cada escena usa una geometría original. Las campañas pueden contener varias escenas. Los builds se guardan en build/<ID>."))
+            self.note(tr("Cada escena usa un escenario original. Puedes crear varias escenas para contar tu historia. Usa F5 cuando quieras probar tus cambios."))
         elif p == ("level",):
             source = data["level"].get("source", "")
             self.note(self.win.backend.level_label(source) + tr(" · ") + source if source in self.win.backend.levels else tr("Elige el escenario de tu crónica."))
-            self.button(tr("Elegir level base…"), self.win.choose_level, "choose_level")
+            self.button(tr("Elegir escenario base…"), self.win.choose_level, "choose_level")
             self.line(tr("Título al entrar"), data["level"].get("name", ""), lambda v: self.set(("level", "name"), v, True), "level_name")
             self.note(tr("Si no escribes un título, aparecerá el nombre de la crónica."))
             if source in self.win.backend.levels:

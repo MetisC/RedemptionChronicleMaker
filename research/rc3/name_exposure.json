@@ -1,0 +1,72 @@
+{
+  "evidence": "generator.py emits entity.name in NLS; generated NOT description ID refers to that key. comment is excluded from generated entity labels. Marker/sequence editor names retained.",
+  "changes": [
+    {
+      "scene": "quay",
+      "id": "victoria",
+      "game_name": "Anezka",
+      "editor_comment": "01 · Anezka: empieza aquí"
+    },
+    {
+      "scene": "quay",
+      "id": "guide",
+      "game_name": "Guía",
+      "editor_comment": "02 · Guía: viaje y laboratorio opcional"
+    },
+    {
+      "scene": "quay",
+      "id": "enemy1",
+      "game_name": "Rata de las minas",
+      "editor_comment": "Rata de las minas · combate fácil y opcional"
+    },
+    {
+      "scene": "quay",
+      "id": "notice",
+      "game_name": "Cartel del taller",
+      "editor_comment": "Cartel del taller: leer nota"
+    },
+    {
+      "scene": "quay",
+      "id": "sample",
+      "game_name": "Libro del laboratorio",
+      "editor_comment": "Libro del laboratorio: recoger"
+    },
+    {
+      "scene": "quay",
+      "id": "talkprop",
+      "game_name": "Atril",
+      "editor_comment": "Atril: conversación con la guía"
+    },
+    {
+      "scene": "quay",
+      "id": "lab_key",
+      "game_name": "Llave de la guía",
+      "editor_comment": "Llave de la guía: inventario inicial"
+    },
+    {
+      "scene": "archive",
+      "id": "archivist",
+      "game_name": "Archivera",
+      "editor_comment": "Archivera · elige una rama"
+    },
+    {
+      "scene": "archive",
+      "id": "keeper",
+      "game_name": "Custodia",
+      "editor_comment": "Custodia · regreso y cámara"
+    },
+    {
+      "scene": "return",
+      "id": "witness",
+      "game_name": "Testigo",
+      "editor_comment": "Testigo · entrega y final"
+    },
+    {
+      "scene": "return",
+      "id": "courier",
+      "game_name": "Mensajera",
+      "editor_comment": "Mensajera · vuelve al comienzo"
+    }
+  ],
+  "runtime_logic_changed": false
+}

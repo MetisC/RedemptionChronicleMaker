@@ -21,6 +21,26 @@ def digest(path: Path):
     return h.hexdigest()
 
 
+def identity_from_records(records, loose=()):
+    """Content identity, independent of the installation's absolute path."""
+    files = [{'file':r['file'].casefold(), 'size':r['size'], 'sha256':r['sha256']}
+             for r in records if r['file'].lower().endswith('.nob') or r['file'].lower() in {'vampire.exe','classes.zip'} or r['file'].lower().startswith('chronicles/')]
+    files += [{'file':r['path'].casefold(),'size':r['size'],'sha256':None} for r in loose if r.get('archive') is None and r.get('extension') in {'.wav','.mp3'}]
+    files.sort(key=lambda r:r['file'])
+    encoded=json.dumps(files,sort_keys=True,separators=(',',':')).encode('utf8')
+    return {'format':1,'sha256':hashlib.sha256(encoded).hexdigest(),'files':files}
+
+
+def installation_identity(game):
+    game=Path(game)
+    paths=[*game.glob('*.nob'),game/'Vampire.exe',game/'classes.zip']
+    if (game/'Chronicles').is_dir():paths.extend(p for p in (game/'Chronicles').iterdir() if p.is_file())
+    records=[{'file':p.relative_to(game).as_posix(),'size':p.stat().st_size,'sha256':digest(p)} for p in paths]
+    loose=[{'path':p.relative_to(game).as_posix(),'size':p.stat().st_size,'extension':p.suffix.lower(),'archive':None}
+           for p in (game/'Sounds').rglob('*') if p.is_file() and p.suffix.lower() in {'.wav','.mp3'}]
+    return identity_from_records(records,loose)
+
+
 def rows(text):
     for number, line in enumerate(text.splitlines(), 1):
         line = line.split("#", 1)[0].split("//", 1)[0].strip()
@@ -43,13 +63,13 @@ def parse_chronicle(data: bytes):
     return {"locations": locations, "exits": exits, "settings": settings}
 
 
-def discover(ws: Workspace, game: Path, disassemble: bool = True, progress=lambda _:None):
+def discover(ws: Workspace, game: Path, disassemble: bool = True, progress=lambda _:None, refresh_installation=False):
     game = game.resolve()
     if not (game / "Codex.nob").is_file():
         raise ValueError("No se encuentra Codex.nob en la instalación")
     # A rescan must not silently redefine the original safety baseline.
     baseline_path = ws.output("research/source_manifest.json")
-    if baseline_path.is_file():
+    if baseline_path.is_file() and not refresh_installation:
         baseline = json.loads(baseline_path.read_text(encoding="utf8"))
         changed = [r["file"] for r in baseline if not (game / r["file"]).is_file() or digest(game / r["file"]) != r["sha256"]]
         if changed:
@@ -184,6 +204,7 @@ def discover(ws: Workspace, game: Path, disassemble: bool = True, progress=lambd
     progress('Indexando animaciones disponibles…')
     ws.output('cache/motions.json').unlink(missing_ok=True)
     ensure_catalogue(ws,resources,game)
+    ws.write('cache/installation_identity.json',json.dumps(identity_from_records(manifests,entries),indent=2))
     return summary
 
 

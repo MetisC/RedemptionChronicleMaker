@@ -1,4 +1,4 @@
-# Redemption Chronicle Maker — 1.0.0-rc2
+# Redemption Chronicle Maker — 1.0.0-rc3
 
 En este workspace, abre **Redemption Chronicle Maker.lnk** desde la raíz.
 
@@ -14,3 +14,5 @@ No necesitas terminal, configuración manual ni herramientas originales de autor
 La historia del tutorial fue aceptada por el usuario. El nuevo primer arranque, lanzamiento directo y Showcase siguen pendientes de prueba manual en el juego. Esta es una candidata, no una 1.0 final. Uso local con un jugador; red experimental.
 
 [Primeros pasos](docs/GETTING_STARTED.md) · [Tutorial](docs/TUTORIAL.md) · [Showcase](docs/SHOWCASE.md) · [Atajos](docs/SHORTCUTS.md) · [Problemas](docs/TROUBLESHOOTING.md)
+
+RC3 simplifica paneles, ayuda y estados; protege la apertura de proyectos importados y actualiza los catálogos cuando cambia la instalación. **MANUAL RUNTIME TEST REQUIRED**. Consulta [el informe de cierre](docs/FINAL_PRODUCT_REPORT.md).

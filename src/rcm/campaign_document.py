@@ -3,6 +3,7 @@ import copy
 from .document import Document,draft_shape
 from .service import source_text
 from .model import identifier
+from .input_limits import CURRENT_PROJECT_FORMAT,check_project_format
 
 class CampaignDocument(Document):
     def __init__(self,ws,campaign,path=None):
@@ -32,11 +33,12 @@ class CampaignDocument(Document):
         path=ws.output(Path(directory)/'project.yaml')
         if path.exists():raise ValueError('Ya existe project.yaml en ese directorio')
         scene=dict(id='scene1',level={'source':''},actors=[],objects=[],conversations=[],events=[],triggers=[],encounters=[],sequences=[],entries=[],waypoints=[],paths=[])
-        data=dict(schema=2,project_format=9,chronicle=dict(id=pid,name=name,description=description),state={'flags':{}},entry='scene1',scenes=[scene],quests=[],resources={},metadata={'version':'0.1.0'},build_options={'debug':True})
+        data=dict(schema=2,project_format=CURRENT_PROJECT_FORMAT,chronicle=dict(id=pid,name=name,description=description),state={'flags':{}},entry='scene1',scenes=[scene],quests=[],resources={},metadata={'version':'0.1.0'},build_options={'debug':True})
         doc=cls(ws,data);doc.path=path;doc._expects_new_file=True;return doc
     @classmethod
     def load_data(cls,ws,data,path):
         from .input_limits import check_data
+        check_project_format(data)
         check_data(data)
         from .recipes import validate_authoring
         validate_authoring(data)

@@ -1,6 +1,17 @@
 """Bound project inputs before recursive parsers or resource inheritance."""
 from typing import Any, Iterable
 MAX_BYTES = 2 * 1024 * 1024
+CURRENT_PROJECT_FORMAT = 9
+
+
+def check_project_format(value: Any) -> Any:
+    if isinstance(value, dict) and 'project_format' in value:
+        version = value['project_format']
+        if type(version) is not int:
+            raise ValueError('Formato de proyecto inválido.')
+        if version > CURRENT_PROJECT_FORMAT:
+            raise ValueError('Esta crónica fue creada con una versión más reciente de RCM. Actualiza Redemption Chronicle Maker para abrirla con seguridad.')
+    return value
 
 
 def check_data(value: Any) -> Any:
@@ -38,4 +49,4 @@ def parse_source(source: str | dict) -> Any:
             source = yaml.load(source, Loader=UniqueLoader)
         except RecursionError as error:
             raise ValueError('YAML demasiado anidado') from error
-    return check_data(source)
+    return check_project_format(check_data(source))

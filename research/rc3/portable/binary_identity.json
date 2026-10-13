@@ -1,0 +1,6 @@
+{
+  "version": "1.0.0-rc3",
+  "executable_sha256": "3bb3f2a4fd268b407082a1d47c430edbc76b150f5e65a5c3caf2a831230e99b9",
+  "probe_runs": 8,
+  "native_game_test": false
+}

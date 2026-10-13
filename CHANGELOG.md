@@ -1,9 +1,12 @@
-# Changes · 1.0.0-rc2
+# Changes · 1.0.0-rc3
 
-New: first-run setup, global preferences, welcome/recent projects, per-chronicle playtest and separate full Showcase.
+RC3 prunes the existing product without expanding authoring or runtime.
 
-Improved: F5 saves, validates, builds only if stale, prepares the game and launches directly. Project copies include custom assets. Saved versions and external-change checks protect work.
+- Bottom panels stay hidden until needed; clean validation leaves the canvas clear.
+- Campaign conversion is offered only for legacy documents. Removed hidden global save/deploy/run/settings controls and unused CampaignPanel methods.
+- One persistent language control in Settings, clearer Help and Welcome, human status, Campaign / Overview label and consistent English/Spanish wording.
+- Import uses the normal safe opening flow, including locks and recent projects. Future project formats are refused before writes.
+- Content-based installation identity refreshes derived catalogues after changes while preserving projects, custom assets and backups; an equivalent installation at another path reuses the cache.
+- Showcase guide now leads with a short adventure and optional experiments. In-game labels are natural names; teaching labels remain in editor comments.
 
-Fixed: developer machine paths and shortcut dependency in the product; developer documentation in the user portable; inventory compatibility when switching managed playtest folders.
-
-Known limits: native acceptance of the new setup/playtest/Showcase circuit and independent clean-machine testing remain pending. Geometry, universal doors and arbitrary camera export remain outside the normal product scope.
+Accepted tutorial story, generated runtime, geometry and existing save/build/deploy protections remain unchanged. Native RC3, real GPU/DPI, an independent PC and network validation remain manual.

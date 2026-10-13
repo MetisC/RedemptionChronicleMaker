@@ -19,6 +19,10 @@ El build usa un directorio provisional, comprueba formatos, referencias, versió
 
 F5 prepara, compila si hace falta, despliega a la carpeta de la crónica y lanza Redemption. Los menús y la partida los controla el usuario. profile_compatibility conserva definiciones propias requeridas por inventarios persistidos sin alterar el perfil del jugador.
 
-Los paquetes validan tamaños, rutas, hashes, conflictos y dependencias. Importar fuentes no ejecuta Java. Las clases instaladas requieren revisión; no se afirma que tengan sandbox o firma de confianza. La instalación original permanece de lectura fuera de RCM.
+Los paquetes validan tamaños, rutas, hashes, conflictos y dependencias. Importar fuentes no ejecuta Java. La apertura del proyecto importado usa open_path, con los mismos locks, recientes, recuperación y validación que una apertura normal. Las clases instaladas requieren revisión; no se afirma que tengan sandbox o firma de confianza. La instalación original permanece de lectura fuera de RCM.
 
 Los recursos técnicos extraídos se conservan en research/original y cache. Las referencias del SDK están en research/sdk; los baselines de regresión, en tests/fixtures. La evidencia actual, límites y pruebas manuales están en [FINAL_PRODUCT_REPORT.md](FINAL_PRODUCT_REPORT.md) y [MANUAL_RUNTIME_CHECKLIST.md](MANUAL_RUNTIME_CHECKLIST.md).
+
+La identidad de instalación usa nombres relativos, tamaño y SHA-256 de los archivos principales (archivos NOB, Vampire.exe, classes.zip y Chronicles). Una ruta diferente con los mismos bytes reutiliza el catálogo. Un cambio de contenido reconstruye sólo los índices y extracciones derivados; proyectos, recursos propios, backups y compilador permanecen. La identidad se publica al terminar el escaneo. Los cachés de mallas/texturas siguen ligados a sus propios hashes.
+
+CURRENT_PROJECT_FORMAT centraliza la versión 9. Los formatos futuros se rechazan antes de modificar, importar o recuperar; los documentos admitidos conservan la validación y conversión existentes. No se ha añadido un sistema de migraciones.

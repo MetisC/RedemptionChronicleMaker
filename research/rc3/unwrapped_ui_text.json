@@ -1,0 +1,92 @@
+[
+  {
+    "file": "src/rcm/editor/campaign_panel.py",
+    "line": 440,
+    "call": "combo",
+    "text": "Flag"
+  },
+  {
+    "file": "src/rcm/editor/campaign_panel.py",
+    "line": 442,
+    "call": "combo",
+    "text": "Quest"
+  },
+  {
+    "file": "src/rcm/editor/campaign_panel.py",
+    "line": 312,
+    "call": "QPushButton",
+    "text": "−"
+  },
+  {
+    "file": "src/rcm/editor/inspector.py",
+    "line": 499,
+    "call": "combo",
+    "text": "Flag"
+  },
+  {
+    "file": "src/rcm/editor/inspector.py",
+    "line": 463,
+    "call": "combo",
+    "text": "Flag"
+  },
+  {
+    "file": "src/rcm/editor/inspector.py",
+    "line": 195,
+    "call": "line",
+    "text": "Alias"
+  },
+  {
+    "file": "src/rcm/editor/product_probe.py",
+    "line": 41,
+    "call": "setText",
+    "text": "First adventure"
+  },
+  {
+    "file": "src/rcm/editor/product_probe.py",
+    "line": 47,
+    "call": "setText",
+    "text": "Anezka"
+  },
+  {
+    "file": "src/rcm/editor/recipe_wizard.py",
+    "line": 127,
+    "call": "combo",
+    "text": "camera"
+  },
+  {
+    "file": "src/rcm/editor/recipe_wizard.py",
+    "line": 139,
+    "call": "combo",
+    "text": "target"
+  },
+  {
+    "file": "src/rcm/editor/recipe_wizard.py",
+    "line": 140,
+    "call": "combo",
+    "text": "reference"
+  },
+  {
+    "file": "src/rcm/editor/recipe_wizard.py",
+    "line": 144,
+    "call": "combo",
+    "text": "wide_preset"
+  },
+  {
+    "file": "src/rcm/editor/recipe_wizard.py",
+    "line": 145,
+    "call": "combo",
+    "text": "close_preset"
+  },
+  {
+    "file": "src/rcm/editor/recipe_wizard.py",
+    "line": 159,
+    "call": "combo",
+    "text": "destination"
+  },
+  {
+    "file": "src/rcm/editor/viewport.py",
+    "line": 689,
+    "call": "QPushButton",
+    "text": "+ Trigger"
+  }
+]

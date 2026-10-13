@@ -8,9 +8,9 @@ from ..debugging import parse_trace,trace_file,trace_tail
 class DebugPanel(QWidget):
     def __init__(self,win):
         super().__init__();self.win=win;self.observed={};layout=QVBoxLayout(self);bar=QHBoxLayout()
-        for title,name,cb in [(tr('Construir'),'debug_build',win.build_project),(tr('Preparar prueba'),'debug_deploy',lambda:win.campaign_panel.deploy()),(tr('Ejecutar'),'debug_run',lambda:win.campaign_panel.run_game()),(tr('Leer trace'),'debug_refresh',self.read_trace),('+ Checklist','debug_bookmark',self.bookmark)]:
+        for title,name,cb in [(tr('Construir'),'debug_build',win.build_project),(tr('PROBAR EN REDEMPTION'),'debug_playtest',lambda:win.actions['playtest'].trigger()),(tr('Leer trace'),'debug_refresh',self.read_trace),('+ Checklist','debug_bookmark',self.bookmark)]:
             b=QPushButton(title);b.setObjectName(name);b.clicked.connect(lambda checked=False,cb=cb:win.guard(cb));bar.addWidget(b)
-        layout.addLayout(bar);self.enabled=QCheckBox(tr('Build de desarrollo: instrumentar flags, quests y acciones'));self.enabled.setObjectName('debug_instrumentation');self.enabled.toggled.connect(self.toggle);layout.addWidget(self.enabled)
+        layout.addLayout(bar);self.enabled=QCheckBox(tr('Registro de pruebas: seguir flags, misiones y acciones'));self.enabled.setObjectName('debug_instrumentation');self.enabled.toggled.connect(self.toggle);layout.addWidget(self.enabled)
         note=QLabel(tr('Datos leídos de logs reales; no son estado en vivo ni resultados de tests. Quest Watch observa flags de progreso del controlador, no inspecciona el journal.'));note.setWordWrap(True);layout.addWidget(note)
         self.tree=QTreeWidget();self.tree.setHeaderLabels([tr('Tipo'),tr('Estado / Mensaje'),tr('Tiempo')]);self.tree.setObjectName('runtime_trace');self.tree.itemDoubleClicked.connect(self.navigate);layout.addWidget(self.tree,3)
         self.checklist=QPlainTextEdit();self.checklist.setReadOnly(True);layout.addWidget(self.checklist,1)

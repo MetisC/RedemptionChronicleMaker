@@ -1,7 +1,0 @@
-{
-  "target": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
-  "relative": "..\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
-  "cwd": "H:\\Repositorios\\RedemptionChronicleMaker",
-  "arguments": "--workspace \"H:\\Repositorios\\RedemptionChronicleMaker\"",
-  "icon": "H:\\Repositorios\\RedemptionChronicleMaker\\src\\rcm\\editor\\assets\\chronicle.ico"
-}

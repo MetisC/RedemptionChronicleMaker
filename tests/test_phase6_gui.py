@@ -35,7 +35,8 @@ class Phase6GuiTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as tmp:
             with patch('rcm.editor.package_panel.QFileDialog.getOpenFileName',return_value=(str(archive),'')),patch('rcm.editor.package_panel.QFileDialog.getExistingDirectory',return_value=tmp),patch.object(QMessageBox,'information'):package_panel.import_project(self.win)
             imported=self.win.doc.snapshot();self.assertEqual(imported['scenes'],source['scenes']);self.assertEqual(imported['quests'],source['quests']);self.assertTrue(self.backend.validate(imported).valid)
-            self.win.doc=None
+            from rcm.editor.product_ui import close_project
+            close_project(self.win)
     def test_safe_delete_campaign_cancel_has_no_effect(self):
         s=self.win.doc.campaign['scenes'][1];s['events'].append({'id':'unused','when':'timer','seconds':1,'actions':[{'reward_xp':1}]});panel=self.win.campaign_panel;panel.path=('scenes',1,'events',len(s['events'])-1);before=self.win.doc.snapshot()
         with patch.object(QMessageBox,'question',return_value=QMessageBox.StandardButton.No):panel.delete()
