@@ -70,6 +70,8 @@ La ausencia de una pose base tras un gesto con AI pausada concuerda con la desap
 
 La biblioteca ausente es la explicación del crash LAN mejor apoyada por volcados, datos de perfil, cargador y reparación aceptada. No se conservan como conclusiones las hipótesis descartadas sobre longitud arbitraria de textos o carpetas vacías.
 
+Reaparición en RC4: el perfil actual conserva `R_rcm_showcase_s1_key`, pero el acceso del escritorio selecciona la carpeta compartida del tutorial/mini, donde esa plantilla faltaba. Se ha añadido allí la definición y su clase, conservando bytes del perfil y de los paquetes activos. La reparación anterior y el cargador respaldan esta explicación; no se ha obtenido un nuevo volcado ni confirmado todavía el nuevo arranque dentro del juego. Evidencia: research/runtime_test/profile_startup_repair.json y profile_originals_check.json. Deploy compartido/personalizado y cierre de una prueba desde el editor ahora conservan las bibliotecas de inventario. Lanzamientos externos con el editor cerrado no permiten actualizar automáticamente objetos adquiridos después: tools/repair_profile_libraries.py permite reparar sólo carpetas RCM administradas.
+
 ## PENDIENTE DE VERIFICAR
 
 La aceptación nativa del tutorial corresponde a su recorrido concreto; no acredita cada actor, cámara, path, save/load, reentrada o caso de red. La nueva experiencia de primer arranque, F5 y Showcase sigue pendiente de los casos de [MANUAL_RUNTIME_CHECKLIST.md](MANUAL_RUNTIME_CHECKLIST.md). La evidencia aceptada está en research/native_acceptance.

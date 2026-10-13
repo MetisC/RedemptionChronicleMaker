@@ -1,0 +1,30 @@
+{
+  "updated": [
+    "east_demo",
+    "rcm_showcase"
+  ],
+  "files": [
+    "east_demo/rcm_compat.nob",
+    "east_demo/codex/R_rcm_showcase_s1_Passive.class",
+    "east_demo/.rcm_deployment.json",
+    "rcm_showcase/.rcm_deployment.json"
+  ],
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\profile_libraries_1791917039725661800.zip",
+  "native_engine_test": false,
+  "profiles": {
+    "npf000000.npf": {
+      "sha256": "cc2fe3951df5bb5277d8c84a10eb623440362fde713de830767168b2cd2daf0c",
+      "references": [
+        "mp_serena",
+        "punch",
+        "r_rcm_showcase_s1_key"
+      ]
+    }
+  },
+  "profiles_unchanged": true,
+  "template_bytes_preserved": true,
+  "passive_class_bytes_preserved": true,
+  "launch_directory": "RCM/east_demo",
+  "previously_missing_startup_template": "R_rcm_showcase_s1_key",
+  "active_packages_unchanged": true
+}

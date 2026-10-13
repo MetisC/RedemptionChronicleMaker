@@ -1,7 +1,6 @@
 {
-  "version": "1.0.0-rc4",
-  "sha256": "534ec0f61d5e23d3fb1ef6121114f6284be3d35bd75d7b23e7ad23d8dc740d51",
-  "checked_runs": 8,
-  "all_widget_checks_passed": true,
+  "sha256": "bf8c4d16201c3d220ddd5901035dce665874d42f6fe30ec90b8ee539adea9241",
+  "runs": 8,
+  "successful": true,
   "native_engine_test": false
 }

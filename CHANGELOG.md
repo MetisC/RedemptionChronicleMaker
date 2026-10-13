@@ -1,5 +1,7 @@
 # Changes · 1.0.0-rc4
 
+- Fixed startup inventory compatibility in shared/custom launch folders. After an editor playtest, saved item definitions are refreshed in managed folders so returning to another chronicle does not lose them. Saved characters are never edited.
+
 - Dynamic encounter wizard: ambush, waves, continuous spawning, reinforcements and boss phases, in Campaign, assistants and the existing 3D ground menu.
 - Original enemy filtering and confirmed template health, AI, flags, clan and scene provenance.
 - Waypoint/near-player spawning, caps, bounded retries, pause/resume/stop/reset, existing event actions and health/counter/state conditions.

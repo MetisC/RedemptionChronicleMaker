@@ -182,6 +182,9 @@ def poll_game(win):
     try:win.debug_panel.read_trace()
     except (OSError,ValueError):pass
     win.statusBar().showMessage(tr('Playtest terminado. Abre Prueba / Depuración para ver el registro.'),15000);refresh_status(win)
+    if win.play_record.get('profile_compatibility_error'):
+        win.show_bottom(1);win.log.appendPlainText(diagnostic(win.play_record['profile_compatibility_error']))
+        QMessageBox.warning(win,tr('No se pudo preparar el inventario guardado'),tr('Revisa el registro antes de abrir otra crónica. Tu personaje guardado no se ha modificado.'))
 
 
 def settings_dialog(win):

@@ -1,39 +1,11 @@
 {
   "version": "1.0.0-rc4",
   "user_zip": "RedemptionChronicleMaker-1.0.0-rc4-win64.zip",
-  "sha256": "2c23d9d2b1575070899e904d32258a0c259e7a4db9a23612010dd6b6c7d217a2",
-  "size": 85836744,
+  "sha256": "d28575240eaf02fc7ce4fd5f7dd120d94ffc9c679f62d08f3a2bce94872e070d",
+  "size": 85839294,
   "files": 362,
   "all_hashes_verified": true,
   "source_archive_separate": true,
   "native_game_verified": false,
-  "clean_machine_verified": false,
-  "workspace_archive": {
-    "file": "RedemptionChronicleMaker-1.0.0-rc4-workspace.zip",
-    "sha256": "a33b3fc98d5a1732c560cf2ff6c7267d7f3d420e81645348ba11cd6888314df6",
-    "size": 399963156,
-    "files": 11266,
-    "all_hashes_verified": true,
-    "private": true,
-    "git_included": false
-  },
-  "quality": {
-    "tests": 425,
-    "failures": 0,
-    "errors": 0,
-    "skipped": 0,
-    "successful": true,
-    "elapsed_seconds": 365.81303740000294,
-    "category": "offline-integration-gui-model-build-format",
-    "native_engine_test": false,
-    "failures_detail": []
-  },
-  "executable": {
-    "version": "1.0.0-rc4",
-    "sha256": "534ec0f61d5e23d3fb1ef6121114f6284be3d35bd75d7b23e7ad23d8dc740d51",
-    "checked_runs": 8,
-    "all_widget_checks_passed": true,
-    "native_engine_test": false
-  },
-  "manual_status": "MANUAL RUNTIME TEST REQUIRED"
+  "clean_machine_verified": false
 }

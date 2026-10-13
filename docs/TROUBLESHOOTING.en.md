@@ -6,6 +6,8 @@
 
 **Changes missing:** save and press F5. Errors are shown and prevent launching. Editing custom assets also invalidates the previous build.
 
+**Game exits before character selection:** a saved character may carry a custom item from another chronicle. Redemption needs its definition at startup. RCM preserves these libraries when preparing playtests, including shared folders, and refreshes them after an editor playtest ends. If a saved-inventory warning appears, check the log before switching chronicles. Do not delete your character or its items to resolve this.
+
 **Viewport failure:** enable Start without 3D viewport in Settings and restart. Data editing remains available. Installation diagnosis checks state or rebuilds catalogues without changing original resources.
 
 **Recover work:** open Saved versions. Automatic recovery can be accepted or left for later. Duplicate chronicle copies custom assets too.

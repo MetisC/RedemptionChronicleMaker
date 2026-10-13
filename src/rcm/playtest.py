@@ -73,5 +73,8 @@ def launch_playtest(ws, ident):
 
 def finish_playtest(ws, record, code):
     record = dict(record,ended=time.time(),exit_code=code)
+    from .profile_compatibility import refresh_installed_profiles
+    try:record['profile_compatibility']=refresh_installed_profiles(ws)
+    except (OSError,ValueError) as error:record['profile_compatibility_error']=str(error)
     ws.write('cache/last_playtest.json',json.dumps(record,indent=2))
     return record
