@@ -1,0 +1,536 @@
+Compiled from "CodexThing.java"
+public class CodexThing extends Codex {
+  public boolean IsProjectile();
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method GetThingType:()I
+       4: iconst_4
+       5: if_icmpeq     10
+       8: iconst_0
+       9: ireturn
+      10: iconst_1
+      11: ireturn
+
+  public native java.lang.String GetTemplateName();
+
+  public native boolean SetDescriptionID(java.lang.String);
+
+  public native int SetExpireTime(int);
+
+  public native int GetCurFrame();
+
+  public native int GetGoalFrame();
+
+  public boolean IsPlayer();
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method GetThingType:()I
+       4: bipush        7
+       6: if_icmpeq     11
+       9: iconst_0
+      10: ireturn
+      11: iconst_1
+      12: ireturn
+
+  public native float[] GetEmitterVectorMember(int);
+
+  public native float SetCollideRadius(float);
+
+  public native int FireProjectileAtPos(java.lang.String, float[], float[]);
+
+  public native boolean LookAtPos(float[]);
+
+  public native void SetAlpha(float, float);
+
+  public boolean LookAtPos(float, float, float);
+    Code:
+       0: iconst_3
+       1: newarray       float
+       3: astore        4
+       5: aload         4
+       7: iconst_0
+       8: fload_1
+       9: fastore
+      10: aload         4
+      12: iconst_1
+      13: fload_2
+      14: fastore
+      15: aload         4
+      17: iconst_2
+      18: fload_3
+      19: fastore
+      20: aload_0
+      21: aload         4
+      23: invokevirtual #20                 // Method LookAtPos:([F)Z
+      26: ireturn
+
+  public native boolean Trigger(int, int, float, float, float, float);
+
+  public native float GetCollideRadius();
+
+  public void SetAlpha(float);
+    Code:
+       0: aload_0
+       1: fload_1
+       2: fconst_0
+       3: invokevirtual #30                 // Method SetAlpha:(FF)V
+       6: return
+
+  public native java.lang.String GetSurfaceMaterial();
+
+  public boolean IsProp();
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method GetThingType:()I
+       4: iconst_2
+       5: if_icmpeq     10
+       8: iconst_0
+       9: ireturn
+      10: iconst_1
+      11: ireturn
+
+  public native int GetThingType();
+
+  public native int PrevInWorld();
+
+  public native int GetRenderFlags();
+
+  public native int ClearRenderFlags(int);
+
+  public native boolean DetachAllThings();
+
+  public boolean IsEmitter();
+    Code:
+       0: aload_0
+       1: invokevirtual #34                 // Method GetThingFlags:()I
+       4: bipush        32
+       6: iand
+       7: ifne          12
+      10: iconst_0
+      11: ireturn
+      12: iconst_1
+      13: ireturn
+
+  public native void EndShell();
+
+  public native int GetNumAttachments();
+
+  public boolean IsRegion();
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method GetThingType:()I
+       4: iconst_3
+       5: if_icmpeq     10
+       8: iconst_0
+       9: ireturn
+      10: iconst_1
+      11: ireturn
+
+  public native float SetCollideHeight(float);
+
+  public native boolean AllocateDynamicLight();
+
+  public native int SetPhysicsFlags(int);
+
+  public native boolean SetPosition(float[]);
+
+  public native boolean SetFramePosition(int, float[]);
+
+  public native void StopMotion();
+
+  public native int GetEmitterIntMember(int);
+
+  public native boolean SetEmitterFloatMember(int, float);
+
+  public boolean SetPosition(float, float, float);
+    Code:
+       0: iconst_3
+       1: newarray       float
+       3: astore        4
+       5: aload         4
+       7: iconst_0
+       8: fload_1
+       9: fastore
+      10: aload         4
+      12: iconst_1
+      13: fload_2
+      14: fastore
+      15: aload         4
+      17: iconst_2
+      18: fload_3
+      19: fastore
+      20: aload_0
+      21: aload         4
+      23: invokevirtual #37                 // Method SetPosition:([F)Z
+      26: ireturn
+
+  public native float[] GetVelocity();
+
+  public native float GetDynamicLightIntensity();
+
+  public boolean SetPosition(CodexVector);
+    Code:
+       0: iconst_3
+       1: newarray       float
+       3: astore_2
+       4: aload_2
+       5: iconst_0
+       6: aload_1
+       7: invokevirtual #43                 // Method CodexVector.GetX:()F
+      10: fastore
+      11: aload_2
+      12: iconst_1
+      13: aload_1
+      14: invokevirtual #46                 // Method CodexVector.GetY:()F
+      17: fastore
+      18: aload_2
+      19: iconst_2
+      20: aload_1
+      21: invokevirtual #49                 // Method CodexVector.GetZ:()F
+      24: fastore
+      25: aload_0
+      26: aload_2
+      27: invokevirtual #37                 // Method SetPosition:([F)Z
+      30: ireturn
+
+  public native boolean DetachThing(int);
+
+  public native int GetRenderType();
+
+  public native int SetMoveType(int);
+
+  public native int GetEmitterType();
+
+  public native int NextInSector();
+
+  public native void SetScale(float, float);
+
+  public native int FirstInWorld();
+
+  public native void SetScale(float[], float);
+
+  public void SetScale(float);
+    Code:
+       0: aload_0
+       1: fload_1
+       2: fconst_0
+       3: invokevirtual #54                 // Method SetScale:(FF)V
+       6: return
+
+  public static native int GuidFromCastID(java.lang.String);
+
+  public native java.lang.String GetDynamicLightMaterial();
+
+  public native boolean SetModel(java.lang.String);
+
+  public native float GetDynamicLightRadius();
+
+  public native boolean UnfreezeAnimations();
+
+  public native boolean SetRotVelocity(float[]);
+
+  public native int GetCollideType();
+
+  public boolean IsWeapon();
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method GetThingType:()I
+       4: iconst_5
+       5: if_icmpeq     10
+       8: iconst_0
+       9: ireturn
+      10: iconst_1
+      11: ireturn
+
+  public native boolean EnableEmitter();
+
+  public native float[] FindBoneOffset(int);
+
+  public native int GetThingFlags();
+
+  public native java.lang.String GetName();
+
+  public native int ClearThingFlags(int);
+
+  public native int SetRenderFlags(int);
+
+  public native float[] GetOrientation();
+
+  public native float[] GetFrameOrientation(int);
+
+  public native int GetNthAttachment(int);
+
+  public native boolean SetDynamicLightColor(float[]);
+
+  public boolean IsArmor();
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method GetThingType:()I
+       4: bipush        6
+       6: if_icmpeq     11
+       9: iconst_0
+      10: ireturn
+      11: iconst_1
+      12: ireturn
+
+  public native boolean ClearFrames();
+
+  public native boolean SetVelocity(float[]);
+
+  public native float[] GetRotVelocity();
+
+  public native boolean SetDynamicLightIntensity(float);
+
+  public boolean SetVelocity(float, float, float);
+    Code:
+       0: iconst_3
+       1: newarray       float
+       3: astore        4
+       5: aload         4
+       7: iconst_0
+       8: fload_1
+       9: fastore
+      10: aload         4
+      12: iconst_1
+      13: fload_2
+      14: fastore
+      15: aload         4
+      17: iconst_2
+      18: fload_3
+      19: fastore
+      20: aload_0
+      21: aload         4
+      23: invokevirtual #58                 // Method SetVelocity:([F)Z
+      26: ireturn
+
+  public CodexThing(int);
+    Code:
+       0: aload_0
+       1: invokespecial #62                 // Method Codex."<init>":()V
+       4: iload_1
+       5: ifge          16
+       8: aload_0
+       9: iconst_0
+      10: putfield      #66                 // Field Codex.guid:I
+      13: goto          21
+      16: aload_0
+      17: iload_1
+      18: putfield      #66                 // Field Codex.guid:I
+      21: return
+
+  public native int PlayMotionSetMode(int, boolean, float);
+
+  public boolean SetVelocity(CodexVector);
+    Code:
+       0: iconst_3
+       1: newarray       float
+       3: astore_2
+       4: aload_2
+       5: iconst_0
+       6: aload_1
+       7: invokevirtual #43                 // Method CodexVector.GetX:()F
+      10: fastore
+      11: aload_2
+      12: iconst_1
+      13: aload_1
+      14: invokevirtual #46                 // Method CodexVector.GetY:()F
+      17: fastore
+      18: aload_2
+      19: iconst_2
+      20: aload_1
+      21: invokevirtual #49                 // Method CodexVector.GetZ:()F
+      24: fastore
+      25: aload_0
+      26: aload_2
+      27: invokevirtual #58                 // Method SetVelocity:([F)Z
+      30: ireturn
+
+  public native boolean RotatePivot(int, float);
+
+  public native int NextInWorld();
+
+  public native int SpawnThingNear(java.lang.String, float, int);
+
+  public native int SpawnThing(java.lang.String);
+
+  public native int FireProjectileAtThing(java.lang.String, int, float[]);
+
+  public native boolean LookAtThing(int);
+
+  public native int GetSector();
+
+  public native int FirstInSector();
+
+  public native boolean AttachThing(int, int, float[], int);
+
+  public native boolean DisableEmitter();
+
+  public native int GetExpireTime();
+
+  public native boolean SetFoley(java.lang.String);
+
+  public native java.lang.String GetDescriptionID();
+
+  public native java.lang.String GetEmitterName();
+
+  public native boolean SetEmitterIntMember(int, int);
+
+  public native float[] GetDynamicLightColor();
+
+  public native int SpawnTreasure(int, boolean);
+
+  public native boolean SetDynamicLightRadius(float);
+
+  public boolean HasFrames();
+    Code:
+       0: aload_0
+       1: invokevirtual #69                 // Method GetNumFrames:()I
+       4: ifgt          9
+       7: iconst_0
+       8: ireturn
+       9: iconst_1
+      10: ireturn
+
+  public native int PlayFoleyMode(int);
+
+  public boolean IsItem();
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method GetThingType:()I
+       4: istore_1
+       5: iload_1
+       6: iconst_1
+       7: if_icmpeq     25
+      10: iload_1
+      11: iconst_5
+      12: if_icmpeq     25
+      15: iload_1
+      16: bipush        6
+      18: if_icmpeq     25
+      21: iconst_0
+      22: goto          26
+      25: iconst_1
+      26: ireturn
+
+  public native boolean IsMoving();
+
+  public native boolean Stop();
+
+  public native boolean Remove();
+
+  public native boolean FreezeAnimations();
+
+  public native boolean SetDynamicLightMaterial(java.lang.String);
+
+  public native int GetMoveType();
+
+  public native int SetCollideType(int);
+
+  public native boolean MoveToFrame(int, float);
+
+  public native boolean SetDynamicLightStyle(int);
+
+  public native void SetShell(java.lang.String, int, float, float, float, float);
+
+  public native int SetThingFlags(int);
+
+  public native int GetPhysicsFlags();
+
+  public native float GetCollideHeight();
+
+  public native int ClearPhysicsFlags(int);
+
+  public native float[] GetPosition();
+
+  public native boolean SetOrientation(float[]);
+
+  public native float[] GetFramePosition(int);
+
+  public native boolean SetFrameOrientation(int, float[]);
+
+  public native boolean ClearDynamicLight();
+
+  public native void StopAction();
+
+  public native int GetLocationNum();
+
+  public boolean SetOrientation(float, float, float);
+    Code:
+       0: iconst_3
+       1: newarray       float
+       3: astore        4
+       5: aload         4
+       7: iconst_0
+       8: fload_1
+       9: fastore
+      10: aload         4
+      12: iconst_1
+      13: fload_2
+      14: fastore
+      15: aload         4
+      17: iconst_2
+      18: fload_3
+      19: fastore
+      20: aload_0
+      21: aload         4
+      23: invokevirtual #73                 // Method SetOrientation:([F)Z
+      26: ireturn
+
+  public boolean SetOrientation(CodexVector);
+    Code:
+       0: iconst_3
+       1: newarray       float
+       3: astore_2
+       4: aload_2
+       5: iconst_0
+       6: aload_1
+       7: invokevirtual #43                 // Method CodexVector.GetX:()F
+      10: fastore
+      11: aload_2
+      12: iconst_1
+      13: aload_1
+      14: invokevirtual #46                 // Method CodexVector.GetY:()F
+      17: fastore
+      18: aload_2
+      19: iconst_2
+      20: aload_1
+      21: invokevirtual #49                 // Method CodexVector.GetZ:()F
+      24: fastore
+      25: aload_0
+      26: aload_2
+      27: invokevirtual #73                 // Method SetOrientation:([F)Z
+      30: ireturn
+
+  public native float GetEmitterFloatMember(int);
+
+  public native boolean SetEmitterVectorMember(int, float[]);
+
+  public native void ReleaseAllCaptures();
+
+  public native int FindBone(int);
+
+  public native int GetAttachedToThing();
+
+  public native int GetNumFrames();
+
+  public native boolean AllocateFrames(int);
+
+  public native int PrevInSector();
+
+  public boolean IsActor();
+    Code:
+       0: aload_0
+       1: invokevirtual #14                 // Method GetThingType:()I
+       4: istore_1
+       5: iload_1
+       6: ifeq          19
+       9: iload_1
+      10: bipush        7
+      12: if_icmpeq     19
+      15: iconst_0
+      16: goto          20
+      19: iconst_1
+      20: ireturn
+
+  public native int GetDynamicLightStyle();
+}

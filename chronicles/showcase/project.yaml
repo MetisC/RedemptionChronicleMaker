@@ -1,5 +1,5 @@
 schema: 2
-project_format: 9
+project_format: 10
 chronicle:
   id: rcm_showcase
   name: RCM · Taller del Narrador
@@ -177,6 +177,8 @@ scenes:
       result: 6
     - text: Omitir el combate y continuar.
       result: 7
+    - text: 'Laboratorio opcional: encuentros dinámicos.'
+      result: 8
   - id: cleared
     speaker: guide
     prompt: El encuentro ha terminado; el premio se entrega una sola vez. Puedes seguir con el circuito.
@@ -387,6 +389,20 @@ scenes:
         goto: menu
       - text: Terminar.
         result: 102
+  - id: dyn
+    speaker: guide
+    camera: ots_speaker_close
+    prompt: Aquí puedes ver enemigos creados durante la partida. Primero salen dos ratas; al vencerlas aparece una
+      rata con más vida. A la mitad llama un refuerzo. Esto es opcional y no cambia el encargo del libro.
+    choices:
+    - text: Probar el encuentro dinámico.
+      result: 1
+    - text: Parar el generador continuo.
+      result: 2
+    - text: Volver al taller.
+      result: 3
+    - text: Probar el generador continuo (máximo dos ratas).
+      result: 4
   events:
   - id: arrival
     when: scene_start
@@ -720,6 +736,51 @@ scenes:
           is_set: true
     actions:
     - clear_flag: zone_left
+  - id: dyn_menu
+    when: conversation_ended
+    conversation: guide
+    result: 8
+    once: false
+    actions:
+    - start_conversation: dyn
+  - id: dyn_begin
+    when: conversation_ended
+    conversation: dyn
+    result: 1
+    once: true
+    actions:
+    - start_quest: dynamic_lab
+    - start_generator: dyn_rats
+  - id: dyn_next
+    when: generator_complete
+    generator: dyn_rats
+    once: true
+    actions:
+    - advance_quest: dynamic_lab
+    - start_generator: dyn_boss
+  - id: dyn_end
+    when: generator_complete
+    generator: dyn_boss
+    once: true
+    actions:
+    - stop_generator: dyn_portal
+    - stop_generator: dyn_add
+    - advance_quest: dynamic_lab
+    - complete_quest: dynamic_lab
+  - id: dyn_stop
+    when: conversation_ended
+    conversation: dyn
+    result: 2
+    once: false
+    actions:
+    - stop_generator: dyn_portal
+  - id: dyn_portal
+    when: conversation_ended
+    conversation: dyn
+    result: 4
+    once: false
+    actions:
+    - start_generator: dyn_portal
   triggers:
   - id: arrival_zone
     name: Zona de llegada
@@ -836,6 +897,73 @@ scenes:
     loop: true
     speed: 90
     tolerance: 24
+  generators:
+  - id: dyn_rats
+    name: Dos ratas del laboratorio
+    mode: ambush
+    max_alive: 2
+    waves:
+    - groups:
+      - role: rats
+        template: Rat
+        count: 2
+    spawn_points:
+    - audio
+    persistence: once
+  - id: dyn_boss
+    name: Rata por fases
+    mode: boss
+    max_alive: 1
+    waves:
+    - groups:
+      - role: boss
+        template: Rat
+        count: 1
+        health_multiplier: 10
+    boss:
+      role: boss
+    phases:
+    - id: half
+      percent: 50
+      actions:
+      - start_generator: dyn_add
+    - id: quarter
+      percent: 25
+      actions:
+      - play_sound:
+          resource: thunder_01
+          waypoint: audio
+          volume: 60
+          min_distance: 128
+          max_distance: 512
+    spawn_points:
+    - audio
+    persistence: once
+  - id: dyn_add
+    name: Refuerzo de la rata
+    mode: reinforcements
+    max_alive: 1
+    waves:
+    - groups:
+      - role: adds
+        template: Rat
+        count: 1
+    spawn_points:
+    - audio
+    persistence: once
+  - id: dyn_portal
+    name: Generador continuo del laboratorio
+    mode: continuous
+    max_alive: 2
+    interval: 5
+    waves:
+    - groups:
+      - role: rats
+        template: Rat
+        count: 1
+    spawn_points:
+    - audio
+    persistence: once
 - id: archive
   level:
     source: GunHaven
@@ -1350,6 +1478,13 @@ quests:
   - Elegir cómo recuperar el libro
   - Sellar el pacto
   reward_xp: 150
+- id: dynamic_lab
+  title: 'Laboratorio: encuentros dinámicos'
+  description: Una estación opcional del taller.
+  steps:
+  - Vence a las dos ratas.
+  - Observa los refuerzos y vence al jefe.
+  reward_xp: 0
 resources:
   templates:
   - id: T_mini_victoria

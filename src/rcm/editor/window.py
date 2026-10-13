@@ -397,7 +397,7 @@ class MainWindow(QMainWindow):
             self.refresh()
         else:
             for path, item in self.nav_items.items():
-                if len(path) > 1 and path[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints"}:
+                if len(path) > 1 and path[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints", "generators"}:
                     try:
                         value = self.at(path)
                         item.setText(0, value.get("name", value.get("id", (tr('Evento ') + f'{path[1] + 1}'))))
@@ -437,11 +437,11 @@ class MainWindow(QMainWindow):
             if path[-2] == "actions":
                 if isinstance(value.get('show_note'),dict):return (tr('HACER ') + f'{path[-1] + 1}'), tr('Mostrar nota · ')+value['show_note'].get('title',tr('Sin título'))
                 return (tr('HACER ') + f'{path[-1] + 1}'), tr(" · ").join((f'{ACTION_LABELS.get(k, k)}' + tr(': ') + f'{v}') for k, v in value.items())
-        if len(path) == 2 and path[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints"}:
+        if len(path) == 2 and path[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints", "generators"}:
             label = value.get("name", value.get("id", (tr('Evento ') + f'{path[1] + 1}')))
             detail = value.get("template", value.get("speaker", TRIGGER_LABELS.get(value.get("when"), value.get("when", ""))))
             return label, detail
-        labels = {"actors": tr("Actores"), "objects": tr("Objetos"), "conversations": tr("Conversaciones"), "events": tr("Eventos"), "triggers": "Triggers"}
+        labels = {"actors": tr("Actores"), "objects": tr("Objetos"), "conversations": tr("Conversaciones"), "events": tr("Eventos"), "triggers": "Triggers","generators":tr("Encuentros dinámicos")}
         return labels.get(path[0], tr("Elemento")), str(len(value)) if isinstance(value, list) else ""
 
     def pending_properties(self):
@@ -492,7 +492,7 @@ class MainWindow(QMainWindow):
         if self.spatial.viewport and self.spatial.viewport.level:
             for i, e in enumerate(self.spatial.viewport.level.references):
                 add(e['template'] + tr(' · ') + str(e.get('sector', '?')), ('original', i), original)
-        for key, label in [("actors", tr("Actores")), ("objects", tr("Objetos")), ("entries", tr("Entradas")), ("waypoints", tr('Puntos de recorrido')), ("triggers", tr('Zonas de activación')), ("conversations", tr("Conversaciones")), ("events", tr("Eventos"))]:
+        for key, label in [("actors", tr("Actores")), ("objects", tr("Objetos")), ("entries", tr("Entradas")), ("waypoints", tr('Puntos de recorrido')), ("triggers", tr('Zonas de activación')), ("conversations", tr("Conversaciones")), ("events", tr("Eventos")),("generators",tr("Encuentros dinámicos"))]:
             parent = add(label, (key,))
             if self.doc:
                 for i, item in enumerate(self.doc.data.get(key, [])):
@@ -505,7 +505,7 @@ class MainWindow(QMainWindow):
                 add(alias, ("state", "flags", alias), parent)
         parent.setExpanded(True)
         add(tr("Recursos originales"), ("resources",))
-        nav_path = self.selection[:2] if self.selection[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints", "original"} else self.selection
+        nav_path = self.selection[:2] if self.selection[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints", "original", "generators"} else self.selection
         self.nav.setCurrentItem(self.nav_items.get(nav_path, self.nav_items[("chronicle",)]))
         self.nav.blockSignals(False)
         for key in ["save", "save_as", "validate", "build"]:
@@ -596,7 +596,7 @@ class MainWindow(QMainWindow):
 
     def select(self, path, render=True):
         self.selection = tuple(path)
-        nav_path = self.selection[:2] if self.selection[0] in {'actors','objects','triggers','entries','waypoints','events','conversations','original'} else self.selection
+        nav_path = self.selection[:2] if self.selection[0] in {'actors','objects','triggers','entries','waypoints','events','conversations','generators','original'} else self.selection
         item = self.nav_items.get(nav_path)
         if item:
             self.nav.blockSignals(True)
@@ -620,7 +620,7 @@ class MainWindow(QMainWindow):
         self.content.clear()
         self.content_items = {}
         titles = {"chronicle": tr("Tu crónica"), "level": tr("Escenario base"), "actors": tr("Actores"), "objects": tr("Objetos"),
-                  "conversations": tr("Conversaciones"), "events": tr("Eventos"), "state": tr("Flags de crónica"), "resources": tr("Recursos originales")}
+                  "conversations": tr("Conversaciones"), "events": tr("Eventos"), "state": tr("Flags de crónica"), "resources": tr("Recursos originales"),"generators":tr("Encuentros dinámicos")}
         self.heading.setText(titles.get(path[0], tr("Proyecto")))
         self.subtitle.setText(tr("Crea una crónica o abre un proyecto para empezar.") if not self.doc else tr("Selecciona un elemento y edita sus propiedades a la derecha."))
         def add(target, parent=None):
@@ -656,7 +656,7 @@ class MainWindow(QMainWindow):
                 for key in ["conditions", "actions"]:
                     for i in range(len(event.get(key, []))):
                         add(("events", path[1], key, i))
-            elif path[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints"}:
+            elif path[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints", "generators"}:
                 for i in range(len(data.get(path[0], []))):
                     add((path[0], i))
             elif path[0] == "state":
@@ -687,7 +687,7 @@ class MainWindow(QMainWindow):
                 shown = {"event"} if len(p) == 1 else {"condition", "action"}
             elif p[0] == "state":
                 shown = {"flag"}
-            if (p[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints"} and len(p) > 1) or (p[0] == "state" and len(p) == 3):
+            if (p[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints", "generators"} and len(p) > 1) or (p[0] == "state" and len(p) == 3):
                 shown.add("delete")
             if (len(p) >= 4 or p[0] == "events" and len(p) == 2) and isinstance(p[-1], int):
                 shown.update(("up", "down"))
@@ -986,7 +986,7 @@ class MainWindow(QMainWindow):
         conv = {"id": self.doc.unique_id("conversations", "conv"), "speaker": speaker, "entry": "opening",
                 "nodes": [{"id": "opening", "lines": [{"speaker": speaker, "text": tr("Escribe el diálogo.")}],
                            "choices": [{"text": tr("Continuar."), "result": 1}, {"text": tr("Me voy."), "result": 2}]}]}
-        if hasattr(self.doc,'campaign') and self.doc.campaign.get('project_format')==9:
+        if hasattr(self.doc,'campaign') and self.doc.campaign.get('project_format') in (9,10):
             from ..camera_presets import DEFAULT_DIALOGUE_CAMERA
             conv['camera']=DEFAULT_DIALOGUE_CAMERA
         self.doc.data["conversations"].append(conv)

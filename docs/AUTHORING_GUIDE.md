@@ -21,3 +21,5 @@ En **NPC te manda a un lugar**, la primera respuesta debe terminar con RETURN 1 
 **Probar en Redemption (F5):** guarda y valida, construye sólo si hay cambios, prepara tu carpeta de crónica y abre el juego. Cierra Redemption antes de actualizar. Las funciones separadas de construcción y diagnóstico siguen disponibles.
 
 Abre chronicles/mini_chronicle/project.yaml para ver una aventura completa de ejemplo, editable con los mismos paneles y asistentes.
+
+**Encuentros dinámicos:** Campaña → + Encuentro dinámico…, Asistentes o botón derecho sobre suelo 3D. Elige Emboscada/Oleadas/Continuo/Refuerzos/Jefe, enemigos/cantidad, puntos/cuándo y acciones finales. Advanced queda plegado. [Guía y laboratorio](DYNAMIC_ENCOUNTERS.md). El primer uso en formato 9 guarda backup y opta por formato 10; abrir el tutorial no lo convierte.

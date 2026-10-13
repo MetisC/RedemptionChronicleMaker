@@ -1,76 +1,60 @@
-# Cierre de producto · 1.0.0-rc3
+# RC4 Dynamic Encounters · informe final
 
-**RC3 APROBADA PARA PRUEBA MANUAL. MANUAL RUNTIME TEST REQUIRED.**
+**RC4 DYNAMIC ENCOUNTERS APROBADA PARA PRUEBA MANUAL.**
+**MANUAL RUNTIME TEST REQUIRED.** No es 1.0 final; no se ha abierto ni automatizado Redemption en esta pasada.
 
-Esta candidata simplifica el producto existente. No declara 1.0 final ni aceptación nativa del Showcase. La revisión no abrió ni automatizó Redemption.
+## 1. Investigación del motor
 
-## 1. Cambios realizados
+465 clases originales, 223 call sites de factories/preload y seis NOB auditados. CreateThing/SpawnThingNear, transforms, CaptureThing/ReleaseThing, killed, health/max health, timers, Save/Restore y Math.random proceden del bytecode real. NOT health/max son u32, clan/flags e herencia fundamentan metadata. Los hints NSD no son un parser completo. Evidencia: research/dynamic_encounters/ENGINE_SPAWNER_AUDIT.md, spawn_calls.json, enemy_catalogue.json y slices bytecode. Se distinguen original, SDK, RCM, inferencia, no encontrado y pendiente nativo.
 
-- **Paneles:** dock inferior oculto al iniciar, abrir un proyecto válido y restablecer disposición. Errores, referencias y construcción abren la sección correspondiente. La validación limpia no abre el dock ni cierra uno abierto explícitamente.
-- **Campaña:** conversión ofrecida sólo para documentos legacy; conserva la conversión existente. La pestaña se llama Campaña / Vista global (Campaign / Overview).
-- **Apertura y formatos:** importar pasa por open_path, con locks, recientes, recuperación, validación y liberación del proyecto anterior. La versión actual se centraliza en 9; los formatos futuros se rechazan antes de escribir.
-- **Presentación:** un selector de idioma en Configuración, nombres claros en Ayuda, bienvenida con creación/apertura prioritarias, instalación secundaria y estado humano basado en ProjectStatus. ES/EN revisados. Las rutas de la ficha de crónica quedan en tooltip; la explicación indica F5 en lugar de carpetas internas.
-- **Catálogos y Showcase:** identidad por contenido de instalación; guía humana y nombres naturales conservando referencias y lógica. Detalles abajo.
+## 2. Original Generator Script
 
-## 2. Cosas eliminadas
+Generator.class encontrado en Codex.nob; referencias en SEW4_35_1, SEW4_LOT_12_1, SIM1_5_1 y SIM2_5_1. Parametriza plantilla, retardo, frecuencia, máximo total/vivos. Usa SpawnThing, CaptureThing, killed y records de contadores; no roster completo ni guard explícito de GUID cero. MysticSpawner aporta azar/GUID persistido. RCM reutiliza mecanismos contrastados con protección propia; no ejecuta herramientas originales.
 
-CampaignPanel perdió los controles ocultos Guardar, Integridad, Deploy, Ejecutar, Ruta del juego y Acceso del juego. Se eliminaron sus métodos deploy, run_game, game_settings y game_shortcut, sin eliminar las operaciones vivas del backend. El menú Añadir usa acciones directamente, sin crear botones para mantenerlos ocultos.
+## 3. Arquitectura implementada
 
-Se retiraron el menú de idioma duplicado y su callback, y una acción de diagnóstico duplicada en Ayuda. Playtest / Debug reutiliza F5. Permanecen el diagnóstico útil, la construcción avanzada y las herramientas de recuperación. Se retiraron los paquetes RC2, las carpetas de pruebas generadas y sus duplicados; los informes actuales quedan en research/rc3. Las fuentes históricas necesarias para regresión siguen sólo en tests/fixtures.
+scene.generators en formato 10. Model/validator → generador Java propio → ECJ contra Codex → readback/paquete. Extensión exclusiva de formato 10, mismo poll de escena 0,15 s, cuatro apariciones compartidas por tick, métodos por generador/puntos. Fases bajadas a eventos internos en copia, mismas acciones/checkpoints. 32 generadores, 256 slots/escena, cap 1..64, listas/timers/retries acotados. No tracking histórico infinito. Dos flags de protección por generador y records detallados; contadores saturan a un millón. Formato 9 no se convierte al abrir y el tutorial conserva sus bytes/clases.
 
-## 3. Deliberadamente sin cambios
+## 4. UX final
 
-No hay nuevas pestañas, gestores, onboarding, dashboard, capacidad runtime, editor geométrico ni sistema de migraciones. Siguen siete pestañas.
+Asistente de cuatro pasos: tipo → enemigos/cantidad → puntos/activación → acciones finales. Opciones avanzadas plegadas; continuo muestra intervalo y cap, jefe muestra umbrales. Acceso desde Campaña, Asistentes y suelo 3D; siete pestañas existentes. Catálogo de enemigos originales sin dificultad inventada. Misma edición de acciones; referencias, safe-delete, renombrado, duplicado con self references ajustadas, undo/redo, guía/gráfico/debug. Un duplicado no copia callbacks externos de activación. ES/EN; idioma del contenido authored se conserva.
 
-Se conservan guardado atómico/fsync/os.replace, backups, recuperación, cambios externos, QLockFile, validación, transacciones de build/deploy, límites de paquetes, F5 y protección de originales. Los generadores y runtime narrativo no se han reescrito. El YAML del tutorial aceptado, sus recursos Java y sus clases vigentes se comparan con el checkpoint anterior. La lógica/IDs/eventos del Showcase se fijan mediante una comparación normalizada, permitiendo únicamente nombres/comentarios y Victoria → Anezka en textos.
+## 5. Modos soportados
 
-## 4. Tests
+Emboscada, oleadas al limpiar, continuo con intervalo/cap/target/máximo total, refuerzos por evento y jefe generado o actor authored. Round robin/azar ponderado, puntos alternos/azar y cerca del jugador. Iniciar/detener/pausar/reanudar/reiniciar se combinan con las acciones y condiciones normales. El prop visual es un objeto normal; efectos/audio usan callbacks existentes.
 
-| Resultado | Total |
-|---|---:|
-| PASS | 376 |
-| FAIL | 0 |
-| ERROR | 0 |
-| SKIP | 0 |
+## 6. Health thresholds
 
-Ruff pasa. Mypy pasa en los tres módulos configurados (no supone tipado completo). Hay 19 casos específicos RC3: formatos y rechazo seguro; identidad/cache/equivalencia de ruta; preservación de proyectos/recursos/backups; dock; conversión; importación/locks/recientes/cancelación; controles retirados; bienvenida/ayuda/estado; propiedades y guía/lógica del Showcase. La suite completa añade regresiones de guardado, transacciones, API, bytecode, formatos y harness Java con doubles.
+Cruce: vida anterior > umbral y actual <= umbral mientras el actor válido sigue vivo. Porcentaje respecto a max health o HP absolutos. Una vez por defecto con checkpoint y record; repetible exige recuperación y un nuevo cruce. Acciones pendientes usan el checkpoint normal. Pausa suspende muestreo de fases. Un golpe mortal puede saltar umbrales: no hay evidencia de un hook general que garantice «antes de morir». No se introduce invulnerabilidad automática.
 
-Evidencia: research/rc3/quality/test_report.json, quality_report.json y tests.log. Los tres ejemplos compilan contra Codex real en Java 45.3; estado **compiled-unverified-in-game**.
+## 7. Save/load y reentrada
 
-## 5. GUI probe
+Guarda GUID/rol/entrada, estado, oleada, cantidades, batch/cursors, pausa, tiempos, kills, cooldown y fases. Reconcilia GUID local/plantilla antes de crear. Espera acotada si la restauración tarda; GUID o roster ausente → error sin reemplazar ni resetear ownership incierto. Una vez/continuar/reiniciar al volver/cooldown son políticas explícitas; reiniciar no borra recompensas/flags de otros eventos. La firma estructural obliga a nueva partida si cambia; no hay migrador de saves. La restauración real de captures/records entre instancias requiere DYN08–10.
 
-Ocho ejecuciones del EXE congelado: primer/segundo arranque EN y ES desde rutas alternativas con espacios/ñ, y escalas Qt 1, 1.25, 1.5 y 2. PATH restringido a System32.
+## 8. Limitaciones
 
-Se recorren widgets reales de setup, bienvenida, creación, entrada/NPC/conversación/zona/misión, undo/redo, guardar/reabrir, compilación, despliegue sintético, tutorial/Showcase, enlaces/gráfico, vista global y Configuración. Se verifican dock, conversión, siete pestañas y selector único. Se revisaron visualmente las capturas de bienvenida, guía/vista global y Configuración.
+Sin solapamiento/avance manual dentro de una lista de oleadas (usar generadores independientes), volumen aleatorio arbitrario, nuevo preview de modelos, puertas universales o target de cámara por rol generado. No se expone retardo/cap/AI individual por entrada ni todos los equipos posibles en el asistente. Puntos específicos por grupo se validan pero no tienen editor dedicado. Team/actor-type NOT no contrastados no se inventan. Azar no conserva semilla/secuencia entre cargas. Colisión/pathfinding, orden de restore/capture, balance, red, GPU/DPI físico y PC independiente pendientes. Efecto/checkpoint nativo no es una transacción atómica. El tope de slots limita el roster, no la acumulación nativa de cadáveres en combates infinitos.
 
-Evidencia: research/rc3/portable/summary.json y capturas. Offscreen/safe mode en el mismo PC **no prueba** OpenGL real, DPI físico ni una máquina independiente. No se interactuó con menús ni partida del juego.
+## 9. Tests
 
-## 6. Showcase
+**425 PASS, 0 FAIL, 0 ERROR, 0 SKIP**; Ruff y alcance mypy configurado PASS. Doubles ejecutan Java generado, save/load, cruces, lethal skip, ownership, retry, transforms, callbacks, políticas, cooldown, batch, contador y un timer. Widgets prueban crear/editar/backup/cancelar/deshacer/referencias/gráfico/idiomas. Stress compila 25 generadores (20 con diez oleadas), 400 entradas, tres templates, dos puntos, diez thresholds y cuarenta callbacks; mayor método 1659/65535 bytes, clases 45.3. No benchmark nativo. Suite y receipts: research/dynamic_encounters/quality, stress.json, regression.json. El EXE se prueba en ocho recorridos offscreen ES/EN/rutas movidas/PATH restringido/escalado Qt; mismo PC, no prueba de Windows DPI real.
 
-La guía comienza con dónde empezar y el encargo del libro, sigue la ruta taller → archivo → regreso y presenta aparte el laboratorio opcional: cámaras, animaciones, recorridos, sonido, objetos/notas y combate. Después queda la prueba de campo y, al final, el índice técnico completo. Todos los enlaces se conservan y resuelven a entidades reales.
+## 10. Ejemplos / Showcase
 
-Los nombres se emiten a NLS y los NOT remiten a esas cadenas: por ello los personajes/objetos muestran nombres naturales como Anezka, Guía o Rata de las minas. Los antiguos rótulos didácticos se conservan en el comentario visible como tooltip del editor. Esta conclusión procede del generador, no de una observación nativa RC3.
+Tutorial rápido intacto formato 9. Dynamic Encounter Lab independiente: Anezka → aceptar oleadas → barril/zona → 3 ratas → 2 ratas → jefe → dos refuerzos al 50% → sonido al 25% → quest al morir. Menú separado para continuo/stop/pause/resume. Showcase sólo añade estación dinámica optativa desde la Guía; su historia principal se compara con baseline retirando exactamente esas adiciones. Mini crónica preservada formato 9. Rats originales débiles; sólo boss del ejemplo con x10 health. Todos compilados, combate nuevo pendiente.
 
-## 7. Cache / instalación
+## 11. Manual Runtime Checklist
 
-La identidad usa nombres relativos, tamaños y SHA-256 de NOB, Vampire.exe, classes.zip y Chronicles. Los recursos de audio sueltos se indexan por nombre/tamaño. Cambiar sólo la ruta con los mismos bytes no reconstruye; cambiar contenido o corromper identidad/catálogos sí reconstruye.
+DYN01 trigger/3 enemigos; DYN02 segunda oleada; DYN03 cap continuo; DYN04 stop; DYN05 50% una vez; DYN06 25% una vez; DYN07 muerte/quest; DYN08 carga a mitad; DYN09 carga tras umbral; DYN10 salir/volver; DYN11 editar/F5; DYN12 fallo de spawn acotado. Procedimientos en MANUAL_RUNTIME_CHECKLIST.md. Estado de todos: MANUAL RUNTIME TEST REQUIRED.
 
-Se invalidan índices y extracciones derivados de forma acotada. Proyectos, fuentes Java/imágenes propias, backups y compilador permanecen. Las mallas/texturas conservan claves por contenido. La copia de classes.zip se refresca cuando cambia; la identidad sólo se publica al completar el escaneo. Las pruebas de cambio usan instalaciones sintéticas; el probe real demuestra primer/segundo arranque sin rescan repetido.
+## 12. Build RC4
 
-## 8. Compatibilidad
+build/portable/RedemptionChronicleMaker/RedemptionChronicleMaker.exe y acceso directo de raíz. VERSION y recursos EXE 1.0.0-rc4/1.0.0.4. Cuatro builds vigentes: rcm_tutor, rcm_showcase, rcm_mini, rcm_dynamic. Sin deploy/gameplay automático. Originales y archivos de usuario verificados en regression.json.
 
-Se conservan schema 1 legacy y campañas schema 2 admitidas por los lectores existentes. RC3 prueba directamente formato 9, formato 5 y ausencia de project_format, además de las regresiones históricas. La conversión legacy no se elimina. No se promete admitir cualquier formato antiguo desconocido.
+## 13. User Release RC4
 
-project_format mayor que 9 produce un aviso de actualizar RCM, sin migrar, sobrescribir, importar ni aplicar recuperación a la crónica abierta. El formato no cambia por abrir. La suite mantiene los límites de paquetes y seguridad existentes.
+RedemptionChronicleMaker-1.0.0-rc4-win64.zip: programa, JVM/Qt/ECJ, veintidós guías/checklists localizados, cuatro ejemplos propios y licencias. Sin extracción original, herramientas legacy, rutas personales ni workspace de desarrollo. Inventario/hashes comprobados por tools/product_release.py; release_manifest.json y SHA256SUMS.txt contienen resultados finales.
 
-## 9. Runtime
+## 14. Workspace Archive
 
-**MANUAL RUNTIME TEST REQUIRED.** Se conserva la aceptación histórica del tutorial («Funciona correctamente»), con su alcance y evidencia en research/native_acceptance. No equivale a aceptar RC3, Showcase, save/load/reentrada completa ni red.
-
-Los 43 archivos originales del manifiesto conservan sus hashes. No se ha escrito, desplegado ni lanzado el juego real durante RC3. Seguir MANUAL_RUNTIME_CHECKLIST.md: F5/tutorial, estaciones del Showcase, guardar/cargar/reentrar, personaje con objeto RCM anterior y cambiar una frase/probar. La máquina independiente, GPU y DPI físico también quedan pendientes.
-
-## 10. Veredicto y entrega
-
-**RC3 APROBADA PARA PRUEBA MANUAL.** La puerta offline y el probe del editor empaquetado pasan. No se declara 1.0 definitiva ni runtime PASS.
-
-Abre Redemption Chronicle Maker.lnk en la raíz; apunta al EXE RC3 en build/portable/RedemptionChronicleMaker. build conserva sólo el portable y los tres ejemplos actuales. La entrega de usuario es RedemptionChronicleMaker-1.0.0-rc3-win64.zip; el archivo privado de workspace es separado. release_manifest.json y SHA256SUMS.txt identifican los paquetes verificados. Los proyectos recuperados del usuario permanecen fuera del programa.
+RedemptionChronicleMaker-1.0.0-rc4-workspace.zip, copia privada con fuentes, tests, dependencias, evidencia/build vigente y datos de usuario, sin .git. Incluye investigación extraída para uso privado; no es distribución pública. tools/release_workspace.py comprueba cada archivo. Su recibo queda en research/product_close/workspace_archive.json. Versiones y resultados desechables anteriores retirados tras verificar RC4.

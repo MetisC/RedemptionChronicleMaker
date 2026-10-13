@@ -1,0 +1,851 @@
+{
+  "generators": 25,
+  "waves": 205,
+  "enemy_entries": 400,
+  "templates": [
+    "Rat",
+    "Wolf",
+    "Skel_Sword"
+  ],
+  "points": 2,
+  "thresholds": 10,
+  "callbacks": 40,
+  "slots": 85,
+  "build_seconds": 2.0383705999993253,
+  "class_metrics": {
+    "R_dyn_stress_s0_Passive.class": {
+      "version": "45.3",
+      "constant_pool_entries": 12,
+      "constant_pool_limit": 65534,
+      "largest_method_bytes": 5,
+      "method_limit_bytes": 65535,
+      "methods": [
+        {
+          "name": "<init>",
+          "descriptor": "()V",
+          "code_bytes": 5
+        }
+      ]
+    },
+    "R_dyn_stress_s0_Scene.class": {
+      "version": "45.3",
+      "constant_pool_entries": 1707,
+      "constant_pool_limit": 65534,
+      "largest_method_bytes": 1659,
+      "method_limit_bytes": 65535,
+      "methods": [
+        {
+          "name": "<init>",
+          "descriptor": "()V",
+          "code_bytes": 658
+        },
+        {
+          "name": "trace",
+          "descriptor": "(Ljava/lang/String;)V",
+          "code_bytes": 201
+        },
+        {
+          "name": "local",
+          "descriptor": "(I)Z",
+          "code_bytes": 67
+        },
+        {
+          "name": "localPlayer",
+          "descriptor": "(I)I",
+          "code_bytes": 77
+        },
+        {
+          "name": "alive",
+          "descriptor": "(I)Z",
+          "code_bytes": 50
+        },
+        {
+          "name": "inventory",
+          "descriptor": "(ILjava/lang/String;)I",
+          "code_bytes": 76
+        },
+        {
+          "name": "owns",
+          "descriptor": "(ILjava/lang/String;)Z",
+          "code_bytes": 13
+        },
+        {
+          "name": "give",
+          "descriptor": "(II)Z",
+          "code_bytes": 244
+        },
+        {
+          "name": "template",
+          "descriptor": "(I)Ljava/lang/String;",
+          "code_bytes": 28
+        },
+        {
+          "name": "spawn",
+          "descriptor": "(I)V",
+          "code_bytes": 384
+        },
+        {
+          "name": "beginscene",
+          "descriptor": "(II)V",
+          "code_bytes": 73
+        },
+        {
+          "name": "timer",
+          "descriptor": "(IFFFF)V",
+          "code_bytes": 25
+        },
+        {
+          "name": "poll",
+          "descriptor": "()V",
+          "code_bytes": 39
+        },
+        {
+          "name": "pollImpl",
+          "descriptor": "()V",
+          "code_bytes": 1401
+        },
+        {
+          "name": "volume",
+          "descriptor": "(I)Z",
+          "code_bytes": 66
+        },
+        {
+          "name": "dispatch",
+          "descriptor": "(Ljava/lang/String;Ljava/lang/String;I)V",
+          "code_bytes": 1659
+        },
+        {
+          "name": "event0",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event1",
+          "descriptor": "()Z",
+          "code_bytes": 122
+        },
+        {
+          "name": "event2",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event3",
+          "descriptor": "()Z",
+          "code_bytes": 122
+        },
+        {
+          "name": "event4",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event5",
+          "descriptor": "()Z",
+          "code_bytes": 122
+        },
+        {
+          "name": "event6",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event7",
+          "descriptor": "()Z",
+          "code_bytes": 122
+        },
+        {
+          "name": "event8",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event9",
+          "descriptor": "()Z",
+          "code_bytes": 122
+        },
+        {
+          "name": "event10",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event11",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event12",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event13",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event14",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event15",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event16",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event17",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event18",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event19",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event20",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event21",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event22",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event23",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event24",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event25",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event26",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event27",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event28",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event29",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event30",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event31",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event32",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event33",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event34",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event35",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event36",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event37",
+          "descriptor": "()Z",
+          "code_bytes": 123
+        },
+        {
+          "name": "event38",
+          "descriptor": "()Z",
+          "code_bytes": 95
+        },
+        {
+          "name": "event39",
+          "descriptor": "()Z",
+          "code_bytes": 122
+        },
+        {
+          "name": "event40",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event41",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event42",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event43",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event44",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event45",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event46",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event47",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event48",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "event49",
+          "descriptor": "()Z",
+          "code_bytes": 94
+        },
+        {
+          "name": "releaseCamera",
+          "descriptor": "()V",
+          "code_bytes": 25
+        },
+        {
+          "name": "conversation",
+          "descriptor": "(I)Z",
+          "code_bytes": 151
+        },
+        {
+          "name": "clicked",
+          "descriptor": "(III)V",
+          "code_bytes": 72
+        },
+        {
+          "name": "convreached",
+          "descriptor": "(IIIII)V",
+          "code_bytes": 148
+        },
+        {
+          "name": "convended",
+          "descriptor": "(IZI)V",
+          "code_bytes": 115
+        },
+        {
+          "name": "finishDialogue",
+          "descriptor": "()V",
+          "code_bytes": 102
+        },
+        {
+          "name": "completeEntry",
+          "descriptor": "(Ljava/lang/String;)Z",
+          "code_bytes": 24
+        },
+        {
+          "name": "quest",
+          "descriptor": "(Ljava/lang/String;I)Z",
+          "code_bytes": 2
+        },
+        {
+          "name": "save",
+          "descriptor": "(I)V",
+          "code_bytes": 145
+        },
+        {
+          "name": "restore",
+          "descriptor": "(I)V",
+          "code_bytes": 152
+        },
+        {
+          "name": "restored",
+          "descriptor": "(I)V",
+          "code_bytes": 143
+        },
+        {
+          "name": "createAt",
+          "descriptor": "(I[F[F)I",
+          "code_bytes": 248
+        },
+        {
+          "name": "positionText",
+          "descriptor": "(I)Ljava/lang/String;",
+          "code_bytes": 63
+        },
+        {
+          "name": "travel",
+          "descriptor": "(Ljava/lang/String;Ljava/lang/String;)Z",
+          "code_bytes": 145
+        },
+        {
+          "name": "arrive",
+          "descriptor": "()Z",
+          "code_bytes": 378
+        },
+        {
+          "name": "patrolActor",
+          "descriptor": "(I)I",
+          "code_bytes": 4
+        },
+        {
+          "name": "patrolTarget",
+          "descriptor": "(I)[F",
+          "code_bytes": 4
+        },
+        {
+          "name": "patrolSpeed",
+          "descriptor": "(I)F",
+          "code_bytes": 6
+        },
+        {
+          "name": "commandPatrol",
+          "descriptor": "(I)Z",
+          "code_bytes": 207
+        },
+        {
+          "name": "startPatrol",
+          "descriptor": "(I)Z",
+          "code_bytes": 43
+        },
+        {
+          "name": "stopPatrol",
+          "descriptor": "(I)V",
+          "code_bytes": 66
+        },
+        {
+          "name": "holdPatrols",
+          "descriptor": "()V",
+          "code_bytes": 81
+        },
+        {
+          "name": "resumePatrols",
+          "descriptor": "()V",
+          "code_bytes": 41
+        },
+        {
+          "name": "pollPatrols",
+          "descriptor": "()V",
+          "code_bytes": 321
+        },
+        {
+          "name": "conversationID",
+          "descriptor": "(I)Ljava/lang/String;",
+          "code_bytes": 6
+        },
+        {
+          "name": "resumeEvents",
+          "descriptor": "()V",
+          "code_bytes": 1451
+        },
+        {
+          "name": "dialogueCamera",
+          "descriptor": "(II)V",
+          "code_bytes": 6
+        },
+        {
+          "name": "dialoguePartner",
+          "descriptor": "(I)I",
+          "code_bytes": 4
+        },
+        {
+          "name": "faceDialogue",
+          "descriptor": "(II)V",
+          "code_bytes": 49
+        },
+        {
+          "name": "prepareDialogue",
+          "descriptor": "(II)V",
+          "code_bytes": 72
+        },
+        {
+          "name": "schedulePoll",
+          "descriptor": "()V",
+          "code_bytes": 20
+        },
+        {
+          "name": "dialogueMotion",
+          "descriptor": "(III)V",
+          "code_bytes": 6
+        },
+        {
+          "name": "finitePose",
+          "descriptor": "([F)Z",
+          "code_bytes": 47
+        },
+        {
+          "name": "savePlayerPose",
+          "descriptor": "()V",
+          "code_bytes": 200
+        },
+        {
+          "name": "readPlayerPose",
+          "descriptor": "()V",
+          "code_bytes": 121
+        },
+        {
+          "name": "restorePlayerPose",
+          "descriptor": "()Z",
+          "code_bytes": 254
+        },
+        {
+          "name": "dynamicConfigure",
+          "descriptor": "()V",
+          "code_bytes": 114
+        },
+        {
+          "name": "dynamicConfig0",
+          "descriptor": "()V",
+          "code_bytes": 1176
+        },
+        {
+          "name": "dynamicConfig1",
+          "descriptor": "()V",
+          "code_bytes": 1176
+        },
+        {
+          "name": "dynamicConfig2",
+          "descriptor": "()V",
+          "code_bytes": 1176
+        },
+        {
+          "name": "dynamicConfig3",
+          "descriptor": "()V",
+          "code_bytes": 1176
+        },
+        {
+          "name": "dynamicConfig4",
+          "descriptor": "()V",
+          "code_bytes": 1176
+        },
+        {
+          "name": "dynamicConfig5",
+          "descriptor": "()V",
+          "code_bytes": 1176
+        },
+        {
+          "name": "dynamicConfig6",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig7",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig8",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig9",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig10",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig11",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig12",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig13",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig14",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig15",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig16",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig17",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig18",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig19",
+          "descriptor": "()V",
+          "code_bytes": 1177
+        },
+        {
+          "name": "dynamicConfig20",
+          "descriptor": "()V",
+          "code_bytes": 314
+        },
+        {
+          "name": "dynamicConfig21",
+          "descriptor": "()V",
+          "code_bytes": 314
+        },
+        {
+          "name": "dynamicConfig22",
+          "descriptor": "()V",
+          "code_bytes": 314
+        },
+        {
+          "name": "dynamicConfig23",
+          "descriptor": "()V",
+          "code_bytes": 314
+        },
+        {
+          "name": "dynamicConfig24",
+          "descriptor": "()V",
+          "code_bytes": 314
+        },
+        {
+          "name": "dynamicPosition",
+          "descriptor": "(IIIZ)[F",
+          "code_bytes": 47
+        },
+        {
+          "name": "dynamicPositionPage0",
+          "descriptor": "(IIZ)[F",
+          "code_bytes": 29
+        },
+        {
+          "name": "dynamicCoordinates0",
+          "descriptor": "(IZ)[F",
+          "code_bytes": 118
+        },
+        {
+          "name": "dynamicPointName",
+          "descriptor": "(III)Ljava/lang/String;",
+          "code_bytes": 47
+        },
+        {
+          "name": "dynamicNamePage0",
+          "descriptor": "(II)Ljava/lang/String;",
+          "code_bytes": 30
+        },
+        {
+          "name": "dynamicPointLabel0",
+          "descriptor": "(I)Ljava/lang/String;",
+          "code_bytes": 36
+        },
+        {
+          "name": "dynamicPoints",
+          "descriptor": "(II)I",
+          "code_bytes": 9
+        },
+        {
+          "name": "dynamicPhases",
+          "descriptor": "(I)V",
+          "code_bytes": 74
+        },
+        {
+          "name": "dynamicPhase20",
+          "descriptor": "(I)V",
+          "code_bytes": 456
+        },
+        {
+          "name": "dynamicPhase21",
+          "descriptor": "(I)V",
+          "code_bytes": 456
+        },
+        {
+          "name": "dynamicPhase22",
+          "descriptor": "(I)V",
+          "code_bytes": 456
+        },
+        {
+          "name": "dynamicPhase23",
+          "descriptor": "(I)V",
+          "code_bytes": 456
+        },
+        {
+          "name": "dynamicPhase24",
+          "descriptor": "(I)V",
+          "code_bytes": 456
+        },
+        {
+          "name": "dynamicNotify",
+          "descriptor": "(Ljava/lang/String;II)V",
+          "code_bytes": 69
+        },
+        {
+          "name": "dynamicHealth",
+          "descriptor": "(IZFLjava/lang/String;)Z",
+          "code_bytes": 153
+        },
+        {
+          "name": "dynamicRoleGuid",
+          "descriptor": "(II)I",
+          "code_bytes": 97
+        },
+        {
+          "name": "dynamicCount",
+          "descriptor": "(ILjava/lang/String;I)I",
+          "code_bytes": 166
+        },
+        {
+          "name": "dynamicOwned",
+          "descriptor": "(II)Z",
+          "code_bytes": 60
+        },
+        {
+          "name": "dynamicKilled",
+          "descriptor": "(II)V",
+          "code_bytes": 168
+        },
+        {
+          "name": "killed",
+          "descriptor": "(III)V",
+          "code_bytes": 103
+        },
+        {
+          "name": "dynamicRetire",
+          "descriptor": "(I)Z",
+          "code_bytes": 83
+        },
+        {
+          "name": "dynamicError",
+          "descriptor": "(ILjava/lang/String;)V",
+          "code_bytes": 94
+        },
+        {
+          "name": "dynamicReset",
+          "descriptor": "(IZ)Z",
+          "code_bytes": 245
+        },
+        {
+          "name": "dynamicBegin",
+          "descriptor": "(Z)V",
+          "code_bytes": 140
+        },
+        {
+          "name": "dynamicCommand",
+          "descriptor": "(II)Z",
+          "code_bytes": 499
+        },
+        {
+          "name": "dynamicEntry",
+          "descriptor": "(I)I",
+          "code_bytes": 244
+        },
+        {
+          "name": "dynamicSpawn",
+          "descriptor": "(II)Z",
+          "code_bytes": 1110
+        },
+        {
+          "name": "dynamicComplete",
+          "descriptor": "(I)V",
+          "code_bytes": 89
+        },
+        {
+          "name": "dynamicPoll",
+          "descriptor": "()V",
+          "code_bytes": 1077
+        },
+        {
+          "name": "dynamicSave",
+          "descriptor": "()V",
+          "code_bytes": 327
+        },
+        {
+          "name": "dynamicRestore",
+          "descriptor": "()V",
+          "code_bytes": 614
+        },
+        {
+          "name": "debugPosition",
+          "descriptor": "(I)Ljava/lang/String;",
+          "code_bytes": 71
+        },
+        {
+          "name": "traceState",
+          "descriptor": "()V",
+          "code_bytes": 218
+        },
+        {
+          "name": "traceStack",
+          "descriptor": "(Ljava/lang/Throwable;)V",
+          "code_bytes": 45
+        }
+      ]
+    }
+  },
+  "native_engine_test": false
+}

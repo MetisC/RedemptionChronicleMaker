@@ -47,7 +47,7 @@ def instrument(java,campaign,scene,info):
     if not info.get('debug',True):
         return '\n'.join(' private void trace(String s) {}' if 'private void trace(String s)' in l else re.sub(r'\btrace\([^;\n]*?\);','',l) for l in lines)+'\n'
     flags=campaign.source.get('state',{}).get('flags',{});quests=campaign.source.get('quests',[])
-    modern=campaign.source.get('runtime_profile')=='phase9'
+    modern=campaign.source.get('runtime_profile') in ('phase9','phase10')
     watch=[' private int[] watchFlags=new int[]{'+','.join('-1' for f in flags)+'};',' private String[] watchQuests=new String[]{'+','.join('""' for q in quests)+'};']
     if modern:watch.append(' private String debugPosition(int who) { if(who==0) return "none"; float[] p=new CodexThing(who).GetPosition(); return p==null ? "null" : p[0]+","+p[1]+","+p[2]; }')
     watch.append(' private void traceState() {')
@@ -93,6 +93,11 @@ def parse_trace(text,source_map=None):
             if m:spawns[m[1]]=int(m[2])
         m=re.search(r'(?:event |SCENE )([a-z0-9_]+)(?:/([a-z0-9_]+))?',body)
         if m:path={'scene':m[1],**({'event':m[2]} if m[2] else {})}
+        generator=re.search(r'GENERATOR_\w+ generator=(\w+)',body)
+        if generator:
+            scene=re.search(r' scene=(\w+)',body)
+            path={'generator':generator[1],**({'scene':scene[1]} if scene else {})}
+        if body.startswith('GENERATOR_ERROR'):severity='ERROR'
         action=re.search(r'ACTION scene (\w+) event (\w+) action (\d+): (\w+)',body)
         if action:path={'scene':action[1],'event':action[2],'action':int(action[3]),'operation':action[4]}
         dialogue=re.search(r'DIALOGUE_END (\w+)/(\w+) return=(-?\d+) aborted=(true|false)',body)

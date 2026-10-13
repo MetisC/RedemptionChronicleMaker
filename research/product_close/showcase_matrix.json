@@ -340,6 +340,56 @@
     "runtime_verified": false
   },
   {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn",
+    "link": "rcm://quay/conversations/dyn",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "generators",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_rats",
+    "link": "rcm://quay/generators/dyn_rats",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "generators",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_boss",
+    "link": "rcm://quay/generators/dyn_boss",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "generators",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_add",
+    "link": "rcm://quay/generators/dyn_add",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "generators",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_portal",
+    "link": "rcm://quay/generators/dyn_portal",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "when:scene_start",
     "classification": "NORMAL",
     "scene": "quay",
@@ -1370,6 +1420,176 @@
     "runtime_verified": false
   },
   {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_menu",
+    "link": "rcm://quay/events/dyn_menu",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_menu",
+    "link": "rcm://quay/events/dyn_menu",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_begin",
+    "link": "rcm://quay/events/dyn_begin",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_quest",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_begin",
+    "link": "rcm://quay/events/dyn_begin",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_generator",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_begin",
+    "link": "rcm://quay/events/dyn_begin",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:generator_complete",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_next",
+    "link": "rcm://quay/events/dyn_next",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_next",
+    "link": "rcm://quay/events/dyn_next",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_generator",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_next",
+    "link": "rcm://quay/events/dyn_next",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:generator_complete",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_end",
+    "link": "rcm://quay/events/dyn_end",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:stop_generator",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_end",
+    "link": "rcm://quay/events/dyn_end",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:stop_generator",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_end",
+    "link": "rcm://quay/events/dyn_end",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_end",
+    "link": "rcm://quay/events/dyn_end",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:complete_quest",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_end",
+    "link": "rcm://quay/events/dyn_end",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_stop",
+    "link": "rcm://quay/events/dyn_stop",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:stop_generator",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_stop",
+    "link": "rcm://quay/events/dyn_stop",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_portal",
+    "link": "rcm://quay/events/dyn_portal",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_generator",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_portal",
+    "link": "rcm://quay/events/dyn_portal",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "entries",
     "classification": "NORMAL",
     "scene": "archive",
@@ -2140,6 +2360,56 @@
     "runtime_verified": false
   },
   {
+    "capability": "when:generator_started",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:wave_started",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:wave_complete",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:generator_stopped",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:generator_threshold",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "action:remove",
     "classification": "NORMAL",
     "scene": "",
@@ -2192,6 +2462,36 @@
   {
     "capability": "action:control_door",
     "classification": "ADVANCED",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:pause_generator",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:resume_generator",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:reset_generator",
+    "classification": "NORMAL",
     "scene": "",
     "entity": "",
     "link": "",

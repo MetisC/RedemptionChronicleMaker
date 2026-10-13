@@ -2,9 +2,9 @@
 
 ## Producto vigente
 
-Petición vigente: RC3 — poda, coherencia y cierre según docs/RC3_REQUIREMENTS.md. Sin nuevas features ni cambios de runtime. Priorizar gate de formatos futuros, identidad de instalación/cache, apertura segura tras importar y eliminación de UI legacy.
+Petición vigente: RC4 Dynamic Encounters según docs/RC4_REQUIREMENTS.md. Investigar mecanismos originales antes de diseñar e implementar; añadir encuentros dinámicos encima de los existentes, sin reescribirlos. Formato 10 optativo, tutorial 9 intacto; Showcase sólo laboratorio opcional. Sin otra pestaña, geometría ni gameplay automatizado. Conservar seguridad y UX de RC3.
 
-Redemption Chronicle Maker 1.0.0-rc3. Conservar el tutorial aceptado, el Showcase y la mini crónica, así como el runtime que funciona. No declarar 1.0 final mientras falten los casos manuales de docs/MANUAL_RUNTIME_CHECKLIST.md. El alcance actual y sus límites están en docs/FINAL_PRODUCT_REPORT.md.
+Redemption Chronicle Maker 1.0.0-rc4. Conservar el tutorial aceptado en formato 9 y la mini crónica, así como el runtime que funciona. Showcase añade sólo un laboratorio dinámico optativo; dynamic_lab es independiente. No declarar 1.0 final mientras falten DYN01–12 y los casos manuales de docs/MANUAL_RUNTIME_CHECKLIST.md. Alcance/límites: docs/FINAL_PRODUCT_REPORT.md.
 
 El usuario realiza las pruebas dentro de Redemption: no automatizar ni jugar el juego. Separar generación, compilación contra Codex, pruebas con doubles, pruebas de interfaz y observación nativa. La aceptación del tutorial no certifica automáticamente el Showcase, save/load ni multijugador.
 

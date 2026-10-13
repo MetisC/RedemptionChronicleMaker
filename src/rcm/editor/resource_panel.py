@@ -31,7 +31,7 @@ class ProjectResourcesPanel(QWidget):
         if not self.win.commit_properties():return False
         if not hasattr(self.win.doc,'campaign'):self.win.doc=CampaignDocument.convert(self.win.doc)
         root=self.root()
-        if root.get('project_format') not in (5,9):
+        if root.get('project_format') not in (5,9,10):
             if self.win.doc.path and self.win.doc.path.exists():self.win.doc._atomic_write(self.win.doc.path.with_name(self.win.doc.path.name+'.pre_format5'),self.win.doc.path.read_text(encoding='utf8'))
             root.update(project_format=5,metadata={'author':'','version':'0.1.0','requires_game':'Redemption 1.1','dependencies':[]},resources={'templates':[],'ai_profiles':[],'scripts':[],'textures':[]},build_options={'debug':True},playtests=[]);self.win.changed(True)
         self.win.center_tabs.setCurrentWidget(self);return True

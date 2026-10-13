@@ -1,0 +1,63 @@
+{
+  "language": "en",
+  "phase": "second",
+  "returncode": 0,
+  "elapsed_seconds": 26.006714599992847,
+  "report": {
+    "rc3": {
+      "welcome": true,
+      "seven_tabs": true,
+      "dock_hidden_on_welcome": true,
+      "install_secondary": true,
+      "one_language_control": true,
+      "dock_hidden_for_valid_project": true,
+      "conversion_hidden_for_current_project": true,
+      "errors_open_problems": true,
+      "references_open_dock": true,
+      "settings_has_language": true,
+      "human_showcase_guide": true
+    },
+    "cache_rebuilt": false,
+    "fresh_settings": false,
+    "welcome": true,
+    "setup_steps": [
+      "Comprobando los recursos de Redemption…",
+      "Preparando el compilador…",
+      "Preparando tus copias de los ejemplos…"
+    ],
+    "setup_seconds": 2.4108742000098573,
+    "total_seconds": 25.576787400001194,
+    "gui_authored_valid": true,
+    "build_status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_first_adventu2_s0_Scene": "45.3",
+      "R_first_adventu2_s0_Passive": "45.3"
+    },
+    "synthetic_deployment": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\dynamic_encounters\\portable\\Moved App\\projects\\build\\probe\\game\\RCM\\first_adventu2",
+    "setup_not_repeated": true,
+    "tutorial_unmodified": true,
+    "language": "en",
+    "native_game_test": false,
+    "clean_machine_test": false,
+    "real_opengl": false,
+    "game_originals_written": false,
+    "tutorial_open_timestamp": 89033.97639,
+    "showcase_open_timestamp": 89034.9993862,
+    "rc4": {
+      "wizard_four_pages": true,
+      "advanced_collapsed": true,
+      "next_and_cancel_visible": true,
+      "finish_and_cancel_visible": true,
+      "wizard_created_valid": true,
+      "upgrade_opt_in_backup": true,
+      "atomic_undo": true,
+      "format_10_saved": true,
+      "tutorial_still_format_9": true,
+      "real_api_compiled": true,
+      "guide_navigation": true,
+      "graph_in_existing_tab": true
+    }
+  },
+  "path_restricted": true,
+  "independent_machine": false
+}

@@ -6,6 +6,7 @@ Para usar el editor:
 - [Guía del editor](EDITOR_GUIDE.md) · [English](EDITOR_GUIDE.en.md)
 - [Autoría](AUTHORING_GUIDE.md) · [English](AUTHORING_GUIDE.en.md)
 - [Tutorial](TUTORIAL.md) · [English](TUTORIAL.en.md)
+- [Encuentros dinámicos](DYNAMIC_ENCOUNTERS.md) · [English](DYNAMIC_ENCOUNTERS.en.md)
 - [Showcase](SHOWCASE.md) · [English](SHOWCASE.en.md)
 - [Atajos](SHORTCUTS.md) · [English](SHORTCUTS.en.md)
 - [Resolución de problemas](TROUBLESHOOTING.md) · [English](TROUBLESHOOTING.en.md)

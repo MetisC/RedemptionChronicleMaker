@@ -28,8 +28,14 @@ class Validation:
         return self.project is not None and not any(p.severity == "ERROR" for p in self.problems)
 
 
+class SourceDumper(yaml.SafeDumper):
+    def ignore_aliases(self,data):return True
+
+
 def source_text(data):
-    return yaml.safe_dump(data, allow_unicode=True, sort_keys=False, width=110)
+    # Sources must round-trip through our alias-free, bounded loader even when
+    # a recipe shares an immutable list between several definitions.
+    return yaml.dump(data,Dumper=SourceDumper,allow_unicode=True,sort_keys=False,width=110)
 
 
 class Backend:
@@ -226,7 +232,7 @@ class Backend:
                 from .campaign import Campaign
                 scenes=[(s['id'],project) for s,project in p.scenes] if isinstance(p,Campaign) else [('single',p)]
                 contract={'flags':dict(scenes[0][1].flags),'reserved':p.reserved if isinstance(p,Campaign) else {},'scenes':[{'id':sid,'entities':[e.id for e in project.entities],'conversations':[c.id for c in project.conversations],'events':[e.id for e in project.events],'triggers':[t.id for t in project.triggers]} for sid,project in scenes]}
-                if isinstance(p,Campaign) and p.source.get('runtime_profile')=='phase9':
+                if isinstance(p,Campaign) and p.source.get('runtime_profile') in ('phase9','phase10'):
                     contract['runtime_profile']='phase9-v1'
                     contract['player_pose_record_v1']=[s['id'] for s,project in p.scenes]
                     contract['movement']=[{'scene':s['id'],'paths':s.get('paths',[]),'entries':s.get('entries',[])} for s,project in p.scenes]
@@ -234,6 +240,8 @@ class Backend:
                     if cinematic_scenes:contract['cinema_record_v2']=cinematic_scenes
                     player_cinema=[s['id'] for s,project in p.scenes if any(seq['actor']=='Player' for seq in s.get('sequences',[]))]
                     if player_cinema:contract['player_cinema_resume_v1']=player_cinema
+                if isinstance(p,Campaign) and p.source.get('runtime_profile')=='phase10':
+                    contract['dynamic_records_v1']=[{'scene':s['id'],'generators':s.get('generators',[])} for s,project in p.scenes]
                 report['save_schema_sha256']=source_fingerprint(contract)
                 report['new_game_required']=bool(prior) and prior.get('save_schema_sha256')!=report['save_schema_sha256']
                 if report['new_game_required']:report['save_warning']='La estructura persistida ha cambiado o no tiene firma previa. Inicia una partida nueva; no hay migrador de saves nativos.'

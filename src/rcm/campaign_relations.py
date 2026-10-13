@@ -5,6 +5,7 @@ from .spatial.relations import Link
 def graph(root):
     index={};links=[]
     for qi,q in enumerate(root.get('quests',[])):index[('quest',q['id'])]=('quests',qi)
+    for i,t in enumerate(root.get('resources',{}).get('templates',[])):index[('templates',t['id'])]=('resources','templates',i)
     for alias in root.get('state',{}).get('flags',{}):index[('flag',alias)]=('state','flags',alias)
     for si,s in enumerate(root['scenes']):
         index[('scene',s['id'])]=('scenes',si)
@@ -21,19 +22,23 @@ def graph(root):
                     for category,name in [('scene',v.get('scene')),('arrival',str(v.get('scene'))+'.'+str(v.get('entry')))]:
                         target=index.get((category,name))
                         if target:links.append(Link(source,target,'travel',path+(k,)))
-                category={'reference':'actors','sequence':'sequences','move_path':'paths','focus':'objects','object':'objects','speaker':'actors','actor':'actors','actor_alive':'actors','entity_exists':'entity','item':'objects','item_global':'objects','owns_item':'objects','conversation':'conversations','default':'conversations','then':'conversations','trigger':'triggers','encounter':'encounters','quest':'quest','flag':'flag','when_flag':'flag'}.get(k)
+                category={'reference':'actors','sequence':'sequences','move_path':'paths','focus':'objects','object':'objects','speaker':'actors','actor':'actors','actor_alive':'actors','entity_exists':'entity','item':'objects','item_global':'objects','owns_item':'objects','conversation':'conversations','default':'conversations','then':'conversations','trigger':'triggers','encounter':'encounters','quest':'quest','flag':'flag','when_flag':'flag','generator':'generators','visual':'objects','template':'templates'}.get(k)
                 if k in ACTIONS:category={'flags':'flag','quests':'quest','scenes':'scene','item':'objects','item_global':'objects'}.get(ACTIONS[k][1],ACTIONS[k][1])
                 if isinstance(v,str) and category:
                     target=index.get((category,v)) or local.get((category,v))
                     if target:links.append(Link(source,target,k,path+(k,)))
+                if k=='spawn_points' and isinstance(v,list):
+                    for pi,key in enumerate(v):
+                        target=local.get(('waypoints',key))
+                        if target:links.append(Link(source,target,'spawn_points',path+(k,pi)))
                 if isinstance(v,(dict,list)):scan(v,path+(k,),source,local)
     for si,s in enumerate(root['scenes']):
         local={}
-        for k in ('actors','objects','triggers','conversations','events','encounters','sequences','entries','waypoints','paths'):
+        for k in ('actors','objects','triggers','conversations','events','encounters','sequences','entries','waypoints','paths','generators'):
             for i,row in enumerate(s.get(k,[])):
                 local[(k,row['id'])]=('scenes',si,k,i)
                 if k in ('actors','objects'):local[('entity',row['id'])]=('scenes',si,k,i)
-        for k in ('actors','objects','triggers','conversations','events','encounters','sequences','entries','waypoints','paths'):
+        for k in ('actors','objects','triggers','conversations','events','encounters','sequences','entries','waypoints','paths','generators'):
             for i,row in enumerate(s.get(k,[])):
                 source=('scenes',si,k,i);scan(row,source,source,local)
                 for listkey,targetkind in [('actors','actors'),('inventory','objects'),('points','waypoints')]:

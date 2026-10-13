@@ -19,6 +19,9 @@ def runtime(campaign,scene,p):
         if 'all' in c:return '('+' && '.join(cond(x) for x in c['all'])+')'
         if 'any' in c:return '('+' || '.join(cond(x) for x in c['any'])+')'
         if 'not' in c:return '!('+cond(c['not'])+')'
+        if next(iter(c)) in {'actor_health','generator_state','generator_count'}:
+            from .dynamic_runtime import condition_java
+            return condition_java(c,scene,entities)
         if 'flag' in c:return ('' if c['is_set'] else '!')+'CodexSequence.GetChronicleFlag('+str(flags[c['flag']])+')'
         if 'quest' in c:
             stem='q/'+c['quest']+'/'
@@ -33,7 +36,7 @@ def runtime(campaign,scene,p):
         if k=='actor_alive':return 'alive('+str(i)+')'
         return 'owns(player, '+js(p.prefix+'_'+v)+')'
     trace_path=js('RCM/'+campaign.id+'/runtime_trace.log')
-    if campaign.source.get('runtime_profile')=='phase9':
+    if campaign.source.get('runtime_profile') in ('phase9','phase10'):
         # Redemption's Java 1.1 File stores the path verbatim: getParent only
         # recognises separatorChar. Forward slashes yield null on Windows.
         trace_path+=".replace('/',java.io.File.separatorChar)"
@@ -83,7 +86,7 @@ def runtime(campaign,scene,p):
             if w=='timer' and not e.get('once',True):
                 code += [f' if(ticks % {math.ceil(e["seconds"]/.15)} == 0) event{ei}();']
                 continue
-            if campaign.source.get('runtime_profile')=='phase9':
+            if campaign.source.get('runtime_profile') in ('phase9','phase10'):
                 code += [f' boolean matched{ei}=({test}); if(!matched{ei}) previous[{ei}]=false; else if(!previous[{ei}]) previous[{ei}]=event{ei}();']
             else:code += [f' boolean matched{ei}=({test}); if(matched{ei}&&!previous[{ei}]) event{ei}(); previous[{ei}]=matched{ei};']
     code+=[' } if(!transitioning) SetTimer(0.15f,9400); }',' private boolean volume(int which) { for(int n=-1;n<CodexPlayer.GetNumMPPlayers();n++) { int g=n==-1?player:CodexPlayer.GetMPPlayer(n); if(!IsPlayerGuid(g)||!local(g)) continue; float[] v=new CodexThing(g).GetPosition(); switch(which) {']
@@ -93,10 +96,13 @@ def runtime(campaign,scene,p):
         code += [f' case {ti}: {{ double x=v[0]-({t.transform.position[0]}),y=v[1]-({t.transform.position[1]}),z=v[2]-({t.transform.position[2]}); if({test}) return true; break; }}']
     code+=[' } } return false; }',' private void dispatch(String kind,String target,int result) { if(transitioning) return;']
     for ei,e in enumerate(scene['events']):
-        if e['when'] not in {'scene_start','actor_clicked','object_clicked','note_closed','conversation_ended','trigger_enter','trigger_leave','sequence_ended'}: continue
+        if e['when'] not in {'scene_start','actor_clicked','object_clicked','note_closed','conversation_ended','trigger_enter','trigger_leave','sequence_ended','generator_started','wave_started','wave_complete','generator_complete','generator_stopped','generator_threshold'}: continue
         fk={'object_clicked':'object','actor_clicked':'actor','conversation_ended':'conversation','trigger_enter':'trigger','trigger_leave':'trigger','sequence_ended':'sequence'}.get(e['when'])
         test=f'kind.equals({js(e["when"])})'+(f' && target.equals({js(e[fk])})' if fk else '')+(f' && result=={e["result"]}' if 'result' in e else '')
-        extra=' || kind.equals("object_clicked")' if campaign.source.get('runtime_profile')=='phase9' else ''
+        if 'generator' in e:
+            target=e['generator']+('/'+e['phase'] if 'phase' in e else '')
+            test+=f' && target.equals({js(target)})'+(f' && result=={e["wave"]}' if 'wave' in e else '')
+        extra=' || kind.equals("object_clicked")' if campaign.source.get('runtime_profile') in ('phase9','phase10') else ''
         code+=[f' if({test}) {{ if(event{ei}() && (transitioning || kind.equals("actor_clicked"){extra})) return; }}']
     code+=[' }']
     for ei,e in enumerate(scene['events']):
@@ -111,7 +117,7 @@ def runtime(campaign,scene,p):
             k,v=next(iter(a.items()));statement=''
             if k=='spawn':
                 statement=f'enabled[{entities[v]}]=true; spawn({entities[v]});'
-                if campaign.source.get('runtime_profile')=='phase9':statement+=f' if(!createdOnce[{entities[v]}]) return false;'
+                if campaign.source.get('runtime_profile') in ('phase9','phase10'):statement+=f' if(!createdOnce[{entities[v]}]) return false;'
             elif k=='remove':statement=f'if(local(things[{entities[v]}])) new CodexThing(things[{entities[v]}]).Remove(); enabled[{entities[v]}]=false;'
             elif k in ('set_flag','clear_flag'):statement=f'CodexSequence.{"SetChronicleFlag" if k=="set_flag" else "ClearChronicleFlag"}({flags[v]});'
             elif k in ('start_quest','advance_quest','complete_quest'):statement=f'if(!quest({js(v)},{["start_quest","advance_quest","complete_quest"].index(k)})) return false;'
@@ -149,6 +155,9 @@ def runtime(campaign,scene,p):
                 if any(k in seq for k in ('steps','camera_path','move_path','prop_motion')):
                     statement=f'if(!beginCinema({scene["sequences"].index(seq)})) return false;'
             elif k in ('enable_ai','disable_ai'):statement=f'if(IsActorGuid(things[{entities[v]}])) new CodexActor(things[{entities[v]}]).{"ClearActorFlags" if k=="enable_ai" else "SetActorFlags"}(THING_AF_AIPAUSED);'
+            elif k in ('start_generator','stop_generator','pause_generator','resume_generator','reset_generator'):
+                gi=next(i for i,g in enumerate(scene['generators']) if g['id']==v)
+                statement=f'if(!dynamicCommand({gi},{["start_generator","stop_generator","pause_generator","resume_generator","reset_generator"].index(k)})) return false;'
             action_marker='action/'+scene['id']+'/'+e['id']+'/'+str(ai)
             if action_marker in reserved:
                 statement='if(!'+flag(action_marker)+') { '+statement+' '+setflag(action_marker)+' }'
@@ -162,7 +171,7 @@ def runtime(campaign,scene,p):
     code+=[' } } catch(Throwable error) { trace("conversation failed: "+error); } if(!ok && active==index && starter==conversationPlayer) { active=-1; starter=0; CodexCamera.Release(conversationPlayer); cameraPlayer=0; cameraTicks=0; trace("conversation failed to start"); } return ok; }',
              ' public void clicked(int target,int clicker,int capture) { if(NetIsClient()||active!=-1||transitioning||!IsPlayerGuid(clicker)||!local(clicker)) return; player=clicker;']
     for eid,i in entities.items():
-        kind='object_clicked' if eid not in actors and campaign.source.get('runtime_profile')=='phase9' else 'actor_clicked'
+        kind='object_clicked' if eid not in actors and campaign.source.get('runtime_profile') in ('phase9','phase10') else 'actor_clicked'
         code+=[f' if(target==things[{i}]) {{ dispatch({js(kind)},{js(eid)},0);']
         e=next(e for e in p.entities if e.id==eid)
         if e.conversation:
@@ -190,9 +199,12 @@ def runtime(campaign,scene,p):
            ' public void restore(int capture) { for(int i=0;i<things.length;i++) { things[i]=CodexSequence.RestoreInt(); enabled[i]=CodexSequence.RestoreBoolean(); createdOnce[i]=CodexSequence.RestoreBoolean(); } for(int i=0;i<previous.length;i++) previous[i]=CodexSequence.RestoreBoolean(); ticks=CodexSequence.RestoreInt(); restoredState=true; }',
            ' public void restored(int capture) { if(NetIsClient()) return; active=-1; starter=0; transitioning=false; releaseCamera(); for(int i=0;i<inside.length;i++) inside[i]=false; player=localPlayer(0); poll(); }','}']
     java='\n'.join(code)+'\n'
-    if campaign.source.get('runtime_profile')=='phase9':
+    if campaign.source.get('runtime_profile') in ('phase9','phase10'):
         from .runtime9 import extend
         java=extend(java,campaign,scene,p)
+    if campaign.source.get('runtime_profile')=='phase10':
+        from .dynamic_runtime import extend_dynamic
+        java=extend_dynamic(java,campaign,scene,p)
     return name,java
 
 

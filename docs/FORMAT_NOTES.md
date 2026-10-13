@@ -307,3 +307,9 @@ Sólo formato 9: `nodes[].motion` elige un slot del NMS real del speaker; `nodes
 La documentación original confirma que el booleano de PlayMotionSetMode elige canal; el retorno es duración en msec. Los overrides explícitos tienen ahora stand en el canal base y recuperación tras el retorno temporal, cancelada al entrar en otra línea. No cambian NCO/NVO ni la actuación automática sin overrides. Ver ENGINE_NOTES.md.
 
 El record `player_pose_record_v1` consta de SaveBoolean y seis SaveFloat: XYZ y orientación. Se escribe antes de los records de patrol/entidades. En escenas con cinematics, preceden SaveBoolean(cinema activo) y SaveInt(actor), contrato cinema_record_v2. El motor conserva flags por sus APIs originales. Esto es un contrato de serialización de nuestro script, no un escritor NSG/NSW completo. Nuevos records requieren partida nueva.
+
+### Formato de proyecto 10 · encuentros dinámicos
+
+scene.generators añade modo, waves/groups, rol/template/cantidad, waypoints, límites, intervalos, políticas, boss/phases y acciones normales. YAML sin aliases, compatible con loader seguro. Formato 9 se abre sin mutación; primer generador crea backup y conversión optativa con undo.
+
+Se siguen generando NSC/NMF/NSD/NOT/NLS/NCO/NVO/NQD/NTX y Java/classes según contenido. NIL se referencia sin editar. dynamic_records_v1 añade SaveInt(1), estado/oleada/espera/cursors/batch/puntos/retries/counters, booleanos de seguridad/oleada/boss y float HP anterior; después slots GUID/entrada, counts por entrada/rol y done/pending por fase. Restore lee el mismo orden y rechaza propiedad/cursors inválidos. La firma incluye configuración dinámica: cambios estructurales requieren nueva partida. No es un writer completo del save nativo.

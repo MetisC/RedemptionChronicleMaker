@@ -1,0 +1,46 @@
+Compiled from "CodexWorld.java"
+public class CodexWorld extends Codex {
+  public native int SetFlags(int);
+
+  public native int CreateThing(java.lang.String, float[], float[]);
+
+  public native int GetSector(int);
+
+  public native int GetFlags();
+
+  public native java.lang.String GetName();
+
+  public native int ClearFlags(int);
+
+  public native int GetNumSectors();
+
+  public native int GetNumMaterials();
+
+  public native int GetLastEmitterRenderCount();
+
+  public native int GetFirstThing();
+
+  public native int CreateTreasure(int, float[], float[], boolean);
+
+  public CodexWorld(int);
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method Codex."<init>":()V
+       4: iload_1
+       5: ldc           #15                 // int 12345678
+       7: if_icmpne     19
+      10: aload_0
+      11: ldc           #15                 // int 12345678
+      13: putfield      #19                 // Field Codex.guid:I
+      16: goto          36
+      19: iload_1
+      20: ifge          31
+      23: aload_0
+      24: iconst_0
+      25: putfield      #19                 // Field Codex.guid:I
+      28: goto          36
+      31: aload_0
+      32: iload_1
+      33: putfield      #19                 // Field Codex.guid:I
+      36: return
+}

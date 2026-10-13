@@ -29,7 +29,7 @@ def draft():
 class FormatSafety(unittest.TestCase):
     def test_current_and_supported_older_formats_open_without_rewriting(self):
         with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as folder:
-            ws=Workspace(Path(folder));self.assertEqual(CURRENT_PROJECT_FORMAT,9)
+            ws=Workspace(Path(folder));self.assertEqual(CURRENT_PROJECT_FORMAT,10)
             from rcm.service import source_text
             for version in (9,5,None):
                 source=draft()
@@ -42,7 +42,7 @@ class FormatSafety(unittest.TestCase):
         from rcm.service import source_text
         from rcm.packages import export_project,import_project
         with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as folder:
-            ws=Workspace(Path(folder));source=draft();source['project_format']=10
+            ws=Workspace(Path(folder));source=draft();source['project_format']=11
             path=ws.write('project.yaml',source_text(source));before=path.read_bytes()
             with self.assertRaisesRegex(ValueError,'versión más reciente'):Document.load(ws,path)
             self.assertEqual(path.read_bytes(),before)
@@ -54,7 +54,7 @@ class FormatSafety(unittest.TestCase):
         from rcm.service import source_text
         with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as folder:
             ws=Workspace(Path(folder));path=ws.write('project.yaml',source_text(draft()));doc=Document.load(ws,path);before=doc.snapshot()
-            future=draft();future['project_format']=10;ws.write(doc.recovery_path,source_text(future))
+            future=draft();future['project_format']=11;ws.write(doc.recovery_path,source_text(future))
             with self.assertRaises(ValueError):doc.recover()
             self.assertEqual(doc.snapshot(),before);self.assertEqual(path.read_text(encoding='utf8'),source_text(draft()))
 
@@ -231,6 +231,17 @@ class ShowcaseGuide(unittest.TestCase):
                     else:normalise(child)
             elif isinstance(value,list):
                 for child in value:normalise(child)
+        # RC4 explicitly adds only an optional station. Keep the RC3 story
+        # pinned after removing those named additions, never normalise broadly.
+        if current.get('project_format')==10:
+            current['project_format']=9
+            current['quests']=[q for q in current['quests'] if q['id']!='dynamic_lab']
+            for scene in current['scenes']:
+                scene.pop('generators',None)
+                scene['events']=[e for e in scene['events'] if e['id'] not in {'dyn_menu','dyn_begin','dyn_next','dyn_end','dyn_stop','dyn_portal'}]
+                scene['conversations']=[c for c in scene['conversations'] if c['id']!='dyn']
+                for conversation in scene['conversations']:
+                    if conversation['id']=='guide':conversation['choices']=[c for c in conversation['choices'] if c.get('result')!=8]
         for data in (original,current):
             for scene in data['scenes']:
                 for kind in ('actors','objects'):

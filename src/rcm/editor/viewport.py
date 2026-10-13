@@ -436,6 +436,15 @@ class Viewport(QOpenGLWidget):
                             painter.drawLine(start,end)
             if self.selection[0] != 'original':
                 self.draw_gizmo(painter, selected_pos)
+        if self.data and self.selection and self.selection[0]=='generators':
+            related=[(p,e) for p,e,ro in self.entities() if p in linked]
+            if related:
+                center=np.mean([self.position(p,e) for p,e in related],axis=0)+[0,0,35];start=self.project(center)
+                painter.setPen(QPen(QColor('#71d9b4'),1,Qt.PenStyle.DashLine))
+                for number,(p,e) in enumerate(related):
+                    end=self.project(self.position(p,e)+[0,0,35])
+                    if start and end:painter.drawLine(start,end)
+                    if end and p[0]=='waypoints':painter.drawText(end+QPointF(5,-5),str(number+1))
         painter.setPen(QColor('#d9e5ef'))
         painter.fillRect(0, self.height()-33, self.width(), 33, QColor(20, 27, 34, 215))
         hint = tr('Click en el suelo para colocar · Esc cancela') if self.placing else tr('RMB + WASD mirar/mover · Q/E altura · Shift rápido · Alt+LMB orbitar · F enfocar · Supr eliminar')
@@ -721,6 +730,12 @@ class SpatialPanel(QWidget):
         menu=QMenu(self);menu.setObjectName('viewport_context_menu')
         for label,cb in [(tr('Enfocar selección · F'),self.viewport.focus_selection),(tr('Mover · 1'),lambda:self.set_mode('move')),(tr('Girar · 2'),lambda:self.set_mode('rotate')),(tr('Tamaño · 3'),lambda:self.set_mode('scale')),(tr('+ Actor…'),self.win.add_actor),(tr('+ Objeto…'),self.add_object),('+ Trigger',self.add_trigger),(tr('+ Entrada'),lambda:self.win.campaign_panel.add_marker('entries')),('+ Waypoint',lambda:self.win.campaign_panel.add_marker('waypoints')),(tr('Ajustar al suelo'),self.snap_selected),(tr('Buscar referencias'),self.win.find_references),(tr('Eliminar · Supr'),self.win.delete_selected)]:
             action=menu.addAction(label);action.triggered.connect(lambda checked=False,cb=cb:self.win.guard(cb))
+        from .dynamic_wizard import open_dynamic
+        def encounter_here():
+            local=self.viewport.mapFromGlobal(position);o,d=self.viewport.screen_ray(local.x(),local.y());hit=self.viewport.raycaster.cast(o,d) if self.viewport.level else None
+            if not hit or abs(hit.normal[2])<=.65:raise ValueError(tr('Selecciona una superficie de suelo válida'))
+            open_dynamic(self.win,position=hit.position.tolist())
+        action=menu.addAction(tr('Encuentro dinámico aquí…'));action.setObjectName('dynamic_here');action.triggered.connect(lambda:self.win.guard(encounter_here));action.setEnabled(self.win.doc is not None and self.viewport.level is not None)
         menu.exec(position)
 
     def add_object(self):

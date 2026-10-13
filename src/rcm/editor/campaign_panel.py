@@ -23,6 +23,8 @@ class CampaignPanel(QWidget):
                 if i==0:self.convert_button=button
             else:
                 action=more.addAction(label);action.setObjectName(name);action.triggered.connect(lambda checked=False,cb=cb:win.guard(cb))
+        from .dynamic_wizard import open_dynamic
+        dynamic=QPushButton(tr('+ Encuentro dinámico…'));dynamic.setObjectName('add_dynamic');dynamic.clicked.connect(lambda:win.guard(lambda:open_dynamic(win)));spatial.addWidget(dynamic)
         from .recipe_wizard import open_wizard
         guided=QPushButton(tr('Asistente…'));guided.setObjectName('open_recipe');guided.clicked.connect(lambda:win.guard(lambda:open_wizard(win)));spatial.addWidget(guided)
         extra=QPushButton(tr('Añadir…'));extra.setMenu(more);extra.setObjectName('campaign_add_more');spatial.addWidget(extra)
@@ -72,7 +74,7 @@ class CampaignPanel(QWidget):
         for qi,q in enumerate(root.get('quests',[])):add(('quests',qi),q,tr('Misión · ')+str(len(q['steps']))+tr(' pasos'))
         for si,s in enumerate(root['scenes']):
             add(('scenes',si),s,tr('Escena · ')+s['level']['source'])
-            for k in ['actors','objects','conversations','events','triggers','encounters','sequences','entries','waypoints','paths']:
+            for k in ['actors','objects','conversations','events','triggers','encounters','sequences','entries','waypoints','paths','generators']:
                 for i,row in enumerate(s.get(k,[])):add(('scenes',si,k,i),row,s['id']+' / '+k)
         for alias,index in root.get('state',{}).get('flags',{}).items():add(('state','flags',alias),{'id':alias},'Flag '+str(index))
     def switch_scene(self,index):
@@ -90,7 +92,7 @@ class CampaignPanel(QWidget):
             self.win.doc.active=path[1]
             self.win.selection=tuple(path[2:]) if len(path)>2 else ('level',)
             self.win.refresh()
-            if len(path)>2 and path[2] not in ['encounters','sequences','paths']:
+            if len(path)>2 and path[2] not in ['encounters','sequences','paths','generators']:
                 self.win.select(tuple(path[2:]));self.win.center_tabs.setCurrentIndex(1);return
         self.win.center_tabs.setCurrentWidget(self);self.render()
     def selected(self,item,column):self.navigate(item.data(0,ROLE))
@@ -133,7 +135,7 @@ class CampaignPanel(QWidget):
         self.path=('scenes',self.win.doc.active,'sequences',len(rows)-1);self.win.changed(True);self.render()
     def enable_authoring9(self):
         if not self.convert():return False
-        root=self.source();root['project_format']=9
+        root=self.source();root['project_format']=max(9,root.get('project_format',0))
         root.setdefault('resources',{});root.setdefault('metadata',{'version':'0.1.0'});root.setdefault('build_options',{'debug':True})
         for s in root['scenes']:
             for k in ('entries','waypoints','paths'):s.setdefault(k,[])
@@ -156,7 +158,11 @@ class CampaignPanel(QWidget):
         root=self.source();parent=root
         for k in self.path[:-1]:parent=parent[k]
         if not isinstance(parent,list):raise ValueError(tr('Selecciona una entidad, quest o evento'))
-        row=copy.deepcopy(parent[self.path[-1]]);row['id']=self.unique(parent,'copy')
+        row=copy.deepcopy(parent[self.path[-1]]);ident=self.unique(parent,'copy')
+        if self.path[-2]=='generators':
+            from ..product_edit import rewire_generator
+            rewire_generator(row,row['id'],ident)
+        row['id']=ident
         if self.path[-2]=='actors':
             row.pop('conversation',None);row.pop('inventory',None)
         parent.append(row);self.path=self.path[:-1]+(len(parent)-1,);self.win.changed(True);self.render()
@@ -227,9 +233,15 @@ class CampaignPanel(QWidget):
             w=QComboBox();w.setObjectName('campaign_entry')
             for s in root['scenes']:w.addItem(s['id'],s['id'])
             w.setCurrentIndex(w.findData(root['entry']));w.currentIndexChanged.connect(lambda:self.mutate(lambda:root.__setitem__('entry',w.currentData())));form.addRow(tr('Entrada'),w)
-            if root.get('project_format')==9:
+            if root.get('project_format') in (9,10):
                 combo(tr('Llegada por defecto'),'default_entry',[(tr('Entrada original'),None)]+[(p['name'],p['id']) for p in row.get('entries',[])],'scene_default_entry')
             label=QLabel(tr('Viaje / Escena y punto de llegada permite elegir una entrada colocada en 3D. El punto sólo mueve al jugador al entrar; cargar una partida conserva su posición.'));label.setWordWrap(True);form.addRow(label)
+        elif self.path[2]=='generators':
+            from .dynamic_wizard import open_dynamic
+            line(tr('Nombre'),'name','dynamic_property_name')
+            form.addRow(QLabel(tr('Encuentro dinámico')+tr(' · ')+tr(__import__('rcm.dynamic_encounters',fromlist=['MODES']).MODES.get(row['mode'],row['mode']))))
+            b=QPushButton(tr('Editar encuentro dinámico…'));b.setObjectName('edit_dynamic');b.clicked.connect(lambda:open_dynamic(self.win,row['id']));form.addRow(b)
+            for wi,wave in enumerate(row['waves']):form.addRow(tr('Oleada ')+str(wi+1),QLabel(', '.join(e['template']+' × '+str(e['count']) for e in wave['groups'])))
         elif self.path[2]=='encounters':
             line(tr('Nombre'),'name','encounter_name');lst=QListWidget();lst.setObjectName('encounter_members')
             s=root['scenes'][self.path[1]]
@@ -259,7 +271,7 @@ class CampaignPanel(QWidget):
             if row['actor']=='Player':
                 combo(tr('Referencia de cámara'),'reference',[(tr('Sin referencia'),None)]+[(a['name'],a['id']) for a in s['actors']],'sequence_reference')
             combo(tr('Plano'),'shot',[(tr('Medio'),'medium'),(tr('Cercano'),'close'),(tr('Amplio'),'wide')],'sequence_shot');combo(tr('Ángulo'),'angle',[(tr('Bajo'),'low'),(tr('Medio'),'medium'),(tr('Alto'),'high')],'sequence_angle')
-            if root.get('project_format')==9:
+            if root.get('project_format') in (9,10):
                 from ..camera_presets import CINEMA_PRESETS as PRESETS
                 combo(tr('Preset narrativo'),'preset',[(tr('Usar plano simple'),None)]+[(tr(v[0]),k) for k,v in PRESETS.items()],'sequence_preset')
                 combo(tr('Actor en movimiento'),'move_path',[(tr('Sin movimiento'),None)]+[(p['name'],p['id']) for p in s.get('paths',[])],'sequence_move_path')
@@ -361,14 +373,18 @@ def event_properties(ins):
         ins.line('ID',e.get('id',''),ins.rename_event,'event_id',True)
         def when(v):
             e['when']=v
-            for k in ['actor','object','conversation','trigger','item','encounter','sequence','result','seconds']:e.pop(k,None)
+            for k in ['actor','object','conversation','trigger','item','encounter','sequence','result','seconds','generator','wave','phase']:e.pop(k,None)
             fk={'object_clicked':('object','objects'),'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters'),'sequence_ended':('sequence','sequences')}.get(v)
             if fk:e[fk[0]]=next((x['id'] for x in s.get(fk[1],[])),'')
+            if v.startswith(('generator_','wave_')):e['generator']=next((g['id'] for g in s.get('generators',[])),'')
             if v=='timer':e['seconds']=1.0
             w.changed(True)
-        ins.combo(tr('CUANDO'),[(tr(label),key) for key,label in WHEN.items() if w.doc.campaign.get('project_format')==9 or key not in {'object_clicked','note_closed'}],e['when'],when,'event_when')
+        ins.combo(tr('CUANDO'),[(tr(label),key) for key,label in WHEN.items() if key!='generator_threshold' and (w.doc.campaign.get('project_format')==10 or not key.startswith(('generator_','wave_'))) and (w.doc.campaign.get('project_format') in (9,10) or key not in {'object_clicked','note_closed'})],e['when'],when,'event_when')
         fk={'object_clicked':('object','objects'),'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters'),'sequence_ended':('sequence','sequences')}.get(e['when'])
         if fk:ins.combo(tr('Origen'),[(x.get('name',x['id']),x['id']) for x in s.get(fk[1],[])],e.get(fk[0],''),lambda v:ins.set(p+(fk[0],),v),'event_'+fk[0])
+        if e['when'].startswith(('generator_','wave_')):
+            ins.combo(tr('Encuentro dinámico'),[(g['name'],g['id']) for g in s.get('generators',[])],e.get('generator',''),lambda v:ins.set(p+('generator',),v),'event_generator')
+            if e['when'].startswith('wave_'):ins.spin(tr('Oleada (0 = cualquiera)'),e.get('wave',0),lambda v:ins.set(p+('wave',),v if v else None,True),'event_wave',maximum=32)
         if e['when']=='conversation_ended':ins.spin(tr('RETURN (0 = cualquiera)'),e.get('result',0),lambda v:ins.set(p+('result',),v if v else None,True),'event_result')
         if e['when']=='timer':ins.spin(tr('Segundos'),e.get('seconds',1),lambda v:ins.set(p+('seconds',),v),'event_seconds',True,.15,86400)
         ins.combo(tr('Repetición'),[(tr('Cada vez'),False),(tr('Una sola vez'),True)],e.get('once',e['when'] in {'actor_killed','item_picked_up','encounter_complete','timer','state_changed'}),lambda v:ins.set(p+('once',),v),'event_once')
@@ -377,7 +393,7 @@ def event_properties(ins):
         a=w.at(p);kind=next(iter(a),'spawn')
         def change(v):a.clear();a[v]={'title':tr('Nota'),'text':tr('Escribe aquí lo que leerá el jugador.')} if v=='show_note' else {'resource':'','waypoint':'','volume':100,'min_distance':128,'max_distance':512} if v=='play_sound' else {'cast_id':'','mode':'frames','frame':1,'parameter':150,'open':True} if v=='control_door' else {'scene':'','entry':''} if v=='travel' else True if ACTIONS[v][1]=='none' else 100 if ACTIONS[v][1]=='number' else '';w.changed(True)
         advanced={'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','play_sound'}
-        ins.combo(tr('Acción'),[(tr(label),key) for key,(label,_) in ACTIONS.items() if w.doc.campaign.get('project_format')==9 or key not in advanced],kind,change,'action_kind');category=ACTIONS.get(kind,('','none'))[1]
+        ins.combo(tr('Acción'),[(tr(label),key) for key,(label,_) in ACTIONS.items() if (w.doc.campaign.get('project_format')==10 or not key.endswith('_generator')) and (w.doc.campaign.get('project_format') in (9,10) or key not in advanced)],kind,change,'action_kind');category=ACTIONS.get(kind,('','none'))[1]
         if category=='note':
             value=a[kind]
             ins.line(tr('Título'),value['title'],lambda v:ins.set(p+(kind,'title'),v),'note_title')
@@ -433,15 +449,22 @@ def render_condition(ins,c,path,depth=0):
         elif v=='not':c[v]={'flag':firstflag,'is_set':True}
         elif v=='flag':c.update(flag=firstflag,is_set=True)
         elif v in ('quest_state','quest_step'):c.update(quest='',**({'state':'active'} if v=='quest_state' else {'step':0}))
+        elif v=='actor_health':c[v]={'actor':'','comparison':'<=','percent':50}
+        elif v=='generator_count':c[v]={'generator':'','counter':'alive','comparison':'<=','value':1}
+        elif v=='generator_state':c[v]={'generator':'','state':'complete'}
         else:c[v]=''
         w.changed(True)
-    suffix='_'.join(map(str,path[2:]));ins.combo(tr('SI') if depth==0 else '  '*depth+tr('Condición'),[(x,x) for x in ['flag','quest_state','quest_step','actor_alive','entity_exists','owns_item','all','any','not']],kind,change,'condition_type_'+suffix)
+    suffix='_'.join(map(str,path[2:]));options=[(x,x) for x in ['flag','quest_state','quest_step','actor_alive','entity_exists','owns_item','all','any','not']]
+    if w.doc.campaign.get('project_format')==10:options += [(tr('Vida del actor'),'actor_health'),(tr('Enemigos vivos / muertos'),'generator_count'),(tr('Estado del encuentro dinámico'),'generator_state')]
+    ins.combo(tr('SI') if depth==0 else '  '*depth+tr('Condición'),options,kind,change,'condition_type_'+suffix)
     if kind=='flag':
         ins.combo('Flag',flags,c.get('flag',''),lambda v:ins.set(path+('flag',),v),'condition_flag'+('' if depth==0 else suffix));ins.combo(tr('Estado'),[(tr('Activado'),True),(tr('Desactivado'),False)],c.get('is_set',True),lambda v:ins.set(path+('is_set',),v),'condition_state'+('' if depth==0 else suffix))
     elif kind.startswith('quest'):
         ins.combo(tr('Misión'),[(tr('Elige…'),'')]+[(q['title'],q['id']) for q in w.doc.campaign.get('quests',[])],c.get('quest',''),lambda v:ins.set(path+('quest',),v),'condition_quest')
         if kind=='quest_state':ins.combo(tr('Estado'),[(tr('Sin iniciar'),'not_started'),(tr('Activa'),'active'),(tr('Completa'),'complete')],c.get('state','active'),lambda v:ins.set(path+('state',),v),'condition_quest_state')
         else:ins.spin(tr('Paso activo (desde 0)'),c.get('step',0),lambda v:ins.set(path+('step',),v),'condition_quest_step',maximum=31)
+    elif kind in {'actor_health','generator_state','generator_count'}:
+        render_dynamic_condition(ins,c,path)
     elif kind in ('all','any','not'):
         children=[c['not']] if kind=='not' else c[kind]
         for i,child in enumerate(children):render_condition(ins,child,path+(kind,) if kind=='not' else path+(kind,i),depth+1)
@@ -454,6 +477,40 @@ def render_condition(ins,c,path,depth=0):
             templates={t['id']:t['kind'] for t in w.backend.resources['templates']}
             choices += [(sc['id']+' / '+o['name'],sc['id']+'.'+o['id']) for sc in w.doc.campaign['scenes'] for o in sc.get('objects',[]) if templates.get(o['template']) in {'items','weapons','armour'}]
         ins.combo(tr('Entidad'),[(tr('Elige…'),'')]+choices,c.get(kind,''),lambda v:ins.set(path+(kind,),v),'condition_entity')
+
+def render_dynamic_condition(ins,c,path):
+    from ..dynamic_encounters import MODES,unique_health_role
+    kind=next(iter(c));value=c[kind];w=ins.win;s=w.doc.campaign['scenes'][w.doc.active];prefix=path+(kind,)
+    generators=s.get('generators',[]);choices=[(tr('Elige…'),'')]+[(g['name']+' · '+tr(MODES[g['mode']]),g['id']) for g in generators]
+    if kind=='actor_health':
+        targets=[(a['name'],'actor:'+a['id']) for a in s['actors']]
+        for g in generators:
+            roles={e['role']:sum(e2['count'] for wave in g['waves'] for e2 in wave['groups'] if e2['role']==e['role']) for wave in g['waves'] for e in wave['groups']}
+            targets += [(g['name']+' / '+role,'role:'+g['id']+'/'+role) for role in roles if unique_health_role(g,role)]
+        selected='actor:'+value['actor'] if 'actor' in value else 'role:'+value.get('generator','')+'/'+value.get('role','')
+        def target(key):
+            for k in ('actor','generator','role'):value.pop(k,None)
+            if key.startswith('actor:'):value['actor']=key[6:]
+            elif key.startswith('role:'):value['generator'],value['role']=key[5:].split('/',1)
+            else:value['actor']=''
+            w.changed(True)
+        ins.combo(tr('Actor o jefe generado'),[(tr('Elige…'),'')]+targets,selected,target,'health_target')
+        unit='percent' if 'percent' in value else 'value'
+        def units(key):
+            old=value.pop('percent',value.get('value',50));value.pop('value',None);value[key]=min(old,100) if key=='percent' else old;w.changed(True)
+        ins.combo(tr('Medida'),[(tr('Porcentaje'),'percent'),(tr('Puntos de vida'),'value')],unit,units,'health_unit')
+        ins.spin(tr('Vida'),value.get(unit,50),lambda v:ins.set(prefix+(unit,),v),'health_threshold',True,0,100 if unit=='percent' else 1000000)
+        ins.note(tr('La condición se comprueba por muestreo. Las fases del jefe detectan cruces; no garantizan actuar antes de un golpe mortal.'))
+    else:
+        ins.combo(tr('Encuentro dinámico'),choices,value.get('generator',''),lambda v:ins.set(prefix+('generator',),v),'condition_generator')
+        if kind=='generator_state':
+            ins.combo(tr('Estado'),[(tr(label),key) for label,key in [('Sin iniciar','ready'),('Activo','active'),('Pausado','paused'),('Completo','complete'),('Detenido','stopped'),('Error','error')]],value.get('state','complete'),lambda v:ins.set(prefix+('state',),v),'generator_condition_state');return
+        ins.combo(tr('Contador'),[(tr(label),key) for label,key in [('Vivos','alive'),('Muertos','killed'),('Generados','total'),('Oleada','wave')]],value.get('counter','alive'),lambda v:ins.set(prefix+('counter',),v),'generator_counter')
+        ins.spin(tr('Cantidad'),value.get('value',1),lambda v:ins.set(prefix+('value',),v),'generator_counter_value',maximum=1000000)
+        g=next((g for g in generators if g['id']==value.get('generator')),None)
+        roles=sorted({e['role'] for wave in (g or {}).get('waves',[]) for e in wave['groups']})
+        ins.combo(tr('Rol (opcional)'),[(tr('Todos'),'')]+[(r,r) for r in roles],value.get('role',''),lambda v:ins.set(prefix+('role',),v if v else None,True),'generator_counter_role')
+    ins.combo(tr('Comparación'),[(tr('Menor que'),'<' ),(tr('Como máximo'),'<='),(tr('Mayor que'),'>'),(tr('Como mínimo'),'>=')]+([(tr('Igual'),'==')] if kind=='generator_count' else []),value.get('comparison','<='),lambda v:ins.set(prefix+('comparison',),v),'dynamic_comparison')
 
 class InventoryDialog(QDialog):
     """Stage catalogue additions until Apply; each item has one creation owner."""

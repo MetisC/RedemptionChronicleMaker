@@ -1,20 +1,20 @@
-# Pruebas y calidad
+# Pruebas y calidad · RC4
 
-Desde la raíz, con Python y dependencias locales preparados:
+Desde la raíz, Python y dependencias locales preparados:
 
 ```powershell
 python tools/quality.py --fast
 python tools/quality.py --no-coverage
-python tools/test.py --pattern test_rc3_product.py
+python tools/test.py --pattern test_dynamic_encounters.py
+python tools/test.py --pattern test_dynamic_gui.py
+python tools/audit_spawners.py
 python tools/rcm.py verify-originals
 ```
 
-quality ejecuta Ruff, el alcance configurado de mypy y unittest. Los resultados se escriben en build/tests. La ejecución completa sin --no-coverage genera también informes de cobertura; los harness Java tienen comprobaciones independientes.
+425 PASS, 0 FAIL, 0 ERROR, 0 SKIP. Ruff y mypy en paths/input_limits/file_transaction; no tipado completo. Resultados actuales archivados en research/dynamic_encounters/quality. Doubles de Java y Qt offscreen no prueban el motor, OpenGL real ni DPI físico. Los ocho recorridos empaquetados y capturas están en research/dynamic_encounters/portable.
 
-La suite rápida utiliza datos sintéticos. La completa requiere Qt, compilador/JVM, catálogos y recursos originales extraídos. Los tests de interfaz offscreen no prueban OpenGL, DPI físico o menús del juego. Mypy comprueba paths, input_limits y file_transaction; no es tipado completo del programa.
+Stress: 25 generadores, 20 con diez oleadas, 400 entradas, tres templates, diez umbrales, callbacks y múltiples puntos. Bytecode/métodos medidos en stress.json; no rendimiento nativo certificado. Tutorial/clases, originales y archivos de usuario comparados en regression.json.
 
-Los proyectos históricos necesarios para regresión están exclusivamente en tests/fixtures/chronicles. Los baselines de bytes, distribuciones y geometría están en tests/fixtures/baselines. Sus nombres históricos no representan proyectos visibles ni nuevas versiones del producto. No modificar hashes para ocultar fallos.
+Cuatro fuentes vigentes: chronicles/tutorial, showcase, mini_chronicle y dynamic_lab. Baselines históricos necesarios sólo en tests/fixtures; no cambiar hashes para esconder fallos. Dependencias cache/vendor, devtools y toolchain.
 
-Los tres ejemplos activos están en chronicles/tutorial, chronicles/showcase y chronicles/mini_chronicle. Las dependencias están en cache/vendor, cache/devtools y cache/toolchain. tools/bootstrap.ps1 prepara el compilador y escanea el juego sin ejecutar herramientas originales de autoría.
-
-La última revisión completa pasó 376 pruebas; sus resultados están en research/rc3/quality. Hay 19 casos específicos RC3 y ocho recorridos del EXE empaquetado; sus informes y capturas están en research/rc3/portable. Los casos dentro de Redemption los realiza el usuario siguiendo [MANUAL_RUNTIME_CHECKLIST.md](MANUAL_RUNTIME_CHECKLIST.md). Generado, compilado, probado con doubles y verificado en el motor son estados distintos.
+Manual: MANUAL_RUNTIME_CHECKLIST.md, DYN01–12. Generado, compilado, probado con doubles/widgets y verificado en Redemption son estados separados. No se ha automatizado el juego.

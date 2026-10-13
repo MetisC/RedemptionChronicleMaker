@@ -17,7 +17,8 @@ class CampaignDocument(Document):
         s=self.campaign['scenes'][self.active]
         return {'schema':2,'chronicle':self.campaign['chronicle'],'state':self.campaign.setdefault('state',{'flags':{}}),
                 **{k:s.setdefault(k,[] if k!='level' else {'source':''}) for k in ['level','actors','objects','conversations','events','triggers']},
-                **({k:s.setdefault(k,[]) for k in ('entries','waypoints')} if self.campaign.get('project_format')==9 else {})}
+                **({k:s.setdefault(k,[]) for k in ('entries','waypoints')} if self.campaign.get('project_format') in (9,10) else {}),
+                **({'generators':s.setdefault('generators',[])} if self.campaign.get('project_format')==10 else {})}
     @data.setter
     def data(self,value):
         # Undo/redo snapshots always contain the complete campaign.
@@ -80,6 +81,18 @@ class CampaignDocument(Document):
                 for c in e.get('conditions',[]):condition(c)
             for a in s['actors']:
                 if 'inventory' in a and (not isinstance(a['inventory'],list) or any(not isinstance(i,str) for i in a['inventory'])):raise ValueError('Inventario: requiere IDs de objetos')
+            for g in records(s.get('generators',[]),'Encuentros dinámicos'):
+                strings(g,['id','name','mode'],'Encuentro dinámico')
+                from .dynamic_encounters import MODES
+                if g['mode'] not in MODES:raise ValueError('Modo de encuentro dinámico inválido')
+                for wave in records(g.get('waves',[]),'Oleadas'):
+                    for group in records(wave.get('groups',[]),'Enemigos'):
+                        strings(group,['role','template'],'Enemigo')
+                        if type(group.get('count')) is not int:raise ValueError('Cantidad de enemigos: requiere entero')
+                for phase in records(g.get('phases',[]),'Fases'):
+                    strings(phase,['id'],'Fase');records(phase.get('actions',[]),'Acciones')
+                if 'boss' in g and not isinstance(g['boss'],dict):raise ValueError('Jefe: requiere objeto')
+                if not isinstance(g.get('spawn_points',[]),list) or any(not isinstance(p,str) for p in g.get('spawn_points',[])):raise ValueError('Puntos de aparición: requiere IDs de waypoints')
             for g in records(s.get('encounters',[]),'Encuentros'):
                 strings(g,['id','name'],'Encuentro')
                 if not isinstance(g.get('actors'),list) or any(not isinstance(a,str) for a in g['actors']):raise ValueError('Encuentro: requiere IDs de actores')
@@ -90,7 +103,7 @@ class CampaignDocument(Document):
                 for step in records(seq.get('steps',[]),'Planos'):
                     strings(step,['actor','preset'],'Plano')
                     if type(step.get('at')) not in (int,float):raise ValueError('Tiempo del plano requiere número')
-            if data.get('project_format')==9:
+            if data.get('project_format') in (9,10):
                 from .authoring9 import validate_markers
                 # Loading semantic drafts permits unresolved path/entry references,
                 # but finite transforms are mandatory for safe spatial rendering.
@@ -130,7 +143,7 @@ class CampaignDocument(Document):
         rows[index]['id']=new
         from .recipes import rename_references
         rename_references(self.campaign,collection,old,new,self.campaign['scenes'][self.active]['id'])
-        keys={'actors':{'speaker','actor','reference','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus'},'conversations':{'default','then','start_conversation','conversation'},'events':set(),'triggers':{'trigger'},'entries':{'default_entry'},'waypoints':set()}[collection]
+        keys={'actors':{'speaker','actor','reference','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus','visual'},'conversations':{'default','then','start_conversation','conversation'},'generators':{'generator','start_generator','stop_generator','pause_generator','resume_generator','reset_generator'},'events':set(),'triggers':{'trigger'},'entries':{'default_entry'},'waypoints':set()}[collection]
         self._replace(self.campaign['scenes'][self.active],keys,old,new)
         if collection=='entries':
             sid=self.campaign['scenes'][self.active]['id']
@@ -139,7 +152,11 @@ class CampaignDocument(Document):
                     for a in e['actions']:
                         if isinstance(a.get('travel'),dict) and a['travel']['scene']==sid and a['travel']['entry']==old:a['travel']['entry']=new
         if collection=='waypoints':
-            for route in self.campaign['scenes'][self.active].get('paths',[]):route['points']=[new if p==old else p for p in route['points']]
+            scene=self.campaign['scenes'][self.active]
+            for route in scene.get('paths',[]):route['points']=[new if p==old else p for p in route['points']]
+            for generator in scene.get('generators',[]):
+                for row in [generator]+[e for wave in generator['waves'] for e in wave['groups']]:
+                    if 'spawn_points' in row:row['spawn_points']=[new if p==old else p for p in row['spawn_points']]
         if collection=='objects':
             sid=self.campaign['scenes'][self.active]['id']
             self._replace(self.campaign,{'owns_item','take_item'},sid+'.'+old,sid+'.'+new)

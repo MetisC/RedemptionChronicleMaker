@@ -1,4 +1,4 @@
-# Redemption Chronicle Maker — 1.0.0-rc3
+# Redemption Chronicle Maker — 1.0.0-rc4
 
 En este workspace, abre **Redemption Chronicle Maker.lnk** desde la raíz.
 
@@ -15,4 +15,6 @@ La historia del tutorial fue aceptada por el usuario. El nuevo primer arranque, 
 
 [Primeros pasos](docs/GETTING_STARTED.md) · [Tutorial](docs/TUTORIAL.md) · [Showcase](docs/SHOWCASE.md) · [Atajos](docs/SHORTCUTS.md) · [Problemas](docs/TROUBLESHOOTING.md)
 
-RC3 simplifica paneles, ayuda y estados; protege la apertura de proyectos importados y actualiza los catálogos cuando cambia la instalación. **MANUAL RUNTIME TEST REQUIRED**. Consulta [el informe de cierre](docs/FINAL_PRODUCT_REPORT.md).
+RC4 añade **Encuentros dinámicos…**: emboscadas, oleadas, continuo, refuerzos y jefes por fases. En Campaña o desde el menú contextual del suelo 3D, elige enemigos, cantidad, puntos y activación. Abre chronicles/dynamic_lab/project.yaml para probarlos; el Showcase ofrece otro laboratorio opcional. El tutorial rápido permanece intacto. [Guía de encuentros](docs/DYNAMIC_ENCOUNTERS.md).
+
+**MANUAL RUNTIME TEST REQUIRED**. Esta candidata está compilada y comprobada offline; falta la prueba del nuevo combate dentro de Redemption. Consulta [el informe](docs/FINAL_PRODUCT_REPORT.md) y [DYN01–12](docs/MANUAL_RUNTIME_CHECKLIST.md).

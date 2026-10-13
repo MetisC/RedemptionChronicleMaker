@@ -1,0 +1,152 @@
+[
+  {
+    "path": "backups/c4_test/1791907809843314800.yaml",
+    "sha256": "5daf72b8acdf84819df750e8cf6285033a6a8095b2810bf0e5dc75210121cdcb",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/c4_test/1791908160578383900.yaml",
+    "sha256": "35b541fea23f17762be1528d217d5efdc5b8eac612f783e81ba66e0f289d4be0",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/c4_test/1791908160637384000.yaml",
+    "sha256": "5daf72b8acdf84819df750e8cf6285033a6a8095b2810bf0e5dc75210121cdcb",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/c4_test/1791908658983128900.yaml",
+    "sha256": "35b541fea23f17762be1528d217d5efdc5b8eac612f783e81ba66e0f289d4be0",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/c4_test/1791908659042030700.yaml",
+    "sha256": "5daf72b8acdf84819df750e8cf6285033a6a8095b2810bf0e5dc75210121cdcb",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/c4_test/1791909765312277900.yaml",
+    "sha256": "35b541fea23f17762be1528d217d5efdc5b8eac612f783e81ba66e0f289d4be0",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/c4_test/1791909765372881100.yaml",
+    "sha256": "5daf72b8acdf84819df750e8cf6285033a6a8095b2810bf0e5dc75210121cdcb",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/c4_test/1791910396666257300.yaml",
+    "sha256": "35b541fea23f17762be1528d217d5efdc5b8eac612f783e81ba66e0f289d4be0",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/c4_test/1791910396725844400.yaml",
+    "sha256": "5daf72b8acdf84819df750e8cf6285033a6a8095b2810bf0e5dc75210121cdcb",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791908231733870700.yaml",
+    "sha256": "e75b86dbb0a0cb59a1672e2197389b0c9c201d59c1cc4c88c767a12d231b60c4",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791908231773364700.yaml",
+    "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791908692142720800.yaml",
+    "sha256": "bd1d8067fb05fbc761c69724f4d2e99245359d57fa0412ab92f7ff522a05d51e",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791908692198715800.yaml",
+    "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791908692509003900.yaml",
+    "sha256": "bd1d8067fb05fbc761c69724f4d2e99245359d57fa0412ab92f7ff522a05d51e",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791908692557343400.yaml",
+    "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791908729185712200.yaml",
+    "sha256": "e75b86dbb0a0cb59a1672e2197389b0c9c201d59c1cc4c88c767a12d231b60c4",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791908729226224200.yaml",
+    "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791909800878089800.yaml",
+    "sha256": "bd1d8067fb05fbc761c69724f4d2e99245359d57fa0412ab92f7ff522a05d51e",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791909800936171400.yaml",
+    "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791909801256339300.yaml",
+    "sha256": "bd1d8067fb05fbc761c69724f4d2e99245359d57fa0412ab92f7ff522a05d51e",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791909801307628500.yaml",
+    "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791909839724207100.yaml",
+    "sha256": "e75b86dbb0a0cb59a1672e2197389b0c9c201d59c1cc4c88c767a12d231b60c4",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791909839766740000.yaml",
+    "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791910432117001800.yaml",
+    "sha256": "bd1d8067fb05fbc761c69724f4d2e99245359d57fa0412ab92f7ff522a05d51e",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791910432173145400.yaml",
+    "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791910432513228800.yaml",
+    "sha256": "bd1d8067fb05fbc761c69724f4d2e99245359d57fa0412ab92f7ff522a05d51e",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791910432564952600.yaml",
+    "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791910469807607700.yaml",
+    "sha256": "e75b86dbb0a0cb59a1672e2197389b0c9c201d59c1cc4c88c767a12d231b60c4",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/east_demo/1791910469857328400.yaml",
+    "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
+    "exact_test_fixture_match": true
+  },
+  {
+    "path": "backups/nueva_campana/1791907981390448300.yaml",
+    "sha256": "e1b820c3daff27d61d09fe5de906225e8fdfe97beb6c8b7ea4c208dcbc434800",
+    "exact_test_fixture_match": true
+  }
+]

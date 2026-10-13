@@ -128,7 +128,7 @@ def prepare_workspace(ws,progress=lambda _:None):
     if getattr(sys,'frozen',False):
         from .product import copy_example
         progress('Preparando tus copias de los ejemplos…')
-        for name in ('tutorial','showcase','mini_chronicle'):
+        for name in ('tutorial','showcase','mini_chronicle','dynamic_lab'):
             if (base/'examples'/name/'project.yaml').is_file():copy_example(ws,name)
     if cache_errors(ws):raise ValueError('No se pudieron reconstruir los catálogos')
     return {'cache_rebuilt':bool(errors or changed),'installation_changed':changed,'original_tools_used':False}

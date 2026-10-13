@@ -16,10 +16,10 @@ class DebugPanel(QWidget):
         self.checklist=QPlainTextEdit();self.checklist.setReadOnly(True);layout.addWidget(self.checklist,1)
     def root(self):return self.win.doc.snapshot() if self.win.doc else {}
     def refresh(self):
-        root=self.root();self.enabled.blockSignals(True);self.enabled.setEnabled(root.get('project_format') in (5,9));self.enabled.setChecked(root.get('build_options',{}).get('debug',True));self.enabled.blockSignals(False)
+        root=self.root();self.enabled.blockSignals(True);self.enabled.setEnabled(root.get('project_format') in (5,9,10));self.enabled.setChecked(root.get('build_options',{}).get('debug',True));self.enabled.blockSignals(False)
         self.checklist.setPlainText('\n\n'.join(p['name']+'\n'+p['instructions'] for p in root.get('playtests',[])))
     def toggle(self,value):
-        if self.win.doc and self.root().get('project_format') in (5,9):self.win.doc.campaign.setdefault('build_options',{})['debug']=value;self.win.changed(False)
+        if self.win.doc and self.root().get('project_format') in (5,9,10):self.win.doc.campaign.setdefault('build_options',{})['debug']=value;self.win.changed(False)
     def bookmark(self):
         if not self.win.project_resources_panel.upgrade():return
         name,ok=QInputDialog.getText(self,tr('Checklist de prueba'),tr('Nombre'))
@@ -49,6 +49,8 @@ class DebugPanel(QWidget):
         for si,s in enumerate(self.win.doc.campaign['scenes']):
             if s['id']==ctx.get('scene'):
                 path=('scenes',si)
+                for gi,g in enumerate(s.get('generators',[])):
+                    if g['id']==ctx.get('generator'):self.win.campaign_panel.navigate(path+('generators',gi));return
                 for ci,c in enumerate(s['conversations']):
                     if c['id']==ctx.get('conversation'):self.win.campaign_panel.navigate(path+('conversations',ci));return
                 for ei,e in enumerate(s['events']):

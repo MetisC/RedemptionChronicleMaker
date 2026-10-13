@@ -1,0 +1,136 @@
+Compiled from "DisciplineSummonElemental.java"
+public class DisciplineSummonElemental extends Discipline {
+  private static final java.lang.String DISCIPLINE_NAME = "SummonElemental";
+
+  public DisciplineSummonElemental();
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method Discipline."<init>":()V
+       4: return
+
+  public boolean cancast(int, int, int, float, float, float, boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iload_2
+       3: ldc           #18                 // String SummonElemental
+       5: invokevirtual #22                 // Method Discipline.CheckCastParameters:(IILjava/lang/String;)Z
+       8: ifne          13
+      11: iconst_0
+      12: ireturn
+      13: aload_0
+      14: getfield      #26                 // Field Discipline.casterThing:LCodexActor;
+      17: invokevirtual #32                 // Method CodexActor.AIGetNumPets:()I
+      20: iconst_4
+      21: if_icmplt     32
+      24: aload_0
+      25: ldc           #34                 // String RPG_DISC_TOOMANYPETS
+      27: invokevirtual #38                 // Method Discipline.DisplayNoCast:(Ljava/lang/String;)V
+      30: iconst_0
+      31: ireturn
+      32: iconst_1
+      33: ireturn
+
+  public int cast(int, int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iload_2
+       3: ldc           #18                 // String SummonElemental
+       5: invokevirtual #22                 // Method Discipline.CheckCastParameters:(IILjava/lang/String;)Z
+       8: ifne          13
+      11: iconst_0
+      12: ireturn
+      13: aload_0
+      14: ldc           #18                 // String SummonElemental
+      16: invokevirtual #52                 // Method Discipline.SetupWorld:(Ljava/lang/String;)Z
+      19: pop
+      20: aload_0
+      21: iload_1
+      22: invokevirtual #56                 // Method Discipline.Fizzled:(I)Z
+      25: ifeq          37
+      28: aload_0
+      29: ldc           #18                 // String SummonElemental
+      31: iload_1
+      32: invokevirtual #60                 // Method Discipline.DisplayFizzle:(Ljava/lang/String;I)V
+      35: iconst_0
+      36: ireturn
+      37: aload_0
+      38: getfield      #26                 // Field Discipline.casterThing:LCodexActor;
+      41: ldc           #62                 // String elemental
+      43: fconst_0
+      44: iconst_0
+      45: invokevirtual #68                 // Method CodexThing.SpawnThingNear:(Ljava/lang/String;FI)I
+      48: istore_3
+      49: iload_3
+      50: ifeq          108
+      53: new           #31                 // class CodexActor
+      56: dup
+      57: iload_3
+      58: invokespecial #71                 // Method CodexActor."<init>":(I)V
+      61: astore        4
+      63: aload         4
+      65: sipush        4096
+      68: invokevirtual #75                 // Method CodexActor.SetActorFlags:(I)I
+      71: pop
+      72: aload         4
+      74: ldc           #77                 // String ef_disc_summonelemental
+      76: getstatic     #81                 // Field Discipline.SUMMONELEMENTAL_DURATIONS:[I
+      79: iload_1
+      80: iaload
+      81: iload_1
+      82: iload_2
+      83: iconst_4
+      84: invokevirtual #85                 // Method CodexActor.AddActorEffectByLevel:(Ljava/lang/String;IIII)I
+      87: pop
+      88: aload         4
+      90: aload_0
+      91: getfield      #26                 // Field Discipline.casterThing:LCodexActor;
+      94: invokevirtual #88                 // Method CodexActor.GetActorTeam:()I
+      97: invokevirtual #91                 // Method CodexActor.SetActorTeam:(I)I
+     100: pop
+     101: aload_0
+     102: ldc           #18                 // String SummonElemental
+     104: iload_1
+     105: invokevirtual #94                 // Method Discipline.DisplayCast:(Ljava/lang/String;I)V
+     108: iconst_1
+     109: ireturn
+     110: astore        5
+     112: new           #98                 // class java/lang/StringBuffer
+     115: dup
+     116: invokespecial #99                 // Method java/lang/StringBuffer."<init>":()V
+     119: aload         5
+     121: invokevirtual #105                // Method java/lang/Throwable.getMessage:()Ljava/lang/String;
+     124: invokevirtual #109                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     127: ldc           #111                // String  in
+     129: invokevirtual #109                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     132: ldc           #18                 // String SummonElemental
+     134: invokevirtual #109                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     137: ldc           #113                // String  [cast]
+     139: invokevirtual #109                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     142: invokevirtual #116                // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     145: invokestatic  #121                // Method CodexConsole.PrintException:(Ljava/lang/String;)V
+     148: iconst_0
+     149: ireturn
+     150: astore        5
+     152: new           #98                 // class java/lang/StringBuffer
+     155: dup
+     156: invokespecial #99                 // Method java/lang/StringBuffer."<init>":()V
+     159: aload         5
+     161: invokevirtual #105                // Method java/lang/Throwable.getMessage:()Ljava/lang/String;
+     164: invokevirtual #109                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     167: ldc           #111                // String  in
+     169: invokevirtual #109                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     172: ldc           #18                 // String SummonElemental
+     174: invokevirtual #109                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     177: ldc           #113                // String  [cast]
+     179: invokevirtual #109                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     182: invokevirtual #116                // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     185: invokestatic  #126                // Method CodexConsole.PrintError:(Ljava/lang/String;)V
+     188: iconst_0
+     189: ireturn
+    Exception table:
+       from    to  target type
+          37   110   110   Class java/lang/Exception
+          37   110   150   Class java/lang/Error
+}

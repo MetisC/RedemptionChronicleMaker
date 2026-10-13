@@ -52,13 +52,13 @@ def prepare(ws,source,catalogue):
     if 'project_format' not in root:
         if any(k in root for k in EXTENSIONS):raise ValueError('Recursos propios requieren Upgrade a formato 5')
         return root,catalogue,{},{}
-    if type(root['project_format']) is not int or root['project_format'] not in (5,9) or root.get('schema')!=2:raise ValueError('project_format soportado: 5 o 9 con schema 2')
-    modern=root['project_format']==9
+    if type(root['project_format']) is not int or root['project_format'] not in (5,9,10) or root.get('schema')!=2:raise ValueError('project_format soportado: 5, 9 o 10 con schema 2')
+    modern=root['project_format'] in (9,10)
     if 'authoring' in root:
         from .recipes import validate_authoring
         if not modern:raise ValueError('Authoring recipes require project format 9')
         validate_authoring(root)
-    if modern:root['runtime_profile']='phase9'
+    if modern:root['runtime_profile']='phase10' if root['project_format']==10 else 'phase9'
     metadata=mapping(root.get('metadata',{}),{'author','version','description','requires_game','dependencies'},label='metadata')
     if not re.fullmatch(r'\d+\.\d+\.\d+',metadata.get('version','0.1.0')):raise ValueError('Versión debe ser major.minor.patch')
     for k in ('author','description','requires_game'):

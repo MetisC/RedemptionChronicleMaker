@@ -38,6 +38,11 @@ Generada desde las entidades del ejemplo y ACTIONS/WHEN actuales. Sin demo signi
 | conversations | NORMAL | YES | YES | quay | cam13 | rcm://quay/conversations/cam13 | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | conversations | NORMAL | YES | YES | quay | lab | rcm://quay/conversations/lab | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | conversations | NORMAL | YES | YES | quay | anim | rcm://quay/conversations/anim | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| conversations | NORMAL | YES | YES | quay | dyn | rcm://quay/conversations/dyn | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| generators | NORMAL | YES | YES | quay | dyn_rats | rcm://quay/generators/dyn_rats | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| generators | NORMAL | YES | YES | quay | dyn_boss | rcm://quay/generators/dyn_boss | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| generators | NORMAL | YES | YES | quay | dyn_add | rcm://quay/generators/dyn_add | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| generators | NORMAL | YES | YES | quay | dyn_portal | rcm://quay/generators/dyn_portal | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | when:scene_start | NORMAL | YES | YES | quay | arrival | rcm://quay/events/arrival | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | action:spawn | NORMAL | YES | YES | quay | arrival | rcm://quay/events/arrival | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | action:spawn | NORMAL | YES | YES | quay | arrival | rcm://quay/events/arrival | SOURCE VALIDATED | MANUAL TEST REQUIRED |
@@ -141,6 +146,23 @@ Generada desde las entidades del ejemplo y ACTIONS/WHEN actuales. Sin demo signi
 | action:set_flag | NORMAL | YES | YES | quay | rat_killed | rcm://quay/events/rat_killed | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | when:state_changed | NORMAL | YES | YES | quay | state_lab | rcm://quay/events/state_lab | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | action:clear_flag | NORMAL | YES | YES | quay | state_lab | rcm://quay/events/state_lab | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| when:conversation_ended | NORMAL | YES | YES | quay | dyn_menu | rcm://quay/events/dyn_menu | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:start_conversation | NORMAL | YES | YES | quay | dyn_menu | rcm://quay/events/dyn_menu | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| when:conversation_ended | NORMAL | YES | YES | quay | dyn_begin | rcm://quay/events/dyn_begin | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:start_quest | NORMAL | YES | YES | quay | dyn_begin | rcm://quay/events/dyn_begin | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:start_generator | NORMAL | YES | YES | quay | dyn_begin | rcm://quay/events/dyn_begin | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| when:generator_complete | NORMAL | YES | YES | quay | dyn_next | rcm://quay/events/dyn_next | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:advance_quest | NORMAL | YES | YES | quay | dyn_next | rcm://quay/events/dyn_next | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:start_generator | NORMAL | YES | YES | quay | dyn_next | rcm://quay/events/dyn_next | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| when:generator_complete | NORMAL | YES | YES | quay | dyn_end | rcm://quay/events/dyn_end | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:stop_generator | NORMAL | YES | YES | quay | dyn_end | rcm://quay/events/dyn_end | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:stop_generator | NORMAL | YES | YES | quay | dyn_end | rcm://quay/events/dyn_end | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:advance_quest | NORMAL | YES | YES | quay | dyn_end | rcm://quay/events/dyn_end | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:complete_quest | NORMAL | YES | YES | quay | dyn_end | rcm://quay/events/dyn_end | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| when:conversation_ended | NORMAL | YES | YES | quay | dyn_stop | rcm://quay/events/dyn_stop | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:stop_generator | NORMAL | YES | YES | quay | dyn_stop | rcm://quay/events/dyn_stop | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| when:conversation_ended | NORMAL | YES | YES | quay | dyn_portal | rcm://quay/events/dyn_portal | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| action:start_generator | NORMAL | YES | YES | quay | dyn_portal | rcm://quay/events/dyn_portal | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | entries | NORMAL | YES | YES | archive | safe | rcm://archive/entries/safe | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | actors | NORMAL | YES | YES | archive | archivist | rcm://archive/actors/archivist | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | actors | NORMAL | YES | YES | archive | keeper | rcm://archive/actors/keeper | SOURCE VALIDATED | MANUAL TEST REQUIRED |
@@ -218,12 +240,20 @@ Generada desde las entidades del ejemplo y ACTIONS/WHEN actuales. Sin demo signi
 | action:start_music | NORMAL | YES | YES | return | finish_force | rcm://return/events/finish_force | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | when:trigger_enter | NORMAL | YES | YES | return | arrival_trigger | rcm://return/events/arrival_trigger | SOURCE VALIDATED | MANUAL TEST REQUIRED |
 | action:set_flag | NORMAL | YES | YES | return | arrival_trigger | rcm://return/events/arrival_trigger | SOURCE VALIDATED | MANUAL TEST REQUIRED |
+| when:generator_started | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
+| when:wave_started | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
+| when:wave_complete | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
+| when:generator_stopped | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
+| when:generator_threshold | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
 | action:remove | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
 | action:jump | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
 | action:release_camera | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
 | action:open_exit | ADVANCED | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
 | action:close_exit | ADVANCED | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
 | action:control_door | ADVANCED | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
+| action:pause_generator | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
+| action:resume_generator | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
+| action:reset_generator | NORMAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
 | Original NCP | EXPERIMENTAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
 | Native door/exit with valid Cast ID | EXPERIMENTAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |
 | Static inspector | EXPERIMENTAL | NO | YES |  |  |  | CATALOGUED | MANUAL TEST REQUIRED |

@@ -26,7 +26,7 @@ def main(argv=None):
     from ..startup import prepare_workspace
     steps=[];preparation=prepare_workspace(ws,steps.append)
     from ..product import copy_example
-    for name in ('tutorial','showcase','mini_chronicle'):copy_example(ws,name)
+    for name in ('tutorial','showcase','mini_chronicle','dynamic_lab'):copy_example(ws,name)
     prefs.data.update(setup_complete=True,workspace=str(ws.root),game_installation=str(ws.game));prefs.save()
     prepared=time.perf_counter()
     from ..service import Backend
@@ -86,11 +86,37 @@ def main(argv=None):
     for link in ('rcm://quay/actors/guide','rcm://quay/conversations/cam1','rcm://quay/conversations/anim/nodes/menu','rcm://quay/sequences/sequence1','rcm://quay/paths/guide_walk','rcm://resources/templates/T_mini_victoria'):
         win.guide_panel.navigate(QUrl(link))
     win.center_tabs.setCurrentWidget(win.graph_panel);win.select(('conversations',0));win.graph_panel.refresh();app.processEvents();win.grab().save(str(ws.output('build/probe/showcase.png')))
+    # RC4 goes through the shipped wizard and ordinary document/history controls.
+    from .dynamic_wizard import DynamicWizard
+    from PySide6.QtWidgets import QGroupBox
+    win.open_path(ws.output('chronicles/mini_chronicle/project.yaml'));original_source=win.doc.path.read_bytes();original=win.doc.snapshot()
+    wizard=DynamicWizard(win,position=[-62,-1000,384]);wizard.show();app.processEvents()
+    rc4=dict(wizard_four_pages=len(wizard.pageIds())==4,advanced_collapsed=not wizard.findChild(QGroupBox,'dynamic_advanced').isChecked())
+    def button_visible(kind):
+        button=wizard.button(kind)
+        return button.isVisible() and wizard.rect().contains(button.mapTo(wizard,button.rect().topLeft())) and wizard.rect().contains(button.mapTo(wizard,button.rect().bottomRight()))
+    from PySide6.QtWidgets import QWizard
+    rc4['next_and_cancel_visible']=all(button_visible(k) for k in (QWizard.WizardButton.NextButton,QWizard.WizardButton.CancelButton))
+    wizard.grab().save(str(ws.output('build/probe/dynamic_wizard.png')))
+    wizard.mode.setCurrentIndex(wizard.mode.findData('boss'))
+    for unused in range(3):wizard.button(QWizard.WizardButton.NextButton).click();app.processEvents()
+    rc4['finish_and_cancel_visible']=all(button_visible(k) for k in (QWizard.WizardButton.FinishButton,QWizard.WizardButton.CancelButton))
+    wizard.grab().save(str(ws.output('build/probe/dynamic_boss.png')))
+    wizard.mode.setCurrentIndex(wizard.mode.findData('ambush'));wizard.accept();app.processEvents()
+    rc4['wizard_created_valid']=wizard.result()==QDialog.DialogCode.Accepted and backend.validate(win.doc.snapshot()).valid
+    rc4['upgrade_opt_in_backup']=win.doc.campaign['project_format']==10 and any(ws.output('backups/'+win.doc.campaign['chronicle']['id']).glob('*.yaml')) and win.doc.path.read_bytes()==original_source
+    win.undo_project();rc4['atomic_undo']=win.doc.snapshot()==original;win.redo_project();win.save_project();rc4['format_10_saved']=win.doc.campaign['project_format']==10
+    rc4['tutorial_still_format_9']=__import__('rcm.input_limits',fromlist=['parse_source']).parse_source(ws.output('chronicles/tutorial/project.yaml').read_text(encoding='utf8'))['project_format']==9
+    compiled_dynamic=backend.build(win.doc.snapshot());rc4['real_api_compiled']=compiled_dynamic['status']=='compiled-unverified-in-game' and all(v=='45.3' for v in compiled_dynamic['class_versions'].values())
+    gen=win.doc.campaign['scenes'][0]['generators'][0];win.guide_panel.navigate(QUrl('rcm://'+win.doc.campaign['scenes'][0]['id']+'/generators/'+gen['id']));rc4['guide_navigation']=win.selection==('generators',0)
+    win.center_tabs.setCurrentWidget(win.graph_panel);win.graph_panel.kind.setCurrentIndex(win.graph_panel.kind.findData('generators'));app.processEvents();win.graph_panel.refresh();win.graph_panel.fit();win.grab().save(str(ws.output('build/probe/dynamic_graph.png')));rc4['graph_in_existing_tab']=win.center_tabs.count()==7 and bool(win.graph_panel.scene.items())
+    wizard.close()
     win.doc._saved=__import__('rcm.service',fromlist=['source_text']).source_text(win.doc.snapshot());win.close();app.processEvents()
     reopened=AppSettings(args.settings_directory)
     if not all(rc3.values()):raise ValueError('RC3 widget acceptance failed: '+json.dumps(rc3))
+    if not all(rc4.values()):raise ValueError('RC4 widget acceptance failed: '+json.dumps(rc4))
     result=dict(rc3=rc3,cache_rebuilt=preparation['cache_rebuilt'],fresh_settings=fresh,welcome=self_ready,setup_steps=steps,setup_seconds=prepared-started,total_seconds=time.perf_counter()-started,gui_authored_valid=valid,build_status=report['status'],class_versions=report['class_versions'],synthetic_deployment=str(deployment['destination']),setup_not_repeated=reopened.data.get('setup_complete',False),tutorial_unmodified=before==hashlib.sha256(ws.output('chronicles/tutorial/project.yaml').read_bytes()).hexdigest(),language=args.language,native_game_test=False,clean_machine_test=False,real_opengl=False,game_originals_written=False,tutorial_open_timestamp=tutorial_open,showcase_open_timestamp=showcase_open)
-    ws.write('build/product_probe.json',json.dumps(result,ensure_ascii=False,indent=2));return 0
+    result['rc4']=rc4;ws.write('build/product_probe.json',json.dumps(result,ensure_ascii=False,indent=2));return 0
 
 
 if __name__=='__main__':raise SystemExit(main())

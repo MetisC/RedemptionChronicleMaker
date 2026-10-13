@@ -31,6 +31,10 @@ WHEN = {'scene_start':'Inicia la escena','actor_clicked':'Hablan con actor','obj
  'item_picked_up':'Objeto en inventario (muestreo)','encounter_complete':'Todos los enemigos muertos',
  'timer':'Tiempo desde entrada','state_changed':'Se cumple una condición',
  'sequence_ended':'Termina una secuencia de cámara'}
+from .dynamic_encounters import GENERATOR_ACTIONS,GENERATOR_EVENTS
+ACTIONS.update({key:(label,'generators') for key,label in zip(GENERATOR_ACTIONS,('Encuentro dinámico / Iniciar','Encuentro dinámico / Detener','Encuentro dinámico / Pausar','Encuentro dinámico / Reanudar','Encuentro dinámico / Reiniciar (avanzado)'))})
+WHEN.update({key:label for key,label in zip(GENERATOR_EVENTS,('Empieza encuentro dinámico','Empieza oleada','Termina oleada','Termina encuentro dinámico','Se detiene encuentro dinámico'))})
+WHEN['generator_threshold']='Cruza umbral de vida del jefe'
 
 @dataclass(frozen=True)
 class Campaign:
@@ -52,7 +56,7 @@ def parse_campaign(source, levels, resources):
     raw = yaml.load(source, Loader=UniqueLoader) if isinstance(source,str) else copy.deepcopy(source)
     if len(yaml.safe_dump(raw))>1024*1024: raise ValueError('Campaña demasiado grande')
     root=mapping(raw,{'schema','chronicle','state','entry','scenes','quests','runtime_profile'}, {'schema','chronicle','entry','scenes'},'campaña')
-    modern=root.get('runtime_profile')=='phase9'
+    modern=root.get('runtime_profile') in ('phase9','phase10')
     if 'runtime_profile' in root and not modern: raise ValueError('Perfil de runtime desconocido')
     if type(root['schema']) is not int or root['schema']!=2: raise ValueError('schema de campaña debe ser 2')
     chron=mapping(root['chronicle'],{'id','name','description'},{'id','name'},'chronicle')
@@ -95,9 +99,14 @@ def parse_campaign(source, levels, resources):
     global_items={s['id']+'.'+o['id']:o for s in scenes.values() for o in s.get('objects',[]) if templates.get(o.get('template'),{}).get('kind') in {'items','weapons','armour'}}
     for si,s in enumerate(scenes.values()):
         label='Escena '+s['id']
-        mapping(s,{'id','level','actors','objects','conversations','events','triggers','encounters','sequences','entries','default_entry','waypoints','paths'}, {'id','level','actors','conversations','events'},label)
+        mapping(s,{'id','level','actors','objects','conversations','events','triggers','encounters','sequences','entries','default_entry','waypoints','paths','generators'}, {'id','level','actors','conversations','events'},label)
+        dynamic=root.get('runtime_profile')=='phase10'
+        if 'generators' in s and not dynamic:raise ValueError('Encuentros dinámicos requieren formato de proyecto 10')
         if any(k in s for k in ('entries','default_entry','waypoints','paths')) and not modern: raise ValueError('Entradas y recorridos requieren formato de proyecto 9')
         actors=indexed(s['actors'],label+' actors'); objects=indexed(s.get('objects',[]),label+' objects')
+        from .dynamic_encounters import validate_generators,lower_phases,validate_dynamic_condition
+        generators=validate_generators(s,resources['templates'],actors) if dynamic else {}
+        if dynamic:lower_phases(s)
         entities={**actors,**objects}; convs=indexed(s['conversations'],label+' conversations')
         from .camera_presets import PRESETS,CINEMA_PRESETS
         for conversation in convs.values():
@@ -162,6 +171,8 @@ def parse_campaign(source, levels, resources):
                 k=next(iter(c))
                 if k=='owns_item':global_item(c[k])
                 else:ref(c[k],actors if k=='actor_alive' else entities,'entidad')
+            elif dynamic and len(c)==1 and next(iter(c)) in {'actor_health','generator_state','generator_count'}:
+                validate_dynamic_condition(c,actors,generators)
             else: raise ValueError('Condición desconocida: '+str(c))
         spawn_owners={}
         def action(a):
@@ -169,6 +180,9 @@ def parse_campaign(source, levels, resources):
             k,v=next(iter(a.items()))
             if k not in ACTIONS: raise ValueError('Acción no soportada: '+k)
             kind=ACTIONS[k][1]
+            if kind=='generators':
+                if not dynamic:raise ValueError('Encuentros dinámicos requieren formato de proyecto 10')
+                ref(v,generators,'encuentro dinámico');return
             if k in {'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','play_sound'} and not modern: raise ValueError('Esta acción requiere formato de proyecto 9')
             if kind=='note':
                 from .notes import validate_note
@@ -204,9 +218,15 @@ def parse_campaign(source, levels, resources):
                 for eid in [v] if k=='spawn' else groups[v]['actors']: spawn_owners[eid]=spawn_owners.get(eid,0)+1
         events=indexed(s['events'],label+' events')
         for e in events.values():
-            mapping(e,{'id','when','actions','conditions','actor','object','conversation','result','trigger','item','encounter','sequence','seconds','once'}, {'id','when','actions'},'event '+e['id'])
+            mapping(e,{'id','when','actions','conditions','actor','object','conversation','result','trigger','item','encounter','sequence','seconds','once','generator','wave','phase'}, {'id','when','actions'},'event '+e['id'])
             w=e['when']
             if w not in WHEN: raise ValueError('Callback no soportado: '+str(w))
+            if w in (*GENERATOR_EVENTS,'generator_threshold'):
+                if not dynamic:raise ValueError('Callback dinámico requiere formato 10')
+                ref(e.get('generator'),generators,'encuentro dinámico')
+                if 'wave' in e and (w not in {'wave_started','wave_complete'} or type(e['wave']) is not int or not 1<=e['wave']<=len(generators[e['generator']]['waves'])):raise ValueError('Filtro de oleada inválido')
+                if w=='generator_threshold' and e.get('phase') not in {p['id'] for p in generators[e['generator']].get('phases',[])}:raise ValueError('Fase ausente')
+            elif any(k in e for k in ('generator','wave','phase')):raise ValueError('Filtro dinámico incompatible')
             if w in {'object_clicked','note_closed'} and not modern:raise ValueError('Notas y clic de objeto requieren formato de proyecto 9')
             if w=='sequence_ended':
                 if not modern or e.get('sequence') not in shots:raise ValueError('Fin de secuencia requiere formato 9 y secuencia existente')
@@ -229,7 +249,7 @@ def parse_campaign(source, levels, resources):
             if any('show_note' in a for a in actions) and sum(any(k in a for k in ('show_note','start_conversation','play_sequence','travel','jump')) for a in actions)>1:raise ValueError('Una nota requiere su propio evento; continúa con Cuando cierran una nota')
             if sum('start_conversation' in a for a in actions)>1 or sum(('jump' in a or 'travel' in a) for a in actions)>1: raise ValueError('Evento inicia varias conversaciones o viajes')
             if any('jump' in a or 'travel' in a for a in actions) and not ('jump' in actions[-1] or 'travel' in actions[-1]): raise ValueError('El viaje debe ser la última acción')
-            if e.get('once',w in {'actor_killed','item_picked_up','encounter_complete','timer','state_changed'}) or (w=='trigger_enter' and triggers[e['trigger']].get('once',True)): reserve('e/'+s['id']+'/'+e['id'])
+            if e.get('once',w in {'actor_killed','item_picked_up','encounter_complete','timer','state_changed','generator_complete','generator_threshold'}) or (w=='trigger_enter' and triggers[e['trigger']].get('once',True)): reserve('e/'+s['id']+'/'+e['id'])
         from collections import Counter
         inventory=Counter(it for a in actors.values() for it in a.get('inventory',[]))
         for eid in entities:
@@ -249,6 +269,10 @@ def parse_campaign(source, levels, resources):
                 if 'e/'+s['id']+'/'+e['id'] in reserved:
                     reserve('progress/'+s['id']+'/'+e['id'])
                     for i,a in enumerate(e['actions']):reserve('action/'+s['id']+'/'+e['id']+'/'+str(i))
+            if root.get('runtime_profile')=='phase10':
+                for g in s.get('generators',[]):
+                    reserve('generator/'+s['id']+'/'+g['id']+'/complete')
+                    reserve('generator/'+s['id']+'/'+g['id']+'/started')
     return Campaign(root,tuple(parsed),reserved)
 
 def integrity(campaign):
@@ -256,6 +280,8 @@ def integrity(campaign):
     findings=[]
     all_actions=[a for s,p in campaign.scenes for e in s['events'] for a in e['actions']]
     for si,(s,p) in enumerate(campaign.scenes):
+        from .dynamic_encounters import integrity as dynamic_integrity
+        for gi,message in dynamic_integrity(s):findings.append(Problem('WARNING',message,('scenes',si,'generators',gi)))
         local_actions=[a for e in s['events'] for a in e['actions']]
         spawned={a.get('spawn') for a in local_actions}
         spawned|={m for g in s.get('encounters',[]) for m in g['actors'] if any(a.get('spawn_encounter')==g['id'] for a in local_actions)}
@@ -274,6 +300,8 @@ def integrity(campaign):
         target=('state','flags',alias)
         if not any(x.target==target and x.label in {'flag','when_flag'} for x in links):findings.append(Problem('WARNING',alias+': el flag nunca se lee',target))
     for si,(s,p) in enumerate(campaign.scenes):
+        from .dynamic_encounters import integrity as dynamic_integrity
+        for gi,message in dynamic_integrity(s):findings.append(Problem('WARNING',message,('scenes',si,'generators',gi)))
         for key in ['conversations','triggers','encounters','sequences']:
             for i,row in enumerate(s.get(key,[])):
                 if not any(x.target==('scenes',si,key,i) for x in links):findings.append(Problem('WARNING',row.get('name',row['id'])+': sin referencias',('scenes',si,key,i)))

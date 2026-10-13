@@ -123,7 +123,7 @@ class Round0(TestCase):
         for key,modifier,expected in [(Qt.Key.Key_Up,Qt.KeyboardModifier.NoModifier,Qt.Key.Key_W),(Qt.Key.Key_1,Qt.KeyboardModifier.KeypadModifier,Qt.Key.Key_Z),(Qt.Key.Key_9,Qt.KeyboardModifier.KeypadModifier,Qt.Key.Key_E)]:
             event=QKeyEvent(QEvent.Type.KeyPress,key,modifier);self.assertEqual(Viewport.navigation_key(event),expected)
     def test_curated_examples_and_easy_optional_enemy(self):
-        self.assertEqual(sorted(p.name for p in (ROOT/'chronicles').iterdir()),['mini_chronicle','showcase','tutorial'])
+        self.assertEqual(sorted(p.name for p in (ROOT/'chronicles').iterdir()),['dynamic_lab','mini_chronicle','showcase','tutorial'])
         for folder in ['tutorial','mini_chronicle','showcase']:
             doc=Document.load(self.backend.ws,'chronicles/'+folder+'/project.yaml');result=self.backend.validate(doc.snapshot());self.assertTrue(result.valid)
             enemies=[a for s in doc.campaign['scenes'] for a in s['actors'] if a.get('behavior')=='enemy'];self.assertEqual(len(enemies),1);self.assertEqual(enemies[0]['template'],'Rat')

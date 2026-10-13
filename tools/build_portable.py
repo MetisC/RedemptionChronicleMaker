@@ -4,7 +4,7 @@ import argparse,json,os,shutil,subprocess,sys
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'cache/devtools'),str(ROOT/'cache/vendor'),str(ROOT/'src')]
 from rcm.paths import Workspace
-USER_DOCS=['GETTING_STARTED','EDITOR_GUIDE','AUTHORING_GUIDE','TUTORIAL','SHOWCASE','FIRST_RUN','TROUBLESHOOTING','SHORTCUTS','ADVANCED_LIMITATIONS']
+USER_DOCS=['GETTING_STARTED','EDITOR_GUIDE','AUTHORING_GUIDE','TUTORIAL','SHOWCASE','FIRST_RUN','TROUBLESHOOTING','SHORTCUTS','ADVANCED_LIMITATIONS','DYNAMIC_ENCOUNTERS','MANUAL_RUNTIME_CHECKLIST']
 
 def resolve_jlink(java_home=None):
     for home in [java_home,os.environ.get('JAVA_HOME')]:
@@ -23,7 +23,7 @@ def main(argv=None):
     jlink=resolve_jlink(args.java_home)
     entry=ws.write('build/portable_entry.py',(ROOT/'tools/portable_entry.py').read_bytes())
     from rcm import __version__
-    version=ws.write('build/version_info.txt',"VSVersionInfo(ffi=FixedFileInfo(filevers=(1,0,0,3),prodvers=(1,0,0,3),mask=0x3f,flags=0x0,OS=0x40004,fileType=0x1,subtype=0x0,date=(0,0)),kids=[StringFileInfo([StringTable('040904B0',[StringStruct('ProductName','Redemption Chronicle Maker'),StringStruct('FileDescription','Redemption Chronicle Maker'),StringStruct('FileVersion','"+__version__+"'),StringStruct('ProductVersion','"+__version__+"'),StringStruct('OriginalFilename','RedemptionChronicleMaker.exe')])]),VarFileInfo([VarStruct('Translation',[1033,1200])])])")
+    version=ws.write('build/version_info.txt',"VSVersionInfo(ffi=FixedFileInfo(filevers=(1,0,0,4),prodvers=(1,0,0,4),mask=0x3f,flags=0x0,OS=0x40004,fileType=0x1,subtype=0x0,date=(0,0)),kids=[StringFileInfo([StringTable('040904B0',[StringStruct('ProductName','Redemption Chronicle Maker'),StringStruct('FileDescription','Redemption Chronicle Maker'),StringStruct('FileVersion','"+__version__+"'),StringStruct('ProductVersion','"+__version__+"'),StringStruct('OriginalFilename','RedemptionChronicleMaker.exe')])]),VarFileInfo([VarStruct('Translation',[1033,1200])])])")
     env=dict(os.environ,PYTHONPATH=os.pathsep.join([str(ROOT/'cache/devtools'),str(ROOT/'cache/vendor'),str(ROOT/'src')]))
     env['PATH']=os.pathsep.join([str(ROOT/'cache/vendor/PySide6'),str(Path(os.environ.get('SystemRoot',r'C:\Windows'))/'System32')])
     command=[sys.executable,'-m','PyInstaller','--clean','--noconfirm','--onedir','--windowed','--name','RedemptionChronicleMaker','--version-file',str(version),'--icon',str(ROOT/'src/rcm/editor/assets/chronicle.ico'),'--distpath',str(destination),'--workpath',str(ws.output('build/pyinstaller_work')),'--specpath',str(ws.output('build/pyinstaller_spec')),'--paths',str(ROOT/'src'),'--paths',str(ROOT/'cache/vendor'),'--hidden-import','numpy','--hidden-import','PIL.Image','--hidden-import','yaml','--hidden-import','PySide6.QtOpenGLWidgets','--add-data',str(ROOT/'cache/toolchain/ecj-3.26.0.jar')+';toolchain','--add-data',str(ROOT/'src/rcm/editor/assets')+';rcm/editor/assets','--add-data',str(ROOT/'cache/vendor/PySide6/translations/qtbase_es.qm')+';translations',str(entry)]
@@ -41,7 +41,7 @@ def main(argv=None):
     for name in ['CHANGELOG.md','RELEASE_NOTES.md']:shutil.copy2(ROOT/name,app/name)
     ws.write(app/'README.txt','Redemption Chronicle Maker '+__version__+'\n\nOpen RedemptionChronicleMaker.exe. Choose Vampire.exe when requested. Projects stay in Documents, outside this program. Open Quick tutorial or Full showcase, then press F5 to playtest.\n\nAbre RedemptionChronicleMaker.exe. Selecciona Vampire.exe. Tus proyectos se guardan en Documentos, fuera del programa. Abre Tutorial rapido o Showcase completo y pulsa F5 para probar.\n\nUnofficial fan-made authoring tool for Vampire: The Masquerade - Redemption. Requires your own complete game installation.\n')
     ws.write(app/'VERSION',__version__+'\n')
-    for folder in ('tutorial','showcase','mini_chronicle'):
+    for folder in ('tutorial','showcase','mini_chronicle','dynamic_lab'):
         target=app/'examples'/folder
         if target.exists():shutil.rmtree(ws.output(target))
         for file in (ROOT/'chronicles'/folder).rglob('*'):

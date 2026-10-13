@@ -10,7 +10,7 @@ class Link:
 
 def graph(data):
     ids = {}
-    for key in ('actors', 'objects', 'conversations', 'events', 'triggers'):
+    for key in ('actors', 'objects', 'conversations', 'events', 'triggers','waypoints','generators'):
         for i, item in enumerate(data.get(key, [])):
             if item.get('id'):
                 ids[(key, item['id'])] = (key, i)
@@ -46,10 +46,18 @@ def graph(data):
             add(p, 'flags', c.get('flag'), 'condición', p + ('conditions', ci))
         for ai, a in enumerate(e.get('actions', [])):
             for k, v in a.items():
-                kind = 'conversations' if k == 'start_conversation' else 'flags'
+                kind = 'generators' if k in ('start_generator','stop_generator','pause_generator','resume_generator','reset_generator') else 'conversations' if k == 'start_conversation' else 'flags'
                 if k == 'spawn':
                     kind = 'actors' if ('actors', v) in ids else 'objects'
                 add(p, kind, v, k, p + ('actions', ai))
+    for gi,g in enumerate(data.get('generators',[])):
+        p=('generators',gi)
+        for pi,key in enumerate(g.get('spawn_points',[])):add(p,'waypoints',key,'spawn point',p+('spawn_points',pi))
+        for wave in g['waves']:
+            for group in wave['groups']:
+                for key in group.get('spawn_points',[]):add(p,'waypoints',key,'spawn point',p)
+        if g.get('visual'):add(p,'objects',g['visual'],'visual',p+('visual',))
+        if g.get('boss',{}).get('actor'):add(p,'actors',g['boss']['actor'],'boss',p+('boss','actor'))
     return links
 
 def references(data, path):
@@ -61,6 +69,6 @@ def affected(data, path):
     """Selection-only highlights: one event neighborhood, not all transitive flags."""
     links = graph(data)
     neighborhood = {tuple(path)}
-    if path and path[0] in ('actors', 'objects', 'triggers'):
+    if path and path[0] in ('actors', 'objects', 'triggers','generators'):
         neighborhood |= {x.source for x in links if x.target == tuple(path) and x.source[0] == 'events'}
-    return {x.target for x in links if x.source in neighborhood and x.target[0] in ('actors', 'objects', 'triggers')}
+    return {x.target for x in links if x.source in neighborhood and x.target[0] in ('actors', 'objects', 'triggers','waypoints')}

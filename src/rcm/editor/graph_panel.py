@@ -23,6 +23,7 @@ class GraphPanel(QWidget):
     def __init__(self,win):
         super().__init__();self.win=win;self.key=None;layout=QVBoxLayout(self);bar=QHBoxLayout()
         self.kind=QComboBox();self.kind.addItem(tr('Conversaciones'),'conversations');self.kind.addItem(tr('Eventos · trigger → condiciones → acciones'),'events');self.kind.setObjectName('graph_kind');bar.addWidget(self.kind)
+        self.kind.addItem(tr('Encuentros dinámicos'),'generators')
         self.resource=QComboBox();self.resource.setObjectName('graph_resource');bar.addWidget(self.resource,1)
         for label,key,cb in [(tr('+ Nodo'),'graph_add_node',win.add_node),(tr('+ Respuesta'),'graph_add_answer',win.add_answer),(tr('Entrada aquí'),'graph_set_entry',self.entry),(tr('Ajustar vista'),'graph_fit',self.fit)]:
             b=QPushButton(label);b.setObjectName(key);b.clicked.connect(lambda checked=False,cb=cb:win.guard(lambda:self.edit(cb)));bar.addWidget(b)
@@ -72,6 +73,8 @@ class GraphPanel(QWidget):
         if self.view.transform().m11()>1:self.view.resetTransform();self.view.centerOn(bounds.center())
     def refresh(self):
         if not self.isVisible():return
+        for key in ('graph_add_node','graph_add_answer','graph_set_entry'):
+            self.findChild(QPushButton,key).setVisible(self.kind.currentData()!='generators')
         rows=self.win.doc.data.get(self.kind.currentData(),[]) if self.win.doc else []
         key=json.dumps([rows,self.win.selection,self.kind.currentData(),self.resource.currentData()],sort_keys=True,ensure_ascii=False)
         if key==self.key:return
@@ -114,6 +117,26 @@ class GraphPanel(QWidget):
                     short=QFontMetrics(self.view.font()).elidedText(full.replace('\n',' '),Qt.TextElideMode.ElideRight,261)
                     card=self.card(a['path'],x,y+heights[n['id']]+5+j*answer_step,short,'#ffffff',285,answer_height);card.setToolTip(full)
             self.notice.setText(tr('Selecciona un nodo o respuesta para editarlo en Propiedades. Inicio verde; inaccesible ámbar; sin salida rojo. Destinos ausentes: ')+str(graph['missing']))
+        elif self.kind.currentData()=='generators':
+            from ..dynamic_encounters import MODES
+            starts=[e for e in self.win.doc.data['events'] if any(a.get('start_generator')==row['id'] for a in e['actions'])]
+            text='\n'.join(tr(WHEN.get(e['when'],e['when'])) for e in starts) or tr('Desde otro evento')
+            self.card(prefix,0,0,text,'#d9f0e6');self.line(142,120,142,160)
+            self.card(prefix,0,160,row['name']+'\n'+tr(MODES[row['mode']]),'#e7eef7');y=280
+            for wi,wave in enumerate(row['waves']):
+                self.line(142,y,142,y+35);y+=35
+                text=tr('Oleada ')+str(wi+1)+'\n'+', '.join(e['template']+' × '+str(e['count']) for e in wave['groups']);height=self.text_height(text)
+                self.card(prefix,0,y,text,'#fff0cf',height=height);y+=height
+            for event in self.win.doc.data['events']:
+                if event.get('generator')==row['id']:
+                    ei=self.win.doc.data['events'].index(event);self.line(142,y,142,y+35);y+=35
+                    text=tr(WHEN.get(event['when'],event['when']))+'\n'+'\n'.join(tr(ACTIONS[next(iter(a))][0]) for a in event['actions'])
+                    height=self.text_height(text);self.card(('events',ei),0,y,text,'#d9f0e6',height=height);y+=height
+            for phase in row.get('phases',[]):
+                self.line(142,y,142,y+35);y+=35
+                text=tr('Fase del jefe')+' '+phase['id']+' · '+str(phase.get('percent',phase.get('value')))+('%' if 'percent' in phase else ' HP')+'\n'+'\n'.join(tr(ACTIONS[next(iter(a))][0]) for a in phase['actions'])
+                height=self.text_height(text);self.card(prefix,0,y,text,'#fff0cf',height=height);y+=height
+            self.notice.setText(tr('Activación → encuentro → oleadas → acciones. Los enemigos creados durante la partida no se dibujan como nodos.'))
         else:
             text=tr('CUANDO ')+tr(WHEN.get(row.get('when'),str(row.get('when'))))+'\n'+str({k:v for k,v in row.items() if k not in {'when','actions','conditions'}})
             height=self.text_height(text);self.card(prefix,0,0,text,'#d9f0e6',height=height);top=height
