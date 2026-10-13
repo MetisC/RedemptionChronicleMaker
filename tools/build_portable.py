@@ -1,6 +1,6 @@
 """Reproducible onedir user product. No original game assets."""
 from pathlib import Path
-import argparse,json,os,shutil,subprocess,sys
+import argparse,json,os,re,shutil,subprocess,sys
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'cache/devtools'),str(ROOT/'cache/vendor'),str(ROOT/'src')]
 from rcm.paths import Workspace
@@ -15,6 +15,14 @@ def resolve_jlink(java_home=None):
     if found:return Path(found)
     raise ValueError('Portable build requires jlink. Set JAVA_HOME, --java-home, or a verified JDK jlink on PATH. End users need no JDK.')
 
+def windows_version(version):
+    """Map 1.2.3[-rcN] to Windows' four-integer file version."""
+    match=re.fullmatch(r'(\d+)\.(\d+)\.(\d+)(?:-rc(\d+))?',version)
+    if not match:raise ValueError('Portable version must look like X.Y.Z or X.Y.Z-rcN: '+version)
+    values=[int(match.group(i) or 0) for i in range(1,5)]
+    if any(value<0 or value>65535 for value in values):raise ValueError('Windows version components must fit 0..65535: '+version)
+    return tuple(values)
+
 def main(argv=None):
     parser=argparse.ArgumentParser();parser.add_argument('--destination',default='build/portable');parser.add_argument('--java-home',type=Path);args=parser.parse_args(argv)
     ws=Workspace(ROOT);destination=ws.output(args.destination);destination.mkdir(parents=True,exist_ok=True);app=ws.output(destination/'RedemptionChronicleMaker')
@@ -23,10 +31,11 @@ def main(argv=None):
     jlink=resolve_jlink(args.java_home)
     entry=ws.write('build/portable_entry.py',(ROOT/'tools/portable_entry.py').read_bytes())
     from rcm import __version__
-    version=ws.write('build/version_info.txt',"VSVersionInfo(ffi=FixedFileInfo(filevers=(1,0,0,4),prodvers=(1,0,0,4),mask=0x3f,flags=0x0,OS=0x40004,fileType=0x1,subtype=0x0,date=(0,0)),kids=[StringFileInfo([StringTable('040904B0',[StringStruct('ProductName','Redemption Chronicle Maker'),StringStruct('FileDescription','Redemption Chronicle Maker'),StringStruct('FileVersion','"+__version__+"'),StringStruct('ProductVersion','"+__version__+"'),StringStruct('OriginalFilename','RedemptionChronicleMaker.exe')])]),VarFileInfo([VarStruct('Translation',[1033,1200])])])")
+    file_version=windows_version(__version__)
+    version_info=ws.write('build/version_info.txt',"VSVersionInfo(ffi=FixedFileInfo(filevers="+repr(file_version)+",prodvers="+repr(file_version)+",mask=0x3f,flags=0x0,OS=0x40004,fileType=0x1,subtype=0x0,date=(0,0)),kids=[StringFileInfo([StringTable('040904B0',[StringStruct('ProductName','Redemption Chronicle Maker'),StringStruct('FileDescription','Redemption Chronicle Maker'),StringStruct('FileVersion','"+__version__+"'),StringStruct('ProductVersion','"+__version__+"'),StringStruct('OriginalFilename','RedemptionChronicleMaker.exe')])]),VarFileInfo([VarStruct('Translation',[1033,1200])])])")
     env=dict(os.environ,PYTHONPATH=os.pathsep.join([str(ROOT/'cache/devtools'),str(ROOT/'cache/vendor'),str(ROOT/'src')]))
     env['PATH']=os.pathsep.join([str(ROOT/'cache/vendor/PySide6'),str(Path(os.environ.get('SystemRoot',r'C:\Windows'))/'System32')])
-    command=[sys.executable,'-m','PyInstaller','--clean','--noconfirm','--onedir','--windowed','--name','RedemptionChronicleMaker','--version-file',str(version),'--icon',str(ROOT/'src/rcm/editor/assets/chronicle.ico'),'--distpath',str(destination),'--workpath',str(ws.output('build/pyinstaller_work')),'--specpath',str(ws.output('build/pyinstaller_spec')),'--paths',str(ROOT/'src'),'--paths',str(ROOT/'cache/vendor'),'--hidden-import','numpy','--hidden-import','PIL.Image','--hidden-import','yaml','--hidden-import','PySide6.QtOpenGLWidgets','--add-data',str(ROOT/'cache/toolchain/ecj-3.26.0.jar')+';toolchain','--add-data',str(ROOT/'src/rcm/editor/assets')+';rcm/editor/assets','--add-data',str(ROOT/'cache/vendor/PySide6/translations/qtbase_es.qm')+';translations',str(entry)]
+    command=[sys.executable,'-m','PyInstaller','--clean','--noconfirm','--onedir','--windowed','--name','RedemptionChronicleMaker','--version-file',str(version_info),'--icon',str(ROOT/'src/rcm/editor/assets/chronicle.ico'),'--distpath',str(destination),'--workpath',str(ws.output('build/pyinstaller_work')),'--specpath',str(ws.output('build/pyinstaller_spec')),'--paths',str(ROOT/'src'),'--paths',str(ROOT/'cache/vendor'),'--hidden-import','numpy','--hidden-import','PIL.Image','--hidden-import','yaml','--hidden-import','PySide6.QtOpenGLWidgets','--add-data',str(ROOT/'cache/toolchain/ecj-3.26.0.jar')+';toolchain','--add-data',str(ROOT/'src/rcm/editor/assets')+';rcm/editor/assets','--add-data',str(ROOT/'cache/vendor/PySide6/translations/qtbase_es.qm')+';translations',str(entry)]
     run=subprocess.run(command,cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf8',errors='replace');ws.write('build/portable_build.log',run.stdout+run.stderr)
     if run.returncode:raise SystemExit('PyInstaller failed; see build/portable_build.log')
     runtime=app/'runtime'
