@@ -97,7 +97,7 @@ def import_project(ws,archive,directory):
         from .document import draft_shape
         draft_shape(root)
     targets={ws.output(target/name):data for name,data in files.items() if name not in {'project.yaml','manifest.json'}}
-    if m['custom_code']:targets[ws.output(target/'IMPORTED_CODE_NOTICE.txt')]='Este proyecto contiene Java propio. Revísalo antes de Build. Build compila; Ejecutar carga las clases en Redemption.'.encode('utf8')
+    if m['custom_code']:targets[ws.output(target/'IMPORTED_CODE_NOTICE.txt')]='This project contains custom Java. Review its sources before building or playtesting; compiled classes run inside Redemption.\n\nEste proyecto contiene Java propio. Revisa sus fuentes antes de construir o probar la crónica; las clases compiladas se ejecutan dentro de Redemption.'.encode('utf8')
     targets[ws.output(target/'project.yaml')]=source_text(root).encode('utf8')
     from .file_transaction import replace_files
     replace_files(targets,[],ws.output('research/package_backups/import_'+str(time.time_ns())+'.zip'),ws.root,ws.output)

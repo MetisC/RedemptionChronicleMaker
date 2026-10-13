@@ -1,0 +1,21 @@
+{
+  "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+  "version": "1.0.0-rc3",
+  "original_game_assets_included": false,
+  "original_tools_included": false,
+  "jvm_bundled": true,
+  "native_game_test": false,
+  "clean_machine_test": false,
+  "user_data_inside_program": false,
+  "user_doc_whitelist": [
+    "GETTING_STARTED",
+    "EDITOR_GUIDE",
+    "AUTHORING_GUIDE",
+    "TUTORIAL",
+    "SHOWCASE",
+    "FIRST_RUN",
+    "TROUBLESHOOTING",
+    "SHORTCUTS",
+    "ADVANCED_LIMITATIONS"
+  ]
+}

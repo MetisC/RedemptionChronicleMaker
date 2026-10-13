@@ -1,6 +1,57 @@
 # Storyteller's Workshop
 
-Follow Anezka, explore the optional laboratory, then travel to the archive. Return with the book and key to finish the errand. Optional stations can be skipped.
+This Showcase is a short adventure with an optional laboratory. It demonstrates how RCM's existing tools work together and links to their examples in the editor. Follow the errand or stop to experiment; you do not have to visit every station.
+
+## Start here
+
+1. Open the Showcase and press **F5** to prepare it. Enter your chronicle manually in Redemption.
+2. At the workshop, speak to [Anezka](rcm://quay/actors/victoria) and accept the errand. The [opening conversation](rcm://quay/conversations/intro) is linked here for editing.
+3. Speak to the [guide](rcm://quay/actors/guide) beside her. Choose the journey to the archive to continue the story; the other choices belong to the optional laboratory.
+4. At the archive, speak to the [archivist](rcm://archive/actors/archivist) and decide how to obtain the book.
+5. With the book and key, speak to the [keeper](rcm://archive/actors/keeper) to return.
+6. Speak to the [witness](rcm://return/actors/witness) to finish the delivery. The courier can take you back to the beginning.
+
+## Main route
+
+The [workshop](rcm://quay/scene/quay) uses EastLondon. The [archive](rcm://archive/scene/archive) uses another location. The [return](rcm://return/scene/return) reuses EastLondon with different characters and state: a scene is a content layer, not new geometry.
+
+The [book quest](rcm://quay/quests/ledger) tracks progress in the journal. Your [decision at the archive](rcm://archive/conversations/ledger) changes the witness's response. Both branches reach the ending. Return to the beginning to review what the story remembers; rewards should only be granted once.
+
+## Optional laboratory
+
+### Cameras
+
+Ask the guide to show the shots one at a time. Start with the [first camera conversation](rcm://quay/conversations/cam1) and use Next to compare framing. Select a conversation in the editor to change its camera in Properties. The [arrival sequence](rcm://quay/sequences/sequence1) is a separate cinematic example.
+
+### Animations
+
+The [gesture conversation](rcm://quay/conversations/anim) only offers animations available on the guide's model. Select a node or line to find its animation setting. Each model has its own repertoire.
+
+### Paths / Waypoints
+
+The guide's path and sound choices let you start and stop a walk. The [path](rcm://quay/paths/guide_walk) connects [its first waypoint](rcm://quay/waypoints/guide_a) to [the second](rcm://quay/waypoints/guide_b). Geometry stays unchanged; check actual navigation while playing.
+
+### Sound
+
+The same [laboratory conversation](rcm://quay/conversations/lab) plays music, ambience and thunder from [a point in the street](rcm://quay/waypoints/audio). It also stops music and ambience. The [sound event](rcm://quay/events/controls4) links to these actions in the editor.
+
+### Objects and notes
+
+Click the [notice](rcm://quay/objects/notice) to read a note; closing it can continue an event. The [lectern](rcm://quay/objects/talkprop) starts a conversation from an object. The [laboratory book](rcm://quay/objects/sample) demonstrates pickup and a state change. The [guide's key](rcm://quay/objects/lab_key) belongs to her initial inventory.
+
+### Optional combat
+
+The guide only activates [the rat](rcm://quay/actors/enemy1) when you explicitly choose combat. It is a basic enemy and **fighting is not required to finish the story**. You can skip combat from the guide's conversation.
+
+## Field test
+
+Travel to the archive and return to check locations, arrivals and two scenes using the same geometry. The keeper also offers an [optional camera and sound test](rcm://archive/sequences/two_shot).
+
+Save and load, return to the start and repeat an interaction. Check that the journal, inventory, choices and rewards retain the expected state. You perform these checks in Redemption; compilation and offline tests do not certify the gameplay route.
+
+Guide links select project elements in the editor. The following index retains all reference links; you do not need it to play the adventure.
+
+## Complete technical index
 
 - [quay · safe](rcm://quay/entries/safe)
 - [quay · victoria](rcm://quay/actors/victoria)

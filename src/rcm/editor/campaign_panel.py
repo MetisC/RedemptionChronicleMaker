@@ -1,9 +1,8 @@
 from .i18n import tr
 """Campaign authoring controls over the existing window/document and event inspector."""
-from pathlib import Path
 import copy
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QLabel,QPushButton,QComboBox,QLineEdit,QTreeWidget,QTreeWidgetItem,QScrollArea,QFormLayout,QSpinBox,QDoubleSpinBox,QListWidget,QListWidgetItem,QFileDialog,QMessageBox,QDialog,QSplitter,QDialogButtonBox,QInputDialog,QMenu
+from PySide6.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QLabel,QPushButton,QComboBox,QLineEdit,QTreeWidget,QTreeWidgetItem,QScrollArea,QFormLayout,QSpinBox,QDoubleSpinBox,QListWidget,QListWidgetItem,QMessageBox,QDialog,QSplitter,QDialogButtonBox,QInputDialog,QMenu
 from .browser import ResourceDialog
 from ..campaign import ACTIONS,WHEN
 from ..campaign_document import CampaignDocument
@@ -18,11 +17,12 @@ class CampaignPanel(QWidget):
         top.addWidget(QLabel(tr('Escena activa')));top.addWidget(self.scene,1)
         spatial=QHBoxLayout();story=QHBoxLayout()
         more=QMenu(self)
-        for i,(label,name,cb) in enumerate([(tr('Crear campaña'),'convert_campaign',self.convert),(tr('+ Escena'),'add_scene',self.add_scene),(tr('+ Entrada'),'add_entry',lambda:self.add_marker('entries')),('+ Waypoint','add_waypoint',lambda:self.add_marker('waypoints')),(tr('+ Recorrido'),'add_path',self.add_path),('+ Quest','add_quest',self.add_quest),(tr('+ Encuentro'),'add_encounter',self.add_encounter),(tr('+ Cámara'),'add_sequence',self.add_sequence)]):
-            b=QPushButton(label);b.setObjectName(name);b.clicked.connect(lambda checked=False,cb=cb:win.guard(cb))
-            if i in (0,1,2,4):spatial.addWidget(b)
+        for i,(label,name,cb) in enumerate([(tr('Crear campaña'),'convert_campaign',self.convert),(tr('+ Escena'),'add_scene',self.add_scene),(tr('+ Entrada'),'add_entry',lambda:self.add_marker('entries')),(tr('+ Punto de recorrido'),'add_waypoint',lambda:self.add_marker('waypoints')),(tr('+ Recorrido'),'add_path',self.add_path),(tr('+ Misión'),'add_quest',self.add_quest),(tr('+ Encuentro'),'add_encounter',self.add_encounter),(tr('+ Cámara'),'add_sequence',self.add_sequence)]):
+            if i in (0,1,2,4):
+                button=QPushButton(label);button.setObjectName(name);button.clicked.connect(lambda checked=False,cb=cb:win.guard(cb));spatial.addWidget(button)
+                if i==0:self.convert_button=button
             else:
-                b.setParent(self);b.hide();more.addAction(label,b.click)
+                action=more.addAction(label);action.setObjectName(name);action.triggered.connect(lambda checked=False,cb=cb:win.guard(cb))
         from .recipe_wizard import open_wizard
         guided=QPushButton(tr('Asistente…'));guided.setObjectName('open_recipe');guided.clicked.connect(lambda:win.guard(lambda:open_wizard(win)));spatial.addWidget(guided)
         extra=QPushButton(tr('Añadir…'));extra.setMenu(more);extra.setObjectName('campaign_add_more');spatial.addWidget(extra)
@@ -32,11 +32,10 @@ class CampaignPanel(QWidget):
         self.tree=QTreeWidget();self.tree.setHeaderLabels([tr('Elemento'),tr('Detalle')]);self.tree.setColumnWidth(0,260);self.tree.setObjectName('campaign_tree');self.tree.itemClicked.connect(self.selected);self.panes.addWidget(self.tree)
         self.scroll=QScrollArea();self.scroll.setWidgetResizable(True);self.scroll.setMinimumHeight(190);self.panes.addWidget(self.scroll)
         self.panes.setStretchFactor(0,1);self.panes.setStretchFactor(1,3);self.panes.setSizes([150,400]);self.panes.setChildrenCollapsible(False)
-        bottom=QHBoxLayout();gamebar=QHBoxLayout()
-        for i,(label,name,cb) in enumerate([(tr('Duplicar'),'duplicate_campaign',self.duplicate),(tr('Borrar'),'delete_campaign',self.delete),(tr('Referencias'),'campaign_references',lambda:win.find_references(self.path)),(tr('Guardar'),'campaign_save',win.save_project),(tr('Integridad'),'campaign_integrity',win.validate_from_ui),('Deploy','campaign_deploy',self.deploy),(tr('Ejecutar'),'campaign_run',self.run_game),(tr('Ruta del juego…'),'game_settings',self.game_settings),(tr('Acceso del juego…'),'game_shortcut',self.game_shortcut)]):
-            b=QPushButton(label);b.setObjectName(name);b.clicked.connect(lambda checked=False,cb=cb:win.guard(cb));(bottom if i<5 else gamebar).addWidget(b)
-            if i>=3:b.hide()
-        layout.addLayout(bottom);layout.addLayout(gamebar)
+        bottom=QHBoxLayout()
+        for label,name,cb in [(tr('Duplicar'),'duplicate_campaign',self.duplicate),(tr('Borrar'),'delete_campaign',self.delete),(tr('Referencias'),'campaign_references',lambda:win.find_references(self.path))]:
+            button=QPushButton(label);button.setObjectName(name);button.clicked.connect(lambda checked=False,cb=cb:win.guard(cb));bottom.addWidget(button)
+        layout.addLayout(bottom)
     def source(self):return self.win.doc.campaign if self.win.doc and hasattr(self.win.doc,'campaign') else None
     def focus_search(self):
         self.win.center_tabs.setCurrentWidget(self)
@@ -50,12 +49,12 @@ class CampaignPanel(QWidget):
         self.win.center_tabs.setCurrentWidget(self)
         return True
     def refresh(self):
-        root=self.source();self.scene.blockSignals(True);self.scene.clear()
+        root=self.source();self.convert_button.setVisible(bool(self.win.doc) and not root);self.scene.blockSignals(True);self.scene.clear()
         if root:
             for s in root['scenes']:self.scene.addItem(s['id']+tr(' · ')+s['level']['source'],s['id'])
             self.scene.setCurrentIndex(self.win.doc.active)
-            self.dashboard.setText(root['chronicle']['name']+tr(' · ')+str(len(root['scenes']))+tr(' escenas / ')+str(len({s['level']['source'] for s in root['scenes']}))+tr(' geometrías · ')+str(sum(len(s['actors']) for s in root['scenes']))+tr(' actores · ')+str(len(root.get('quests',[])))+' quests · '+str(sum(len(s['events']) for s in root['scenes']))+tr(' eventos'))
-        else:self.dashboard.setText(tr('Convierte explícitamente un proyecto a campaña para añadir mapas, quests y encuentros. Los proyectos anteriores conservan su formato.'))
+            self.dashboard.setText(root['chronicle']['name']+tr(' · ')+str(len(root['scenes']))+tr(' escenas / ')+str(len({s['level']['source'] for s in root['scenes']}))+tr(' geometrías · ')+str(sum(len(s['actors']) for s in root['scenes']))+tr(' actores · ')+str(len(root.get('quests',[])))+tr(' misiones · ')+str(sum(len(s['events']) for s in root['scenes']))+tr(' eventos'))
+        else:self.dashboard.setText(tr('Convierte este proyecto antiguo para trabajar con varias escenas, misiones y encuentros. Se conserva la compatibilidad con su formato.'))
         self.scene.blockSignals(False);self.refresh_rows()
         if not root:self.path=None
         if self.path:
@@ -69,8 +68,8 @@ class CampaignPanel(QWidget):
         def add(path,row,detail=''):
             if query and query not in str(row).casefold():return
             item=QTreeWidgetItem([row.get('title',row.get('name',row.get('id',''))),detail]);item.setData(0,ROLE,path);self.tree.addTopLevelItem(item)
-            item.setToolTip(0,item.text(0));item.setToolTip(1,detail)
-        for qi,q in enumerate(root.get('quests',[])):add(('quests',qi),q,'Quest · '+str(len(q['steps']))+tr(' pasos'))
+            item.setToolTip(0,item.text(0)+('\n'+row['comment'] if row.get('comment') else ''));item.setToolTip(1,detail)
+        for qi,q in enumerate(root.get('quests',[])):add(('quests',qi),q,tr('Misión · ')+str(len(q['steps']))+tr(' pasos'))
         for si,s in enumerate(root['scenes']):
             add(('scenes',si),s,tr('Escena · ')+s['level']['source'])
             for k in ['actors','objects','conversations','events','triggers','encounters','sequences','entries','waypoints','paths']:
@@ -105,9 +104,9 @@ class CampaignPanel(QWidget):
         return value
     def add_scene(self):
         if not self.convert():return
-        mode,ok=QInputDialog.getItem(self,tr('Crear escena / layout'),tr('Cada escena tiene sus propios NPC, objetos y eventos. La geometría se reutiliza.'), [tr('Nuevo layout vacío sobre este level'),tr('Duplicar layout actual'),tr('Escena sobre otro level…')],0,False)
+        mode,ok=QInputDialog.getItem(self,tr('Crear escena / layout'),tr('Cada escena tiene sus propios NPC, objetos y eventos. La geometría se reutiliza.'), [tr('Nuevo layout vacío sobre este escenario'),tr('Duplicar layout actual'),tr('Escena sobre otro escenario…')],0,False)
         if not ok:return
-        if mode==tr('Escena sobre otro level…'):
+        if mode==tr('Escena sobre otro escenario…'):
             dialog=ResourceDialog(self.win.backend,'levels',self)
             if dialog.exec()!=QDialog.DialogCode.Accepted:return
             level={'source':dialog.selection}
@@ -337,7 +336,7 @@ class CampaignPanel(QWidget):
             form.addRow(tr('Orden de waypoints'),route)
             available=QComboBox();available.setObjectName('path_available')
             for point in s.get('waypoints',[]):available.addItem(point['name'],point['id'])
-            form.addRow('Waypoint',available)
+            form.addRow(tr('Punto de recorrido'),available)
             def edit_route(operation):
                 operation();self.win.changed(True);self.render()
             b=QPushButton(tr('Añadir waypoint'));b.setObjectName('path_add_point');b.clicked.connect(lambda:edit_route(lambda:row['points'].append(available.currentData())) if available.currentData() else None);form.addRow(b)
@@ -354,33 +353,6 @@ class CampaignPanel(QWidget):
     def preview_sequence(self,row):
         for i,a in enumerate(self.win.doc.data['actors']):
             if a['id']==row['actor']:self.win.select(('actors',i));self.win.center_tabs.setCurrentIndex(0);self.win.spatial.viewport.focus_selection();return
-    def game_settings(self):
-        path=QFileDialog.getExistingDirectory(self,tr('Instalación de Redemption'),str(self.win.backend.ws.game))
-        if path:
-            from ..deployment import save_settings
-            baseline=self.win.backend.ws.output('research/source_manifest.json')
-            if baseline.is_file():
-                from ..catalogue import verify_sources
-                verify_sources(self.win.backend.ws,Path(path))
-            save_settings(self.win.backend.ws,Path(path));self.win.backend.ws.game=Path(path)
-    def deploy(self):
-        if getattr(self.win.backend,'restart_required',False):raise ValueError(tr('Reinicia el editor para aplicar la instalación o la carpeta de proyectos seleccionada.'))
-        if not self.win.doc:raise ValueError(tr('Abre una crónica'))
-        if not self.win.commit_properties():return
-        from ..deployment import deploy
-        result=deploy(self.win.backend.ws,self.win.doc.data['chronicle']['id'],current_source=self.win.doc.snapshot());self.win.log.appendPlainText(tr('Prueba preparada: ')+str(result['destination']))
-    def game_shortcut(self):
-        path,_=QFileDialog.getOpenFileName(self,tr('Acceso directo que utilizas para jugar'),'',tr('Accesos Windows (*.lnk)'))
-        if not path:return
-        from ..shortcut import read_shortcut
-        read_shortcut(path)
-        from ..startup import settings
-        import json
-        data=settings(self.win.backend.ws);data['installation']=str(self.win.backend.ws.game);data['desktop_shortcut']=path;self.win.backend.ws.write('cache/game_settings.json',json.dumps(data,indent=2))
-    def run_game(self):
-        if not self.win.doc:raise ValueError(tr('Abre una crónica'))
-        from ..deployment import run_game
-        run_game(self.win.backend.ws,self.win.doc.data['chronicle']['id'])
 
 
 def event_properties(ins):
@@ -467,7 +439,7 @@ def render_condition(ins,c,path,depth=0):
     if kind=='flag':
         ins.combo('Flag',flags,c.get('flag',''),lambda v:ins.set(path+('flag',),v),'condition_flag'+('' if depth==0 else suffix));ins.combo(tr('Estado'),[(tr('Activado'),True),(tr('Desactivado'),False)],c.get('is_set',True),lambda v:ins.set(path+('is_set',),v),'condition_state'+('' if depth==0 else suffix))
     elif kind.startswith('quest'):
-        ins.combo('Quest',[(tr('Elige…'),'')]+[(q['title'],q['id']) for q in w.doc.campaign.get('quests',[])],c.get('quest',''),lambda v:ins.set(path+('quest',),v),'condition_quest')
+        ins.combo(tr('Misión'),[(tr('Elige…'),'')]+[(q['title'],q['id']) for q in w.doc.campaign.get('quests',[])],c.get('quest',''),lambda v:ins.set(path+('quest',),v),'condition_quest')
         if kind=='quest_state':ins.combo(tr('Estado'),[(tr('Sin iniciar'),'not_started'),(tr('Activa'),'active'),(tr('Completa'),'complete')],c.get('state','active'),lambda v:ins.set(path+('state',),v),'condition_quest_state')
         else:ins.spin(tr('Paso activo (desde 0)'),c.get('step',0),lambda v:ins.set(path+('step',),v),'condition_quest_step',maximum=31)
     elif kind in ('all','any','not'):

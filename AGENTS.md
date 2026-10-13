@@ -2,7 +2,9 @@
 
 ## Producto vigente
 
-Redemption Chronicle Maker 1.0.0-rc2. Conservar el tutorial aceptado, el Showcase y la mini crónica, así como el runtime que funciona. No declarar 1.0 final mientras falten los casos manuales de docs/MANUAL_RUNTIME_CHECKLIST.md. El alcance actual y sus límites están en docs/FINAL_PRODUCT_REPORT.md.
+Petición vigente: RC3 — poda, coherencia y cierre según docs/RC3_REQUIREMENTS.md. Sin nuevas features ni cambios de runtime. Priorizar gate de formatos futuros, identidad de instalación/cache, apertura segura tras importar y eliminación de UI legacy.
+
+Redemption Chronicle Maker 1.0.0-rc3. Conservar el tutorial aceptado, el Showcase y la mini crónica, así como el runtime que funciona. No declarar 1.0 final mientras falten los casos manuales de docs/MANUAL_RUNTIME_CHECKLIST.md. El alcance actual y sus límites están en docs/FINAL_PRODUCT_REPORT.md.
 
 El usuario realiza las pruebas dentro de Redemption: no automatizar ni jugar el juego. Separar generación, compilación contra Codex, pruebas con doubles, pruebas de interfaz y observación nativa. La aceptación del tutorial no certifica automáticamente el Showcase, save/load ni multijugador.
 

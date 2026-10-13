@@ -40,7 +40,7 @@ def main(argv=None):
         from .i18n import configure, install_qt, diagnostic
         configure(ws)
         install_qt(app)
-        from ..startup import cache_errors,prepare_workspace
+        from ..startup import prepare_workspace
         first_run=not preferences.data.get('setup_complete',False)
         if first_run or not args.game:
             from .product_ui import SetupDialog
@@ -56,19 +56,18 @@ def main(argv=None):
         from ..product import ensure_runtime_root
         # Check the managed runtime's permissions before the expensive scan.
         ensure_runtime_root(ws.game)
-        if cache_errors(ws) or not ws.output('cache/toolchain/classes.zip').is_file() or not ws.output('cache/toolchain/ecj-3.26.0.jar').is_file():
-            # Scanning reads archives on a worker; the dialog stays responsive.
-            from PySide6.QtCore import QThread,QObject,Signal,Qt
-            class Worker(QObject):
-                done=Signal();failed=Signal(str);progress=Signal(str)
-                def run(self):
-                    try:prepare_workspace(ws,lambda text:self.progress.emit(diagnostic(text)))
-                    except Exception as error:self.failed.emit(str(error))
-                    finally:self.done.emit()
-            progress=QProgressDialog(tr('Preparando catálogos originales…'),'',0,0);progress.setCancelButton(None);progress.setWindowModality(Qt.WindowModality.ApplicationModal)
-            worker=Worker();thread=QThread();worker.moveToThread(thread);errors=[]
-            worker.progress.connect(progress.setLabelText);worker.failed.connect(errors.append);worker.done.connect(progress.accept);worker.done.connect(thread.quit);thread.started.connect(worker.run);thread.start();progress.exec();thread.quit();thread.wait()
-            if errors:raise ValueError(errors[0])
+        # Scanning reads archives on a worker; the dialog stays responsive.
+        from PySide6.QtCore import QThread,QObject,Signal,Qt
+        class Worker(QObject):
+            done=Signal();failed=Signal(str);progress=Signal(str)
+            def run(self):
+                try:prepare_workspace(ws,lambda text:self.progress.emit(diagnostic(text)))
+                except Exception as error:self.failed.emit(str(error))
+                finally:self.done.emit()
+        progress=QProgressDialog(tr('Comprobando los recursos de Redemption…'),'',0,0);progress.setCancelButton(None);progress.setWindowModality(Qt.WindowModality.ApplicationModal)
+        worker=Worker();thread=QThread();worker.moveToThread(thread);errors=[]
+        worker.progress.connect(progress.setLabelText);worker.failed.connect(errors.append);worker.done.connect(progress.accept);worker.done.connect(thread.quit);thread.started.connect(worker.run);thread.start();progress.exec();thread.quit();thread.wait()
+        if errors:raise ValueError(errors[0])
         preferences.data.update(workspace=str(ws.root),game_installation=str(ws.game),setup_complete=True)
         preferences.save()
         backend=Backend(ws);backend.safe_mode=args.safe_mode or preferences.data.get('safe_mode',False)

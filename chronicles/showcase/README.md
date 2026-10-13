@@ -1,6 +1,57 @@
 # Taller del Narrador
 
-Sigue a Anezka, prueba el laboratorio si te apetece y viaja al archivo. Regresa con el libro y la llave para entregar el encargo. Puedes omitir las estaciones opcionales.
+Este Showcase es una pequeña aventura con un laboratorio opcional. Sirve para ver cómo se combinan las herramientas de RCM y localizar sus ejemplos en el editor. Sigue el encargo o detente a experimentar; no tienes que visitar cada estación.
+
+## Empieza aquí
+
+1. Abre el Showcase y pulsa **F5** para prepararlo. En Redemption, entra manualmente en tu crónica.
+2. Al llegar al taller, habla con [Anezka](rcm://quay/actors/victoria) y acepta el encargo. Puedes consultar la [conversación inicial](rcm://quay/conversations/intro) en el editor.
+3. Habla con la [guía](rcm://quay/actors/guide), a su lado. Elige «Viajar al archivo» para seguir la historia; sus otras opciones pertenecen al laboratorio.
+4. En el archivo, habla con la [archivera](rcm://archive/actors/archivist) y elige cómo conseguir el libro.
+5. Con el libro y la llave, habla con la [custodia](rcm://archive/actors/keeper) para regresar.
+6. Habla con el [testigo](rcm://return/actors/witness) y termina la entrega. La mensajera permite volver al comienzo.
+
+## Ruta principal
+
+El [taller](rcm://quay/scene/quay) usa EastLondon. El [archivo](rcm://archive/scene/archive) usa otra geometría. El [regreso](rcm://return/scene/return) reutiliza EastLondon con personajes y estado distintos: una escena es una capa de contenido, no una geometría nueva.
+
+El [encargo del libro](rcm://quay/quests/ledger) permite seguir el progreso en el diario. La [decisión en el archivo](rcm://archive/conversations/ledger) cambia la respuesta del testigo. Ambas ramas llegan al final; volver al inicio permite revisar el estado que recuerda la historia. Las recompensas deben entregarse una sola vez.
+
+## Laboratorio opcional
+
+### Cámaras
+
+La guía ofrece «Ver los planos uno a uno». Empieza en la [primera conversación de cámaras](rcm://quay/conversations/cam1) y avanza con Siguiente para comparar encuadres. En el editor, selecciona la conversación y cambia su cámara en Propiedades. La [secuencia de llegada](rcm://quay/sequences/sequence1) muestra un ejemplo independiente de película.
+
+### Animaciones
+
+La [conversación de gestos](rcm://quay/conversations/anim) muestra únicamente animaciones disponibles en el modelo de la guía. Selecciona un nodo o una línea para localizar su opción de animación. Cada modelo tiene su propio repertorio.
+
+### Recorridos / Waypoints
+
+Desde «Recorrido y sonido» puedes iniciar y detener el paseo de la guía. El [recorrido](rcm://quay/paths/guide_walk) enlaza [su primer punto](rcm://quay/waypoints/guide_a) con [el segundo](rcm://quay/waypoints/guide_b). La geometría permanece intacta; la navegación real se comprueba al jugar.
+
+### Sonido
+
+La misma [conversación del laboratorio](rcm://quay/conversations/lab) permite reproducir música, ambiente y un trueno desde [un punto de la calle](rcm://quay/waypoints/audio), y detener música y ambiente. En el editor puedes localizar las acciones en el [evento de sonido](rcm://quay/events/controls4).
+
+### Objetos y notas
+
+El [cartel](rcm://quay/objects/notice) muestra una nota al pulsarlo; cerrar la nota puede continuar un evento. El [atril](rcm://quay/objects/talkprop) inicia una conversación desde un objeto. El [libro del laboratorio](rcm://quay/objects/sample) muestra recogida y cambio de estado. La [llave de la guía](rcm://quay/objects/lab_key) pertenece a su inventario inicial.
+
+### Combate opcional
+
+La guía sólo activa [la rata](rcm://quay/actors/enemy1) si lo eliges expresamente. Es un enemigo básico y **no es obligatorio para completar la historia**. Puedes omitir el combate desde la conversación de la guía.
+
+## Prueba de campo
+
+El viaje al archivo y el regreso permiten comprobar cambios de localización, llegada y dos escenas sobre la misma geometría. La custodia ofrece una [prueba opcional de plano y sonido](rcm://archive/sequences/two_shot).
+
+Prueba guardar y cargar, volver al comienzo y repetir una interacción. Comprueba que el diario, inventario, decisiones y recompensas conservan el estado esperado. Estas comprobaciones las realizas tú en Redemption: la compilación y los tests offline no equivalen a aceptación del recorrido real.
+
+Los enlaces de la guía seleccionan elementos del proyecto en el editor. El índice siguiente conserva todos los enlaces de referencia; no necesitas leerlo para jugar la aventura.
+
+## Índice técnico completo
 
 - [quay · safe](rcm://quay/entries/safe)
 - [quay · victoria](rcm://quay/actors/victoria)

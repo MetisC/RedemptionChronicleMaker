@@ -8,7 +8,7 @@ from PySide6.QtGui import QAction, QShortcut, QPalette, QColor
 from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter,
     QTreeWidget, QTreeWidgetItem, QLabel, QPushButton, QScrollArea, QDockWidget,
     QTabWidget, QPlainTextEdit, QTableWidget, QTableWidgetItem, QHeaderView,
-    QFileDialog, QMessageBox, QDialog, QFormLayout, QLineEdit, QDialogButtonBox, QMenu,QComboBox)
+    QFileDialog, QMessageBox, QDialog, QFormLayout, QLineEdit, QDialogButtonBox, QComboBox)
 
 from ..document import Document
 from ..model import identifier
@@ -149,7 +149,7 @@ class MainWindow(QMainWindow):
         self._layout()
         from .campaign_panel import CampaignPanel
         self.campaign_panel = CampaignPanel(self)
-        self.center_tabs.addTab(self.campaign_panel, tr('Campaña / Misiones'))
+        self.center_tabs.addTab(self.campaign_panel, tr('Campaña / Vista global'))
         from .resource_panel import ProjectResourcesPanel
         self.project_resources_panel=ProjectResourcesPanel(self)
         self.center_tabs.addTab(self.project_resources_panel,tr('Recursos propios'))
@@ -165,7 +165,8 @@ class MainWindow(QMainWindow):
             self.register_delete_shortcut(widget, callback)
         campaign_menu = self.menuBar().addMenu(tr('Campaña'))
         self.campaign_menu=campaign_menu
-        campaign_menu.addAction(tr('Crear campaña de varios mapas'), lambda: self.guard(self.campaign_panel.convert))
+        self.convert_campaign_action=campaign_menu.addAction(tr('Crear campaña de varios mapas'), lambda: self.guard(self.campaign_panel.convert))
+        self.convert_campaign_action.setObjectName('action_convert_campaign')
         campaign_menu.addAction(tr('Buscar en toda la crónica'), self.campaign_panel.focus_search, 'Ctrl+Shift+F')
         campaign_menu.addAction(tr('Comprobar integridad'), self.validate_from_ui)
         self.actions['redo'].setShortcuts(['Ctrl+Y', 'Ctrl+Shift+Z'])
@@ -179,20 +180,6 @@ class MainWindow(QMainWindow):
         self.refresh()
         from .product_ui import install
         install(self)
-
-    def choose_language(self, code):
-        from .i18n import save_language, language
-        try:
-            save_language(self.backend.ws, code)
-        except (ValueError, OSError) as error:
-            self.language_actions[self.preferred_language].setChecked(True)
-            QMessageBox.warning(self, tr('Revisa la operación'), diagnostic(error))
-            return False
-        self.preferred_language=code
-        self.language_menu.setTitle(tr('Idioma (al reiniciar)') if code != language() else tr('Idioma'))
-        if code != language():
-            QMessageBox.information(self, tr('Idioma del editor'), tr('La preferencia se ha guardado. Cierra y vuelve a abrir el editor para aplicar el idioma. Tus proyectos no se traducen ni se modifican.'))
-        return True
 
     def _actions(self):
         self.actions = {}
@@ -212,22 +199,6 @@ class MainWindow(QMainWindow):
             self.actions[key] = action
             if key != "save_as":
                 toolbar.addAction(action)
-        from .i18n import LANGUAGES, language
-        from PySide6.QtGui import QActionGroup
-        self.language_menu = QMenu(tr('Idioma'), self)
-        self.language_menu.setObjectName('language_menu')
-        self.language_group = QActionGroup(self)
-        self.language_group.setExclusive(True)
-        self.language_actions = {}
-        self.preferred_language = language()
-        for code, label in LANGUAGES.items():
-            action = self.language_menu.addAction(label)
-            action.setObjectName('language_' + code)
-            action.setCheckable(True)
-            action.setChecked(code == language())
-            self.language_group.addAction(action)
-            action.triggered.connect(lambda checked=False, code=code: self.choose_language(code))
-            self.language_actions[code] = action
         file_menu = self.menuBar().addMenu(tr("Archivo"))
         self.file_menu=file_menu
         for key in ["new", "open", "save", "save_as"]:
@@ -242,7 +213,7 @@ class MainWindow(QMainWindow):
             edit_menu.addAction(action)
         edit_menu = self.menuBar().addMenu(tr('Crónica'))
         self.chronicle_menu=edit_menu
-        edit_menu.addAction(tr("Elegir level base…"), self.choose_level)
+        edit_menu.addAction(tr("Elegir escenario base…"), self.choose_level)
         edit_menu.addAction(tr("Añadir actor"), self.add_actor)
         edit_menu.addAction(tr("Nueva conversación"), self.add_conversation)
         edit_menu.addAction(tr("Nuevo evento"), self.add_event)
@@ -263,12 +234,10 @@ class MainWindow(QMainWindow):
         build_menu.addAction(self.actions["build"])
         help_menu = self.menuBar().addMenu(tr("Ayuda"))
         self.help_menu=help_menu
-        help_menu.addAction(tr('Tutorial del proyecto'),self.open_project_guide)
-        help_menu.addAction(tr("Guía del editor"), lambda:self.guard(self.open_editor_guide))
+        help_menu.addAction(tr('Guía de esta crónica'),self.open_project_guide).setObjectName('help_project_guide')
+        help_menu.addAction(tr("Guía del editor"), lambda:self.guard(self.open_editor_guide)).setObjectName('help_editor_guide')
         from .package_panel import menu
         menu(self)
-        help_menu.addAction(tr('Informe de diagnóstico'),lambda:self.guard(lambda:__import__('rcm.diagnostics',fromlist=['diagnostic_report']).diagnostic_report(self.backend.ws)))
-        self.menuBar().addMenu(self.language_menu)
 
     def show_recipe(self,kind=None,recipe_id=None):
         from .recipe_wizard import open_wizard
@@ -390,6 +359,11 @@ class MainWindow(QMainWindow):
         self.addDockWidget(Qt.DockWidgetArea.BottomDockWidgetArea, dock)
         dock.setMinimumHeight(130)
         self.resizeDocks([dock], [170], Qt.Orientation.Vertical)
+        dock.hide()
+
+    def show_bottom(self, index):
+        self.bottom_tabs.setCurrentIndex(index)
+        self.build_dock.show()
 
     def at(self, path):
         if path and path[0] == 'original' and len(path) == 2 and self.spatial.viewport and self.spatial.viewport.level:
@@ -512,7 +486,7 @@ class MainWindow(QMainWindow):
                 item.setCheckState(0, Qt.CheckState.Unchecked if self.spatial.viewport and path in self.spatial.viewport.hidden else Qt.CheckState.Checked)
             return item
         add(tr("Crónica"), ("chronicle",))
-        add(tr("Level base"), ("level",))
+        add(tr("Escenario base"), ("level",))
         add(tr('Geometría original · sólo lectura'), ('geometry',))
         original = add(tr('Referencias originales · sólo lectura'), ('original',))
         if self.spatial.viewport and self.spatial.viewport.level:
@@ -522,7 +496,8 @@ class MainWindow(QMainWindow):
             parent = add(label, (key,))
             if self.doc:
                 for i, item in enumerate(self.doc.data.get(key, [])):
-                    add(item.get("name", item.get("id", (tr('Evento ') + f'{i + 1}'))), (key, i), parent)
+                    widget=add(item.get("name", item.get("id", (tr('Evento ') + f'{i + 1}'))), (key, i), parent)
+                    if item.get('comment'):widget.setToolTip(0,widget.text(0)+'\n'+item['comment'])
             parent.setExpanded(True)
         parent = add(tr('Flags de crónica'), ("state", "flags"))
         if self.doc:
@@ -535,6 +510,7 @@ class MainWindow(QMainWindow):
         self.nav.blockSignals(False)
         for key in ["save", "save_as", "validate", "build"]:
             self.actions[key].setEnabled(self.doc is not None and not self.busy)
+        self.convert_campaign_action.setVisible(bool(self.doc) and not hasattr(self.doc,'campaign'))
         self._title()
         self.render_content()
         self.guide_panel.refresh()
@@ -644,7 +620,7 @@ class MainWindow(QMainWindow):
         self.content.clear()
         self.content_items = {}
         titles = {"chronicle": tr("Tu crónica"), "level": tr("Escenario base"), "actors": tr("Actores"), "objects": tr("Objetos"),
-                  "conversations": tr("Conversaciones"), "events": tr("Eventos"), "state": "Chronicle Flags", "resources": tr("Recursos originales")}
+                  "conversations": tr("Conversaciones"), "events": tr("Eventos"), "state": tr("Flags de crónica"), "resources": tr("Recursos originales")}
         self.heading.setText(titles.get(path[0], tr("Proyecto")))
         self.subtitle.setText(tr("Crea una crónica o abre un proyecto para empezar.") if not self.doc else tr("Selecciona un elemento y edita sus propiedades a la derecha."))
         def add(target, parent=None):
@@ -672,7 +648,7 @@ class MainWindow(QMainWindow):
                     add(("conversations", path[1], "prompt"))
                     for ai in range(len(conv["choices"])):
                         add(("conversations", path[1], "choices", ai))
-                    self.subtitle.setText(tr("Conversación de Fase 1. Añadir un nodo la convierte al modelo ramificado conservando sus respuestas."))
+                    self.subtitle.setText(tr("Conversación simple. Añadir un nodo permite ramificarla conservando sus respuestas."))
             elif path[0] == "events" and len(path) > 1:
                 event = data["events"][path[1]]
                 self.heading.setText(event.get("id", (tr('Evento ') + f'{path[1] + 1}')))
@@ -980,14 +956,14 @@ class MainWindow(QMainWindow):
         else:
             incoming, outgoing = references(self.doc.data, path)
         self.reference_tree.clear()
-        for label, links, attr in [(tr('USED BY / Referenciado por'), incoming, 'source'), (tr('AFFECTS / Referencia a'), outgoing, 'target')]:
+        for label, links, attr in [(tr('Referenciado por'), incoming, 'source'), (tr('Referencia a'), outgoing, 'target')]:
             parent = QTreeWidgetItem(self.reference_tree, [label, ''])
             for link in links:
                 target = getattr(link, attr)
                 item = QTreeWidgetItem(parent, [link.label, self.reference_label(target)])
                 item.setData(0, ROLE, link.detail if attr == 'source' and link.source[0] in {'events', 'conversations'} else target)
             parent.setExpanded(True)
-        self.bottom_tabs.setCurrentIndex(2)
+        self.show_bottom(2)
 
     def navigate_reference(self, path):
         if path:
@@ -1178,6 +1154,7 @@ class MainWindow(QMainWindow):
         self.statusBar().showMessage(tr("Proyecto válido") if validation.valid else tr("Hay errores por corregir"))
         counts={level:sum(p.severity==level for p in validation.problems) for level in ('ERROR','WARNING')}
         self.bottom_tabs.setTabText(0,tr('Problemas')+' ('+str(counts['ERROR'])+' / '+str(counts['WARNING'])+')')
+        if counts['ERROR']:self.show_bottom(0)
         if hasattr(self,'product_stack'):
             from .product_ui import refresh_status
             refresh_status(self)
@@ -1209,11 +1186,13 @@ class MainWindow(QMainWindow):
         if not self.save_project():
             return
         self.busy = True
+        from .product_ui import refresh_status
+        refresh_status(self)
         self.splitter.setEnabled(False)
         for action in self.actions.values():
             action.setEnabled(False)
         self.log.clear()
-        self.bottom_tabs.setCurrentIndex(1)
+        self.show_bottom(1)
         self.thread = QThread(self)
         self.worker = BuildWorker(self.backend, self.doc.snapshot())
         self.worker.moveToThread(self.thread)
@@ -1239,9 +1218,10 @@ class MainWindow(QMainWindow):
         self.build_completed.emit(report)
 
     def build_failed(self, message, details):
+        self.show_bottom(1)
         try:self.backend.ws.write("build/editor/build_error.log", details)
         except (OSError,ValueError):pass
-        self.log.appendPlainText(tr("Build falló: ") + diagnostic(message) + tr("\nDetalle disponible en build/editor/build_error.log"))
+        self.log.appendPlainText(tr("La construcción falló: ") + diagnostic(message) + tr("\nDetalle disponible en build/editor/build_error.log"))
         self.build_completed.emit({"status": "failed", "reason": message})
 
     def build_finished(self):

@@ -1,11 +1,11 @@
-# Auditoría final de usabilidad
+# Auditoría de usabilidad · RC3
 
-Recorrido del creador: un EXE, selección de Vampire.exe, bienvenida y F5. Instalación, preferencias y datos están separados; los detalles de formatos y compilador permanecen en diagnóstico. Ya no gobierna un acceso personal ni una carpeta compartida de pruebas.
+La revisión reduce ruido usando la estructura existente: bienvenida prioriza crear/abrir, instalación es secundaria, hay un único idioma en Configuración, siete pestañas y Campaña / Vista global. Ayuda distingue Tutorial rápido, Showcase completo, Guía de esta crónica, Guía del editor y Atajos.
 
-Las mejoras reutilizan el backend y los asistentes existentes. Crear pide nombre/escenario; los campos internos son avanzados. Se conservan undo, geometría y runtime aceptados. El tutorial breve permanece separado del Showcase; hay copias limpias sin sobrescribir trabajo.
+La zona inferior se oculta hasta que hay algo que revisar; los errores muestran Problemas, las referencias su sección y la construcción su registro. El estado permanente expresa cambios sin guardar, errores, preparación o disponibilidad para probar; los estados técnicos siguen en tooltip. La ficha de crónica guarda la ruta en tooltip y explica F5 de forma humana.
 
-Las pruebas detectaron y corrigieron: huella ligada al destino equivocado al guardar, reentrada del compromiso de un campo al perder foco, sobrescritura de un borrador creado por otra ventana, carpeta avanzada reemplazada al cambiar ID y dependencias de inventario al cambiar carpeta runtime. Los tests históricos de UI se actualizaron sólo para el Showcase solicitado y para cerrar proyectos antes de destruir sus carpetas temporales.
+CampaignPanel conserva autoría, duplicar/borrar/referencias; pierde botones y métodos globales ocultos. La conversión está disponible sólo donde es necesaria. Importar usa apertura común con locks y recuperación. El Showcase explica una aventura breve antes del laboratorio opcional y deja el índice exhaustivo al final.
 
-Inspección offscreen con Segoe UI y ventana 1100×720. Los renders sin fuente del primer probe se descartaron como evidencia visual de legibilidad. Las capturas con fuente y escalado Qt se conservan con sus límites. Windows DPI físico y OpenGL real siguen pendientes.
+Se ejercitaron ocho circuitos del EXE empaquetado y se inspeccionaron capturas en ES/EN y escalado Qt. Crear, asistentes, guardar/reabrir, compilar, enlaces, Configuración y errores usan widgets reales; no es gameplay. La suite completa pasa 376 casos. Evidencia y límites: FINAL_PRODUCT_REPORT.md y research/rc3.
 
-Preguntas del creador: abrir, elegir el juego, encontrar proyectos, crear NPC/diálogo, probar, revisar errores, volver a ayuda, copiar y recuperar tienen acciones propias. Compartir/instalar conserva revisión de código y hashes. Las funciones avanzadas no se presentan como puertas universales o cámara desde vista.
+OpenGL real, DPI físico y máquina independiente siguen pendientes. El contenido escrito por el autor no se traduce al cambiar el idioma del editor. No hay nuevas capacidades, pestañas ni refactor global; tutorial y runtime aceptados permanecen.

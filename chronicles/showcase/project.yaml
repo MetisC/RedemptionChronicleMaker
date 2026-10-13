@@ -29,7 +29,7 @@ scenes:
     environment_scene: EAST_28_1.nsd
   actors:
   - id: victoria
-    name: '01 · Anezka: empieza aquí'
+    name: Anezka
     template: T_mini_victoria
     transform:
       placement: absolute
@@ -42,8 +42,9 @@ scenes:
       - 0
       - 180
     behavior: npc
+    comment: '01 · Anezka: empieza aquí'
   - id: guide
-    name: '02 · Guía: viaje y laboratorio opcional'
+    name: Guía
     template: LonCiv2
     transform:
       placement: absolute
@@ -62,8 +63,9 @@ scenes:
       then: cleared
     inventory:
     - lab_key
+    comment: '02 · Guía: viaje y laboratorio opcional'
   - id: enemy1
-    name: Rata de las minas · combate fácil y opcional
+    name: Rata de las minas
     template: Rat
     transform:
       placement: absolute
@@ -76,9 +78,10 @@ scenes:
       - 0
       - 180
     behavior: enemy
+    comment: Rata de las minas · combate fácil y opcional
   objects:
   - id: notice
-    name: 'Cartel del taller: leer nota'
+    name: Cartel del taller
     template: barrel1
     transform:
       placement: absolute
@@ -90,8 +93,9 @@ scenes:
       - 0
       - 0
       - 0
+    comment: 'Cartel del taller: leer nota'
   - id: sample
-    name: 'Libro del laboratorio: recoger'
+    name: Libro del laboratorio
     template: I_mini_ledger
     quest_item: true
     transform:
@@ -104,8 +108,9 @@ scenes:
       - 0
       - 0
       - 0
+    comment: 'Libro del laboratorio: recoger'
   - id: talkprop
-    name: 'Atril: conversación con la guía'
+    name: Atril
     template: barrel1
     transform:
       placement: absolute
@@ -117,8 +122,9 @@ scenes:
       - 0
       - 0
       - 0
+    comment: 'Atril: conversación con la guía'
   - id: lab_key
-    name: 'Llave de la guía: inventario inicial'
+    name: Llave de la guía
     template: IronKeyLondon
     transform:
       placement: absolute
@@ -130,6 +136,7 @@ scenes:
       - 0
       - 0
       - 0
+    comment: 'Llave de la guía: inventario inicial'
   conversations:
   - id: intro
     speaker: victoria
@@ -154,7 +161,7 @@ scenes:
     camera: two_shot
   - id: guide
     speaker: guide
-    prompt: 'Primero habla con Victoria. El combate es una estación opcional: sólo empieza si lo eliges expresamente.'
+    prompt: 'Primero habla con Anezka. El combate es una estación opcional: sólo empieza si lo eliges expresamente.'
     choices:
     - text: Viajar al archivo.
       result: 1
@@ -836,7 +843,7 @@ scenes:
     environment_scene: GUNH_LOT_1_1.nsd
   actors:
   - id: archivist
-    name: Archivera · elige una rama
+    name: Archivera
     template: Anezka
     transform:
       placement: absolute
@@ -851,8 +858,9 @@ scenes:
     behavior: npc
     conversation:
       default: ledger
+    comment: Archivera · elige una rama
   - id: keeper
-    name: Custodia · regreso y cámara
+    name: Custodia
     template: LonCiv2
     transform:
       placement: absolute
@@ -867,6 +875,7 @@ scenes:
     behavior: npc
     conversation:
       default: back
+    comment: Custodia · regreso y cámara
   objects:
   - id: book
     name: El libro de la deuda
@@ -1092,7 +1101,7 @@ scenes:
     environment_scene: EAST_28_1.nsd
   actors:
   - id: witness
-    name: Testigo · entrega y final
+    name: Testigo
     template: Anezka
     transform:
       placement: absolute
@@ -1105,8 +1114,9 @@ scenes:
       - 0
       - 180
     behavior: npc
+    comment: Testigo · entrega y final
   - id: courier
-    name: Mensajera · vuelve al comienzo
+    name: Mensajera
     template: LonCiv2
     transform:
       placement: absolute
@@ -1121,6 +1131,7 @@ scenes:
     behavior: npc
     conversation:
       default: back
+    comment: Mensajera · vuelve al comienzo
   objects: []
   conversations:
   - id: peace

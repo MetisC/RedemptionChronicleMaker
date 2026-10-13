@@ -202,7 +202,7 @@ class ResourceBrowser(QWidget):
 class ResourceDialog(QDialog):
     def __init__(self, backend, category, parent=None):
         super().__init__(parent)
-        self.setWindowTitle({"levels": tr("Elegir level base"), "actors": tr("Elegir plantilla de actor"), "items": tr("Elegir plantilla de objeto"),'.nai':tr('Elegir perfil AI')}.get(category,tr('Elegir recurso')))
+        self.setWindowTitle({"levels": tr("Elegir escenario base"), "actors": tr("Elegir plantilla de actor"), "items": tr("Elegir plantilla de objeto"),'.nai':tr('Elegir perfil AI')}.get(category,tr('Elegir recurso')))
         self.resize(950, 600)
         self.selection = None
         layout = QVBoxLayout(self)

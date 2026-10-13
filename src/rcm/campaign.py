@@ -76,7 +76,7 @@ def parse_campaign(source, levels, resources):
     reserved={}
     def reserve(key):
         reserved[key]=256+len(reserved)
-        if reserved[key]>=1024: raise ValueError('Se exceden los 1024 Chronicle Flags nativos')
+        if reserved[key]>=1024: raise ValueError('Se exceden los 1024 flags de crónica que permite el motor')
     total_quests=0
     for q in quests.values():
         mapping(q,{'id','title','description','steps','reward_xp'},{'id','title','description','steps'},'quest '+q['id'])

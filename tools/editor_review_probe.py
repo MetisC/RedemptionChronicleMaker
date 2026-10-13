@@ -15,9 +15,9 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--language',choices=['en','es'],required=True);parser.add_argument('--report-directory',default='build/tests/editor_review');args=parser.parse_args()
     from rcm.paths import Workspace
     from rcm.editor.i18n import configure,save_language,install_qt,tr,language,catalogue
-    from PySide6.QtWidgets import QApplication,QMessageBox,QComboBox,QPushButton,QLabel,QDialogButtonBox
+    from PySide6.QtWidgets import QApplication,QComboBox,QPushButton,QLabel,QDialogButtonBox
     from PySide6.QtGui import QFont,QFontDatabase
-    from PySide6.QtCore import QUrl
+    from PySide6.QtCore import QUrl,QTimer
     app=QApplication([]);app.setStyle('Fusion')
     for name in ['segoeui.ttf','segoeuib.ttf','segoeuii.ttf','segoeuiz.ttf']:
         font=Path(os.environ.get('SystemRoot',r'C:\Windows'))/'Fonts'/name
@@ -25,17 +25,19 @@ def main():
     app.setFont(QFont('Segoe UI',12))
     (ROOT/'build/tests').mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as folder:
-        preferences=Workspace(Path(folder));save_language(preferences,args.language);configure(preferences);install_qt(app)
+        preferences=Workspace(Path(folder))
+        from rcm.app_settings import AppSettings
+        prefs=AppSettings(Path(folder)/'global');preferences.app_settings=prefs;save_language(preferences,args.language);configure(preferences);install_qt(app)
         from rcm.service import Backend
         from rcm.document import Document
         from rcm.editor.window import MainWindow
         from rcm.editor.browser import ResourceBrowser
-        backend=Backend(Workspace(ROOT));backend.safe_mode=True
+        backend=Backend(Workspace(ROOT));backend.ws.app_settings=prefs;backend.safe_mode=True
         win=MainWindow(backend);win.doc=Document.load(backend.ws,'chronicles/tutorial/project.yaml');before=win.doc.snapshot()
         win.refresh();win.show();app.processEvents()
         assert win.actions['save'].text()==('Save' if args.language=='en' else 'Guardar')
-        assert win.language_menu.title()==('Language' if args.language=='en' else 'Idioma')
-        assert win.language_actions[args.language].isChecked()
+        assert not hasattr(win,'language_menu')
+        assert any(a.objectName()=='action_settings' for a in win.tools_menu.actions())
         win.select(('conversations',0));app.processEvents()
         camera=win.properties.widget().findChild(QComboBox,'conversation_camera')
         assert camera is not None and camera.currentData()=='ots_speaker_close'
@@ -86,12 +88,16 @@ def main():
         assert browser.origin.currentData()=='Proyecto /'
         assert browser.origin.currentText()==('Project' if args.language=='en' else 'Proyecto')
         browser.deleteLater()
-        # Persist through the actual menu callback to an isolated workspace.
-        old_ws=backend.ws;backend.ws=preferences
-        with patch.object(QMessageBox,'information'):
-            other='es' if args.language=='en' else 'en';win.language_actions[other].trigger()
-        backend.ws=old_ws
-        assert json.loads(preferences.output('cache/editor_settings.json').read_text())['language']==other
+        # Persist through Settings, the single official language control.
+        from rcm.editor.product_ui import settings_dialog
+        from PySide6.QtWidgets import QDialog
+        other='es' if args.language=='en' else 'en'
+        def select_language():
+            dialog=win.findChild(QDialog,'settings_dialog');combo=dialog.findChild(QComboBox,'settings_language');combo.setCurrentIndex(combo.findData(other));dialog.findChild(QDialogButtonBox).button(QDialogButtonBox.StandardButton.Ok).click()
+        QTimer.singleShot(0,select_language)
+        with patch('rcm.product.verify_installation',return_value=ROOT),patch('rcm.product.validate_workspace',return_value=backend.ws):settings_dialog(win)
+        assert prefs.data['language']==other
+        assert json.loads(prefs.path.read_text(encoding='utf8'))['language']==other
         assert language()==args.language and win.doc.snapshot()==before
         labels=[w.text() for w in win.findChildren(QLabel)]+[w.text() for w in win.findChildren(QPushButton)]
         assert tr('Guardar') in [a.text() for a in win.actions.values()]

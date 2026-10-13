@@ -1,4 +1,4 @@
-# Problemas y límites actuales · 1.0.0-rc2
+# Problemas y límites actuales · 1.0.0-rc3
 
 - Nuevo primer arranque, lanzamiento directo, Showcase y ciclos de guardar/cargar requieren aceptación manual. La historia y clases del tutorial aceptado se conservan sin cambios.
 - El ensayo con directorios limpios y PATH restringido en este equipo no demuestra funcionamiento en otra máquina.

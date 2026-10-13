@@ -29,7 +29,7 @@ def import_project(win):
     doc=packages.import_project(win.backend.ws,path,target)
     if doc.snapshot().get('resources',{}).get('scripts'):
         QMessageBox.information(win,tr('Java propio importado'),tr('El proyecto contiene Java propio. Revisa sus fuentes antes de compilarlo o ejecutarlo.'))
-    win.doc=doc;win.selection=('chronicle',);win.refresh()
+    win.open_path(doc.path)
 
 
 def create_package(win):

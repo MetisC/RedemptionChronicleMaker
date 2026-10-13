@@ -174,12 +174,23 @@ class EditorFlows(TestCase):
         self.assertEqual(self.win.doc.snapshot(),before)
 
     def test_failed_language_change_keeps_previous_saved_choice(self):
-        from PySide6.QtWidgets import QMessageBox
-        self.win.preferred_language='en';self.win.language_actions['en'].setChecked(True)
-        with patch('rcm.editor.i18n.save_language',side_effect=OSError('locked')),patch.object(QMessageBox,'warning'):
-            self.win.language_actions['es'].trigger()
-        self.assertTrue(self.win.language_actions['en'].isChecked())
-        self.assertEqual(self.win.preferred_language,'en')
+        from PySide6.QtWidgets import QMessageBox,QDialog,QComboBox,QDialogButtonBox
+        from PySide6.QtCore import QTimer
+        from rcm.app_settings import AppSettings
+        from rcm.editor.product_ui import settings_dialog
+        with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as folder:
+            prefs=AppSettings(Path(folder));prefs.data['language']='en';prefs.save();before=prefs.path.read_bytes()
+            old=getattr(self.backend.ws,'app_settings',None);self.backend.ws.app_settings=prefs
+            def attempt():
+                dialog=self.win.findChild(QDialog,'settings_dialog');combo=dialog.findChild(QComboBox,'settings_language');combo.setCurrentIndex(combo.findData('es'));dialog.findChild(QDialogButtonBox).button(QDialogButtonBox.StandardButton.Ok).click();dialog.reject()
+            QTimer.singleShot(0,attempt)
+            try:
+                with patch('rcm.product.verify_installation',return_value=ROOT),patch('rcm.product.validate_workspace',return_value=self.backend.ws),patch.object(prefs,'save',side_effect=OSError('locked')),patch.object(QMessageBox,'warning'):
+                    settings_dialog(self.win)
+                self.assertEqual(prefs.data['language'],'en');self.assertEqual(prefs.path.read_bytes(),before)
+            finally:
+                if old is None:del self.backend.ws.app_settings
+                else:self.backend.ws.app_settings=old
 
     def test_smoke_invalid_project_reports_failure_instead_of_waiting_forever(self):
         from unittest.mock import Mock
