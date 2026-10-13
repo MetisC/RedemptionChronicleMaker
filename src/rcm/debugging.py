@@ -2,12 +2,56 @@
 import re
 from .generator import java_string as js
 
+
+def trace_file(ws, chronicle):
+    """Locate an owned trace, preferring the game shortcut's user directory."""
+    import json
+    from .model import identifier
+    from .deployment import configured_game, safe_target
+    from .shortcut import launch_info
+    identifier(chronicle,'chronicle',18)
+    game=configured_game(ws)
+    if getattr(ws,'app_settings',None):preferred=game/'RCM'/chronicle
+    else:
+        info=launch_info(ws);preferred=info['directory'] if info else None
+    found=[];root=safe_target(game,game/'RCM')
+    if root.is_dir():
+        for directory in root.iterdir():
+            if not directory.is_dir():continue
+            directory=safe_target(game,directory)
+            manifest=safe_target(game,directory/'.rcm_deployment.json')
+            trace=safe_target(game,directory/'runtime_trace.log')
+            if not manifest.is_file() or not trace.is_file():continue
+            try:data=json.loads(manifest.read_text(encoding='utf8'))
+            except (ValueError,OSError):continue
+            if not isinstance(data,dict):continue
+            owners=data.get('owners',{})
+            if data.get('chronicle')==chronicle or isinstance(owners,dict) and chronicle in owners:found.append(trace)
+    for path in found:
+        if path.parent==preferred:return path
+    if found:return max(found,key=lambda p:p.stat().st_mtime_ns)
+    legacy=safe_target(game,game/'RCM'/chronicle/'runtime_trace.log')
+    return legacy if legacy.is_file() else None
+
+
+def trace_tail(path,limit=256000):
+    """Bound reads even when a runtime log grows for many hours."""
+    with path.open('rb') as stream:
+        stream.seek(0,2);size=stream.tell();start=max(0,size-limit)
+        stream.seek(start);data=stream.read(limit)
+    if start:data=data.partition(b'\n')[2]
+    return data.decode('cp1252',errors='replace')
+
 def instrument(java,campaign,scene,info):
     lines=java.splitlines()
     if not info.get('debug',True):
         return '\n'.join(' private void trace(String s) {}' if 'private void trace(String s)' in l else re.sub(r'\btrace\([^;\n]*?\);','',l) for l in lines)+'\n'
     flags=campaign.source.get('state',{}).get('flags',{});quests=campaign.source.get('quests',[])
-    watch=[' private int[] watchFlags=new int[]{'+','.join('-1' for f in flags)+'};',' private String[] watchQuests=new String[]{'+','.join('""' for q in quests)+'};',' private void traceState() {']
+    modern=campaign.source.get('runtime_profile')=='phase9'
+    watch=[' private int[] watchFlags=new int[]{'+','.join('-1' for f in flags)+'};',' private String[] watchQuests=new String[]{'+','.join('""' for q in quests)+'};']
+    if modern:watch.append(' private String debugPosition(int who) { if(who==0) return "none"; float[] p=new CodexThing(who).GetPosition(); return p==null ? "null" : p[0]+","+p[1]+","+p[2]; }')
+    watch.append(' private void traceState() {')
+    if modern:watch.append(' if(ticks%60==0) trace("PLAYER_CHECK player="+player+" xyz="+debugPosition(player)+" active="+active);')
     for i,(name,index) in enumerate(flags.items()):watch.append(f' int f{i}=CodexSequence.GetChronicleFlag({index})?1:0; if(watchFlags[{i}]!=f{i}) {{ watchFlags[{i}]=f{i}; trace({js("WATCH_FLAG "+name+" ")}+f{i}); }}')
     for i,q in enumerate(quests):
         stem='q/'+q['id']+'/';r=campaign.reserved
@@ -22,7 +66,14 @@ def instrument(java,campaign,scene,info):
         if 'trace("runtime exception: "+error);' in l:l=l.replace('trace("runtime exception: "+error);','trace("runtime exception: "+error); traceStack(error);')
         if 'public void beginscene' in l:l=l.replace('player=localPlayer(who);','trace('+js('SCENE '+scene['id'])+'); player=localPlayer(who);')
         if 'public void convended' in l:l=l.replace('int completed=active;','trace("CONVERSATION_END "+active+" return="+result+" aborted="+aborted); int completed=active;')
-        if 'if(!transitioning) SetTimer(0.15f,9400);' in l:l=l.replace('if(!transitioning) SetTimer(0.15f,9400);','traceState(); if(!transitioning) SetTimer(0.15f,9400);')
+        for scheduler in ('SetTimer(0.15f,9400);','schedulePoll();'):
+            end='if(!transitioning) '+scheduler
+            if end in l:l=l.replace(end,'traceState(); '+end)
+        for i,t in enumerate(scene.get('triggers',[]) if modern else []):
+            edge=f'boolean now{i}=volume({i});'
+            if edge in l:
+                label=js('TRIGGER '+scene['id']+'/'+t['id'])
+                l=l.replace(edge,edge+f' if(now{i}!=inside[{i}]) trace({label}+" inside="+now{i}+" player="+player+" xyz="+debugPosition(player));')
         out.append(l)
     out[-1:-1]=watch
     return '\n'.join(out)+'\n'

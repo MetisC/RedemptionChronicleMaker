@@ -1,0 +1,12 @@
+{
+  "tutorial_source_identical": true,
+  "tutorial_classes_identical": {
+    "RCMTutorActor.class": true,
+    "R_rcm_tutor_s0_Passive.class": true,
+    "R_rcm_tutor_s0_Scene.class": true,
+    "R_rcm_tutor_s1_Passive.class": true,
+    "R_rcm_tutor_s1_Scene.class": true,
+    "R_rcm_tutor_s2_Passive.class": true,
+    "R_rcm_tutor_s2_Scene.class": true
+  }
+}

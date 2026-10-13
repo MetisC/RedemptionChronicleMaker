@@ -1,6 +1,6 @@
 # Dependencias y avisos
 
-Inventario exacto de distribuciones instaladas y textos locales: `research/phase6/dependencies.json`, `build/portable_notices`, `THIRD_PARTY_NOTICES` del portable. Generador: `tools/license_inventory.py`. No declarar una licencia por memoria cuando METADATA no la identifica: se conserva el aviso del paquete.
+Inventario exacto de distribuciones instaladas y textos locales: `research/product_close/dependencies.json`, `docs/licenses/portable`, `THIRD_PARTY_NOTICES` del portable. Generador: `tools/license_inventory.py`. No declarar una licencia por memoria cuando METADATA no la identifica: se conserva el aviso del paquete.
 
 Runtime: Python 3.12.14 (PSF), PySide6/Shiboken 6.10.2 (alternativas LGPL/GPL indicadas en wheel), PyYAML 6.0.3 (MIT), NumPy 2.3.5 (BSD y avisos de librerías incluidas), Pillow 12.3.0 (MIT-CMU), ECJ 3.26.0 (avisos dentro del JAR), Temurin/OpenJDK 21.0.11 (legal y excepciones dentro de runtime/legal). Qt y NumPy pueden incluir dependencias binarias adicionales: conservar sus textos completos y registrar binarios del portable antes de publicación.
 

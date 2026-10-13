@@ -1,0 +1,42 @@
+[
+  {
+    "example": "tutorial",
+    "chronicle": "rcm_tutor",
+    "status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_rcm_tutor_s0_Scene": "45.3",
+      "R_rcm_tutor_s0_Passive": "45.3",
+      "R_rcm_tutor_s1_Scene": "45.3",
+      "R_rcm_tutor_s1_Passive": "45.3",
+      "RCMTutorActor": "45.3"
+    }
+  },
+  {
+    "example": "showcase",
+    "chronicle": "rcm_showcase",
+    "status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_rcm_showcase_s0_Scene": "45.3",
+      "R_rcm_showcase_s0_Passive": "45.3",
+      "R_rcm_showcase_s1_Scene": "45.3",
+      "R_rcm_showcase_s1_Passive": "45.3",
+      "R_rcm_showcase_s2_Scene": "45.3",
+      "R_rcm_showcase_s2_Passive": "45.3",
+      "RCMShowcaseActor": "45.3"
+    }
+  },
+  {
+    "example": "mini_chronicle",
+    "chronicle": "rcm_mini",
+    "status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_rcm_mini_s0_Scene": "45.3",
+      "R_rcm_mini_s0_Passive": "45.3",
+      "R_rcm_mini_s1_Scene": "45.3",
+      "R_rcm_mini_s1_Passive": "45.3",
+      "R_rcm_mini_s2_Scene": "45.3",
+      "R_rcm_mini_s2_Passive": "45.3",
+      "RCMMiniActor": "45.3"
+    }
+  }
+]

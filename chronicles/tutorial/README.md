@@ -1,63 +1,49 @@
-# Tutorial paso a paso: un escenario, siete lecciones
+# Una carta al amanecer
 
-Revisión 0.9.12: al empezar aparece un prólogo en la ventana de texto del juego. Ciérralo y habla con Tomás. Christof ofrece **Leer una nota de ejemplo** en su laboratorio opcional. En el paso 5, pulsa el barril antes de hablar con el agente para leer otra nota. En el editor, selecciona el objeto y usa **Añadir nota al usar**; el botón muestra el evento existente. Los gestos deben acabar en reposo sin hacer desaparecer a Christof. La visualización de estos cambios necesita confirmación en el juego.
+Tutorial breve sobre dos layouts de EastLondon. La misma geometría se conserva en ambos.
 
-Empieza una **partida nueva** en «RCM · Tutorial paso a paso». Esta revisión cambia el progreso respecto a los guardados anteriores.
+1. La entrada te deja en la calle. Anezka está delante. El diario contiene un único encargo, con el siguiente objetivo visible.
+2. Habla con Anezka y acepta. La conversación termina con RETURN 1; el evento activa go_to_square. Rechazar o abortar no activa la flag.
+3. Acércate al barril que está solo en la zona ancha de la calle, cerca del punto de inicio. No hay que pulsarlo: caminar junto a él activa la prueba. El volumen es trigger1 en el editor. Entrar sin aceptar no produce la película: hay que salir del volumen y volver a entrar después de aceptar.
+4. Con la flag activa empieza una película de seis segundos sobre **tu personaje**: plano amplio en picado y transición a primer plano. Al acabar se libera cámara/control, se activa square_reached y avanza el diario. Es una transición de SetShot, no un dolly XYZ continuo.
+5. Aparecen el libro que representa la carta y Tomás. Recoge el libro, que en el inventario se llama Carta para Elena. No tienes que abrirlo ni usarlo. Una sola rata básica aparece. Mátala, o habla con Tomás y elige omitir el combate. El camino queda abierto; omitir no entrega el premio de combate.
+6. Habla de nuevo con Anezka. Después de matar la rata u omitir el combate, te ofrece «Llévame a Elena». Elige esa respuesta: viajas al segundo layout y su entrada propia. Allí está Elena. Entrega la carta; el journal se completa y recibes la recompensa una sola vez.
+7. En el editor, guarda, valida, construye y actualiza la prueba con el juego cerrado.
 
-El journal muestra el objetivo actual. Delante del punto de inicio aparece su profesor. Al completar u omitir una lección aparece el siguiente en el mismo sitio. El laboratorio está a la izquierda de los profesores, en la misma calle: no necesitas visitarlo para avanzar.
+Guardar a mitad de la nueva película la reinicia al cargar, después de recuperar la posición del jugador. La finalización se entrega una sola vez. Las películas antiguas de NPC conservan su contrato de cancelar al cargar. Cambios estructurales exigen partida nueva; no hay migración de saves del motor.
 
-| Paso | Qué hacer en el juego | Dónde se edita |
-|---|---|---|
-| 1. Inicio | Habla con Tomás. Continuar u omitir. | [Entrada safe](rcm://workshop/entries/safe). Espacio 3D → Inicio; posición, orientación y llegada por defecto. |
-| 2. Conversación | Vera muestra los 13 encuadres uno por uno. Tú decides cuándo pasar al siguiente o saltar los restantes. | [Conversación](rcm://workshop/conversations/camera), [primer plano del recorrido](rcm://workshop/conversations/framed). Propiedades → Cámara de diálogo. |
-| 3. Cutscene | Anezka presenta una película de doce segundos: puerta cerrada, apertura, paseo y plano final. Verla u omitirla. | [walk_scene](rcm://workshop/sequences/walk_scene): planos, objeto enfocado, decorado móvil, desplazamiento y «Empieza a caminar». [Puerta](rcm://workshop/objects/stage_door), [walker_walk](rcm://workshop/paths/walker_walk). |
-| 4. Inventario | Elena entrega una llave de hueso física; mírala en la cuadrícula del inventario. Omitir también la entrega para poder seguir. Deja espacio para el objeto. | [Elena](rcm://workshop/actors/keeper) → Editar inventario inicial → + Del catálogo; [next_4](rcm://workshop/events/next_4): Dar objeto y activar flag. Templates propios → T_tutor_key conserva modelo/icono de BoneKey y cambia item_type a 0. |
-| 5. Layout | Observa el barril y habla con el agente. Comprueba que llevas la llave; cambiar layout conserva la calle y retira barril y profesores anteriores. | [change_layout](rcm://workshop/events/change_layout) requiere «Tiene objeto key». + Escena crea contenido sobre el mismo level. Viaje elige escena y entrada. |
-| 6. Encuentro | El instructor crea una sola rata básica junto al inicio si lo pides. Matarla u omitir pasa al final. | [one_rat](rcm://combat/encounters/one_rat), [cleared](rcm://combat/events/cleared). Retirar la rata sin matarla no otorga el premio del combate. |
-| 7. Guardado | Guarda, carga y comprueba llave y profesor. Terminar u omitir completa el tutorial. | [Final](rcm://finished/conversations/final). Guardar conserva el YAML; BUILD CHRONICLE lo compila; Deploy actualiza RCM. La partida se guarda dentro de Redemption. |
+En Tutorial / Ayuda tienes enlaces para seleccionar cada elemento o abrir el asistente equivalente. Los experimentos antiguos se conservan en examples/advanced_tutorial, fuera de la historia principal.
 
-**El barril es decorado: no es una puerta ni se usa con un clic.** Las lecciones principales tienen dos opciones. Omitir prepara lo necesario para la siguiente. Sólo se carga un nuevo objetivo cada vez; los completados pueden aparecer en el historial del journal.
+## En el editor
 
-## El paseo de Vera por las cámaras
+[Entrada del jugador](rcm://square/entries/start)
 
-Al crear una conversación, el editor elige **Sobre hombro cercano hacia quien habla**. Si el YAML no especifica cámara, el generador usa ese mismo plano. La opción automática del motor se conserva para proyectos existentes, pero no es la predeterminada.
+**NPC te manda a un lugar** — [Muéstramelo en el tutorial](rcm://square/actors/actor1) · [Haz esto en mi crónica](rcm://wizard/go_to_place/new) · [Editar configuración](rcm://wizard/go_to_place/go_to_place1)
 
-Vera empieza con ese plano y te deja cambiar, sin prisa, por todos los encuadres del selector. Cada ejemplo tiene «Siguiente plano» y «Omitir los demás planos». Al acabar aparece Anezka. Puedes ajustar cualquier ejemplo desde sus enlaces:
+**Quest sencilla** — [Muéstramelo en el tutorial](rcm://square/quests/quest1) · [Haz esto en mi crónica](rcm://wizard/quest/new) · [Editar configuración](rcm://wizard/quest/quest1)
 
-| Ejemplo | Cámara |
-| --- | --- |
-| [1](rcm://workshop/conversations/framed) | Sobre tu hombro, cerca de Vera |
-| [2](rcm://workshop/conversations/frame_2) | Primerísimo plano de Vera |
-| [3](rcm://workshop/conversations/frame_3) | Primerísimo plano de tu personaje |
-| [4](rcm://workshop/conversations/frame_4) | Primer plano de Vera |
-| [5](rcm://workshop/conversations/frame_5) | Primer plano de tu personaje |
-| [6](rcm://workshop/conversations/frame_6) | Sobre el hombro de Vera, cerca de tu personaje |
-| [7](rcm://workshop/conversations/frame_7) | Sobre tu hombro, más abierto |
-| [8](rcm://workshop/conversations/frame_8) | Sobre el hombro de Vera, más abierto |
-| [9](rcm://workshop/conversations/frame_9) | Perfil de Vera |
-| [10](rcm://workshop/conversations/frame_10) | Perfil de tu personaje |
-| [11](rcm://workshop/conversations/frame_11) | Los dos personajes |
-| [12](rcm://workshop/conversations/frame_12) | Plano medio |
-| [13](rcm://workshop/conversations/frame_13) | Plano entero |
+**Objeto recogible** — [Muéstramelo en el tutorial](rcm://square/objects/object1) · [Haz esto en mi crónica](rcm://wizard/pickup/new) · [Editar configuración](rcm://wizard/pickup/pickup1)
 
-## Laboratorio opcional
+**Encuentro de enemigos** — [Muéstramelo en el tutorial](rcm://square/actors/enemy1) · [Haz esto en mi crónica](rcm://wizard/encounter/new) · [Editar configuración](rcm://wizard/encounter/encounter1)
 
-[Laboratorio](rcm://workshop/actors/lab), separado de los profesores:
+**Viaje a otra escena** — [Muéstramelo en el tutorial](rcm://square/triggers/trigger2) · [Haz esto en mi crónica](rcm://wizard/travel/new) · [Editar configuración](rcm://wizard/travel/travel1)
 
-- Iniciar/detener [su propio recorrido](rcm://workshop/paths/lab_walk) y pausar/reanudar AI.
-- Probar [EASTOttoVan](rcm://workshop/sequences/original_path), un travelling original **experimental**; no representa un writer NCP.
-- Acercarte a la [zona del libro](rcm://workshop/triggers/station) para recoger un objeto. Debug → Leer trace muestra entrada, salida y pickup.
-- Activar/desactivar una flag sin cambiar las siete lecciones.
-- Hablar con el **profesor de animación** → **Animaciones de conversación**. Ofrece reposo, gesto de reposo, hablar, escuchar y cinco gestos del modelo ST_Christof_MD. Los nombres de los archivos permiten identificarlos.
+**Viaje desde el diálogo** — [Respuesta «Llévame a Elena»](rcm://square/conversations/to_elena) · [Evento que realiza el viaje](rcm://square/events/talk_travel). Anezka usa esta conversación alternativa cuando el encuentro está terminado. La carta se entrega después hablando con Elena.
 
-Para cambiar una actuación, abre [su conversación](rcm://workshop/conversations/lab), selecciona un nodo como `gesture10` y elige **Propiedades → Animación al hablar**. Una línea puede elegir otra animación; si no eliges ninguna, conserva la del nodo. Un nodo sin animación usa hablar/escuchar del motor. Sólo se ofrecen movimientos disponibles para sus personajes, no una lista universal.
+**NPC que habla** — [Muéstramelo en el tutorial](rcm://square/actors/actor2) · [Haz esto en mi crónica](rcm://wizard/talk/new) · [Editar configuración](rcm://wizard/talk/talk1)
 
-La película comienza con **Vista aérea amplia en picado** y transición inicial de cero segundos. Cambia cada plano en [walk_scene](rcm://workshop/sequences/walk_scene). El aspecto y la ausencia de obstáculos aún deben comprobarse dentro del juego.
+**NPC que habla** — [Muéstramelo en el tutorial](rcm://home/actors/actor1) · [Haz esto en mi crónica](rcm://wizard/talk/new) · [Editar configuración](rcm://wizard/talk/talk2)
 
-Esta revisión guarda la posición y orientación del jugador local. Al cargar, se recuperan después de la creación del personaje. Un viaje explícito usa su entrada elegida. Si el motor rechaza repetidamente la posición, se conserva la posición nativa y se registra el fallo, sin bloquear toda la lógica. **Usa una partida nueva de 0.9.12; los saves anteriores no son compatibles.**
+## Más tareas
 
-## Verificación y límites
+[Trigger que ejecuta acciones](rcm://wizard/trigger_actions/new)
 
-Compilación contra la API real y pruebas de las siete lecciones completas y omitidas. Las pruebas con dobles Java comprueban control y progresión; la cámara, animación, cambio de layout y save/load nuevos aún necesitan ensayo visual en Redemption.
+[Trigger cinematográfico](rcm://wizard/trigger_cinematic/new)
 
-No hay edición de geometría. La puerta de la lección 3 es un modelo móvil propio sobre la calle original. No sustituye el trabajo pendiente con las puertas y sus frames incrustados en escenas originales. Writer NCP y multijugador siguen limitados. El paso 5 es una transición lógica entre layouts.
+[Nota / carta](rcm://wizard/note/new)
+
+[Objeto que inicia conversación](rcm://wizard/object_conversation/new)
+
+[Arrival film](rcm://square/sequences/sequence1) · [Arrival trigger](rcm://square/triggers/trigger1) · [Quest](rcm://square/quests/quest1)
+
+Después de entregar, puedes volver al barril visible en la calle de Elena: viajarás de regreso a Anezka para comprobar reentrada sin repetir la película ni los premios.

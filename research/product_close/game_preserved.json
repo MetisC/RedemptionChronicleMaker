@@ -1,0 +1,12 @@
+{
+  "original_sources": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "legacy_files_checked": 14,
+  "legacy_hash_mismatches": [],
+  "game_process_launched": false,
+  "game_files_written": false
+}

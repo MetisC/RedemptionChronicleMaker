@@ -46,12 +46,15 @@ def prepare_workspace(ws,progress=lambda _:None):
     bundle=Path(getattr(sys,'_MEIPASS',ws.root))
     if getattr(sys,'frozen',False):
         base=Path(sys.executable).parent
-        for folder,dest in [('docs','docs'),('examples','chronicles')]:
+        for folder,dest in [('docs','docs')]:
             if not ws.output(dest).exists():
                 for path in (base/folder).rglob('*'):
                     if path.is_file():ws.write(Path(dest)/path.relative_to(base/folder),path.read_bytes())
     compiler=ws.output('cache/toolchain/ecj-3.26.0.jar')
     if not compiler.is_file() and (bundle/'toolchain/ecj-3.26.0.jar').is_file():ws.write(compiler,(bundle/'toolchain/ecj-3.26.0.jar').read_bytes())
+    if not compiler.is_file() and not getattr(sys,'frozen',False):
+        source=Path(__file__).resolve().parents[2]/'cache/toolchain/ecj-3.26.0.jar'
+        if source.is_file() and hashlib.sha256(source.read_bytes()).hexdigest()==ECJ_SHA256:ws.write(compiler,source.read_bytes())
     if not compiler.is_file() or hashlib.sha256(compiler.read_bytes()).hexdigest()!=ECJ_SHA256:raise ValueError('Falta el compilador ECJ verificado. Revisa la distribución o tools/bootstrap.ps1')
     errors=cache_errors(ws)
     if errors:
@@ -59,11 +62,17 @@ def prepare_workspace(ws,progress=lambda _:None):
         for name in ['levels','resources','scene_hints']:
             path=ws.output('cache/'+name+'.json')
             if path.is_file():ws.write('research/startup/'+str(time.time_ns())+'_'+name+'.json',path.read_bytes())
-        progress('Leyendo instalación original; creando catálogos…')
+        progress('Leyendo escenarios y recursos de Redemption…')
         from .catalogue import discover
-        discover(ws,ws.game,False)
+        discover(ws,ws.game,False,progress=progress)
     if not ws.output('cache/toolchain/classes.zip').is_file():
         if not ws.game:raise ValueError('Falta classes.zip; selecciona la instalación original')
         ws.write('cache/toolchain/classes.zip',(ws.game/'classes.zip').read_bytes())
+    progress('Preparando el compilador…')
+    if getattr(sys,'frozen',False):
+        from .product import copy_example
+        progress('Preparando tus copias de los ejemplos…')
+        for name in ('tutorial','showcase','mini_chronicle'):
+            if (base/'examples'/name/'project.yaml').is_file():copy_example(ws,name)
     if cache_errors(ws):raise ValueError('No se pudieron reconstruir los catálogos')
     return {'cache_rebuilt':bool(errors),'original_tools_used':False}

@@ -24,17 +24,23 @@ def game_running():
 
 def save_settings(ws,path):
     from .startup import settings
-    data=settings(ws);path=installation(path);data['installation']=str(path);ws.write('cache/game_settings.json',json.dumps(data,indent=2));return path
+    data=settings(ws);path=installation(path);data['installation']=str(path);ws.write('cache/game_settings.json',json.dumps(data,indent=2))
+    preferences=getattr(ws,'app_settings',None)
+    if preferences:preferences.data['game_installation']=str(path);preferences.save()
+    return path
 
 def default_game(root):
     from .startup import settings
     from .paths import Workspace
     config=settings(Workspace(Path(root)))
     if config.get('installation') and (Path(config['installation'])/'Vampire.exe').is_file():return Path(config['installation'])
-    detected=Path(r'H:\GOG\Vampire The Masquerade - Redemption')
-    return detected if (detected/'Vampire.exe').is_file() else None
+    from .product import detect_games
+    candidates=detect_games()
+    return candidates[0] if candidates else None
 
 def configured_game(ws):
+    preferences=getattr(ws,'app_settings',None)
+    if preferences and preferences.data.get('game_installation'):return installation(preferences.data['game_installation'])
     path=ws.output('cache/game_settings.json')
     selected=ws.game or (json.loads(path.read_text(encoding='utf8'))['installation'] if path.exists() else None)
     if not selected:raise ValueError('Selecciona la instalación en Ruta del juego')
@@ -63,9 +69,20 @@ def deploy(ws,chronicle,directory=None,current_source=None):
         data=ws.output(root/'bundle'/path).read_bytes()
         if hashlib.sha256(data).hexdigest()!=record['sha256']:raise ValueError('El build cambió después de compilar')
         files[safe_target(game,dest/path)]=data
+    compatibility={}
+    if not directory:
+        from .profile_compatibility import compatibility_files
+        compatibility=compatibility_files(game,files[safe_target(game,dest/(chronicle+'.nob'))])
+        for name,data in compatibility.items():
+            target=safe_target(game,dest/name)
+            if target in files:
+                # Current classes/definitions have authority over compatibility.
+                continue
+            files[target]=data
     # Ownership belongs to the deployment directory, so changing campaign IDs
     # cannot leave another selectable chronicle behind. Foreign files stay put.
     manifest=safe_target(game,dest/'.rcm_deployment.json');obsolete=[]
+    previous={}
     if manifest.is_file():
         previous=json.loads(manifest.read_text(encoding='utf8'))
         if previous.get('format')!=1 or not isinstance(previous.get('files'),dict):raise ValueError('Manifest de deploy inválido')
@@ -76,7 +93,19 @@ def deploy(ws,chronicle,directory=None,current_source=None):
             if target in files or not target.exists():continue
             if not target.is_file() or hashlib.sha256(target.read_bytes()).hexdigest()!=digest:raise ValueError('Archivo de deploy modificado; se conserva: '+relative)
             obsolete.append(target)
-    ownership={'format':1,'chronicle':chronicle,'files':{str(p.relative_to(dest)).replace('\\','/'):hashlib.sha256(d).hexdigest() for p,d in files.items()}}
+    for target,data in files.items():
+        if not target.exists():continue
+        digest=hashlib.sha256(target.read_bytes()).hexdigest()
+        owned=previous.get('files',{}).get(target.relative_to(dest).as_posix())
+        if digest!=hashlib.sha256(data).hexdigest() and digest!=owned:
+            raise ValueError('Archivo ajeno o modificado; se conserva: '+target.name)
+    if not directory:
+        from .product import ensure_runtime_root
+        ensure_runtime_root(game)
+    ownership={'format':1,'chronicle':chronicle,'compatibility_files':list(compatibility),'files':{str(p.relative_to(dest)).replace('\\','/'):hashlib.sha256(d).hexdigest() for p,d in files.items()}}
+    if not directory:
+        from .profile_compatibility import profile_signature
+        ownership['profile_refs_sha256']=profile_signature(game)
     files[manifest]=json.dumps(ownership,indent=2).encode('utf8')
     # Check every destination before making any mutation.
     backup=ws.output(Path('research/runtime_test/backups')/('deploy_'+chronicle+'_'+str(time.time_ns())+'.zip'));backup.parent.mkdir(parents=True,exist_ok=True)
@@ -90,13 +119,6 @@ def run_game(ws,chronicle):
     from .model import identifier
     identifier(chronicle,'Crónica',18);game=configured_game(ws)
     if game_running():raise ValueError('Vampire ya está abierto')
-    from .shortcut import launch_info
-    shortcut=launch_info(ws)
-    if shortcut:
-        if not (shortcut['directory']/(chronicle+'.nob')).is_file():raise ValueError('Despliega primero la crónica en la carpeta que utiliza tu acceso: RCM/'+shortcut['relative'])
-        os.startfile(str(shortcut['shortcut']))
-        from types import SimpleNamespace
-        return SimpleNamespace(pid=None,shortcut=str(shortcut['shortcut']))
     dest=safe_target(game,game/'RCM'/chronicle)
     if not (dest/(chronicle+'.nob')).is_file():raise ValueError('Primero despliega la crónica')
     # Explicit button/user command requests the visible game; no helper console.

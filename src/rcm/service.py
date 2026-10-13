@@ -65,6 +65,7 @@ class Backend:
             return Validation(None, [Problem("ERROR", "El proyecto debe ser texto YAML o un objeto de datos")])
         try:
             raw = parse_source(source)
+            authoring_raw=raw
             resources=catalogue or self.original_resources
             if isinstance(raw,dict) and any(k in raw for k in ['project_format','resources','metadata','playtests','build_options']):
                 from .project_resources import prepare
@@ -73,6 +74,10 @@ class Backend:
                 from .campaign import parse_campaign, integrity
                 campaign = parse_campaign(raw, self.levels, resources)
                 problems = integrity(campaign)
+                from .recipes import recipes,missing
+                for i,recipe in enumerate(recipes(authoring_raw)):
+                    absent=missing(authoring_raw,recipe)
+                    if absent:problems.append(Problem('WARNING','Incomplete configuration: '+recipe['id']+' ('+', '.join(absent)+')',('authoring','recipes',i)))
                 for si, (scene, project) in enumerate(campaign.scenes):
                     if not (project.entities and project.conversations):
                         problems += [Problem(p.severity, scene['id']+': '+p.message, ('scenes',si)+p.path) for p in self.environment_problems(project)]
@@ -227,6 +232,8 @@ class Backend:
                     contract['movement']=[{'scene':s['id'],'paths':s.get('paths',[]),'entries':s.get('entries',[])} for s,project in p.scenes]
                     cinematic_scenes=[s['id'] for s,project in p.scenes if any(any(k in seq for k in ('steps','move_path','camera_path','prop_motion')) for seq in s.get('sequences',[]))]
                     if cinematic_scenes:contract['cinema_record_v2']=cinematic_scenes
+                    player_cinema=[s['id'] for s,project in p.scenes if any(seq['actor']=='Player' for seq in s.get('sequences',[]))]
+                    if player_cinema:contract['player_cinema_resume_v1']=player_cinema
                 report['save_schema_sha256']=source_fingerprint(contract)
                 report['new_game_required']=bool(prior) and prior.get('save_schema_sha256')!=report['save_schema_sha256']
                 if report['new_game_required']:report['save_warning']='La estructura persistida ha cambiado o no tiene firma previa. Inicia una partida nueva; no hay migrador de saves nativos.'

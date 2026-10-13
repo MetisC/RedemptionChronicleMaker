@@ -26,3 +26,6 @@ No hay puertas físicas inventadas ni travelling propio exportado; esas funcione
 
 
 Revisión 0.9.3: Espacio 3D → Inicio selecciona y enfoca el punto de aparición. Las dos llegadas de EastLondon se trasladan a la calle del bobbie original con WalkCycleLawmen, tras el bloqueo observado en el tutorial que compartía el punto anterior. Inicia una partida nueva; la navegación de esta revisión aún requiere ensayo nativo.
+
+
+Película de llegada: [Player](rcm://quay/sequences/sequence1) · [Trigger](rcm://quay/triggers/trigger1) · [Editar asistente](rcm://wizard/trigger_cinematic/trigger_cin1)

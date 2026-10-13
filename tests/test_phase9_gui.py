@@ -26,6 +26,7 @@ class Phase9GuiTests(TestCase):
             self.w.doc.campaign['resources']={'templates':[{'id':'T_own','base':'businessWoman','properties':{}}]}
             self.w.project_resources_panel.upgrade();self.assertEqual(self.w.doc.campaign['resources']['templates'][0]['id'],'T_own');self.assertEqual(self.w.doc.campaign['project_format'],9)
             self.w.save_project();self.assertEqual(Document.load(self.backend.ws,self.w.doc.path).snapshot(),self.w.doc.snapshot())
+            self.w.project_lock.release()
     def test_marker_edit_undo_and_named_transition_selectors(self):
         self.w.doc=CampaignDocument(self.backend.ws,modern());self.w.refresh()
         self.w.add_spatial_entity('entries','',[20,30,40]);self.assertEqual(self.w.selection,('entries',1))
@@ -41,7 +42,7 @@ class Phase9GuiTests(TestCase):
         with self.assertRaises(ValueError):delete_candidate(self.w.doc,('scenes',0,'waypoints',0),self.backend)
 
     def test_cinematic_door_controls_and_rename_preserve_references(self):
-        self.w.doc=Document.load(self.backend.ws,'chronicles/tutorial/project.yaml');self.w.refresh()
+        self.w.doc=Document.load(self.backend.ws,'tests/fixtures/chronicles/tutorial_0913/project.yaml');self.w.refresh()
         self.w.campaign_panel.navigate(('scenes',0,'sequences',0))
         self.assertEqual(self.w.campaign_panel.findChild(QComboBox,'sequence_moving_prop').currentData(),'stage_door')
         source=self.w.doc.snapshot()

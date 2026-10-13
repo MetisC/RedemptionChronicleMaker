@@ -21,7 +21,7 @@ def graph(root):
                     for category,name in [('scene',v.get('scene')),('arrival',str(v.get('scene'))+'.'+str(v.get('entry')))]:
                         target=index.get((category,name))
                         if target:links.append(Link(source,target,'travel',path+(k,)))
-                category={'sequence':'sequences','move_path':'paths','focus':'objects','object':'objects','speaker':'actors','actor':'actors','actor_alive':'actors','entity_exists':'entity','item':'objects','item_global':'objects','owns_item':'objects','conversation':'conversations','default':'conversations','then':'conversations','trigger':'triggers','encounter':'encounters','quest':'quest','flag':'flag','when_flag':'flag'}.get(k)
+                category={'reference':'actors','sequence':'sequences','move_path':'paths','focus':'objects','object':'objects','speaker':'actors','actor':'actors','actor_alive':'actors','entity_exists':'entity','item':'objects','item_global':'objects','owns_item':'objects','conversation':'conversations','default':'conversations','then':'conversations','trigger':'triggers','encounter':'encounters','quest':'quest','flag':'flag','when_flag':'flag'}.get(k)
                 if k in ACTIONS:category={'flags':'flag','quests':'quest','scenes':'scene','item':'objects','item_global':'objects'}.get(ACTIONS[k][1],ACTIONS[k][1])
                 if isinstance(v,str) and category:
                     target=index.get((category,v)) or local.get((category,v))
@@ -43,4 +43,14 @@ def graph(root):
         if s.get('default_entry'):
             target=local.get(('entries',s['default_entry']))
             if target:links.append(Link(('scenes',si),target,'default_entry',('scenes',si,'default_entry')))
+    from .recipes import recipes
+    for ri,recipe in enumerate(recipes(root)):
+        source=('authoring','recipes',ri)
+        for role,ref in recipe['refs'].items():
+            target=index.get(('quest',ref['id'])) if ref['collection']=='quests' else index.get(('flag',ref['id'])) if ref['collection']=='flags' else None
+            if ref['collection'] not in {'quests','flags'}:
+                for si,s in enumerate(root['scenes']):
+                    if s['id']==ref.get('scene'):
+                        target=next((('scenes',si,ref['collection'],i) for i,row in enumerate(s.get(ref['collection'],[])) if row['id']==ref['id']),None)
+            if target:links.append(Link(source,target,'authoring recipe',source+('refs',role)))
     return links

@@ -19,7 +19,7 @@ class GuidedTutorial(TestCase):
         from rcm.spatial.geometry import read_nil
         from rcm.spatial.math3d import Raycaster
         backend = Backend(Workspace(ROOT, default_game(ROOT)))
-        source = backend.validate((ROOT/'chronicles/tutorial/project.yaml').read_text(encoding='utf8')).project.source
+        source = backend.validate((ROOT/'tests/fixtures/chronicles/tutorial_0913/project.yaml').read_text(encoding='utf8')).project.source
         entry = backend.levels['EastLondon']['geometry'][0]
         ray = Raycaster(read_nil(Assets(backend).read(entry['path'],entry['archive'])))
         records = []
@@ -38,13 +38,14 @@ class GuidedTutorial(TestCase):
         import numpy as np
         a=np.array(start)+[0,0,50];b=np.array(lab['transform']['position'])+[0,0,50]
         self.assertIsNone(ray.cast(a,b-a,False,float(np.linalg.norm(b-a))),'Laboratorio separado por pared')
-        dest = ROOT/'research/round0/guided_tutorial/spatial_check.json'
+        dest = ROOT/'build/tests/guided_tutorial/spatial_check.json'
+        dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(json.dumps(records,indent=2),encoding='utf8')
 
     def test_sequence_completion_requires_a_real_timeline_and_correct_filter(self):
         import copy
         backend = Backend(Workspace(ROOT))
-        source = backend.validate((ROOT/'chronicles/tutorial/project.yaml').read_text(encoding='utf8')).project.source
+        source = backend.validate((ROOT/'tests/fixtures/chronicles/tutorial_0913/project.yaml').read_text(encoding='utf8')).project.source
         for kind, sequence in [('sequence_ended', 'missing'), ('actor_clicked', 'walk_scene')]:
             candidate = copy.deepcopy(source)
             candidate['scenes'][0]['events'].append(dict(id='invalid_sequence', when=kind, sequence=sequence, actor='mentor', actions=[{'set_flag':'step1'}]))
@@ -54,7 +55,7 @@ class GuidedTutorial(TestCase):
         from rcm.formats import NotFile, cstring, u32
         backend=Backend(Workspace(ROOT))
         import yaml
-        source=yaml.safe_load((ROOT/'chronicles/tutorial/project.yaml').read_text(encoding='utf8'))
+        source=yaml.safe_load((ROOT/'tests/fixtures/chronicles/tutorial_0913/project.yaml').read_text(encoding='utf8'))
         backend.sync_resources(source)
         templates=[t for path,data in backend.project_payload.items() if path.endswith('.not') for t in NotFile.read(data).templates]
         key=next(t for t in templates if t.name=='T_tutor_key')
@@ -68,14 +69,14 @@ class GuidedTutorial(TestCase):
     def test_cinematic_prop_validation_rejects_incomplete_or_unsafe_motion(self):
         import copy
         backend=Backend(Workspace(ROOT))
-        source=backend.validate((ROOT/'chronicles/tutorial/project.yaml').read_text(encoding='utf8')).project.source
+        source=backend.validate((ROOT/'tests/fixtures/chronicles/tutorial_0913/project.yaml').read_text(encoding='utf8')).project.source
         for changes in [{'object':'absent'},{'at':11,'duration':3},{'translation':[float('nan'),0,0]},{'translation':[1,2]}]:
             candidate=copy.deepcopy(source)
             candidate['scenes'][0]['sequences'][0]['prop_motion'].update(changes)
             self.assertFalse(backend.validate(candidate).valid)
 
     def test_seven_lessons_each_has_skip_and_laboratory_is_separate(self):
-        source = (ROOT/'chronicles/tutorial/project.yaml').read_text(encoding='utf8')
+        source = (ROOT/'tests/fixtures/chronicles/tutorial_0913/project.yaml').read_text(encoding='utf8')
         result = Backend(Workspace(ROOT)).validate(source)
         self.assertTrue(result.valid, [p.message for p in result.problems])
         campaign = result.project
@@ -99,7 +100,7 @@ class GuidedTutorial(TestCase):
         self.assertGreater(sum((x-y)**2 for x,y in zip(barrel['transform']['position'],main[0]['transform']['position'])), 150**2)
 
     def test_complete_and_skip_tours_and_clicks_during_film(self):
-        campaign = Backend(Workspace(ROOT)).validate((ROOT/'chronicles/tutorial/project.yaml').read_text(encoding='utf8')).project
+        campaign = Backend(Workspace(ROOT)).validate((ROOT/'tests/fixtures/chronicles/tutorial_0913/project.yaml').read_text(encoding='utf8')).project
         out = ROOT/'build/tests/guided_tutorial'
         out.mkdir(parents=True, exist_ok=True)
         java_files = []

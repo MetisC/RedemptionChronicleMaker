@@ -22,7 +22,7 @@ class StabilityGuiTests(TestCase):
         cls.backend=Backend(Workspace(ROOT))
     def setUp(self):
         self.win=MainWindow(self.backend);self.win.autosave_timer.stop()
-        self.win.doc=Document.load(self.backend.ws,'chronicles/tutorial/project.yaml');self.win.refresh()
+        self.win.doc=Document.load(self.backend.ws,'tests/fixtures/chronicles/tutorial_0913/project.yaml');self.win.refresh()
         self.ci=next(i for i,c in enumerate(self.win.doc.data['conversations']) if c['id']=='lab')
     def tearDown(self):
         self.win.doc=None;self.win.close();self.app.processEvents()
@@ -115,7 +115,7 @@ class StabilityGuiTests(TestCase):
             current=self.win.center_tabs.tabBar().mapTo(self.win,self.win.center_tabs.tabBar().rect().topLeft())
             self.assertEqual(current,top)
             records.append(dict(tab=self.win.center_tabs.tabText(index),y=current.y()))
-        dest=ROOT/'research/round0/stability_usability';dest.mkdir(parents=True,exist_ok=True)
+        dest=ROOT/'build/tests/stability_usability';dest.mkdir(parents=True,exist_ok=True)
         (dest/'layout_contract.json').write_text(json.dumps(dict(window=[self.win.width(),self.win.height()],tabs=records,route_form_height=panel.scroll.height(),offscreen=True,native_engine_test=False),indent=2),encoding='utf8')
 
     def test_large_text_route_content_keeps_vertical_scrolling(self):

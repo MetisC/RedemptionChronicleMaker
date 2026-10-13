@@ -5,7 +5,7 @@ from .formats import NotFile,Template,Tag,fixed
 from .not_library import patch_template,EDITABLE
 from .model import identifier,mapping,sequence
 
-EXTENSIONS={'project_format','metadata','resources','playtests','build_options'}
+EXTENSIONS={'project_format','metadata','resources','playtests','build_options','authoring'}
 def resource_identifier(value):
     if not isinstance(value,str) or not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]{0,30}',value):raise ValueError('Recurso: ID alfanumérico de 1..31 caracteres, sensible a mayúsculas sólo en Java')
     return value
@@ -54,6 +54,10 @@ def prepare(ws,source,catalogue):
         return root,catalogue,{},{}
     if type(root['project_format']) is not int or root['project_format'] not in (5,9) or root.get('schema')!=2:raise ValueError('project_format soportado: 5 o 9 con schema 2')
     modern=root['project_format']==9
+    if 'authoring' in root:
+        from .recipes import validate_authoring
+        if not modern:raise ValueError('Authoring recipes require project format 9')
+        validate_authoring(root)
     if modern:root['runtime_profile']='phase9'
     metadata=mapping(root.get('metadata',{}),{'author','version','description','requires_game','dependencies'},label='metadata')
     if not re.fullmatch(r'\d+\.\d+\.\d+',metadata.get('version','0.1.0')):raise ValueError('Versión debe ser major.minor.patch')

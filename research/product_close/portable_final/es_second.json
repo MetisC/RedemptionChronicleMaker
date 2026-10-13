@@ -1,0 +1,34 @@
+{
+  "language": "es",
+  "phase": "second",
+  "returncode": 0,
+  "elapsed_seconds": 10.49776149999525,
+  "report": {
+    "fresh_settings": false,
+    "welcome": true,
+    "setup_steps": [
+      "Preparando el compilador…",
+      "Preparando tus copias de los ejemplos…"
+    ],
+    "setup_seconds": 0.3116334000005736,
+    "total_seconds": 10.095140800003719,
+    "gui_authored_valid": true,
+    "build_status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_first_adventu2_s0_Scene": "45.3",
+      "R_first_adventu2_s0_Passive": "45.3"
+    },
+    "synthetic_deployment": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\product_close\\portable_final\\Prueba con espacios ñ\\projects\\build\\probe\\game\\RCM\\first_adventu2",
+    "setup_not_repeated": true,
+    "tutorial_unmodified": true,
+    "language": "es",
+    "native_game_test": false,
+    "clean_machine_test": false,
+    "real_opengl": false,
+    "game_originals_written": false,
+    "tutorial_open_timestamp": 52741.0848181,
+    "showcase_open_timestamp": 52742.1731402
+  },
+  "path_restricted": true,
+  "independent_machine": false
+}

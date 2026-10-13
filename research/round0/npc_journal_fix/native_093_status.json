@@ -1,9 +1,0 @@
-{
-  "revision": "0.9.3",
-  "player_movement": "PASS: confirmado por usuario y posiciones en log",
-  "npc_spawn": "FAIL: GUID cero",
-  "initial_journal": "FAIL: no se cargaba al llegar",
-  "log_sha256": "542f52db4e20726c0773b86354354c5d9da10840ac5ce6e6ed1cf377d8f1149e",
-  "source_sha256": "4b55066e1c0ef1994ccf1e3e3a9550c1409d768aed3ea47caee39240f68b5428",
-  "replacement": "0.9.4 prepared; native pending"
-}

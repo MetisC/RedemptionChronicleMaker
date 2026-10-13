@@ -21,4 +21,5 @@ with zipfile.ZipFile(ROOT/'cache/toolchain/ecj-3.26.0.jar') as jar:
     for name in jar.namelist():
         if name.lower().endswith(('about.html','license','notice')):
             target=dest/'ECJ'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(jar.read(name));inventory[-1]['copied_notices'].append(target.relative_to(dest).as_posix())
-(ROOT/'research/phase6/dependencies.json').write_text(json.dumps(inventory,indent=2),encoding='utf8');print('Dependency inventory and installed notices saved')
+(ROOT/'research/product_close').mkdir(parents=True,exist_ok=True)
+(ROOT/'research/product_close/dependencies.json').write_text(json.dumps(inventory,indent=2),encoding='utf8');print('Dependency inventory and installed notices saved')

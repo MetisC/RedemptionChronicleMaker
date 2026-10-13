@@ -8,6 +8,9 @@ class CampaignDocument(Document):
     def __init__(self,ws,campaign,path=None):
         self.campaign=campaign; self.active=0;self.ws=ws;self.path=ws.output(path) if path else None
         self._saved=source_text(campaign) if path else None
+        from .project_safety import disk_hash
+        self._disk_hash=disk_hash(self.path)
+        self._disk_path=self.path
     @property
     def data(self):
         s=self.campaign['scenes'][self.active]
@@ -30,11 +33,13 @@ class CampaignDocument(Document):
         if path.exists():raise ValueError('Ya existe project.yaml en ese directorio')
         scene=dict(id='scene1',level={'source':''},actors=[],objects=[],conversations=[],events=[],triggers=[],encounters=[],sequences=[],entries=[],waypoints=[],paths=[])
         data=dict(schema=2,project_format=9,chronicle=dict(id=pid,name=name,description=description),state={'flags':{}},entry='scene1',scenes=[scene],quests=[],resources={},metadata={'version':'0.1.0'},build_options={'debug':True})
-        doc=cls(ws,data);doc.path=path;return doc
+        doc=cls(ws,data);doc.path=path;doc._expects_new_file=True;return doc
     @classmethod
     def load_data(cls,ws,data,path):
         from .input_limits import check_data
         check_data(data)
+        from .recipes import validate_authoring
+        validate_authoring(data)
         if not isinstance(data.get('resources',{}),dict):raise ValueError('Recursos: requiere objeto')
         for key,rows in data.get('resources',{}).items():
             if key not in {'templates','ai_profiles','textures','scripts'} or not isinstance(rows,list):raise ValueError('Categoría de recursos inválida')
@@ -96,11 +101,17 @@ class CampaignDocument(Document):
             if not isinstance(q.get('steps'),list) or any(not isinstance(st,str) for st in q['steps']):raise ValueError('Pasos: requiere textos')
             if type(q.get('reward_xp',0)) is not int:raise ValueError('Recompensa: requiere un entero')
         return cls(ws,data,path)
-    def save(self,path=None):
+    def save(self,path=None,force=False):
         target=self.ws.output(path or self.path)
+        content=source_text(self.campaign)
+        from .project_safety import before_save,disk_hash
+        before_save(self,target,content,force)
         if target.exists():self._atomic_write(target.with_name(target.name+'.backup'),target.read_text(encoding='utf8'))
-        content=source_text(self.campaign);self._atomic_write(target,content);old=self.recovery_path
+        self._atomic_write(target,content);old=self.recovery_path
         self.path=target;self._saved=content
+        self._expects_new_file=False
+        self._disk_hash=disk_hash(target)
+        self._disk_path=target
         for recovery in (old,self.recovery_path):
             if recovery and recovery.exists():self.ws.output(recovery).unlink()
         return target
@@ -115,7 +126,9 @@ class CampaignDocument(Document):
         identifier(new,'ID',16);rows=self.data[collection];old=rows[index]['id']
         if any(i!=index and v['id']==new for i,v in enumerate(rows)):raise ValueError('ID duplicado')
         rows[index]['id']=new
-        keys={'actors':{'speaker','actor','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus'},'conversations':{'default','then','start_conversation','conversation'},'events':set(),'triggers':{'trigger'},'entries':{'default_entry'},'waypoints':set()}[collection]
+        from .recipes import rename_references
+        rename_references(self.campaign,collection,old,new,self.campaign['scenes'][self.active]['id'])
+        keys={'actors':{'speaker','actor','reference','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus'},'conversations':{'default','then','start_conversation','conversation'},'events':set(),'triggers':{'trigger'},'entries':{'default_entry'},'waypoints':set()}[collection]
         self._replace(self.campaign['scenes'][self.active],keys,old,new)
         if collection=='entries':
             sid=self.campaign['scenes'][self.active]['id']
@@ -134,6 +147,8 @@ class CampaignDocument(Document):
         identifier(new,'ID',16);rows=self.campaign[collection];old=rows[index]['id']
         if any(i!=index and r['id']==new for i,r in enumerate(rows)):raise ValueError('ID duplicado')
         rows[index]['id']=new
+        from .recipes import rename_references
+        rename_references(self.campaign,collection,old,new)
         keys={'quests':{'quest','start_quest','advance_quest','complete_quest'},'scenes':{'jump','scene'}}[collection]
         if collection=='scenes' and self.campaign['entry']==old:self.campaign['entry']=new
         self._replace(self.campaign,keys,old,new)
@@ -142,6 +157,8 @@ class CampaignDocument(Document):
     def rename_flag(self,old,new):
         super().rename_flag(old,new)
         self._replace(self.campaign,{'flag','set_flag','clear_flag','when_flag'},old,new)
+        from .recipes import rename_references
+        rename_references(self.campaign,'flags',old,new)
 
     @classmethod
     def convert(cls,doc):

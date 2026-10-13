@@ -3,6 +3,33 @@ from pathlib import Path
 import re,struct
 
 
+def create_shortcut(ws,name,target,arguments='',cwd=None,icon=None):
+    """Create on the destination PC, using structured data rather than shell interpolation."""
+    import base64,json,subprocess,os
+    if os.name!='nt':raise ValueError('Los accesos directos requieren Windows')
+    # Name is authored text, never a filesystem path.
+    safe=re.sub(r'[<>:"/\\|?*\x00-\x1f]','_',name).strip(' .')[:100] or 'RCM'
+    path=ws.output('launchers/'+safe+'.lnk');path.parent.mkdir(parents=True,exist_ok=True)
+    payload=dict(path=str(path),target=str(target),arguments=arguments,cwd=str(cwd or Path(target).parent),icon=str(icon or target))
+    encoded=base64.b64encode(json.dumps(payload,ensure_ascii=False).encode('utf8')).decode()
+    script="$ErrorActionPreference='Stop'; $rcmData=[System.Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('"+encoded+"')) | ConvertFrom-Json; $rcmShell=New-Object -ComObject WScript.Shell; $rcmLink=$rcmShell.CreateShortcut($rcmData.path); $rcmLink.TargetPath=$rcmData.target; $rcmLink.Arguments=$rcmData.arguments; $rcmLink.WorkingDirectory=$rcmData.cwd; $rcmLink.IconLocation=$rcmData.icon; $rcmLink.Save()"
+    subprocess.run(['powershell.exe','-NoProfile','-NonInteractive','-EncodedCommand',base64.b64encode(script.encode('utf-16-le')).decode()],check=True,capture_output=True,creationflags=subprocess.CREATE_NO_WINDOW)
+    return path
+
+
+def chronicle_shortcut(ws,ident,name):
+    from .deployment import configured_game
+    from .model import identifier
+    identifier(ident,'chronicle',14);game=configured_game(ws)
+    return create_shortcut(ws,'Jugar - '+name,game/'Vampire.exe','-user RCM\\'+ident,game)
+
+
+def application_shortcut(ws):
+    import sys
+    if not getattr(sys,'frozen',False):raise ValueError('Crea el acceso desde la aplicación portable')
+    return create_shortcut(ws,'Redemption Chronicle Maker',sys.executable)
+
+
 def read_shortcut(path):
     data=Path(path).read_bytes()
     if len(data)<76 or data[:4]!=b'L\0\0\0':raise ValueError('Acceso directo Windows inválido')

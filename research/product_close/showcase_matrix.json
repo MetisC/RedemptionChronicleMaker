@@ -1,0 +1,2272 @@
+[
+  {
+    "capability": "entries",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "safe",
+    "link": "rcm://quay/entries/safe",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "actors",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "victoria",
+    "link": "rcm://quay/actors/victoria",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "actors",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide",
+    "link": "rcm://quay/actors/guide",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "actors",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "enemy1",
+    "link": "rcm://quay/actors/enemy1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "objects",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "notice",
+    "link": "rcm://quay/objects/notice",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "objects",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "sample",
+    "link": "rcm://quay/objects/sample",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "objects",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "talkprop",
+    "link": "rcm://quay/objects/talkprop",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "objects",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "lab_key",
+    "link": "rcm://quay/objects/lab_key",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "triggers",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival_zone",
+    "link": "rcm://quay/triggers/arrival_zone",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "triggers",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "trigger1",
+    "link": "rcm://quay/triggers/trigger1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_a",
+    "link": "rcm://quay/waypoints/guide_a",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_b",
+    "link": "rcm://quay/waypoints/guide_b",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "audio",
+    "link": "rcm://quay/waypoints/audio",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "paths",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_walk",
+    "link": "rcm://quay/paths/guide_walk",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "sequences",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "sequence1",
+    "link": "rcm://quay/sequences/sequence1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "intro",
+    "link": "rcm://quay/conversations/intro",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "pact",
+    "link": "rcm://quay/conversations/pact",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide",
+    "link": "rcm://quay/conversations/guide",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared",
+    "link": "rcm://quay/conversations/cleared",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam1",
+    "link": "rcm://quay/conversations/cam1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam2",
+    "link": "rcm://quay/conversations/cam2",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam3",
+    "link": "rcm://quay/conversations/cam3",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam4",
+    "link": "rcm://quay/conversations/cam4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam5",
+    "link": "rcm://quay/conversations/cam5",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam6",
+    "link": "rcm://quay/conversations/cam6",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam7",
+    "link": "rcm://quay/conversations/cam7",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam8",
+    "link": "rcm://quay/conversations/cam8",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam9",
+    "link": "rcm://quay/conversations/cam9",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam10",
+    "link": "rcm://quay/conversations/cam10",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam11",
+    "link": "rcm://quay/conversations/cam11",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam12",
+    "link": "rcm://quay/conversations/cam12",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam13",
+    "link": "rcm://quay/conversations/cam13",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "lab",
+    "link": "rcm://quay/conversations/lab",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "anim",
+    "link": "rcm://quay/conversations/anim",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:scene_start",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival",
+    "link": "rcm://quay/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival",
+    "link": "rcm://quay/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival",
+    "link": "rcm://quay/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_music",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival",
+    "link": "rcm://quay/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_ambient",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival",
+    "link": "rcm://quay/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival",
+    "link": "rcm://quay/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival",
+    "link": "rcm://quay/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival",
+    "link": "rcm://quay/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_clicked",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "new",
+    "link": "rcm://quay/events/new",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "new",
+    "link": "rcm://quay/events/new",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_clicked",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "remember",
+    "link": "rcm://quay/events/remember",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "remember",
+    "link": "rcm://quay/events/remember",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "accept",
+    "link": "rcm://quay/events/accept",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_quest",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "accept",
+    "link": "rcm://quay/events/accept",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "accept",
+    "link": "rcm://quay/events/accept",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_quest",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "accept",
+    "link": "rcm://quay/events/accept",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "to_archive",
+    "link": "rcm://quay/events/to_archive",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:travel",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "to_archive",
+    "link": "rcm://quay/events/to_archive",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_trip",
+    "link": "rcm://quay/events/cleared_trip",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:travel",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_trip",
+    "link": "rcm://quay/events/cleared_trip",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "combat",
+    "link": "rcm://quay/events/combat",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn_encounter",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "combat",
+    "link": "rcm://quay/events/combat",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:encounter_complete",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "combat_done",
+    "link": "rcm://quay/events/combat_done",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "combat_done",
+    "link": "rcm://quay/events/combat_done",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:reward_xp",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "combat_done",
+    "link": "rcm://quay/events/combat_done",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:trigger_enter",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival_trigger",
+    "link": "rcm://quay/events/arrival_trigger",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "arrival_trigger",
+    "link": "rcm://quay/events/arrival_trigger",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:sequence_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "end1",
+    "link": "rcm://quay/events/end1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "end1",
+    "link": "rcm://quay/events/end1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:trigger_enter",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "event1",
+    "link": "rcm://quay/events/event1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:play_sequence",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "event1",
+    "link": "rcm://quay/events/event1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next1",
+    "link": "rcm://quay/events/cam_next1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next1",
+    "link": "rcm://quay/events/cam_next1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next2",
+    "link": "rcm://quay/events/cam_next2",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next2",
+    "link": "rcm://quay/events/cam_next2",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next3",
+    "link": "rcm://quay/events/cam_next3",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next3",
+    "link": "rcm://quay/events/cam_next3",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next4",
+    "link": "rcm://quay/events/cam_next4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next4",
+    "link": "rcm://quay/events/cam_next4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next5",
+    "link": "rcm://quay/events/cam_next5",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next5",
+    "link": "rcm://quay/events/cam_next5",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next6",
+    "link": "rcm://quay/events/cam_next6",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next6",
+    "link": "rcm://quay/events/cam_next6",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next7",
+    "link": "rcm://quay/events/cam_next7",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next7",
+    "link": "rcm://quay/events/cam_next7",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next8",
+    "link": "rcm://quay/events/cam_next8",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next8",
+    "link": "rcm://quay/events/cam_next8",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next9",
+    "link": "rcm://quay/events/cam_next9",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next9",
+    "link": "rcm://quay/events/cam_next9",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next10",
+    "link": "rcm://quay/events/cam_next10",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next10",
+    "link": "rcm://quay/events/cam_next10",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next11",
+    "link": "rcm://quay/events/cam_next11",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next11",
+    "link": "rcm://quay/events/cam_next11",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next12",
+    "link": "rcm://quay/events/cam_next12",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cam_next12",
+    "link": "rcm://quay/events/cam_next12",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_lab4",
+    "link": "rcm://quay/events/guide_lab4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_lab4",
+    "link": "rcm://quay/events/guide_lab4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_lab5",
+    "link": "rcm://quay/events/guide_lab5",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_lab5",
+    "link": "rcm://quay/events/guide_lab5",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_lab6",
+    "link": "rcm://quay/events/guide_lab6",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_lab6",
+    "link": "rcm://quay/events/guide_lab6",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_lab7",
+    "link": "rcm://quay/events/guide_lab7",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:remove_encounter",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_lab7",
+    "link": "rcm://quay/events/guide_lab7",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "guide_lab7",
+    "link": "rcm://quay/events/guide_lab7",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_lab4",
+    "link": "rcm://quay/events/cleared_lab4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_lab4",
+    "link": "rcm://quay/events/cleared_lab4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_lab5",
+    "link": "rcm://quay/events/cleared_lab5",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_lab5",
+    "link": "rcm://quay/events/cleared_lab5",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_lab6",
+    "link": "rcm://quay/events/cleared_lab6",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_lab6",
+    "link": "rcm://quay/events/cleared_lab6",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_lab7",
+    "link": "rcm://quay/events/cleared_lab7",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:remove_encounter",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_lab7",
+    "link": "rcm://quay/events/cleared_lab7",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "cleared_lab7",
+    "link": "rcm://quay/events/cleared_lab7",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls1",
+    "link": "rcm://quay/events/controls1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_patrol",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls1",
+    "link": "rcm://quay/events/controls1",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls2",
+    "link": "rcm://quay/events/controls2",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:stop_patrol",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls2",
+    "link": "rcm://quay/events/controls2",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:disable_ai",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls2",
+    "link": "rcm://quay/events/controls2",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls3",
+    "link": "rcm://quay/events/controls3",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:enable_ai",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls3",
+    "link": "rcm://quay/events/controls3",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls4",
+    "link": "rcm://quay/events/controls4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_music",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls4",
+    "link": "rcm://quay/events/controls4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_ambient",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls4",
+    "link": "rcm://quay/events/controls4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:play_sound",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls4",
+    "link": "rcm://quay/events/controls4",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls5",
+    "link": "rcm://quay/events/controls5",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:stop_music",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls5",
+    "link": "rcm://quay/events/controls5",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:stop_ambient",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "controls5",
+    "link": "rcm://quay/events/controls5",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:item_picked_up",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "sample_taken",
+    "link": "rcm://quay/events/sample_taken",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "sample_taken",
+    "link": "rcm://quay/events/sample_taken",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:object_clicked",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "talk_prop",
+    "link": "rcm://quay/events/talk_prop",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "talk_prop",
+    "link": "rcm://quay/events/talk_prop",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:object_clicked",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "read_notice",
+    "link": "rcm://quay/events/read_notice",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:show_note",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "read_notice",
+    "link": "rcm://quay/events/read_notice",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:note_closed",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "notice_closed",
+    "link": "rcm://quay/events/notice_closed",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "notice_closed",
+    "link": "rcm://quay/events/notice_closed",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:trigger_leave",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "left_zone",
+    "link": "rcm://quay/events/left_zone",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "left_zone",
+    "link": "rcm://quay/events/left_zone",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:timer",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "clock",
+    "link": "rcm://quay/events/clock",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "clock",
+    "link": "rcm://quay/events/clock",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_killed",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "rat_killed",
+    "link": "rcm://quay/events/rat_killed",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "rat_killed",
+    "link": "rcm://quay/events/rat_killed",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:state_changed",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "state_lab",
+    "link": "rcm://quay/events/state_lab",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:clear_flag",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "state_lab",
+    "link": "rcm://quay/events/state_lab",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "entries",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "safe",
+    "link": "rcm://archive/entries/safe",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "actors",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "archivist",
+    "link": "rcm://archive/actors/archivist",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "actors",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "keeper",
+    "link": "rcm://archive/actors/keeper",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "objects",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "book",
+    "link": "rcm://archive/objects/book",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "objects",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "key",
+    "link": "rcm://archive/objects/key",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "triggers",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "arrival_zone",
+    "link": "rcm://archive/triggers/arrival_zone",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "sound",
+    "link": "rcm://archive/waypoints/sound",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "keeper_a",
+    "link": "rcm://archive/waypoints/keeper_a",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "keeper_b",
+    "link": "rcm://archive/waypoints/keeper_b",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "paths",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "keeper_walk",
+    "link": "rcm://archive/paths/keeper_walk",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "sequences",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "two_shot",
+    "link": "rcm://archive/sequences/two_shot",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "ledger",
+    "link": "rcm://archive/conversations/ledger",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "back",
+    "link": "rcm://archive/conversations/back",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:scene_start",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "arrival",
+    "link": "rcm://archive/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "arrival",
+    "link": "rcm://archive/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "arrival",
+    "link": "rcm://archive/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_music",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "arrival",
+    "link": "rcm://archive/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "peace",
+    "link": "rcm://archive/events/peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "peace",
+    "link": "rcm://archive/events/peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:give_item",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "peace",
+    "link": "rcm://archive/events/peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:give_item",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "peace",
+    "link": "rcm://archive/events/peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "peace",
+    "link": "rcm://archive/events/peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "peace",
+    "link": "rcm://archive/events/peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "force",
+    "link": "rcm://archive/events/force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:clear_flag",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "force",
+    "link": "rcm://archive/events/force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:give_item",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "force",
+    "link": "rcm://archive/events/force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:give_item",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "force",
+    "link": "rcm://archive/events/force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "force",
+    "link": "rcm://archive/events/force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "force",
+    "link": "rcm://archive/events/force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "to_return",
+    "link": "rcm://archive/events/to_return",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:travel",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "to_return",
+    "link": "rcm://archive/events/to_return",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "camera",
+    "link": "rcm://archive/events/camera",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:play_sequence",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "camera",
+    "link": "rcm://archive/events/camera",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:play_sound",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "camera",
+    "link": "rcm://archive/events/camera",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:trigger_enter",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "arrival_trigger",
+    "link": "rcm://archive/events/arrival_trigger",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "archive",
+    "entity": "arrival_trigger",
+    "link": "rcm://archive/events/arrival_trigger",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "entries",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "safe",
+    "link": "rcm://return/entries/safe",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "actors",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "witness",
+    "link": "rcm://return/actors/witness",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "actors",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "courier",
+    "link": "rcm://return/actors/courier",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "triggers",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "arrival_zone",
+    "link": "rcm://return/triggers/arrival_zone",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "courier_a",
+    "link": "rcm://return/waypoints/courier_a",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "courier_b",
+    "link": "rcm://return/waypoints/courier_b",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "paths",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "courier_walk",
+    "link": "rcm://return/paths/courier_walk",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "peace",
+    "link": "rcm://return/conversations/peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "force",
+    "link": "rcm://return/conversations/force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "final",
+    "link": "rcm://return/conversations/final",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "back",
+    "link": "rcm://return/conversations/back",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:scene_start",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "arrival",
+    "link": "rcm://return/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "arrival",
+    "link": "rcm://return/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "arrival",
+    "link": "rcm://return/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_patrol",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "arrival",
+    "link": "rcm://return/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_clicked",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "peace",
+    "link": "rcm://return/events/peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "peace",
+    "link": "rcm://return/events/peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_clicked",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "force",
+    "link": "rcm://return/events/force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "force",
+    "link": "rcm://return/events/force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_clicked",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "final",
+    "link": "rcm://return/events/final",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "final",
+    "link": "rcm://return/events/final",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "back",
+    "link": "rcm://return/events/back",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:travel",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "back",
+    "link": "rcm://return/events/back",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_peace",
+    "link": "rcm://return/events/finish_peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:take_item",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_peace",
+    "link": "rcm://return/events/finish_peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_peace",
+    "link": "rcm://return/events/finish_peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:complete_quest",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_peace",
+    "link": "rcm://return/events/finish_peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_peace",
+    "link": "rcm://return/events/finish_peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:complete_quest",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_peace",
+    "link": "rcm://return/events/finish_peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_peace",
+    "link": "rcm://return/events/finish_peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_music",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_peace",
+    "link": "rcm://return/events/finish_peace",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_force",
+    "link": "rcm://return/events/finish_force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:take_item",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_force",
+    "link": "rcm://return/events/finish_force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_force",
+    "link": "rcm://return/events/finish_force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:complete_quest",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_force",
+    "link": "rcm://return/events/finish_force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_force",
+    "link": "rcm://return/events/finish_force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:complete_quest",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_force",
+    "link": "rcm://return/events/finish_force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_force",
+    "link": "rcm://return/events/finish_force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_music",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "finish_force",
+    "link": "rcm://return/events/finish_force",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:trigger_enter",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "arrival_trigger",
+    "link": "rcm://return/events/arrival_trigger",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "return",
+    "entity": "arrival_trigger",
+    "link": "rcm://return/events/arrival_trigger",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:remove",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:jump",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:release_camera",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:open_exit",
+    "classification": "ADVANCED",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:close_exit",
+    "classification": "ADVANCED",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:control_door",
+    "classification": "ADVANCED",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "Original NCP",
+    "classification": "EXPERIMENTAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "Native door/exit with valid Cast ID",
+    "classification": "EXPERIMENTAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "Static inspector",
+    "classification": "EXPERIMENTAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "NOT writer fields",
+    "classification": "EXPERIMENTAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "Custom Java",
+    "classification": "EXPERIMENTAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "Model-specific motions",
+    "classification": "EXPERIMENTAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "Viewport camera XYZ/FOV",
+    "classification": "EXPERIMENTAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": false,
+    "runtime_verified": false
+  }
+]

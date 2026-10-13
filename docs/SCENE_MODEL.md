@@ -17,7 +17,7 @@ El generator conserva los 176 bytes finales del NSD versión 8 y antepone cuatro
 
 ## Evidencia y límites del formato
 
-El lector original de la copia `research/user_directory/Vampire.exe`, direcciones `0x4a81c7..0x4a82e5`, lee este tramo final en orden:
+El lector original del ejecutable original Vampire.exe, direcciones `0x4a81c7..0x4a82e5`, lee este tramo final en orden:
 
 | Offset relativo al tail | Bytes | Confirmación |
 |---|---:|---|

@@ -1,3 +1,4 @@
+from .i18n import tr
 """GPU authoring viewport. Qt owns the GL context; data loading is off-thread."""
 import math
 import time
@@ -171,7 +172,7 @@ class Viewport(QOpenGLWidget):
             self.upload = self.level is not None
         except Exception as e:
             self.error = str(e)
-            self.message.emit('No se pudo iniciar OpenGL: ' + self.error)
+            self.message.emit(tr('No se pudo iniciar OpenGL: ') + self.error)
 
     def cleanup(self):
         self.makeCurrent()
@@ -354,7 +355,7 @@ class Viewport(QOpenGLWidget):
             painter.drawText(self.rect().adjusted(15, 15, -15, -15), Qt.TextFlag.TextWordWrap, 'OpenGL: ' + self.error[-600:])
         elif not self.level:
             painter.setPen(QColor('#a7bdcf'))
-            painter.drawText(self.rect(), Qt.AlignmentFlag.AlignCenter, 'Selecciona un level y abre el espacio 3D')
+            painter.drawText(self.rect(), Qt.AlignmentFlag.AlignCenter, tr('Selecciona un level y abre el espacio 3D'))
         else:
             self.overlays(painter)
 
@@ -418,9 +419,9 @@ class Viewport(QOpenGLWidget):
             if selected or path in linked:
                 label = e.get('name', e.get('template', 'Original'))
                 if ro:
-                    label += ' · original, sólo lectura'
+                    label += tr(' · original, sólo lectura')
                 if not ro and e['transform'].get('placement') == 'near_player':
-                    label += ' · posición relativa al jugador (vista aproximada)'
+                    label += tr(' · posición relativa al jugador (vista aproximada)')
                 painter.drawText(pt + QPointF(12, -15), label)
             if selected:
                 selected_pos = pos
@@ -437,9 +438,9 @@ class Viewport(QOpenGLWidget):
                 self.draw_gizmo(painter, selected_pos)
         painter.setPen(QColor('#d9e5ef'))
         painter.fillRect(0, self.height()-33, self.width(), 33, QColor(20, 27, 34, 215))
-        hint = 'Click en el suelo para colocar · Esc cancela' if self.placing else 'RMB + WASD mirar/mover · Q/E altura · Shift rápido · Alt+LMB orbitar · F enfocar · Supr eliminar'
+        hint = tr('Click en el suelo para colocar · Esc cancela') if self.placing else tr('RMB + WASD mirar/mover · Q/E altura · Shift rápido · Alt+LMB orbitar · F enfocar · Supr eliminar')
         painter.drawText(12, self.height()-12, hint)
-        painter.drawText(12, 23, f'{self.level.name}  |  {len(self.level.mesh.material_ids):,} triángulos  |  velocidad {self.speed:.0f}  |  '+ ('Suelo' if self.walk else 'Volar'))
+        painter.drawText(12, 23, (f'{self.level.name}' + '  |  ' + f'{len(self.level.mesh.material_ids):,}' + tr(' triángulos  |  velocidad ') + f'{self.speed:.0f}' + '  |  ')+ (tr('Suelo') if self.walk else tr('Volar')))
 
     def gizmo_segments(self, pos):
         origin = self.project(pos)
@@ -505,7 +506,7 @@ class Viewport(QOpenGLWidget):
         if event.key()==Qt.Key.Key_F:
             self.focus_selection()
         elif event.key()==Qt.Key.Key_Escape:
-            self.placing=None;self.drag=None;self.looking=False;self.warp_target=None;self.releaseMouse();self.unsetCursor();self.message.emit('Operación cancelada')
+            self.placing=None;self.drag=None;self.looking=False;self.warp_target=None;self.releaseMouse();self.unsetCursor();self.message.emit(tr('Operación cancelada'))
         elif key in (Qt.Key.Key_1,Qt.Key.Key_2,Qt.Key.Key_3):
             self.mode_requested.emit({Qt.Key.Key_1:'move',Qt.Key.Key_2:'rotate',Qt.Key.Key_3:'scale'}[key])
         else:
@@ -558,7 +559,7 @@ class Viewport(QOpenGLWidget):
                     pos=snap(pos,self.grid);floor=self.raycaster.ground(pos,20,40);pos=floor.position if floor else hit.position
                 self.placed.emit(pos.tolist());self.placing=None
             else:
-                self.message.emit('Selecciona una superficie de suelo válida')
+                self.message.emit(tr('Selecciona una superficie de suelo válida'))
             return
         selected=next(((p,e) for p,e,ro in self.entities() if p==self.selection[:2] and not ro),None)
         if selected:
@@ -680,23 +681,23 @@ class SpatialPanel(QWidget):
         layout=QVBoxLayout(self);layout.setContentsMargins(0,0,0,0)
         toolbar=QHBoxLayout()
         self.mode_buttons = {}
-        for label,mode in [('Mover','move'),('Girar','rotate'),('Tamaño','scale')]:
+        for label,mode in [(tr('Mover'),'move'),(tr('Girar'),'rotate'),(tr('Tamaño'),'scale')]:
             b=QPushButton(label);b.setCheckable(True);b.setChecked(mode=='move');self.mode_buttons[mode]=b;b.setObjectName('gizmo_'+mode);b.clicked.connect(lambda checked=False,m=mode:self.set_mode(m));toolbar.addWidget(b)
-        b=QPushButton('Enfocar');b.clicked.connect(lambda:self.viewport.focus_selection() if self.viewport else None);toolbar.addWidget(b)
-        b=QPushButton('Inicio');b.setObjectName('focus_player_start');b.setToolTip('Ver el punto de aparición del jugador al comenzar la crónica');b.clicked.connect(lambda:self.win.guard(self.win.focus_player_start));toolbar.addWidget(b)
-        b=QPushButton('+ Actor');b.setObjectName('place_actor');b.clicked.connect(lambda:self.win.guard(self.win.add_actor));toolbar.addWidget(b)
+        b=QPushButton(tr('Enfocar'));b.clicked.connect(lambda:self.viewport.focus_selection() if self.viewport else None);toolbar.addWidget(b)
+        b=QPushButton(tr('Inicio'));b.setObjectName('focus_player_start');b.setToolTip(tr('Ver el punto de aparición del jugador al comenzar la crónica'));b.clicked.connect(lambda:self.win.guard(self.win.focus_player_start));toolbar.addWidget(b)
+        b=QPushButton(tr('+ Actor'));b.setObjectName('place_actor');b.clicked.connect(lambda:self.win.guard(self.win.add_actor));toolbar.addWidget(b)
         b=QPushButton('+ Trigger');b.setObjectName('place_trigger');b.clicked.connect(self.add_trigger);toolbar.addWidget(b)
-        b=QPushButton('Eliminar');b.setObjectName('spatial_delete');b.clicked.connect(lambda:self.win.guard(self.win.delete_selected));toolbar.addWidget(b)
-        b=QPushButton('Referencias');b.clicked.connect(lambda:self.win.find_references());toolbar.addWidget(b)
+        b=QPushButton(tr('Eliminar'));b.setObjectName('spatial_delete');b.clicked.connect(lambda:self.win.guard(self.win.delete_selected));toolbar.addWidget(b)
+        b=QPushButton(tr('Referencias'));b.clicked.connect(lambda:self.win.find_references());toolbar.addWidget(b)
         layout.addLayout(toolbar)
         options=QHBoxLayout()
-        self.ground=QCheckBox('Suelo');self.ground.setToolTip('Altura de cámara sobre suelo; no sustituye colisión del motor');options.addWidget(self.ground)
-        self.surface=QCheckBox('Snap suelo');self.surface.setChecked(True);options.addWidget(self.surface)
-        self.grid=QDoubleSpinBox();self.grid.setRange(0,512);self.grid.setSpecialValueText('Libre');self.grid.setPrefix('Grid ');options.addWidget(self.grid)
-        self.angle=QDoubleSpinBox();self.angle.setRange(0,90);self.angle.setValue(15);self.angle.setSpecialValueText('Libre');self.angle.setSuffix('°');options.addWidget(self.angle)
-        self.links=QCheckBox('Relaciones');self.links.setChecked(True);options.addWidget(self.links)
+        self.ground=QCheckBox(tr('Suelo'));self.ground.setToolTip(tr('Altura de cámara sobre suelo; no sustituye colisión del motor'));options.addWidget(self.ground)
+        self.surface=QCheckBox(tr('Snap suelo'));self.surface.setChecked(True);options.addWidget(self.surface)
+        self.grid=QDoubleSpinBox();self.grid.setRange(0,512);self.grid.setSpecialValueText(tr('Libre'));self.grid.setPrefix('Grid ');options.addWidget(self.grid)
+        self.angle=QDoubleSpinBox();self.angle.setRange(0,90);self.angle.setValue(15);self.angle.setSpecialValueText(tr('Libre'));self.angle.setSuffix('°');options.addWidget(self.angle)
+        self.links=QCheckBox(tr('Relaciones'));self.links.setChecked(True);options.addWidget(self.links)
         options.addStretch();layout.addLayout(options)
-        self.status=QLabel('Carga pendiente');self.status.setWordWrap(True);layout.addWidget(self.status)
+        self.status=QLabel(tr('Carga pendiente'));self.status.setWordWrap(True);layout.addWidget(self.status)
         self.viewport=None
         if QApplication.platformName() != 'offscreen' and not getattr(window.backend,'safe_mode',False):
             self.viewport=Viewport(self);layout.addWidget(self.viewport,1)
@@ -714,11 +715,11 @@ class SpatialPanel(QWidget):
             self.angle.valueChanged.connect(lambda v:setattr(self.viewport,'angle_step',v))
             self.links.toggled.connect(self.relationships)
         else:
-            layout.addWidget(QLabel('OpenGL requiere una ventana real; backend y edición de datos siguen disponibles.'),1)
+            layout.addWidget(QLabel(tr('OpenGL requiere una ventana real; backend y edición de datos siguen disponibles.')),1)
 
     def context_menu(self,position):
         menu=QMenu(self);menu.setObjectName('viewport_context_menu')
-        for label,cb in [('Enfocar selección · F',self.viewport.focus_selection),('Mover · 1',lambda:self.set_mode('move')),('Girar · 2',lambda:self.set_mode('rotate')),('Tamaño · 3',lambda:self.set_mode('scale')),('+ Actor…',self.win.add_actor),('+ Objeto…',self.add_object),('+ Trigger',self.add_trigger),('+ Entrada',lambda:self.win.campaign_panel.add_marker('entries')),('+ Waypoint',lambda:self.win.campaign_panel.add_marker('waypoints')),('Ajustar al suelo',self.snap_selected),('Buscar referencias',self.win.find_references),('Eliminar · Supr',self.win.delete_selected)]:
+        for label,cb in [(tr('Enfocar selección · F'),self.viewport.focus_selection),(tr('Mover · 1'),lambda:self.set_mode('move')),(tr('Girar · 2'),lambda:self.set_mode('rotate')),(tr('Tamaño · 3'),lambda:self.set_mode('scale')),(tr('+ Actor…'),self.win.add_actor),(tr('+ Objeto…'),self.add_object),('+ Trigger',self.add_trigger),(tr('+ Entrada'),lambda:self.win.campaign_panel.add_marker('entries')),('+ Waypoint',lambda:self.win.campaign_panel.add_marker('waypoints')),(tr('Ajustar al suelo'),self.snap_selected),(tr('Buscar referencias'),self.win.find_references),(tr('Eliminar · Supr'),self.win.delete_selected)]:
             action=menu.addAction(label);action.triggered.connect(lambda checked=False,cb=cb:self.win.guard(cb))
         menu.exec(position)
 
@@ -734,7 +735,7 @@ class SpatialPanel(QWidget):
         if self.viewport:
             self.viewport.mode=mode;self.viewport.update()
             if mode=='scale' and self.win.selection[0]!='triggers':
-                self.status.setText('Tamaño sólo se aplica a volúmenes; los actores conservan su escala original.')
+                self.status.setText(tr('Tamaño sólo se aplica a volúmenes; los actores conservan su escala original.'))
     def start_gesture(self):
         self.win.history_time = 0
     def relationships(self,value):
@@ -765,7 +766,7 @@ class SpatialPanel(QWidget):
         models=tuple(sorted((t['id'],t.get('model') or '') for t in self.win.backend.resources['templates'] if t['id'] in templates))
         if self.loading or (name==self.loaded_name and templates<=self.requested_templates and models==getattr(self,'requested_models',None)):
             return
-        self.loading=True;self.status.setText('Leyendo escenario…')
+        self.loading=True;self.status.setText(tr('Leyendo escenario…'))
         self.requested_templates=templates
         self.requested_models=models
         self.thread=QThread(self);self.worker=LoadWorker(self.win.backend,name,templates,self.assets);self.worker.moveToThread(self.thread)
@@ -782,12 +783,12 @@ class SpatialPanel(QWidget):
             return
         self.assets=assets;self.loaded_name=level.name;self.viewport.set_level(level);self.sync()
         if getattr(self,'pending_start_focus',False):self.pending_start_focus=False;self.viewport.focus_selection()
-        self.status.setText(f'{level.name} · {sum(m.warning is None for m in level.materials)}/{len(level.materials)} materiales con textura · geometría original de sólo lectura')
+        self.status.setText((f'{level.name}' + tr(' · ') + f'{sum((m.warning is None for m in level.materials))}' + '/' + f'{len(level.materials)}' + tr(' materiales con textura · geometría original de sólo lectura')))
         for warning in level.warnings:
             self.win.log.appendPlainText('Viewport warning: '+warning)
         self.win.refresh()
     def failed(self,error):
-        self.status.setText('No se pudo cargar el level; consulta Build / Log.');self.win.log.appendPlainText(error)
+        self.status.setText(tr('No se pudo cargar el level; consulta Build / Log.'));self.win.log.appendPlainText(error)
         self.request_name=None
     def select(self,path):
         if not self.win.commit_properties():
@@ -800,7 +801,7 @@ class SpatialPanel(QWidget):
         if self.win.busy or path[0]=='original' or not self.win.doc:
             return
         if not self.geometry_matches():
-            self.status.setText('Espera a que cargue el escenario seleccionado antes de editar su posición.')
+            self.status.setText(tr('Espera a que cargue el escenario seleccionado antes de editar su posición.'))
             return
         entity=self.win.at(path)
         was_relative = entity['transform'].get('placement')=='near_player'
@@ -837,25 +838,25 @@ class SpatialPanel(QWidget):
             return
         self.win.center_tabs.setCurrentIndex(0);self.ensure_loaded()
         if not self.viewport or not self.viewport.level or self.loaded_name!=self.win.doc.data['level'].get('source'):
-            self.status.setText('Espera a que termine de cargar el level y vuelve a elegir el recurso.');return
+            self.status.setText(tr('Espera a que termine de cargar el level y vuelve a elegir el recurso.'));return
         self.pending_resource=(kind,template);self.viewport.placing=(kind,template);self.viewport.setFocus();self.viewport.setCursor(Qt.CursorShape.CrossCursor)
-        self.status.setText('Haz click en el suelo para colocar. Esc cancela.')
+        self.status.setText(tr('Haz click en el suelo para colocar. Esc cancela.'))
     def add_trigger(self):
         self.begin_place('triggers')
     def place(self,position):
         if not self.geometry_matches():
-            self.status.setText('Espera a que cargue el escenario seleccionado y vuelve a elegir el recurso.')
+            self.status.setText(tr('Espera a que cargue el escenario seleccionado y vuelve a elegir el recurso.'))
             return
         if not self.pending_resource:
             return
         kind,template=self.pending_resource;self.pending_resource=None
         if kind=='triggers':
             data=self.win.doc.data;ident=self.win.doc.unique_id('triggers','trigger');index=len(data.setdefault('triggers',[]))
-            data['triggers'].append(dict(id=ident,name='Nuevo trigger',shape='box',transform=dict(position=[position[0],position[1],position[2]+60],orientation=[0,0,0]),size=[160,160,120],once=True))
+            data['triggers'].append(dict(id=ident,name=tr('Nuevo trigger'),shape='box',transform=dict(position=[position[0],position[1],position[2]+60],orientation=[0,0,0]),size=[160,160,120],once=True))
             self.win.selection=('triggers',index);self.win.changed(True)
         else:
             self.win.add_spatial_entity(kind,template,position)
-        self.viewport.unsetCursor();self.status.setText('Entidad colocada. Mover · 1 / Girar · 2 / F enfocar')
+        self.viewport.unsetCursor();self.status.setText(tr('Entidad colocada. Mover · 1 / Girar · 2 / F enfocar'))
 
     def snap_selected(self):
         if not self.viewport or not self.viewport.level:

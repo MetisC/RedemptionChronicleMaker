@@ -32,11 +32,16 @@ def runtime(campaign,scene,p):
         if k=='entity_exists':return 'local(things['+str(i)+'])'
         if k=='actor_alive':return 'alive('+str(i)+')'
         return 'owns(player, '+js(p.prefix+'_'+v)+')'
+    trace_path=js('RCM/'+campaign.id+'/runtime_trace.log')
+    if campaign.source.get('runtime_profile')=='phase9':
+        # Redemption's Java 1.1 File stores the path verbatim: getParent only
+        # recognises separatorChar. Forward slashes yield null on Windows.
+        trace_path+=".replace('/',java.io.File.separatorChar)"
     code=[f'public class {name} extends Codex {{',
           f' private int[] things=new int[{len(entities)}];',f' private boolean[] enabled=new boolean[{len(entities)}];',f' private boolean[] createdOnce=new boolean[{len(entities)}];',
           f' private boolean[] inside=new boolean[{len(p.triggers)}];',f' private boolean[] previous=new boolean[{len(scene["events"])}];',
           ' private int active=-1, starter=0, ticks=0, player=0; private boolean restoredState=false, transitioning=false; private int cameraTicks=0, cameraPlayer=0; private boolean pendingStart=false;',
-          f' private void trace(String s) {{ CodexConsole.Print(0,0,"RCM: "+s); try {{ java.io.File current=new java.io.File({js("RCM/"+campaign.id+"/runtime_trace.log")}); new java.io.File(current.getParent()).mkdirs(); if(current.length()>1048576L) {{ java.io.File old=new java.io.File(current.getPath()+".1"); if(old.exists()&&!old.delete()) return; if(!current.renameTo(old)) return; }} java.io.PrintStream log=new java.io.PrintStream(new java.io.FileOutputStream(current.getPath(),true)); log.println(s); log.close(); }} catch(Exception error) {{ CodexConsole.PrintError("RCM trace: "+error); }} }}',
+          f' private void trace(String s) {{ CodexConsole.Print(0,0,"RCM: "+s); try {{ java.io.File current=new java.io.File({trace_path}); new java.io.File(current.getParent()).mkdirs(); if(current.length()>1048576L) {{ java.io.File old=new java.io.File(current.getPath()+".1"); if(old.exists()&&!old.delete()) return; if(!current.renameTo(old)) return; }} java.io.PrintStream log=new java.io.PrintStream(new java.io.FileOutputStream(current.getPath(),true)); log.println(s); log.close(); }} catch(Exception error) {{ CodexConsole.PrintError("RCM trace: "+error); }} }}',
           ' private boolean local(int g) { return g!=0 && (IsPlayerGuid(g)||IsActorGuid(g)||IsItemGuid(g)||IsPropGuid(g)||IsWeaponGuid(g)||IsArmorGuid(g)) && new CodexThing(g).GetLocationNum()==CodexSequence.GetCurrentLocation(); }',
           ' private int localPlayer(int g) { if(IsPlayerGuid(g)&&local(g)) return g; g=CodexPlayer.GetCurrentPlayer(); if(IsPlayerGuid(g)&&local(g)) return g; for(int i=0;i<CodexPlayer.GetNumMPPlayers();i++) { g=CodexPlayer.GetMPPlayer(i); if(IsPlayerGuid(g)&&local(g)) return g; } return 0; }',
           ' private boolean alive(int i) { return IsActorGuid(things[i]) && local(things[i]) && new CodexActor(things[i]).GetActorHealth()>0.0f; }',
@@ -136,8 +141,8 @@ def runtime(campaign,scene,p):
             elif k=='release_camera':statement='releaseCamera();'
             elif k=='play_sequence':
                 seq=next(x for x in scene['sequences'] if x['id']==v);shot={'medium':'MS','close':'CU','wide':'WS'}[seq['shot']]
-                statement=f'if(!alive({entities[seq["actor"]]}) || player==0 || active!=-1) return false; CodexCamera.SetupCutscene(player,things[{entities[seq["actor"]]}],0); CodexCamera.ShotType(CAMERA_SHOT_{shot}); CodexCamera.ShotAngle(CAMERA_ANGLE_{seq["angle"].upper()}); cameraPlayer=player; cameraTicks={math.ceil(seq["duration"]/.15)};'
-                if 'preset' in seq:
+                statement='' if seq['actor']=='Player' else f'if(!alive({entities[seq["actor"]]}) || player==0 || active!=-1) return false; CodexCamera.SetupCutscene(player,things[{entities[seq["actor"]]}],0); CodexCamera.ShotType(CAMERA_SHOT_{shot}); CodexCamera.ShotAngle(CAMERA_ANGLE_{seq["angle"].upper()}); cameraPlayer=player; cameraTicks={math.ceil(seq["duration"]/.15)};'
+                if 'preset' in seq and seq['actor']!='Player':
                     from .camera_presets import shot_arguments
                     args=shot_arguments(seq['preset'],seq['angle'])
                     statement=f'if(!alive({entities[seq["actor"]]}) || player==0 || active!=-1) return false; CodexCamera.SetupCutscene(player,things[{entities[seq["actor"]]}],player); CodexCamera.SetShot(player,{args},0,0.3f); cameraPlayer=player; cameraTicks={math.ceil(seq["duration"]/.15)};'

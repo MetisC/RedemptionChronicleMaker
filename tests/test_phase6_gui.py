@@ -10,7 +10,7 @@ from rcm.service import Backend
 from rcm.campaign_document import CampaignDocument
 from rcm.editor.window import MainWindow
 from rcm.editor import package_panel
-from phase6_fixtures import system_source
+from campaign_fixture_helpers import system_source
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -46,6 +46,8 @@ class Phase6GuiTests(unittest.TestCase):
             win=MainWindow(self.backend);self.assertIsNone(win.spatial.viewport);win.close()
         finally:self.backend.safe_mode=False
     def test_export_menu_and_diagnostics_available(self):
-        titles=[a.text() for a in self.win.menuBar().actions()];self.assertIn('Paquetes',titles)
+        titles=[a.text() for a in self.win.menuBar().actions()];self.assertIn('Herramientas',titles)
+        self.assertEqual(self.win.package_menu.title(),'Paquetes')
+        self.assertIn(self.win.package_menu.menuAction(),self.win.tools_menu.actions())
         from rcm.diagnostics import diagnostic_report
         report=diagnostic_report(self.backend.ws);self.assertTrue(Path(report['report']).exists());self.assertFalse(report['native_engine_test'])

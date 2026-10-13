@@ -1,2 +1,2 @@
-"""Redemption Chronicle Maker: independent authoring backend and optional editor."""
-__version__ = "0.9.12"
+"""Independent Redemption authoring backend and desktop editor."""
+__version__ = "1.0.0-rc2"

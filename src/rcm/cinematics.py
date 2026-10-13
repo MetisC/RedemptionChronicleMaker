@@ -34,13 +34,15 @@ def validate_sequence(row,actors,paths,resources,modern,objects=None):
     if not 1<=len(steps)<=64:raise ValueError('Timeline requiere 1..64 planos')
     previous=-1
     for step in steps:
-        mapping(step,{'at','actor','preset','angle','transition','focus'},{'at','actor','preset'},'plano')
+        mapping(step,{'at','actor','preset','angle','transition','focus','reference'},{'at','actor','preset'},'plano')
+        if 'reference' in step and step['reference'] not in actors:raise ValueError('Referencia de cámara ausente')
+        if step['actor']=='Player' and 'focus' in step:raise ValueError('Player y foco de objeto son alternativas')
         if 'focus' in step and step['focus'] not in (objects or {}):raise ValueError('Objeto enfocado ausente')
         at=step['at']
         if type(at) not in (int,float) or not math.isfinite(at) or not previous<at<row['duration']:raise ValueError('Planos en tiempos crecientes anteriores al final')
         if previous==-1 and at!=0:raise ValueError('El primer plano comienza en 0')
         previous=at
-        if step['actor'] not in actors or step['preset'] not in PRESETS or step.get('angle','medium') not in ('low','medium','high'):raise ValueError('Actor/preset/ángulo de plano inválido')
+        if step['actor'] not in (*actors,'Player') or step['preset'] not in PRESETS or step.get('angle','medium') not in ('low','medium','high'):raise ValueError('Actor/preset/ángulo de plano inválido')
         transition=step.get('transition',.3)
         if type(transition) not in (int,float) or not math.isfinite(transition) or not 0<=transition<=10:raise ValueError('Transición de cámara 0..10 segundos')
 
@@ -53,7 +55,9 @@ def extend_runtime(java,scene,project):
     code=[' private int cinema=-1, cinemaAge=0, cinemaStep=-1, cinemaActor=-1; private boolean cinemaMoving=false, cinemaRestored=false;',
           ' private boolean beginCinema(int index) { if(active!=-1 || player==0) return false; releaseCamera(); BeginCutscene(player,0); AIOff(); cinema=index; cinemaAge=0; cinemaStep=-1; cameraPlayer=player; cameraTicks=0; switch(index) {']
     for i,row in enumerate(rows):
-        code.append(f' case {i}: if(!alive({entities[row["actor"]]})) {{ stopCinema(); return false; }}')
+        target='player' if row['actor']=='Player' else f'things[{entities[row["actor"]]}]'
+        guard='!IsPlayerGuid(player)' if row['actor']=='Player' else f'!alive({entities[row["actor"]]})'
+        code.append(f' case {i}: if({guard}) {{ stopCinema(); return false; }}')
         if 'prop_motion' in row:
             index=entities[row['prop_motion']['object']]
             code.append(f' spawn({index}); if(!local(things[{index}])) {{ stopCinema(); return false; }}')
@@ -62,7 +66,9 @@ def extend_runtime(java,scene,project):
             code.append(f' if(!startPatrol({route})) {{ stopCinema(); return false; }} cinemaActor=patrolActor({route}); cinemaMoving=true;')
         if 'camera_path' in row:
             code.append(f' if(!CodexCamera.PlayPath(player,GetGUID(),{js(row["camera_path"]+".ncp")},{float(row.get("path_speed",1))}f)) {{ stopCinema(); return false; }}')
-        else:code.append(f' CodexCamera.SetupCutscene(player,things[{entities[row["actor"]]}],player);')
+        else:
+            reference=f'things[{entities[row["reference"]]}]' if row.get('reference') else ('0' if row['actor']=='Player' else 'player')
+            code.append(f' CodexCamera.SetupCutscene(player,{target},{reference});')
         # The triggering poll is t=0, not the first elapsed 150 ms interval.
         code.append(f' cameraTicks={math.ceil(row["duration"]/.15)+1}; pollCinema(); cinemaAge=0; return true;')
     code+=[' } return false; }',
@@ -79,6 +85,12 @@ def extend_runtime(java,scene,project):
         if 'camera_path' not in row:
             steps=row.get('steps',[dict(at=0,actor=row['actor'],preset=row.get('preset','medium'),angle=row['angle'])])
             for n,step in enumerate(steps):
+                if step['actor']=='Player':
+                    reference=step.get('reference',row.get('reference'))
+                    second=f'things[{entities[reference]}]' if reference else '0'
+                    guard=f'!alive({entities[reference]}) || ' if reference else ''
+                    code.append(f' if(cinemaStep<{n} && cinemaAge>={math.ceil(step["at"]/.15)}) {{ if({guard}!IsPlayerGuid(player) || !local(player)) {{ releaseCamera(); return; }} CodexCamera.SetupCutscene(cameraPlayer,player,{second}); CodexCamera.SetShot(cameraPlayer,{shot_arguments(step["preset"],step.get("angle","medium"))},0,{float(step.get("transition",.3))}f); cinemaStep={n}; trace("CUTSCENE_SHOT {row["id"]}/{n} Player"); }}')
+                    continue
                 focus=entities[step.get('focus',step['actor'])]
                 second=f'things[{entities[step["actor"]]}]' if 'focus' in step else 'player'
                 code.append(f' if(cinemaStep<{n} && cinemaAge>={math.ceil(step["at"]/.15)}) {{ if(!alive({entities[step["actor"]]}) || !local(things[{focus}])) {{ releaseCamera(); return; }} CodexCamera.SetupCutscene(cameraPlayer,things[{focus}],{second}); CodexCamera.SetShot(cameraPlayer,{shot_arguments(step["preset"],step.get("angle","medium"))},0,{float(step.get("transition",.3))}f); cinemaStep={n}; trace("CUTSCENE_SHOT {row["id"]}/{n}"); }}')
@@ -108,4 +120,14 @@ def extend_runtime(java,scene,project):
     replace('public void save(int capture) {','public void save(int capture) { CodexSequence.SaveBoolean(cinema>=0); CodexSequence.SaveInt(cinemaActor);')
     replace('public void restore(int capture) {','public void restore(int capture) { cinemaRestored=CodexSequence.RestoreBoolean(); cinemaActor=CodexSequence.RestoreInt(); cinema=-1;')
     replace('player=localPlayer(0); if(player!=0) CodexCamera.Release(player);', 'player=localPlayer(0); if(cinemaRestored) { if(player!=0) EndCutscene(player,0); AIOn(); if(cinemaActor>=0) stopPatrol(cinemaActor); cinemaActor=-1; cinemaRestored=false; trace("RESTORE_CINEMA_CANCELLED"); } if(player!=0) CodexCamera.Release(player);')
+    # Opt-in record for new player films. The established NPC film contract is
+    # unchanged. Interrupted Player films replay after the saved pose restores;
+    # once event checkpoints and sequence_ended still deliver progress once.
+    player_films=[i for i,r in enumerate(rows) if r['actor']=='Player']
+    if player_films:
+        code.append(' private int cinemaResume=-1;')
+        replace('public void save(int capture) {','public void save(int capture) { CodexSequence.SaveInt(cinemaResume>=0?cinemaResume:cinema);')
+        replace('public void restore(int capture) {','public void restore(int capture) { cinemaResume=CodexSequence.RestoreInt();')
+        cases=' '.join(f'case {i}: beginCinema(resume); break;' for i in player_films)
+        replace('ticks++; pollCinema();', 'if(cinemaResume>=0 && !restorePosePending && player!=0) { int resume=cinemaResume; cinemaResume=-1; switch(resume) { '+cases+' } } ticks++; pollCinema();')
     return java[:-2]+'\n'+'\n'.join(code)+'\n}\n'
