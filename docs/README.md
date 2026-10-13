@@ -15,7 +15,7 @@ Para desarrollar y comprobar el producto:
 
 - [Arquitectura](ARCHITECTURE.md), [formatos](FORMAT_NOTES.md) y [evidencia del motor](ENGINE_NOTES.md).
 - [Escenas y entorno](SCENE_MODEL.md), [plantillas NOT](NOT_FORMAT.md) y [paquetes](PACKAGES.md).
-- [Pruebas](TESTING.md) y [criterio de calidad](CONTRIBUTING.md).
+- [Pruebas](TESTING.md), [criterio de calidad](CONTRIBUTING.md) y [publicación automática](RELEASING.md).
 - [Estado actual del producto](FINAL_PRODUCT_REPORT.md), [límites](KNOWN_ISSUES.md) y [casos manuales pendientes](MANUAL_RUNTIME_CHECKLIST.md).
 - [Dependencias y avisos](DEPENDENCIES_LICENSES.md); sus textos completos están en licenses/portable.
 
