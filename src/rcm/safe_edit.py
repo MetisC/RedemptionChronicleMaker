@@ -12,7 +12,7 @@ def delete_candidate(doc, path, backend, remove_spawns=False):
         from .spatial.relations import graph
         links = graph(root)
     def inside(p):return tuple(p[:len(path)]) == path
-    incoming = [link for link in links if inside(link.target) and not inside(link.source)]
+    incoming = [link for link in links if inside(link.target) and not inside(link.source) and link.label!='authoring recipe']
     # A generated spawn is a use of the entity being deleted, not an unrelated
     # story dependency. Remove those exact actions in the same undo transaction.
     spawn_actions = set()

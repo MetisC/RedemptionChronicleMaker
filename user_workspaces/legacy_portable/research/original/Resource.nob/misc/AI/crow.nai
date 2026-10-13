@@ -1,0 +1,14 @@
+; this is a pretty lame AI file format, but it works...
+
+attackType	5
+attackFlags	0x01
+attackRate	0.5
+moveType	4
+moveFlags	0x20
+moveDist	50.0
+moveRate	2.0
+behaviorClass	3
+interestNum	9
+wanderRadius	200.0
+
+

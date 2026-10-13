@@ -1,0 +1,76 @@
+// ==============================================
+//
+// Nihilistic Player Character file
+//
+//
+// Wilhem Modern
+//
+//
+// [YB] 04/15/99
+//
+// ==============================================
+
+// Note: bloodpool MUST come before blood!!!
+
+
+// GENERAL
+name            Wilhem
+clan            Brujah
+cash            5000
+totalexperience 160000
+
+
+// STATS        min     max     current
+maxhealth       200
+health          200          
+strength        0       100     65
+dexterity       0       100     70
+stamina         0       100     75
+perception      0       100     60
+intelligence    0       100     65
+wits            0       100     65
+bloodpool       0       1000    170
+blood           0       1000    170
+humanity        0       100     40
+charisma        0       100     65
+manipulation    0       100     65
+appearance      0       100     70
+frenzy          0       100     0
+faith           0       100     25
+generation      0       100     10
+frenzyrating    0       100     65
+bloodrating     0       100     1.0
+
+
+
+// DISCIPLINE   name                    level           quick
+discipline      Feed                    3              -1
+discipline      BloodHealing            3               0
+discipline      BloodStrength           3              -1
+discipline      BloodDexterity          3              -1
+discipline      BloodStamina            3              -1
+discipline      Awaken                  2              -1
+discipline      Awe                     3              -1
+discipline      DreadGaze               2              -1
+discipline      Entrancement            2               1
+discipline      Potence                 3               2
+discipline      Celerity                2               3
+discipline      EyesOfTheBeast          2              -1
+discipline      FeralClaws              2               4
+discipline      EarthMeld               2              -1
+discipline      ShapeOfTheBeast         2              -1
+discipline      MistForm                2              -1
+discipline      CloakOfShadows          3               5
+discipline      Mask1000Faces           3              -1
+discipline      CloakTheGathering       2              -1
+discipline      Command                 2              -1
+discipline      Mesmerize               2              -1
+
+// ITEM         template        (main | belt | equip)
+item				pistol				main
+item				submachineGun		main
+item				plasmabag			main
+item				plasmabag			main
+item				plasmabag			main
+item				plasmabag			main
+

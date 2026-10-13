@@ -16,6 +16,9 @@ class Document:
         self.data = data
         self.path = workspace.output(path) if path else None
         self._saved = source_text(data) if path else None
+        from .project_safety import disk_hash
+        self._disk_hash = disk_hash(self.path)
+        self._disk_path = self.path
 
     @property
     def modified(self):
@@ -31,6 +34,7 @@ class Document:
                 "level": {"source": ""}, "state": {"flags": {}}, "actors": [], "conversations": [], "events": []}
         doc = cls(ws, data)
         doc.path = path
+        doc._expects_new_file=True
         return doc
 
     @classmethod
@@ -66,16 +70,21 @@ class Document:
             if Path(tmp).exists():
                 Path(tmp).unlink()
 
-    def save(self, path=None):
+    def save(self, path=None, force=False):
         target = self.ws.output(path or self.path) if (path or self.path) else None
         if target is None:
             raise ValueError("Elige un archivo de proyecto antes de guardar.")
         content = source_text(self.data)
+        from .project_safety import before_save,disk_hash
+        before_save(self,target,content,force)
         if target.is_file():
             self._atomic_write(target.with_name(target.name + '.backup'), target.read_text(encoding='utf8'))
         self._atomic_write(target, content)
         old_recovery = self.recovery_path
         self.path, self._saved = target, content
+        self._expects_new_file=False
+        self._disk_hash = disk_hash(target)
+        self._disk_path = target
         for recovery in [old_recovery, self.recovery_path]:
             if recovery and recovery.exists():
                 self.ws.output(recovery).unlink()

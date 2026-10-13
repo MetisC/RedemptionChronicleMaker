@@ -1,0 +1,32 @@
+#########################################################################################
+#
+# DISCIPLINE GROUPS DEFINITIONS
+#
+#
+#
+#
+#########################################################################################
+
+# name                          tab icon                        xpCost          flags
+
+DGRP_Common                     TABcommonIcon.tga               0               0x0
+DGRP_Animalism                  TABanimalismIcon.tga            1000            0x0
+DGRP_Auspex                     TABauspexIcon.tga               1000            0x0
+DGRP_Celerity                   TABcelerityIcon.tga             1000            0x0
+DGRP_Obfuscate                  TABobfuscateIcon.tga            1000            0x0
+DGRP_Dementation                TABdementationIcon.tga          1000            0x0
+DGRP_Dominate                   TABdominateIcon.tga             1000            0x0
+DGRP_Fortitude                  TABfortitudeIcon.tga            1000            0x0
+DGRP_Potence                    TABpotenceIcon.tga              1000            0x0
+DGRP_Protean                    TABproteanIcon.tga              1000            0x0
+DGRP_Presence                   TABpresenceIcon.tga             1000            0x0
+DGRP_Mortis                     TABmortisIcon.tga               1000            0x1
+DGRP_Thau_BloodPath             TABthau_BloodPathIcon.tga       1000            0x1
+DGRP_Thau_LureOfFlames          TABthau_LureFlamesIcon.tga      1000            0x1
+DGRP_Thau_HandsOfDestruction    TABthau_HandsDestructIcon.tga   1000            0x1
+DGRP_Thau_Rituals               TABthau_RitualsIcon.tga         1000            0x1
+DGRP_Numina                     TABnuminaIcon.tga               1000            0x1
+DGRP_Faith                      TABfaithIcon.tga                1000            0x1
+DGRP_Obtenebration              TABobtenebrationIcon.tga        1000            0x1
+DGRP_Serpentis                  TABserpentisIcon.tga            1000            0x1
+

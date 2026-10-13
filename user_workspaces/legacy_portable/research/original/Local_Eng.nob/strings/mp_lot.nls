@@ -1,0 +1,235 @@
+// ****************************************************************************
+//
+// MP_LOT.NLS
+//
+// Leaves of Three-specific string table
+//
+// ****************************************************************************
+
+
+// ............................................................................ 
+// Actors
+// ............................................................................ 
+ARIANNA                         Arianna
+BILL                            Bill Campbell
+DOMINIC                         Dominic
+JOHNSTON                        Johnston
+HEAVYG                          HeavyG
+TRACI                           Traci
+LUCINDE                         Lucinde
+LUKE                            Luke
+MICHAELA                        Michaela
+MIRABILIS                       Mirabilis
+MRSCHRECK                       Mr. Schreck
+SHRECK	                       Mr. Schreck
+SMASHFACE	                    Smashface
+
+// ............................................................................ 
+// Quests
+// ............................................................................ 
+
+Q_GREETPRIMOGEN_S               Greet the Primogen in the Barclay Lobby.
+Q_GREETPRIMOGEN_L               After visiting your haven, return to the Barclay South Lobby to meet Bill and discuss the arrival of the Primogen.
+Q_RETURNTOHAVEN_S               Return to your haven.
+Q_RETURNTOHAVEN_L               Return to your hotel suite haven in the Barclay South to rest.
+Q_FINDDOMINIC_S                 Find Dominic.
+Q_FINDDOMINIC_L                 Locate Dominic's Slum Room in New York's Downtown.
+Q_BLOODPACT_S                   Find Blood Pact.
+Q_BLOODPACT_L                   Locate and retrieve the Blood Pact from the bowels of the warehouse.
+Q_INVADEWAREHOUSE_S             Invade Dominic's Warehouse.
+Q_INVADEWAREHOUSE_L             Invade Dominic's Warehouse in New York's Downtown.
+Q_SEWERPASSAGE_S                Enter the Barclay Lobby from the Sewers.
+Q_SEWERPASSAGE_L                Use the Sewers to find the secret entrance to the Barclay Lobby.
+
+
+// ............................................................................ 
+// Level Names
+// ............................................................................ 
+BARCLAYLOBBY					The Barclay South Lobby
+NEWYORKDOCKS					Downtown New York (Docks Area)
+NEWYORKUPTOWN					Uptown New York
+FACTORY1						Factory Level 1
+FACTORY2						Factory Level 2
+FACTORY3						Factory Level 3
+FACTORY4						Factory Level 4
+SEWERS1							Sewers Level 1
+SEWERS2							Sewers Level 2
+SEWERS3							Sewers Level 3
+SEWERS4							Sewers Level 4
+WAREHOUSE1						Warehouse Level 1
+WAREHOUSE2						Warehouse Level 2
+WAREHOUSE3						Warehouse Level 3
+GUNHAVEN						Gun Haven
+NEWMOON							The New Moon
+APARTMENT						Abandoned Apartment
+SLUMROOM						Slum Room
+SUITEHAVEN						Haven Suite at the Barclay South
+
+// ............................................................................ 
+// Scenes
+// ............................................................................ 
+
+DOCK_LOT_1_1S					Downtown New York (Docks Area)
+DOCK_LOT_1_1L                   Scene 1.1 - Downtown New York (Docks Area)
+UTWN_LOT_1_1S					Uptown New York
+UTWN_LOT_1_1L					Scene 1.1 - Uptown New York 
+GUNH_LOT_1_1S					Gun Haven
+GUNH_LOT_1_1L					Scene 1.1 - Gun Haven
+NEWM_LOT_1_1S					The New Moon
+NEWM_LOT_1_1L					Scene 1.1 - The New Moon
+LOBY_LOT_1_1S					The Barclay South Lobby
+LOBY_LOT_1_1L					Scene 1.1 - The Barclay South Lobby
+SUIT_LOT_1_1S					Haven Suite
+SUIT_LOT_1_1L					Scene 1.1 - Haven Suite
+LOBY_LOT_2_1S					The Barclay South Lobby 
+LOBY_LOT_2_1L                   Scene 2.1 - The Barclay South Lobby
+LOBY_LOT_3_1S                   The Barclay South Lobby
+LOBY_LOT_3_1L                   Scene 3.1 - The Barclay South Lobby
+LOBY_LOT_5_1S                   The Barclay South Lobby
+LOBY_LOT_5_1L                   Scene 5.1 - The Barclay South Lobby
+FAC1_LOT_5_1S					Factory Level 1
+FAC1_LOT_5_1L                   Scene 5.1 - Factory Level 1
+FAC2_LOT_5_1S                   Factory Level 2
+FAC2_LOT_5_1L                   Scene 5.1 - Factory Level 2
+FAC3_LOT_5_1S                   Factory Level 3
+FAC3_LOT_5_1L                   Scene 5.1 - Factory Level 3
+FAC4_LOT_5_1S                   Factory Level 4
+FAC4_LOT_5_1L                   Scene 5.1 - Factory Level 4
+SLUM_LOT_7_1S					Slum Room
+SLUM_LOT_7_1L                   Scene 7.1 - Slum Room
+DEVN_LOT_8_1S					Abandoned Apartment
+DEVN_LOT_8_1L                   Scene 8.1 - Abandoned Apartment
+UTWN_LOT_9_1S					Uptown New York  
+UTWN_LOT_9_1L                   Scene 9.1 - Uptown New York
+WAR1_LOT_11_1S					Warehouse Level 1
+WAR1_LOT_11_1L                  Scene 11.1 - Warehouse Level 1
+WAR2_LOT_11_1S                  Warehouse Level 2
+WAR2_LOT_11_1L                  Scene 11.1 - Warehouse Level 2
+WAR3_LOT_11_1S                  Warehouse Level 3
+WAR3_LOT_11_1L                  Scene 11.1 - Warehouse Level 3
+LOBY_LOT_12_1S					The Barclay South Lobby
+LOBY_LOT_12_1L                  Scene 12.1 - The Barclay South Lobby
+SEW1_LOT_12_1S					Sewers Level 1
+SEW1_LOT_12_1L                  Scene 12.1 - Sewers Level 1
+SEW2_LOT_12_1S                  Sewers Level 2
+SEW2_LOT_12_1L                  Scene 12.1 - Sewers Level 2
+SEW3_LOT_12_1S                  Sewers Level 3
+SEW3_LOT_12_1L                  Scene 12.1 - Sewers Level 3
+SEW4_LOT_12_1S                  Sewers Level 4
+SEW4_LOT_12_1L                  Scene 12.1 - Sewers Level 4
+
+// ............................................................................ 
+// ST Scene advancement labels
+// ............................................................................ 
+
+LOT_SCENE_1_1					A Summons
+LOT_SCENE_2_1 					Arrivals
+LOT_SCENE_3_1 					The Conclave
+LOT_SCENE_4_1 					The Hit
+LOT_SCENE_5_1 					Scapegoats
+LOT_SCENE_6_1 					Escape
+LOT_SCENE_7_1 					Blood Contract
+LOT_SCENE_8_1 					Three Sisters
+LOT_SCENE_9_1 					Confession
+LOT_SCENE_10_1 				Devil's Bargain
+LOT_SCENE_11_1 				Mad Stronghold
+LOT_SCENE_12_1 				Secret Passage
+LOT_SCENE_13_1 				Evidence
+
+// ............................................................................ 
+// Map labels
+// ............................................................................ 
+
+mapNYDocksMain       Downtown New York (Docks Area)
+mapGiovanniWarehouse Warehouse
+mapSewers            NYC Sewers
+mapDevNulls          Abandoned Apartment
+mapGunHaven          Gun Haven
+mapNYMidtownMain     Uptown New York
+mapCathedralOfFlesh  Cathedral
+mapOrsisFactory      Factory
+mapBarclaySouth      The Barclay South
+mapNewMoon           The New Moon
+
+// ............................................................................ 
+// Description ID for Doors/Exits
+// ............................................................................ 
+
+DOCK_EXIT_DESC_1        Gun Haven
+DOCK_EXIT_DESC_1_L      Gun Haven (Locked)
+DOCK_EXIT_DESC_2        Sewers
+DOCK_EXIT_DESC_2_L      Sewers (Locked)
+DOCK_EXIT_DESC_3        New York Uptown
+DOCK_EXIT_DESC_3_L      New York Uptown (Locked)
+DOCK_EXIT_DESC_4        Abandoned Apartment
+DOCK_EXIT_DESC_4_L      Abandoned Apartment (Locked)
+DOCK_EXIT_DESC_5        Warehouse
+DOCK_EXIT_DESC_5_L      Warehouse (Locked)
+DOCK_EXIT_DESC_6        Slum Room
+DOCK_EXIT_DESC_6_L      Slum Room (Locked)
+                        
+UTWN_EXIT_DESC_0	      Cab to New York Docks
+UTWN_EXIT_DESC_0_L	   Cab to New York Docks (Locked)
+UTWN_EXIT_DESC_2        Lobby of Barclay South
+UTWN_EXIT_DESC_2_L      Lobby of Barclay South (Locked)
+UTWN_EXIT_DESC_3        Orsi's Factory
+UTWN_EXIT_DESC_3_L      Orsi's Factory (Locked)
+UTWN_EXIT_DESC_4        New Moon
+UTWN_EXIT_DESC_4_L      New Moon (Locked)
+                        
+FAC1_EXIT_DESC_0	   Factory Sublevel 1
+FAC1_EXIT_DESC_0_L	Factory Sublevel 1 (Locked)
+FAC1_EXIT_DESC_1	   Factory Sublevel 2
+FAC1_EXIT_DESC_1_L	Factory Sublevel 2 (Locked)
+FAC2_EXIT_DESC_0	   Factory Sublevel 2
+FAC2_EXIT_DESC_0_L	Factory Sublevel 2 (Locked)
+FAC2_EXIT_DESC_1	   Factory Sublevel 3
+FAC2_EXIT_DESC_1_L	Factory Sublevel 3 (Locked)
+FAC3_EXIT_DESC_0	   Factory Sublevel 3
+FAC3_EXIT_DESC_0_L	Factory Sublevel 3 (Locked)
+FAC3_EXIT_DESC_1	   Factory Sublevel 4
+FAC3_EXIT_DESC_1_L	Factory Sublevel 4 (Locked)
+
+FAC4_EXIT_DESC_0	   New York Uptown
+FAC4_EXIT_DESC_0_L	New York Uptown (Locked)
+FAC4_EXIT_DESC_1	   To Factory Level 1
+FAC4_EXIT_DESC_1_L	To Factory Level 1 (Locked)
+FAC4_EXIT_DESC_3	   To Factory Level 2
+FAC4_EXIT_DESC_3_L	To Factory Level 2 (Locked)
+FAC4_EXIT_DESC_5	   To Factory Level 3
+FAC4_EXIT_DESC_5_L	To Factory Level 3 (Locked)
+
+LOBY_EXIT_DESC_1        New York Uptown
+LOBY_EXIT_DESC_1_L      New York Uptown (Locked)
+LOBY_EXIT_DESC_3        Sewers
+LOBY_EXIT_DESC_3_L      Sewers (Locked)
+LOBY_EXIT_DESC_4        Suite Haven
+LOBY_EXIT_DESC_4_L      Suite Haven (Locked)
+                        
+SEW1_EXIT_DESC_0        New York Docks
+SEW1_EXIT_DESC_1	      Down to New York Sewers 2
+SEW2_EXIT_DESC_0	      Up to New York Sewers 1
+SEW2_EXIT_DESC_1	      Down to New York Sewers 3 
+SEW3_EXIT_DESC_0	      Up to New York Sewers 2
+SEW3_EXIT_DESC_1	      Down to New York Sewers 4 
+SEW4_EXIT_DESC_0	      Up to New York Sewers 3                        
+SEW4_EXIT_DESC_1        Lobby of Barclay South
+                        
+WAR1_EXIT_DESC_1        New York Docks
+WAR1_EXIT_DESC_2	      Down to Warehouse 2
+WAR2_EXIT_DESC_1	      Up to Warehouse 1
+WAR2_EXIT_DESC_2	      Down to Warehouse 3
+WAR3_EXIT_DESC_1	      Up to Warehouse 2
+WAR3_EXIT_DESC_2	      Up to Warehouse 1
+
+GUNH_EXIT_DESC_1        New York Docks
+                        
+NEWM_EXIT_DESC_1        New York Uptown
+                        
+DEVN_EXIT_DESC_1        New York Docks
+                        
+SLUM_EXIT_DESC_1        New York Docks
+SLUM_EXIT_DESC_1_L      New York Docks (Locked)
+                        
+SUIT_EXIT_DESC_1        Lobby of Barclay South
+SUIT_EXIT_DESC_1_L      Lobby of Barclay South (Locked)

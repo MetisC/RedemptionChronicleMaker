@@ -1,0 +1,182 @@
+// *********************************************************************************
+//
+// 18_1_Ecat.nco (conversation file)
+//
+// Copyright (c) 1999-2000 Nihilistic Software, Inc.
+//
+// *********************************************************************************
+
+
+CONVERSATION: 18_1_Ecat 0
+
+EVENT: ev_0
+
+	LINE:         Christof_18_1_631            Christof
+	LINE:         Ecat_18_1_632                Ecat
+
+	ANSWERGOTO:   Christof_18_1_633            ev_understand
+	ANSWERGOTO:   Christof_18_1_634            ev_but1
+
+
+EVENT: ev_but1
+
+	LINE:         Ecat_18_1_635                Ecat
+
+	ANSWERGOTO:   Christof_18_1_636            ev_understand
+	ANSWERGOTO:   Christof_18_1_637            ev_but2
+
+
+EVENT: ev_but2
+
+	LINE:         Ecat_18_1_638                Ecat
+
+	ANSWERGOTO:   Christof_18_1_639            ev_reject
+	ANSWERGOTO:   Christof_18_1_640            ev_but3
+	ANSWERGOTO:   Christof_18_1_641            ev_understand
+
+
+EVENT: ev_but3
+
+	LINE:         Ecat_18_1_642                Ecat
+
+	ANSWERGOTO:   Christof_18_1_643            ev_reject
+	ANSWERGOTO:   Christof_18_1_644            ev_brat
+	ANSWERGOTO:   Christof_18_1_645            ev_understand
+
+
+EVENT: ev_understand
+
+	LINE:         Ecat_18_1_646                Ecat
+
+	ANSWERGOTO:   Christof_18_1_647            ev_deny
+	ANSWERGOTO:   Christof_18_1_648            ev_brat
+
+
+EVENT: ev_brat
+
+	LINE:         Ecat_18_1_649                Ecat
+
+	ANSWERGOTO:   Christof_18_1_650            ev_deny
+	ANSWERGOTO:   Christof_18_1_651            ev_gen
+
+
+EVENT: ev_gen
+
+	LINE:         Ecat_18_1_652                Ecat
+
+	ANSWERGOTO:   Christof_18_1_653            ev_deny
+	ANSWERGOTO:   Christof_18_1_654            ev_path
+
+
+EVENT: ev_path
+
+	LINE:         Ecat_18_1_655                Ecat
+
+	ANSWERGOTO:   Christof_18_1_656            ev_pit
+	ANSWERGOTO:   Christof_18_1_657            ev_deny
+
+
+EVENT: ev_pit
+
+	LINE:         Ecat_18_1_658                Ecat
+
+	ANSWERGOTO:   Christof_18_1_659            ev_heart
+	ANSWERGOTO:   Christof_18_1_660            ev_deny
+
+
+EVENT: ev_deny
+
+	LINE:         Ecat_18_1_661                Ecat
+	LINE:         Wilhem_18_1_662              Wilhem
+        JUMP:                                      ev_derail
+
+
+EVENT: ev_reject
+
+	LINE:         Ecat_18_1_663                Ecat
+	LINE:         Wilhem_18_1_664              Wilhem
+	JUMP:                                      ev_derail
+
+
+EVENT: ev_heart
+
+	LINE:         Ecat_18_1_665                Ecat
+	LINE:         Wilhem_18_1_666              Wilhem
+
+	ANSWERGOTO:   Christof_18_1_667            ev_friend
+	ANSWERGOTO:   Christof_18_1_668            ev_hogtie
+
+
+EVENT: ev_hogtie
+
+	LINE:         Wilhem_18_1_669              Wilhem
+	LINE:         Christof_18_1_670            Christof
+
+
+EVENT: ev_friend
+
+	LINE:         Wilhem_18_1_671              Wilhem
+	LINE:         Christof_18_1_672            Christof
+	LINE:         Ecat_18_1_673                Ecat
+	LINE:         Erik_18_1_674                Erik
+	LINE:         Serena_18_1_675              Serena
+	LINE:         Ecat_18_1_676                Ecat
+	LINE:         Christof_18_1_677            Christof
+
+
+EVENT: ev_derail
+
+	LINE:         Ecat_18_1_678                Ecat
+
+
+// *********************************************************************************
+
+// Christof_18_1_631           I must take my leave of this city, I am sure the Tremere hold Anezka in their Vienna chantry. I can no longer continue here while she remains in danger.
+// Ecat_18_1_632               Ardan was a consummate deceiver. The Tremere have gathered fearsome power in Vienna, and we are not ready for bloody battle with the Usurpers! They invited thee to play a sinister game. They know that one day we will have to attack their
+// Christof_18_1_633           I understand.
+// Christof_18_1_634           But Anezka will die.
+// Ecat_18_1_635               Many have died in the Elder wars. And many more will die 'ere Gehenna comes. But fewer will die if we bide our time, and heed not the trickery of the Tremere.
+// Christof_18_1_636           That is wise.
+// Christof_18_1_637           But I cannot simply abandon Anezka to those fiends.
+// Ecat_18_1_638               Thou canst and thou must! Thy claim upon her is born in weak-kneed mortal sentiment. Release such frailties, and spare thyself further wretchedness. We cut our ties to mortals when first we receive the blessing of Allfather Caine. Thou hast
+// Christof_18_1_641           I see.
+// Christof_18_1_639           Yes! I reject her. Nothing ties me to the life I once had.
+// Christof_18_1_640           I thought we Promethians respect the mortals.
+// Ecat_18_1_642               For a bumpkin of a holy warrior, thou dost reason like a Greek sage. Aye, we respect mortal men. But we do not seek kinship with the current breed. For lo these many generations, mortals have been cowed by the cleverness of the Inconnu,
+// Christof_18_1_644           Anezka is as noble a woman as any in Carthage. We must rescue her.
+// Christof_18_1_645           I understand.
+// Christof_18_1_643           Aye. Anezka is a mere mortal. I will not spill my blood for her.
+// Ecat_18_1_646               Very well. Let us hear no more of the matter.
+// Christof_18_1_647           I obey. I will no longer seek to save her.
+// Christof_18_1_648           I understand thy wisdom. But still I wish her rescued.
+// Ecat_18_1_649               Brazen brat! Thou hast earned no such right! Even faithful Wilhem would quake in fear before making such a selfish request.
+// Christof_18_1_650           Very well. I withdraw it. I will not seek to rescue her.
+// Christof_18_1_651           Perhaps. But I make it all the same.
+// Ecat_18_1_652               Mayhap in a generation or two shalt thou be deemed worthy of making such a request.
+// Christof_18_1_654           In a generation or two she will die an old woman even if she survives the Tzimisce.
+// Christof_18_1_653           Forgive me. I pay thou one day find me worthy of such requests.
+// Ecat_18_1_655               Then let her die! She chose her path, not thee. She chose to enter the world of Vampires. Thou canst not save the foolhardy from their own reckless ways. Remember, like Caine, we are not our brother's keepers.
+// Christof_18_1_656           I dragged her down in this vile pit, and I will draw her back again.
+// Christof_18_1_657           True. She did not have to leave the convent. I cannot save her.
+// Ecat_18_1_658               I forbid it! Tread lightly, lest thou arouse my anger and provoke my powers upon thee!
+// Christof_18_1_659           Do as thou must unto me, but I must rescue her. I know not the fate of my soul,  only the state of my heart.
+// Christof_18_1_660           Very well. I submit to thy rule.
+// Ecat_18_1_665               Very well. I see thy heart is fixed upon this course, and thou will not be denied. Go if thou wilt. Shouldst thou survive the Tremere trap, remember well this freedom I have bestowed upon thee. But I shall not attend this fool's errand. Only a
+// Ecat_18_1_661               Thou hast chosen aright.
+// Ecat_18_1_663               Thou hast chosen aright.
+// Wilhem_18_1_666             Then call me a moon-mad Childe of Malkav, for I shall go.
+// Wilhem_18_1_664             So be it, Judas. Thou hast betrayed her that thou lovest.
+// Wilhem_18_1_662             I do re-christen thee Peter, for, like the apostle, thou hast denied her that thou lovest.
+// Christof_18_1_668           I forbid it. This is my errand.
+// Christof_18_1_667           Wilhem! Thou art true a friend as any in God's kingdom!
+// Wilhem_18_1_669             Then I shall tie thee like a hog and carry thee to the Tremere lair in Vienna. . I too shall not be denied.
+// Christof_18_1_670           Thou art a true friend.
+// Wilhem_18_1_671             A true fool. Mayhap I shall yet see this God of whom thou art overmuch fond.
+// Christof_18_1_672           Or mayhap we shall tear the foul halls of the Tremere down around their scabrous ears, and bring the black heart of their sire to Ecaterina to wear as a charm.
+// Ecat_18_1_673               Wilhem, thou art mad! Two Cainites cannot survive Die Haus de Hexe!
+// Erik_18_1_674               Not two. Three shall go. Though I have no wish to see the inside of another Tremere Chantry, I shall discharge my life boon by accompanying the brave Brujah who pried open the jaws of the Tremere trap and released poor Erik.
+// Serena_18_1_675             Where Christof goes, Serena goes. Mayhap four shall prevail where one cannot.
+// Ecat_18_1_676               Mayhap I shall have to replace four Promethians!
+// Christof_18_1_677           Come, we leave for Vienna.
+// Ecat_18_1_678               Then the matter is settled.
+

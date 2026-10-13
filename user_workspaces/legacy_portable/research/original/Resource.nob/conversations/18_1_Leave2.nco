@@ -1,0 +1,27 @@
+// *********************************************************************************
+//
+// 18_1_Leave2.nco (conversation file)
+//
+// Copyright (c) 1999-2000 Nihilistic Software, Inc.
+//
+// *********************************************************************************
+
+
+CONVERSATION: 18_1_Leave2 0
+
+EVENT: ev_0
+
+	LINE:         Wilhem_18_1_679              Wilhem
+	LINE:         Christof_18_1_680            Christof
+	LINE:         Serena_18_1_681              Serena
+	LINE:         Wilhem_18_1_682              Wilhem
+
+
+
+// *********************************************************************************
+
+// Wilhem_18_1_679             Come, we leave for Vienna.
+// Christof_18_1_680           What?
+// Serena_18_1_681             Ecaterina hath learned that important Brujah were imprisoned on Orsi’s caravan to Vienna. We must make all haste to overtake them.
+// Wilhem_18_1_682             Strange, is it not, that thou art given leave to travel after Anezka only after thou hast forsaken her.
+

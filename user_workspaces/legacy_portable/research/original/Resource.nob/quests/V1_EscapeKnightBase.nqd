@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# V1_EscapeKnightBase.nqd - Quest definition.            #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S. Thoms  03/07/00                             #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_ESCAPEKNIGHTBASE_S Q_ESCAPEKNIGHTBASE_L QuestCheck.tga 2000
+

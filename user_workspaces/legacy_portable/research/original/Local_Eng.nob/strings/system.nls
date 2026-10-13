@@ -1,0 +1,897 @@
+// ****************************************************************************
+//
+// SYSTEM.NLS
+//
+// System string table
+//
+// ****************************************************************************
+
+
+// ............................................................................ 
+// generic stuff
+// ............................................................................ 
+
+STRID_COMPANY                   Nihilistic Software, Inc.
+STRID_COPYRIGHT                 Copyright (c) Nihilistic Software, Inc. 1998-1999
+
+STRID_YES                       YES
+STRID_NO                        NO
+STRID_NULL                      ***YOU SHOULD NOT SEE ME !!!***
+
+
+// ............................................................................ 
+// rpg messages
+// ............................................................................ 
+
+RPG_HUMANITYLOST                %P lost some Humanity!
+RPG_FRENZY                      %P enters Frenzy!
+RPG_UNFRENZY                    %P's Frenzy ends.
+RPG_DIED			%P dies.
+RPG_DIEDV			%P enters torpor.
+RPG_HUMANITYLOSTALT				  You lost some Humanity!
+
+RPG_ENDGAME_PARTYDEAD           All coterie members are dead!                       
+RPG_ENDGAME_HUMANITYLOST        %P lost all Humanity!                        
+RPG_ENDGAME_PRESSESC            Press Esc to load saved game.
+RPG_ENDGAME_PRESSESCMP			Press Esc to revive.
+RPG_ENDGAME_MULTIPLAYER         Multiplayer chronicle ended!
+
+RPG_NEWRANKGAINED				%P has gained a new rank!
+RPG_DISCIPLINELEARNED           You have learned a new Discipline Group - %d
+RPG_OUTOFAMMO                   %A is out of ammo!
+RPG_PICKEDUPCASHDA              You pickup %D gold.
+RPG_PICKEDUPCASHMD              You pickup %D cash.
+
+RPG_DAMAGE_NORMAL               Bashing
+RPG_DAMAGE_LETHAL               Lethal
+RPG_DAMAGE_AGGRAVATED           Aggravated
+RPG_DAMAGE_ELECTRIC             Electrical
+RPG_DAMAGE_FIRE                 Fire
+RPG_DAMAGE_SUN                  Sun
+RPG_DAMAGE_FAITH                Faith
+RPG_DAMAGE_COLD                 Cold
+RPG_DAMAGE_POISON               Poison
+RPG_DAMAGE_DISEASE              Disease
+
+
+RPG_NOTIDENTIFIED               [not identified]
+
+RPG_CHARGES			Charges:
+RPG_CASH                        Cash:
+
+RPG_WPNAMMO                     Ammo:
+RPG_WPNDAMAGE                   Damage:
+RPG_WPNACCURACY                 Accuracy:
+RPG_WPNSPEED	                Speed:
+RPG_WPNSILVERED                 Silvered
+
+RPG_DISCLEVEL			Level:
+RPG_DISCNOLEVEL			[Cannot use yet]
+RPG_DISCCOSTBLOOD		Blood:
+RPG_DISCCOSTMANA		Mana:
+RPG_DISCTEMPORARY		Temporary (Scroll)
+RPG_DISCCASTON			Cast on:
+
+RPG_DISCTARGET_NONE             Self
+RPG_DISCTARGET_AREA             Area
+RPG_DISCTARGET_ITEM             Item
+RPG_DISCTARGET_ENEMY            Enemy
+RPG_DISCTARGET_FRIENDLY         Friendly
+RPG_DISCTARGET_DEAD             Dead
+RPG_DISCTARGET_HEAD             Head
+
+RPG_DISCMSG_CASTS               %C uses Discipline %d.
+RPG_DISCMSG_RECASTS             %C uses Discipline %d.
+RPG_DISCMSG_FIZZLES             %C fails Discipline %d.
+RPG_DISCMSG_RESISTED		%C resisted Discipline %d.
+
+
+RPG_STAT_STRENGTH               Strength
+RPG_STAT_DEXTERITY              Dexterity
+RPG_STAT_STAMINA                Stamina
+RPG_STAT_PERCEPTION             Perception
+RPG_STAT_INTELLIGENCE           Intelligence
+RPG_STAT_WITS                   Wits
+RPG_STAT_BLOOD                  Blood
+RPG_STAT_HUMANITY               Humanity
+RPG_STAT_FRENZY                 Frenzy
+RPG_STAT_GENERATION             Generation
+RPG_STAT_FAITH                  Faith
+RPG_STAT_CHARISMA               Charisma
+RPG_STAT_MANIPULATION           Manipulation
+RPG_STAT_APPEARANCE             Appearance
+RPG_STAT_FRENZYRATING           Frenzy rating
+RPG_STAT_BLOODRATING            Blood rating
+RPG_STAT_BLOODPOOL              Blood pool
+RPG_STAT_MANA                   Mana
+RPG_STAT_MANAPOOL               Mana pool
+
+RPG_RESTRICT_NONE               No restriction
+RPG_RESTRICT_STRENGTH           Strength
+RPG_RESTRICT_DEXTERITY          Dexterity
+RPG_RESTRICT_STAMINA            Stamina
+RPG_RESTRICT_PERCEPTION         Perception
+RPG_RESTRICT_INTELLIGENCE       Intelligence
+RPG_RESTRICT_WITS               Wits
+RPG_RESTRICT_BLOOD              Blood
+RPG_RESTRICT_HUMANITY           Humanity
+RPG_RESTRICT_FRENZY             Frenzy
+RPG_RESTRICT_GENERATION         Generation
+RPG_RESTRICT_FAITH              Faith
+RPG_RESTRICT_CHARISMA           Charisma
+RPG_RESTRICT_MANIPULATION       Manipulation
+RPG_RESTRICT_APPEARANCE         Appearance
+RPG_RESTRICT_FRENZYRATING       Frenzy rating
+RPG_RESTRICT_BLOODRATING        Blood rating
+RPG_RESTRICT_BLOODPOOL          Blood pool
+RPG_RESTRICT_HEALTH             Health
+RPG_RESTRICT_VAMPIRE            Kindred only
+RPG_RESTRICT_GHOUL              Ghoul only
+RPG_RESTRICT_HUMAN              Human only
+RPG_RESTRICT_NOVAMPIRE          Non-Kindred only
+RPG_RESTRICT_NOGHOUL            Non-Ghoul only
+RPG_RESTRICT_NOHUMAN            Non-Human only
+RPG_RESTRICT_MANA               Mana
+RPG_RESTRICT_MANAPOOL           Mana pool
+
+RPG_RESTRICT_MINSTAT		Min %V %S
+RPG_RESTRICT_MAXSTAT		Max %V %S
+
+
+RPG_HIT                         %A damages %T
+RPG_NOCAUSEHIT                  %T got hurt
+RPG_GROUPS                      %A has learned a new Discipline Group - %g
+
+RPG_CANTDOACTION					  This character is currently busy, can't issue new orders now.
+
+// ............................................................................ 
+// discipline groups names
+// ............................................................................ 
+
+DGRP_COMMON                     Common     
+DGRP_ANIMALISM                  Animalism  
+DGRP_AUSPEX                     Auspex     
+DGRP_CELERITY                   Celerity   
+DGRP_OBFUSCATE                  Obfuscate  
+DGRP_DEMENTATION                Dementation
+DGRP_DOMINATE                   Dominate   
+DGRP_FORTITUDE                  Fortitude  
+DGRP_POTENCE                    Potence    
+DGRP_PROTEAN                    Protean    
+DGRP_PRESENCE                   Presence   
+DGRP_MORTIS                     Mortis     
+DGRP_THAU_BLOODPATH             Blood Magic
+DGRP_THAU_LUREOFFLAMES          Lure Of Flames
+DGRP_THAU_HANDSOFDESTRUCTION    Hands Of Destruction
+DGRP_THAU_RITUALS               Blood Rituals
+DGRP_NUMINA                     Numina
+DGRP_FAITH                      Faith
+DGRP_OBTENEBRATION              Obtenebration
+DGRP_SERPENTIS                  Serpentis
+
+
+// ............................................................................ 
+// discipline names
+// ............................................................................ 
+
+// Common
+FEED                            Feed
+BLOODHEALING                    Blood Healing
+BLOODSTRENGTH                   Blood Strength
+BLOODDEXTERITY                  Blood Dexterity
+BLOODSTAMINA                    Blood Stamina
+AWAKEN                          Awaken
+WALKTHEABYSS			Walk The Abyss
+NUKE                            Nuke! (debug)
+
+// Animalism
+FERALWHISPERS                   Feral Whispers
+BECKONING                       Beckoning
+QUELLBEAST                      Quell The Beast
+SUBSUMETHESPIRIT                Subsume The Spirit
+DRAWINGOUTBEAST                 Drawing Out The Beast
+
+// Auspex
+HEIGHTENEDSENSES                Heightened Senses
+AURAPERCEPTION                  Aura Perception
+SPIRITSTOUCH                    Spirit's Touch
+PSYCHICPROJECTION               Psychic Projection
+
+// Celerity
+CELERITY                        Celerity
+
+// Obfuscate
+CLOAKOFSHADOWS                 	Cloak Of Shadows
+MASK1000FACES			Mask Of A Thousand Faces
+CLOAKTHEGATHERING		Cloak The Gathering
+
+// Dementation
+PASSION                         Passion
+THEHAUNTING                     The Haunting
+EYESOFCHAOS                     Eyes Of Chaos
+VOICEOFMADNESS                  Voice Of Madness
+
+// Dominate
+COMMAND                         Command
+MESMERIZE                       Mesmerize
+THEFORGETFULMIND                The Forgetful Mind
+POSSESSION                      Possession
+
+// Fortitude
+FORTITUDE                       Fortitude
+
+// Potence
+POTENCE                         Potence
+
+// Protean
+EYESOFTHEBEAST                  Eyes Of The Beast
+FERALCLAWS                      Feral Claws
+EARTHMELD                       Earth Meld
+SHAPEOFTHEBEAST                 Shape Of The Beast
+MISTFORM                        Mist Form
+
+
+// Presence
+AWE                             Awe
+DREADGAZE                       Dread Gaze
+ENTRANCEMENT                    Entrancement
+MAJESTY                         Majesty
+
+// Mortis
+SHAMBLINGHORDES                 Shambling Hordes
+VIGORMORTIS                     Vigor Mortis
+PLAGUEWIND                      Plague Wind
+SUMMONSOUL                      Summon Soul
+BLACKDEATH                      Black Death
+
+// Blood Magic
+BLOODRAGE                       Blood Rage
+BLOODOFPOTENCY                  Blood Of Potency
+THEFTOFVITAE                    Theft Of Vitae
+CAULDRONOFBLOOD                 Cauldron Of Blood
+
+// Lure of Flames
+TORCH                           Torch
+FIREBALL                        Fireball
+FLAMERING                       Flame Ring
+IMMOLATE                        Immolate
+FIRESTORM                       Fire Storm
+
+// Hands of Destruction
+DECAY                           Decay
+ACIDICTOUCH                     Acidic Touch
+ATROPHY                         Atrophy
+TURNTODUST                      Turn To Dust
+
+// Blood Rituals
+HEARTOFSTONE                    Heart Of Stone
+PRISONOFICE                     Prison Of Ice
+CALLLIGHTNING                   Call Lightning
+IGNOREFLAME                     Ignore The Searing Flame
+SUMMONELEMENTAL                 Summon Elemental
+
+// Faith
+HEAL				Heal
+PRAYER                          Prayer
+TRUEFAITH                       True Faith
+
+// Numina
+INVISIBILITY                    Invisibility
+FLASH                           Flash
+TRUESIGHT                       True Sight
+
+// Obtenebration
+DARKHUNTER                      Dark Hunter
+
+// Serpentis
+EYESOFTHESERPENT                Eyes Of The Serpent
+SKINOFTHEADDER                  Skin Of The Adder
+HATCHTHEVIPER                   Hatch The Viper
+TONGUEOFTHEASP			Tongue Of The Asp
+
+// ............................................................................ 
+// long discipline names
+// ............................................................................ 
+
+// Common
+FEED_L				Drains Blood From Targeted Victim
+BLOODHEALING_L                  Restores Health
+BLOODSTRENGTH_L                 Increases Strength
+BLOODDEXTERITY_L                Increases Dexterity
+BLOODSTAMINA_L                  Increases Stamina
+AWAKEN_L                        Awakens Targeted Vampires from Torpor
+WALKTHEABYSS_L			Creates a Mystic Portal
+NUKE_L                          Instantly Destroys Any Actor - DEBUG ONLY
+
+// Animalism
+FERALWHISPERS_L                 Enlists Targeted Animals to Your Aid
+BECKONING_L                     Summons Animals to Your Aid
+QUELLBEAST_L                    Lowers Frenzy Levels and Creates Complacency In Targeted Creatures
+SUBSUMETHESPIRIT_L              Grants Control of Targeted Animal
+DRAWINGOUTBEAST_L               Releases Frenzy State onto a Targeted Enemy
+
+// Auspex
+HEIGHTENEDSENSES_L              Increases Vampiric Senses
+AURAPERCEPTION_L                Perceives the Aura and other Statistics of a Targeted Creature
+SPIRITSTOUCH_L                  Determines Properties of an Item
+PSYCHICPROJECTION_L             Allows Exploration with an Unseen Astral Form
+
+// Celerity
+CELERITY_L                      Grants Enhanced Movement and Attack Speed
+
+// Obfuscate
+CLOAKOFSHADOWS_L                Conceals the User from Sight
+MASK1000FACES_L			Disguises the User as the Targeted Creature
+CLOAKTHEGATHERING_L             Conceals the Coterie from Sight
+
+// Dementation
+PASSION_L                       Heightens the Target's Emotions, Increasing Frenzy and Reducing Wits
+THEHAUNTING_L                   Causes Fear on the Target
+EYESOFCHAOS_L                   Perceives Extended Information about a Targeted Creature
+VOICEOFMADNESS_L                Causes Extended Fear and Possible Frenzy on the Target
+
+// Dominate
+COMMAND_L                       Grants Brief Control of the Target (Kindred of Equal or Higher Gen)
+MESMERIZE_L                     Calls the Targeted Creature (Kindred of Equal or Higher Gen) Towards You
+THEFORGETFULMIND_L              Creates Dazed Effect on Target (Kindred of Equal or Higher Gen)
+POSSESSION_L                    Grants Control of the Targeted Creature (Kindred of Equal or Higher Gen)
+
+// Fortitude
+FORTITUDE_L                     Grants Added Protection Against Damage
+
+// Potence
+POTENCE_L                       Grants Increased Automatic Damage
+
+// Protean
+EYESOFTHEBEAST_L                Increases Visual Senses
+FERALCLAWS_L                    Turns Hands into Large Claws
+EARTHMELD_L                     Immerses the User into the Earth, Allowing Safe Rest
+SHAPEOFTHEBEAST_L               Transforms the User into a Wolf
+MISTFORM_L                      Transforms User into Cloud of Mist
+
+// Presence
+AWE_L                           Charms Target Towards the User
+DREADGAZE_L                     Causes Fear on the Target
+ENTRANCEMENT_L                  Grants Control of the Target to the User
+MAJESTY_L                       Causes All Surrounding Creatures to Stop and Gaze at the User
+
+// Mortis
+SHAMBLINGHORDES_L               Awakens Targeted Dead to Your Aid
+VIGORMORTIS_L                   Takes Control of a Targeted Dead Creature
+PLAGUEWIND_L                    Expels a Damaging Breath Cloud at the Target
+SUMMONSOUL_L                    Calls Forth a Wraith to Your Aid
+BLACKDEATH_L                    Causes Disease Damage on Touched Target
+
+// Blood Magic
+BLOODRAGE_L                     Forces the Target to Spend Blood
+BLOODOFPOTENCY_L                Grants Lowered Blood Cost for Discipline Usage
+THEFTOFVITAE_L                  Steals Vitae from the Targeted Creature
+CAULDRONOFBLOOD_L               Boils the Blood of the Touched Target
+
+// Lure of Flames
+TORCH_L                         Creates a Light of Balefire that Follows the User
+FIREBALL_L                      Propels a Ball of Fire At the Target
+FLAMERING_L                     Creates a Ring of Flame around User
+IMMOLATE_L                      Damages Touched Target with Searing Flame
+FIRESTORM_L                     Creates a Rain of Fire from the Sky
+
+// Hands of Destruction
+DECAY_L                         Causes Aggravated Damage on Touched Target
+ACIDICTOUCH_L                   Causes Aggravated Damage on Touched Target
+ATROPHY_L                       Causes Aggravated Damage, Reduces Strength and Dexterity of the Touched Target
+TURNTODUST_L                    Causes Aggravated Damage on Touched Target
+
+// Blood Rituals
+HEARTOFSTONE_L                  Prevents Against Staking
+PRISONOFICE_L                   Freezes Targeted Creature in Ice
+CALLLIGHTNING_L                 Calls Forth a Bolt of Lightning upon Target
+IGNOREFLAME_L                   Protects Against Aggravated Fire Damage
+SUMMONELEMENTAL_L               Calls a Golem to Your Aid
+
+// Faith
+HEAL_L				Cures Wounds
+PRAYER_L                        Damages a Target With Holy Words
+TRUEFAITH_L                     Damages Supernatural Creatures Within Radius Around User
+
+// Numina
+FLASH_L                         Creates a Blinding Light That Can Trigger Frenzy in Vampires
+TRUESIGHT_L                     Enhances Sight in Darkness
+INVISIBILITY_L                  Removes the User from Visible Sight
+
+// Obtenebration
+DARKHUNTER_L                    Summons a Dark Hunter to Your Aid
+
+// Serpentis
+EYESOFTHESERPENT_L             	Mesmerizes the Target into a Daze
+SKINOFTHEADDER_L                Protects the User from Damage with Snake Skin (Affects Appearance)
+HATCHTHEVIPER_L                 Creates a Viper to Aid You
+TONGUEOFTHEASP_L		Steals Vitae From the Target
+
+
+// ............................................................................ 
+// discipline specific message
+// ............................................................................ 
+
+RPG_DISC_NOTHEFTOFVITAE1        You cannot drain blood from this target!
+RPG_DISC_NOTHEFTOFVITAE2        This target has no more blood to drain!
+RPG_DISC_NOWALKTHEABYSS         You cannot use Walk The Abyss here!
+RPG_DISC_NOTANIMAL		This Discipline can only be used on an animal!
+RPG_DISC_TOOMANYPETS		You cannot control more servants!
+RPG_DISC_AURAPERC0		Type: %t
+RPG_DISC_AURAPERC1		Type: %t Aura: %A
+RPG_DISC_AURAPERC2		Type: %t Aura: %A Clan: %C
+RPG_DISC_AURAPERC3		Health: %H
+RPG_DISC_AURAPERC4		Health: %H Blood: %B
+RPG_DISC_NOMASK1000		You cannot use Mask Of A Thousand Faces with this target!
+RPG_DISC_NOBLOODHEALING			You cannot use Blood Healing at full health!
+RPG_DISC_NOHEAL					You cannot use Heal at full health!
+RPG_DISC_NOSPIRITSTOUCH			This item is already identified!
+RPG_DISC_NODRAWINGOUTTHEBEAST	Can use only on Vampires and Ghouls!
+RPG_DISC_NOPOSSESSION			You cannot use this discipline on players!
+RPG_DISC_NOBLOOD				This target has no blood!
+
+// ............................................................................ 
+// discipline tomes
+// ............................................................................ 
+
+DISCTOME_FAIL_ANIMALISM         You have already begun study in Animalism.
+DISCTOME_SUCCESS_ANIMALISM      You gain a new Discipline Group - Animalism.
+DISCTOME_FAIL_AUSPEX            You have already begun study in Auspex.
+DISCTOME_SUCCESS_AUSPEX         You gain a new Discipline Group - Auspex.
+DISCTOME_FAIL_CELERITY          You have already begun study in Celerity.
+DISCTOME_SUCCESS_CELERITY       You gain a new Discipline Group - Celerity.
+DISCTOME_FAIL_OBFUSCATE         You have already begun study in Obfuscate.
+DISCTOME_SUCCESS_OBFUSCATE      You gain a new Discipline Group - Obfuscate.
+DISCTOME_FAIL_DEMENTATION       You have already begun study in Dementation.
+DISCTOME_SUCCESS_DEMENTATION    You gain a new Discipline Group - Dementation.
+DISCTOME_FAIL_DOMINATE          You have already begun study in Dominate.
+DISCTOME_SUCCESS_DOMINATE       You gain a new Discipline Group - Dominate.
+DISCTOME_FAIL_FORTITUDE         You have already begun study in Fortitude.
+DISCTOME_SUCCESS_FORTITUDE      You gain a new Discipline Group - Fortitude.
+DISCTOME_FAIL_POTENCE           You have already begun study in Potence.
+DISCTOME_SUCCESS_POTENCE        You gain a new Discipline Group - Potence.
+DISCTOME_FAIL_PROTEAN           You have already begun study in Protean.
+DISCTOME_SUCCESS_PROTEAN        You gain a new Discipline Group - Protean.
+DISCTOME_FAIL_PRESENCE          You have already begun study in Presence.
+DISCTOME_SUCCESS_PRESENCE       You gain a new Discipline Group - Presence.
+DISCTOME_FAIL_MORTIS            You have already begun study in Mortis. 
+DISCTOME_SUCCESS_MORTIS         You gain a new Discipline Group - Mortis.
+DISCTOME_FAIL_BLOODPATH         You have already begun study in Blood Magic.
+DISCTOME_SUCCESS_BLOODPATH      You gain a new Discipline Group - Blood Magic.
+DISCTOME_FAIL_LUREOFFLAMES      You have already begun study in Lure of Flames.
+DISCTOME_SUCCESS_LUREOFFLAMES   You gain a new Discipline Group - Lure of Flames.
+DISCTOME_FAIL_HANDSDESTRUCT     You have already begun study in Hands of Destruction.
+DISCTOME_SUCCESS_HANDSDESTRUCT  You gain a new Discipline Group - Hands of Destruction.
+DISCTOME_FAIL_RITUALS           You have already begun study in Blood Rituals.
+DISCTOME_SUCCESS_RITUALS        You gain a new Discipline Group - Blood Rituals.
+DISCTOME_FAIL_NUMINA            You have already begun study in Numina.
+DISCTOME_SUCCESS_NUMINA         You gain a new Discipline Group - Numina.
+DISCTOME_FAIL_OBTENEBRATION     You have already begun study in Obtenebration.
+DISCTOME_SUCCESS_OBTENEBRATION  You gain a new Discipline Group - Obtenebration.
+DISCTOME_FAIL_SERPENTIS         You have already begun study in Serpentis.
+DISCTOME_SUCCESS_SERPENTIS      You gain a new Discipline Group - Serpentis.
+DISCTOME_FAIL_FAITH             You have already begun study in Faith.
+DISCTOME_SUCCESS_FAITH          You gain a new Discipline Group - Faith.
+
+// ............................................................................ 
+// clan names
+// ............................................................................ 
+
+BRUJAH                          Brujah
+CAPPADOCIAN                     Cappadocian
+GANGREL                         Gangrel
+NOSFERATU                       Nosferatu
+TOREADOR                        Toreador
+ASSAMITE                        Assamite
+GIOVANNI                        Giovanni
+LASOMBRA                        Lasombra
+MALKAVIAN                       Malkavian
+RAVNOS                          Ravnos
+SETITE                          Setite
+TREMERE                         Tremere
+TZIMISCE                        Tzimisce
+VENTRUE                         Ventrue
+CAITIFF                         Caitiff
+HUMAN				Human
+
+// ............................................................................ 
+// actor types
+// ............................................................................ 
+
+ACTOR_TYPE_VAMPIRE              Kindred
+ACTOR_TYPE_GHOUL                Ghoul
+ACTOR_TYPE_HUMAN                Human
+ACTOR_TYPE_MONSTER              Monster
+ACTOR_TYPE_LUPINE               Lupine
+
+// ............................................................................ 
+// actor auras
+// ............................................................................ 
+
+ACTOR_AURA_NONE                 Unreadable
+ACTOR_AURA_AFRAID               Afraid
+ACTOR_AURA_AGGRESSIVE           Aggressive
+ACTOR_AURA_ANGRY                Angry
+ACTOR_AURA_BITTER               Bitter
+ACTOR_AURA_CALM                 Calm
+ACTOR_AURA_COMPASSIONATE        Compassionate
+ACTOR_AURA_CONFUSED             Confused
+ACTOR_AURA_CONSERVATIVE         Conservative
+ACTOR_AURA_DAYDREAMING          Daydreaming
+ACTOR_AURA_DEPRESSED            Depressed
+ACTOR_AURA_DESIROUS             Desirous
+ACTOR_AURA_DIABLERIST           Diablerist
+ACTOR_AURA_DISTRUSTFUL          Distrustful
+ACTOR_AURA_ENVIOUS              Envious
+ACTOR_AURA_EXCITED              Excited
+ACTOR_AURA_FRENZIED             Frenzied
+ACTOR_AURA_GENEROUS             Generous
+ACTOR_AURA_HAPPY                Happy
+ACTOR_AURA_HATEFUL              Hateful
+ACTOR_AURA_IDEALISTIC           Idealistic
+ACTOR_AURA_INNOCENT             Innocent
+ACTOR_AURA_LOVESTRUCK           Lovestruck
+ACTOR_AURA_LUSTFUL              Lustful
+ACTOR_AURA_OBSESSED             Obsessed
+ACTOR_AURA_PSYCHOTIC            Psychotic
+ACTOR_AURA_SAD                  Sad
+ACTOR_AURA_SPIRITUAL            Spiritual
+ACTOR_AURA_SUSPICIOUS           Suspicious
+ACTOR_AURA_FAERIE               Faerie
+ACTOR_AURA_GHOST                Ghost
+ACTOR_AURA_MAGICUSE             Magicuser
+ACTOR_AURA_VAMPIRE              Vampire      
+ACTOR_AURA_WEREBEAST            Werebeast
+ACTOR_AURA_USERDEFINED          Userdefined
+
+
+// ............................................................................ 
+// Multiplayer Character Template Descriptions
+// ............................................................................ 
+
+MP_CHRISTOF_DA                  Dark Ages Christof
+MP_CHRISTOF_MD                  Modern Christof
+MP_ERIK                         Dark Ages Erik
+MP_ERIK_MD                      Modern Erik
+MP_GOTHGIRL                     Modern Goth Girl
+MP_GOTHGUY                      Modern Goth Guy
+MP_HEAVYG_DA                    Dark Ages HeavyG
+MP_HEAVYG_MD                    Modern HeavyG
+MP_KAZI                         Dark Ages Kazi
+MP_KAZI_MD                      Modern Kazi
+MP_LILY                         Modern Lily
+MP_PINK                         Modern Pink
+MP_SAMUEL                       Modern Samuel
+MP_SAMUEL_DA                    Dark Ages Samuel
+MP_SERENA                       Dark Ages Serena
+MP_TREMERE                      Dark Ages Tremere
+MP_WILHEM_DA                    Dark Ages Wilhem
+MP_WILHEM_MD                    Modern Wilhem
+MP_ZIL_MD                       Modern Zil
+
+
+// ............................................................................ 
+// ui hints
+// ............................................................................ 
+
+UI_HINT_INVENTORYBUTTON         Toggle Inventory Pane
+UI_HINT_CHARACTERBUTTON         Toggle Character Pane
+UI_HINT_MAPBUTTON               Display Map
+UI_HINT_QUESTBUTTON             Toggle Quest Pane
+UI_HINT_DISCIPLINEBUTTON        Toggle Discipline Pane
+
+UI_STSBOBJECTCHECK              Object Pane
+UI_STSBLOCATIONCHECK            Location Pane
+UI_STSBSCENECHECK               Scene Pane
+UI_STSBACTORCHECK               Actor Pane
+UI_STSBCONTROLSCHECK            Controls Pane
+
+UI_STSBDELTHINGERROR            Can't delete an active player.
+UI_STSBREVIVENOSELECTION        No selection to revive.
+UI_STSBREVIVENOTDEAD            Selection is not a dead actor.
+UI_STSBDELETENOSELECTION        No selection to delete.
+UI_STSBDELETEPROTECTED          Selection is protected from deletion.
+UI_STSBPAUSE                    Game paused.
+UI_STSBUNPAUSE                  Game resumed.
+UI_STSBPOSSESS                  Possessing %s.
+UI_STSBTALKMODE                 %s set to TALK mode.
+UI_STSBNEUTRALMODE              %s set to NEUTRAL mode.
+UI_STSBENEMYMODE                %s set to ENEMY mode.
+
+
+UI_STSPADVANCE                  Advance Scene
+UI_STSPSKIPTO                   Skip To
+
+UI_STAPSELECT                   Select Actor
+UI_STAPSTATS                    Actor Statistics
+UI_STAPPOSSESS                  Possess Actor
+UI_STAPREVIVE                   Revive Actor
+UI_STAPDELETE                   Delete Actor
+UI_STAPKILL                     Kill Actor
+
+UI_STOPCREATE                   Create Thing
+UI_STOPLISTITEMS                Show only Items
+UI_STOPLISTPROPS                Show only Props
+UI_STOPLISTACTORS               Show only Actors
+UI_STOPTOGGLELISTS              Toggle short/long lists
+UI_STOPCREATEDOBJECT            Created object '%s'
+UI_STOPCOULDNTCREATEOBJECT      Couldn't create object '%s'
+
+UI_STEPLOAD                     Load Location
+
+UI_STLPJUMPTO                   Jump to Location
+UI_STLPJUMPALL                  Jump all players to Location
+
+UI_STCPKICKBUTTON               Kick Player
+UI_STCPKICKQUESTION             Are you sure you want to kick player
+UI_STCPENABLEAUTOST             Auto Storyteller Enabled.
+UI_STCPDISABLEAUTOST            Auto Storyteller Disabled.
+UI_STCPCOMMSLOCKED              Outside communications locked.
+UI_STCPCOMMSUNLOCKED            Outside communications unlocked.
+
+UI_STCPLOCKED                   Game is locked.
+UI_STCPUNLOCKED                 Game is unlocked.
+UI_STCPAIENABLED                AI Enabled.
+UI_STCPAIDISABLED               AI Disabled.
+UI_STCPSERVER                   Server
+
+UI_MPPC_NONAME                  Please enter a player name.
+
+UI_HINT_DELETEOBJECTBUTTON      Delete Object
+UI_HINT_SETGHOSTBUTTON          Set ST Viewer
+UI_HINT_ADVANCEBUTTON           Advancement
+UI_HINT_PAUSEBUTTON             Pause Game
+UI_HINT_STCHARACTERBUTTON       Switch to Character Mode
+UI_HINT_STSTORYTELLERBUTTON     Switch to Storyteller Mode
+UI_HINT_POSSESSBUTTON           Possess
+UI_HINT_CHARACTERMODEBUTTON     Talk/Neutral/Enemy
+UI_HINT_REVIVEBUTTON            Revive
+UI_HINT_CURRENTTARGET           Current Target
+
+UI_HINT_OFFENSIVE               Offensive Stance
+UI_HINT_NEUTRAL                 Neutral Stance
+UI_HINT_DEFENSIVE               Defensive Stance
+UI_HINT_GROUPSTATUS             Group/Ungroup
+UI_HINT_REGROUP                 Regroup
+
+UI_GENERAL_NOTAPPLICABLE        N/A
+UI_GENERAL_ERROR                Error
+UI_GENERAL_VAMPIRE              Kindred
+UI_GENERAL_GHOUL                Ghoul
+UI_GENERAL_HUMAN                Human
+UI_GENERAL_HEALTH               Health
+
+UI_STATUS_FLEDGELING            Fledgeling
+UI_STATUS_NEONATE               Neonate
+UI_STATUS_ANCILLAE              Ancillae
+UI_STATUS_ELDER                 Elder
+UI_STATUS_METHUSELAH            Methuselah
+UI_STATUS_ANTEDILUVIAN          Antediluvian
+UI_STATUS_PROGENITOR            Progenitor
+
+UI_STATUS_HUMAN0                Acolyte
+UI_STATUS_HUMAN1                Crusader
+UI_STATUS_HUMAN2                Paladin
+UI_STATUS_HUMAN3                Inquisitor
+UI_STATUS_HUMAN4                Hunter
+
+UI_STATUS_GHOUL0                Servitor
+UI_STATUS_GHOUL1                Bodyguard
+UI_STATUS_GHOUL2                Ghoul
+UI_STATUS_GHOUL3                Thrall
+UI_STATUS_GHOUL4                Trusted Valet
+
+UI_MPCREATEGAME_PWPROTECT       Password Protected
+UI_MPCREATEGAME_PW              Password
+UI_MPCREATEGAME_PWCONFIRM       Confirm
+UI_MPCREATEGAME_GAMENAME        Game Name
+UI_MPCREATEGAME_CHRONICLELIST   Chronicles
+UI_MPCREATEGAME_OPTIONS         Game Options
+UI_MPCREATEGAME_CREATE          Create Game
+UI_MPCREATEGAME_LOAD            Load Saved
+
+UI_WONLOBBY_ROOMS               Rooms
+UI_WONLOBBY_GAMES               Games
+UI_WONLOBBY_ENTERGAME           Enter Game
+UI_WONLOBBY_PLAYERSETUP         Player Setup
+UI_WONLOBBY_QUITWON             Quit WON
+UI_WONLOBBY_ROOMNAME            Room Name
+UI_WONLOBBY_PLAYERS             Players
+
+UI_WONGAMES_LISTLABEL           Games In Room
+UI_WONGAMES_PING                Ping Games
+UI_WONGAMES_JOIN                Join
+UI_WONGAMES_CREATE              Create
+UI_WONGAMES_BACK                Back
+
+UI_WONROOMS_LISTLABEL           Available Rooms
+UI_WONROOMS_JOIN                Join Room
+UI_WONROOMS_CREATE              Create New
+UI_WONROOMS_BACK                Back
+
+UI_WONCREATEROOM_NAME           Room Name
+UI_WONCREATEROOM_DESC           Room Desc
+UI_WONCREATEROOM_PWPROTECT      Password Protect
+UI_WONCREATEROOM_PW             Password
+UI_WONCREATEROOM_PWCONFIRM      Confirm
+UI_WONCREATEROOM_CREATE         Create Room
+UI_WONCREATEROOM_CANCEL         Cancel
+
+UI_CANCELSTRING                 Cancel
+UI_WARNING                      Warning!
+
+UI_DISPLAY_DEVICENAME           Device Name:
+UI_DISPLAY_DRIVER               Driver:
+UI_DISPLAY_TOTALRAM             Total texture RAM:
+UI_DISPLAY_BYTES                bytes
+
+UI_DETAIL_VERYLOW               Very Low
+UI_DETAIL_LOW                   Low
+UI_DETAIL_NORMAL                Normal
+UI_DETAIL_HIGH                  High
+UI_DETAIL_CUSTOM                Custom
+
+UI_DETAIL_CUSTOMWARN            IMPORTANT: The changes you have made require a restart of the game in order to function properly!
+
+UI_DISPLAY_BADRESWARN           The selected video resolution is not supported by your display card.
+
+UI_INV_DROPCASH                 How much cash would you like to drop?
+UI_CHAR_ADDXP                   How much experience to add?
+
+UI_SPLOADSAVE_AUTOSAVE          Auto Save
+UI_SPLOADSAVE_OVERWRITEAUTOSAVE This operation will overwrite your previous autosave.  OK to continue?
+UI_SPLOADSAVE_OVERWRITESAVE 	  The previous save will be overwritten.  OK to continue?
+UI_SPLOADSAVE_UNUSEDSLOT        Unused
+UI_SPLOADSAVE_SLOT              Slot %d
+SPLOADSAVE_GAMESAVED		Game saved.
+UI_SPLOADSAVE_ENTERNAME			  Please enter a name for this save
+
+UI_OVERWRITEAUTOSAVE            Overwrite AutoSave Game?
+
+UI_MPPC_OVERWRITE               Player already exists; Would you like to overwrite the existing player?
+UI_MPPS_DELETE                  Permanently delete player '%s'?
+
+UI_OPGP_NOPASSWORD              Please enter a password to turn on Parental Lock
+UI_OPGP_PASSWORDSDONTMATCH      Passwords don't match
+UI_OPGP_ENTERPASSWORD           Enter password to unlock
+
+UI_MAP_RETURNTOGAME             Return to Game
+UI_MAP_NOMAPAVAILABLE           No map is available for this area.
+
+UI_NET_PWMISMATCH		Passwords do not match.
+UI_NET_JOINROOMERROR		Join Room Error
+UI_NET_JOINGAMEERROR		Join Failed
+UI_NET_CREATEGAMEERROR		Game Creation Error
+UI_NET_WRONGROOMPASSWORD	Invalid password for private room.
+UI_NET_WRONGGAMEPASSWORD	Invalid password entered to join private game.
+UI_NET_ROOMFULL			The room is full.
+UI_NET_UNKNOWNERROR		Unknown error: %s
+UI_NET_NAMEINUSE		That account name is already in use.
+UI_NET_CHATROOM			Chatting in room:
+UI_NET_LOGINFAILED		Login failed.
+UI_NET_SERVERERROR		Server returned error: %s
+UI_NET_ENTERKEY		Enter CD-Key
+UI_NET_REENTERKEY		Please Re-enter your CD-Key.
+UI_NET_CANTCREATEROOM		Error creating new chat room.
+UI_NET_WONERROR			WON.Net Error
+UI_NET_ENTERROOM		enters the room.
+UI_NET_LEAVEROOM		has left the room.
+UI_NET_INVALIDCDKEY		Invalid CD Key
+UI_NET_INVALIDCDKEYEXP		The key entered was not valid for this product.
+UI_NET_ROOMEXISTS		Room with that name already exists.
+UI_NET_CONNECTING		Connecting...
+UI_NET_WAITCONNECTING	        Please wait, connecting to chat room.
+UI_NET_CONNECTIONERROR		Connection Error
+UI_NET_BADADDR			Could not open connection to host.  Game may have ended, or network problems exist.
+UI_NET_NONEWPLAYERS		The game is full or not accepting new players.
+UI_NET_ENTERGAMEPASSWORD	Enter game password
+UI_NET_JOINEDASPLAYER		Joined game
+UI_NET_JOINBANNED		Could not join game, banned by server.
+UI_NET_JOINCLOSED		Join failed, that game is currently closed.
+UI_NET_JOINFULL			Join failed, that game is currently full.
+UI_NET_JOINREJECTED		Join failed, refused by the server.
+UI_NET_JOINFAILED		Join failed due to connection problems.
+UI_NET_HASLEFT			has left the game.
+UI_NET_HASJOINED		has joined the game.
+UI_NET_HASDISCONNECTED		has disconnected from the game.
+UI_NET_YOULEFTGAME              You have left the game.
+UI_NET_YOUJOINEDGAME            You have joined the game
+UI_NET_YOUAREHOSTING            You are hosting the game
+UI_NET_DEFAULTGAME		%P's game
+UI_NET_PLEASEENTERNAME		Please enter a valid game name.
+UI_NET_PLAYERSINGAME		Players in game:
+UI_NET_PLAYER			Player
+UI_NET_CHRONICLE		Chronicle
+UI_NET_PING			Ping time
+UI_NET_HOST			Host
+UI_NET_CLIENT			Client
+UI_NET_STORYTELLER		Storyteller
+UI_NET_CLOSED			Closed
+UI_NET_COMBATIVE		Combative
+UI_NET_ENTERROOMPASS		Enter password for private room:
+UI_NET_DUPLICATENAME		rejected - duplicate name
+UI_NET_JOINDUPLICATE		Can't join game, name already in use.
+UI_NET_LANCHAT			LAN Chat
+UI_NET_INGAME			In game
+UI_NET_BADPROTOCOL		The host is running an incompatible game version.  Check for patches and re-connect.
+UI_NET_BADCHRON		This game is using a user chronicle not installed on your machine.  Download the chronicle and re-join.
+UI_NET_OLDVERSION		Your game version is out of date.  Please click on Download Updates to check for game updates.
+UI_NET_DISCONNECTED	        The game server has disconnected.  Returning to lobby.
+UI_NET_WHISPERNOTFOUND		Whisper player not found.
+UI_NET_POSSESSED		You are possessed by the Storyteller and cannot move!
+UI_NET_CANTOPENWON	Cannot establish connection with WON.NET.  Please check server status or try again later.
+UI_NET_OKTOEXIT		You must exit the game to apply patches.  Ok to exit?
+UI_NET_DUPEGAMENAME	A game with that name already exists.  Please choose a different name.
+UI_NET_BADDATA			Your data does not match the data in use by the server.  Check your local files and re-try.
+UI_NET_GAMENAME		Game name:
+UI_NET_FORMING			Game is forming.
+UI_NET_INPROGRESS		Game is in progress.
+UI_NET_BADTEMPLATE	The server did not recognize the multiplayer model used by your player.  Please use another player or a different server.
+UI_NET_WELCOME			Note: Vampire supports up to four players per game.
+UI_NET_BADPASSWORD	Incorrect user password.
+UI_NET_CRCFAILED		Your game executable was not verified by the server.  You may need to re-install your game.
+
+UI_ADVANCEMENT_DISCCOST         Cost to learn %s: %d
+UI_ADVANCEMENT_STATCOST         Cost to increase %s: %d
+UI_ADVANCEMENT_REVERTCHAR       Revert character stats
+UI_ADVANCEMENT_DONE             Finished with character advance
+
+UI_STATUSIND_HINT               Click here to toggle follow status
+UI_STATUSIND_ROLLOVERKINDRED    Health: %h Blood: %b Frenzy: %f
+UI_STATUSIND_ROLLOVERHUMAN      Health: %h Mana: %b Faith: %f
+
+UI_BUYSELL_BUYHINT              Click here to buy item
+UI_BUYSELL_SELLHINT             Click here to sell item
+
+UI_QUESTCHANGED			        Quest log has been updated.
+
+UI_INSERTCD					Please Insert Vampire CD #2 (Game CD) and Press OK
+UI_INSERTCDTITLE			Insert Vampire Game CD
+
+UI_SOUND_PROVNOTSUPPORTED       The Sound Provider selected is not supported by your hardware.
+
+// ............................................................................ 
+// game messages
+// ............................................................................ 
+
+GAMEMESSAGE_SYSTEM1             Dawn approaches, you must rest to advance.
+GAMEMESSAGE_SYSTEM2             Return to the Convent, you must rest to advance.
+
+MP_SAY				%S says '%T'
+MP_SHOUT			%S shouts '%T'
+MP_WHISPER			%S whispers '%T'
+MP_WHISPERALT		%S whispers to %R, '%T'
+MP_SOMEONE			Someone
+MP_ROLLS			%S rolls: %T
+MP_BOW				%S bows deeply.
+MP_WAVE				%S waves.
+MP_TEAMSAY			%S tells your team '%T'
+MP_TEAMSAYALT		%S tells team %D, '%T'
+MP_TRIEDTOSAY			%S tried to say '%T' (posessed)
+MP_SAYFAILED			You are posessed and unable to speak!
+MP_LOBBYSAY			%S (lobby): %T
+
+// Emote tags (for producing animations during an emote)
+MP_EMOTE_BOW		bow
+MP_EMOTE_MENACE		menace
+MP_EMOTE_TAUNT		taunt
+MP_EMOTE_WAVE		wave
+
+MP_ST_CONVTRIGGER_MSG           %a - %t conversation triggered - location: %L
+
+// ............................................................................ 
+// event messages
+// ............................................................................ 
+
+ENTERED                         Region
+CLICKED                         Clicked
+ARRIVED                         Arrived
+BEGINSCENE                      Beginscene
+KILLED                          Killed
+PICKUP                          Pickup
+CONVENDED                       Conversation ended
+
+MP_SETAURA							  Aura set to %S
+
+
+

@@ -1,0 +1,27 @@
+// ****************************************************************************
+//
+// CHRONICLES.NLS
+//
+// Chronicle name string table
+//
+// ****************************************************************************
+
+// ............................................................................ 
+// MP Chronicle names
+// ............................................................................ 
+
+MP_CurseDarkness     To Curse the Darkness
+MP_LeavesThree       Leaves of Three
+
+MP_Prague_Null       Prague by Night (Empty)
+MP_Vienna_Null       Vienna by Night (Empty)
+MP_London_Null       London by Night (Empty)
+MP_New_York_Null     New York by Night (Empty)
+
+MP_DAInn             Dark Ages Inn (Empty Salon)
+MP_PrinceMansion     Prince's Mansion (Empty Salon)
+MP_RaveClub          Rave Club (Empty Salon)
+
+
+
+

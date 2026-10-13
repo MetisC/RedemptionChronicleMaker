@@ -1,0 +1,60 @@
+// ==============================================
+//
+// Nihilistic Player Character file
+//
+//
+// Erik
+//
+//
+// [YB] 04/15/99
+//
+// ==============================================
+
+// Note: bloodpool MUST come before blood!!!
+
+
+// GENERAL
+name            Erik
+clan            Gangrel
+cash            0
+totalexperience 45000
+
+
+// STATS        min     max     current
+maxhealth       150
+health          150          
+strength        0       100     65
+dexterity       0       100     45
+stamina         0       100     50
+perception      0       100     35
+intelligence    0       100     15
+wits            0       100     25
+bloodpool       0       1000    140
+blood           0       1000    140
+humanity        0       100     60
+charisma        0       100     35
+manipulation    0       100     35
+appearance      0       100     30
+frenzy          0       100     0
+faith           0       100     40
+generation      0       100     7
+frenzyrating    0       100     50
+bloodrating     0       100     1.0
+
+
+
+// DISCIPLINE   name                    level           quick
+discipline      Feed                    2              -1
+discipline      BloodHealing            1               0
+discipline      FeralWhispers           2               2
+discipline      Beckoning               1               3
+discipline      Fortitude               2               4
+discipline      EyesOfTheBeast          2              -1
+discipline      FeralClaws              1               5
+discipline      EarthMeld               1              -1
+
+// ITEM         template        (main | belt | equip)
+item				warhammer			main
+item				vitaered				main
+item				vitaered				belt
+

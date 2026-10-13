@@ -1,0 +1,14 @@
+; Small rat AI
+
+attackType	5
+attackFlags	0x01
+attackRate	0.5
+moveType	4
+moveFlags	0x20
+moveDist	50.0
+moveRate	2.0
+behaviorClass	1
+interestNum	8
+wanderRadius	200.0
+searchDist	700.0
+

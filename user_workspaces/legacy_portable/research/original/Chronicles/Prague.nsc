@@ -1,0 +1,193 @@
+##########################################################
+#                                                        #
+# Prague.nsc - Chronicle script for the Prague episode.  #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: Y. Borckmans  02/16/99                         #
+#                                                        #
+##########################################################
+#
+# EXIT FLAGS:
+#
+# CLOSED	0x1		This exit is closed
+# ONEWAY	0x100		This exit is one way (this is actually a load time only flag)
+#
+
+
+location Convent                P1_CNVT.nil             CNVT_3_1.nsd    mapPragueOT.nui      mapConvent                 0x0020 
+location ConventDay             P1_CTDY.nil             CTDY_4_1.nsd    mapPragueOT.nui      mapConvent                 0x0020
+location OldTownDay             P1_OTDY.nil             OTDY_4_1.nsd    mapPragueOT.nui      mapOldTownCenter           0x0060
+location SmithyDay              P1_SMYD.nil             SMYD_4_1.nsd    mapPragueOT.nui      mapSmithy                  0x0020
+location Inn4StagsDay           P1_IN4D.nil             IN4D_4_1.nsd    mapPragueOT.nui      mapFourStagsInn            0x0020
+location JudithBridgeDay        P1_JUDBD.nil           JUDBD_4_1.nsd    mapPragueOT.nui      mapJudithBridge            0x0060
+location University             P1_UNIV.nil             UNIV_4_1.nsd    mapPragueOT.nui      mapUniversity              0x0020
+location StThomas               P1_STHM.nil             STHM_4_1.nsd    mapPragueOT.nui      mapSaintThomasCathedral    0x0020
+location GoldenLaneDay          P1_GOLDD.nil           GOLDD_4_1.nsd    mapPragueOT.nui      mapGoldenLane              0x0060
+location UnornaDay              P1_UNORD.nil           UNORD_4_1.nsd    mapPragueOT.nui      mapUnornas                 0x0020
+location EastGate               P1_EGAT.nil             EGAT_5_1.nsd    mapPragueOT.nui      mapEastGate                0x0020
+location EastGateNight          P1_EGNT.nil             EGAT_7_1.nsd    mapPragueOT.nui      mapEastGate                0x0020
+location OldTown                P1_OLDT.nil             OLDT_7_1.nsd    mapPragueOT.nui      mapOldTownCenter           0x0060
+location Smithy                 P1_SMTY.nil             SMTY_7_1.nsd    mapPragueOT.nui      mapSmithy                  0x0020
+location Inn4Stags              P1_INN4.nil             INN4_7_1.nsd    mapPragueOT.nui      mapFourStagsInn            0x0020
+location JudithBridge           P1_JUDB.nil             JUDB_7_1.nsd    mapPragueOT.nui      mapJudithBridge            0x0060
+location Unorna                 P1_UNOR.nil             UNOR_7_1.nsd    mapPragueOT.nui      mapUnornas                 0x0020
+location Haven                  P1_HAVN.nil             HAVN_7_7.nsd    mapPragueOT.nui      mapUniversityHaven         0x00b4
+location PetrinHill             P1_HILL.nil             HILL_7_1.nsd    mapPragueOT.nui      mapPetrinHillMonastery     0x0060
+location PetrinHillDay          P1_HILLD.nil            HILLD_4_1.nsd   mapPragueOT.nui      mapPetrinHillMonastery     0x0060
+location AnezkaRoom             P1_ANZK.nil             ANZK_8_4.nsd    mapPragueOT.nui      mapConvent                 0x0060
+location NQuarter               p1_nqtr.nil             NQTR_11_1.nsd   mapPragueNQ.nui      mapNorthQuarterMain        0x0020
+location PragueCastle           P1_CAST.nil             CAST_15_1.nsd   mapPragueOT.nui      mapPragueCastle            0x0020
+location PrinceBrandl           P1_PRIN.nil             PRIN_14_1.nsd   mapPragueOT.nui      mapPrinceRudolfsChambers   0x0020
+location GoldenLane             P1_GOLD.nil             GOLD_7_1.nsd    mapPragueOT.nui      mapGoldenLane              0x0060
+
+# these dummy locations are here so we can show the map markers from a script
+location DummyNorthQuarter      dummy.nil               null            mapPragueOT.nui      mapNorthQuarter            0x0020
+location DummyNorthGate         dummy.nil               null            mapPragueOT.nui      mapNorthGate               0x0020
+location DummyNorthQuarterGate  dummy.nil               null            mapPragueNQ.nui      mapNorthQuarterGate        0x0028
+
+#location SilverMines            P1_SIM1.nil             SIM1_5_1.nsd    mapPragueOT.nui     map00                      0x0
+#location SilverMines2           P1_SIM2.nil             SIM2_5_1.nsd    mapPragueOT.nui     map00                      0x0
+#location SilverMines3           P1_SIM3.nil             SIM3_5_1.nsd    mapPragueOT.nui     map00                      0x0
+#location SilverMines4           P1_SIM4.nil             SIM4_5_1.nsd    mapPragueOT.nui     map00                      0x0
+
+location SilverMines            P1_SIM1.nil             SIM1_5_1.nsd    mapPragueOT.nui      mapBonnSilvermines         0x0
+location SilverMines2           P1_SIM2.nil             SIM2_5_1.nsd    mapPragueOT.nui      mapBonnSilvermines         0x0
+location SilverMines3           P1_SIM3.nil             SIM3_5_1.nsd    mapPragueOT.nui      mapBonnSilvermines         0x0
+                                                                                                                        
+location SilverMinesNight       P1_SIMN.nil             SIMN_7_1.nsd    mapPragueOT.nui      mapBonnSilvermines         0x0
+                                                                                                                        
+location Monastery              P1_MON1.nil             MON1_8_2.nsd    mapPragueOT.nui      mapPetrinHillMonastery     0x0
+location Monastery2             P1_MON2.nil             MON2_8_2.nsd    mapPragueOT.nui      mapPetrinHillMonastery     0x0
+location Monastery3             P1_MON3.nil             MON3_8_3.nsd    mapPragueOT.nui      mapPetrinHillMonastery     0x0
+
+location ArdanChantry           p1_arc1.nil             ARC1_17_1.nsd   mapPragueOT.nui      mappharmacy                0x0
+location ArdanChantry2          p1_arc2.nil             ARC2_17_1.nsd   mapPragueOT.nui      mappharmacy                0x0
+location ArdanChantry3          p1_arc3.nil             ARC3_17_1.nsd   mapPragueOT.nui      mappharmacy                0x0
+location ArdanChantry4          p1_arc4.nil             ARC4_17_1.nsd   mapPragueOT.nui      mappharmacy                0x0
+
+location JosefTunnels           p1_jos1.nil             JOS1_15_1.nsd   mapPragueNQ.nui      mapJosefsTunnels           0x0
+location JosefTunnels2          p1_jos2.nil             JOS2_15_1.nsd   mapPragueNQ.nui      mapJosefsTunnels           0x0
+location JosefTunnels3          p1_jos3.nil             JOS3_15_1.nsd   mapPragueNQ.nui      mapJosefsTunnels           0x0
+                                                                        
+# this location is here so the ClickExit will fail and rattle when they 
+# click on this exit in Old Town Night
+location VysMountain            P2_VYSM.nil             null            mapPragueOT.nui      mapVysehradCastle          0x0
+
+
+# OldTownDay exits - these exits that are locked are so the click exit will fail
+exit     OldTownDay,2           University,0
+exit     OldTownDay,3           EastGate,0
+exit     OldTownDay,4           ConventDay,0
+exit     OldTownDay,5           StThomas,0
+exit     OldTownDay,7           VysMountain,0  0x1
+exit     OldTownDay,8           JudithBridgeDay,0
+exit     OldTownDay,9           SmithyDay,0
+exit     OldTownDay,10          Inn4StagsDay,0
+exit     OldTownDay,11	        NQuarter,0  0x1
+
+# OldTown exits
+exit     OldTown,1              Haven,0
+#exit     OldTown,2              University,0
+exit     OldTown,3              EastGateNight,2
+exit     OldTown,4              Convent,1
+#exit     OldTown,5              StThomas,0
+exit     OldTown,7              VysMountain,0  0x1
+exit     OldTown,8              JudithBridge,0
+exit     OldTown,9              Smithy,0
+exit     OldTown,10             Inn4Stags,0
+exit     OldTown,11	           NQuarter,0
+
+
+# EastGate exits
+exit     EastGate,1             SilverMines,0
+
+# EastGateNight exits
+exit     EastGateNight,1        SilverMinesNight,0
+
+# JudithBridge exits
+exit     JudithBridge,1         GoldenLane,0
+#exit     JudithBridge,2         PragueCastle,0
+exit     JudithBridge,3         PetrinHill,0
+
+# JudithBridgeDay exits
+exit     JudithBridgeDay,1      GoldenLaneDay,0
+exit     JudithBridgeDay,2      PragueCastle,0
+exit     JudithBridgeDay,3      PetrinHillDay,0
+
+# NQuarter exits
+exit     NQuarter,1             JosefTunnels,0  0x1
+
+# PetrinHill exits - this dummy exit here so I can change this exit later
+#exit     PetrinHill,1           Monastery,0
+exit     PetrinHill,1           PetrinHill,1
+
+# PetrinHillDay exits
+exit     PetrinHillDay, 1       Monastery,0
+
+# PragueCastle exits
+exit     PragueCastle,1         PrinceBrandl,0
+
+# GoldenLane exits
+exit     GoldenLane,1           Unorna,0
+exit     GoldenLane,2           ArdanChantry,0
+exit     GoldenLane,3           JosefTunnels2,2
+
+# GoldenLaneDay exits
+exit     GoldenLaneDay,1        UnornaDay,0
+exit     GoldenLaneDay,2        ArdanChantry,0  0x1
+
+# Silver Mines
+#exit     SilverMines,1          SilverMines2,0
+#exit     SilverMines,2          SilverMines4,1
+#exit     SilverMines,3          SilverMines2,2
+#exit     SilverMines2,1         SilverMines3,0
+#exit     SilverMines2,3         SilverMines3,2
+#exit     SilverMines3,1         SilverMines4,0
+
+exit     SilverMines,1          SilverMines2,0
+exit     SilverMines,2          SilverMines3,1
+exit     SilverMines,3          SilverMines2,2
+exit     SilverMines2,1         SilverMines3,0
+
+# Bogus Silver Mines Night exit so change exit will work
+exit     SilverMinesNight,1     SilverMinesNight,2
+exit     SilverMinesNight,3     SilverMinesNight,4
+
+# ArdanChantry
+exit     ArdanChantry,1         ArdanChantry2,0
+exit     ArdanChantry2,1        ArdanChantry3,0
+exit     ArdanChantry3,1        ArdanChantry4,0
+
+# Monastery
+exit     Monastery,1            Monastery2,0
+exit     Monastery2,1           Monastery3,0
+
+# JosefTunnels
+exit     JosefTunnels,1         JosefTunnels2,0
+exit     JosefTunnels2,1        JosefTunnels3,0
+exit	 JosefTunnels3,0        JosefTunnels2,1 0x100
+
+##########################################################
+# Chronicle Settings
+##########################################################
+
+script   PragueChronicle
+metafile prague.nmf
+portal   Haven 15
+flags    0x10000
+
+# 0x10000 is a user flag that is being checked in the ExitMessageRemove script
+# to see whether or not to leave the exit rollover that is in the static 
+# scene in the world or not - if we're in this chronicle, the rollover will
+# be removed from the static scene because the rollovers in the 5.1 scene are
+# being hidde/shown at the appropriate times
+#
+# SGT
+
+##########################################################
+
+
+

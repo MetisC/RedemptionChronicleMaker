@@ -1,0 +1,31 @@
+; Erik party member ai
+
+// GENERAL
+attackType					5
+attackFlags					0x01
+attackRate					0.5
+attackAlt					0.5
+moveType						4
+moveFlags					0x20
+moveDist						512.0
+moveRate						1.0
+chaseDist					512.0
+chaseRate					1.0
+searchDist					1024.0
+searchRate					1.0
+behaviorClass				0
+interestNum					0
+wanderRadius				1024.0
+wakeupDelay					0
+searchStyle					0
+
+verylowhealth				0.15
+lowhealth					0.50
+lowblood						0.60
+highdamage					0.30
+
+discHealRate				3
+discBuffRate				15
+discDamageRate				8
+discBuffPercent			0.50
+discDamagePercent			0.10

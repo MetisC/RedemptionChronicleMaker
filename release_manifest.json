@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0-rc2",
+  "user_zip": "RedemptionChronicleMaker-1.0.0-rc2-win64.zip",
+  "sha256": "7c354353208040e370b0204239e9a9fd443ffff99cb0aa0ed06e7f65a79ff126",
+  "size": 88876310,
+  "files": 353,
+  "all_hashes_verified": true,
+  "source_archive_separate": true,
+  "native_game_verified": false,
+  "clean_machine_verified": false,
+  "source_archive": {
+    "file": "RedemptionChronicleMaker-1.0.0-rc2-workspace.zip",
+    "sha256": "640a38d857ea0a6f912d7d1448dce52315dda39a40487def53fb24bfbccc8c82",
+    "size": 399900558,
+    "files": 11216,
+    "all_file_hashes_verified": true
+  },
+  "quality": {
+    "tests": 357,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "ruff": true,
+    "configured_types": true
+  },
+  "native_acceptance": "Tutorial story from rc1 only; new product/Showcase requires manual acceptance",
+  "workspace_cleanup": "research/product_close/workspace_cleanup.json"
+}

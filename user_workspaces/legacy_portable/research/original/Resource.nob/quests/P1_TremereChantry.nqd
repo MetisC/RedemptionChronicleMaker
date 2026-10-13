@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# P1_TremereChantry.nqd - Quest definition.              #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: Y. Borckmans  07/12/99                         #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_TREMERECHANTRY_S Q_TREMERECHANTRY_L QuestCheck.tga 1500
+

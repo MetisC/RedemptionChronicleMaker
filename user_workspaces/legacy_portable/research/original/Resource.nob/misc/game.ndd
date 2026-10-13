@@ -1,0 +1,258 @@
+#########################################################################################
+#
+# DISCIPLINE DEFINITIONS
+#
+#########################################################################################
+#
+# Line format:       
+#
+# name group icon script sound flags type minDist maxDist fData cast xpc c0 c1 c2 c3 c4 r0 r1 r2 r3 r4 cs0 cv0 cs1 cv1 cs2 cv2
+#
+# name          name of the discipline
+# group         group (tab) the discipline belongs to
+# icon          icon for the discipline
+# script        name of the script (CASE SENSITIVE as any Java related stuff!!!)
+# sound         the casting sound, or '-'
+# flags         flags for how the discipline works (see list below)
+# type          type of dicipline (for AI, see list below)
+# minDist       minimum distance to cast (for AI)
+# maxDist       maximum distance to cast (for AI)
+# fData         additional float data
+# cast          cast animation
+# xpc           initial cost in experience to "buy" the discipline
+# cN            cost in blood to cast per level
+# rN            time in ms before the discipline can be recast
+# csN           check stat
+# cvN           check value
+#
+#
+# Flags:
+#
+# TARGET NONE	        0x01
+# TARGET AREA	        0x02
+# TARGET INVENTORY	0x04
+# TARGET ENEMY		0x08
+# TARGET FRIENDLY	0x10
+# OFFENSIVE		0x20
+# TARGET DEAD           0x40
+# TARGET HEAD           0x80
+#
+# PROJ			0x2000			projectile, should try to avoid hitting friends in the back
+# AOE			0x4000			explosion, should try to avoid hitting friends (radius is in fData)
+# SHAPE CHANGE		0x8000			this is a shape change that cannot be combined with other shape changes
+# TERRIFYING		0x10000			should terrify/astonish mortals (peds) witnessing its use
+# NOPARTYNOTIFY         0x20000                 counter to OFFENSIVE, does not notify party members of this 'attack'
+#
+# Types:
+#
+# NONE	       	0       AI cannot use or use only in special conditions
+# HEAL	       	1       Healing discipline	(when damaged)
+# BUFF	       	2       Buffing discipline	(start of fight generally)
+# SUMMON       	3       Summoning discipline    (start of fight generally)
+# HIDE	       	4       Hide, sneak, etc.	(preferably at start of fight or when damaged too much)
+# SENSE         5       Sense discipline        (used by AI on losing its target)
+# FEED          6       Feed discipline
+# RESERVED      7       (reserved, do not use)
+# RESERVED      8       (reserved, do not use)
+# RESERVED      9       (reserved, do not use)
+# DAMAGE        10      Damage discipline	(in fight damage)
+# MIND	       	11      Mind/control		(in fight mind control, fear, mesmerize, etc.)
+# FRENZY        12      Makes frenzy higher
+#
+#
+# Stats:
+#
+#   0           STRENGTH
+#   1           DEXTERITY
+#   2           STAMINA
+#   3           PERCEPTION
+#   4           INTELLIGENCE
+#   5           WITS
+#   6           BLOOD
+#   7           HUMANITY
+#   8           FRENZY
+#   9           GENERATION
+#  10           FAITH
+#  11           CHARISMA
+#  12           MANIPULATION
+#  13           APPEARANCE
+#  14           FRENZYRATING
+#  15           BLOODRATING
+#  16           BLOODPOOLSIZE
+#
+#
+# Cast animations: 
+#
+# GENERAL       0
+# HANDS         1
+# THROW         2
+# SPIT          3
+# NONE          4
+#
+#########################################################################################
+#
+#  08-31-99 YB  Original definition and recode from the old .INI format
+#  09-02-99 YB  Added support for initial xp costs
+#  10-18-99 YB  Added support for the AI values
+#  11-22-99 YB  Added support for the stat checks
+#
+#########################################################################################
+
+
+# name                  group                           icon                    script                          sound                           flags   type    minDist maxDist fData   cast    xpc     c0      c1      c2      c3      c4      r0      r1      r2      r3      r4      cs0 cv0 cs1 cv1 cs2 cv2  
+
+
+# COMMON                -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                        
+Feed                    DGRP_Common                     feedingIcon             DisciplineFeed                  -                               0x20018 6       0.0     9999.0  0.0     4       750     0       0       0       0       0       1000    1000    1000    1000    1000    -   -   -   -   -   -
+BloodHealing            DGRP_Common                     bloodHealingIcon        DisciplineBloodHealing          actionWhoosh_03.WAV             0x01    1       0.0     9999.0  0.0     0       250     5       5       5       5       5       1000    1000    1000    1000    1000    -   -   -   -   -   -
+BloodStrength           DGRP_Common                     bloodStrengthIcon       DisciplineBloodStrength         actionWhoosh_03.WAV             0x01    2       0.0     9999.0  0.0     0       500     5       5       5       5       5       1000    1000    1000    1000    1000    -   -   -   -   -   -
+BloodDexterity          DGRP_Common                     bloodDexterityIcon      DisciplineBloodDexterity        actionWhoosh_03.WAV             0x01    2       0.0     9999.0  0.0     0       500     5       5       5       5       5       1000    1000    1000    1000    1000    -   -   -   -   -   -
+BloodStamina            DGRP_Common                     bloodStaminaIcon        DisciplineBloodStamina          actionWhoosh_03.WAV             0x01    2       0.0     9999.0  0.0     0       500     5       5       5       5       5       1000    1000    1000    1000    1000    -   -   -   -   -   -
+Awaken                  DGRP_Common                     awakenIcon              DisciplineAwaken                disciplineCast_whisperCast.WAV  0x100D0 0       0.0     9999.0  0.0     1       1000    25      25      25      25      25      1000    1000    1000    1000    1000    -   -   -   -   -   -
+WalkTheAbyss            DGRP_Common                     walkTheAbyssIcon        DisciplineWalkTheAbyss          teleport_02.WAV                 0x10001 0       0.0     9999.0  0.0     0       1250    25      20      15      10      10      1000    1000    1000    1000    1000    4   25  5   25  -   -
+#Nuke                    DGRP_Common                     nukeIcon                DisciplineNuke                  -                               0x28    0       0.0     9999.0  0.0     4       0       0       0       0       0       0       200     200     200     200     200     -   -   -   -   -   -
+
+
+# ANIMALISM             -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                
+FeralWhispers           DGRP_Animalism                  feralWhispersIcon       DisciplineFeralWhispers         disciplineCast_crystalWind.WAV  0x08    0       0.0     1500.0  0.0     0       250     10      10      5       5       5       1000    1000    1000    1000    1000    12  25  -   -   -   -
+Beckoning               DGRP_Animalism                  beckoningIcon           DisciplineBeckoning             disciplineCast_crystalWind.WAV  0x10001 3       0.0     9999.0  0.0     1       500     12      12      12      10      10      1000    1000    1000    1000    1000    11  35  -   -   -   -
+QuellBeast              DGRP_Animalism                  quellTheBeastIcon       DisciplineQuellBeast            disciplineCast_crystalWind.WAV  0x39    0       0.0     1500.0  0.0     0       750     15      15      15      10      10      1000    1000    1000    1000    1000    12  50  -   -   -   -
+SubsumeTheSpirit        DGRP_Animalism                  subsumeSpiritIcon       DisciplineSubsumeTheSpirit      disciplineCast_crystalWind.WAV  0x08    0       0.0     1500.0  0.0     0       1000    20      20      20      15      15      1000    1000    1000    1000    1000    12  60  -   -   -   -
+DrawingOutBeast         DGRP_Animalism                  drawingOutTheBeastIcon  DisciplineDrawingOutBeast       disciplineCast_crystalWind.WAV  0x08    12      0.0     1500.0  0.0     1       1500    25      25      25      20      20      1000    1000    1000    1000    1000    12  70  -   -   -   -
+
+
+# AUSPEX                -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HeightenedSenses        DGRP_Auspex                     heightenedSensesIcon    DisciplineHeightenedSenses      actionWhoosh_10.WAV             0x01    5       0.0     9999.0  0.0     0       250     5       5       5       5       5       1000    1000    1000    1000    1000    3   25  -   -   -   -
+AuraPerception          DGRP_Auspex                     auraPerceptionIcon      DisciplineAuraPerception        actionWhoosh_10.WAV             0x18    0       0.0     1500.0  0.0     0       500     5       5       5       5       5       1000    1000    1000    1000    1000    3   35  -   -   -   -
+SpiritsTouch            DGRP_Auspex                     spiritsTouchIcon        DisciplineSpiritsTouch          actionWhoosh_10.WAV             0x04    0       0.0     9999.0  0.0     0       750     15      15      15      10      10      1000    1000    1000    1000    1000    3   30  -   -   -   -
+PsychicProjection       DGRP_Auspex                     psychicProjectionIcon   DisciplinePsychicProjection     actionWhoosh_10.WAV             0x01    0       0.0     9999.0  0.0     0       1000    20      20      20      15      15      1000    1000    1000    1000    1000    -   -   -   -   -   -
+
+
+# CELERITY              -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Celerity                DGRP_Celerity                   celerityIcon            DisciplineCelerity              actionWhoosh_09.WAV             0x01    2       0.0     9999.0  0.0     0       500     30      30      30      30      30      1000    1000    1000    1000    1000    -   -   -   -   -   -
+
+
+# OBFUSCATE             -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CloakOfShadows          DGRP_Obfuscate                  cloakOfShadowsDIcon     DisciplineCloakOfShadows        actionWhoosh_08.WAV             0x01    4       0.0     9999.0  0.0     0       750     10      10      10      10      10      1000    1000    1000    1000    1000    5   25  -   -   -   -
+Mask1000Faces           DGRP_Obfuscate                  Mask1000FacesIcon       DisciplineMask1000Faces         actionWhoosh_08.WAV             0x10018 0       0.0     9999.0  0.0     0       500     10      10      10      10      10      1000    1000    1000    1000    1000    5   30  -   -   -   -
+CloakTheGathering       DGRP_Obfuscate                  cloakTheGatheringIcon   DisciplineCloakTheGathering     actionWhoosh_08.WAV             0x01    4       0.0     9999.0  0.0     0       1500    25      25      25      20      20      1000    1000    1000    1000    1000    5   40  -   -   -   -
+
+
+# DEMENTATION           -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Passion                 DGRP_Dementation                passionIcon             DisciplinePassion               disciplineCast_whisperCast.WAV  0x08    12      0.0     1000.0  0.0     1       250     10      5       5       5       5       2000    2000    2000    1000    1000    11  25  -   -   -   -
+TheHaunting             DGRP_Dementation                theHauntingIcon         DisciplineTheHaunting           disciplineCast_whisperCast.WAV  0x08    11      0.0     1000.0  0.0     1       500     10      10      10      5       5       2000    2000    2000    1000    1000    12  35  -   -   -   -
+EyesOfChaos             DGRP_Dementation                eyesOfChaosIcon         DisciplineEyesOfChaos           disciplineCast_whisperCast.WAV  0x18    0       0.0     1000.0  0.0     0       750     15      15      15      10      10      2000    2000    2000    1000    1000    3   50  -   -   -   -
+VoiceOfMadness          DGRP_Dementation                voiceOfMadnessIcon      DisciplineVoiceOfMadness        disciplineCast_whisperCast.WAV  0x08    11      0.0     1000.0  0.0     0       1000    20      20      20      15      15      2000    2000    2000    1000    1000    12  60  -   -   -   -
+
+
+# DOMINATE              -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Command                 DGRP_Dominate                   commandIcon             DisciplineCommand               disciplineCast_engulf.WAV       0x08    0       0.0     1000.0  0.0     0       250     10      10      10      5       5       2000    2000    2000    1000    1000    12  25  -   -   -   -
+Mesmerize               DGRP_Dominate                   mesmerizeIcon           DisciplineMesmerize             disciplineCast_engulf.WAV       0x08    11      0.0     1000.0  0.0     0       500     15      15      15      10      10      2000    2000    2000    1000    1000    12  35  -   -   -   -
+TheForgetfulMind        DGRP_Dominate                   forgetfulMindIcon       DisciplineTheForgetfulMind      disciplineCast_engulf.WAV       0x08    11      0.0     1000.0  0.0     0       750     20      20      20      15      15      2000    2000    2000    1000    1000    5   50  -   -   -   -
+Possession              DGRP_Dominate                   possessionIcon          DisciplinePossession            disciplineCast_engulf.WAV       0x08    0       0.0     1000.0  0.0     0       1000    25      25      25      20      20      2000    2000    2000    1000    1000    11  60  -   -   -   -
+
+
+# FORTITUDE             -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Fortitude               DGRP_Fortitude                  fortitudeIcon           DisciplineFortitude             disciplineCast_diesBassum.WAV   0x01    2       0.0     9999.0  0.0     1       500     20      20      20      20      20      1000    1000    1000    1000    1000    -   -   -   -   -   -
+
+
+# POTENCE               -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Potence                 DGRP_Potence                    potenceIcon             DisciplinePotence               disciplineCast_whineProp.WAV    0x01    2       0.0     9999.0  0.0     1       500     20      20      20      20      20      1000    1000    1000    1000    1000    -   -   -   -   -   -
+
+
+# PROTEAN               -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+EyesOfTheBeast          DGRP_Protean                    eyesOfTheBeastIcon      DisciplineEyesOfTheBeast        disciplineCast_whineProp.WAV    0x01    5       0.0     9999.0  0.0     0       250     5       5       5       5       5       1000    1000    1000    1000    1000    3   25  -   -   -   - 
+FeralClaws              DGRP_Protean                    ferrelClawsIcon         DisciplineFeralClaws            disciplineCast_whineProp.WAV    0x18001 2       0.0     9999.0  0.0     1       500     10      10      10      5       5       1000    1000    1000    1000    1000    -   -   -   -   -   -
+EarthMeld               DGRP_Protean                    earthMeldIcon           DisciplineEarthMeld             disciplineCast_whineProp.WAV    0x18001 0       0.0     9999.0  0.0     0       750     15      15      15      10      10      1000    1000    1000    1000    1000    -   -   -   -   -   -
+ShapeOfTheBeast         DGRP_Protean                    shapeOfTheBeastIcon     DisciplineShapeOfTheBeast       wolfTransform.WAV               0x18001 2       0.0     9999.0  0.0     0       1000    20      20      20      10      10      1000    1000    1000    1000    1000    -   -   -   -   -   -
+MistForm                DGRP_Protean                    mistFormIcon            DisciplineMistForm              disciplineCast_whineProp.WAV    0x18001 0       0.0     9999.0  0.0     0       1500    25      25      25      20      20      1000    1000    1000    1000    1000    -   -   -   -   -   -
+
+
+# PRESENCE              -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Awe                     DGRP_Presence                   aweIcon                 DisciplineAwe                   disciplineCast_whirlwind.WAV    0x08    11      0.0     1000.0  0.0     1       250     5       5       5       5       5       2000    2000    2000    1000    1000    11  25  -   -   -   -
+DreadGaze               DGRP_Presence                   dreadGazeIcon           DisciplineDreadGaze             disciplineCast_whirlwind.WAV    0x08    11      0.0     1000.0  0.0     1       500     10      10      10      5       5       2000    2000    2000    1000    1000    11  35  -   -   -   -
+Entrancement            DGRP_Presence                   entrancementIcon        DisciplineEntrancement          disciplineCast_whirlwind.WAV    0x08    0       0.0     1000.0  0.0     1       750     15      15      15      10      10      2000    2000    2000    1000    1000    13  50  -   -   -   -
+Majesty                 DGRP_Presence                   majestyIcon             DisciplineMajesty               disciplineCast_whirlwind.WAV    0x01    0       0.0     9999.0  0.0     1       1500    20      20      20      15      15      2000    2000    2000    1000    1000    13  60  -   -   -   -
+
+
+# MORTIS                -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ShamblingHordes         DGRP_Mortis                     shamblingHordesIcon     DisciplineShamblingHordes       disciplineCast_whisperCast.WAV  0x10040 0       0.0     1000.0  0.0     1       250     10      10      10      5       5       2000    2000    2000    1000    1000    5   25  -   -   -   -
+VigorMortis             DGRP_Mortis                     vigorMortisIcon         DisciplineVigorMortis           disciplineCast_whisperCast.WAV  0x10040 0       0.0     1000.0  0.0     1       500     15      15      15      10      10      2000    2000    2000    1000    1000    4   30  5   30  -   -
+SummonSoul              DGRP_Mortis                     summonSoulIcon          DisciplineSummonSoul            disciplineCast_whisperCast.WAV  0x10001 3       0.0     9999.0  0.0     1       750     20      20      20      20      20      2000    2000    2000    1000    1000    3   50  -   -   -   -
+PlagueWind              DGRP_Mortis                     plagueWindIcon          DisciplinePlagueWind            plagueWind_exhale_01.WAV        0x2022  10      0.0     1000.0  80.0    3       1000    25      25      25      20      20      2000    2000    2000    1000    1000    4   60  -   -   -   -
+BlackDeath              DGRP_Mortis                     blackDeathIcon          DisciplineBlackDeath            disciplineCast_whisperCast.WAV  0x28    10      0.0      200.0  0.0     1       1500    30      30      30      25      25      3000    3000    2000    2000    1000    4   70  -   -   -   -
+
+
+# THAUMATURGY           -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#-- BloodPath
+
+BloodRage               DGRP_Thau_BloodPath             bloodRageIcon           DisciplineBloodRage             disciplineCast_wobbleSputtr.WAV 0x28    10      0.0     1000.0  0.0     0       250     10      10      10      5       5       2000    2000    2000    1000    1000    4   25  5   25  -   -
+BloodOfPotency          DGRP_Thau_BloodPath             bloodOfPotencyIcon      DisciplineBloodOfPotency        disciplineCast_wobbleSputtr.WAV 0x01    2       0.0     9999.0  0.0     0       500     15      15      15      10      10      2000    2000    2000    1000    1000    -   -   -   -   -   -
+TheftOfVitae            DGRP_Thau_BloodPath             theftOfVitaeIcon        DisciplineTheftOfVitae          disciplineCast_wobbleSputtr.WAV 0x28    10      0.0      550.0  0.0     1       750     20      20      20      15      15      4000    4000    4000    2000    2000    4   40  -   -   -   -
+CauldronOfBlood         DGRP_Thau_BloodPath             cauldronOfBloodIcon     DisciplineCauldronOfBlood       disciplineCast_wobbleSputtr.WAV 0x28    10      0.0      200.0  0.0     2       1000    25      25      25      20      20      3000    3000    2000    2000    1000    4   50  -   -   -   -
+
+#-- LureOfFlames
+
+Torch                   DGRP_Thau_LureOfFlames          torchIcon               DisciplineTorch                 actionWhoosh_11.WAV             0x01    0       0.0     9999.0  0.0     2       250     5       5       5       3       3       1000    1000    1000    1000    1000    4   25  -   -   -   -
+Fireball                DGRP_Thau_LureOfFlames          fireballIcon            DisciplineFireball              actionWhoosh_11.WAV             0x4028  10      0.0     1000.0  0.0     2       500     10      10      10      5       5       1000    1000    1000    1000    1000    4   35  -   -   -   -
+FlameRing               DGRP_Thau_LureOfFlames          FlameRingIcon           DisciplineFlameRing             disciplineCast_filterWah.WAV    0x01    0       0.0     9999.0  0.0     2       750     15      15      15      10      10      1000    1000    1000    1000    1000    4   50  -   -   -   -
+Immolate                DGRP_Thau_LureOfFlames          immolateIcon            DisciplineImmolate              disciplineCast_filterWah.WAV    0x28    10      0.0      200.0  0.0     2       1000    20      20      20      15      15      1000    1000    1000    1000    1000    4   60  -   -   -   -
+FireStorm               DGRP_Thau_LureOfFlames          fireStormIcon           DisciplineFireStorm             actionWhoosh_11.WAV             0x22    10      0.0     1000.0  0.0     3       1500    25      25      20      20      15      2000    2000    2000    1000    1000    4   70  -   -   -   -
+
+#-- HandsOfDestruction
+
+Decay                   DGRP_Thau_HandsOfDestruction    decayIcon               DisciplineDecay                 disciplineCast_fleshScream.WAV  0x28    10      0.0      200.0  0.0     2       250     5       5       5       5       5       2000    2000    2000    1000    1000    4   25  7  -60  -   -
+AcidicTouch             DGRP_Thau_HandsOfDestruction    acidicTouchIcon         DisciplineAcidicTouch           disciplineCast_fleshScream.WAV  0x28    10      0.0      200.0  0.0     2       500     15      15      15      10      10      2000    2000    2000    1000    1000    4   35  7  -50  -   -
+Atrophy                 DGRP_Thau_HandsOfDestruction    atrophyIcon             DisciplineAtrophy               disciplineCast_fleshScream.WAV  0x28    10      0.0      200.0  0.0     2       750     20      20      20      15      15      3000    3000    2000    2000    1000    4   50  7  -35  -   -
+TurnToDust              DGRP_Thau_HandsOfDestruction    turnToDustIcon          DisciplineTurnToDust            disciplineCast_fleshScream.WAV  0x28    10      0.0      200.0  0.0     2       1000    30      30      30      20      20      3000    3000    2000    2000    1000    4   60  7  -25  -   -
+
+#-- Rituals
+
+HeartOfStone            DGRP_Thau_Rituals               heartOfStoneIcon        DisciplineHeartOfStone          actionWhoosh_11.WAV             0x01    2       0.0     9999.0  0.0     0       250     5       5       5       5       5       1000    1000    1000    1000    1000    4   25  5   25  -   -
+PrisonOfIce             DGRP_Thau_Rituals               prisonOfIceIcon         DisciplinePrisonOfIce           disciplineCast_electricWhip.WAV 0x28    10      0.0      200.0  0.0     0       500     15      15      15      10      10      3000    3000    2000    2000    1000    4   35  5   35  -   -
+CallLightning           DGRP_Thau_Rituals               regoTempestasIcon       DisciplineCallLightning         discipline_callLightning_02.WAV 0x28    10      0.0     1000.0  0.0     0       750     25      25      25      20      20      3000    3000    2000    2000    1000    4   50  5   50  -   -
+IgnoreFlame             DGRP_Thau_Rituals               ignoreTheSearingFlameIcon DisciplineIgnoreFlame         actionWhoosh_04.WAV             0x01    2       0.0     9999.0  0.0     2       1000    10      10      10      5       5       1000    1000    1000    1000    1000    4   60  5   60  -   -
+SummonElemental         DGRP_Thau_Rituals               summonElementalIcon     DisciplineSummonElemental       disciplineCast_whisperCast.WAV  0x10001 3       0.0     9999.0  0.0     1       1500    25      25      25      20      20      3000    3000    2000    2000    1000    4   70  5   70  -   -
+
+
+# FAITH                 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Heal                    DGRP_Faith                      healIcon                DisciplineHeal                  death_holy.WAV                  0x01    1       0.0     9999.0  0.0     0       250     5       5       5       5       5       2000    2000    2000    1000    1000    10  25  -   -   -   -
+Prayer                  DGRP_Faith                      prayerIcon              DisciplinePrayer                death_holy.WAV                  0x28    10      0.0     1500.0  0.0     2       500     10      10      5       5       5       1000    1000    1000    1000    1000    10  35  -   -   -   -
+TrueFaith               DGRP_Faith                      trueFaithIcon           DisciplineTrueFaith             death_holy.WAV                  0x01    4       0.0     9999.0  0.0     0       750     20      20      15      15      15      2000    2000    2000    1000    1000    10  50  -   -   -   -
+
+
+# NUMINA                -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Invisibility            DGRP_Numina                     InvisibilityIcon        DisciplineInvisibility          actionWhoosh_08.WAV             0x01    4       0.0     9999.0  0.0     0       250     10      10      10      5       5       1000    1000    1000    1000    1000    3   25  4   25  -   -
+Flash                   DGRP_Numina                     FlashIcon               DisciplineFlash                 actionWhoosh_01.WAV             0x01    10      0.0     9999.0  0.0     1       500     15      15      15      10      10      2000    2000    2000    1000    1000    3   35  4   35  -   -
+TrueSight               DGRP_Numina                     TrueSightIcon           DisciplineTrueSight             actionWhoosh_10.WAV             0x01    5       0.0     9999.0  0.0     0       750     20      20      20      10      10      1000    1000    1000    1000    1000    3   50  4   50  -   -
+
+
+# OBTENEBRATION         -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DarkHunter              DGRP_Obtenebration              darkHunterIcon          DisciplineDarkHunter            darkHunter_idle_01.WAV          0x10001 3       0.0     9999.0  0.0     1       250     30      30      30      20      20      2000    2000    2000    1000    1000    -   -   -   -   -   -
+
+
+# SERPENTIS             -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+EyesOfTheSerpent        DGRP_Serpentis                  eyesOfTheSerpentIcon    DisciplineEyesOfTheSerpent      viper_idle.WAV                  0x08    11      0.0     1000.0  0.0     0       250     5       5       5       5       5       1000    1000    1000    1000    1000    -   -   -   -   -   -
+TongueOfTheAsp          DGRP_Serpentis                  tongueOfTheAspIcon      DisciplineTongueOfTheAsp        disciplineCast_engulf.WAV       0x28    10      0.0      550.0  0.0     1       750     20      20      20      15      15      2000    2000    2000    1000    1000    -   -   -   -   -   -
+SkinOfTheAdder          DGRP_Serpentis                  skinOfTheAdderIcon      DisciplineSkinOfTheAdder        viper_idle.WAV                  0x10001 2       0.0     9999.0  0.0     0       750     20      20      20      10      10      1000    1000    1000    1000    1000    -   -   -   -   -   -
+HatchTheViper           DGRP_Serpentis                  hatchTheViperIcon       DisciplineHatchTheViper         regurgitateSnake_02.WAV         0x10001 3       0.0     9999.0  0.0     3       500     30      30      30      20      20      3000    3000    2000    2000    1000    -   -   -   -   -   -
+
+
+# name                  group                           icon                    script                          sound                           flags   type    minDist maxDist fData   cast    xpc     c0      c1      c2      c3      c4      r0      r1      r2      r3      r4      cs0 cv0 cs1 cv1 cs2 cv2

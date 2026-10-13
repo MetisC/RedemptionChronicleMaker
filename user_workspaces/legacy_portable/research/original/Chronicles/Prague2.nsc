@@ -1,0 +1,67 @@
+##########################################################
+#                                                        #
+# Prague2.nsc - Chronicle script for the Prague2 episode.#
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+##########################################################
+#
+# EXIT FLAGS:
+#
+# CLOSED	0x1		This exit is closed
+# ONEWAY	0x100		This exit is one way (this is actually a load time only flag)
+#
+
+
+location EastGateNight          P1_EGNT.nil             EGNT_25_1.nsd   mapPragueOT.nui    mapEastGate                  0x0020
+                                                                                                                        
+location OldTown                P2_OLDT.nil             OLDT_25_1.nsd   mapPragueOT.nui    mapOldTownCenter             0x0060
+location Haven                  P1_HAVN.nil             HAVN_25_1.nsd   mapPragueOT.nui    mapUniversityHaven           0x00b4
+location University             P1_UNIV.nil             UNIV_25_1.nsd   mapPragueOT.nui    mapUniversity                0x0020
+
+# these are here so we can lock them below
+location Convent                P1_CNVT.nil             null            mapPragueOT.nui    mapConvent                   0x0020
+location StThomas               P1_STHM.nil             null            mapPragueOT.nui    mapSaintThomasCathedral      0x0020
+location Inn4Stags              P1_INN4.nil             null            mapPragueOT.nui    mapFourStagsInn              0x0020
+
+location VysMountain            P2_VYSM.nil             VYSM_25_1.nsd   mapPragueOT.nui    mapVysehradCastle            0x0060
+                                                                                                                        
+location VysCastle1             P2_VYC1.nil             VYC1_25_1.nsd   mapPragueOT.nui    mapVysehradCastle            0x0060
+location VysCastle2             P2_VYC2.nil             VYC2_25_1.nsd   mapPragueOT.nui    mapVysehradCastle            0x0
+location VysCastle3             P2_VYC3.nil             VYC3_25_1.nsd   mapPragueOT.nui    mapVysehradCastle            0x0
+location VysCastle4             P2_VYC4.nil             VYC4_25_1.nsd   mapPragueOT.nui    mapVysehradCastle            0x0
+
+
+# OldTown exits
+exit     OldTown,1              Haven, 0
+exit     OldTown,2              University, 0
+exit     OldTown,3              EastGateNight,2
+exit     OldTown,7              VysMountain,0
+
+# these are inaccessible, just here so locked sound/text will work right
+exit     OldTown,4              Convent,1          0x1
+exit     OldTown,5              StThomas,0         0x1
+exit     OldTown,10             Inn4Stags,0        0x1
+
+# VysMountain exits
+exit     VysMountain,1         VysCastle1,0
+
+# VysCastle exits
+exit     VysCastle1,1          VysCastle2,0
+exit     VysCastle2,1          VysCastle3,0
+exit     VysCastle3,1          VysCastle4,0
+
+
+##########################################################
+# Chronicle Settings
+##########################################################
+
+script   Prague2Chronicle
+metafile prague2.nmf
+portal   Haven 15
+flags    0x8
+
+##########################################################
+

@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# P2_Ecaterina.nqd - Quest definition.                   #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 2000 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S. Thoms  05/03/00                             #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_ECATERINA_S Q_ECATERINA_L QuestCheck.tga 100
+

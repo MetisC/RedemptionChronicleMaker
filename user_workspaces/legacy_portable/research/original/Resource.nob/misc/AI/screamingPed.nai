@@ -1,0 +1,20 @@
+; pedestrian ai
+
+attackType					5
+attackFlags					0x01
+attackRate					0.5
+moveType						4
+moveFlags					0x20
+moveDist						1024.0
+moveRate						1.0
+chaseDist					1024.0
+chaseRate					1.0
+searchDist					2000.0
+searchRate					1.0
+behaviorClass				0	
+interestNum					0
+wanderRadius				2000.0
+wakeupDelay
+searchStyle
+
+

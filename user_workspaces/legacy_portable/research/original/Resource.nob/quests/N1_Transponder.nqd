@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# N1_Transponder.nqd - Quest definition.                 #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S. Thoms  08/26/99                             #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_TRANSPONDER_S Q_TRANSPONDER_L devNullTransmitterIcon.tga 10000
+

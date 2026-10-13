@@ -1,0 +1,13 @@
+##########################################################
+#                                                        #
+# P1_EcaterinaVitae.nqd - Quest definition.              #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_ECATERINAVITAE_S Q_ECATERINAVITAE_L ecaterinaVitaeIcon.tga 100
+

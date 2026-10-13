@@ -1,0 +1,38 @@
+; generic Cappadocian ai format
+
+// GENERAL
+attackType					5
+attackFlags					0x01
+attackRate					0.5
+attackAlt					0.5
+moveType						4
+moveFlags					0x20
+moveDist						512.0
+moveRate						1.0
+chaseDist					512.0
+chaseRate					1.0
+searchDist					1024.0
+searchRate					1.0
+behaviorClass				0
+interestNum					0
+wanderRadius				1024.0
+wakeupDelay					0
+searchStyle					0
+
+verylowhealth				0.15
+lowhealth					0.30
+lowblood						0.30
+highdamage					0.30
+
+discHealRate				10
+discBuffRate				15
+discDamageRate				8
+discBuffPercent			0.50
+discDamagePercent			0.50
+
+// DISCIPLINE   name                    level
+discipline      BloodHealing					2
+discipline      BloodStamina            	2
+discipline      Fortitude						2
+discipline      ShamblingHordes				2
+discipline      SummonSoul						1

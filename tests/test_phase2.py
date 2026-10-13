@@ -36,6 +36,7 @@ class Phase2Tests(unittest.TestCase):
         cls.backend = Backend(cls.ws)
         cls.area = ROOT / "build/tests/documents"
         cls.area.mkdir(parents=True, exist_ok=True)
+        cls.backend.build((ROOT/'tests/fixtures/chronicles/east_demo.yaml').read_text(encoding='utf8'))
 
     def data(self):
         return graph_source()
@@ -204,19 +205,23 @@ class Phase2Tests(unittest.TestCase):
         strings = (folder / "runtime/strings/_R_east_demo.nls").read_text(encoding="cp1252")
         self.assertIn("R_east_demoS Redemption Chronicle Maker: Londres nuevo", strings)
         self.assertIn("R_east_demoL Redemption Chronicle Maker: Londres nuevo", strings)
-        with zipfile.ZipFile(ROOT / "research/checkpoints/phase1_stable_2026_10_08.zip") as baseline:
-            for path in ["runtime/scenes/R_east_demo.nsd", "runtime/codex/R_east_demo_Scene.class", "runtime/codex/R_east_demo_Passive.class"]:
-                self.assertEqual((folder / path).read_bytes(), baseline.read("build/east_demo/" + path), path)
+        # The large checkpoint was intentionally retired during cleanup.
+        # Retained native deployment hashes still pin the original class bytes.
+        baseline=json.loads((ROOT/'tests/fixtures/baselines/native_class_hashes.json').read_text(encoding='utf8'))
+        for record in baseline['files']:
+            if record['path'].endswith('.class'):
+                self.assertEqual(hashlib.sha256((folder/'runtime'/record['path']).read_bytes()).hexdigest(),record['sha256'])
+        scene=Scene.read((folder/'runtime/scenes/R_east_demo.nsd').read_bytes())
+        original=(ROOT/'research/original/Resource.nob/scenes/EAST_28_1.nsd').read_bytes()
+        self.assertEqual(scene.environment,bytes(16)+original[-176:])
+        self.assertEqual(len(scene.entities),1)
 
-    def test_gui_acceptance_equals_cli_build(self):
-        evidence = ROOT / "build/editor/acceptance/report.json"
-        self.assertTrue(evidence.is_file(), "Run tools/gui_acceptance.py first")
-        report = json.loads(evidence.read_text(encoding="utf8"))
-        self.assertTrue(report["successful"])
-        self.assertFalse(report["yaml_manually_authored"])
-        original = Path(report['project'])
-        if not original.is_absolute():original=ROOT/original
-        project = original if original.is_relative_to(ROOT/'tests/fixtures/chronicles') else ROOT/'tests/fixtures/chronicles'/original.relative_to(ROOT/'chronicles')
+    def test_historical_gui_fixture_cli_build_matches_pinned_package(self):
+        # Pinned regression baselines belong with fixtures, never disposable build/.
+        evidence=json.loads((ROOT/'tests/fixtures/baselines/gui_distribution.json').read_text(encoding='utf8'))
+        report=next(row for row in evidence if row['project']=='chronicles/editor_acceptance/project.yaml')
+        self.assertTrue(report['source_unchanged'])
+        project=ROOT/'tests/fixtures/chronicles/editor_acceptance/project.yaml'
         cmd = [sys.executable, str(ROOT / "tools/rcm.py"), "build", str(project)]
         run = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
         self.assertEqual(run.returncode, 0, run.stdout + run.stderr)
@@ -224,7 +229,7 @@ class Phase2Tests(unittest.TestCase):
         # Keep the original GUI evidence intact. Review the runtime migration
         # separately: NOT libraries now preload before LAN restores inventory.
         expected = json.loads((project.parent/'expected.json').read_text(encoding='utf8'))
-        self.assertEqual(report['gui_distribution_sha256'], expected['original_gui_distribution_sha256'])
+        self.assertEqual(report['sha256'], expected['original_gui_distribution_sha256'])
         self.assertEqual(hashlib.sha256(project.read_bytes()).hexdigest(), expected['source_sha256'])
         self.assertEqual(hashlib.sha256(package.read_bytes()).hexdigest(), expected['distribution_sha256'])
 

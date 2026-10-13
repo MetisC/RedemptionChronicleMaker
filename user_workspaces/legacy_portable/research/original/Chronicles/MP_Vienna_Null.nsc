@@ -1,0 +1,122 @@
+##########################################################
+#                                                        #
+# MP_Vienna_Null.nsc                                     #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S. Thoms 2/8/2000                              #
+#                                                        #
+##########################################################
+
+
+
+location NorthernRingStrasse    V1_NRTH.nil             null  mapVienna.nui    mapDesecratedChurchHaven  0x0000
+
+location InnerStradt            V1_INNR.nil             null  mapVienna.nui    mapInnerStradt            0x0040
+
+location OutterStradt           V1_OUTR.nil             null  mapVienna.nui    mapOuterRingStrasse       0x0040
+
+location Stephansdom1           V1_STE1.nil             null  mapVienna.nui    mapEntranceStephansdom    0x0
+location Stephansdom2           V1_STE2.nil             null  mapVienna.nui    mapEntranceStephansdom    0x0
+location Stephansdom3           V1_STE3.nil             null  mapVienna.nui    mapEntranceStephansdom    0x0
+
+location EasternRingStrasse     V1_EAST.nil             null  mapVienna.nui    mapEasternRingStrasse     0x0000
+location OrderOfHermes          V1_ORDR.nil             null  mapVienna.nui    mapOrderOfHermes          0x0000
+location GreenfrogInn           V1_FROG.nil             null  mapVienna.nui    mapGreenFrogInn           0x0000
+
+location TeutonicKnightBase1    v1_teu1.nil             null  mapVienna.nui    mapDeutschOrdensKirche    0x0
+location TeutonicKnightBase2    v1_teu2.nil             null  mapVienna.nui    mapDeutschOrdensKirche    0x0
+location TeutonicKnightBase3    v1_teu3.nil             null  mapVienna.nui    mapDeutschOrdensKirche    0x0
+location TeutonicKnightBase4    v1_teu4.nil             null  mapVienna.nui    mapDeutschOrdensKirche    0x0
+
+location WesternRingStrasse     V1_WEST.nil             null  mapVienna.nui    mapWesternRingStrasse     0x0000
+location OrsiMansion            V1_ORSI.nil             null  mapVienna.nui    mapOrsisMansion           0x0000
+
+location Church                 V1_HAVN.nil             null  mapVienna.nui    mapDesecratedChurchHaven  0x00b4
+location WeaponSmith            V1_WEAP.nil             null  mapVienna.nui    mapSmithy                 0x0000
+location InnerHouse				  V1_ROOF.nil             null  mapVienna.nui    mapEntranceStephansdom    0x0000
+location SouthernRingStrasse    V1_SOUT.nil             null  mapVienna.nui    mapSouthernRingStrasse    0x0000
+
+location HausDeHexe1            V1_HHX1.nil             null  mapVienna.nui    mapHausDeHexe             0x0
+location HausDeHexe2            V1_HHX2.nil             null  mapVienna.nui    mapHausDeHexe             0x0
+location HausDeHexe3            V1_HHX3.nil             null  mapVienna.nui    mapHausDeHexe             0x0
+location HausDeHexe4            V1_HHX4.nil             null  mapVienna.nui    mapHausDeHexe             0x0
+
+
+#NorthernRingStrasse
+exit  NorthernRingStrasse,2    	OutterStradt,3
+exit  NorthernRingStrasse,1	   Church,0	
+
+# InnerStradt exits
+exit  InnerStradt,4           	Stephansdom1,0
+exit  InnerStradt,0           	EasternRingStrasse,0
+exit  InnerStradt,3           	TeutonicKnightBase1,0
+exit  InnerStradt,1           	WesternRingStrasse,1
+exit  InnerStradt,2		         InnerHouse,0
+exit  InnerStradt,5		         InnerHouse,1
+
+# OutterStradt
+exit	OutterStradt,0		InnerStradt,0
+exit 	OutterStradt,1		InnerStradt,1
+exit 	OutterStradt,2		WesternRingStrasse,0
+exit 	OutterStradt,4		EasternRingStrasse,4
+exit	OutterStradt,5		SouthernRingStrasse,0
+exit 	OutterStradt,6		WeaponSmith,0
+
+# WeaponSmith
+exit  WeaponSmith,0		OutterStradt,6
+
+# Church
+exit  Church,0			   NorthernRingStrasse,1
+
+# Stephansdom exits
+exit  Stephansdom1, 1         	Stephansdom2, 0
+exit  Stephansdom2, 1         	Stephansdom3, 0
+
+# EasternRingStrasse exits
+exit  EasternRingStrasse,0  	   OutterStradt,4
+exit  EasternRingStrasse,1    	GreenFrogInn,0
+exit  EasternRingStrasse,2    	OrderOfHermes,0
+
+# TeutonicKnightBase exits
+exit	TeutonicKnightBase1,1	   TeutonicKnightBase2,0
+exit	TeutonicKnightBase2,1	   TeutonicKnightBase3,0
+exit	TeutonicKnightBase3,1	   TeutonicKnightBase4,0
+
+# WesternRingStrasse exits
+exit  WesternRingStrasse,0    	OutterStradt,2
+exit  WesternRingStrasse,1    	OrsiMansion,0
+
+# OrsiMansion
+exit OrsiMansion,0		WesternRingStrasse,1
+
+# GreenFrogInn
+exit GreenFrogInn,0		EasternRingStrasse,1
+
+# OrderOfHermes
+exit OrderOfHermes,0		EasternRingStrasse,2
+
+# SouthernRingStrasse
+exit  SouthernRingStrasse,1   	HausDeHexe1,0
+exit  SouthernRingStrasse,0	   OutterStradt,5
+
+# HausDeHexe exits 
+exit HausDeHexe1, 1 		HausDeHexe2, 0 
+exit HausDeHexe1, 2 		HausDeHexe4, 0 
+exit HausDeHexe1, 3 		HausDeHexe3, 0 
+
+
+##########################################################
+# Chronicle Settings
+##########################################################
+
+metafile    MP_Vienna_Null.nmf
+portal      Church 15
+reviveloc   NorthernRingStrasse 0
+flags       0x6
+
+##########################################################
+
+

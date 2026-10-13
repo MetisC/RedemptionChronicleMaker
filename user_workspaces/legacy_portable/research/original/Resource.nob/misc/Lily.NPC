@@ -1,0 +1,63 @@
+// ==============================================
+//
+// Nihilistic Player Character file
+//
+//
+// Lily
+//
+//
+// [YB] 04/15/99
+// [AC] 07/11/99
+//
+// ==============================================
+
+// Note: bloodpool MUST come before blood!!!
+
+
+// GENERAL
+name            Lily
+clan            Toreador
+cash            50
+totalexperience 8000
+
+
+// STATS        min     max     current
+maxhealth       120
+health          120          
+strength        0       100     45 
+dexterity       0       100     50
+stamina         0       100     45
+perception      0       100     45
+intelligence    0       100     50
+wits            0       100     45
+bloodpool       0       1000    120
+blood           0       1000    120
+humanity        0       100     60
+charisma        0       100     40
+manipulation    0       100     55
+appearance      0       100     45
+frenzy          0       100     0
+faith           0       100     25
+generation      0       100     9
+frenzyrating    0       100     50
+bloodrating     0       100     1.0
+
+
+
+// DISCIPLINE   name                    level           quick
+discipline      Feed                    1              -1
+discipline      BloodHealing            1               0
+discipline      HeightenedSenses        1               2
+discipline      AuraPerception          0               3
+discipline      Celerity                1               5
+discipline      Awe                     0              -1
+discipline      DreadGaze               0              -1
+
+// ITEM         template        (main | belt | equip)
+item				silverBracelet		equip
+item				plasmabag			belt
+item				plasmabag			belt
+item				plasmabag			belt
+item				throwingknives		belt
+item				throwingknives		belt
+

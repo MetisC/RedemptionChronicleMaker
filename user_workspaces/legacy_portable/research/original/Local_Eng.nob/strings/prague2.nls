@@ -1,0 +1,120 @@
+// ****************************************************************************
+//
+// PRAGUE2.NLS
+//
+// Prague2-specific string table
+//
+// ****************************************************************************
+
+// ............................................................................ 
+// Quests
+// ............................................................................ 
+
+Q_ECATERINA_S                Visit Ecaterina.
+Q_ECATERINA_L                Return to the University and talk to Ecaterina.
+Q_INFILTRATEVYS_S	           Infiltrate Vysehrad Castle.
+Q_INFILTRATEVYS_L	           Exit Old Town through the South Gate and continue your search for Anezka within Vysehrad Castle.
+
+// ............................................................................ 
+// Levels
+// ............................................................................ 
+UNIVERSITY						The University
+EASTGATENIGHT					East Gate
+OLDTOWN							Old Town
+INN4STAGS						Inn of the Four Stags
+HAVEN							University Haven
+VYSEHRADMOUNTAIN				Vysehrad Mountain
+VYSEHRADCASTLE1					Vysehrad Castle 1
+VYSEHRADCASTLE2					Vysehrad Castle 2
+VYSEHRADCASTLE3					Vysehrad Castle 3
+VYSEHRADCASTLE4					Vysehrad Castle 4
+
+// ............................................................................ 
+// Scenes
+// ............................................................................ 
+
+EGNT_25_1S                      East Gate
+EGNT_25_1L                      Scene 25.1 - East Gate
+HAVN_25_1S                      University Haven
+HAVN_25_1L                      Scene 25.1 - University Haven
+OLDT_25_1S                      Prague's Old Town
+OLDT_25_1L                      Scene 25.1 - Prague's Old Town
+UNIV_25_1S                      The University
+UNIV_25_1L                      Scene 25.1 - The University
+VYSM_25_1S                      Vysehrad Mountain
+VYSM_25_1L                      Scene 25.1 - Vysehrad Mountain
+VYC1_25_1S                      Vysehrad Castle 1
+VYC1_25_1L                      Scene 25.1 - Vysehrad Castle 1
+VYC2_25_1S                      Vysehrad Castle 2
+VYC2_25_1L                      Scene 25.1 - Vysehrad Castle 2
+VYC3_25_1S                      Vysehrad Castle 3
+VYC3_25_1L                      Scene 25.1 - Vysehrad Castle 3
+VYC4_25_1S                      Vysehrad Castle 4
+VYC4_25_1L                      Scene 25.1 - Vysehrad Castle 4
+
+// ............................................................................ 
+// Map labels
+// ............................................................................ 
+
+mapOldTownCenter              Prague's Old Town
+mapPrinceRudolfsChambers      Prince Rudolph's Receiving Chamber
+mapPragueCastle               Prague Castle Courtyard
+mappharmacy                   Ardan's Chantry
+mapGoldenLane                 Golden Lane
+mapUnornas                    Unorna's Shoppe
+mapPetrinHillMonastery        Petrin Hill Monastery
+mapJudithBridge               Judith Bridge
+mapNorthGate                  North Gate
+mapNorthQuarter               Northern Quarter
+mapSmithy                     Smithy
+mapFourStagsInn               Inn of the Four Stags
+mapUniversityHaven            University Haven
+mapUniversity                 The University
+mapConvent                    The Convent
+mapSaintThomasCathedral       St. Thomas' Cathedral
+mapEastGate                   East Gate
+mapBonnSilvermines            Silver Mines
+mapSouthGate                  South Gate
+mapVysehradCastle             Vysehrad Castle
+mapNorthQuarterMain           Northern Quarter
+mapRabbisHouse                Rabbi's House
+mapJosefsTunnels              Josef's Tunnels
+
+// ............................................................................ 
+// Description ID for Doors/Exits
+// ............................................................................ 
+
+OLDT_EXIT_DESC_1                University Haven
+OLDT_EXIT_DESC_1_L              University Haven (Locked)
+OLDT_EXIT_DESC_2                University
+OLDT_EXIT_DESC_2_L              University (Locked)
+OLDT_EXIT_DESC_3                Gate to Bonn Mountains
+OLDT_EXIT_DESC_3_L              Gate to Bonn Mountains (Locked)
+
+OLDT_EXIT_DESC_7                Gate to Vysehrad Mountain
+OLDT_EXIT_DESC_7_L              Gate to Vysehrad Mountain
+
+OLDT_EXIT_DESC_4                Convent
+OLDT_EXIT_DESC_4_L              Convent (Locked)
+OLDT_EXIT_DESC_5                St. Thomas
+OLDT_EXIT_DESC_5_L              St. Thomas (Locked)
+OLDT_EXIT_DESC_10               Inn of the Four Stags
+OLDT_EXIT_DESC_10_L             Inn of the Four Stags (Locked)
+
+EGAT_EXIT_DESC_1                Old Town
+
+UNIV_EXIT_DESC_1                Old Town
+
+HAVN_EXIT_DESC_1                Old Town
+
+VYC1_EXIT_DESC_0                Out to Vysehrad Mountain
+VYC1_EXIT_DESC_1                Down to Vysehrad Castle 2
+VYC2_EXIT_DESC_0                Up to Vysehrad Castle 1
+VYC2_EXIT_DESC_1                Down to Vysehrad Castle 3
+VYC3_EXIT_DESC_0                Up to Vysehrad Castle 2
+VYC3_EXIT_DESC_1                Down to Vysehrad Castle 4
+VYC3_EXIT_DESC_1_L              Down to Vysehrad Castle 4 (Locked)
+VYC4_EXIT_DESC_0                Up to Vysehrad Castle 3
+
+VYSM_EXIT_DESC_0                Down to Old Town
+VYSM_EXIT_DESC_1                Vysehrad Castle

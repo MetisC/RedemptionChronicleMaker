@@ -1,0 +1,25 @@
+// *********************************************************************************
+//
+// 18_1_Leave.nco (conversation file)
+//
+// Copyright (c) 1999-2000 Nihilistic Software, Inc.
+//
+// *********************************************************************************
+
+
+CONVERSATION: 18_1_Leave 0
+
+EVENT: ev_0
+
+	LINE:         Wilhem_19_1_683              Wilhem
+	LINE:         Erik_19_1_684                Erik
+	LINE:         Christof_19_1_685            Christof
+
+
+
+// *********************************************************************************
+
+// Wilhem_19_1_683             This means travelling through the Bohemian forest, it is beset with Werewolves, mortal enemies of our kind. Few Cainites survive the road.
+// Erik_19_1_684               There will be no trouble with the Moon-beasts while I am near. My clan has made peace with these creatures, we will have safe passage through the forest.
+// Christof_19_1_685           Very well. Let us leave by the south gate.
+

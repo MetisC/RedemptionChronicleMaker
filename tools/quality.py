@@ -2,11 +2,12 @@
 from pathlib import Path
 import argparse,json,os,subprocess,sys
 ROOT=Path(__file__).resolve().parents[1]
+if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8',errors='replace')
 parser=argparse.ArgumentParser();parser.add_argument('--fast',action='store_true');parser.add_argument('--no-coverage',action='store_true',help='Run the complete suite without tracing coverage');args=parser.parse_args()
-env=dict(os.environ,PYTHONPATH=os.pathsep.join([str(ROOT/'cache/devtools'),str(ROOT/'cache/vendor'),str(ROOT/'src')]))
+env=dict(os.environ,PYTHONIOENCODING='utf-8',PYTHONPATH=os.pathsep.join([str(ROOT/'cache/devtools'),str(ROOT/'cache/vendor'),str(ROOT/'src')]))
 commands=[['-m','ruff','check','src','tools','tests'],['-m','mypy','--follow-imports=skip','--check-untyped-defs','--cache-dir','build/tests/mypy_cache','src/rcm/paths.py','src/rcm/input_limits.py','src/rcm/file_transaction.py'],['tools/test.py',*(['--fast'] if args.fast else ([] if args.no_coverage else ['--coverage']))]]
 records=[]
 for cmd in commands:
-    run=subprocess.run([sys.executable,*cmd],cwd=ROOT,env=env,capture_output=True,text=True);records.append({'command':cmd,'returncode':run.returncode,'output':run.stdout+run.stderr});print((run.stdout+run.stderr)[-5000:])
+    run=subprocess.run([sys.executable,*cmd],cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace');records.append({'command':cmd,'returncode':run.returncode,'output':run.stdout+run.stderr});print((run.stdout+run.stderr)[-5000:])
 dest=ROOT/'build/tests';dest.mkdir(parents=True,exist_ok=True);(dest/'quality_report.json').write_text(json.dumps({'successful':all(r['returncode']==0 for r in records),'checks':records,'native_engine_test':False},indent=2),encoding='utf8')
 raise SystemExit(0 if all(r['returncode']==0 for r in records) else 1)

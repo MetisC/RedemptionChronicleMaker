@@ -1,0 +1,100 @@
+##############################################################
+#                                                            #
+# MP_New_York_Null.nsc                                       #
+#                                                            #
+##############################################################
+#                                                            #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved     #
+#                                                            #
+# Author: S.Thoms 2/8/2000                                   #
+#                                                            #
+##############################################################
+
+
+location NewYorkDocks		   n1_dock.nil		null	mapNYCdocks.nui      mapNYDocksMain          0x0040
+location NewYorkUptown		   n1_utwn.nil		null	mapNYCmidtown.nui    mapNYMidtownMain        0x0040
+
+location OrsiFactory1		   n1_fac1.nil		null	mapNYCmidtown.nui    mapOrsisFactory         0x0
+location OrsiFactory2		   n1_fac2.nil		null	mapNYCmidtown.nui    mapOrsisFactory         0x0
+location OrsiFactory3		   n1_fac3.nil		null	mapNYCmidtown.nui    mapOrsisFactory         0x0
+location OrsiFactory4		   n1_fac4.nil		null	mapNYCmidtown.nui    mapOrsisFactory         0x0
+
+location Sewers1		         N1_SEW1.nil		null	mapNYCdocks.nui      mapSewers               0x0
+location Sewers2		         N1_SEW2.nil		null	mapNYCdocks.nui      mapSewers               0x0
+location Sewers3		         N1_SEW3.nil		null	mapNYCmidtown.nui    mapSewers               0x0
+location Sewers4		         N1_SEW4.nil		null	mapNYCmidtown.nui    mapSewers               0x0
+
+location GiovanniWarehouse1	N1_WAR1.nil		null	mapNYCdocks.nui      mapGiovanniWarehouse    0x0
+location GiovanniWarehouse2	N1_WAR2.nil		null	mapNYCdocks.nui      mapGiovanniWarehouse    0x0
+location GiovanniWarehouse3	N1_WAR3.nil		null	mapNYCdocks.nui      mapGiovanniWarehouse    0x0
+                                                                                                
+location CathedralOfFlesh1    N1_FLS1.nil    null	mapNYCmidtown.nui    mapCathedralOfFlesh     0x0
+location CathedralOfFlesh2    N1_FLS2.nil    null  mapNYCmidtown.nui    mapCathedralOfFlesh     0x0
+location CathedralOfFlesh3    N1_FLS3.nil    null  mapNYCmidtown.nui    mapCathedralOfFlesh     0x0040
+
+location GunHaven		         N1_GUNH.nil		null	mapNYCdocks.nui      mapGunHaven             0x0000
+
+location OrsiPenthouse		   N1_ORSI.nil		null	mapNYCmidtown.nui    mapBarclaySouth         0x0040
+
+location NewMoon		         N1_NEWM.nil		null	mapNYCmidtown.nui    mapNewMoon              0x0000
+
+location DevNullApartment	   N1_DEVN.nil		null	mapNYCdocks.nui      mapDevNulls             0x00b4
+
+location BarclayLobby		   N1_LOBY.nil		null	mapNYCmidtown.nui    mapBarclaySouth         0x0000
+                                                                                                
+location BarclayStorageRoom	N1_STOR.nil		null	mapNYCmidtown.nui    mapBarclaySouth         0x0000
+
+# NewYorkDocks exits
+exit NewYorkDocks,1		GunHaven,0
+exit NewYorkDocks,2		Sewers1,0
+exit NewYorkDocks,3		NewYorkUptown,0
+exit NewYorkDocks,4		DevNullApartment,0
+exit NewYorkDocks,5		GiovanniWarehouse1,0
+
+# NewYorkUptown exits
+exit NewYorkUptown,1		Sewers4,1
+exit NewYorkUptown,2		BarclayLobby,0
+exit NewYorkUptown,3		OrsiFactory4,0
+exit NewYorkUptown,4		NewMoon,0
+exit NewYorkUptown,5		CathedralOfFlesh1,0
+exit NewYorkUptown,6		BarclayStorageRoom,0
+
+# OrsiFactory exits
+exit OrsiFactory4,1		OrsiFactory1,0
+exit OrsiFactory4,2		OrsiFactory1,1
+exit OrsiFactory4,3		OrsiFactory2,0
+exit OrsiFactory4,4		OrsiFactory2,1
+exit OrsiFactory4,5		OrsiFactory3,0
+exit OrsiFactory4,6		OrsiFactory3,1
+
+# Barclay Lobby exits
+exit BarclayLobby, 1		OrsiPenthouse, 0
+
+# Sewers exits
+exit Sewers1,1			Sewers2,0
+exit Sewers2,1			Sewers4,0
+#exit Sewers3,1			Sewers4,0
+
+# GiovanniWarehouse exits
+exit GiovanniWarehouse1,1	GiovanniWarehouse2,0
+exit GiovanniWarehouse2,1	GiovanniWarehouse3,0
+exit GiovanniWarehouse3,1  GiovanniWarehouse1,2
+
+# CathedralOfFlesh exits
+exit CathedralOfFlesh1,1	CathedralOfFlesh2,0
+exit CathedralOfFlesh2,1	CathedralOfFlesh3,0
+exit CathedralOfFlesh3,1	CathedralOfFlesh1,2
+
+##########################################################
+# Chronicle Settings
+##########################################################
+
+metafile    MP_New_York_Null.nmf
+portal      DevNullApartment 15
+reviveloc   NewYorkDocks 0
+flags       0x7
+
+##########################################################
+
+
+

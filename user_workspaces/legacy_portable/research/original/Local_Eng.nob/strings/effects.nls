@@ -1,0 +1,211 @@
+// ****************************************************************************
+//
+// EFFECTS.NLS
+//
+// Effects string table
+//
+// ****************************************************************************
+
+
+// ............................................................................ 
+// system effects
+// ............................................................................ 
+
+EF_INCREASEBLOOD                Increase Blood
+EF_DECREASEBLOOD                Decrease Blood
+EF_INCREASEMANA                 Increase Mana
+EF_DECREASEMANA                 Decrease Mana
+
+EF_FRENZY                       Frenzied
+EF_INCREASEFRENZY               Increase Frenzy
+EF_DECREASEFRENZY               Decrease Frenzy
+EF_INCREASEHUMANITY             Increase Humanity
+EF_DECREASEHUMANITY             Decrease Humanity
+EF_WANTED                       Wanted
+EF_MESMERIZED                   Mesmerized
+EF_AFRAID                       Afraid
+EF_DAZED                        Dazed
+EF_PET                          Pet
+
+EF_STAKED                       Staked
+
+EF_DMG_SUN                      Sun Damage
+EF_DMG_ELECTRIC                 Electrical Damage
+
+EF_STAT_STRENGTH                STR
+EF_STAT_DEXTERITY               DEX
+EF_STAT_STAMINA                 STA
+
+EF_STAT_PERCEPTION              PER
+EF_STAT_INTELLIGENCE            INT
+EF_STAT_WITS                    WIT
+
+EF_STAT_CHARISMA                CHA
+EF_STAT_MANIPULATION            MAN
+EF_STAT_APPEARANCE              APP
+
+EF_STAT_FAITH                   FAI
+
+EF_POISON                       Poisoned
+EF_DISEASE                      Diseased
+
+EF_SOAK_NORMAL                  Bashing
+EF_SOAK_LETHAL                  Lethal
+EF_SOAK_AGGRAVATED              Aggravated
+EF_SOAK_ELECTRIC                Electrical
+EF_SOAK_FIRE                    Fire
+EF_SOAK_SUN                     Sun
+EF_SOAK_FAITH                   Faith
+EF_SOAK_COLD                    Cold
+EF_SOAK_POISON                  Poison
+EF_SOAK_DISEASE                 Disease
+
+EF_INCREASEBLOODPOOLSIZE        Blood Pool
+EF_INCREASEMANAPOOLSIZE         Mana Pool
+
+EF_STAKEPROTECTION              Stake Protection
+EF_FEEDPROTECTION               Feed Protection
+
+// ............................................................................ 
+// item effects
+// ............................................................................ 
+
+
+EF_ITEM_AINKURN2                Blood Drain
+EF_ITEM_DREAD                   Dread
+EF_ITEM_FRENZY                  Berserk
+EF_ITEM_HEALTHPOTION            Increase Health
+EF_ITEM_CUREPOISONPOTION        Cure Poison
+EF_ITEM_CUREDISEASEPOTION       Cure Disease
+EF_ITEM_TASER                   Shock
+EF_ITEM_WEREWOLFVITAE           Increase frenzy
+EF_ITEM_ATTACKSPEED             Increase attack rate
+EF_ITEM_XOFFENSE                Increase offense
+EF_ITEM_XDEFENSE                Increase defense
+EF_ITEM_XDAMAGE                 Increase damage
+EF_ITEM_XSOAK                   Increase soak
+EF_ITEM_HIDE                    Obfuscate
+EF_ITEM_DISCIPLINE              Blood cost
+EF_ITEM_NECKGUARD               Prevent staking
+EF_ITEM_CONTROL                 Frenzy rating
+EF_ITEM_GANGRELEYE              Gangrel Eye
+EF_ITEM_HANDCONRAD              Hand Of Conrad
+EF_ITEM_WEREWOLFVITAE           Werewolf Vitae
+EF_ITEM_BLACKGLOVES				  Black Gloves
+
+
+// ............................................................................ 
+// item effects (for rollover description)
+// ............................................................................ 
+
+ITEM_EFFECT_DREAD               Effect: Chance of causing fear in opponent
+ITEM_EFFECT_DISEASE             Effect: Causes disease
+ITEM_EFFECT_BERSERK             Effect: Chance of causing frenzy in wielder
+ITEM_EFFECT_DRAINBLOOD          Effect: Drain Blood
+ITEM_EFFECT_ARGENTBATON         Effect: Extra Damage to Lupines
+ITEM_EFFECT_GANGRELEYE          Effect: Eyes of the Beast
+ITEM_EFFECT_FEMURELDER          Effect: Extra Damage to Vampires
+ITEM_EFFECT_HANDOFCONRAD        Effect: Potence (3)
+ITEM_EFFECT_HEARTSHIELD         Effect: Stake Protection (100%)
+ITEM_EFFECT_SIREFINGER          Effect: Frenzy Reduction (50%)
+ITEM_EFFECT_MONOCLECLARITY      Effect: Increases Vampiric Senses
+ITEM_EFFECT_GOGGLES             Effect: Increases Visual Senses
+ITEM_EFFECT_GIANTSBLOOD         Effect: Potence (5)
+ITEM_EFFECT_ANTEDELUVIAN        Effect: +50 to all Physical and Mental attributes
+ITEM_EFFECT_ELDER               Effect: +20 to all Physical and Mental attributes
+ITEM_EFFECT_FAE                 Effect: +20 to all Mental attributes
+ITEM_EFFECT_WEREWOLF            Effect: +20 to all Physical attributes
+ITEM_EFFECT_XOFFENSE            Effect: Adds to wearer's accuracy
+ITEM_EFFECT_XDEFENSE            Effect: Adds to wearer's defense
+ITEM_EFFECT_XDAMAGE             Effect: Adds to wearer's attacks
+ITEM_EFFECT_XSOAK               Effect: Adds to wearer's soaks
+ITEM_EFFECT_DISCIPLINE          Effect: Decreases wearer's blood costs
+ITEM_EFFECT_CONTROL             Effect: Decreases wearer's frenzy rating
+ITEM_EFFECT_BLOOD               Effect: Enlarges wearer's bloodpool
+ITEM_EFFECT_BLACKGLOVES         Effect: Feral Claws
+ITEM_EFFECT_NECKGUARD           Effect: Protects wearer from Vampire bites
+
+
+// ............................................................................ 
+// discipline effects
+// ............................................................................ 
+
+
+EF_DISC_BLOODSTRENGTH           Blood Strength
+EF_DISC_BLOODDEXTERITY          Blood Dexterity
+EF_DISC_BLOODSTAMINA            Blood Stamina
+EF_DISC_POTENCE                 Potence
+EF_DISC_FORTITUDE               Fortitude
+EF_DISC_CELERITY1               Celerity
+EF_DISC_CELERITY2               Celerity
+EF_DISC_OBFUSCATE               Obfuscate
+EF_DISC_MISTFORM                Mist Form
+EF_DISC_MISTFORM2               Mist Form
+EF_DISC_HSENSES                 Heightened Senses
+EF_DISC_COMMAND                 Command
+EF_DISC_MESMERIZE               Mesmerize
+EF_DISC_POSSESSION              Possession
+EF_DISC_QUELLBEAST              Quell The Beast
+EF_DISC_QUELLBEAST2             Quell The Beast
+EF_DISC_BLOODHEALING            Blood Healing
+EF_DISC_DREADGAZE               Dread Gaze
+EF_DISC_THEHAUNTING             The Haunting
+EF_DISC_VOICEOFMADNESS          Voice Of Madness
+EF_DISC_DRAWINGOUTBEAST         Drawing Out The Beast
+EF_DISC_PASSION                 Passion
+EF_DISC_THEFORGETFULMIND        The Forgetful Mind
+EF_DISC_BECKONING               Beckoning
+EF_DISC_FERALWHISPERS           Feral Whispers
+EF_DISC_CLOAKOFSHADOWS          Cloak Of Shadows
+EF_DISC_CLOAKOFSHADOWS2         Cloak Of Shadows
+EF_DISC_CLOAKTHEGATHERING       Cloak The Gathering
+EF_DISC_CLOAKTHEGATHERING2      Cloak The Gathering
+EF_DISC_INVISIBILITY            Invisibility
+EF_DISC_INVISIBILITY2           Invisibility
+EF_DISC_PRAYER                  Prayer
+EF_DISC_AWE                     Awe
+EF_DISC_IGNOREFLAME             Ignore The Searing Flame
+EF_DISC_SUMMONELEMENTAL         Summon Elemental
+EF_DISC_DARKHUNTER              Dark Hunter
+EF_DISC_HATCHTHEVIPER           Hatch The Viper
+EF_DISC_SUBSUMETHESPIRIT        Subsume The Spirit
+EF_DISC_ENTRANCEMENT            Entrancement
+EF_DISC_EYESOFTHESERPENT        Eyes Of The Serpent
+EF_DISC_SKINOFTHEADDER          Skin Of The Adder
+EF_DISC_HEARTOFSTONE            Heart Of Stone
+EF_DISC_THEFTOFVITAE1           Theft Of Vitae
+EF_DISC_THEFTOFVITAE2           Theft Of Vitae
+EF_DISC_BLACKDEATH              Black Death
+EF_DISC_BLOODRAGE1              Blood Rage
+EF_DISC_BLOODRAGE2              Blood Rage
+EF_DISC_CAULDRONOFBLOOD1        Cauldron Of Blood
+EF_DISC_CAULDRONOFBLOOD2        Cauldron Of Blood
+EF_DISC_DECAY                   Decay
+EF_DISC_ACIDICTOUCH             Acidic Touch
+EF_DISC_TURNTODUST              Turn To Dust
+EF_DISC_SUMMONSOUL              Summon Soul
+EF_DISC_CALLLIGHTNING           Call Lightning
+EF_DISC_PRISONOFICE1            Prison Of Ice
+EF_DISC_PRISONOFICE2            Prison Of Ice
+EF_DISC_SHAPEOFTHEBEAST         Shape Of The Beast
+EF_DISC_EYESOFTHEBEAST          Eyes Of The Beast
+EF_DISC_TRUESIGHT               True Sight
+EF_DISC_BLOODOFPOTENCY          Blood Of Potency
+EF_DISC_ATROPHY                 Atrophy
+EF_DISC_ATROPHY2                Atrophy
+EF_DISC_ATROPHY3                Atrophy
+EF_DISC_SHAMBLINGHORDES         Shambling Hordes
+EF_DISC_VIGORMORTIS             Vigor Mortis
+EF_DISC_PSYCHICPROJECTION       Psychic Projection
+EF_DISC_MAJESTY                 Majesty
+EF_DISC_MAJESTY2                Majesty
+EF_DISC_EARTHMELD               Earth Meld
+EF_DISC_TRUEFAITH               True Faith
+EF_DISC_MASK1000FACES           Mask Of A Thousand Faces
+EF_DISC_TONGUEOFTHEASP1         Tongue Of The Asp
+EF_DISC_TONGUEOFTHEASP2         Tongue Of The Asp
+
+EF_DISC_TORCH                   Torch
+EF_DISC_FERALCLAWS              Feral Claws
+
+

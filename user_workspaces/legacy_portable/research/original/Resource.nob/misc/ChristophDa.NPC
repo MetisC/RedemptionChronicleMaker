@@ -1,0 +1,62 @@
+// ==============================================
+//
+// Nihilistic Player Character file
+//
+//
+// Christof Dark Ages
+//
+//
+// [YB] 04/15/99
+//
+// ==============================================
+
+// Note: bloodpool MUST come before blood!!!
+
+
+// GENERAL
+name            Christof
+clan            Brujah
+cash            10
+totalexperience 0
+
+
+// STATS        min     max     current
+strength        0       100     30
+dexterity       0       100     35
+stamina         0       100     30
+perception      0       100     25
+intelligence    0       100     30
+wits            0       100     20
+bloodpool       0       1000    100
+blood           0       1000    100
+humanity        0       100     60
+charisma        0       100     40
+manipulation    0       100     25
+appearance      0       100     30
+frenzy          0       100     0
+faith           0       100     50
+generation      0       100     9
+frenzyrating    0       100     60
+bloodrating     0       100     1.0
+manapool        0       1000    110
+mana            0       100     110
+
+// DISCIPLINE   name                    level           quick
+discipline      BloodHealing            0               0
+discipline      BloodStrength           0               1
+discipline      Feed				          0               3
+discipline      Awe		                0              -1
+discipline      DreadGaze               0              -1
+discipline      Potence                 0               2
+discipline      Celerity                0               4
+
+
+// ITEM         template        (main | belt | equip)
+//item		longbow			main
+//item		broadsword		equip
+//item		sunshield		equip
+//item		vitaered		main
+//item		vitaered		belt
+//item		vitaered		belt
+
+

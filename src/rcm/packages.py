@@ -44,7 +44,8 @@ def verify_manifest(files,kind):
     validate_metadata(m)
     requirement=m.get('requires_rcm','0.6.0')
     from . import __version__
-    if not re.fullmatch(r'\d+\.\d+\.\d+',requirement) or tuple(map(int,requirement.split('.')))>tuple(map(int,__version__.split('.'))):raise ValueError('Paquete requiere otra versión de RCM: '+requirement)
+    from .versioning import version_key
+    if version_key(requirement)>version_key(__version__):raise ValueError('Paquete requiere otra versión de RCM: '+requirement)
     return m
 
 def validate_metadata(m):
@@ -174,6 +175,22 @@ def install_plan(ws,archive,accept_custom_code=False):
 
 def install_package(ws,archive,accept_custom_code=False):
     m,targets,obsolete=install_plan(ws,archive,accept_custom_code);game=configured_game(ws);backup=ws.output('research/package_backups/install_'+m['id']+'_'+str(time.time_ns())+'.zip');backup.parent.mkdir(parents=True,exist_ok=True)
+    # Switching user folders must not orphan our carried inventory definitions.
+    # These are verified local RCM bytes, never edits to a Crypt profile.
+    from .profile_compatibility import compatibility_files
+    dest=safe_target(game,game/'RCM'/m['id']);compat=compatibility_files(game,targets[safe_target(game,dest/(m['id']+'.nob'))])
+    prior=installed(ws).get(m['id'],{}).get('files',{})
+    for name,data in compat.items():
+        target=safe_target(game,dest/name)
+        if target in targets:continue
+        if target.exists() and hashlib.sha256(target.read_bytes()).hexdigest()!=prior.get(name,{}).get('sha256'):
+            raise ValueError('Archivo existente ajeno o modificado: '+name)
+        targets[target]=data;m['files'][name]=dict(size=len(data),sha256=hashlib.sha256(data).hexdigest())
+        if target in obsolete:obsolete.remove(target)
+    m['compatibility_files']=list(compat)
+    targets[safe_target(game,dest/'.rcm_manifest.json')]=json.dumps(m,ensure_ascii=False,indent=2).encode('utf8')
+    from .product import ensure_runtime_root
+    ensure_runtime_root(game)
     from .file_transaction import replace_files
     replace_files(targets,obsolete,backup,game/'RCM',lambda p:safe_target(game,p))
     return {'id':m['id'],'files':[str(p.relative_to(game/'RCM')) for p in targets],'backup':str(backup)}

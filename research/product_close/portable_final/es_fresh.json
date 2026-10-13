@@ -1,0 +1,44 @@
+{
+  "language": "es",
+  "phase": "fresh",
+  "returncode": 0,
+  "elapsed_seconds": 23.166512499999953,
+  "report": {
+    "fresh_settings": true,
+    "welcome": true,
+    "setup_steps": [
+      "Leyendo escenarios y recursos de Redemption…",
+      "Leyendo recursos: Codex.nob",
+      "Leyendo recursos: Levels.nob",
+      "Leyendo recursos: LMaterials.nob",
+      "Leyendo recursos: Local_Eng.nob",
+      "Leyendo recursos: Resource.nob",
+      "Leyendo recursos: Sounds.nob",
+      "Indexando escenarios y escenas…",
+      "Preparando el catálogo de personajes y objetos…",
+      "Indexando animaciones disponibles…",
+      "Preparando el compilador…",
+      "Preparando tus copias de los ejemplos…"
+    ],
+    "setup_seconds": 11.67719180000131,
+    "total_seconds": 21.943093800000497,
+    "gui_authored_valid": true,
+    "build_status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_first_adventur_s0_Scene": "45.3",
+      "R_first_adventur_s0_Passive": "45.3"
+    },
+    "synthetic_deployment": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\product_close\\portable_final\\Prueba con espacios ñ\\projects\\build\\probe\\game\\RCM\\first_adventur",
+    "setup_not_repeated": true,
+    "tutorial_unmodified": true,
+    "language": "es",
+    "native_game_test": false,
+    "clean_machine_test": false,
+    "real_opengl": false,
+    "game_originals_written": false,
+    "tutorial_open_timestamp": 52730.7640474,
+    "showcase_open_timestamp": 52731.7774544
+  },
+  "path_restricted": true,
+  "independent_machine": false
+}

@@ -130,8 +130,12 @@ def parse_campaign(source, levels, resources):
                 ref(a,actors,'actor de encuentro')
                 if actors[a].get('behavior')!='enemy': raise ValueError('Miembro de encuentro debe ser enemigo')
         for seq in shots.values():
-            mapping(seq,{'id','name','actor','duration','shot','angle','preset','steps','move_path','camera_path','path_speed','move_at','prop_motion'},{'id','name','actor','duration','shot','angle'},'sequence')
-            text(seq['name'],'sequence.name');ref(seq['actor'],actors,'actor de cámara')
+            mapping(seq,{'id','name','actor','duration','shot','angle','preset','steps','move_path','camera_path','path_speed','move_at','prop_motion','reference'},{'id','name','actor','duration','shot','angle'},'sequence')
+            text(seq['name'],'sequence.name')
+            if seq['actor']=='Player':
+                if not modern or 'steps' not in seq:raise ValueError('Player requiere formato 9 y secuencia de planos')
+            else:ref(seq['actor'],actors,'actor de cámara')
+            if 'reference' in seq:ref(seq['reference'],actors,'referencia de cámara')
             if type(seq['duration']) not in (float,int) or not math.isfinite(seq['duration']) or not .1<=seq['duration']<=120: raise ValueError('Duración de cámara 0.1..120 s')
             if seq['shot'] not in ('medium','close','wide') or seq['angle'] not in ('low','medium','high'): raise ValueError('Plano/ángulo de cámara inválido')
             if 'preset' in seq and (not modern or seq['preset'] not in CINEMA_PRESETS):raise ValueError('Preset de cámara requiere formato 9 y valor conocido')

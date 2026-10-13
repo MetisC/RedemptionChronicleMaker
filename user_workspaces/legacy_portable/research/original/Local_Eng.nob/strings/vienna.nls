@@ -1,0 +1,234 @@
+// ****************************************************************************
+//
+// VIENNA.NLS
+//
+// Vienna-specific string table
+//
+// ****************************************************************************
+
+// ............................................................................ 
+// Quests
+// ............................................................................ 
+
+Q_ORSIPARTY_S                   Attend Count Orsi's party.
+Q_ORSIPARTY_L                   Enter Orsi's Mansion in Western Ringstrasse and mingle.
+Q_INFILTRATE_S                  Find Secret Entrance to Clock.
+Q_INFILTRATE_L                  Travel by rooftop from the Inner Stradt to the Clock Face.
+Q_DESTROYLUTHER_S               Find Luther Black.
+Q_DESTROYLUTHER_L               Locate the Vampire Priest Luther Black within Stephansdom Church.
+Q_ESCAPEKNIGHTBASE_S            Escape the Teutonic Knight Base.
+Q_ESCAPEKNIGHTBASE_L            Engage the Knights of Deutschordens Kirche and escape to the Inner Stradt.
+Q_ETRIUSJOURNAL_S               Retrieve the Journal of Etrius.
+Q_ETRIUSJOURNAL_L               Enter the Haus de Hexe and unlock the Arcanulum Door to recover the Journal.
+Q_RETURNTOPRAGUE_S              Return to Prague.
+Q_RETURNTOPRAGUE_L              Leave Vienna by the North Gate to return to Prague.
+Q_RETURNAMULET_S                Bring the amulet to Orvus.
+Q_RETURNAMULET_L                Bring the Tremere Amulet to Orvus in Eastern Ringstrasse.
+
+// ............................................................................ 
+// Levels
+// ............................................................................ 
+
+NORTHERNRINGSTRASSE				Northern Ringstrasse
+INNERSTRADT						Inner Stradt
+OUTTERSTRADT					Outer Stradt
+STEPHANSDOM1					Stephansdom 1
+STEPHANSDOM2                    Stephansdom 2
+STEPHANSDOM3                    Stephansdom 3
+EASTERNRINGSTRASSE				Eastern Ringstrasse
+ORDEROFHERMES					Order of Hermes
+GREENFROGINN					The Green Frog Inn
+TEUTONICKNIGHTBASE1				Teutonic Knight Base 1
+TEUTONICKNIGHTBASE2             Teutonic Knight Base 2
+TEUTONICKNIGHTBASE3             Teutonic Knight Base 3
+TEUTONICKNIGHTBASE4             Teutonic Knight Base 4
+WESTERNRINGSTRASSE				Western Ringstrasse
+ORSIMANSION						Count Orsi's Mansion
+CHURCH							Desecrated Church
+WEAPONSMITH						Weaponsmith
+INNERHOUSE						Inside House
+SOUTHERNRINGSTRASSE				Southern Ringstrasse
+HAUSDEHEXE1						Haus de Hexe 1
+HAUSDEHEXE2                     Haus de Hexe 2
+HAUSDEHEXE3                     Haus de Hexe 3
+HAUSDEHEXE4                     Haus de Hexe 4
+
+// ............................................................................ 
+// Scenes
+// ............................................................................ 
+								
+ORSI_20_5S						Count Orsi's Mansion
+ORSI_20_5L						Scene 20.5 - Count Orsi's Mansion
+ORDR_20_1S						Order of Hermes
+ORDR_20_1L						Scene 20.1 - Order of Hermes
+ORDR_20_1S						Order of Hermes
+ORDR_20_1L                      Scene 20.1 - Order of Hermes
+SOUT_20_1S						Southern Ringstrasse
+SOUT_20_1L						Scene 20.1 - Southern Ringstrasse
+WEST_20_5S						Western Ringstrasse
+WEST_20_5L						Scene 20.5 - Western Ringstrasse
+HAVN_20_1S						Desecrated Church
+HAVN_20_1L						Scene 20.1 - Desecrated Church
+VEST_20_1S						Eastern Ringstrasse
+VEST_20_1L						Scene 20.1 - Eastern Ringstrasse
+INNR_20_1S						Inner Stradt
+INNR_20_1L						Scene 20.1 - Inner Stradt
+ROOF_20_1S						Inside House
+ROOF_20_1L						Scene 20.1 - Inside House
+OUTR_20_1S						Outer Stradt
+OUTR_20_1L						Scene 20.1 - Outer Stradt
+WEAP_20_2S						Weaponsmith
+WEAP_20_2L						Scene 20.1 - Weaponsmith
+FROG_20_1S						The Green Frog Inn 
+FROG_20_1L						Scene 20.1 - The Green Frog Inn
+FRO1_20_1S						The Green Frog Inn
+FRO1_20_1L						Scene 20.1 - The Green Frog Inn
+STE1_21_1S                      Stephansdom 1
+STE1_21_1L                      Scene 21.1 - Stephansdom 1
+STE2_21_1S                      Stephansdom 2
+STE2_21_1L                      Scene 21.1 - Stephansdom 2
+STE3_21_1S                      Stephansdom 3
+STE3_21_1L                      Scene 21.1 - Stephansdom 3
+TEU1_22_1S                      Teutonic Knight Base 1
+TEU1_22_1L						Scene 22.1 - Teutonic Knight Base 1
+TEU2_22_1S						Teutonic Knight Base 2
+TEU2_22_1L						Scene 22.1 - Teutonic Knight Base 2
+TEU3_22_1S						Teutonic Knight Base 3
+TEU3_22_1L						Scene 22.1 - Teutonic Knight Base 3
+TEU4_22_1S						Teutonic Knight Base 4
+TEU4_22_1L						Scene 22.1 - Teutonic Knight Base 4
+HHX1_23_1S                      Haus de Hexe 1
+HHX1_23_1L                      Scene 23.1 - Haus de Hexe 1
+HHX2_23_1S                      Haus de Hexe 2
+HHX2_23_1L                      Scene 23.1 - Haus de Hexe 2
+HHX3_23_1S                      Haus de Hexe 3
+HHX3_23_1L                      Scene 23.1 - Haus de Hexe 3
+HHX4_23_1S                      Haus de Hexe 4
+HHX4_23_1L                      Scene 23.1 - Haus de Hexe 4
+NRTH_23_1S						Northern Ringstrasse
+NRTH_23_1L						Scene 23.1 - Northern Ringstrasse
+
+
+// ............................................................................ 
+// Map labels
+// ............................................................................ 
+
+mapOrsisMansion            Count Orsi's Mansion
+mapWesternRingStrasse      Western Ringstrasse
+mapSmithy                  Weaponsmith
+mapDesecratedChurchHaven   Desecrated Church
+mapNorthernRingStrasse     Northern Ringstrasse
+mapEntranceStephansdom     Stephansdom
+mapInnerStradt             Inner Stradt
+mapDeutschOrdensKirche     Teutonic Knight Base
+mapOuterRingStrasse        Outer Stradt
+mapSouthernRingStrasse     Southern Ringstrasse
+mapHausDeHexe              Haus de Hexe
+mapOrderOfHermes           Order of Hermes
+mapEasternRingStrasse      Eastern Ringstrasse
+mapGreenFrogInn            The Green Frog Inn
+
+// ............................................................................ 
+// Description ID for Doors/Exits
+// ............................................................................ 
+
+NRTH_EXIT_DESC_1				Gate to Outer Stradt
+NRTH_EXIT_DESC_1_L			Gate to Outer Stradt (Locked)
+NRTH_EXIT_DESC_2				Church Haven
+NRTH_EXIT_DESC_2_L			Church Haven (Locked)
+NRTH_EXIT_DESC_3				Return to Prague
+NRTH_EXIT_DESC_3_L	   	Return to Prague (Locked)
+					
+HAVN_EXIT_DESC_1				Northern Ringstrasse
+HAVN_EXIT_DESC_1_L   		Northern Ringstrasse (Locked)
+				
+OUTR_EXIT_DESC_1				Gate to Inner Stradt
+OUTR_EXIT_DESC_1_L			Gate to Inner Stradt (Locked)
+OUTR_EXIT_DESC_2				Count Orsi's Courtyard
+OUTR_EXIT_DESC_2_L			Count Orsi's Courtyard (Locked)
+OUTR_EXIT_DESC_3				Gate to Northern Ringstrasse
+OUTR_EXIT_DESC_3_L			Gate to Northern Ringstrasse (Locked)
+OUTR_EXIT_DESC_4				Gate to Eastern Ringstrasse
+OUTR_EXIT_DESC_4_L			Gate to Eastern Ringstrasse (Locked)
+OUTR_EXIT_DESC_5				Gate to Southern Ringstrasse
+OUTR_EXIT_DESC_5_L			Gate to Southern Ringstrasse (Locked)
+OUTR_EXIT_DESC_6				Weapon Smith
+OUTR_EXIT_DESC_6_L			Weapon Smith (Locked)
+				
+INNR_EXIT_DESC_0				Gate to Outer East Ringstrasse
+INNR_EXIT_DESC_0_L			Gate to Outer East Ringstrasse (Locked)
+INNR_EXIT_DESC_1				Gate to Outer West Ringstrasse
+INNR_EXIT_DESC_1_L			Gate to Outer West Ringstrasse (Locked)
+INNR_EXIT_DESC_2				Inner House
+INNR_EXIT_DESC_2_L			Inner House (Locked)
+INNR_EXIT_DESC_3				Teutonic Knight Base
+INNR_EXIT_DESC_3_L			Teutonic Knight Base (Locked)
+INNR_EXIT_DESC_4				Secret entrance to Stephansdom
+INNR_EXIT_DESC_4_L			Secret entrance to Stephansdom (Locked)
+INNR_EXIT_DESC_5				Inner House
+INNR_EXIT_DESC_5_L			Inner House (Locked)
+				
+WEAP_EXIT_DESC_1				Outer Stradt
+WEAP_EXIT_DESC_1_L			Outer Stradt (Locked)
+				
+ROOF_EXIT_DESC_1				Inner Stradt
+ROOF_EXIT_DESC_1_L			Inner Stradt (Locked)
+ROOF_EXIT_DESC_2				Window to Inner House
+ROOF_EXIT_DESC_2_L			Window to Inner House (Locked)
+				
+STE1_EXIT_DESC_0				Inner Stradt
+STE1_EXIT_DESC_0_L			Inner Stradt (Locked)
+STE1_EXIT_DESC_1				Enter Stephansdom 2
+STE2_EXIT_DESC_0				Back to Stephansdom 1
+STE2_EXIT_DESC_1				Enter Stephansdom 3
+STE3_EXIT_DESC_0				Back to Stephansdom 2
+				
+EAST_EXIT_DESC_1				Gate to Outer Stradt
+EAST_EXIT_DESC_1_L			Gate to Outer Stradt (Locked)
+EAST_EXIT_DESC_2				Green Frog Inn
+EAST_EXIT_DESC_2_L			Green Frog Inn (Locked)
+EAST_EXIT_DESC_3				Order of Hermes
+EAST_EXIT_DESC_3_L			Order of Hermes (Locked)
+				
+TEU1_EXIT_DESC_0				Inner Stradt
+TEU1_EXIT_DESC_1				Teutonic Knight Base 2
+TEU2_EXIT_DESC_0				Teutonic Knight Base 1
+TEU2_EXIT_DESC_1				Teutonic Knight Base 3
+TEU3_EXIT_DESC_0				Teutonic Knight Base 2
+TEU3_EXIT_DESC_1				Teutonic Knight Base 4
+TEU4_EXIT_DESC_0				Teutonic Knight Base 3
+				
+WEST_EXIT_DESC_1				Gate to Outer Stradt
+WEST_EXIT_DESC_1_L			Gate to Outer Stradt (Locked)
+WEST_EXIT_DESC_2		   	Count Orsi's Mansion
+WEST_EXIT_DESC_2_L			Count Orsi's Mansion (Locked)
+				
+ORSI_EXIT_DESC_1				Western Ringstrasse
+				
+FROG_EXIT_DESC_1				Eastern Ringstrasse
+				
+ORDR_EXIT_DESC_1				Eastern Ringstrasse
+				
+SOUT_EXIT_DESC_1				Gate to Haus de Hexe
+SOUT_EXIT_DESC_1_L			Gate to Haus de Hexe (Locked)
+SOUT_EXIT_DESC_2				Gate to Outer Stradt
+SOUT_EXIT_DESC_2_L			Gate to Outer Stradt (Locked)
+SOUT_EXIT_DESC_3				Haus de Hexe
+SOUT_EXIT_DESC_3_L			Haus de Hexe (Locked)
+
+HHX1_EXIT_DESC_1				Southern Ringstrasse
+HHX1_EXIT_DESC_1_L			Southern Ringstrasse (Locked)
+HHX1_EXIT_DESC_2				Tremere Gargoyle Lair
+HHX1_EXIT_DESC_2_L			Tremere Gargoyle Lair (Locked)
+HHX1_EXIT_DESC_3				Tremere Library
+HHX1_EXIT_DESC_3_L			Tremere Library (Locked)
+HHX1_EXIT_DESC_4				Tremere Laboratory
+HHX1_EXIT_DESC_4_L			Tremere Laboratory (Locked)
+
+HHX1_ARCPUZZLE             Arcanulum Door Lock
+				
+HHX2_EXIT_DESC_1				Haus de Hexe Main Hall
+				
+HHX3_EXIT_DESC_1				Haus de Hexe Main Hall
+				
+HHX4_EXIT_DESC_1				Haus de Hexe Main Hall

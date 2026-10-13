@@ -42,7 +42,7 @@ class SpatialTests(unittest.TestCase):
         self.assertEqual(self.mesh.source_end,3096883)
 
     def test_all_original_levels_have_measured_sector_layout(self):
-        report=json.loads((ROOT/'research/viewport/nil_scan.json').read_text())
+        report=json.loads((ROOT/'tests/fixtures/baselines/nil_scan.json').read_text())
         self.assertEqual(len(report),112)
         self.assertTrue(all(r['success'] for r in report))
 

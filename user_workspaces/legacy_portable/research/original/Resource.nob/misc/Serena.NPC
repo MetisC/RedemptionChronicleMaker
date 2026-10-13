@@ -1,0 +1,61 @@
+// ==============================================
+//
+// Nihilistic Player Character file
+//
+//
+// Serena
+//
+//
+// [YB] 04/15/99
+//
+// ==============================================
+
+// Note: bloodpool MUST come before blood!!!
+
+
+// GENERAL
+name            Serena
+clan            Cappadocian
+cash            0
+totalexperience 6000
+
+
+// STATS        min     max     current
+maxhealth       120
+health          120          
+strength        0       100     15
+dexterity       0       100     20
+stamina         0       100     30
+perception      0       100     35
+intelligence    0       100     40
+wits            0       100     40
+bloodpool       0       1000    120
+blood           0       1000    120
+humanity        0       100     50
+charisma        0       100     25
+manipulation    0       100     25
+appearance      0       25      25
+frenzy          0       100     0
+faith           0       100     25
+generation      0       100     10
+frenzyrating    0       100     50
+bloodrating     0       100     1.0
+
+
+
+// DISCIPLINE   name                    level           quick
+discipline      Feed                    1              -1
+discipline      BloodHealing            1               0
+discipline      HeightenedSenses        1               2
+discipline      AuraPerception          0               3
+discipline      Fortitude               1               4
+discipline      ShamblingHordes         1               5
+discipline      VigorMortis             0              -1
+
+// ITEM         template        (main | belt | equip)
+item				dagger				equip
+item				vitaered				belt
+item				vitaered				belt
+item				vitaered				belt
+item				vitaered				belt
+

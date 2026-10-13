@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# P1_Shem.nqd - Quest definition.                        #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: Y. Borckmans  07/12/99                         #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_SHEM_S Q_SHEM_L golemShemIcon.tga 250
+

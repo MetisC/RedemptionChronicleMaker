@@ -1,0 +1,136 @@
+##########################################################
+#                                                        #
+# MP_Prague_Null.nsc - the empty Prague episode.         #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S. Thoms 2/8/2000                              #
+#                                                        #
+##########################################################
+#
+# EXIT FLAGS:
+#
+# CLOSED	0x1		This exit is closed
+# ONEWAY	0x100		This exit is one way (this is actually a load time only flag)
+#
+
+location OldTown                P1_OLDT.nil             null   mapPragueOT.nui    mapOldTownCenter          0x0040
+
+location Convent                P1_CNVT.nil             null   mapPragueOT.nui    mapConvent                0x0000
+location University             P1_UNIV.nil             null   mapPragueOT.nui    mapUniversity             0x0000
+location StThomas               P1_STHM.nil             null   mapPragueOT.nui    mapSaintThomasCathedral   0x0000
+location EastGateNight          P1_EGNT.nil             null   mapPragueOT.nui    mapEastGate               0x0000
+location Smithy                 P1_SMTY.nil             null   mapPragueOT.nui    mapSmithy                 0x0000
+location Inn4Stags              P1_INN4.nil             null   mapPragueOT.nui    mapFourStagsInn           0x0000
+location JudithBridge           P1_JUDB.nil             null   mapPragueOT.nui    mapJudithBridge           0x0040
+location Unorna                 P1_UNOR.nil             null   mapPragueOT.nui    mapUnornas                0x0000
+location Haven                  P1_HAVN.nil             null   mapPragueOT.nui    mapUniversityHaven        0x00b4
+location PetrinHill             P1_HILL.nil             null   mapPragueOT.nui    mapPetrinHillMonastery    0x0040
+location AnezkaRoom             P1_ANZK.nil             null   mapPragueOT.nui    mapConvent                0x0040
+location NQuarter               p1_nqtr.nil             null   mapPragueNQ.nui    mapNorthQuarterMain       0x0000
+location PragueCastle           P1_CAST.nil             null   mapPragueOT.nui    mapPragueCastle           0x0000
+location PrinceBrandl           P1_PRIN.nil             null   mapPragueOT.nui    mapPrinceRudolfsChambers  0x0000
+location GoldenLane             P1_GOLD.nil             null   mapPragueOT.nui    mapGoldenLane             0x0040
+
+location SilverMinesNight       P1_SIMN.nil             null   mapPragueOT.nui    mapBonnSilvermines        0x0
+location SilverMines2           P1_SIM2.nil             null   mapPragueOT.nui    mapBonnSilvermines        0x0
+location SilverMines3           P1_SIM3.nil             null   mapPragueOT.nui    mapBonnSilvermines        0x0
+
+location Monastery              P1_MON1.nil             null   mapPragueOT.nui    mapPetrinHillMonastery    0x0
+location Monastery2             P1_MON2.nil             null   mapPragueOT.nui    mapPetrinHillMonastery    0x0
+location Monastery3             P1_MON3.nil             null   mapPragueOT.nui    mapPetrinHillMonastery    0x0
+
+location ArdanChantry           p1_arc1.nil             null   mapPragueOT.nui    mappharmacy               0x0
+location ArdanChantry2          p1_arc2.nil             null   mapPragueOT.nui    mappharmacy               0x0
+location ArdanChantry3          p1_arc3.nil             null   mapPragueOT.nui    mappharmacy               0x0
+location ArdanChantry4          p1_arc4.nil             null   mapPragueOT.nui    mappharmacy               0x0
+
+location JosefTunnels           p1_jos1.nil             null   mapPragueNQ.nui    mapJosefsTunnels          0x0
+location JosefTunnels2          p1_jos2.nil             null   mapPragueNQ.nui    mapJosefsTunnels          0x0
+location JosefTunnels3          p1_jos3.nil             null   mapPragueNQ.nui    mapJosefsTunnels          0x0
+ 
+location VysCastle1             P2_VYC1.nil             null   mapPragueOT.nui    mapVysehradCastle         0x0040
+location VysCastle2             P2_VYC2.nil             null   mapPragueOT.nui    mapVysehradCastle         0x0
+location VysCastle3             P2_VYC3.nil             null   mapPragueOT.nui    mapVysehradCastle         0x0
+location VysCastle4             P2_VYC4.nil             null   mapPragueOT.nui    mapVysehradCastle         0x0
+                                                                                                            
+location VysMountain            P2_VYSM.nil             null   mapPragueOT.nui    mapVysehradCastle         0x0040
+
+# OldTown exits
+exit     OldTown,1              Haven,0
+exit     OldTown,2              University,0
+exit     OldTown,3              EastGateNight,2
+exit     OldTown,4              Convent,1
+exit     OldTown,5              StThomas,0
+exit     OldTown,7              VysMountain,0
+exit     OldTown,8              JudithBridge,0
+exit     OldTown,9              Smithy,0
+exit     OldTown,10             Inn4Stags,0
+exit     OldTown,11	           NQuarter,0
+
+# EastGateNight exits
+exit     EastGateNight,1        SilverMinesNight,0
+
+# JudithBridge exits
+exit     JudithBridge,1         GoldenLane,0
+exit     JudithBridge,2         PragueCastle,0
+exit     JudithBridge,3         PetrinHill,0
+
+# NQuarter exits
+exit     NQuarter,1             JosefTunnels,0
+
+# PetrinHill exits
+exit     PetrinHill,1           Monastery,0
+
+# PragueCastle exits
+exit     PragueCastle,1         PrinceBrandl,0
+
+# GoldenLane exits
+exit     GoldenLane,1           Unorna,0
+exit     GoldenLane,2           ArdanChantry,0
+exit     GoldenLane,3           JosefTunnels2,2
+
+# VysMountain exits
+exit     VysMountain,1          VysCastle1,0
+
+# VysCastle exits
+exit     VysCastle1,1           VysCastle2,0
+exit     VysCastle2,1           VysCastle3,0
+exit     VysCastle3,1           VysCastle4,0
+
+
+# Silver Mines
+exit     SilverMinesNight,1     SilverMines2,0
+exit     SilverMinesNight,2     SilverMines3,1
+exit     SilverMinesNight,3     SilverMines2,2
+exit     SilverMines2,1         SilverMines3,0
+
+# ArdanChantry
+exit     ArdanChantry,1         ArdanChantry2,0
+exit     ArdanChantry2,1        ArdanChantry3,0
+exit     ArdanChantry3,1        ArdanChantry4,0
+
+# Monastery
+exit     Monastery,1            Monastery2,0
+exit     Monastery2,1           Monastery3,0
+
+# JosefTunnels
+exit     JosefTunnels,1         JosefTunnels2,0
+exit     JosefTunnels2,1        JosefTunnels3,0
+exit	   JosefTunnels3,0        JosefTunnels2,1
+
+##########################################################
+# Chronicle Settings
+##########################################################
+
+metafile    MP_Prague_Null.nmf
+portal      Haven 15
+reviveloc   OldTown 0
+flags       0x6
+
+##########################################################
+
+
+

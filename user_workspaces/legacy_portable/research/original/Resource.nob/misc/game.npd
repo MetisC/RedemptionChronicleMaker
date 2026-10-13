@@ -1,0 +1,3440 @@
+; Nihilistic Particle Description (NPD) file
+
+; ============================================================================================================
+; GAS emitters
+;
+; startsize = starting size of the particles
+; mindist, maxdist = range for spawn radius around emitter
+; startcolor, endcolor = particles shift between these colors as they age
+; minspeed, maxspeed = speed range for each particle (if only minspeed is specified, we assume no variability)
+; growthrate = rate of change of the radius over time (negative ok)
+; drag = drag ammount applied to each particle over time (negative ok)
+; gravity = z only velocity applied to each particle (negative ok)
+; turbulence = random directional particle velocity variance 
+; ============================================================================================================
+
+gas			blueElectricity
+material		ElectricParticles
+lifespan		50
+birthrate	50
+startsize	25.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xffff80ff
+endcolor		0xff200080
+minspeed		0.0
+maxspeed		0.0
+gravity		-100.0
+growthrate	-100.0
+turbulence	0.0
+end
+
+gas			coldMist
+material		fireSprite2
+lifespan		2000
+birthrate	100
+startsize	2.0
+mindist		10.0
+maxdist		15.0
+;maxparticles 3000
+startcolor	0xff000000
+endcolor		0xffaaaaff
+minspeed		0.0
+maxspeed		0.0
+gravity		60.0
+growthrate	0.0
+turbulence	0.0
+end
+
+gas			blood1
+material		bloodSpurt
+lifespan		1000
+birthrate	1000
+startsize	4.0
+mindist		3.0
+maxdist		5.0
+startcolor	0xffffffff
+endcolor		0x00000000
+minspeed		30.0
+maxspeed		40.0
+gravity		150.0
+growthrate	25.0
+turbulence	0.0
+end
+
+gas			gas
+material		smokeSprite
+lifespan		5000
+birthrate	1000
+startsize	20.0
+mindist		0.0
+maxdist		6.0
+startcolor	0xffff0000
+endcolor		0x000000ff
+minspeed		10.0
+maxspeed		15.0
+gravity		-10.0
+growthrate	2.0
+turbulence	0.0
+end
+
+gas			bubblingPotion
+material		smokeSprite
+lifespan		1000
+birthrate	10
+startsize	10.0
+mindist		0.0
+maxdist		6.0
+startcolor	0x7f00ff00
+endcolor		0x000000ff
+minspeed		10.0
+maxspeed		20.0
+gravity		-10.0
+growthrate	2.0
+turbulence	0.0
+end
+
+gas			phosFlare
+material		smokeSprite
+lifespan		3000
+birthrate	90
+startsize	10.0
+mindist		0.0
+maxdist		1.0
+startcolor	0x7f000030
+endcolor		0x2010f0ff
+minspeed		5.0
+drag			5.0
+gravity		-35.0
+growthrate	12.0
+turbulence	1.0
+end
+
+gas			greysmoke
+material		smokeSprite
+lifespan		2000
+birthrate	100
+startsize	20.0
+mindist		0.0
+maxdist		6.0
+startcolor	0x7f303035
+endcolor		0x00202025
+minspeed		10.0
+drag			10.0
+gravity		-10.0
+growthrate	2.0
+turbulence	0.0
+end
+
+gas			smokeplume
+material		smokeSprite
+lifespan		3000
+birthrate	90
+startsize	10.0
+mindist		0.0
+maxdist		0.0
+startcolor	0xc83c3c4b
+endcolor		0x00101015
+minspeed		5.0
+drag			5.0
+gravity		-35.0
+growthrate	12.0
+turbulence	1.0
+end
+
+gas			smokepuff
+material		smokeSprite
+lifespan		500
+birthrate	50
+startsize	8.0
+mindist		0.0
+maxdist		2.0
+startcolor	0x7f101010
+endcolor		0x00101010
+minspeed		0.0
+drag			0.0
+gravity		-7.0
+growthrate	2.0
+turbulence	0.0
+end
+
+gas			cigarSmoke
+material		smokeSprite
+lifespan		2500
+;maxparticles 1000
+birthrate	300
+startsize	3.0
+mindist		0.0
+maxdist		0.0
+startcolor	0x96787896
+endcolor		0x00000000
+minspeed		1.0
+drag			5.0
+gravity		-5.0
+growthrate	6.0
+turbulence	5.0
+end
+
+gas			dust
+material		smokeSprite
+lifespan		1000
+birthrate	50
+startsize	20.0
+mindist		0.0
+maxdist		2.0
+startcolor	0x7f8e7063
+endcolor		0x00101010
+minspeed		0.0
+drag			0.0
+gravity		-7.0
+growthrate	10.0
+turbulence	0.0
+end
+
+gas			activesteam
+material		smokeSprite
+lifespan		500
+birthrate	70
+startsize	10.0
+mindist		0.0
+maxdist		10.0
+startcolor	0x7f707080
+endcolor		0x000a0a10
+minspeed		15.0
+drag			5.0
+gravity		-180.0
+growthrate	24.0
+turbulence	1.0
+end
+
+gas			steamblast
+material		smokeSprite
+lifespan		1000
+birthrate	40
+startsize	10.0
+mindist		0.0
+maxdist		0.0
+startcolor	0x7f505050
+endcolor		0x00707070
+minspeed		5.0
+drag			50.0
+gravity		-180.0
+growthrate	50.0
+turbulence	0.0
+end
+
+gas			steam
+material		smokeSprite
+lifespan		3000
+birthrate	500
+startsize	2.0
+mindist		9.0
+maxdist		10.0
+startcolor	0xff505050
+endcolor		0x00707070
+minspeed		0.0
+drag			100.0
+gravity		-30.0
+growthrate	60.0
+turbulence	100.0
+end
+
+gas			phblue
+material		smokeSprite
+lifespan		1000
+birthrate	10
+startsize	10.0
+mindist		5.0
+maxdist		15.0
+startcolor	0xff4050ff
+endcolor		0x004050ff
+minspeed		5.0
+drag			50.0
+gravity		-270.0
+growthrate	24.0
+turbulence	0.0
+end
+
+gas			phgreen
+material		smokeSprite
+lifespan		1000
+birthrate	10
+startsize	10.0
+mindist		5.0
+maxdist		15.0
+startcolor	0xff57ef8d
+endcolor		0x0057ef8d
+minspeed		5.0
+drag			50.0
+gravity		-270.0
+growthrate	24.0
+turbulence	0.0
+end
+
+gas			phpurple
+material		smokeSprite
+lifespan		1000
+birthrate	10
+startsize	10.0
+mindist		5.0
+maxdist		15.0
+startcolor	0xffe442ff
+endcolor		0x00e442ff
+minspeed		5.0
+drag			50.0
+gravity		-270.0
+growthrate	24.0
+turbulence	0.0
+end
+
+gas			phred
+material		smokeSprite
+lifespan		1000
+birthrate	10
+startsize	10.0
+mindist		5.0
+maxdist		15.0
+startcolor	0xffff3030
+endcolor		0x00ff3030
+minspeed		5.0
+drag			50.0
+gravity		-270.0
+growthrate	24.0
+turbulence	0.0
+end
+
+gas			phyellow
+material		smokeSprite
+lifespan		1000
+birthrate	10
+startsize	10.0
+mindist		5.0
+maxdist		15.0
+startcolor	0xfffff830
+endcolor		0x00fff830
+minspeed		5.0
+drag			50.0
+gravity		-270.0
+growthrate	24.0
+turbulence	0.0
+end
+
+gas			fireball
+material		fireball
+lifespan		30
+;maxparticles 2000
+birthrate	4
+startsize	20.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xffff8000
+endcolor		0x00800000
+minspeed		30.0
+drag			0.0
+gravity		0.0
+growthrate	-25.0
+turbulence	6.0
+end
+
+gas			fireballSmall
+material		fireball
+lifespan		200
+birthrate	6
+startsize	8.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xffff8000
+endcolor		0x00800000
+minspeed		30.0
+drag			0.0
+gravity		0.0
+growthrate	-25.0
+turbulence	6.0
+end
+
+gas			trail_fireball
+material		smoketrail
+lifespan		800
+birthrate	25
+startsize	16.0
+mindist		0.0
+maxdist		2.0
+startcolor	0x80808080
+endcolor		0x00505050
+minspeed		15.0
+drag			10.0
+gravity		-15.0
+growthrate	25.0
+turbulence	4.0
+end
+
+gas			trail_rocket
+material		smoketrail
+lifespan		500
+birthrate	20
+startsize	12.0
+mindist		0.0
+maxdist		2.0
+startcolor	0x80808080
+endcolor		0x00000000
+minspeed		15.0
+drag			10.0
+gravity		-15.0
+growthrate	25.0
+turbulence	4.0
+end
+
+gas			trail_shadow
+material		shadowTrail
+lifespan		200
+birthrate	15
+startsize	8.0
+mindist		0.0
+maxdist		2.0
+startcolor	0xffffffff
+endcolor		0x00000000
+minspeed		15.0
+drag			10.0
+gravity		-15.0
+growthrate	40.0
+turbulence	4.0
+end
+
+gas			trail_shadowHands
+material		shadowTrail
+lifespan		200
+birthrate	15
+startsize	4.0
+mindist		0.0
+maxdist		2.0
+startcolor	0xffffffff
+endcolor		0x00000000
+minspeed		15.0
+drag			10.0
+gravity		-15.0
+growthrate	40.0
+turbulence	4.0
+end
+
+gas			trail_spectral
+material		spectralTrail
+lifespan		200
+birthrate	15
+startsize	8.0
+mindist		0.0
+maxdist		2.0
+startcolor	0x50505050
+endcolor		0x00000000
+minspeed		15.0
+drag			10.0
+gravity		-15.0
+growthrate	40.0
+turbulence	4.0
+end
+
+gas			trail_spectralHands
+material		spectralTrail
+lifespan		200
+birthrate	15
+startsize	4.0
+mindist		0.0
+maxdist		2.0
+startcolor	0x50505050
+endcolor		0x00000000
+minspeed		15.0
+drag			10.0
+gravity		-15.0
+growthrate	40.0
+turbulence	4.0
+end
+
+gas			plaguewind
+material		fireball
+lifespan		200
+birthrate	6
+startsize	15.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xff008040
+endcolor		0x00007014
+minspeed		30.0
+drag			10.0
+gravity		-1.0
+growthrate	1.5
+turbulence	12.0
+end
+
+gas			plaguewindexp
+material		fireball
+lifespan		200
+birthrate	6
+startsize	15.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xff008040
+endcolor		0x00000000
+minspeed		30.0
+drag			300.0
+gravity		1.0
+growthrate	5.0
+turbulence	12.0
+end
+
+gas			plaguewindexp1
+material		fireball
+lifespan		1000
+birthrate	15
+startsize	20.0
+mindist		60.0
+maxdist		65.0
+startcolor	0xff084020
+endcolor		0x00000808
+minspeed		0.0
+drag			10.0
+gravity		1.0
+growthrate	25.0
+turbulence	30.0
+end
+
+gas			plaguewindexp2
+material		shadowTrail
+lifespan		1000
+birthrate	40
+startsize	20.0
+mindist		60.0
+maxdist		80.0
+startcolor	0x00000000
+endcolor		0xffffffff
+minspeed		-80.0
+drag			300.0
+gravity		-10.0
+growthrate	-25.0
+turbulence	50.0
+end
+
+gas			whiteMist
+material		fireball
+lifespan		200
+birthrate	6
+startsize	35.0
+mindist		0.0
+maxdist		20.0
+startcolor	0xffffffff
+endcolor		0x00000000
+minspeed		30.0
+drag			300.0
+gravity		1.0
+growthrate	5.0
+turbulence	12.0
+end
+
+gas			bloodMist
+material		fireball
+lifespan		200
+birthrate	6
+startsize	35.0
+mindist		0.0
+maxdist		20.0
+startcolor	0xff9a0000
+endcolor		0x00000000
+minspeed		30.0
+drag			300.0
+gravity		1.0
+growthrate	5.0
+turbulence	12.0
+end
+
+gas			greenMist
+material		fireball
+lifespan		200
+;maxparticles 500
+birthrate	15
+startsize	35.0
+mindist		5.0
+maxdist		30.0
+startcolor	0xff084020
+endcolor		0x00000000
+minspeed		30.0
+drag			300.0
+gravity		1.0
+growthrate	5.0
+turbulence	12.0
+end
+
+gas			muzzleflame
+material		fireSprite
+lifespan		50
+birthrate	1
+startsize	10.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xffff8000
+endcolor		0x00403030
+minspeed		15.0
+drag			5.0
+gravity		-5.0
+growthrate	2.5
+turbulence	0.0
+end
+
+gas			blood
+material		bloodsprite
+lifespan		4000
+birthrate	200
+startsize	4.0
+mindist		0.0
+maxdist		1.0
+startcolor	0xff9a0000
+endcolor		0x00640000
+minspeed		5.0
+drag			0.0
+gravity		50.0
+growthrate	0.0
+turbulence	0.0
+end
+
+gas			vampdeathsmoke
+material		smokeSprite
+lifespan		2000
+birthrate	100
+startsize	20.0
+mindist		0.0
+maxdist		6.0
+startcolor	0x5f505050
+endcolor		0x00505050
+minspeed		10.0
+drag			10.0
+gravity		-10.0
+growthrate	15.0
+turbulence	0.0
+end
+
+gas			waterdripregion
+material		fireSprite
+lifespan		2000
+birthrate	300
+startsize	1.0
+mindist		0.0
+maxdist		6.0
+startcolor	0x806060dc
+endcolor		0x00505050
+minspeed		0.0
+drag			115.0
+gravity		200.0
+growthrate	1.0
+turbulence	0.0
+emitshape  	2
+emitRadius	100
+end
+
+; ============================================================================================================
+; FIRE emitters
+;
+; startsize = starting size of the particles
+; mindist, maxdist = range for spawn radius around emitter
+; startcolor, endcolor = particles shift between these colors as they age
+; minspeed, maxspeed = speed range for each particle
+; turbulence = random particle velocity variance 
+; ============================================================================================================
+
+fire			fire
+material		fireSprite
+lifespan		2000
+birthrate	20
+startsize	15.0
+mindist		0.0
+maxdist		10.0
+startcolor	0xc0ff8000
+endcolor		0x30000000
+minspeed		20.0
+maxspeed		25.0
+turbulence	2.0
+end
+
+fire			candleflame
+material		fireSprite
+lifespan		150
+birthrate	20
+startsize	2.0
+mindist		0.0
+maxdist		0.5
+startcolor	0xc0ff8000
+endcolor		0x30000000
+minspeed		0.5
+maxspeed		1.5
+turbulence	0.0
+end
+
+fire			gibFlame
+material		fireSprite
+lifespan		100
+birthrate	20
+startsize	5.0
+mindist		0.0
+maxdist		0.5
+startcolor	0xc0ff8000
+endcolor		0x30000000
+minspeed		0.5
+maxspeed		1.5
+turbulence	0.0
+end
+
+fire 			flametest2
+material		fireSprite
+lifespan		2000
+birthrate	20
+startsize	15.0
+mindist		0.0
+maxdist		10.0
+startcolor	0xc0ff8000
+endcolor		0x30000000
+minspeed		20.0
+maxspeed		25.0
+turbulence	2.0
+end
+
+fire 			flametest3
+material		fireSprite
+lifespan		1000
+birthrate	80
+startsize	10.0
+mindist		0.0
+maxdist		2.0
+startcolor	0xc0ff8000
+endcolor		0x30808080
+minspeed		4.0
+maxspeed		5.0
+turbulence	1.0
+end
+
+fire 			flametest
+material		fireSprite
+lifespan		35
+birthrate	15
+maxparticles 500
+startsize	8.0
+mindist		0.0
+maxdist		2.0
+startcolor	0xc0ff961e
+endcolor		0x32200000
+minspeed		4.0
+maxspeed		5.0
+gravity		-200
+turbulence	1.0
+end
+
+fire 			flameLarge
+material		fireSprite2
+lifespan		2000
+birthrate	20
+startsize	15.0
+mindist		0.0
+maxdist		10.0
+startcolor	0xc0bb3500
+endcolor		0x00200000
+minspeed		20.0
+maxspeed		25.0
+turbulence	2.0
+end
+
+fire 			incendExplosion
+material		fireSprite2
+lifespan		250
+birthrate	20
+startsize	15.0
+mindist		0.0
+maxdist		10.0
+startcolor	0xc0bb3500
+endcolor		0x00200000
+minspeed		20.0
+maxspeed		25.0
+turbulence	2.0
+end
+
+fire 			grenadeExplosion
+material		fireSprite2
+lifespan		250
+birthrate	20
+startsize	35.0
+mindist		0.0
+maxdist		10.0
+startcolor	0xffd0d0ff
+endcolor		0xc0bb3500
+minspeed		20.0
+maxspeed		25.0
+turbulence	2.0
+end
+
+fire 			rocketExplosion
+material		fireSprite2
+lifespan		250
+birthrate	20
+startsize	65.0
+mindist		0.0
+maxdist		10.0
+startcolor	0xffd0d0ff
+endcolor		0xc0bb3500
+minspeed		20.0
+maxspeed		25.0
+turbulence	2.0
+end
+
+fire 			lightningCloud
+material		fireSprite2
+lifespan		250
+birthrate	20
+startsize	65.0
+mindist		0.0
+maxdist		10.0
+startcolor	0xffd0d0ff
+endcolor		0xc00035bb
+minspeed		20.0
+maxspeed		25.0
+turbulence	2.0
+end
+
+fire 			hazmatExplosion
+material		fireSprite2
+lifespan		250
+birthrate	20
+startsize	35.0
+mindist		0.0
+maxdist		10.0
+startcolor	0xffffdc70
+endcolor		0xc0ff0000
+;startcolor	0xffbcff79
+;endcolor		0xc062fb3c
+minspeed		20.0
+maxspeed		25.0
+gravity		-400
+turbulence	2.0
+end
+
+fire 			holyWaterExplosion
+material		fireSprite2
+lifespan		250
+birthrate	20
+startsize	35.0
+mindist		0.0
+maxdist		10.0
+startcolor	0xffffffff
+endcolor		0xc0000000
+;startcolor	0xffbcff79
+;endcolor		0xc062fb3c
+minspeed		20.0
+maxspeed		25.0
+gravity		-400
+turbulence	2.0
+end
+                  
+fire 			flameMediumLarge
+material		fireSprite2 
+lifespan		1000
+birthrate	40
+startsize	12.0
+mindist		0.0
+maxdist		6.0
+startcolor	0xc0dd5000
+endcolor		0x00200000
+minspeed		10.0
+maxspeed		15.0
+turbulence	1.5
+end
+
+fire 			flameMedium
+material		fireSprite2 
+lifespan		1000
+birthrate	80
+startsize	10.0
+mindist		0.0
+maxdist		2.0
+startcolor	0xc0dd5000
+endcolor		0x00200000
+minspeed		4.0
+maxspeed		5.0
+turbulence	1.0
+end
+
+fire			greenflame
+material		fireSprite
+lifespan		1000
+birthrate	80
+startsize	10.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xc0008040
+endcolor		0x30008080
+minspeed		4.0
+maxspeed		5.0
+turbulence	6.0
+end
+
+
+fire			blueflame
+material		fireSprite
+lifespan		1000
+birthrate	80
+startsize	10.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xc0006464
+endcolor		0x30004080
+minspeed		4.0
+maxspeed		5.0
+turbulence	6.0
+end
+
+fire			purpleflame
+material		fireSprite
+lifespan		1000
+birthrate	80
+startsize	10.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xc0644064
+endcolor		0x30800080
+minspeed		4.0
+maxspeed		5.0
+turbulence	6.0
+end
+
+fire			disciplinetorch
+material		fireSprite
+lifespan		600
+birthrate	20
+startsize	10.0
+mindist		0.0
+maxdist		2.0
+startcolor	0xc000a040
+endcolor		0x30002080
+minspeed		4.0
+maxspeed		5.0
+turbulence	1.0
+end
+
+fire			flamedamage
+material		fireSprite
+lifespan		600
+birthrate	180
+startsize	20.0
+mindist		0.0
+maxdist		2.0
+startcolor	0xc0ff8000
+endcolor		0x30402000
+minspeed		3.0
+maxspeed		4.0
+turbulence	2.0
+end
+
+fire			flameLine
+material		fireSprite
+lifespan		25
+birthrate	5
+maxparticles 800
+startsize	10.0
+mindist		0.0
+maxdist		1.0
+startcolor	0xc0ff961e
+endcolor		0x32200000
+minspeed		4.0
+maxspeed		5.0
+turbulence	1.0
+gravity     -200
+emitshape	1
+emitDir		(10,70,0)
+end
+
+fire			holyLine
+material		fireSprite
+lifespan		25
+birthrate	5
+maxparticles 800
+startsize	10.0
+mindist		0.0
+maxdist		1.0
+startcolor	0xc0ff961e
+endcolor		0x32200000
+minspeed		4.0
+maxspeed		5.0
+turbulence	1.0
+gravity     -200
+emitshape	1
+emitDir		(10,70,0)
+end
+
+fire			flameDisc
+material		fireSprite
+lifespan		2000
+birthrate	10
+startsize	10.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xc0006464
+endcolor		0x30EAFF51
+minspeed		4.0
+maxspeed		5.0
+turbulence	6.0
+emitshape	2
+emitRadius	40
+end
+
+fire			flameCylinder
+material		fireSprite
+lifespan		2500
+birthrate	10
+startsize	10.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xc0006464
+endcolor		0x30004080
+minspeed		4.0
+maxspeed		5.0
+turbulence	6.0
+emitshape	7
+emitHeight	0
+emitRadius	60
+end
+
+fire			flameSphere
+material		fireSprite
+lifespan		2500
+birthrate	10
+startsize	10.0
+mindist		0.0
+maxdist		3.0
+startcolor	0xc0006464
+endcolor		0x30004080
+minspeed		4.0
+maxspeed		5.0
+turbulence	6.0
+emitshape	4
+emitRadius	50
+end
+
+; effect for arcanulum door in Haus de Hexe
+fire			ArcDoorLine
+material		fireSprite
+lifespan		20000
+birthrate	40
+startsize	4.0
+mindist		0.0
+maxdist		10.0
+startcolor	0x30004080
+endcolor		0x00000000
+minspeed		20.0
+maxspeed		40.0
+turbulence	0
+emitshape	1
+emitDir		(320,0,0)
+end
+
+
+; ============================================================================================================
+; FLAME emitters
+;
+; startsize = starting size of the particles
+; endsize = ending size of the particles
+; mindist, maxdist = range for spawn radius around emitter
+; startcolor, endcolor = particles shift between these colors as they age
+; minspeed, maxspeed = speed range for each particle (if only minspeed is specified, we assume no variability)
+; velocity = initial direction particles are emitted (negative ok)
+; turbulence = random directional particle velocity variance 
+; drag = drag ammount applied to each particle over time (negative ok)
+; gravity = z only velocity applied to each particle (negative ok)
+; ============================================================================================================
+
+flame			flame
+material		smokeSprite
+lifespan		1000
+birthrate	10
+startsize	1.0
+endsize		50.0
+startcolor	0x80202020
+endcolor		0x00101010
+velocity		(0.0,400.0,-10.0)
+;minspeed		10.0
+;maxspeed		10.5
+drag			-50.0
+gravity		-220.0
+turbulence	0.0
+end
+
+flame			flameTrap
+material		fireSprite3
+lifespan		800
+birthrate	5
+startsize	3.0
+endsize		50.0
+startcolor	0xc0bb3500
+endcolor		0x00803500
+velocity		(0.0,400.0,-40.0)
+;minspeed		10.0
+;maxspeed		10.5
+drag			-50.0
+gravity		-220.0
+turbulence	0.0
+end
+
+flame			throwerFlame2
+material		fireSprite3
+lifespan		800
+birthrate	10
+startsize	3.0
+endsize		50.0
+startcolor	0xc0bb3500
+endcolor		0x00803500
+velocity		(0.0,400.0,-40.0)
+;minspeed		10.0
+;maxspeed		10.5
+drag			-50.0
+gravity		-220.0
+turbulence	0.0
+end
+
+flame			throwerFlame
+material		fireSprite3
+lifespan		800
+birthrate	10
+startsize	3.0
+endsize		50.0
+startcolor	0xc0fffd1d
+endcolor		0x00ffbd1d
+velocity		(0.0,400.0,-40.0)
+;minspeed		10.0
+;maxspeed		10.5
+drag			-50.0
+gravity		-220.0
+turbulence	0.0
+end
+
+flame			incinFlame
+material		fireSprite3
+lifespan		400
+birthrate	10
+startsize	3.0
+endsize		70.0
+startcolor	0xc0bb3500
+endcolor		0x00803500
+velocity		(0.0,500.0,-50.0)
+;minspeed		10.0
+;maxspeed		10.5
+drag			40.0
+gravity		-320.0
+turbulence	0.0
+end
+
+flame			steamJet
+material		smokeSprite
+lifespan		500
+birthrate	80
+startsize	10.0
+endsize		25.0
+startcolor	0x80A0A0A0
+endcolor		0x00A0A0A0
+velocity		(0,0,100)
+minspeed		1.0
+maxspeed		1.5
+drag			30.0
+gravity		-80.0
+turbulence	100.0
+end
+
+; ============================================================================================================
+; LIQUID emitters
+;
+; startsize = starting size of the particles
+; mindist, maxdist = range for spawn radius around emitter
+; startcolor, endcolor = particles shift between these colors as they age
+; minspeed, maxspeed = speed range for each particle (if only minspeed is specified, we assume no variability)
+; cohesion = how closely particles within groups stil together
+; numgroups = max number of active groups at one time
+; mingroup, maxgroup = range of particles per group
+; groupcohesion = how closely groups stick together
+; ============================================================================================================
+
+
+liquid		liquid
+material		fireSprite
+lifespan		2000
+birthrate	8
+startsize	2.0
+mindist		0.0
+maxdist		40.0
+startcolor	0xff6060dc
+endcolor		0x80d0d0dc
+minspeed		300.0
+maxspeed		320.0
+cohesion		0.9
+numgroups	48
+mingroup		5
+maxgroup		15
+groupcohesion	0.33
+end
+
+liquid		waterspray
+material		fireSprite
+lifespan		2000
+birthrate	8
+startsize	2.0
+mindist		0.0
+maxdist		40.0
+startcolor	0xff6060dc
+endcolor		0x80d0d0dc
+minspeed		300.0
+maxspeed		320.0
+cohesion		0.9
+numgroups	48
+mingroup		5
+maxgroup		15
+groupcohesion	0.33
+end
+
+liquid		blood0old
+material		bloodsprite
+lifespan		1100
+birthrate	16
+startsize	2.5
+mindist		0.0
+maxdist		2.0
+startcolor	0xffff3030
+endcolor		0x60a02020
+minspeed		88.0
+maxspeed		100.0
+gravity		63
+cohesion		0.9
+numgroups	80
+mingroup		8
+maxgroup		25
+groupcohesion	0.20
+end
+
+; ============================================================================================================
+; RAIN emitters
+;
+; length = length of each drop
+; maxparticles = how many particles to create in the box
+; width = width of each drop (or size of drops if length = 0)
+; velocity = initial direction particles are emitted
+; maxparticles = maxiumum particles per emitter at any given time
+; startsize = dimensions of box around camera to contain particles (rec. 1000 or more)
+; turbulence = how much wiggling there is as the particles fall (0.0 = none = faster processing)
+; velocityvar = maximum amount of blowing around on a single particle
+; startcolor = rgb color of each particle
+; 
+; ============================================================================================================
+
+rain				rain
+material			rainsprite
+maxparticles	600
+startsize 		1000.0
+length			0.1
+width				10
+velocity			(0.0,200.0,-500.0)
+startcolor		0xa000ffff
+end
+
+rain				snow
+material			fireSprite
+maxparticles	1000
+startsize		3000.0
+length			0.0
+width				2.5
+velocity			(0.0,0.0,-150.0)
+velocityvar		120.0
+turbulence		120.0
+startcolor		0xa08f8fff
+end
+
+; london drizzle
+rain				drizzle
+material			fireSprite
+maxparticles	6000
+startsize 	25.0
+length			0
+width				0.015
+velocity			(0.0,0.0,-5.0)
+velocityvar		60.0
+startcolor		0xa80303030
+end
+
+; london light rain
+rain				lightRain
+material			rainsprite
+maxparticles	800
+startsize 		1000.0
+length			0.05
+width				5
+velocity			(0.0,50.0,-500.0)
+startcolor		0xa0505050
+end
+
+; london heavy rain
+rain				heavyRain
+material			rainsprite
+maxparticles	2000
+startsize 		600.0
+length			0.05
+width				5
+velocity			(0.0,100.0,-300.0)
+startcolor		0xa0505050
+end
+
+; ============================================================================================================
+; SPARKS emitters
+;
+; maxparticles =
+; birthrate =  
+; minbirthrate, maxbirthrate =
+; startsize =
+; count =
+; startcolormin =
+; startcolormax =
+; velocity
+; velocityvar
+; gravity
+; ============================================================================================================
+
+sparks			sparks
+material			rainsprite
+maxparticles	150
+lifespan			3000
+minbirthrate	50
+maxbirthrate	500
+startsize		1.0
+count				15
+startcolormin	0x80808000
+startcolormax	0x80808000
+velocity	(0.0,0.0,200.0)
+velocityvar		120.0
+gravity			280.0
+end
+
+sparks			blueSparks
+material			fireSprite
+maxparticles	20
+lifespan			1000
+minbirthrate	50
+maxbirthrate	500
+startsize		0.5
+count				10
+startcolormin	0x80808080
+startcolormax	0xc0c0c0ff
+velocity	(0.0,0.0,100.0)
+velocityvar		120.0
+gravity			280.0
+end
+
+sparks			firespray
+material			fireSprite
+maxparticles	150
+lifespan			3000
+minbirthrate	1500
+maxbirthrate	1600
+startsize		1.5
+count				30
+startcolormin	0xffff8000
+startcolormax	0xffaaaa00
+velocity	(0.0,0.0,0.0)
+velocityvar		360.0
+gravity			300.0
+end
+
+sparks			moltenSpray
+material			fireSprite
+maxparticles	300
+lifespan			3000
+minbirthrate	1500
+maxbirthrate	1600
+startsize		1.5
+count				150
+startcolormin	0xffff8000
+startcolormax	0xffaaaa00
+velocity	(0.0,0.0,245.0)
+velocityvar		65.0
+gravity			300.0
+end
+
+sparks			bloodspray
+material			bloodsprite
+maxparticles	150
+lifespan			3000
+minbirthrate	5000
+maxbirthrate	5100
+startsize		1.0
+count				30
+startcolormin	0xffff0000
+startcolormax	0xffff0000
+velocity			(0.0,0.0,0.0)
+velocityvar		360.0
+gravity			300.0
+end
+
+
+; ============================================================================================================
+; BEAM emitters
+;
+; subtype = beam type, sinus or noise
+; updaterate =
+; delay =
+; count =
+; startsize, endsize = beam starting and ending thickness
+; startcolor, endcolor =
+; turbulence =
+; texturerate = texture scroll rate
+; size = segment distance
+; frequency =
+; ============================================================================================================
+
+beam				beam
+material			beamlightning
+subtype				sinus
+lifespan			10000
+birthrate		10000
+updaterate			10
+delay				0
+count				0
+startsize		16.0
+endsize			16.0
+startcolor		0xffff0000
+endcolor			0xffff0000
+turbulence		0.0
+texturerate		64.0
+size				8.0	
+frequency		3.0
+end
+
+beam				redwavybeam
+material			beamlightning
+subtype				sinus
+lifespan			10000
+birthrate		10000
+updaterate			10
+delay				0
+count				0
+startsize		16.0
+endsize			16.0
+startcolor		0xffff0000
+endcolor			0xffff0000
+turbulence		16.0
+texturerate		64.0
+size				4.0	
+frequency		2.0
+end
+
+beam				yellowwavybeam
+material			beamlightning
+subtype				sinus
+lifespan			10000
+birthrate		10000
+updaterate			10
+delay				0
+count				0
+startsize		16.0
+endsize			16.0
+startcolor		0xffffff30
+endcolor			0xffffff30
+turbulence		16.0
+texturerate		64.0
+size				4.0	
+frequency		4.0
+end
+
+beam				purpspikewave
+material			beamspikes
+subtype				noise
+lifespan			10000
+birthrate		10000
+updaterate			10
+delay				0
+count				0
+startsize		16.0
+endsize			16.0
+startcolor		0xff4014ff
+endcolor			0xff8030ff
+turbulence		4.0
+texturerate		128.0
+size				8.0	
+frequency		3.0
+end
+
+beam				powerwave
+material			beamwhite
+subtype				sinus
+lifespan			10000
+birthrate		10000
+updaterate			10
+delay				0
+count				0
+startsize		16.0
+endsize			16.0
+startcolor		0xff8030ff
+endcolor			0xff8030ff
+turbulence		16.0
+texturerate		64.0
+size				4.0	
+frequency		3.0
+end
+
+beam				bloodstream
+material			beampulse
+subtype				sinus
+lifespan			999999
+birthrate		999999
+updaterate			999999
+delay				0
+count				0
+startsize		32.0
+endsize			32.0
+startcolor		0xffff0000
+endcolor			0xffff0000
+turbulence		20.0
+texturerate		16.0
+size				4.0	
+frequency		3.0
+end
+
+beam				fogstream
+material			beampulse
+subtype				sinus
+lifespan			999999
+birthrate		999999
+updaterate			999999
+delay				0
+count				0
+startsize		32.0
+endsize			32.0
+startcolor		0xff00f155
+endcolor			0xff6df99f
+turbulence		60.0
+texturerate		-10.0
+size				4.0	
+frequency		3.0
+end
+
+beam				smokebeam
+material			beamclouds
+subtype				sinus
+lifespan			999999
+birthrate		999999
+updaterate			999999
+delay				0
+count				0
+startsize		32.0
+endsize			32.0
+startcolor		0xff808080
+endcolor			0xff808080
+turbulence		0.0
+texturerate		16.0
+size				16.0	
+frequency		4.0
+end
+
+beam				smokebeam2
+material			beamclouds
+subtype				sinus
+lifespan			999999
+birthrate		999999
+updaterate			999999
+delay				0
+count				0
+startsize		32.0
+endsize			32.0
+startcolor		0xff808080
+endcolor			0xff808080
+turbulence		24.0
+texturerate		16.0
+size				4.0	
+frequency		4.0
+end
+
+beam				bluelightning
+material			beamelectric
+subtype				noise
+lifespan			500
+birthrate		1000
+updaterate			10
+delay				0
+count				0
+startsize		24.0
+endsize			4.0
+startcolor		0xffffffff
+endcolor			0xff000040
+turbulence		24.0
+texturerate		64.0
+size				16.0	
+frequency		0.0
+end
+
+beam				blueLightningOne
+material			beamelectric
+subtype				noise
+lifespan			500
+birthrate		1000
+updaterate			10
+delay				0
+count				1
+startsize		24.0
+endsize			4.0
+startcolor		0xffffffff
+endcolor			0xff000040
+turbulence		24.0
+texturerate		64.0
+size				16.0	
+frequency		0.0
+end
+
+beam				blueLightningTwo
+material			beamelectric
+subtype			noise
+lifespan			1500
+birthrate		1000
+updaterate		10
+delay				0
+count				1
+startsize		35.0
+endsize			8.0
+startcolor		0xffffffff
+endcolor			0xff000040
+turbulence		12.0
+texturerate		64.0
+size				16.0	
+frequency		0.0
+end
+
+beam				blueElecArc
+material			beamelectric
+subtype				noise
+lifespan			100
+birthrate		500
+updaterate			100
+delay				0
+count				0
+startsize		10.0
+endsize			2.0
+startcolor		0xffffffff
+endcolor			0xff000040
+turbulence		8.0
+texturerate		64.0
+size				8.0	
+frequency		0.0
+end
+
+beam				blueElecArcOne
+material			beamelectric
+subtype				noise
+lifespan			100
+birthrate		500
+updaterate			100
+delay				0
+count				1
+startsize		10.0
+endsize			2.0
+startcolor		0xffffffff
+endcolor			0xff000040
+turbulence		8.0
+texturerate		64.0
+size				8.0	
+frequency		0.0
+end
+
+beam				redNoiseBeam
+material			beamelectric
+subtype				noise
+lifespan			999999
+birthrate		999999
+updaterate			10
+delay				0
+count				0
+startsize		10.0
+endsize			10.0
+startcolor		0xffff0000
+endcolor			0xffff0000
+turbulence		8.0
+texturerate		64.0
+size				8.0	
+frequency		0.0
+end
+
+beam				redLaser
+material			beamelectric
+subtype				noise
+lifespan			999999
+birthrate		999999
+updaterate			10
+delay				0
+count				0
+startsize		2.0
+endsize			2.0
+startcolor		0xffff0000
+endcolor			0xffff0000
+turbulence		0.0
+texturerate		128.0
+size				16.0	
+frequency		0.0
+end
+
+beam				greenLaser
+material			beamelectric
+subtype				noise
+lifespan			999999
+birthrate		999999
+updaterate			10
+delay				0
+count				0
+startsize		2.0
+endsize			2.0
+startcolor		0xff00ff00
+endcolor			0xff00ff00
+turbulence		0.0
+texturerate		128.0
+size				16.0	
+frequency		0.0
+end
+
+beam				blueLaser
+material			beamelectric
+subtype				noise
+lifespan			999999
+birthrate		999999
+updaterate			10
+delay				0
+count				0
+startsize		2.0
+endsize			2.0
+startcolor		0xff0000ff
+endcolor			0xff0000ff
+turbulence		0.0
+texturerate		128.0
+size				16.0	
+frequency		0.0
+end
+
+beam				redDiscoLaser
+material			beamLaser
+subtype				noise
+lifespan			50
+birthrate		300
+updaterate			10
+delay				0
+count				0
+startsize		2.0
+endsize			2.0
+startcolor		0xffff0000
+endcolor			0xffff0000
+turbulence		0.0
+texturerate		128.0
+size				16.0	
+frequency		0.0
+end
+
+beam				greenDiscoLaser
+material			beamLaser
+subtype				noise
+lifespan			50
+birthrate	  	300
+updaterate			10
+delay				0
+count				0
+startsize		2.0
+endsize			2.0
+startcolor		0xff00ff00
+endcolor			0xff00ff00
+turbulence		0.0
+texturerate		128.0
+size				16.0	
+frequency		0.0
+end
+
+beam				blueDiscoLaser
+material			beamLaser
+subtype				noise
+lifespan			50
+birthrate		300
+updaterate			10
+delay				0
+count				0
+startsize		2.0
+endsize			2.0
+startcolor		0xff0000ff
+endcolor			0xff0000ff
+turbulence		0.0
+texturerate		128.0
+size				16.0	
+frequency		0.0
+end
+
+; ============================================================================================================
+; SHOCK emitters
+;
+; special params
+;
+; startsize = starting radius of the shockwave
+; growthrate = size increase in radius per second
+; velocity = movement of shockwave centerpoint
+; rotvel = rotational velocity of shockwave (deg/sec)
+; count = number of shockwaves to make before stopping (-1 = infinite)
+; birthrate = milliseconds between each shockwave if multiple
+; ============================================================================================================
+
+shock				shocktest
+material			sawTooth
+lifespan			10000
+startsize		20
+growthrate		10
+startcolor		0x80808080
+endcolor			0x00000000
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				5
+birthrate		1000
+end
+
+shock				shockrings
+material			shock
+lifespan			3000
+startsize		20
+growthrate		20
+startcolor		0xffffffff
+endcolor			0xff808080
+velocity			(0,0,100)
+rotvel			(0,0,0)
+count				-1
+birthrate		500
+end
+
+shock				shockwave
+material			ringOfFire
+lifespan			1000
+startsize		20
+growthrate		300 
+startcolor		0xff2c5b95
+endcolor			0x00000000
+velocity			(0,0,0)
+rotvel			(0,0,0)
+count				1
+birthrate		200
+end
+
+shock				shockflame
+material			ringOfFire
+lifespan			1000
+startsize		20
+growthrate		200
+startcolor		0xff843701
+endcolor			0x00000000
+velocity			(0,0,0)
+rotvel			(0,0,0)
+count				1
+birthrate		200
+end
+
+shock				shockflamegreen
+material			ringOfFire
+lifespan			1000
+startsize		20
+growthrate		150
+startcolor		0xff2bf315
+endcolor			0x00000000
+velocity			(0,0,0)
+rotvel			(0,0,0)
+count				1
+birthrate		200
+end
+
+shock				invshockwave
+material			shock
+lifespan			1000
+startsize		400
+growthrate		-400
+startcolor		0x00000000
+endcolor			0xffffffff
+velocity			(0,0,0)
+rotvel			(0,0,0)
+count				1
+birthrate		200
+end
+
+shock				invshockwave_y
+material			ringOfFire
+lifespan			1000
+startsize		400
+growthrate		-400
+startcolor		0x00000000
+endcolor		   0xfff2cb5f
+velocity			(0,0,0)
+rotvel			(0,0,0)
+count				1
+birthrate		200
+end
+
+shock				flamewave
+material			shock
+lifespan			1200
+startsize		20
+growthrate		0
+startcolor		0xffffffff
+endcolor			0x00808080
+velocity			(0,0,150)
+rotvel			(0,0,0)
+count				-1
+birthrate		150
+end
+
+; ============================================================================================================
+; RING emitters
+; 
+; special parameters:
+; 
+; lifespan = duration of each ring in msec
+; startsize = starting radius of ring
+; growthrate = radius increase per second
+; startheight = starting height of ring
+; endheight = height of ring at end of life
+; velocity = movement of each ring centerpoint
+; rotvel = rotational velocity of each ring
+; count = how many rings to produce (-1 = infinite)
+; birthrate = milliseconds between rings produced
+; numsegs = how many segments to use to approximate each ring
+; startcolormax = starting color of the top of the ring
+; endcolormax = ending color of top of ring
+; ============================================================================================================
+
+ring				ringtest
+material			skullFlames
+lifespan			1000
+startsize		20
+growthrate		120
+startcolor		0xffff8000
+endcolor			0xff000000
+startcolormax	0xff0000ff
+endcolormax		0xff0000ff
+startheight		20
+endheight		200
+texturerate		10.0
+velocity			(0,0,0)
+rotvel			(0,-90,0)
+count				-1
+birthrate		1000
+numsegs			32
+end
+
+ring				ringTower
+material			blueLightning2
+lifespan			800
+startsize		80
+growthrate		-100
+startcolor		0x00000000
+endcolor			0xffffffff
+startheight		20
+endheight		800
+texturerate		1.0
+velocity			(0,0,0)
+rotvel			(0,0,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				ringTowerFlame
+material			FlameFaces
+lifespan			800
+startsize		80
+growthrate		-100
+startcolor		0x00000000
+endcolor			0xffffffff
+startheight		20
+endheight		800
+texturerate		1.0
+velocity			(0,0,0)
+rotvel			(0,0,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				flameRingDisc
+material			FlameFaces
+lifespan			1000
+startsize		20
+growthrate		150
+startcolor		0xffffffff
+endcolor			0x00000000
+startheight		20
+endheight		400
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,0,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				ringOfFlames
+material			skullFlames
+flags				0x1
+lifespan			30000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				ringOfFlames2
+material			FlameFaces
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0xffffffff
+endcolor			0xffffffff
+startheight		128
+endheight		128
+texturerate		6.0
+velocity			(0,0,0)
+rotvel			(0,0,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				ringOfFlames3
+material			FlameFaces2
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0xffffffff
+endcolor			0xffffffff
+startheight		128
+endheight		128
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,-80,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				electricRing
+material			BlueLightning
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				electricRing2
+material			BlueLightning2
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				houndsRing
+material			hounds
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				wraithRing
+material			WraithFlames
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				handsRing
+material			Hands
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				energyRing
+material			energyBurst
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				energyRingBlue
+material			energyBurst_b
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				energyRingGreen
+material			energyBurst_g
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				energyRingRed
+material			energyBurst_r
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+ring				energyRingYellow
+material			energyBurst_y
+flags				0x1
+lifespan			10000
+startsize		80
+growthrate		0
+startcolor		0x80808080
+endcolor			0x80808080
+startheight		256
+endheight		256
+texturerate		3.0
+velocity			(0,0,0)
+rotvel			(0,45,0)
+count				1
+birthrate		1000
+numsegs			32
+end
+
+; ============================================================================================================
+; MAGIC emitters
+;
+; startsize = starting size of the particles
+; endsize = ending size of the particles
+; mindist, maxdist = range for radius radius around pivot
+; startcolor, endcolor = particles shift between these colors as they age
+; minradius, maxradius = starting radius around pivot randomly dist. between these values
+; minspeed, maxspeed = yaw rate around pivot is random between these values (negative is OK, degrees/sec)
+; mingrowth, maxgrowth = rate of change of the radius over time (negative ok)
+; velocity  = movement speed of pivot center
+; ============================================================================================================
+
+magic				magictest
+material			smokeSprite
+lifespan			2000
+birthrate		100
+maxparticles	500
+startsize		1.0
+endsize			15.0
+startcolor		0xffffffff
+endcolor			0x00000000
+minradius		10
+maxradius		30
+minspeed			-540
+maxspeed			540
+mingrowth		10
+maxgrowth		25
+velocity			(0,0,55)
+end
+
+; teleporter effect for Haus de Hexe
+magic				HausTeleporter
+material			fireSprite
+lifespan			3500
+birthrate		50
+maxparticles	500
+startsize		8.0
+endsize			1.0
+startcolor		0x00ffffff
+endcolor			0xf000080f
+minradius		80
+maxradius		80
+minspeed			300
+maxspeed			500
+mingrowth		-10
+maxgrowth		-25
+velocity			(0,0,70)
+end
+
+magic				ardanMagic
+material			LensFlare1_green
+lifespan			1000
+birthrate		100
+maxparticles	300
+startsize		14
+endsize			5
+startcolor		0xffffffff
+endcolor			0x00ff00ff
+minradius		10
+maxradius		30
+minspeed			-540
+maxspeed			540
+mingrowth		10
+maxgrowth		50
+velocity			(0,0,65)
+end
+
+magic				blueMagic
+material			LensFlare1_blue
+lifespan			1000
+birthrate		40
+maxparticles	500
+startsize		14.0
+endsize			5.0
+startcolor		0xffffffff
+endcolor			0x002020ff
+minradius		10
+maxradius		30
+minspeed			-540
+maxspeed			540
+mingrowth		10
+maxgrowth		25
+velocity			(0,0,55)
+end
+
+magic				yellowMagic
+material			LensFlare1_yellow
+lifespan			1000
+birthrate		40
+maxparticles	500
+startsize		14.0
+endsize			5.0
+startcolor		0xfffffff4
+endcolor			0x00f7ff59
+minradius		10
+maxradius		30
+minspeed			-540
+maxspeed			540
+mingrowth		10
+maxgrowth		25
+velocity			(0,0,55)
+end
+
+magic				redMagic
+material			LensFlare1_red
+lifespan			1000
+birthrate		40
+maxparticles	500
+startsize		14.0
+endsize			5.0
+startcolor		0xffffffff
+endcolor			0x00800000
+minradius		10
+maxradius		20
+minspeed			-240
+maxspeed			240
+mingrowth		10
+maxgrowth		25
+velocity			(0,0,45)
+end
+
+magic				greenMagic
+material			LensFlare1_green
+lifespan			1000
+birthrate		40
+maxparticles	500
+startsize		14.0
+endsize			5.0
+startcolor		0xffffffff
+endcolor			0x00008000
+minradius		10
+maxradius		20
+minspeed			-240
+maxspeed			240
+mingrowth		10
+maxgrowth		25
+velocity			(0,0,45)
+end
+
+magic				blackMagic
+material			blackMagic
+lifespan			1000
+birthrate		40
+maxparticles	500
+startsize		30.0
+endsize			20.0
+startcolor		0xffffffff
+endcolor			0x00000000
+minradius		10
+maxradius		20
+minspeed			-240
+maxspeed			240
+mingrowth		10
+maxgrowth		25
+velocity			(0,0,45)
+end
+
+magic				mysticIdleMagic
+material			LensFlare2_white
+lifespan			900
+birthrate		40
+maxparticles	500
+startsize		5.0
+endsize			3.0
+startcolor		0xff8000ff
+endcolor			0x00004000
+minradius		15
+maxradius		20
+minspeed			-140
+maxspeed			140
+mingrowth		10
+maxgrowth		25
+velocity			(0,0,45)
+end
+
+magic				mysticGoodMagic
+material			LensFlare2_white
+lifespan			2000
+birthrate		40
+maxparticles	500
+startsize		10.0
+endsize			5.0
+startcolor		0xff3000ff
+endcolor			0x00000000
+minradius		10
+maxradius		30
+minspeed			-540
+maxspeed			540
+mingrowth		10
+maxgrowth		25
+velocity			(0,0,55)
+end
+
+magic				mysticBadMagic
+material			LensFlare2_white
+lifespan			2000
+birthrate		40
+maxparticles	500
+startsize		10.0
+endsize			5.0
+startcolor		0xffff0000
+endcolor			0x00000000
+minradius		10
+maxradius		30
+minspeed			-540
+maxspeed			540
+mingrowth		10
+maxgrowth		25
+velocity			(0,0,55)
+end
+
+;
+; TRAIL emitters
+;
+; Names must match what is in the template for "modelName" on the weapon
+; and the weapon must be tagged as "BLADETRAIL"
+;
+; StartPos and Endpos define the endpoints of the trail and must be tweaked for
+; each weapon to match the model.
+; 
+; lifespan = life of the trail.. Longer life = longer trail
+; birthrate = how fast to create new segments of the trail (lower value = more accurate trail = more expensive)
+; startcolor = color of the newest part of the trail
+; endcolor = color of the oldest part of the trail (recommend 0 alpha)
+
+trail				bastard
+material			bladetrail2
+startpos			(0,20,0)
+endpos			(0,100,0)
+lifespan			150
+birthrate		10
+startcolor		0xff303030
+endcolor			0x00000000
+end
+
+trail				arrowTrail
+material			bladetrail2
+flags				0x1
+startpos			(0,-30,-5)
+endpos			(0,-30,5)
+lifespan			350
+birthrate		10
+startcolor		0xff303030
+endcolor			0x00000000
+end
+
+trail				knifeTrail
+material			bladetrail2
+flags				0x1
+startpos			(0,-8,-5)
+endpos			(0,-8,5)
+lifespan			350
+birthrate		10
+startcolor		0xff303030
+endcolor			0x00000000
+end
+
+trail				flameTrail
+material			bladetrail2
+startpos			(0,20,0)
+endpos			(0,100,0)
+lifespan			500
+birthrate		6
+startcolor		0xc0ff8000
+endcolor			0x30000000
+;startcolor		0xc0bb3500
+;endcolor			0x00200000
+end
+
+trail				bloodTrail
+material			bladetrail2
+startpos			(0,20,0)
+endpos			(0,100,0)
+lifespan			250
+birthrate		6
+startcolor		0x50500000
+endcolor			0x00000000
+end
+
+trail				celerityTrail
+material			bladetrail2
+flags				0x1
+startpos			(0,0,0)
+endpos			(0,0,60)
+lifespan			500
+birthrate		6
+startcolor		0xff303030
+endcolor			0x00000000
+end
+
+; 
+; PAD emitters
+;
+; Mostly the same params as SHOCK emitters, but the COUNT field must be > 0
+; 
+; endSize = the size of the pad at its beginning and end
+; startSize = the size of the pad while running normally
+; growthrate = how fast the pad grows/shrinks at the start/end of the emitter
+
+pad				ankhsPad
+material			ankhs
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ankhsPadGreen
+material			ankhs
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ankhsPadRed
+material			ankhs
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ankhsPadYellow
+material			ankhs
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ankhs2Pad
+material			ankhs2
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ankhs2PadGreen
+material			ankhs2
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ankhs2PadRed
+material			ankhs2
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ankhs2PadYellow
+material			ankhs2
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				dexterityPadBlue
+material			dexterity
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				dexterityPadGreen
+material			dexterity
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				dexterityPadRed
+material			dexterity
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				dexterityPadYellow
+material			dexterity
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				dexterity2PadBlue
+material			dexterity2
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				dexterity2PadGreen
+material			dexterity2
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				dexterity2PadRed
+material			dexterity2
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				dexterity2PadYellow
+material			dexterity2
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				flamePad
+material			ringOfFire
+startsize		50
+endsize			0.1
+growthrate		100
+startcolor		0xff843701
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				flamePadBlue
+material			ringOfFire
+startsize		50
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				flamePadGreen
+material			ringOfFire
+startsize		50
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				flamePadRed
+material			ringOfFire
+startsize		50
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				flamePadYellow
+material			ringOfFire
+startsize		50
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				padtest
+material			shock
+startsize		100
+endsize			0.1
+growthrate		100
+startcolor		0xffffffff
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfEyesBlue
+material			ringOfEyes
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfEyesGreen
+material			ringOfEyes
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfEyesRed
+material			ringOfEyes
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfEyesYellow
+material			ringOfEyes
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfSerpentsBlue
+material			ringOfSerpents
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfSerpentsGreen
+material			ringOfSerpents
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfSerpentsRed
+material			ringOfSerpents
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfSerpentsYellow
+material			ringOfSerpents
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfSkullsBlue
+material			ringOfSkulls
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfSkullsGreen
+material			ringOfSkulls
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfSkullsRed
+material			ringOfSkulls
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfSkullsYellow
+material			ringOfSkulls
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfWolvesBlue
+material			ringOfWolves
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfWolvesGreen
+material			ringOfWolves
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfWolvesRed
+material			ringOfWolves
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				ringOfWolvesYellow
+material			ringOfWolves
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				rosettePad
+material			rosette
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,-90,0)
+end
+
+pad				rosettePadGreen
+material			rosette
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,-90,0)
+end
+
+pad				rosettePadRed
+material			rosette
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,-90,0)
+end
+
+pad				rosettePadYellow
+material			rosette
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,-90,0)
+end
+
+
+pad				sawToothPad
+material			sawTooth
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				sawToothBlueRed
+material			sawTooth_b_r
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xffffffff
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				sawToothBlue
+material			sawTooth
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				sawToothGreen
+material			sawTooth
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				sawToothYellow
+material			sawTooth
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				swirlingSkullsPad
+material			swirlingSkulls
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff843701
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				swirlingSkullsBlue
+material			swirlingSkulls
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				swirlingSkullsGreen
+material			swirlingSkulls
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				swirlingSkullsRed
+material			swirlingSkulls
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				swirlingSkullsYellow
+material			swirlingSkulls
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				thornedRingPad
+material			thornedRing
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff843701
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				thornedRingBlue
+material			thornedRing
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff2c5b95
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				thornedRingGreen
+material			thornedRing
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff248265
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				thornedRingRed
+material			thornedRing
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff870101
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				thornedRingYellow
+material			thornedRing
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xfff2cb5f
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+pad				thornedRing2Pad
+material			thornedRing2
+startsize		40
+endsize			0.1
+growthrate		100
+startcolor		0xff843701
+endcolor			0x00000000
+count				1
+rotvel			(0,90,0)
+end
+
+;
+; OBJECT emitters
+;
+; These emitters just create objects using the defined emitter shape and lifeleft parameters
+;
+; emitshape = shape of emitters
+; emitradius = shape of emtiter 
+; emitheight = height of emitter
+; emitwidth = ' ' 
+; emitdir = shape of emitter
+; lifespan = how long each spawned objects lasts (0 = use template setting)
+; birthrate = how frequently to create new objects
+; template = name of template to spawn
+;
+
+object			objecttest
+template			szlachta_head
+lifespan			2000
+birthrate		500
+emitshape		2
+emitRadius		40
+end
+
+object			firestorm
+template			proj_firestorm
+lifespan			2000
+birthrate		125
+emitshape		2
+emitRadius		70
+end
+
+
+;
+; SPURT emitters
+;
+; These are for stuff like blood or other steaky sort of directional liquids
+;
+; emitshape = shape of emitter
+; emitradius
+; emitheight
+; emitwidth
+; emitdir
+; lifespan = lifespan of each particle
+; material = material for particles
+; birthrate = birthrate for new particles (for each streak)
+; minbirthrate, maxbirthrate = variable birth rate range
+; startsize = starting size of particles
+; minstartsize, maxstartsize = varianble startsize range
+; startcolor = color of particles
+; speed = speed at which particles emerge from the emitter
+; minspeed, maxspeed = variable speed range
+; gravity = speed of gravity effect on particles
+; numgroups = number of simultaneous streaks
+; mingroup, maxgroup = min/max life span of each group
+
+spurt				testspurt
+material			bloodspurt
+lifespan 		6000
+numgroups		3
+maxparticles	6000
+startcolor		0xffdfdfdf
+minspeed			110.0
+maxspeed			130.0
+velocity 		(0.0,0.0,1.0)
+gravity			50.0
+velocityvar		0.3
+emitshape  		2
+emitRadius		20
+birthrate		500
+minstartsize	1.0
+maxstartsize	4.0
+maxgroup			2000
+mingroup			1500
+end
+
+spurt				blood0
+material			bloodspurt
+lifespan 		3000
+numgroups		1
+maxparticles	6000
+startcolor		0xffdfdfdf
+minspeed			200.0
+maxspeed			230.0
+velocity 		(0.0,0.0,1.0)
+gravity			500.0
+velocityvar		0.3
+emitshape  		2
+emitRadius		20
+birthrate		500
+minstartsize	1.0
+maxstartsize	3.0
+maxgroup			1500
+mingroup			500
+end
+
+spurt				headBlood
+material			bloodspurt
+lifespan 		3000
+numgroups		1
+maxparticles	6000
+startcolor		0xffdfdfdf
+minspeed			20.0
+maxspeed			80.0
+velocity 		(0.0,0.0,-1.0)
+gravity			300.0
+velocityvar		0.3
+emitshape  		2
+emitRadius		1
+birthrate		500
+minstartsize	1.0
+maxstartsize	3.0
+maxgroup			1500
+mingroup			500
+end
+
+spurt				gibBlood
+material			bloodspurt
+lifespan 		3000
+numgroups		1
+maxparticles	6000
+startcolor		0xffdfdfdf
+minspeed			10.0
+maxspeed			30.0
+velocity 		(0.0,0.0,0.0)
+gravity			300.0
+velocityvar		0.3
+emitshape  		2
+emitRadius		1
+birthrate		500
+minstartsize	1.0
+maxstartsize	3.0
+maxgroup			1500
+mingroup			500
+end
+
+spurt				neckBlood
+material			bloodspurt
+lifespan 		600
+numgroups		1
+maxparticles	6000
+startcolor		0xffdfdfdf
+minspeed			80.0
+maxspeed			120.0
+velocity 		(0.0,0.0,1.0)
+gravity			500.0
+velocityvar		0.3
+emitshape      2
+emitRadius		5
+birthrate		300
+minstartsize	1.0
+maxstartsize	3.0
+maxgroup			1500
+mingroup			500
+end
+
+spurt				blooddrip
+material			bloodspurt
+lifespan 		500
+numgroups		1
+maxparticles	100			 
+startcolor		0xffdfdfdf
+minspeed			100.0
+maxspeed			115.0
+velocity 		(0.0,0.0,-0.5)
+gravity			200.0
+velocityvar		0.0
+emitshape  		1
+emitRadius		40
+birthrate		800
+minstartsize	1.0
+maxstartsize	2.0
+maxgroup			500
+mingroup			100
+end
+
+spurt				waterspurt
+material			fireSprite
+lifespan 		3000
+numgroups		4
+maxparticles	6000
+startcolor		0x806060dc
+minspeed			200.0
+maxspeed			230.0
+velocity 		(0.0,0.0,6.0)
+gravity			300.0
+velocityvar		0.6
+emitshape  		1
+emitRadius		40
+birthrate		500
+minstartsize	1.0
+maxstartsize	4.0
+maxgroup			1500
+mingroup			500
+end
+
+spurt				moltenSplash
+material			fireSprite
+lifespan 		3000
+numgroups		4
+maxparticles	6000
+startcolor		0xc0bb3500
+minspeed			550.0
+maxspeed			700.0
+velocity 		(0.0,0.0,1.0)
+gravity			750.0
+velocityvar		0.2
+emitshape  		2
+emitRadius		16
+birthrate		500
+minstartsize	10.0
+maxstartsize	15.0
+maxgroup			1500
+mingroup			500
+end
+
+spurt				waterdrip
+material			fireSprite
+lifespan 		500
+numgroups		1
+maxparticles	100			 
+startcolor		0x806060dc
+minspeed			100.0
+maxspeed			115.0
+velocity 		(0.0,0.0,-0.5)
+gravity			200.0
+velocityvar		0.0
+emitshape  		1
+emitRadius		40
+birthrate		800
+minstartsize	1.0
+maxstartsize	2.0
+maxgroup			500
+mingroup			100
+end
+
+spurt				waterdripregion1
+material			fireSprite
+lifespan 		500
+numgroups		1
+maxparticles	20			 
+startcolor		0x806060dc
+minspeed			100.0
+maxspeed			115.0
+velocity 		(0.0,0.0,-0.5)
+gravity			200.0
+velocityvar		0.0
+emitshape  		2
+emitRadius		50
+birthrate		500
+minstartsize	1.0
+maxstartsize	2.0
+maxgroup			1000
+mingroup			500
+end
+
+; New Moon Greenman spout
+spurt				NEWM_waterspout
+material			fireSprite
+lifespan 		2000
+numgroups		1
+maxparticles	2000
+startcolor		0x806060dc
+minspeed			75.0
+maxspeed			100.0
+velocity 		(0.0,1.0,0.0)
+gravity			375.0
+velocityvar		0.0
+emitshape  		1
+emitRadius		40
+birthrate		800
+minstartsize	1.0
+maxstartsize	4.0
+maxgroup			1500
+mingroup			500
+end
+
+spurt				waterspout
+material			fireSprite
+lifespan 		2000
+numgroups		1
+maxparticles	2000
+startcolor		0x806060dc
+minspeed			200.0
+maxspeed			230.0
+velocity 		(0.0,10.0,0.0)
+gravity			300.0
+velocityvar		0.0
+emitshape  		1
+emitRadius		40
+birthrate		800
+minstartsize	1.0
+maxstartsize	4.0
+maxgroup			1500
+mingroup			500
+end
+

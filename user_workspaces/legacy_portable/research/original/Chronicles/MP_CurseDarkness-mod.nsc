@@ -1,0 +1,46 @@
+##########################################################
+#                                                        #
+# MP_CurseDarkness.nsc - Chronicle for the Multiplayer   #
+#                      "To Curse the Darkness" episode.  #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S. Thoms  010/30/99                            #
+#                                                        #
+##########################################################
+#
+# EXIT FLAGS:
+#
+# CLOSED	0x1		This exit is closed
+# ONEWAY	0x100		This exit is one way (this is actually a load time only flag)
+#
+
+
+location MossyHearth            P1_INN4.nil             INN4_CTD_1_1.nsd  mapTemesvar.nui    mapMossyHearthInn    0x0020
+location Temesvar               p1_nqtr.nil             NQTR_CTD_1_1.nsd  mapTemesvar.nui    mapMossyHearthInn    0x00a4
+location SorvenaCottage         p1_rabi.nil             RABI_CTD_1_1.nsd  mapTemesvar.nui    mapSorvenasCottage   0x0020
+location Oubliette              p1_oubl.nil             OUBL_CTD_2_1.nsd  mapTemesvar.nui    mapOubliette         0x0020
+
+location Catacombs1             p1_jos1.nil             JOS1_CTD_3_1.nsd  mapTemesvar.nui    mapCatacombs         0x0
+location Catacombs2             p1_jos2.nil             JOS2_CTD_3_1.nsd  mapTemesvar.nui    mapCatacombs         0x0
+location Catacombs3             p1_jos3.nil             JOS3_CTD_3_1.nsd  mapTemesvar.nui    mapCatacombs         0x0
+                                                                                                                  
+# NQuarter exits
+exit     Temesvar,1             Catacombs1,0
+exit     Temesvar,2             MossyHearth,0
+exit     Temesvar,3             Oubliette,0
+exit     Temesvar,4             SorvenaCottage,0
+
+# JosefTunnels
+exit     Catacombs1,1           Catacombs2,0
+exit     Catacombs2,1           Catacombs3,0
+
+script      MP_CTDChronicle
+metafile    MP_CTD.nmf
+portal      Temesvar 15
+reviveloc   MossyHearth 0
+flags       0x3
+
+

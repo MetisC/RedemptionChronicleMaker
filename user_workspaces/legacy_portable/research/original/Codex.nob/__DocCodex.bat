@@ -1,0 +1,1 @@
+javadoc -d docs -private system\Codex*.java

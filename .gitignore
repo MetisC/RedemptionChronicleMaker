@@ -63,7 +63,6 @@ runtime_trace.log
 # Do NOT commit original game assets/binaries
 # ------------------------------------------------------------
 research/original/
-research/user_directory/Vampire.exe
 
 # Generated binary-analysis dumps
 research/*.bytecode.txt
@@ -77,10 +76,6 @@ research/build_backups/
 research/runtime_test/backups/
 research/checkpoints/
 
-# Phase snapshots / generated archives
-research/phase*/before_*.zip
-research/phase*/after_*.zip
-research/phase*/retired_*.zip
 
 # ------------------------------------------------------------
 # Runtime/deployment scratch data
@@ -118,3 +113,5 @@ $RECYCLE.BIN/
 .env
 .env.*
 !.env.example
+# Private release archives and preserved deployment binaries
+/RedemptionChronicleMaker*.zip

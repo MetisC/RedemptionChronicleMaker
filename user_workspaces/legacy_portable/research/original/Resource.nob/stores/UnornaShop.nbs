@@ -1,0 +1,38 @@
+##############################################################################################
+#
+#  UnornaShop.nbs
+#
+##############################################################################################
+#
+#
+#  Line Format:
+#
+#  D | R		templateName | treasureClass		copies (0 = infinite)
+#
+#
+#  D | R                Direct (a template name) or Random (a treasure class number)
+#  copies               The number of available items, 0 meaning an infinite supply of this item
+#
+##############################################################################################
+#
+#  08-31-99 YB Original definitions and coding
+#
+##############################################################################################
+
+
+# D|R	templateName | treasureClass	copies (0 = infinite)
+
+
+R       173                             0
+R       174                             0
+R       175                             0
+R       192                             0
+R       201                             3
+R       201                             3
+R       201                             3
+R       202                             0
+R       202                             0
+R       230                             1 
+R       230                             1 
+R       230                             1 
+

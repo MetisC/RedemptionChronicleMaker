@@ -1,8 +1,8 @@
 # Formatos: lectura, escritura y límites
 
-## Fuente moderna de Fase 9
+## Fuente actual
 
-`schema:2`, `project_format:9` habilita entries/waypoints/paths y acciones nuevas. Formato5 y schema1 conservan generación histórica. `prepare` introduce un perfil interno phase9; el editor guarda autoría, no geometría ni Java generado.
+`schema:2`, `project_format:9` habilita entries/waypoints/paths y acciones nuevas. Formato5 y schema1 conservan compatibilidad de generación. `prepare` introduce un perfil interno phase9; el editor guarda autoría, no geometría ni Java generado.
 
 ```yaml
 entries:
@@ -39,7 +39,7 @@ Referencia reproducible: `research/binary_headers.json`, `research/not_roundtrip
 
 Los seis NOB instalados tienen cabecera ZIP `50 4B 03 04` y directorio central estándar. La extracción utiliza ZIP directamente. Se conservan ruta de origen, tamaño y CRC32; los recursos técnicos extraídos también reciben SHA-256. Se rechazan rutas absolutas, `..` y separadores con drive.
 
-El escritor genera ZIP con método STORED y timestamps fijos, extensión `.nob`. El orden es estable. El archivo de distribución `.zip` incluye el NOB en su raíz y clases sueltas en `codex/`; el NOB de recursos no intenta sustituir la ruta de carga de clases de la JVM. Esta organización responde al enumerador nativo: no enumera NSC sueltos bajo `-user`, pero sí los índices de los NOB registrados. El despliegue antiguo únicamente con archivos sueltos no apareció en el selector según el ensayo del usuario; el usuario confirmó posteriormente la aparición del paquete corregido, su carga y la conversación de Fase 1. La variante cercana al jugador de Fase 2 fue aceptada posteriormente por el usuario; no hay aún ensayo nativo de los triggers de Fase 3. Evidencia en `USER_DIRECTORY.md`.
+El escritor genera ZIP STORED con timestamps fijos y orden estable, extensión `.nob`. La distribución incluye NOB en la raíz y clases sueltas en codex/. El selector descubre crónicas a través del índice NOB registrado bajo -user; los detalles están en USER_DIRECTORY.md.
 
 ## Formatos de texto
 
@@ -50,7 +50,7 @@ Los originales examinados usan líneas de tokens, comentarios y cadenas de resto
 | `.nsc` | `location ID NIL NSD/null NUI MAPLABEL FLAGS`, `exit A,index B,index [flags]`, ajustes | Lector de ubicaciones/settings/exits; escritor de una ubicación |
 | `.nmf` | `NLS`, `NVO`, `PLAYER`, `SPEAKER`, `CASH`, `NTX`, `NST`, `NSS` | Lee filas para seleccionar NLS/CASH; escribe metadatos propios |
 | `.nss` | `Scene locationNumber sequenceIndex sceneName` | Lee asociaciones adicionales; no escribe secuencias |
-| `.nco` | Conversation/Event/Line/AnswerReturn/AnswerGoto/Delay/Jump | Genera eventos/nodos, varias líneas, ANSWERGOTO y ANSWERRETURN; conserva el caso simple de Fase 1 |
+| `.nco` | Conversation/Event/Line/AnswerReturn/AnswerGoto/Delay/Jump | Genera eventos/nodos, varias líneas, ANSWERGOTO y ANSWERRETURN; conserva el caso simple |
 | `.nvo` | `lineID voiceResource text...` | Genera textos de todas las líneas/respuestas con voz silenciosa propia |
 | `.nls` | `stringID text...` | Genera tabla propia `_R_<id>.nls`: nombre de crónica, actores y etiquetas corta/larga del NSD |
 | `.npc` | Stats min/max/current, cash, experiencia, disciplinas e inventario | Copia e inventaría; no genera personajes jugadores |
@@ -127,15 +127,13 @@ Una entidad simple tiene `uint32 tagCount`, `tagCount × (uint32 tagID + payload
 
 24 escenas originales se leen y reemiten exactamente con esta estructura. El codec rechaza `EAST_28_4.nsd` y otras escenas complejas, en vez de reinterpretarlas incorrectamente.
 
-El archivo generado tiene **480 bytes**, una única entidad `ghost` con tags 0, 1, 2, 3 y 11. Los parámetros/bloques variables quedan vacíos. El script propio se indica en el tag 11; no se escribe en el encabezado NSD.
+La escena mínima de referencia tiene **480 bytes**, una única entidad `ghost` con tags 0, 1, 2, 3 y 11. Los parámetros/bloques variables quedan vacíos. El script propio se indica en el tag 11; no se escribe en el encabezado NSD.
 
 El anchor del ghost se toma automáticamente de una entidad existente en una escena relacionada con el level. Para EastLondon son posición `[1184,1660,114]` y sector 19. Se conservan los últimos **176** bytes de metadatos y se anteponen 16 bytes cero para nuestras cuatro listas globales vacías. Copiar 192 bytes de una escena compleja podría arrastrar el final de un registro de entrada. No se copian sus actores, triggers, scripts o geometría de entidades.
 
-El lector nativo `Vampire.exe 0x4a7de0` lee al final los nombres del modelo de fondo y su animación, dos campos de 32 bytes terminados en NUL (`0x4a82a2`, `0x4a82db`). Sus offsets relativos al final del NSD v8 son `-64` y `-32`. La revisión 3 introdujo `LondonNightSky` en ambos; la revisión 4 usa `Sky`, sin extensión, como se observa con `viennasky` en escenas originales de Viena. Los recursos `.nod` y `.nad` se resuelven desde el juego. Los demás 112 bytes de metadatos se conservan; la semántica completa de iluminación/niebla sigue pendiente.
+El lector nativo NSD v8 lee al final dos nombres de 32 bytes para modelo y animación del cielo, offsets -64 y -32. Los recursos se resuelven desde el juego. Se conserva el entorno original completo; EastLondon mantiene ambos nombres vacíos y el fondo gris aceptado. La semántica completa de los otros 112 bytes sigue pendiente.
 
 `scene_entity_hints` busca secuencias de tags 0/1/2/3 en escenas complejas. Conserva offsets y marca `confidence: tag-pattern; not full scene parse`. Puede perder entidades o producir coincidencias; no sirve para editar/reemitir escenas complejas. El punto usado para Victoria se contrastó manualmente con el registro `otto`.
-
-Histórico: inicialmente solo se confirmó la carga del mapa. Posteriormente el usuario confirmó Java, NPC y conversaciones, y aceptó el fondo gris original; la evidencia actual está separada en ENGINE_NOTES.md. La reproducción binaria y el análisis estático se registran por separado de esa observación.
 
 ## NIL, modelos y geometría
 
@@ -145,7 +143,7 @@ No existe escritor NIL ni modificación/copia de NIL en los paquetes. `Levels.no
 
 `.nod` y `.nad` son binarios: **no llevan necesariamente magic ASCII NOD/NAD**. Los ejemplos `.nod` comienzan por DWORD 7 seguido de valores variables; los `.nad` por DWORD 3 seguido de valores variables. Esos primeros valores no se denominan formalmente versión sin más evidencia. Se inventarían modelos, animaciones y recursos asociados, pero no se generan ni se editan mallas.
 
-La Fase 3 resuelve las superficies/sectores NIL, la malla estática NOD y texturas NAM/TGA; siguen pendientes NIL global, NSD complejo, todos los tags NOT, cola no indexada, NAD, materiales avanzados, paths de cámara y auxiliares. Que sean binarios no obliga a usar herramientas antiguas: se ampliarán nuestros codecs cuando una función concreta lo requiera.
+El lector resuelve las superficies/sectores NIL, la malla estática NOD y texturas NAM/TGA; siguen pendientes NIL global, NSD complejo, todos los tags NOT, cola no indexada, NAD, materiales avanzados, paths de cámara y auxiliares. Que sean binarios no obliga a usar herramientas antiguas: se ampliarán nuestros codecs cuando una función concreta lo requiera.
 
 ## Java, WAV y reproducibilidad
 
@@ -155,9 +153,9 @@ El WAV propio es PCM mono, 16 bits, 22.050 Hz, cuatro segundos de silencio. La d
 
 Los NOB/ZIP usan orden y timestamps constantes. `build_report.json` contiene hash y tamaño de cada archivo entregado; `--no-compile` produce un estado distinto y no publica un ZIP de distribución con clases antiguas. Los artefactos finales de un build anterior se retiran al iniciar una nueva construcción para evitar presentarlos como resultado de una compilación fallida.
 
-## Extensión fuente de Fase 2
+## Conversaciones y textos fuente
 
-El editor guarda UTF-8 en el mismo YAML schema 1; no hay contenedor de proyecto propio. Descripción/comentarios internos pueden tener varios párrafos y Unicode. Los textos exportados al motor siguen Windows-1252 y un solo parlamento por línea, sin delimitadores de comentarios; el editor permite añadir varias líneas a un nodo.
+El editor guarda UTF-8 en YAML; schema 1 se conserva por compatibilidad y las campañas actuales usan schema 2. El contenedor de intercambio .rcmproject incluye fuentes y recursos propios. Descripción/comentarios internos pueden tener varios párrafos y Unicode. Los textos exportados al motor siguen Windows-1252 y un solo parlamento por línea, sin delimitadores de comentarios; el editor permite añadir varias líneas a un nodo.
 
 - Conversación simple: prompt/choices; permanece compatible.
 - Conversación por nodos: speaker/entry/nodes con líneas y respuestas. No se mezclan las dos formas.
@@ -166,17 +164,17 @@ El editor guarda UTF-8 en el mismo YAML schema 1; no hay contenedor de proyecto 
 - Los RETURN deben ser enteros positivos únicos dentro de la conversación. Las acciones de flags solo se asocian a respuestas RETURN; los eventos Java reciben ese resultado al terminar.
 - Eventos/condiciones se traducen a Java, sin crear otro formato antiguo ni un bloque geométrico de trigger. Scene Start, Actor Clicked y Conversation Ended utilizan callbacks existentes.
 
-El título de entrada corrige las claves del encabezado NSD mediante el NLS propio. `<prefix>S` y `<prefix>L` reciben `level.name`, o el nombre de crónica si falta. No se cambia la cabecera NSD de Fase 1 ni una tabla global original. Su efecto visual aún requiere prueba nativa.
+El título de entrada corrige las claves del encabezado NSD mediante el NLS propio. `<prefix>S` y `<prefix>L` reciben `level.name`, o el nombre de crónica si falta. No se reescribe una tabla global original. La aceptación del tutorial no acredita todos los títulos de nuevas crónicas.
 
 ## Conservación y límites
 
-La escena de Fase 1 conserva exactamente la geometría referenciada, el controlador y los 176 bytes originales del entorno. No se añade cielo experimental. Las extensiones de Fase 2 no requieren ampliar el codec NOT: se siguen creando plantillas hijas originales con identidad/script propios.
+La capa generada conserva la geometría referenciada y el entorno original. No se añade cielo experimental. Las plantillas hijas aportan identidad y script propios; los campos desconocidos se conservan.
 
 No se ha resuelto completamente NIL global, NSD variable, todos los tags NOT, cola no indexada, NAD/skinning, materiales multipass, paths de cámara y auxiliares. Catálogo no significa escritor ni capacidad probada de instanciación. No se generan AI, quests, tiendas, inventarios o geometría por el mero hecho de haber inventariado sus archivos.
 
-Los archivos `.autosave` son copias del mismo YAML; no se incluyen en la distribución. Las fuentes Java, modelo JSON e informes son material de build/diagnóstico, no otra fuente de autoría. Un ZIP final contiene solo el NOB y las clases, manteniendo la carpeta compacta de Fase 1.
+Los archivos `.autosave` son copias del mismo YAML; no se incluyen en la distribución. Las fuentes Java, modelo JSON e informes son material de build/diagnóstico, no otra fuente de autoría. Un ZIP final contiene solo el NOB y las clases, manteniendo una carpeta compacta por crónica.
 
-## Lector NIL v27 — Fase 3
+## Lector NIL v27
 
 Lectura de geometría, sin escritor. Little endian; NUL en nombres de 32 bytes. Evidencia: ejecutable original y 112 archivos, no una especificación SDK. Reader rechaza truncamientos, conteos/índices no válidos y coordenadas/UV no finitas.
 
@@ -198,7 +196,7 @@ Corner: índice XYZ uint16 en offset 0; UV difuso float32[2] en 8; UV lightmap e
 
 La cola global posterior no se lee: BSP, lightmaps completos, salidas y otros bloques quedan pendientes. `source_end` registra el límite, no el tamaño total consumido. EastLondon: 3.096.883/5.586.623 bytes, 131 sectores, 45.927 triángulos y 109 materiales. Bounds XYZ [-5120,-4608,-80] a [4288,5824,1952]. 112 NIL pasan el lector; no significa que se haya validado visualmente cada mapa.
 
-## Lector NOD v7 — Fase 3
+## Lector NOD v7
 
 Little endian sin magic ASCII obligatorio. Lectura de malla de referencia; no escritor ni animación. Se contrastan las rutinas nativas y 1.476 NOD, todos con lectura completa y conteos válidos.
 
@@ -222,7 +220,7 @@ NAM: texto Windows-1252 con `texture` y otras propiedades. Resolución relativa 
 
 Cache NPZ sin pickle: vértices XYZUV float32 expandidos, material por triángulo, nombres, sectores y límite source_end. Clave SHA-256 del NIL + versión del codec. PNG con SHA de TGA guarda RGBA; JSON por level contiene resolución y warnings. Derivados regenerables, nunca parte de la crónica ni del paquete runtime.
 
-## Extensión YAML de Fase 3
+## Triggers espaciales
 
 Schema 1 sigue admitiendo fuentes anteriores. Se añade opcionalmente `triggers`; eventos `trigger_enter` referencian su ID. Posición representa centro del volumen, tamaño dimensiones completas y orientación conserva `[pitch,roll,yaw]`. Cajas solo admiten yaw; esfera orientación cero. La escala de actor/objeto no se exporta.
 
@@ -259,16 +257,16 @@ events:
 
 Fragmento, no proyecto completo: requiere actor guard, flags y demás campos. `size` y `radius` son exclusivos, positivos y finitos. No se permiten IDs/referencias inexistentes, transforms relativos de triggers ni spawn duplicado de una entidad entre inicio y trigger.
 
-Volúmenes se traducen a Java, sin codec de región antigua ni cambios al NIL. Intervalo 0,15 s, servidor, entrada agregada de jugadores locales y condiciones AND. Guards/estado se prueban con doubles y compilan contra API original; ejecución nativa aún pendiente. Detalle de repetición, diálogos y persistencia en VIEWPORT.md.
+Volúmenes se traducen a Java, sin codec de región antigua ni cambios al NIL. Intervalo 0,15 s, servidor, entrada agregada de jugadores locales y condiciones AND. Guards/estado se prueban con doubles y compilan contra API original; ejecución nativa aún pendiente. Los contratos actuales se comprueban en tests/test_spatial.py y los harness Java.
 
-## Fase 4
+## Campañas y journal
 
-Se generan directamente NSC con varias ubicaciones, NMF compuesto y NQD de journal nativo, además de los codecs anteriores. El NQD usa exclusivamente la fila QUEST observada; véase QUESTS.md para el límite de una entrada por paso. Se conserva geometry_in_package=false y el entorno original de cada escena. Schema 2 está descrito en ARCHITECTURE.md. Los NSD siguen siendo capas mínimas, no importación de las entidades originales.
+Se generan directamente NSC con varias ubicaciones, NMF compuesto y NQD de journal nativo, además de los codecs anteriores. El NQD usa exclusivamente la fila QUEST observada; se genera una entrada por paso. Se conserva geometry_in_package=false y el entorno original de cada escena. Schema 2 está descrito en ARCHITECTURE.md. Los NSD siguen siendo capas mínimas, no importación de las entidades originales.
 
-Inspector NOT nuevo muestra offsets/tags/hex sin forzar un writer completo; NOT_FORMAT.md separa lo conocido de la cola opaca. Los formatos no comprendidos de Fase 3 siguen sin escritor.
-# Revisión de formatos — Fase 6
+Inspector NOT nuevo muestra offsets/tags/hex sin forzar un writer completo; NOT_FORMAT.md separa lo conocido de la cola opaca. Los formatos no comprendidos siguen sin escritor.
+## Entorno y contenedores de proyecto
 
-La revisión posterior de Fase 7 añade `level.environment_scene`, validado como referencia NSD original asociada al level. No introduce otro formato binario: reutiliza el tail de 176 bytes NSD v8 y mantiene cuatro contadores globales vacíos. [SCENE_MODEL.md](SCENE_MODEL.md) detalla offsets confirmados y bytes opacos. Se corrige la interpretación NSS: la última columna es una clave NLS para el Narrador, no un nombre NSD. NSL no es necesario en el pipeline runtime. Los demás límites de codecs siguen vigentes.
+El modelo incluye `level.environment_scene`, validado como referencia NSD original asociada al level. No introduce otro formato binario: reutiliza el tail de 176 bytes NSD v8 y mantiene cuatro contadores globales vacíos. [SCENE_MODEL.md](SCENE_MODEL.md) detalla offsets confirmados y bytes opacos. Se corrige la interpretación NSS: la última columna es una clave NLS para el Narrador, no un nombre NSD. NSL no es necesario en el pipeline runtime. Los demás límites de codecs siguen vigentes.
 
 La validación posterior al build relee NOT/NSD y comprueba referencias NSC/NMF/NCO/NLS/NVO/NQD, hashes y versión de clase 45.3. Conserva campos NOT desconocidos en round-trip. Estas comprobaciones no acreditan ejecución nativa ni comprensión completa de todos los comandos originales. La geometría NIL/NOD no se reescribe.
 
@@ -276,7 +274,7 @@ Los contenedores nuevos `.rcmproject` y `.rcmpack` son ZIP con manifest JSON, ha
 
 
 
-## Extensión de ronda 0 en formato 9
+## Cámaras e inventario en formato 9
 
 Conversaciones admiten camera: native (no cámara propia) o un preset de camera_presets.PRESETS. Desde 0.9.9, si falta camera se usa ots_speaker_close; native es una elección explícita experimental. Secuencias admiten steps: lista ordenada de {at, actor, preset, angle?, transition?}; primer plano en 0, tiempos crecientes dentro de duration, actores/presets válidos y valores finitos. move_path referencia un recorrido local existente. camera_path referencia un NCP original único; es excluyente con steps. path_speed: 0.01..100. No se generan NCP.
 
@@ -285,27 +283,27 @@ La timeline usa timer nativo de 150 ms; los tiempos se cuantizan a ticks. Desde 
 El inventario gráfico crea IDs distintos, cada uno con su plantilla de entidad generada, aunque hereden del mismo template original. Propiedad de creación única; props, objetos con spawn y objetos de otro inventario no se ofrecen como reutilizables.
 
 
-## Journal en runtime formato 9 (0.9.5)
+## Journal en runtime formato 9
 
 Se generan NQD y textos NLS directamente. start_quest carga sólo qNs0, advance_quest completa qNsI y carga qNs(I+1), complete_quest confirma flags/pasos y concede recompensa sin cargar el NQD padre. Las entradas completadas permanecen como historial. La ficha padre sigue generada por compatibilidad del paquete, pero no se carga en el journal de formato 9; por tanto no revela el recorrido completo al iniciar. Formatos históricos mantienen el flujo anterior. Esta es una política de nuestro runtime sobre entradas originales, no una gramática inventada de objetivos internos de NQD.
 
 
-## Decorado móvil y llave física (0.9.10)
+## Decorado móvil y llave física
 
 En una timeline, cada plano puede indicar focus: ID de un objeto local; actor sigue siendo el interlocutor/segundo foco. prop_motion contiene object, at, duration y translation [x,y,z]. Requiere un objeto absoluto, tiempos finitos dentro de la película y traslación finita acotada. Se interpola el transform con SetPosition; no se genera geometría ni se inventan frames NSD. move_at retrasa el inicio de move_path hasta el instante indicado. Estos campos se editan desde Cámaras y participan en referencias, renombrado y protección de borrado.
 
-NOT tag 20 se expone como item_type uint32. Las plantillas de misión originales usan 7; la inserción nativa lo consume sin dejarlo en la cuadrícula. La variante propia T_tutor_key hereda BoneKey y escribe 0 para que se conserve físicamente. Icono/modelo/otros campos se heredan sin reescribir los originales. El runtime moderno verifica inventario tras AddToActorInventory antes de considerar entregado el objeto. Evidencia y límites: CTD_CINEMA_INVENTORY_FIX.md.
+NOT tag 20 se expone como item_type uint32. Las plantillas de misión originales usan 7; la inserción nativa lo consume sin dejarlo en la cuadrícula. La variante propia T_tutor_key hereda BoneKey y escribe 0 para que se conserve físicamente. Icono/modelo/otros campos se heredan sin reescribir los originales. El runtime moderno verifica inventario tras AddToActorInventory antes de considerar entregado el objeto. El soporte de inventario se verifica mediante los tests y las referencias del motor.
 
-## Motion por nodo/línea y pose guardada (0.9.11)
+## Motion por nodo/línea y pose guardada
 
 Sólo formato 9: `nodes[].motion` elige un slot del NMS real del speaker; `nodes[].lines[].motion` lo sustituye para esa línea. Ausencia conserva la herencia; ausencia en ambos usa la actuación del motor. La validación comprueba el slot en cada actor afectado. El callback usa el orden EVENT serializado (entrada primero) y LINE, con el quinto argumento como GUID del hablante. NCO/NVO mantienen su formato; el override se genera en Java con PlayMotionSetMode.
 
 `cache/motions.json` v2 contiene constantes de Codex, NMS encontrados con procedencia, slots/NAD/flags y herencia de templates; su huella incluye Codex.class y catálogo de recursos. Una caché JSON corrupta se reconstruye. No hay editor NMS/NAD propio en esta revisión.
 
-### NTX propio y final de animación (0.9.12)
+### NTX propio y final de animación
 
 `show_note` genera `strings/R_<id>.ntx` y su referencia `NTX` en NMF. Gramática original contrastada con MP_CTD: `<TEXT id none 0>`, `<TITLE título>`, `<P 0xFFFFFFFF>`, texto, `</TEXT>`. Writer y reader propios del subconjunto sin voz, con validación de marcado, párrafos, IDs y codificación Windows-1252. No se usa NLS para sustituir las ventanas de texto. `object_clicked` admite un filtro `object`; `note_closed` recibe la continuación diferida de `textended(owner)`.
 
-La documentación original confirma que el booleano de PlayMotionSetMode elige canal; el retorno es duración en msec. Los overrides explícitos tienen ahora stand en el canal base y recuperación tras el retorno temporal, cancelada al entrar en otra línea. No cambian NCO/NVO ni la actuación automática sin overrides. Ver NOTES_AND_MOTION_FIX.md.
+La documentación original confirma que el booleano de PlayMotionSetMode elige canal; el retorno es duración en msec. Los overrides explícitos tienen ahora stand en el canal base y recuperación tras el retorno temporal, cancelada al entrar en otra línea. No cambian NCO/NVO ni la actuación automática sin overrides. Ver ENGINE_NOTES.md.
 
 El record `player_pose_record_v1` consta de SaveBoolean y seis SaveFloat: XYZ y orientación. Se escribe antes de los records de patrol/entidades. En escenas con cinematics, preceden SaveBoolean(cinema activo) y SaveInt(actor), contrato cinema_record_v2. El motor conserva flags por sus APIs originales. Esto es un contrato de serialización de nuestro script, no un escritor NSG/NSW completo. Nuevos records requieren partida nueva.

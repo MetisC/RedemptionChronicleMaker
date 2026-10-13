@@ -25,7 +25,7 @@ class Phase6CliTests(unittest.TestCase):
         code,out,err=self.command('clean','nonexistent');self.assertEqual(code,0,err);self.assertEqual(json.loads(out)['removed'],[])
     def test_build_failure_invalidates_known_id(self):
         from rcm.service import source_text
-        from phase6_fixtures import system_source
+        from campaign_fixture_helpers import system_source
         from rcm.paths import Workspace
         root=system_source(Workspace(ROOT));root['chronicle']['id']='p6_clifail';root['scenes'][0]['actors'][0]['template']='missing';path=ROOT/'build/tests/cli_failed.yaml';path.write_text(source_text(root),encoding='utf8')
         code,out,err=self.command('build',str(path));self.assertEqual(code,1);self.assertEqual(json.loads((ROOT/'build/p6_clifail/build_report.json').read_text())['status'],'failed')

@@ -1,5 +1,4 @@
 """Player-profile resource lifetime regression from the native LAN crash."""
-import importlib.util
 import struct
 import unittest
 from pathlib import Path
@@ -7,9 +6,7 @@ from pathlib import Path
 from rcm.formats import NotFile, Tag, Template
 
 ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location('repair_lan_templates', ROOT / 'tools/repair_lan_templates.py')
-repair = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(repair)
+import lan_fixture_helpers as repair
 
 
 class LANStartupTests(unittest.TestCase):

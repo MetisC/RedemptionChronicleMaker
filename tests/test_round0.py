@@ -27,7 +27,7 @@ class Round0(TestCase):
     def setUpClass(cls):
         cls.app=QApplication.instance() or QApplication([]);cls.backend=Backend(Workspace(ROOT))
     def setUp(self):
-        self.win=MainWindow(self.backend);self.win.doc=Document.load(self.backend.ws,'chronicles/tutorial/project.yaml');self.win.refresh();self.win.show();self.app.processEvents()
+        self.win=MainWindow(self.backend);self.win.doc=Document.load(self.backend.ws,'tests/fixtures/chronicles/tutorial_0913/project.yaml');self.win.refresh();self.win.show();self.app.processEvents()
     def tearDown(self):self.win.doc=None;self.win.close();self.app.processEvents()
     def test_inventory_catalogue_cancel_apply_copies_and_undo(self):
         actor=self.win.doc.data['actors'][0];before=self.win.doc.snapshot();dlg=InventoryDialog(self.win,actor)
@@ -122,9 +122,9 @@ class Round0(TestCase):
     def test_arrows_and_keypad_mirror_fly_keys(self):
         for key,modifier,expected in [(Qt.Key.Key_Up,Qt.KeyboardModifier.NoModifier,Qt.Key.Key_W),(Qt.Key.Key_1,Qt.KeyboardModifier.KeypadModifier,Qt.Key.Key_Z),(Qt.Key.Key_9,Qt.KeyboardModifier.KeypadModifier,Qt.Key.Key_E)]:
             event=QKeyEvent(QEvent.Type.KeyPress,key,modifier);self.assertEqual(Viewport.navigation_key(event),expected)
-    def test_only_two_visible_examples_and_easy_optional_enemy(self):
-        self.assertEqual(sorted(p.name for p in (ROOT/'chronicles').iterdir()),['mini_chronicle','tutorial'])
-        for folder in ['tutorial','mini_chronicle']:
+    def test_curated_examples_and_easy_optional_enemy(self):
+        self.assertEqual(sorted(p.name for p in (ROOT/'chronicles').iterdir()),['mini_chronicle','showcase','tutorial'])
+        for folder in ['tutorial','mini_chronicle','showcase']:
             doc=Document.load(self.backend.ws,'chronicles/'+folder+'/project.yaml');result=self.backend.validate(doc.snapshot());self.assertTrue(result.valid)
             enemies=[a for s in doc.campaign['scenes'] for a in s['actors'] if a.get('behavior')=='enemy'];self.assertEqual(len(enemies),1);self.assertEqual(enemies[0]['template'],'Rat')
             for s in doc.campaign['scenes']:

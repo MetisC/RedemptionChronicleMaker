@@ -1,0 +1,34 @@
+{
+  "language": "en",
+  "phase": "second",
+  "returncode": 0,
+  "elapsed_seconds": 10.176549600000726,
+  "report": {
+    "fresh_settings": false,
+    "welcome": true,
+    "setup_steps": [
+      "Preparando el compilador…",
+      "Preparando tus copias de los ejemplos…"
+    ],
+    "setup_seconds": 0.3101167999993777,
+    "total_seconds": 9.792013099999167,
+    "gui_authored_valid": true,
+    "build_status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_first_adventu2_s0_Scene": "45.3",
+      "R_first_adventu2_s0_Passive": "45.3"
+    },
+    "synthetic_deployment": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\product_close\\portable_final\\Moved App\\projects\\build\\probe\\game\\RCM\\first_adventu2",
+    "setup_not_repeated": true,
+    "tutorial_unmodified": true,
+    "language": "en",
+    "native_game_test": false,
+    "clean_machine_test": false,
+    "real_opengl": false,
+    "game_originals_written": false,
+    "tutorial_open_timestamp": 52666.6767924,
+    "showcase_open_timestamp": 52667.6509249
+  },
+  "path_restricted": true,
+  "independent_machine": false
+}

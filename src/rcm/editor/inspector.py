@@ -1,3 +1,4 @@
+from .i18n import tr
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QFormLayout, QLabel, QLineEdit,
     QPlainTextEdit, QComboBox, QSpinBox, QDoubleSpinBox, QPushButton, QCheckBox, QSizePolicy)
 
@@ -11,7 +12,7 @@ class Inspector(QWidget):
         self.win = window
         self.path = window.selection
         layout = QVBoxLayout(self)
-        title = QLabel("PROPIEDADES")
+        title = QLabel(tr("PROPIEDADES"))
         title.setStyleSheet("font-weight: 600; padding: 7px 0;")
         layout.addWidget(title)
         self.form = QFormLayout()
@@ -19,7 +20,7 @@ class Inspector(QWidget):
         self.form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapLongRows)
         layout.addLayout(self.form)
         if not window.doc:
-            self.note("Crea una crónica o abre un proyecto existente.")
+            self.note(tr("Crea una crónica o abre un proyecto existente."))
         else:
             self.render()
             self.relationships()
@@ -41,12 +42,16 @@ class Inspector(QWidget):
                 control._rcm_pending = True
                 self.win._title()
             def commit():
+                if getattr(control,'_rcm_committing',False):return False
                 if not control._rcm_pending:
                     return True
-                result = self.win.guard(lambda: callback(control.text()))
-                control._rcm_pending = result is False
-                self.win._title()
-                return result is not False
+                control._rcm_committing=True
+                try:
+                    result = self.win.guard(lambda: callback(control.text()))
+                    control._rcm_pending = result is False
+                    self.win._title()
+                    return result is not False
+                finally:control._rcm_committing=False
             control._rcm_commit = commit
             control.textChanged.connect(mark_pending)
             control.editingFinished.connect(commit)
@@ -71,7 +76,7 @@ class Inspector(QWidget):
             control.addItem(str(text), value)
         index = control.findData(selected)
         if index < 0 and selected not in (None, ""):
-            control.addItem("Referencia pendiente: " + str(selected), selected)
+            control.addItem(tr("Referencia pendiente: ") + str(selected), selected)
             index = control.count()-1
         control.setCurrentIndex(max(index, 0))
         control.currentIndexChanged.connect(lambda: self.win.guard(lambda: callback(control.currentData())))
@@ -98,10 +103,10 @@ class Inspector(QWidget):
         return control
 
     def ids(self, collection, blank=False):
-        return ([("Ninguna", "")] if blank else []) + [(i.get("name", i["id"]), i["id"]) for i in self.win.doc.data.get(collection, [])]
+        return ([(tr("Ninguna"), "")] if blank else []) + [(i.get("name", i["id"]), i["id"]) for i in self.win.doc.data.get(collection, [])]
 
     def flags(self, blank=False):
-        return ([("Ninguno", "")] if blank else []) + [(f"{alias} · {value}", alias) for alias, value in self.win.doc.data.get("state", {}).get("flags", {}).items()]
+        return ([(tr("Ninguno"), "")] if blank else []) + [((f'{alias}' + tr(' · ') + f'{value}'), alias) for alias, value in self.win.doc.data.get("state", {}).get("flags", {}).items()]
 
     def set(self, path, value, optional=False):
         self.win.set_value(path, value, optional)
@@ -126,54 +131,54 @@ class Inspector(QWidget):
             chron = data["chronicle"]
             def change_id(value):
                 def operation():
-                    identifier(value, "ID de crónica", 14 if hasattr(self.win.doc,'campaign') else 18)
+                    identifier(value, tr("ID de crónica"), 14 if hasattr(self.win.doc,'campaign') else 18)
                     self.set(("chronicle", "id"), value)
                 return self.win.guard(operation)
-            self.line("ID interno", chron["id"], change_id, "chronicle_id", True)
-            self.line("Nombre", chron["name"], lambda v: self.set(("chronicle", "name"), v), "chronicle_name")
-            self.text("Descripción", chron.get("description", ""), lambda v: self.set(("chronicle", "description"), v), "chronicle_description")
-            self.note("Archivo: " + str(self.win.doc.path))
-            self.note("Cada escena usa una geometría original. Las campañas pueden contener varias escenas. Los builds se guardan en build/<ID>.")
+            self.line(tr("ID interno"), chron["id"], change_id, "chronicle_id", True)
+            self.line(tr("Nombre"), chron["name"], lambda v: self.set(("chronicle", "name"), v), "chronicle_name")
+            self.text(tr("Descripción"), chron.get("description", ""), lambda v: self.set(("chronicle", "description"), v), "chronicle_description")
+            self.note(tr("Archivo: ") + str(self.win.doc.path))
+            self.note(tr("Cada escena usa una geometría original. Las campañas pueden contener varias escenas. Los builds se guardan en build/<ID>."))
         elif p == ("level",):
             source = data["level"].get("source", "")
-            self.note(self.win.backend.level_label(source) + " · " + source if source in self.win.backend.levels else "Elige el escenario de tu crónica.")
-            self.button("Elegir level base…", self.win.choose_level, "choose_level")
-            self.line("Título al entrar", data["level"].get("name", ""), lambda v: self.set(("level", "name"), v, True), "level_name")
-            self.note("Si no escribes un título, aparecerá el nombre de la crónica.")
+            self.note(self.win.backend.level_label(source) + tr(" · ") + source if source in self.win.backend.levels else tr("Elige el escenario de tu crónica."))
+            self.button(tr("Elegir level base…"), self.win.choose_level, "choose_level")
+            self.line(tr("Título al entrar"), data["level"].get("name", ""), lambda v: self.set(("level", "name"), v, True), "level_name")
+            self.note(tr("Si no escribes un título, aparecerá el nombre de la crónica."))
             if source in self.win.backend.levels:
                 level = self.win.backend.levels[source]
-                self.note("Geometría: " + level["nil"] + "\nEscenas conocidas: " + ", ".join(level["scenes"]))
+                self.note(tr("Geometría: ") + level["nil"] + tr("\nEscenas conocidas: ") + ", ".join(level["scenes"]))
                 profiles = self.win.backend.scene_profiles(source)
                 def choose_environment(value):
                     self.set(('level', 'environment_scene'), value, True)
                     self.win.inspect()
-                self.combo('Entorno original', [('Automático (compatible)', '')] +
-                           [(row['id'] + (' · no disponible' if 'error' in row else ''), row['id']) for row in profiles],
+                self.combo(tr('Entorno original'), [(tr('Automático (compatible)'), '')] +
+                           [(row['id'] + (tr(' · no disponible') if 'error' in row else ''), row['id']) for row in profiles],
                            data['level'].get('environment_scene', ''), choose_environment, 'environment_scene')
                 chosen = data['level'].get('environment_scene')
                 if chosen:
                     row = next((r for r in profiles if r['id'].casefold() == chosen.casefold()), None)
                     if row and 'error' not in row:
-                        self.note('Cielo del perfil: ' + (row['sky_model'] or 'sin modelo de cielo') +
-                                  '\nSe conservan todos los ajustes originales de entorno; sus actores no se importan.')
+                        self.note(tr('Cielo del perfil: ') + (row['sky_model'] or tr('sin modelo de cielo')) +
+                                  tr('\nSe conservan todos los ajustes originales de entorno; sus actores no se importan.'))
                 if data['level'].get('sky'):
-                    self.note('Este proyecto tiene un override de cielo en YAML. Prevalece sobre el perfil original.')
-            self.note("Entorno y contenido pertenecen a la escena. La geometría sigue siendo la del level original.")
+                    self.note(tr('Este proyecto tiene un override de cielo en YAML. Prevalece sobre el perfil original.'))
+            self.note(tr("Entorno y contenido pertenecen a la escena. La geometría sigue siendo la del level original."))
         elif p[0] in {"actors", "objects"} and len(p) == 2:
             self.actor()
             if p[0]=='objects' and hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format')==9:
-                self.button('Añadir nota al usar…',lambda:self.object_interaction('show_note'),'object_note')
-                self.button('Añadir conversación al usar…',lambda:self.object_interaction('start_conversation'),'object_dialogue')
-                self.note('Una nota no necesita personaje. Una conversación usa un NPC de esta escena como hablante; el objeto sirve para abrirla.')
+                self.button(tr('Añadir nota al usar…'),lambda:self.object_interaction('show_note'),'object_note')
+                self.button(tr('Añadir conversación al usar…'),lambda:self.object_interaction('start_conversation'),'object_dialogue')
+                self.note(tr('Una nota no necesita personaje. Una conversación usa un NPC de esta escena como hablante; el objeto sirve para abrirla.'))
         elif p[0] == 'triggers' and len(p) == 2:
             self.trigger()
         elif p[0] in ('entries','waypoints') and len(p)==2:
             self.marker()
         elif p[0] == 'original' and len(p) == 2:
             e = self.win.at(p)
-            self.note('REFERENCIA ORIGINAL · SÓLO LECTURA\nEl viewport la muestra como referencia. El motor puede cargar contenido estático asociado a la geometría; esta vista no lo elimina.')
+            self.note(tr('REFERENCIA ORIGINAL · SÓLO LECTURA\nEl viewport la muestra como referencia. El motor puede cargar contenido estático asociado a la geometría; esta vista no lo elimina.'))
             for k in ('template', 'position', 'orientation', 'sector', 'script', 'origin', 'confidence'):
-                self.note(k + ': ' + str(e.get(k)))
+                self.note(k + tr(': ') + str(e.get(k)))
         elif p[0] == "conversations" and len(p) >= 2:
             self.conversation()
         elif p[0] == "events" and len(p) >= 2:
@@ -188,37 +193,37 @@ class Inspector(QWidget):
                 if alias != value:
                     return self.win.guard(operation)
             self.line("Alias", alias, rename_flag, "flag_alias", True)
-            self.spin("Índice", data["state"]["flags"][alias], lambda v: self.set(p, v), "flag_index", maximum=255)
-            self.note("Estado booleano de la crónica. El backend actual admite índices 0–255; los índices deben ser únicos.")
+            self.spin(tr("Índice"), data["state"]["flags"][alias], lambda v: self.set(p, v), "flag_index", maximum=255)
+            self.note(tr("Estado booleano de la crónica. El backend actual admite índices 0–255; los índices deben ser únicos."))
         else:
-            self.note("Selecciona un elemento de la lista para editarlo.")
+            self.note(tr("Selecciona un elemento de la lista para editarlo."))
 
     def object_interaction(self,kind):
         ident=self.win.at(self.path)['id'];data=self.win.doc.data
         existing=next((i for i,e in enumerate(data['events']) if e['when']=='object_clicked' and e.get('object')==ident),None)
         if existing is not None:
             self.win.select(('events',existing));return
-        value={'title':'Nota','text':'Escribe aquí lo que leerá el jugador.'} if kind=='show_note' else next((c['id'] for c in data['conversations']),'')
+        value={'title':tr('Nota'),'text':tr('Escribe aquí lo que leerá el jugador.')} if kind=='show_note' else next((c['id'] for c in data['conversations']),'')
         data['events'].append(dict(id=self.win.doc.unique_id('events','use'),when='object_clicked',object=ident,once=False,actions=[{kind:value}]))
         self.win.selection=('events',len(data['events'])-1,'actions',0);self.win.changed(True)
 
     def actor(self):
         p = self.path
         actor = self.win.at(p)
-        self.line("ID interno", actor["id"], self.rename, "actor_id", True)
-        self.line("Nombre", actor["name"], lambda v: self.set(p + ("name",), v), "actor_name")
-        self.note("Plantilla: " + (actor.get("template") or "Sin elegir"))
-        self.button("Elegir plantilla…", lambda: self.win.choose_template(p), "choose_template")
-        self.note("Level: " + self.win.doc.data["level"].get("source", "Sin elegir"))
+        self.line(tr("ID interno"), actor["id"], self.rename, "actor_id", True)
+        self.line(tr("Nombre"), actor["name"], lambda v: self.set(p + ("name",), v), "actor_name")
+        self.note(tr("Plantilla: ") + (actor.get("template") or tr("Sin elegir")))
+        self.button(tr("Elegir plantilla…"), lambda: self.win.choose_template(p), "choose_template")
+        self.note("Level: " + self.win.doc.data["level"].get("source", tr("Sin elegir")))
         if hasattr(self.win.doc, 'campaign'):
             if p[0] == 'actors':
-                self.combo('Comportamiento', [('NPC neutral', 'npc'), ('Enemigo · AI original', 'enemy')], actor.get('behavior', 'npc'), lambda v: self.set(p+('behavior',), v), 'actor_behavior')
+                self.combo(tr('Comportamiento'), [(tr('NPC neutral'), 'npc'), (tr('Enemigo · AI original'), 'enemy')], actor.get('behavior', 'npc'), lambda v: self.set(p+('behavior',), v), 'actor_behavior')
                 def inventory():
                     from .campaign_panel import inventory_dialog
                     inventory_dialog(self.win, actor)
-                self.button('Editar inventario inicial…', inventory, 'actor_inventory')
+                self.button(tr('Editar inventario inicial…'), inventory, 'actor_inventory')
             else:
-                self.combo('Objeto de quest', [('No', False), ('Sí', True)], actor.get('quest_item', False), lambda v: self.set(p+('quest_item',), v), 'object_quest_item')
+                self.combo(tr('Objeto de quest'), [(tr('No'), False), (tr('Sí'), True)], actor.get('quest_item', False), lambda v: self.set(p+('quest_item',), v), 'object_quest_item')
         trans = actor["transform"]
         placement = trans.get("placement", "absolute")
         def change_placement(value):
@@ -228,15 +233,15 @@ class Inspector(QWidget):
             else:
                 trans.setdefault("position", [0, 0, 0])
             self.win.changed(True)
-        self.combo("Colocación", [("Junto al jugador", "near_player"), ("Coordenadas", "absolute")], placement, change_placement, "actor_placement")
+        self.combo(tr("Colocación"), [(tr("Junto al jugador"), "near_player"), (tr("Coordenadas"), "absolute")], placement, change_placement, "actor_placement")
         for i, label in enumerate(["X", "Y", "Z"]):
             spin = self.spin(label, trans.get("position", [0, 0, 0])[i],
                 lambda v, index=i: self.set(p + ("transform", "position", index), v), "position_"+label.lower(), True, -1e7, 1e7)
             spin.setEnabled(placement == "absolute")
-        for i, label in enumerate(["Pitch", "Roll", "Yaw / rumbo"]):
+        for i, label in enumerate(["Pitch", "Roll", tr("Yaw / rumbo")]):
             self.spin(label, trans["orientation"][i], lambda v, index=i: self.set(p + ("transform", "orientation", index), v),
                 "orientation_"+str(i), True, -36000, 36000)
-        check = QCheckBox("Crear al iniciar la escena")
+        check = QCheckBox(tr("Crear al iniciar la escena"))
         check.setObjectName("actor_spawn")
         events = self.win.doc.data["events"]
         check.setChecked(any(a.get("spawn") == actor["id"] for e in events if e['when']=='scene_start' for a in e["actions"]))
@@ -272,36 +277,36 @@ class Inspector(QWidget):
                             bound.pop("then", None)
                 self.win.changed()
                 self.win.inspect()
-            choices = [("Ninguna", "")] + [(c["id"], c["id"]) for c in self.win.doc.data["conversations"] if c["speaker"] == actor["id"]]
-            self.combo("Al hablar", choices, binding.get("default", ""), lambda v: binding_field("default", v), "actor_conversation")
-            flags = self.combo("Si el flag está activo", self.flags(True), binding.get("when_flag", ""), lambda v: binding_field("when_flag", v), "actor_when_flag")
+            choices = [(tr("Ninguna"), "")] + [(c["id"], c["id"]) for c in self.win.doc.data["conversations"] if c["speaker"] == actor["id"]]
+            self.combo(tr("Al hablar"), choices, binding.get("default", ""), lambda v: binding_field("default", v), "actor_conversation")
+            flags = self.combo(tr("Si el flag está activo"), self.flags(True), binding.get("when_flag", ""), lambda v: binding_field("when_flag", v), "actor_when_flag")
             flags.setEnabled(bool(binding.get("default")))
-            then = self.combo("Conversación alternativa", choices, binding.get("then", ""), lambda v: binding_field("then", v), "actor_then")
+            then = self.combo(tr("Conversación alternativa"), choices, binding.get("then", ""), lambda v: binding_field("then", v), "actor_then")
             then.setEnabled(bool(binding.get("when_flag")))
-            self.note("Actor neutral con AI pausada. Hablar se habilita al asociar una conversación o un evento de clic.")
-        self.text("Notas del diseñador", actor.get("comment", ""), lambda v: self.set(p + ("comment",), v), "actor_comment")
+            self.note(tr("Actor neutral con AI pausada. Hablar se habilita al asociar una conversación o un evento de clic."))
+        self.text(tr("Notas del diseñador"), actor.get("comment", ""), lambda v: self.set(p + ("comment",), v), "actor_comment")
         if self.win.spatial.viewport:
-            self.button('Enfocar en 3D', self.win.spatial.viewport.focus_selection, 'focus_entity')
-            self.button('Ajustar al suelo', self.win.spatial.snap_selected, 'snap_ground')
+            self.button(tr('Enfocar en 3D'), self.win.spatial.viewport.focus_selection, 'focus_entity')
+            self.button(tr('Ajustar al suelo'), self.win.spatial.snap_selected, 'snap_ground')
 
     def marker(self):
         p=self.path;row=self.win.at(p)
-        self.line('ID interno',row['id'],self.rename,'marker_id',True)
-        self.line('Nombre',row['name'],lambda v:self.set(p+('name',),v),'marker_name')
+        self.line(tr('ID interno'),row['id'],self.rename,'marker_id',True)
+        self.line(tr('Nombre'),row['name'],lambda v:self.set(p+('name',),v),'marker_name')
         for i,axis in enumerate('xyz'):
-            self.spin('Posición '+axis.upper(),row['transform']['position'][i],lambda v,i=i:self.set(p+('transform','position',i),v),'position_'+axis,True,-1e7,1e7)
+            self.spin(tr('Posición ')+axis.upper(),row['transform']['position'][i],lambda v,i=i:self.set(p+('transform','position',i),v),'position_'+axis,True,-1e7,1e7)
         for i,label in enumerate(('Pitch','Roll','Yaw')):
             self.spin(label,row['transform']['orientation'][i],lambda v,i=i:self.set(p+('transform','orientation',i),v),'orientation_'+str(i),True,-360,360)
-        self.note('Punto lógico de llegada tras el viaje. No modifica los portales ni la geometría original.' if p[0]=='entries' else 'El recorrido solicita al motor desplazarse hasta estos puntos mediante su navegación existente.')
+        self.note(tr('Punto lógico de llegada tras el viaje. No modifica los portales ni la geometría original.') if p[0]=='entries' else tr('El recorrido solicita al motor desplazarse hasta estos puntos mediante su navegación existente.'))
         if self.win.spatial.viewport:
-            self.button('Enfocar en 3D',self.win.spatial.viewport.focus_selection,'focus_entity')
-            self.button('Ajustar al suelo',self.win.spatial.snap_selected,'snap_ground')
+            self.button(tr('Enfocar en 3D'),self.win.spatial.viewport.focus_selection,'focus_entity')
+            self.button(tr('Ajustar al suelo'),self.win.spatial.snap_selected,'snap_ground')
 
     def trigger(self):
         p = self.path
         t = self.win.at(p)
-        self.line('ID interno', t['id'], self.rename, 'trigger_id', True)
-        self.line('Nombre', t['name'], lambda v: self.set(p+('name',), v), 'trigger_name')
+        self.line(tr('ID interno'), t['id'], self.rename, 'trigger_id', True)
+        self.line(tr('Nombre'), t['name'], lambda v: self.set(p+('name',), v), 'trigger_name')
         def shape(value):
             t['shape'] = value
             if value == 'sphere':
@@ -310,19 +315,19 @@ class Inspector(QWidget):
             else:
                 t['size'] = [2*t.pop('radius',60)]*3
             self.win.changed(True)
-        self.combo('Volumen', [('Caja', 'box'), ('Esfera', 'sphere')], t['shape'], shape, 'trigger_shape')
+        self.combo(tr('Volumen'), [(tr('Caja'), 'box'), (tr('Esfera'), 'sphere')], t['shape'], shape, 'trigger_shape')
         for i, axis in enumerate('XYZ'):
             self.spin(axis, t['transform']['position'][i], lambda v,i=i: self.set(p+('transform','position',i), v), 'trigger_position_'+axis, True, -1e7, 1e7)
         if t['shape'] == 'box':
             self.spin('Yaw', t['transform']['orientation'][2], lambda v: self.set(p+('transform','orientation',2), v), 'trigger_yaw', True, -36000, 36000)
             for i, axis in enumerate('XYZ'):
-                self.spin('Tamaño '+axis, t['size'][i], lambda v,i=i: self.set(p+('size',i), v), 'trigger_size_'+axis, True, 1, 1e7)
+                self.spin(tr('Tamaño ')+axis, t['size'][i], lambda v,i=i: self.set(p+('size',i), v), 'trigger_size_'+axis, True, 1, 1e7)
         else:
-            self.spin('Radio', t['radius'], lambda v: self.set(p+('radius',), v), 'trigger_radius', True, 1, 1e7)
-        self.combo('Activación', [('Una vez', True), ('Cada entrada', False)], t.get('once', True), lambda v: self.set(p+('once',), v), 'trigger_once')
-        self.note('CUANDO un jugador entra en el volumen. Configura condiciones y acciones en sus eventos de entrada. La posición indica el centro del volumen.')
-        self.button('Añadir evento de entrada', self.add_trigger_event, 'trigger_event')
-        self.button('Ajustar al suelo', self.win.spatial.snap_selected, 'snap_ground')
+            self.spin(tr('Radio'), t['radius'], lambda v: self.set(p+('radius',), v), 'trigger_radius', True, 1, 1e7)
+        self.combo(tr('Activación'), [(tr('Una vez'), True), (tr('Cada entrada'), False)], t.get('once', True), lambda v: self.set(p+('once',), v), 'trigger_once')
+        self.note(tr('CUANDO un jugador entra en el volumen. Configura condiciones y acciones en sus eventos de entrada. La posición indica el centro del volumen.'))
+        self.button(tr('Añadir evento de entrada'), self.add_trigger_event, 'trigger_event')
+        self.button(tr('Ajustar al suelo'), self.win.spatial.snap_selected, 'snap_ground')
 
     def add_trigger_event(self):
         data = self.win.doc.data
@@ -351,24 +356,24 @@ class Inspector(QWidget):
             incoming,outgoing=[x for x in links if x.target==path],[x for x in links if x.source==path]
         else:
             incoming, outgoing = references(self.win.doc.data, path)
-        self.button('Find References / Buscar referencias', lambda:self.win.find_references(path), 'find_references')
+        self.button(tr('Find References / Buscar referencias'), lambda:self.win.find_references(path), 'find_references')
         if self.win.spatial.viewport:
             def show_related():
                 self.win.center_tabs.setCurrentIndex(0)
                 self.win.spatial.links.setChecked(True)
                 self.win.spatial.viewport.focus_selection()
-            self.button('Mostrar relacionados en 3D', show_related, 'show_related')
-        for label, rows, attr in [('USED BY · Dependencias', incoming, 'source'), ('AFFECTS · Referencias', outgoing, 'target')]:
+            self.button(tr('Mostrar relacionados en 3D'), show_related, 'show_related')
+        for label, rows, attr in [(tr('Utilizado por'), incoming, 'source'), (tr('Afecta a'), outgoing, 'target')]:
             self.note(label)
             if not rows:
-                self.note('Sin referencias declaradas')
+                self.note(tr('Sin referencias declaradas'))
                 continue
             listing = QListWidget()
             listing.setMaximumHeight(120)
             for link in rows:
                 target = getattr(link, attr)
-                labels = {'spawn':'Crear', 'set_flag':'Activar flag', 'clear_flag':'Desactivar flag', 'start_conversation':'Iniciar conversación', 'speaker':'Actor principal', 'default':'Al hablar', 'when_flag':'Condición', 'then':'Conversación alternativa'}
-                item = QListWidgetItem(labels.get(link.label,link.label) + ' · ' + self.win.reference_label(target))
+                labels = {'spawn':tr('Crear'), 'set_flag':tr('Activar flag'), 'clear_flag':tr('Desactivar flag'), 'start_conversation':tr('Iniciar conversación'), 'speaker':tr('Actor principal'), 'default':tr('Al hablar'), 'when_flag':tr('Condición'), 'then':tr('Conversación alternativa')}
+                item = QListWidgetItem(labels.get(link.label,link.label) + tr(' · ') + self.win.reference_label(target))
                 item.setData(Qt.ItemDataRole.UserRole, target)
                 listing.addItem(item)
             listing.itemDoubleClicked.connect(lambda item: self.win.navigate_reference(item.data(Qt.ItemDataRole.UserRole)))
@@ -378,9 +383,9 @@ class Inspector(QWidget):
                     if link.source[0] == 'events':
                         event = self.win.at(link.source)
                         from .window import TRIGGER_LABELS, ACTION_LABELS
-                        conditions = [c['flag'] + (' activado' if c['is_set'] else ' desactivado') if 'flag' in c else str(c) for c in event.get('conditions', [])]
-                        actions = [ACTION_LABELS.get(k,k)+': '+str(v) for a in event.get('actions', []) for k,v in a.items()]
-                        self.note('CUANDO: '+TRIGGER_LABELS.get(event['when'],event['when'])+'\nSI: '+(' y '.join(conditions) or 'Sin condiciones')+'\nHACER:\n'+'\n'.join(actions))
+                        conditions = [c['flag'] + (tr(' activado') if c['is_set'] else tr(' desactivado')) if 'flag' in c else str(c) for c in event.get('conditions', [])]
+                        actions = [ACTION_LABELS.get(k,k)+tr(': ')+str(v) for a in event.get('actions', []) for k,v in a.items()]
+                        self.note(tr('CUANDO: ')+TRIGGER_LABELS.get(event['when'],event['when'])+tr('\nSI: ')+(' y '.join(conditions) or tr('Sin condiciones'))+'\nHACER:\n'+'\n'.join(actions))
 
     def dialogue_motion(self,path,row,speaker,line=False):
         if not hasattr(self.win.doc,'campaign') or self.win.doc.campaign.get('project_format')!=9:return
@@ -391,43 +396,43 @@ class Inspector(QWidget):
             actor=next((a for a in self.win.doc.data['actors'] if a['id']==key),None)
             available.append(slots(self.win.backend.resources,actor['template']) if actor else [])
         options=[s for s in available[0] if all(any(o['mode']==s['mode'] for o in group) for group in available[1:])] if available else []
-        default='Heredar animación del nodo' if line else 'Automática del motor (hablar / escuchar)'
-        control=self.combo('Animación al hablar',[(default,None)]+[(label(s),s['mode']) for s in options],row.get('motion'),lambda v:self.set(path+('motion',),v,True),'dialogue_motion')
+        default=tr('Heredar animación del nodo') if line else tr('Automática del motor (hablar / escuchar)')
+        control=self.combo(tr('Animación al hablar'),[(default,None)]+[(tr(label(s)),s['mode']) for s in options],row.get('motion'),lambda v:self.set(path+('motion',),v,True),'dialogue_motion')
         for i,s in enumerate(options,1):control.setItemData(i,s['animation']+'\n'+', '.join(s['flags']),Qt.ItemDataRole.ToolTipRole)
-        self.note('Elige un movimiento o deja que el personaje hable de forma automática. En un nodo con varios personajes se muestran sus movimientos comunes. Puedes elegir otro para cada línea.')
+        self.note(tr('Elige un movimiento o deja que el personaje hable de forma automática. En un nodo con varios personajes se muestran sus movimientos comunes. Puedes elegir otro para cada línea.'))
 
     def conversation(self):
         p = self.path
         conv = self.win.doc.data["conversations"][p[1]]
         if len(p) == 2:
             self.line("ID", conv["id"], self.rename, "conversation_id", True)
-            self.combo("Actor principal", self.ids("actors"), conv["speaker"], lambda v: self.set(p + ("speaker",), v), "conversation_speaker")
+            self.combo(tr("Actor principal"), self.ids("actors"), conv["speaker"], lambda v: self.set(p + ("speaker",), v), "conversation_speaker")
             if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format')==9:
                 from ..camera_presets import PRESETS, DEFAULT_DIALOGUE_CAMERA
-                cameras=[(PRESETS[DEFAULT_DIALOGUE_CAMERA][0]+' (predeterminada)',DEFAULT_DIALOGUE_CAMERA)]+[(v[0],k) for k,v in PRESETS.items() if k!=DEFAULT_DIALOGUE_CAMERA]+[('Automática del motor (experimental)','native')]
-                self.combo('Cámara de diálogo',cameras,conv.get('camera',DEFAULT_DIALOGUE_CAMERA),lambda v:self.set(p+('camera',),v),'conversation_camera')
+                cameras=[(tr(PRESETS[DEFAULT_DIALOGUE_CAMERA][0])+tr(' (predeterminada)'),DEFAULT_DIALOGUE_CAMERA)]+[(tr(v[0]),k) for k,v in PRESETS.items() if k!=DEFAULT_DIALOGUE_CAMERA]+[(tr('Automática del motor (experimental)'),'native')]
+                self.combo(tr('Cámara de diálogo'),cameras,conv.get('camera',DEFAULT_DIALOGUE_CAMERA),lambda v:self.set(p+('camera',),v),'conversation_camera')
             if "nodes" in conv:
-                self.combo("Nodo de entrada", [(n["id"], n["id"]) for n in conv["nodes"]], conv.get("entry", ""), lambda v: self.set(p + ("entry",), v), "conversation_entry")
-                self.note("Las respuestas pueden llevar a otro nodo o terminar con un resultado. Las acciones de flags se aplican al terminar.")
+                self.combo(tr("Nodo de entrada"), [(n["id"], n["id"]) for n in conv["nodes"]], conv.get("entry", ""), lambda v: self.set(p + ("entry",), v), "conversation_entry")
+                self.note(tr("Las respuestas pueden llevar a otro nodo o terminar con un resultado. Las acciones de flags se aplican al terminar."))
             else:
-                self.note("Conversación simple de Fase 1. Su sintaxis se conserva hasta que añadas un nodo.")
+                self.note(tr('Conversación simple. Añade un nodo para crear ramas.'))
         elif len(p) == 3 and p[2] == "prompt":
-            self.text("Texto", conv["prompt"], lambda v: self.set(p, v), "line_text")
+            self.text(tr("Texto"), conv["prompt"], lambda v: self.set(p, v), "line_text")
         elif len(p) == 4 and p[2] == "nodes":
             node = self.win.at(p)
-            self.line("ID del nodo", node["id"], self.rename, "node_id", True)
-            self.button("Usar como entrada", lambda: self.set(("conversations", p[1], "entry"), node["id"]), "make_entry")
+            self.line(tr("ID del nodo"), node["id"], self.rename, "node_id", True)
+            self.button(tr("Usar como entrada"), lambda: self.set(("conversations", p[1], "entry"), node["id"]), "make_entry")
             self.dialogue_motion(p,node,node.get('lines',[{}])[0].get('speaker',conv['speaker']))
-            self.note("Añade líneas y respuestas con los botones del editor central.")
+            self.note(tr("Añade líneas y respuestas con los botones del editor central."))
         elif p[-2] == "lines":
             line = self.win.at(p)
-            self.combo("Actor", self.ids("actors"), line.get("speaker", conv["speaker"]), lambda v: self.set(p + ("speaker",), v), "line_speaker")
-            self.text("Texto", line["text"], lambda v: self.set(p + ("text",), v), "line_text")
+            self.combo(tr("Actor"), self.ids("actors"), line.get("speaker", conv["speaker"]), lambda v: self.set(p + ("speaker",), v), "line_speaker")
+            self.text(tr("Texto"), line["text"], lambda v: self.set(p + ("text",), v), "line_text")
             self.dialogue_motion(p,line,line.get('speaker',conv['speaker']),True)
-            self.note("Escribe un solo parlamento por línea, sin saltos de párrafo. Puedes añadir varias líneas al nodo y reordenarlas.")
+            self.note(tr("Escribe un solo parlamento por línea, sin saltos de párrafo. Puedes añadir varias líneas al nodo y reordenarlas."))
         elif p[-2] == "choices":
             answer = self.win.at(p)
-            self.text("Respuesta", answer["text"], lambda v: self.set(p + ("text",), v), "answer_text")
+            self.text(tr("Respuesta"), answer["text"], lambda v: self.set(p + ("text",), v), "answer_text")
             nodes = conv.get("nodes", [])
             def mode(value):
                 if value == "goto":
@@ -439,12 +444,12 @@ class Inspector(QWidget):
                     answer.pop("goto", None)
                     answer["result"] = self.win.next_result(conv) if nodes else max(a["result"] for a in conv["choices"])+1
                 self.win.changed(True)
-            modes = [("Terminar (RETURN)", "return")] + ([("Ir a otro nodo", "goto")] if nodes else [])
-            self.combo("Destino", modes, "goto" if "goto" in answer else "return", mode, "answer_mode")
+            modes = [(tr("Terminar (RETURN)"), "return")] + ([(tr("Ir a otro nodo"), "goto")] if nodes else [])
+            self.combo(tr("Destino"), modes, "goto" if "goto" in answer else "return", mode, "answer_mode")
             if "goto" in answer:
-                self.combo("Nodo", [(n["id"], n["id"]) for n in nodes], answer["goto"], lambda v: self.set(p + ("goto",), v), "answer_target")
+                self.combo(tr("Nodo"), [(n["id"], n["id"]) for n in nodes], answer["goto"], lambda v: self.set(p + ("goto",), v), "answer_target")
             else:
-                self.spin("Resultado", answer.get("result", 1), lambda v: self.set(p + ("result",), v), "answer_result", minimum=1)
+                self.spin(tr("Resultado"), answer.get("result", 1), lambda v: self.set(p + ("result",), v), "answer_result", minimum=1)
                 current = "set_flag" if "set_flag" in answer else "clear_flag" if "clear_flag" in answer else ""
                 def effect(value):
                     previous = answer.get("set_flag", answer.get("clear_flag", ""))
@@ -453,7 +458,7 @@ class Inspector(QWidget):
                     if value:
                         answer[value] = previous or next(iter(self.win.doc.data.get("state", {}).get("flags", {})), "")
                     self.win.changed(True)
-                self.combo("Cambiar estado", [("Sin cambio", ""), ("Activar flag", "set_flag"), ("Desactivar flag", "clear_flag")], current, effect, "answer_effect")
+                self.combo(tr("Cambiar estado"), [(tr("Sin cambio"), ""), (tr("Activar flag"), "set_flag"), (tr("Desactivar flag"), "clear_flag")], current, effect, "answer_effect")
                 if current:
                     self.combo("Flag", self.flags(), answer[current], lambda v: self.set(p + (current,), v), "answer_flag")
 
@@ -477,35 +482,35 @@ class Inspector(QWidget):
                     event['trigger'] = next((t['id'] for t in self.win.doc.data.get('triggers',[])), '')
                 # Keep authored actions: incompatible ones are reported, never silently dropped.
                 self.win.changed(True)
-            self.combo("CUANDO", [("Inicia la escena", "scene_start"), ("Hablan con un actor", "actor_clicked"),
-                ("Termina una conversación", "conversation_ended"), ('Jugador entra en trigger', 'trigger_enter')], event["when"], change_trigger, "event_when")
+            self.combo(tr("CUANDO"), [(tr("Inicia la escena"), "scene_start"), (tr("Hablan con un actor"), "actor_clicked"),
+                (tr("Termina una conversación"), "conversation_ended"), (tr('Jugador entra en trigger'), 'trigger_enter')], event["when"], change_trigger, "event_when")
             if event['when'] == 'trigger_enter':
-                self.combo('Volumen', self.ids('triggers'), event.get('trigger',''), lambda v:self.set(p+('trigger',),v), 'event_trigger')
+                self.combo(tr('Volumen'), self.ids('triggers'), event.get('trigger',''), lambda v:self.set(p+('trigger',),v), 'event_trigger')
             if event["when"] == "actor_clicked":
-                self.combo("Actor", self.ids("actors"), event.get("actor", ""), lambda v: self.set(p + ("actor",), v), "event_actor")
-                self.note("Si hay varios eventos de clic para ese actor, se usa el primer evento cuyas condiciones se cumplen. Usa eventos o el enlace Al hablar del actor.")
+                self.combo(tr("Actor"), self.ids("actors"), event.get("actor", ""), lambda v: self.set(p + ("actor",), v), "event_actor")
+                self.note(tr("Si hay varios eventos de clic para ese actor, se usa el primer evento cuyas condiciones se cumplen. Usa eventos o el enlace Al hablar del actor."))
             elif event["when"] == "conversation_ended":
-                self.combo("Conversación", [(c["id"], c["id"]) for c in self.win.doc.data["conversations"]], event.get("conversation", ""), lambda v: self.set(p + ("conversation",), v), "event_conversation")
-                self.spin("Resultado (0 = cualquiera)", event.get("result", 0), lambda v: self.set(p + ("result",), v if v else None, True), "event_result")
-                self.note("Se ejecuta tras aplicar la acción de la respuesta. Una conversación abortada no dispara este evento.")
-            self.note("Añade condiciones y acciones en el editor central. Scene Start permite crear actores y cambiar flags; los eventos de clic inician conversaciones.")
+                self.combo(tr("Conversación"), [(c["id"], c["id"]) for c in self.win.doc.data["conversations"]], event.get("conversation", ""), lambda v: self.set(p + ("conversation",), v), "event_conversation")
+                self.spin(tr("Resultado (0 = cualquiera)"), event.get("result", 0), lambda v: self.set(p + ("result",), v if v else None, True), "event_result")
+                self.note(tr("Se ejecuta tras aplicar la acción de la respuesta. Una conversación abortada no dispara este evento."))
+            self.note(tr("Añade condiciones y acciones en el editor central. Scene Start permite crear actores y cambiar flags; los eventos de clic inician conversaciones."))
         elif p[-2] == "conditions":
             condition = self.win.at(p)
             self.combo("Flag", self.flags(), condition.get("flag", ""), lambda v: self.set(p + ("flag",), v), "condition_flag")
-            self.combo("Estado requerido", [("Activado", True), ("Desactivado", False)], condition["is_set"], lambda v: self.set(p + ("is_set",), v), "condition_state")
+            self.combo(tr("Estado requerido"), [(tr("Activado"), True), (tr("Desactivado"), False)], condition["is_set"], lambda v: self.set(p + ("is_set",), v), "condition_state")
         elif p[-2] == "actions":
             action = self.win.at(p)
             current = next(iter(action), "spawn")
-            allowed = [("Activar flag", "set_flag"), ("Desactivar flag", "clear_flag")]
+            allowed = [(tr("Activar flag"), "set_flag"), (tr("Desactivar flag"), "clear_flag")]
             if event["when"] in {"scene_start", "trigger_enter"}:
-                allowed.insert(0, ("Crear actor / objeto", "spawn"))
+                allowed.insert(0, (tr("Crear actor / objeto"), "spawn"))
             elif event["when"] == "actor_clicked":
-                allowed.insert(0, ("Iniciar conversación", "start_conversation"))
+                allowed.insert(0, (tr("Iniciar conversación"), "start_conversation"))
             def mode(value):
                 action.clear()
                 action[value] = ""
                 self.win.changed(True)
-            self.combo("Acción", allowed, current, mode, "action_kind")
+            self.combo(tr("Acción"), allowed, current, mode, "action_kind")
             if current == "spawn":
                 choices = self.ids("actors") + self.ids("objects")
             elif current == "start_conversation":
@@ -513,14 +518,14 @@ class Inspector(QWidget):
             else:
                 choices = self.flags()
             # Empty is an explicit draft value, never silently replaced by the first row.
-            self.combo("Objetivo", [("Elige…", "")] + choices, action.get(current, ""), lambda v: self.set(p + (current,), v), "action_target")
+            self.combo(tr("Objetivo"), [(tr("Elige…"), "")] + choices, action.get(current, ""), lambda v: self.set(p + (current,), v), "action_target")
 
     def rename_event(self, value):
         p = self.path
         def operation():
-            identifier(value, "ID de evento")
+            identifier(value, tr("ID de evento"))
             if any(i != p[1] and e.get("id") == value for i, e in enumerate(self.win.doc.data["events"])):
-                raise ValueError("Ese evento ya existe.")
+                raise ValueError(tr("Ese evento ya existe."))
             self.set(p + ("id",), value)
             self.win.changed(True)
         return self.win.guard(operation)

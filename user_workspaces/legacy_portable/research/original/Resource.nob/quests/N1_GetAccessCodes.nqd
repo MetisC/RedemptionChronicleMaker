@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# N1_GetAccessCodes.nqd - Quest definition.                 #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S. Thoms  08/26/99                             #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_GETACCESSCODES_S Q_GETACCESSCODES_L GiovanniAccessCodesIcon.tga 100
+

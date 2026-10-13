@@ -14,6 +14,7 @@ state:
     visited0: 5
     visited1: 6
     visited2: 7
+    done_flag1: 0
 scenes:
 - id: quay
   level:
@@ -183,6 +184,19 @@ scenes:
     actions:
     - set_flag: visited0
     trigger: arrival_zone
+  - id: end1
+    when: sequence_ended
+    actions:
+    - set_flag: done_flag1
+    sequence: sequence1
+    once: true
+  - id: event1
+    when: trigger_enter
+    actions:
+    - play_sequence: sequence1
+    trigger: trigger1
+    conditions: []
+    once: true
   triggers:
   - id: arrival_zone
     name: Zona de llegada
@@ -202,12 +216,42 @@ scenes:
     - 160
     - 120
     once: true
+  - id: trigger1
+    name: Arrival area
+    shape: sphere
+    transform:
+      placement: absolute
+      position:
+      - -342
+      - -950
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 0
+    radius: 90
   encounters:
   - id: optional_combat
     name: Una rata · combate opcional
     actors:
     - enemy1
-  sequences: []
+  sequences:
+  - id: sequence1
+    name: Llegada al muelle
+    actor: Player
+    shot: wide
+    angle: high
+    duration: 6
+    steps:
+    - at: 0
+      actor: Player
+      preset: aerial
+      transition: 0
+    - at: 3
+      actor: Player
+      preset: speaker_close
+      transition: 1.5
+    reference: victoria
   entries:
   - id: safe
     name: Inicio del jugador · calle de EastLondon
@@ -802,3 +846,29 @@ playtests:
   instructions: 'Tutorial / Ayuda → guía local. Victoria acepta; guía lleva al archivo; archivera entrega libro
     y llave; custodia vuelve al muelle; testigo recibe libro. Guarda y carga, vuelve a entrar y comprueba que no
     duplica premios. Combate de una rata sólo si lo eliges. Cámara de 7 s: tres planos y custodia caminando.'
+authoring:
+  recipes:
+  - id: trigger_cin1
+    type: trigger_cinematic
+    version: 1
+    scene: quay
+    refs:
+      trigger:
+        collection: triggers
+        id: trigger1
+        scene: quay
+      sequence:
+        collection: sequences
+        id: sequence1
+        scene: quay
+      done_flag:
+        collection: flags
+        id: done_flag1
+      end_event:
+        collection: events
+        id: end1
+        scene: quay
+      event:
+        collection: events
+        id: event1
+        scene: quay

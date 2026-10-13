@@ -1,0 +1,16 @@
+; half-corpse ai file
+
+attackType			5
+attackFlags			0x01
+attackRate			0.5
+moveType				4
+moveFlags			0x20
+moveDist				50.0
+moveRate				2.0
+chaseDist	      512.0
+chaseRate	      1.0
+searchDist	      512.0
+searchRate	      1.0
+behaviorClass		1
+interestNum			8
+wanderRadius		500.0

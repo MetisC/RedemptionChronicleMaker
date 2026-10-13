@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# V1_OrsiParty.nqd - Quest definition.                   #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: Y. Borckmans  08/16/99                         #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_ORSIPARTY_S Q_ORSIPARTY_L lutherShacklesIcon.tga 100
+

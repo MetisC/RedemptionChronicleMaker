@@ -1,0 +1,42 @@
+; boss Count Vladimir Orsi Ventrue elder ai format
+
+// GENERAL
+attackType					5
+attackFlags					0x01
+attackRate					0.5
+attackAlt					0.5
+moveType						4
+moveFlags					0x20
+moveDist						512.0
+moveRate						1.0
+chaseDist					512.0
+chaseRate					1.0
+searchDist					1024.0
+searchRate					1.0
+behaviorClass				0
+interestNum					0
+wanderRadius				1024.0
+wakeupDelay					0
+searchStyle					0
+
+verylowhealth				0.15
+lowhealth					0.30
+lowblood						0.30
+highdamage					0.10
+
+mindFlags					0x1f
+
+discHealRate				10
+discBuffRate				5
+discDamageRate				15
+discBuffPercent			0.70
+discDamagePercent			0.50
+
+// DISCIPLINE   name                    level
+discipline      Feed								3
+discipline      BloodHealing					3
+discipline      Fortitude			      	3
+discipline      Awe			         		2
+discipline      DreadGaze	         		2
+discipline      ShapeOfTheBeast       		2
+

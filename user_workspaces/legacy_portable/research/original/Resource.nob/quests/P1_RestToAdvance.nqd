@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# P1_RestToAdvance.nqd - Quest definition.               #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S. Thoms  03/23/00                             #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_RESTTOADVANCE_S Q_RESTTOADVANCE_L QuestCheck.tga 10
+

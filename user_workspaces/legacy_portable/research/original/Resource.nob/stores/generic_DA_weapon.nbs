@@ -1,0 +1,110 @@
+##############################################################################################
+#
+#  generic_DA_weapon.nbs
+#
+##############################################################################################
+#
+#
+#  Line Format:
+#
+#  D | R		templateName | treasureClass		copies (0 = infinite)
+#
+#
+#  D | R                Direct (a template name) or Random (a treasure class number)
+#  copies               The number of available items, 0 meaning an infinite supply of this item
+#
+##############################################################################################
+#
+#  03-03-00 SThoms
+#
+##############################################################################################
+
+
+# D|R	templateName | treasureClass	copies (0 = infinite)
+
+
+D       paddedClothing                  3
+D       leatherClothing                 3
+D       studdedLeather	                3
+D       scaleMail                       3
+D       chainMail                       3
+D       halfPlate                       3
+D       plateMail                       3
+D       shield                          3
+D       greatShield                     3
+R       215                             3
+R       215                             3
+R       215                             3
+R       215                             3
+R       215                             3
+R       215                             3
+R       216                             3
+R       216                             3
+R       216                             3
+R       216                             3
+R       216                             3
+R       216                             3
+R       217                             3
+R       217                             3
+R       217                             3
+R       217                             3
+R       217                             3
+R       217                             3
+R       218                             3
+R       218                             3
+R       218                             3
+R       218                             3
+R       218                             3
+R       219                             3
+R       219                             3
+R       219                             3
+R       219                             3
+R       219                             3
+R       220                             3
+R       220                             3
+R       220                             3
+R       220                             3
+R       220                             3
+R       221                             3
+R       221                             3
+R       221                             3
+R       221                             3
+R       221                             3
+R       222                             5
+R       222                             5
+R       222                             5
+R       223                             5
+R       223                             5
+R       223                             5
+R       223                             5
+R       223                             5
+R       223                             5
+R       224                             5
+R       224                             5
+R       224                             5
+R       224                             5
+R       224                             5
+R       226                             1
+R       226                             1
+R       226                             1
+R       226                             1
+R       226                             1
+R       226                             1
+R       226                             1
+R       226                             1
+R       226                             1
+R       227                             1
+R       227                             1
+R       227                             1
+R       227                             1
+R       227                             1
+R       227                             1
+R       231                             1
+R       231                             1
+R       231                             1
+R       231                             1
+R       231                             1
+R       231                             1
+R       231                             1
+R       231                             1
+

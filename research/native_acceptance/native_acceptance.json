@@ -1,0 +1,30 @@
+{
+  "recorded_at_utc": "2026-10-13T04:29:45.708469+00:00",
+  "user_confirmation": "Funciona correctamente.",
+  "user_confirmation_date": "2026-10-13",
+  "version": "1.0.0-rc1",
+  "revision": "tutorial-delivery-r3",
+  "scope": "General user acceptance of the corrected tutorial circuit; native trace confirms travel, delivery, quest completion and completed-state dialogue.",
+  "installed_package_sha256": "9ffa45c2463e08191f1c743406165fd4c0462b186608c884aa4fdf797e912f86",
+  "native_trace": "research/tutorial_trigger/native_delivery_accepted.log",
+  "native_trace_sha256": "9ec8990c5b892e359041145478b487fb3518db974e1173f2b76f83b58c95b46a",
+  "native_trace_observations": [
+    "barrel film completion",
+    "letter pickup",
+    "Rat encounter completion",
+    "Anezka follow-up dialogue",
+    "travel to home/entry1",
+    "Elena delivery actions",
+    "delivery_done flag and completed quest",
+    "Elena completed-state dialogue"
+  ],
+  "not_individually_accepted": [
+    "all abort and camera edge cases",
+    "manual save/load",
+    "repeated scene reentry",
+    "network replication",
+    "clean-machine portable",
+    "editor authoring circuit"
+  ],
+  "note": "SAVE_STATE entries during travel do not establish manual save/load acceptance. The recorded log may include earlier sessions."
+}

@@ -1,0 +1,24 @@
+##########################################################
+#                                                        #
+# MP_RaveClub.nsc                                        #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S. Thoms  02/23/00                             #
+#                                                        #
+##########################################################
+#
+# EXIT FLAGS:
+#
+# CLOSED	0x1		This exit is closed
+# ONEWAY	0x100		This exit is one way (this is actually a load time only flag)
+#
+
+location RaveClub            L1_TEN1.nil             null  foobar.nui    map00  0x0060
+
+metafile MP_Salon.nmf
+flags    0x7
+
+

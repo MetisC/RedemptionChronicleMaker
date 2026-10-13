@@ -1,0 +1,35 @@
+# MP_Salon.NST
+# MP Salons quick thing list
+
+# Actors
+MP_Christof_DA 
+MP_Christof_MD 
+MP_Erik        
+MP_Erik_MD     
+MP_Gothgirl    
+MP_Gothguy     
+MP_HeavyG_DA   
+MP_HeavyG_MD   
+MP_Kazi        
+MP_Kazi_MD     
+MP_Lily        
+MP_Pink        
+MP_Samuel      
+MP_Samuel_DA   
+MP_Serena      
+MP_Tremere     
+MP_Wilhem_DA   
+MP_Wilhem_MD   
+MP_Zil_MD      
+
+# Objects
+CashUS
+goldCoins
+goldCoinsSTACK
+
+# Enemies
+Szlachta
+Hopper
+
+# end of file
+

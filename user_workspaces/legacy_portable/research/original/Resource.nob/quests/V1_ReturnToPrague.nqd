@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# V1_ReturnToPrague.nqd - Quest definition.              #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S.Thoms       09/15/99                         #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_RETURNTOPRAGUE_S Q_RETURNTOPRAGUE_L QuestCheck.tga 100
+

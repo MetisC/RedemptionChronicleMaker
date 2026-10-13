@@ -1,0 +1,68 @@
+#########################################################################################
+#
+# CLAN DEFINITIONS
+#
+#########################################################################################
+#
+# Line format:       
+#
+# name [icon | none] [beckon | none] advant weakns group1 group2 group3 statsX17
+#
+# name          name of the clan
+# icon          icon for the clan
+# beckon        the template for beckoning like disciplines
+# advant        advantages
+# weakns        weaknesses
+# groupN        initial discipline groups if any
+# statsX17      max or start values for stats
+#
+#
+# Flags:
+#
+# 0x1           not selectable in MP
+#
+# Advantages:
+#
+# 0x1           all discipline groups
+#
+# Weaknesses:
+#
+# 0x1           decrement social on frenzy (Gangrel)
+# 0x2           increased discipline advancement cost (Caitiff)
+# 0x4           cannot increase socials
+#
+#
+# 
+# Note:         Do not in any way alter the spelling of the predefined clan names!
+#
+#########################################################################################
+#
+#  09-20-99 YB  Original definition
+#
+#########################################################################################
+
+
+# name          [icon | none]           [beckon | none]         [shape | none]  flags   advant  weakns  group1                  group2                  group3                  STR DEX STA PER INT WIT BLO HUM FRZ GEN FAI CHA MAN APP FRR BLR BLP MAN MAP
+
+brujah          brujahIcon              petDemonHound           wolf_Grey       0x0     0x0     0x0     DGRP_Presence           DGRP_Potence            DGRP_Celerity           -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+cappadocian     cappadocianIcon         petZombu                wolf_Black      0x0     0x0     0x0     DGRP_Auspex             DGRP_Fortitude          DGRP_Mortis             -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  25  -1  -1  -1  -1  -1
+gangrel         gangrelIcon             petWolf                 wolf_Red        0x0     0x0     0x1     DGRP_Animalism          DGRP_Fortitude          DGRP_Protean            -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+nosferatu       nosferatuIcon           petRat                  wolf_Black      0x0     0x0     0x4     DGRP_Animalism          DGRP_Obfuscate          DGRP_Potence            -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1   0  -1  -1  -1  -1  -1
+toreador        toreadorIcon            petGhoulSpider          wolf_White      0x0     0x0     0x0     DGRP_Auspex             DGRP_Celerity           DGRP_Presence           -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+                                                                                  
+assamite        assamiteIcon            petViper                wolf_Red        0x1     0x0     0x0     none                    none                    none                    -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+giovanni        giovanniIcon            petAlligator            wolf_Black      0x0     0x0     0x0     DGRP_Dominate           DGRP_Mortis             DGRP_Potence            -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+lasombra        lasombraIcon            petDarkhunter           wolf_Black      0x1     0x0     0x0     DGRP_Dominate           DGRP_Obtenebration      DGRP_Potence            -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+malkavian       malkavianIcon           petRat                  wolf_White      0x0     0x0     0x0     DGRP_Auspex             DGRP_Dementation        DGRP_Obfuscate          -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+ravnos          ravnosIcon              petSkel_Sword           wolf_Red        0x1     0x0     0x0     DGRP_Animalism          DGRP_Presence           DGRP_Fortitude          -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+setite          setiteIcon              petViper                wolf_Grey       0x1     0x0     0x0     DGRP_Obfuscate          DGRP_Presence           DGRP_Serpentis          -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+tremere         tremereIcon             petHopper               wolf_Black      0x0     0x0     0x0     DGRP_Auspex             DGRP_Dominate           DGRP_Thau_BloodPath     -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+tzimisce        tzimisceIcon            petSzlachta             wolf_Black      0x1     0x0     0x0     DGRP_Animalism          DGRP_Auspex             none                    -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+ventrue         ventrueIcon             petViper                wolf_White      0x0     0x0     0x0     DGRP_Dominate           DGRP_Fortitude          DGRP_Presence           -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+                                                                                  
+caitiff         caitiffIcon             petSkel_Sword           _WolfShape      0x0     0x1     0x2     none                    none                    none                    -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+human           humanIcon               petSkel_Sword           none            0x1     0x0     0x0     DGRP_Numina             DGRP_Faith              none                    -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1
+
+# name          [icon | none]           [beckon | none]         [shape | none]  flags   advant  weakns  group1                  group2                  group3                  STR DEX STA PER INT WIT BLO HUM FRZ GEN FAI CHA MAN APP FRR BLR BLP MAN MAP
+
+

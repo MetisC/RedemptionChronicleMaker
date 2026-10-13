@@ -43,7 +43,7 @@ def parse_chronicle(data: bytes):
     return {"locations": locations, "exits": exits, "settings": settings}
 
 
-def discover(ws: Workspace, game: Path, disassemble: bool = True):
+def discover(ws: Workspace, game: Path, disassemble: bool = True, progress=lambda _:None):
     game = game.resolve()
     if not (game / "Codex.nob").is_file():
         raise ValueError("No se encuentra Codex.nob en la instalación")
@@ -57,6 +57,7 @@ def discover(ws: Workspace, game: Path, disassemble: bool = True):
     entries, manifests, counts, raw_templates = [], [], {}, []
     scene_data = {}
     for archive in sorted(game.glob("*.nob")):
+        progress('Leyendo recursos: '+archive.name)
         manifests.append({"file": archive.name, "size": archive.stat().st_size, "sha256": digest(archive)})
         with zipfile.ZipFile(archive) as z:
             counts[archive.name] = dict(collections.Counter(PurePosixPath(i.filename).suffix.lower() for i in z.infolist()))
@@ -77,6 +78,7 @@ def discover(ws: Workspace, game: Path, disassemble: bool = True):
                             raw_templates.append((t, item))
                     elif ext == ".nsd":
                         scene_data[posix.name.casefold()] = (data, item)
+    progress('Indexando escenarios y escenas…')
     chronicle_files = sorted((game / "Chronicles").iterdir())
     chronicles, levels = {}, {}
     for p in chronicle_files:
@@ -113,6 +115,7 @@ def discover(ws: Workspace, game: Path, disassemble: bool = True):
                 values = resolve(options[0][0], trail + (parent.casefold(),)) | values
         return values
 
+    progress('Preparando el catálogo de personajes y objetos…')
     templates = []
     for t, origin in raw_templates:
         v = resolve(t)
@@ -157,6 +160,7 @@ def discover(ws: Workspace, game: Path, disassemble: bool = True):
         except ValueError:
             pass
     for f in [game / "classes.zip", game / "Vampire.exe", game / "manual.pdf", game / "Readme.rtf", game / "ReadmePatch.rtf"]:
+        if not f.is_file():continue
         manifests.append({"file": f.name, "size": f.stat().st_size, "sha256": digest(f)})
     ws.write("cache/toolchain/classes.zip", (game / "classes.zip").read_bytes())
     summary = {"archive_counts": counts, "levels": len(levels), "nil_files": sum(e["extension"] == ".nil" for e in entries), "templates": len(templates), "template_kind_counts": dict(collections.Counter(t["kind"] for t in templates)), "nsd_supported_roundtrips": simple, "sdk_present": False}
@@ -177,6 +181,7 @@ def discover(ws: Workspace, game: Path, disassemble: bool = True):
         api = subprocess.run(["javap", "-classpath", str(classes), "-constants", *[n for n in names if n.startswith("Codex")]], capture_output=True, text=True, check=True)
         ws.write("research/API_SIGNATURES.txt", api.stdout)
     from .motions import ensure_catalogue
+    progress('Indexando animaciones disponibles…')
     ws.output('cache/motions.json').unlink(missing_ok=True)
     ensure_catalogue(ws,resources,game)
     return summary

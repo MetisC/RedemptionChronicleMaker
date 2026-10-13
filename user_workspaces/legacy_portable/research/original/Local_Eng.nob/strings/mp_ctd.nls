@@ -1,0 +1,110 @@
+// ****************************************************************************
+//
+// MP_CTD.NLS
+//
+// To Curse The Darkness-specific string table
+//
+// ****************************************************************************
+
+// ............................................................................ 
+// Actors
+// ............................................................................ 
+MELMOTH				Melmoth
+REBECCA				Rebecca
+LECOMTE				Rene Le Comte
+BLAZEJ				Sheriff Blazej
+EGLANTINE			Mother Eglantine
+RAGWICK				Ragwick
+SORVENA				Sorvena
+UDOLPHO				Udolpho
+GUARD				Guard
+
+// ............................................................................ 
+// Quests
+// ............................................................................ 
+
+Q_MEETMELMOTH_S                 Meet Beggar in Church Tower.
+Q_MEETMELMOTH_L                 Enter the Beggar's haven below the tower of the church in Temesvar.
+Q_RETRIEVEMONOCLE_S             Retrieve Monocle from Le Comte.
+Q_RETRIEVEMONOCLE_L             From the graveyard, enter the catacombs beneath Temesvar to locate and confront Le Comte.
+Q_RETURNTOMELMOTH_S             Return to Melmoth in the Church Tower.
+Q_RETURNTOMELMOTH_L             Bring the Monocle to Melmoth in his haven below the tower of the church.
+
+RELIQUARYCTD                    Holy Reliquary
+// ............................................................................ 
+// Level Names
+// ............................................................................ 
+MOSSYHEARTH						The Mossy Hearth Inn
+TEMESVAR						Temesvar Streets
+SORVENACOTTAGE					Sorvena's Cottage
+OUBLIETTE						The Oubliette
+CATACOMBS1						The Catacombs 1
+CATACOMBS2    					The Catacombs 2
+CATACOMBS3    					The Catacombs 3
+
+// ............................................................................ 
+// Scenes
+// ............................................................................ 
+
+INN4_CTD_1_1S					Inside the Inn
+INN4_CTD_1_1L					Scene 1.1 - Inside the Inn
+NQTR_CTD_1_1S					Temesvar Exploration
+NQTR_CTD_1_1L					Scene 1.1 - Temesvar Exploration
+RABI_CTD_1_1S					Meeting with Sorvena
+RABI_CTD_1_1L					Scene 1.1 - Meeting with Sorvena
+OUBL_CTD_2_1S					Meeting with Melmoth
+OUBL_CTD_2_1L					Scene 2. 1 - Meeting with Melmoth
+JOS1_CTD_3_1S					Catacombs Raid
+JOS1_CTD_3_1L					Scene 3. 1 - Catacombs Raid
+JOS2_CTD_3_1S                   Catacombs Battle
+JOS2_CTD_3_1L                   Scene 3. 1 - Catacombs Battle
+JOS3_CTD_3_1S                   Meeting with LeComte
+JOS3_CTD_3_1L                   Scene 3. 1 - Meeting with LeComte
+
+// ............................................................................ 
+// ST Scene advancement labels
+// ............................................................................ 
+
+CTD_SCENE_2_1					Introduction to Temesvar
+CTD_SCENE_3_1 					Monocle Mission
+CTD_SCENE_5_1 					Monocle Retrieved
+
+// ............................................................................ 
+// Map labels
+// ............................................................................ 
+
+mapCatacombs               Catacombs
+mapSorvenasCottage         Sorvena's Cottage
+mapOubliette               The Oubliette
+mapMossyHearthInn          The Mossy Hearth Inn
+mapTemesvar                Temesvar
+
+// ............................................................................ 
+// Description ID for Doors/Exits
+// ............................................................................ 
+
+NQTR_EXIT_DESC_0                Main Gate
+NQTR_EXIT_DESC_0_L              Main Gate (Locked)
+NQTR_EXIT_DESC_1                Catacombs
+NQTR_EXIT_DESC_1_L              Catacombs (Locked)
+NQTR_EXIT_DESC_2                Mossy Hearth
+NQTR_EXIT_DESC_2_L              Mossy Hearth (Locked)
+NQTR_EXIT_DESC_3                Oubliette
+NQTR_EXIT_DESC_3_L              Oubliette (Locked)
+NQTR_EXIT_DESC_4                Sorvena's Cottage
+NQTR_EXIT_DESC_5_L              Sorvena's Cottage (Locked)
+
+JOS1_EXIT_DESC_0                Temesvar Streets
+JOS1_EXIT_DESC_1                Catacombs 2
+JOS2_EXIT_DESC_0                Catacombs 1
+JOS2_EXIT_DESC_1                Catacombs 3
+JOS2_EXIT_DESC_2                (Blocked)
+JOS3_EXIT_DESC_0                Catacombs 2
+
+INN4_EXIT_DESC_1                Temesvar Streets
+INN4_EXIT_DESC_1_L              Temesvar Streets (Locked)
+
+RABI_EXIT_DESC_0                Temesvar Streets
+RABI_EXIT_DESC_0_L              Temesvar Streets (Locked)
+
+JOS3_CHRONICLE			The Chronicle of Caine

@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# V1_EtriusJournal.nqd - Quest definition.               #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S. Thoms  09/17/99                             #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_ETRIUSJOURNAL_S Q_ETRIUSJOURNAL_L etriusJournalIcon.tga 3000
+

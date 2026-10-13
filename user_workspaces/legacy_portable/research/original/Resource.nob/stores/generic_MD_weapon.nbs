@@ -1,0 +1,89 @@
+##############################################################################################
+#
+#  generic_MD_weapon.nbs
+#
+##############################################################################################
+#
+#
+#  Line Format:
+#
+#  D | R		templateName | treasureClass		copies (0 = infinite)
+#
+#
+#  D | R                Direct (a template name) or Random (a treasure class number)
+#  copies               The number of available items, 0 meaning an infinite supply of this item
+#
+##############################################################################################
+#
+#  03-03-00 SThoms
+#
+##############################################################################################
+
+
+# D|R	templateName | treasureClass	copies (0 = infinite)
+
+R      233                             3
+R      233                             3
+R      233                             3
+R      233                             3
+R      233                             3
+R      233                             3
+R      246                             4 
+R      246                             4 
+R      246                             4 
+R      246                             4 
+R      240                             4 
+R      240                             4 
+R      240                             4 
+R      240                             4 
+R      240                             4 
+R      240                             4 
+R      240                             4 
+R      240                             4 
+R      240                             4 
+R      240                             4 
+R      240                             4 
+D      sapGloves                       0 
+D      brassKnuckles                   0 
+D      taser                           0 
+D      pistol                          0 
+D      revolver                        0 
+D      rifle                           0 
+D      shotgun                         0 
+D      subMachineGun                   0 
+D      assaultRifle                    0 
+D      incinerator                     0 
+D      grenadeLauncher                 0 
+D      chainGun                        0 
+D      flameThrower                    0 
+D      rocketLauncher                  0 
+D      arrows_MD_20                    0 
+D      bolts_MD_20                     0 
+D      revolver_rounds                 0 
+D      pistol_clip                 		0 
+D      rifle_clip_22               		0 
+D      shotgun_shells_20           		0 
+D      submachinegun_clip_32    			0 
+D      assaultRifle_clip_40    			0 
+D      napalm_tank_20		    			0 
+D      launch_grenades		    			0 
+D      chaingun_rounds_100	    			0 
+D      rocket_pack_03		    			0 
+D      compoundBow   		    			0 
+D      compoundBowMag  		    			0 
+D      crossBowMD    		    			0 
+D      crossBowMag    		    			0 
+D      arrows_MD_20    		    			0 
+D      arrows_magnesium_20	    			0 
+D      bolts_MD_20    		    			0 
+D      bolts_magnesium_20     			0 
+R      245                             1 
+R      245                             1 
+R      245                             1 
+R      245                             1 
+R      245                             1 
+R      247                             1
+R      247                             1
+R      247                             1
+R      247                             1
+ 

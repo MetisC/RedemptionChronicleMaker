@@ -1,0 +1,63 @@
+##############################################################################################
+#
+#  NewMoon.nbs
+#
+##############################################################################################
+#
+#
+#  Line Format:
+#
+#  D | R		templateName | treasureClass		copies (0 = infinite)
+#
+#
+#  D | R                Direct (a template name) or Random (a treasure class number)
+#  copies               The number of available items, 0 meaning an infinite supply of this item
+#
+##############################################################################################
+#
+#  08-31-99 YB Original definitions and coding
+#
+##############################################################################################
+
+
+# D|R	templateName | treasureClass	copies (0 = infinite)
+
+
+D       plasmaBag                       0
+R       184                             0
+R       184                             0
+R       184                             0
+R       182                             2
+R       182                             1
+R       182                             1
+R       190                             0
+R       191                             0
+R       192                             0
+R       194                             1
+R       194                             1
+R       194                             1
+R       195                             1
+R       195                             1
+R       195                             1
+R       195                             1
+R       196                             1
+R       196                             1
+R       196                             1
+R       197                             1
+R       197                             1
+R       197                             1
+R       197                             1
+R       198                             1
+R       198                             1
+R       198                             1
+R       198                             1
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+

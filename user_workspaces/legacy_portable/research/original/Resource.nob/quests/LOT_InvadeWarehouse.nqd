@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# LOT_InvadeWarehouse.nqd - Quest definition.            #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S.Thoms       11/17/99                         #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_INVADEWAREHOUSE_S Q_INVADEWAREHOUSE_L QuestCheck.tga 5000
+

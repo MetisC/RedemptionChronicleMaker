@@ -9,7 +9,7 @@ from rcm.packages import export_project,import_project,create_package,inspect_pa
 from rcm.startup import settings,cache_errors,prepare_workspace,reset_settings
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
-from phase6_fixtures import system_source,large_source
+from campaign_fixture_helpers import system_source,large_source
 
 
 class Phase6IntegrationTests(unittest.TestCase):

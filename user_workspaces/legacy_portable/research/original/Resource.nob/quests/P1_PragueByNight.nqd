@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# P1_PragueByNight.nqd - Quest definition.               #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: Y. Borckmans  07/18/99                         #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_PRAGUEBYNIGHT_S Q_PRAGUEBYNIGHT_L QuestCheck.tga 300
+

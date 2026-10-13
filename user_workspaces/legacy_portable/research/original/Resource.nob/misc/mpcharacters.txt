@@ -1,0 +1,24 @@
+; Multiplayer templates and string IDs
+
+; Template					ID
+
+MP_Christof_DA				MP_CHRISTOF_DA
+MP_Christof_MD				MP_CHRISTOF_MD
+MP_Erik						MP_ERIK
+MP_Erik_MD					MP_ERIK_MD
+MP_Gothgirl					MP_GOTHGIRL
+MP_Gothguy					MP_GOTHGUY
+MP_HeavyG_DA				MP_HEAVYG_DA
+MP_HeavyG_MD				MP_HEAVYG_MD
+MP_Kazi						MP_KAZI
+MP_Kazi_MD					MP_KAZI_MD
+MP_Lily						MP_LILY
+MP_Pink						MP_PINK
+MP_Samuel					MP_SAMUEL
+MP_Samuel_DA				MP_SAMUEL_DA
+MP_Serena					MP_SERENA
+MP_Tremere					MP_TREMERE
+MP_Wilhem_DA				MP_WILHEM_DA
+MP_Wilhem_MD				MP_WILHEM_MD
+MP_Zil_MD					MP_ZIL_MD
+

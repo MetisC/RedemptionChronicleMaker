@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# LOT_ReturnToHaven.nqd - Quest definition.              #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: S.Thoms        4/29/00                         #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_RETURNTOHAVEN_S Q_RETURNTOHAVEN_L QuestCheck.tga 0
+

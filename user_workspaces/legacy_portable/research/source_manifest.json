@@ -1,0 +1,217 @@
+[
+  {
+    "file": "Codex.nob",
+    "size": 1838173,
+    "sha256": "97961807413424796f5cbee284ddd2cdb155f316b97d7f6d8b35ff5cc74c6e54"
+  },
+  {
+    "file": "Levels.nob",
+    "size": 228632680,
+    "sha256": "6ebe5d8cc8e5c2f3ef9057a2aac92777cdfca6d9dcd710e58e34ea487c6ad3fd"
+  },
+  {
+    "file": "LMaterials.nob",
+    "size": 85417512,
+    "sha256": "5af95abaf0f28fab2ee850fdaaf99a62d9802aa5f08e64fc4c0f9e77a89c1342"
+  },
+  {
+    "file": "Local_Eng.nob",
+    "size": 180797322,
+    "sha256": "a64155e9d429a8361e003d64add1414ad6f7a4ce1bc380a62be555c1aaeb620d"
+  },
+  {
+    "file": "Resource.nob",
+    "size": 152385278,
+    "sha256": "87a7c4f00e37ceb249822d0f16fe42ed02310f29502c5a327235c4d3dd35a233"
+  },
+  {
+    "file": "Sounds.nob",
+    "size": 96424788,
+    "sha256": "a7017f0ef9f5420e4f7d9f6a7d0f010d6320aa45d1bcd71ab96716c0e3a09944"
+  },
+  {
+    "file": "Chronicles/london.nmf",
+    "size": 267,
+    "sha256": "e4f66a368853617f738f892e425bb2770257391f35dab34baee1e19aa6200455"
+  },
+  {
+    "file": "Chronicles/London.nsc",
+    "size": 4120,
+    "sha256": "00493c1dc9f69ef3f731e3c08a8a08ada749d3e874797bff5df16f423de59ce6"
+  },
+  {
+    "file": "Chronicles/MP_CTD.nmf",
+    "size": 211,
+    "sha256": "4ded82c6072147fc2baf5a47eeb63347f619ecf92a46c3371f7bcdf9e498aa9f"
+  },
+  {
+    "file": "Chronicles/MP_CTD.nss",
+    "size": 90,
+    "sha256": "d2692d8cf205c9c99a7c5b7981c4ecbc138bb9e9fdf3e32f63f1b4fd8c3144e8"
+  },
+  {
+    "file": "Chronicles/MP_CTD.nst",
+    "size": 373,
+    "sha256": "ddc36a4fbf705246f35aa45115b4c3a107096f143dc192971e1ad9620a895e8f"
+  },
+  {
+    "file": "Chronicles/MP_CurseDarkness-mod.nsc",
+    "size": 2269,
+    "sha256": "fdfe1debf3499ce2436b1c21e7be862d5017fbe8795065f6e8a5d00c1f9a6bd0"
+  },
+  {
+    "file": "Chronicles/MP_CurseDarkness.nsc",
+    "size": 2269,
+    "sha256": "fdfe1debf3499ce2436b1c21e7be862d5017fbe8795065f6e8a5d00c1f9a6bd0"
+  },
+  {
+    "file": "Chronicles/MP_DAInn.nsc",
+    "size": 934,
+    "sha256": "b745cd8a9747b55948abcd5336ebaf3331cfd712a6f81c156b5d21e129a20304"
+  },
+  {
+    "file": "Chronicles/MP_LeavesThree.nsc",
+    "size": 4653,
+    "sha256": "1f0cdf647fd7b03ac6692999f66d3d4b2993669f52e40ba4d8e510887fc85e61"
+  },
+  {
+    "file": "Chronicles/MP_London_Null.nmf",
+    "size": 118,
+    "sha256": "a753833aa58d0885327caa80d1c6a25f69d4db0ec9db4b39cff0386e0a2faa24"
+  },
+  {
+    "file": "Chronicles/MP_London_Null.nsc",
+    "size": 3866,
+    "sha256": "452593f1b6f06ae760d49a286272becfb8c87f14b777a8ba78af42f5f8ec26dd"
+  },
+  {
+    "file": "Chronicles/MP_LOT.nmf",
+    "size": 310,
+    "sha256": "28500de0d3f4e0d026c703486148829075e37e8e45ce0ef74f4eba64cc9ad430"
+  },
+  {
+    "file": "Chronicles/mp_lot.nss",
+    "size": 239,
+    "sha256": "26cb8f9f239d65d5c70a80412588c2ebbbcff93ffd779cae22434c15286cbbf2"
+  },
+  {
+    "file": "Chronicles/MP_LOT.nst",
+    "size": 506,
+    "sha256": "b40a8943446b4123b61f380b9214854a3ed211f0bf33b7a6200495e938b39830"
+  },
+  {
+    "file": "Chronicles/MP_New_York_Null.nmf",
+    "size": 118,
+    "sha256": "0a5856b1b4f9989388e56916ce0af3f43d2aaa5b649456d71c9cc3e8242ac766"
+  },
+  {
+    "file": "Chronicles/MP_New_York_Null.nsc",
+    "size": 4599,
+    "sha256": "5a690e81d8d9b3b6e247e8d9909a1feb3fbc34a457ff542bf993921bf15dc636"
+  },
+  {
+    "file": "Chronicles/MP_Prague_Null.nmf",
+    "size": 127,
+    "sha256": "39722ff3f58112fa5d2e02eca3421aab608115b79d4889d95abfd47140712e0a"
+  },
+  {
+    "file": "Chronicles/MP_Prague_Null.nsc",
+    "size": 7079,
+    "sha256": "9a36b630d5f692cb1e786e22150323a33cc074a7a614110fe452396a6dc890d0"
+  },
+  {
+    "file": "Chronicles/MP_PrinceMansion.nsc",
+    "size": 936,
+    "sha256": "381e93cf1c371d698148c93eb2712365e104b92741a259976444bda8f1bf0806"
+  },
+  {
+    "file": "Chronicles/MP_RaveClub.nsc",
+    "size": 931,
+    "sha256": "7de33d892ec099ca97e4bfca851362f2f375b3e0d24b32aba421c403873a6438"
+  },
+  {
+    "file": "Chronicles/MP_Salon.nmf",
+    "size": 123,
+    "sha256": "6002ab334b8af84abb037c506799c07ea170d2c420b30d4a6c29ec16fefea3b9"
+  },
+  {
+    "file": "Chronicles/MP_Salon.nst",
+    "size": 479,
+    "sha256": "8e8c455f3079dfb3b5d7c3af73ab0b1ba95a4105bd61c163f191665858f3dbd4"
+  },
+  {
+    "file": "Chronicles/MP_Vienna_Null.nmf",
+    "size": 129,
+    "sha256": "0b3e03082e3086850146c29b05bcf03294dab2118449a7ec8812c06e0af07491"
+  },
+  {
+    "file": "Chronicles/MP_Vienna_Null.nsc",
+    "size": 5410,
+    "sha256": "70d1527108d887ded2022317c478f513a2c2d8440cce86d9a8f2cf87e8e8faa0"
+  },
+  {
+    "file": "Chronicles/new_york.nmf",
+    "size": 307,
+    "sha256": "8bd46497bc7550b8c4e518651977da6b71217932fac87a2bd801853f866ccca6"
+  },
+  {
+    "file": "Chronicles/NEW_YORK.NSC",
+    "size": 4662,
+    "sha256": "8536f39299d83e4ac0c0bfc675c1159b31bc2072d3c686f3163dbdbfc4538b81"
+  },
+  {
+    "file": "Chronicles/prague.nmf",
+    "size": 201,
+    "sha256": "0b32495304dc055283c554fff178bd59e195b0568ca9f46b6045999b181f6802"
+  },
+  {
+    "file": "Chronicles/Prague.nsc",
+    "size": 11196,
+    "sha256": "25a4bf6449183af5cf35c65ff347325cd2ec846dfc2059cb8aa4831607f00e34"
+  },
+  {
+    "file": "Chronicles/prague2.nmf",
+    "size": 243,
+    "sha256": "f0b421c29ce18cca43b5cd606eb4273165e23b00291e4c6792280c2f764ee1a3"
+  },
+  {
+    "file": "Chronicles/Prague2.nsc",
+    "size": 3469,
+    "sha256": "f94d75b7d6dcd06404f1c8cee8319f3fa3b30d396bb9ae7505cdf35388cf9f46"
+  },
+  {
+    "file": "Chronicles/vienna.nmf",
+    "size": 207,
+    "sha256": "9e261195632666ee7934041cdc79f786433add41460ddf75df1312487edbd3c4"
+  },
+  {
+    "file": "Chronicles/Vienna.nsc",
+    "size": 6051,
+    "sha256": "82a9f35b0e4ba0892e4c75618407e014b9a9485bf80bf6ff28db5efb1d5b944f"
+  },
+  {
+    "file": "classes.zip",
+    "size": 8747574,
+    "sha256": "22073f6064cf9bb00f3505066534b943a29ef488bcd1e69b6b11aec78f98ca55"
+  },
+  {
+    "file": "Vampire.exe",
+    "size": 1323065,
+    "sha256": "62982319c28b18654585239a814a5a1002c415febe07b494735cb80272c5dd23"
+  },
+  {
+    "file": "manual.pdf",
+    "size": 8471300,
+    "sha256": "8a22ef6ccb3455b006fbb327fde8657e44ce1a9be52e95ef350b594350fe9e77"
+  },
+  {
+    "file": "Readme.rtf",
+    "size": 69283,
+    "sha256": "8b76324d5417ca84ff1c20a52fb241b75517068084361456e1bc1cf21a6c27e1"
+  },
+  {
+    "file": "ReadmePatch.rtf",
+    "size": 63465,
+    "sha256": "433813c7b9911aa408b3a1c124ae5b27d1f1580bcb9a4e6a8ef1d855f9664b09"
+  }
+]

@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# V1_DestroyLuther.nqd - Quest definition.               #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: Y. Borckmans  08/16/99                         #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_DESTROYLUTHER_S Q_DESTROYLUTHER_L QuestCheck.tga 1000
+

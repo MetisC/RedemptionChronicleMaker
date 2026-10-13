@@ -1,0 +1,60 @@
+// ==============================================
+//
+// Nihilistic Player Character file
+//
+//
+// Samuel
+//
+//
+// [YB] 04/15/99
+// [AC] 07/11/99
+//
+// ==============================================
+
+// Note: bloodpool MUST come before blood!!!
+
+
+// GENERAL
+name            Samuel
+clan            Nosferatu
+cash            50
+totalexperience 50000
+
+
+// STATS        min     max     current
+maxhealth       200
+health          200          
+strength        0       100     45
+dexterity       0       100     55
+stamina         0       100     60
+perception      0       100     45
+intelligence    0       100     45
+wits            0       100     40
+bloodpool       0       1000    170
+blood           0       1000    170
+humanity        0       100     60
+charisma        0       100     45
+manipulation    0       100     45
+appearance      0       0       0
+frenzy          0       100     0
+faith           0       100     25
+generation      0       100     10
+frenzyrating    0       100     50
+bloodrating     0       100     1.0
+
+
+
+// DISCIPLINE   name                    level           quick
+discipline      Feed                    1              -1
+discipline      BloodHealing            1               0
+discipline      FeralWhispers           1               2
+discipline      Beckoning               0               3
+discipline      CloakOfShadows          1               4
+discipline      Potence                 0               5
+
+// ITEM         template        (main | belt | equip)
+item				plasmabag			belt
+item				plasmabag			belt
+item				plasmabag			belt
+item				plasmabag			belt
+

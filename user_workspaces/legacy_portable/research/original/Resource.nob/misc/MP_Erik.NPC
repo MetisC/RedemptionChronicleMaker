@@ -1,0 +1,47 @@
+// ==============================================
+//
+// Nihilistic Player Character file
+//
+//
+// Erik multiplayer character
+//
+//
+// [YB] 04/15/99
+//
+// ==============================================
+
+// Note: bloodpool MUST come before blood!!!
+
+
+// GENERAL
+name            	Erik
+cash            	200
+totalexperience 	5000
+experience 			5000
+
+
+// STATS        min     max     current
+strength        0       100     30
+dexterity       0       100     35
+stamina         0       100     30
+perception      0       100     20
+intelligence    0       100     20
+wits            0       100     20
+bloodpool       0       1000    100
+blood           0       100     100
+humanity        0       100     70
+charisma        0       100     20
+manipulation    0       100     20
+appearance      0       100     20
+frenzy          0       100     0
+faith           0       100     20
+generation      0       100     13
+frenzyrating    0       100     80
+bloodrating     0       100     1.0
+
+
+
+// DISCIPLINE   name                    level           quick
+
+// ITEM         template        (main | belt | equip)
+

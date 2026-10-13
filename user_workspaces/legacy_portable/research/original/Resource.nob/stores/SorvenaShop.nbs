@@ -1,0 +1,96 @@
+##############################################################################################
+#
+#  SorvenaShop.nbs
+#
+##############################################################################################
+#
+#
+#  Line Format:
+#
+#  D | R		templateName | treasureClass		copies (0 = infinite)
+#
+#
+#  D | R                Direct (a template name) or Random (a treasure class number)
+#  copies               The number of available items, 0 meaning an infinite supply of this item
+#
+##############################################################################################
+#
+#  08-31-99 YB Original definitions and coding
+#
+##############################################################################################
+
+
+# D|R	templateName | treasureClass	copies (0 = infinite)
+
+
+D       vitaeRed                        0
+R       181                             0
+R       190                             0
+R       191                             0
+R       192                             0
+R       193                             1
+R       193                             1
+R       193                             1
+R       194                             1
+R       194                             1
+R       194                             1
+R       195                             1
+R       195                             1
+R       195                             1
+R       196                             1
+R       196                             1
+R       196                             1
+R       199                             1
+R       199                             1
+R       199                             1
+R       202                             0
+R       202                             0
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+R       230                             1 
+D       torchU                          3
+D       paddedClothing                  3
+D       leatherClothing                 3
+D       studdedLeather	                3
+D       gauntlets	                      3
+D       leathergloves                   3
+D       skullcap                        3
+D       lightHelm                       3
+D       Buckler                         3
+D       BroadSword                      3
+R       215                             1
+R       215                             1
+R       216                             1
+R       216                             1
+R       217                             1
+R       217                             1
+R       218                             1
+R       218                             1
+R       219                             1
+R       219                             1
+R       220                             1
+R       220                             1
+R       221                             1
+R       221                             1
+R       222                             8
+R       222                             8
+R       222                             8
+D       arrows_20                       8
+D       arrows_inc_20                   4
+D       bolts_20                        8
+D       bolts_inc_20                    4
+R       224                             8
+R       224                             8
+R       226                             1
+R       226                             1
+R       226                             1
+R       226                             1
+R       231                             1
+R       231                             1
+R       231                             1
+

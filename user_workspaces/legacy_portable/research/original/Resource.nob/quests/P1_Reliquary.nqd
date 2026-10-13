@@ -1,0 +1,14 @@
+##########################################################
+#                                                        #
+# P1_Reliquary.nqd - Quest definition.                   #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: Y. Borckmans  07/12/99                         #
+#                                                        #
+##########################################################
+
+QUEST 0 0 Q_RELIQUARY_S Q_RELIQUARY_L reliquaryStJohnIcon.tga 1000
+

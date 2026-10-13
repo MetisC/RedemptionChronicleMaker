@@ -1,0 +1,80 @@
+##########################################################
+#                                                        #
+# London.nsc - Chronicle script for the London episode.  #
+#                                                        #
+##########################################################
+#                                                        #
+# (c) 1999 Nihilistic Software, Inc. All rights reserved #
+#                                                        #
+# Author: Y. Borckmans  04/19/99                         #
+#                                                        #
+##########################################################
+
+
+location SocietyOfLeopold3      L1_SOC3.nil          	SOC3_27_2.nsd  	mapLondonWest.nui   mapSocietyOfLeopold   0x0020
+location SocietyOfLeopold2      L1_SOC2.nil          	SOC2_27_2.nsd  	mapLondonWest.nui   mapSocietyOfLeopold   0x0020
+location SocietyOfLeopold1      L1_SOC1.nil		      SOC1_27_2.nsd  	mapLondonWest.nui   mapSocietyOfLeopold   0x0020
+
+location WestLondon             l1_west.nil		      WEST_28_1.nsd  	mapLondonWest.nui   mapLondonWestMain     0x0060
+location EastLondon             l1_east.nil           EAST_28_1.nsd  	mapLondonEast.nui   mapLondonEastMain     0x0060
+
+location TowerOfLondon1         l1_tol1.nil           TOL1_30_1.nsd  	mapLondonEast.nui   mapTowerOfLondon      0x0
+location TowerOfLondon2         l1_tol2.nil           TOL2_30_1.nsd  	mapLondonEast.nui   mapTowerOfLondon      0x0
+location TowerOfLondon3         l1_tol3.nil           TOL3_30_1.nsd  	mapLondonEast.nui   mapTowerOfLondon      0x0
+location TowerOfLondon4         l1_tol4.nil           TOL4_30_1.nsd  	mapLondonEast.nui   mapTowerOfLondon      0x0
+
+location Bridge                 l1_havn.nil        	HAVN_28_1.nsd  	mapLondonEast.nui   mapBridgeHaven        0x00b4
+location Brothel                l1_brot.nil           BROT_29_1.nsd  	mapLondonEast.nui   mapSetiteBrothel      0x0020
+
+location SetiteTemple1          L1_SET1.nil           SET1_29_2.nsd  	mapLondonEast.nui   mapSetiteBrothel      0x0
+location SetiteTemple2          L1_SET2.nil           SET2_29_2.nsd  	mapLondonEast.nui   mapSetiteBrothel      0x0
+location SetiteTemple3          L1_SET3.nil           SET3_29_2.nsd  	mapLondonEast.nui   mapSetiteBrothel      0x0
+location SetiteTemple4          L1_SET4.nil           SET4_29_2.nsd  	mapLondonEast.nui   mapSetiteBrothel      0x0020
+
+location CurioShop              L1_CURI.nil          	CURI_28_4.nsd  	mapLondonWest.nui   mapCurioShop          0x0020
+location ClubTenebrae           L1_TEN1.nil          	TEN1_28_1.nsd  	mapLondonWest.nui   mapClubTenebrae       0x0020
+location CargoShip      	     L1_CARG.nil          	CARG_32_1.nsd     mapLondonEast.nui   mapStMagdalena        0x0020
+
+# WestLondon exits
+exit	WestLondon,0		SocietyOfLeopold1,0
+exit    WestLondon,1            CurioShop,0
+exit    WestLondon,2            EastLondon,0
+exit	WestLondon,3		ClubTenebrae,0
+
+# EastLondon exits
+exit    EastLondon,1            TowerOfLondon1,0			0x1
+exit    EastLondon,2            Bridge,0
+exit    EastLondon,3            CargoShip,0				0x1
+exit    EastLondon,4            Brothel,0				0x1
+
+# TowerOfLondon exits
+exit    TowerOfLondon1,1        TowerOfLondon2,0
+exit    TowerOfLondon2,1        TowerOfLondon3,0
+exit    TowerOfLondon3,1        TowerOfLondon4,0
+
+# Brothel exits
+exit    Brothel,1               SetiteTemple1,0				0x1
+
+# SetiteTemple exits
+exit    SetiteTemple1,1         SetiteTemple2,0
+exit    SetiteTemple2,1         SetiteTemple3,0
+exit    SetiteTemple3,1         SetiteTemple4,0
+
+# SocietyOfLeopold exits
+
+exit SocietyOfLeopold3,1        SocietyOfLeopold2,0
+exit SocietyOfLeopold2,1        SocietyOfLeopold1,1
+	
+
+# note, SocietyOfLeopold3,0 is the chronicle entrance!
+
+##########################################################
+# Chronicle Settings
+##########################################################
+
+script   LondonChronicle
+metafile london.nmf
+portal   Bridge 15
+flags    0x9
+
+##########################################################

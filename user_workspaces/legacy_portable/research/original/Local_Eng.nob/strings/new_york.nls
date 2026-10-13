@@ -1,0 +1,228 @@
+// ****************************************************************************
+//
+// NEW_YORK.NLS
+//
+// New York-specific string table
+//
+// ****************************************************************************
+
+// ............................................................................ 
+// Quests
+// ............................................................................ 
+
+Q_GETACCESSCODES_S		Get the Warehouse Access Codes.
+Q_GETACCESSCODES_L		Explore the streets of New York to gain information about the access codes.
+Q_TRANSPONDER_S			Attach Transponder Uplink.
+Q_TRANSPONDER_L			Find FBI CC Line #204 in the sewers beneath the city.
+Q_USEACCESSCODES_S		Use Access Codes to Enter Warehouse.
+Q_USEACCESSCODES_L		Use the Access Codes to enter the warehouse in the Docks Area of New York.
+Q_FINDALEXANDRA_S		Find Alexandra.
+Q_FINDALEXANDRA_L		Locate the Barclay South Storage Room and talk to Alexandra.
+Q_FINDORSI_S			Find Orsi.
+Q_FINDORSI_L			Find Orsi's office in the upper levels of the factory.
+Q_INFILTRATEFACTORY_S	Infiltrate Orsi Factory.
+Q_INFILTRATEFACTORY_L	Infiltrate Orsi's Factory in New York's Uptown.
+Q_ENTERCATHEDRAL_S		Enter the Cathedral of Flesh.
+Q_ENTERCATHEDRAL_L		Enter the Cathedral of Flesh hidden beneath an abandoned church in New York's Uptown.
+Q_DESTROYVUKODLAK_S		Destroy Vukodlak.
+Q_DESTROYVUKODLAK_L		Defeat the Tzimisce Methuselah Vukodlak in his Cathedral of Flesh.
+Q_ORSIPENTHOUSE_S       Enter Orsi's Penthouse.
+Q_ORSIPENTHOUSE_L       Find and gain entry into Orsi's Penthouse in the Barclay South located in New York's Uptown.
+
+
+// ............................................................................ 
+// Levels
+// ............................................................................ 
+NEWYORKDOCKS			Downtown New York (Docks Area)
+NEWYORKUPTOWN			Uptown New York
+ORSIFACTORY1			Orsi International 1
+ORSIFACTORY2			Orsi International 2
+ORSIFACTORY3            Orsi International 3
+ORSIFACTORY4            Orsi International 4
+SEWERS1					Sewers Level 1
+SEWERS2                 Sewers Level 2
+SEWERS3                 Sewers Level 3
+SEWERS4                 Sewers Level 4
+GIOVANNIWAREHOUSE1		Giovanni Warehouse 1
+GIOVANNIWAREHOUSE2      Giovanni Warehouse 2
+GIOVANNIWAREHOUSE3      Giovanni Warehouse 3
+CATHEDRALOFFLESH1		Cathedral of Flesh 1
+CATHEDRALOFFLESH2       Cathedral of Flesh 2
+CATHEDRALOFFLESH3       Cathedral of Flesh 3
+GUNHAVEN				Gun Haven
+ORSIPENTHOUSE			Orsi's Penthouse Suite
+NEWMOON					The New Moon
+DEVNULLAPARTMENT		Dev/Null's Apartment
+BARCLAYLOBBY			The Barclay South Lobby
+BARCLAYSTORAGEROOM		The Barclay South Storage Room
+
+// ............................................................................ 
+// Scenes
+// ............................................................................ 
+
+DOCK_33_1S				Downtown New York (Docks Area)
+DOCK_33_1L				Scene 33.1 - Downtown New York (Docks Area)
+UTWN_33_1S				Uptown New York
+UTWN_33_1L				Scene 33.1 - Uptown New York
+DEVN_33_2S				Dev/Null's Apartment 
+DEVN_33_2L				Scene 33.3 - Dev/Null's Apartment
+LOBY_33_1S				The Barclay South Lobby 
+LOBY_33_1L				Scene 33.1 - The Barclay South Lobby
+GUNH_35_1S				Gun Haven
+GUNH_35_1L				Scene 35.1 - Gun Haven
+SEW1_35_1S				Sewers Level 1
+SEW1_35_1L				Scene 35.1 - Sewers Level 1
+SEW2_35_1S				Sewers Level 2
+SEW2_35_1L				Scene 35.1 - Sewers Level 2
+SEW3_35_1S				Sewers Level 3
+SEW3_35_1L				Scene 35.1 - Sewers Level 3
+SEW4_35_1S				Sewers Level 4
+SEW4_35_1L				Scene 35.1 - Sewers Level 4
+DEVN_36_1S				Dev/Null's Apartment
+DEVN_36_1L				Scene 36.1 - Dev/Null's Apartment
+WAR1_36_1S				Giovanni Warehouse 1
+WAR1_36_1L				Scene 36.1 - Giovanni Warehouse 1
+WAR2_36_1S				Giovanni Warehouse 2
+WAR2_36_1L				Scene 36.1 - Giovanni Warehouse 2
+WAR3_36_1S				Giovanni Warehouse 3
+WAR3_36_1L				Scene 36.1 - Giovanni Warehouse 3
+DOCK_37_4S				Downtown New York (Docks Area)
+DOCK_37_4L				Scene 37.4 - Downtown New York (Docks Area)
+FAC1_37_4S				Orsi International 1
+FAC1_37_4L				Scene 37.4 - Orsi International 1
+FAC2_37_4S				Orsi International 2
+FAC2_37_4L				Scene 37.4 - Orsi International 2
+FAC3_37_4S				Orsi International 3
+FAC3_37_4L				Scene 37.4 - Orsi International 3
+FAC4_37_4S				Orsi International 4
+FAC4_37_4L				Scene 37.4 - Orsi International 4
+NEWM_37_4S				The New Moon
+NEWM_37_4L				Scene 37.4 - The New Moon
+LOBY_37_4S				The Barclay South Lobby
+LOBY_37_4L				Scene 37.4 - The Barclay South Lobby
+ORSI_37_4S				Orsi's Penthouse Suite
+ORSI_37_4L				Scene 37.4 - Orsi's Penthouse Suite
+LOBY_38_1S				The Barclay South Lobby
+LOBY_38_1L				Scene 38.1 - The Barclay South Lobby
+STOR_38_1S				The Barclay South Storage Room
+STOR_38_1L				Scene 38.1 - The Barclay South Storage Room
+UTWN_38_1S				Uptown New York
+UTWN_38_1L				Scene 38.1 - Uptown New York
+UTWN_40_1S				Uptown New York
+UTWN_40_1L				Scene 40.1 - Uptown New York
+FLS1_40_1S				Cathedral of Flesh 1
+FLS1_40_1L	            Scene 40.1 - Cathedral of Flesh 1
+FLS2_40_1S	            Cathedral of Flesh 2
+FLS2_40_1L	            Scene 40.1 - Cathedral of Flesh 2
+FLS3_40_1S	            Cathedral of Flesh 3
+FLS3_40_1L	            Scene 40.1 - Cathedral of Flesh 3
+
+// ............................................................................ 
+// Map labels
+// ............................................................................ 
+
+mapNYDocksMain       Downtown New York (Docks Area)
+mapGiovanniWarehouse Giovanni Warehouse
+mapSewers            NYC Sewers
+mapDevNulls          Dev/Null's Apartment
+mapGunHaven          Gun Haven
+mapNYMidtownMain     Uptown New York
+mapCathedralOfFlesh  Cathedral of Flesh
+mapOrsisFactory      Orsi International
+mapBarclaySouth      The Barclay South
+mapNewMoon           The New Moon
+
+// ............................................................................ 
+// Description ID for Doors/Exits
+// ............................................................................ 
+
+DOCK_EXIT_DESC_1	   Gun Haven
+DOCK_EXIT_DESC_1_L	Gun Haven (Locked)
+DOCK_EXIT_DESC_2	   Sewers
+DOCK_EXIT_DESC_2_L	Sewers (Locked)
+DOCK_EXIT_DESC_3	   Cab to New York Uptown
+DOCK_EXIT_DESC_3_L	Cab to New York Uptown (Locked)
+DOCK_EXIT_DESC_4	   Dev/Null's apartment
+DOCK_EXIT_DESC_4_L	Dev/Null's apartment (Locked)
+DOCK_EXIT_DESC_5	   Giovanni Warehouse
+DOCK_EXIT_DESC_5_L	Giovanni Warehouse (Locked)
+	
+UTWN_EXIT_DESC_0	   Cab to New York Docks
+UTWN_EXIT_DESC_0_L	Cab to New York Docks (Locked)
+UTWN_EXIT_DESC_1	   Sewers
+UTWN_EXIT_DESC_1_L	Sewers (Locked)
+UTWN_EXIT_DESC_2	   Lobby of Barclay South
+UTWN_EXIT_DESC_2_L	Lobby of Barclay South (Locked)
+UTWN_EXIT_DESC_3	   Orsi's Factory
+UTWN_EXIT_DESC_3_L	Orsi's Factory (Locked)
+UTWN_EXIT_DESC_4	   New Moon
+UTWN_EXIT_DESC_4_L	New Moon (Locked)
+UTWN_EXIT_DESC_5	   Cathedral of Flesh
+UTWN_EXIT_DESC_5_L	Cathedral of Flesh (Locked)
+UTWN_EXIT_DESC_6	   Barclay South storage room
+UTWN_EXIT_DESC_6_L	Barclay South storage room (Locked)
+	
+FAC1_EXIT_DESC_0	   Factory Sublevel 1
+FAC1_EXIT_DESC_0_L	Factory Sublevel 1 (Locked)
+FAC1_EXIT_DESC_1	   Factory Sublevel 2
+FAC1_EXIT_DESC_1_L	Factory Sublevel 2 (Locked)
+FAC2_EXIT_DESC_0	   Factory Sublevel 2
+FAC2_EXIT_DESC_0_L	Factory Sublevel 2 (Locked)
+FAC2_EXIT_DESC_1	   Factory Sublevel 3
+FAC2_EXIT_DESC_1_L	Factory Sublevel 3 (Locked)
+FAC3_EXIT_DESC_0	   Factory Sublevel 3
+FAC3_EXIT_DESC_0_L	Factory Sublevel 3 (Locked)
+FAC3_EXIT_DESC_1	   Factory Sublevel 4
+FAC3_EXIT_DESC_1_L	Factory Sublevel 4 (Locked)
+
+FAC4_EXIT_DESC_0	   New York Uptown
+FAC4_EXIT_DESC_0_L	New York Uptown (Locked)
+FAC4_EXIT_DESC_1	   To Factory Level 1
+FAC4_EXIT_DESC_1_L	To Factory Level 1 (Locked)
+FAC4_EXIT_DESC_3	   To Factory Level 2
+FAC4_EXIT_DESC_3_L	To Factory Level 2 (Locked)
+FAC4_EXIT_DESC_5	   To Factory Level 3
+FAC4_EXIT_DESC_5_L	To Factory Level 3 (Locked)
+	
+LOBY_EXIT_DESC_1	   New York Uptown
+LOBY_EXIT_DESC_1_L	New York Uptown (Locked)
+LOBY_EXIT_DESC_2	   Orsi's Penthouse
+LOBY_EXIT_DESC_2_L	Orsi's Penthouse (Locked)
+	
+SEW1_EXIT_DESC_0	   New York Docks
+SEW1_EXIT_DESC_1	   Down to New York Sewers 2
+SEW2_EXIT_DESC_0	   Up to New York Sewers 1
+SEW2_EXIT_DESC_1	   Down to New York Sewers 3 
+SEW3_EXIT_DESC_0	   Up to New York Sewers 2
+SEW3_EXIT_DESC_1	   Down to New York Sewers 4 
+SEW4_EXIT_DESC_0	   Up to New York Sewers 3
+SEW4_EXIT_DESC_1	   New York Uptown
+	
+WAR1_EXIT_DESC_1	   New York Docks
+WAR1_EXIT_DESC_2	   Down to Warehouse 2
+WAR2_EXIT_DESC_1	   Up to Warehouse 1
+WAR2_EXIT_DESC_2	   Down to Warehouse 3
+WAR3_EXIT_DESC_1	   Up to Warehouse 2
+WAR3_EXIT_DESC_2	   Up to Warehouse 1
+	
+GUNH_EXIT_DESC_1	   New York Docks
+GUNH_EXIT_DESC_1_L   New York Docks (Locked)
+	
+NEWM_EXIT_DESC_1	   New York Uptown
+NEWM_EXIT_DESC_1_L	New York Uptown (Locked)
+	
+STOR_EXIT_DESC_1	   New York Uptown
+STOR_EXIT_DESC_1_L	New York Uptown (Locked)
+	
+DEVN_EXIT_DESC_1	   New York Docks
+DEVN_EXIT_DESC_1_L	New York Docks (Locked)
+	
+ORSI_EXIT_DESC_1	   Barclay South Lobby
+ORSI_EXIT_DESC_1_L	Barclay South Lobby (Locked)
+
+FLS1_EXIT_DESC_0     New York Uptown
+FLS1_EXIT_DESC_1     Down to Cathedral of Flesh 2
+FLS1_EXIT_DESC_2     Cathedral Bowels
+FLS1_EXIT_DESC_2_L   Cathedral Bowels (Locked)
+FLS2_EXIT_DESC_0     Up to Cathedral of Flesh 1
+FLS3_EXIT_DESC_0     Up to Cathedral of Flesh 1

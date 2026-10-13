@@ -1,0 +1,199 @@
+// ****************************************************************************
+//
+// LONDON.NLS
+//
+// London-specific string table
+//
+// ****************************************************************************
+
+// ............................................................................ 
+// Quests
+// ............................................................................ 
+
+Q_ESCAPESOCIETY_S				Escape from Society of Leopold.
+Q_ESCAPESOCIETY_L				Free yourself from the clutches of the Vampire Hunters and escape to the streets of London.
+Q_FINDSHIPPINGSOURCE_S			Find the source of the shipments.
+Q_FINDSHIPPINGSOURCE_L			Explore London for clues about the shipments of earth from Prague.
+Q_INFILTRATESETITE_S			Infiltrate Setite lair.
+Q_INFILTRATESETITE_L			Infiltrate the Setite haven hidden within the theatre in East London.
+Q_FINDHEART_S					Find Lucretia's Heart.
+Q_FINDHEART_L					Retrieve Lucretia's Heart from the Tower Of London in East London.
+Q_RETURNHEART_S					Return to Lucretia.
+Q_RETURNHEART_L 		        Barter with Lucretia to learn the location of the shipments and free Lily of her Blood Bond.
+Q_BOARDMAGDELENA_S		        Board the St. Magdelena.
+Q_BOARDMAGDELENA_L		        Sneak aboard the cargo ship St. Magdelena in East London to gain passage to America.
+
+// ............................................................................ 
+// Levels
+// ............................................................................ 
+SOCIETYOFLEOPOLD3				The Society of Leopold 3
+SOCIETYOFLEOPOLD2				The Society of Leopold 2
+SOCIETYOFLEOPOLD1				The Society of Leopold 1
+WESTLONDON						West London
+EASTLONDON						East London
+TOWEROFLONDON1					The Tower of London 1
+TOWEROFLONDON2					The Tower of London 2
+TOWEROFLONDON3                  The Tower of London 3
+TOWEROFLONDON4                  The Tower of London 4
+BRIDGE							Bridge Haven
+BROTHEL							Theatre Brothel
+SETITETEMPLE1					Setite Temple 1
+SETITETEMPLE2					Setite Temple 2
+SETITETEMPLE3					Setite Temple 3
+SETITETEMPLE4					Setite Temple 4
+CURIOSHOP						Curio Shop
+CLUBTENEBRAE					Club Tenebrae
+CARGOSHIP						St. Magdalena Cargo Ship
+
+// ............................................................................ 
+// Scenes
+// ............................................................................ 
+
+SOC3_27_2S						The Society of Leopold 3
+SOC3_27_2L                      Scene 27.2 - The Society of Leopold 3
+SOC2_27_2S                      The Society of Leopold 2
+SOC2_27_2L                      Scene 27.2 - The Society of Leopold 2
+SOC1_27_2S                      The Society of Leopold 1
+SOC1_27_2L                      Scene 27.2 - The Society of Leopold 1
+WEST_28_1S                      West London
+WEST_28_1L                      Scene 28.1 - West London
+WEST_28_4S                      West London
+WEST_28_4L                      Scene 28.4 - West London
+EAST_28_1S                      East London
+EAST_28_1L                      Scene 28.1 - East London
+EAST_28_4S                      East London
+EAST_28_4L                      Scene 28.4 - East London
+HAVN_28_1S						Bridge Haven
+HAVN_28_1L						Scene 28.1 - Bridge Haven
+HAVN_28_4S						Bridge Haven
+HAVN_28_4L						Scene 28.4 - Bridge Haven
+TEN1_28_1S						Club Tenebrae
+TEN1_28_1L						Scene 28.1 - Club Tenebrae
+CURI_28_4S						Curio Shop
+CURI_28_4L						Scene 28.4 - Curio Shop
+BROT_29_1S						Theatre Brothel
+BROT_29_1L						Scene 29.1 - Theatre Brothel
+SET1_29_2S						Setite Temple 1
+SET1_29_2L						Scene 29.2 - Setite Temple 1
+SET2_29_2S						Setite Temple 2
+SET2_29_2L						Scene 29.2 - Setite Temple 2 
+SET3_29_2S						Setite Temple 3
+SET3_29_2L                      Scene 29.2 - Setite Temple 3
+SET4_29_2S						Setite Temple 4
+SET4_29_2L                      Scene 29.2 - Setite Temple 4
+EAST_30_1S                      East London
+EAST_30_1L                      Scene 30.1 - East London
+TOL1_30_1S						Tower of London 1
+TOL1_30_1L						Scene 30.1 - Tower of London 1
+TOL2_30_1S						Tower of London 2
+TOL2_30_1L						Scene 30.1 - Tower of London 2
+TOL3_30_1S						Tower of London 3
+TOL3_30_1L						Scene 30.1 - Tower of London 3
+TOL4_30_1S						Tower of London 4
+TOL4_30_1L						Scene 30.1 - Tower of London 4
+BROT_31_1S						Theatre Brothel
+BROT_31_1L						Scene 31.1 - Theatre Brothel
+SET4_31_1S						Setite Brothel 4
+SET4_31_1L						Scene 31.1 - Setite Brothel 4
+EAST_32_1S                      East London
+EAST_32_1L                      Scene 32.1 - East London
+CARG_32_1S						St. Magdalena Cargo Ship
+CARG_32_1L                      Scene 32.1 - St. Magdalena Cargo Ship
+
+// ............................................................................ 
+// Map labels
+// ............................................................................ 
+
+mapLondonEastMain          East London
+mapSetiteBrothel           Theatre Brothel
+mapStMagdalena             St. Magdalena Cargo Ship
+mapBridgeHaven             Bridge Haven
+mapTowerOfLondon           Tower of London
+mapLondonWestMain          West London
+mapCurioShop               Curio Shop
+mapSocietyOfLeopold        Society of Leopold
+mapClubTenebrae            Club Tenebrae
+
+// ............................................................................ 
+// Description ID for Doors/Exits
+// ............................................................................ 
+
+SOC1_EXIT_DESC_1           West London
+SOC1_EXIT_DESC_1_L         West London (Locked)
+SOC3_EXIT_DESC_1				Up to Society of Leopold 2
+SOC3_EXIT_DESC_1_L			Up to Society of Leopold 2 (Locked)
+SOC2_EXIT_DESC_1				Down to Society of Leopold 3
+SOC2_EXIT_DESC_1_L			Down to Society of Leopold 3 (Locked)
+SOC2_EXIT_DESC_2				Up to Society of Leopold 1
+SOC2_EXIT_DESC_2_L			Up to Society of Leopold 1 (Locked)
+SOC1_EXIT_DESC_2				Down to Society of Leopold 2
+SOC1_EXIT_DESC_2_L			Down to Society of Leopold 2 (Locked)
+
+WEST_EXIT_DESC_0           Society of Leopold
+WEST_EXIT_DESC_0_L         Society of Leopold (Locked)
+WEST_EXIT_DESC_1           Curio Shop
+WEST_EXIT_DESC_1_L         Curio Shop (Locked)
+WEST_EXIT_DESC_2				Underground to East London
+WEST_EXIT_DESC_2_L			Underground to East London (Locked)
+WEST_EXIT_DESC_3           Club Tenebrae
+WEST_EXIT_DESC_3_L         Club Tenebrae (Locked)
+
+EAST_EXIT_DESC_0	        	Underground to West London
+EAST_EXIT_DESC_0_L	      Underground to West London (Locked)
+EAST_EXIT_DESC_1           Tower of London
+EAST_EXIT_DESC_1_L         Tower of London (Locked)
+EAST_EXIT_DESC_2           Bridge Haven
+EAST_EXIT_DESC_2_L         Bridge Haven (Locked)
+EAST_EXIT_DESC_3           Cargo Ship
+EAST_EXIT_DESC_3_L         Cargo Ship (Locked)
+EAST_EXIT_DESC_4           Brothel
+EAST_EXIT_DESC_4_L         Brothel (Locked)
+
+TOL1_EXIT_DESC_0           East London
+TOL1_EXIT_DESC_0_L         East London (Locked)
+TOL1_EXIT_DESC_1           Up to Tower of London 2
+TOL1_EXIT_DESC_1_L         Up to Tower of London 2 (Locked)
+TOL2_EXIT_DESC_0           Down to Tower of London 1
+TOL2_EXIT_DESC_0_L         Down to Tower of London 1 (Locked)
+TOL2_EXIT_DESC_1           Up to Tower of London 3
+TOL2_EXIT_DESC_1_L         Up to Tower of London 3 (Locked)
+TOL3_EXIT_DESC_0           Down to Tower of London 2
+TOL3_EXIT_DESC_0_L         Down to Tower of London 2 (Locked)
+TOL3_EXIT_DESC_1           Up to Tower of London 4
+TOL3_EXIT_DESC_1_L         Up to Tower of London 4 (Locked)
+TOL4_EXIT_DESC_0           Down to Tower of London 3
+TOL4_EXIT_DESC_0_L         Down to Tower of London 3 (Locked)
+
+
+BROT_EXIT_DESC_1           East London
+BROT_EXIT_DESC_1_L         East London (Locked)
+BROT_EXIT_DESC_2           Setite Temple
+BROT_EXIT_DESC_2_L         Setite Temple (Locked)
+
+SET1_EXIT_DESC_1           Brothel
+SET1_EXIT_DESC_1_L         Brothel (Locked)
+SET1_EXIT_DESC_2				Down to Setite Temple 2
+SET1_EXIT_DESC_2_L			Down to Setite Temple 2 (Locked)
+SET2_EXIT_DESC_1				Up to Setite Temple 1
+SET2_EXIT_DESC_1_L			Up to Setite Temple 1 (Locked)
+SET2_EXIT_DESC_2				Down to Setite Temple 3
+SET2_EXIT_DESC_2_L			Down to Setite Temple 3 (Locked)
+SET3_EXIT_DESC_1				Up to Setite Temple 2
+SET3_EXIT_DESC_1_L			Up to Setite Temple 2 (Locked)
+SET3_EXIT_DESC_2				Down to Setite Temple 4
+SET3_EXIT_DESC_2_L			Down to Setite Temple 4 (Locked)
+SET4_EXIT_DESC_1				Up to Setite Temple 3
+SET4_EXIT_DESC_1_L		   Up to Setite Temple 3 (Locked)
+
+CARG_EXIT_DESC_1           East London
+CARG_EXIT_DESC_1_L         East London (Locked)
+
+HAVN_EXIT_DESC_1           East London
+HAVN_EXIT_DESC_1_L         East London (Locked)
+
+CURI_EXIT_DESC_1           West London
+CURI_EXIT_DESC_1_L         West London (Locked)
+
+TEN1_EXIT_DESC_1           West London
+TEN1_EXIT_DESC_1_L         West London (Locked)
+

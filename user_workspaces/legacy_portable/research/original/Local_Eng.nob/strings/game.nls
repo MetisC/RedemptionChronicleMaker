@@ -1,0 +1,1017 @@
+// ****************************************************************************
+//
+// GAME.NLS
+//
+// General purpose string table
+//
+// Leave the object messages at the top, it is easier to select them... [YB]
+//
+// ****************************************************************************
+//
+// ............................................................................ 
+// Objects
+// ............................................................................ 
+// these should disappear
+_ACTOR                          Actor, needs final definition!
+_ITEM                           Item, needs final definition!
+_PROP                           Prop, needs final definition!
+_REGION                         Region, needs final definition!
+_PROJECTILE                     Projectile, needs final definition!
+_EMITTER                        Emitter, needs final definition!
+
+
+// place party members first here
+
+CHRISTOF                        Christof
+CHRIS                           Chris
+ERIK                            Erik
+SERENA                          Serena
+WILHEM                          Wilhem
+PINK                            Pink
+LILY                            Lily
+SAMUEL                          Samuel
+
+// then cast actors
+ABDUL                           Abdul Al-Hazim
+AHZRA                           Ahzra
+ALEXANDRA                       Alexandra Ruthven
+ALLESANDRO                      Allesandro Giovanni
+ANEZKA                          Anezka
+ANEZKAHEAD                      Diary Speaker
+ARCHBISHOP                      Archbishop Geza
+BRANDL                          Prince Brandl
+ARDAN                           Ardan
+COSMAS                          Cosmas
+COUNTORSI                       Count Orsi
+ORSI                            Orsi
+DARKKNIGHT                      Dark Teutonic Knight
+DEVNULL                         Dev/Null
+ECATERINA                       Ecaterina
+ECAT                            Ecaterina
+EMELIAGERARD                    Emelia Gerard
+ETRIUS                          Etrius
+FATHERLEOPOLD                   Father Leopold
+FREDVARNEY                      Fred Varney
+FRIEDRICH                       Friedrich
+GEZA                            Archbishop Geza
+GARINOL                         Garinol
+GEORGETHORNE                    George Thorne
+INTERPOLAGENT                   Interpol Agent
+GEN_DA_MAGICSHOP                Magic Shopkeeper
+GEN_DA_WEAPSHOP                 Weapons Shopkeeper
+GEN_MD_MAGICSHOP                Magic Shopkeeper
+GEN_MD_WEAPSHOP                 Weapons Shopkeeper
+HANK                            Hank Winchester
+HERMIT                          Forest Hermit
+ILIG                            Ilig
+JOSEF                           Josef
+KAZI                            Kazi
+LIBUSSA                         Libussa
+LUCRETIA                        Lucretia
+LUTHERBLACK                     Luther
+MAQQABAH                        Maqqabah the Golem
+MENDEL                          Mendel
+MERCURIO                        Mercurio
+NOSFERATUBOSS                   Othelios
+OTTO                            Otto
+PRINCERUDOLF                    Prince Brandl
+SUMNER                          Sumner Montague
+TETA                            Teta
+UNORNA                          Unorna
+UNORNAACTOR                     Unorna
+UNDERPRINCE                     Underprince
+VACLAV                          Vaclav
+VIRSTANIA                       Virstania
+VUKODLAK                        Vukodlak
+ZIL                             Zil
+ZULO                            Zulo
+STORYTELLER                     Storyteller
+
+
+// other actors
+PLAYER							Player
+
+BARKEEP                         Barkeep
+BARTENDER                       Bartender
+BOBBIE                          Bobbie
+BROTHELPATRON                   Brothel Patron
+BEGGAR                          Beggar
+CAITIFF		                    Caitiff
+CAPPA1                          Cappadocian
+CAPPA2                          Cappadocian
+CORPSEMINION                    Corpse Minion
+CLUBTENDANCER                   Club Dancer
+DABART1                         Bartender
+DABART2                         Bartender
+MDBART1                         Bartender
+DANCER                          Club Dancer
+DANOS	                          Nosferatu
+DATREM2	                       Tremere
+DRUNK                           Drunk
+GIO		                       Giovanni
+GOTHGIRL                        Goth Girl
+GOON                            Goon
+GHOUL                           Ghoul
+HIGHWAYMAN                      Highwayman
+HWMEN			                    Highwayman
+HOMELESSLADY                    Homeless Lady
+INTERPOL1							  Interpol Agent
+KNIGHTOFSTJOHN                  Knight Of St John
+LADY                            Lady
+LONDON1								  London Resident
+MDNOS1								  Nosferatu
+MDTZIM								  Tzimisce
+MDVICT1								  Victim
+MDVICT2								  Victim
+DAVICT1								  Victim
+MERCHANT                        Merchant
+MILKMAID                        Milkmaid
+MONK                            Monk
+MUGGER                          Mugger
+NUN                             Nun
+NYPD                            Policeman
+NYC1									  NYC Resident
+NYC2									  NYC Resident
+NYCPD                           Policeman
+OLDMAN                          Old Man
+ORDEROFHERMES                   Order of Hermes
+ORVUS                           Orvus
+PED                             Pedestrian
+PRAGUE1								  Prague Resident
+PRAGUE2								  Prague Resident
+PRAGUE3								  Prague Resident
+PRAGUE4								  Prague Resident
+PRAGUEREB	                    Prague Rebel
+PRAGUESOLDIER                   Soldier
+PRAGUEMERCHANT						  Merchant
+PROSTITUTE                      Prostitute
+PROST1	                       Prostitute
+PROST2	                       Prostitute
+PROST3	                       Prostitute
+PREMYSL                         Premysl Revenant
+REV1			                    Revenant
+REV2			                    Revenant
+REV3			                    Revenant
+REV4			                    Revenant
+RUDOLFGUARD                     Prince's Guard
+SETITE2								  Setite
+SOLDIER                         Soldier
+SOCIETY1			                 Society of Leopold Member
+SOCIETY2			                 Society of Leopold Member
+SOCIETY3			                 Society of Leopold Member
+STJOHN			                 Knight Of St John
+STJOHN1			                 Knight Of St John
+STJOHN2			                 Knight Of St John
+STJOHN3			                 Knight Of St John
+STJOHN4			                 Knight Of St John
+STRANGER								  Stranger
+TEUTONIC			                 Teutonic Knight
+TEUTONICKNIGHT                  Teutonic Knight
+TEUTONICLORD                    Teutonic Lord
+TEUTONICCAPTAIN                 Teutonic Captain
+TREMEREAPPRENTICE               Tremere Apprentice
+TREMERENEONATE                  Tremere Neonate
+TREMEREREGENT                   Tremere Regent
+TREMERELORD                     Tremere Lord
+TREMEREPONTIFEX                 Tremere Pontifex
+TREMERECOUNCILOR                Tremere Councilor
+VIENNAGUARD                     Guard
+WEAPONSMITH                     Weaponsmith
+WORKER                          Lab Worker
+WRAITH                          Wraith
+VENTRUE								  Ventrue
+VIENNA1								  Vienna Resident
+VIRST									  Virstania
+ZOMBU                           Zombu
+ZOMBUEXP1                       Zombu Experiment
+ZOMBUEXP2                       Zombu Experiment
+
+WOLFFORM								  Wolf Form
+ASTRALPROJECTION					  Psychic Form
+
+// monsters/animals
+ALLIGATOR                       Ghoul Alligator
+BAT                             Bat
+CAT                             Cat
+CROW                            Crow
+DEMONHOUND                      Demonhound
+ELEMENTAL                       Elemental
+GARGOYLE                        Gargoyle
+GHOUL                           Ghoul
+GHOULSPIDER                     Ghoul Spider
+HOPPER                          Hopper
+SPIDERSACK                      Egg Sack
+GIANTCOBRA                      Giant Cobra
+GOLEM                           Golem
+HORSE                           Horse
+LASOMBRAGHOUL                   Lasombra Ghoul
+RAT                             Ghoul Rat
+RATLEADER                       Ghoul Rat Leader
+SKELETON                        Skeleton
+SMALLRAT                        Rat
+SPIDER                          Spider
+SZLACHTA                        Szlachta
+VIPER                           Viper
+VOZHD                           Vozhd
+WARGHOUL                        War Ghoul
+WEREWOLF                        Werewolf
+WOLF                            Wolf
+
+// Items
+GOLDBAG                         Bag of Gold
+VITAE                           Bottle of Vitae
+VITAEUNIDENTIFIED               Unknown Vitae
+VITAEDISEASED                   Diseased Vitae
+VITAEANTEDELUVIAN               Antedeluvian Vitae
+VITAEELDER                      Elder Vitae
+VITAEFAE                        Fae Vitae
+VITAEKINDRED                    Kindred Vitae
+VITAEWEREWOLF                   Werewolf Vitae
+BLOODPEARL                      Blood Pearl
+BLOODSTONE                      Blood Stone
+BLOODPOUCH                      Blood Pouch
+PLASMABAG                       Plasma Bag
+POTIONHEALTH                    Healing Salve
+POTIONMAJORHEALTH               Healing Elixir
+POTIONMINORHEALTH               Healing Ointment  
+POTIONMANA                      Mana Potion
+POTIONDISEASE                   Disease Vaccine
+POTIONPOISON                    Poison Antidote
+
+// Armors
+PADDEDCLOTHING                  Padded Clothing
+LEATHERCLOTHING                 Leather Armor
+STUDDEDLEATHER                  Studded Leather Armor
+SCALEMAIL                       Scalemail
+CHAINMAIL                       Chainmail
+HALFPLATE                       Half Plate
+PLATEMAIL                       Platemail
+CHESTPLATE                      Chest Plate
+LEATHERVEST                     Leather Vest
+LEATHERJACKET                   Leather Jacket
+REINFORCEDCLOTH                 Reinforced Clothing
+ARMORTSHIRT                     Armor Tshirt
+LIGHTBALLVEST                   Light Ballistic Vest
+MEDUIMBALLVEST                  Medium Ballistic Vest
+FLAKJACKET                      Flak Jacket
+TACTJACKET                      Tactical Jacket
+TAILOREDARMOR                   Tailored Armor
+NOMEXSUIT                       Fire-resistant Suit
+RAGS                            Rags
+CLOAK                           Cloak
+
+// Shields
+FOOTMANSHIELD                   Footman's Shield
+CAVALRYSHIELD                   Cavalry Shield
+LARGESHIELD                     Large Shield
+BUCKLER                         Buckler
+SHIELD                          Shield
+SHIELDELEC                      Insulated Shield
+SHIELDFIRE                      Insulated Shield
+SHIELDSUN                       Insulated Shield
+SHIELDCOLD                      Insulated Shield
+GREATSHIELD                     Great Shield
+GREATSHIELDELEC                 Insulated Great Shield
+GREATSHIELDFIRE                 Insulated Great Shield
+GREATSHIELDSUN                  Insulated Great Shield
+GREATSHIELDCOLD                 Insulated Great Shield
+RIOTSHIELD                      Riot Shield
+
+// head gear
+SKULLCAP                        Skullcap
+LIGHTHELM                       Light Helm
+LIGHTHELMELEC                   Insulated Light Helm
+LIGHTHELMFIRE                   Insulated Light Helm
+LIGHTHELMSUN                    Insulated Light Helm
+LIGHTHELMCOLD                   Insulated Light Helm
+FULLHELM                        Full Helm
+FULLHELMELEC                    Insulated Full Helm
+FULLHELMFIRE                    Insulated Full Helm
+FULLHELMSUN                     Insulated Full Helm
+FULLHELMCOLD                    Insulated Full Helm
+MOTOHELM                        Motorcycle Helmet
+ARMYHELM                        Helmet
+SWATHELM                        SWAT Helmet
+GOGGLES                         Light-enhancing Goggles
+
+// neck wear
+NECKGUARD                       Neckguard
+CHAINS                          Chains
+CHOKER                          Choker
+NECKLACE                        Necklace
+GOLDNECKLACE                    Gold Necklace
+SILVERNECKLACE                  Silver Necklace
+DIAMONDNECKLACE                 Diamond Necklace
+
+// hand wear
+GAUNTLETS                       Gauntlets
+GAUNTLETSHEAVY                  Heavy Gauntlets
+GAUNTLETSELEC                   Insulated Gauntlets
+GAUNTLETSFIRE                   Insulated Gauntlets
+GAUNTLETSCOLD                   Insulated Gauntlets
+LEATHERGLOVES                   Leather Gloves
+GLOVESELEC                      Insulated Gloves
+GLOVESFIRE                      Insulated Gloves
+GLOVESCOLD                      Insulated Gloves
+BRACELETS                       Bracelet
+GOLDBRACELETS                   Gold Bracelet
+SILVERBRACELETS                 Silver Bracelet
+DIAMONDBRACELETS                Diamond Bracelet
+
+// rings
+DIAMONDRING                     Diamond Ring
+GOLDRING                        Gold Ring
+ONYXBAND                        Onyx Band
+PEWTERRING                      Pewter Ring
+SILVERRING                      Silver Ring
+RING                            Ring
+
+// Weapons - swords
+BASTARDSWORD                    Bastard Sword
+BROADSWORD                      Broadsword
+CLAYMORE                        Claymore
+FALCHION                        Falchion
+FLAMBERGE                       Flamberge
+GREATSWORD                      Greatsword
+RAPIER                          Rapier
+SCIMITAR                        Scimitar
+MACHETE                         Machete
+
+// Enhanced swords
+BROADSWORDRUSTY                 Rusty Broadsword
+BASTARDSWORDFINE                Fine Bastard Sword
+BROADSWORDFINE                  Fine Broadsword
+CLAYMOREFINE                    Fine Claymore
+FALCHIONFINE                    Fine Falchion
+FLAMBERGEFINE                   Fine Flamberge
+GREATSWORDFINE                  Fine Greatsword
+RAPIERFINE                      Fine Rapier
+SCIMITARFINE                    Fine Scimitar
+BASTARDSWORDEXQ                 Exquisite Bastard Sword
+BROADSWORDEXQ                   Exquisite Broadsword
+CLAYMOREEXQ                     Exquisite Claymore
+FALCHIONEXQ                     Exquisite Falchion
+FLAMBERGEEXQ                    Exquisite Flamberge
+GREATSWORDEXQ                   Exquisite Greatsword
+RAPIEREXQ                       Exquisite Rapier
+SCIMITAREXQ                     Exquisite Scimitar
+BROADSWORDSILVER                Silver Broadsword
+
+// Axes
+BATTLEAXE                       Battle Axe
+HANDAXE                         Hand Axe
+AXE                             Hand Axe
+
+// Enhanced axes
+AXEFINE                         Fine Axe
+AXEEXQ                          Exquisite Axe
+AXERUSTY                        Rusty Axe
+AXESILVER                       Silver Axe
+BATTLEAXEFINE                   Fine Battle Axe
+BATTLEAXEEXQ                    Exquisite Battle Axe
+
+// Daggers
+DAGGER                          Dagger
+DIRK                            Dirk
+MORODAGGER                      Moro Dagger
+POIGNARD                        Poignard
+STAKE                           Stake
+BROKENBOTTLE                    Broken Bottle
+
+// Enhanced Daggers
+DAGGERRUSTY                     Rusty Dagger
+DAGGERFINE                      Fine Dagger
+DIRKFINE                        Fine Dirk
+MORODAGGERFINE                  Fine Moro Dagger
+POIGNARDFINE                    Fine Poignard
+DAGGEREXQ                       Exquisite Dagger
+DIRKEXQ                         Exquisite Dirk
+POIGNARDEXQ                     Exquisite Poignard
+MORODAGGEREXQ                   Exquisite Moro Dagger
+DAGGERPOISON                    Poisoned Dagger
+DIRKPOISON                      Poisoned Dirk
+MORODAGGERPOISON                Poisoned Moro Dagger
+POIGNARDPOISON                  Poison Poignard
+DAGGERSILVER                    Silver Dagger
+
+// Blunt weapons
+MACE                            Flanged Mace
+POINTYMACE                      Spiked Mace
+WARHAMMER                       Warhammer
+CLUB                            Club
+LEADPIPE                        Lead Pipe
+BASEBALLBAT                     Aluminum Bat
+BRASSKNUCKLES                   Brass Knuckles
+SAPGLOVES                       Sap Gloves
+
+// Enhanced blunt weapons
+MACEFINE                        Fine Flanged Mace
+POINTYMACEFINE                  Fine Spiked Mace
+WARHAMMERFINE                   Fine Warhammer
+MACEEXQ                         Exquisite Flanged Mace
+POINTYMACEEXQ                   Exquisite Spiked Mace
+WARHAMMEREXQ                    Exquisite Warhammer
+
+// Archery
+LONGBOW                         Longbow
+LONGBOWINC                      Incendiary Longbow
+SHORTBOW                        Short Bow
+SHORTBOWINC                     Incendiary Short Bow
+CROSSBOW                        Crossbow
+CROSSBOWINC                     Incendiary Crossbow
+CROSSBOWSILVER                  Silver Crossbow
+CROSSBOWMAG                     Magnesium Crossbow
+COMPOUNDBOW                     Compound Bow
+COMPOUNDBOWMAG                  Magnesium Compound Bow
+
+// Polearms
+HALBERD                         Halberd
+HALBERDFINE                     Fine Halberd
+HALBERDEXQ                      Exquisite Halberd
+BASTION                         Bastion
+BASTIONFINE                     Fine Bastion
+BASTIONEXQ                      Exquisite Bastion
+SPEAR                           Spear
+SPEARFINE                       Fine Spear
+SPEAREXQ                        Exquisite Spear
+LANCE                           Lance
+LANCEFINE                       Fine Lance
+LANCEEXQ                        Exquisite Lance
+PITCHFORK                       Pitchfork
+POLEAXE                         Poleaxe
+POLEAXEFINE                     Fine Poleaxe
+POLEAXEEXQ                      Exquisite Poleaxe
+QUARTERSTAFF                    Quarterstaff
+
+// firearms
+REVOLVER                        Revolver
+REVOLVERSIGHTED                 Sighted Revolver
+REVOLVERMODIFIED                Modified Revolver
+PISTOL                          Pistol
+PISTOLSIGHTED                   Sighted Pistol
+PISTOLMODIFIED                  Modified Pistol
+PISTOLDRAGONSBREATH             Dragonsbreath Pistol
+SUBMACHINEGUN                   Submachinegun
+SUBMACHINEGUNMODIFIED           Modified Submachinegun
+RIFLE                           Rifle
+RIFLESIGHTED                    Sighted Rifle
+RIFLEMODIFIED                   Modified Rifle
+ASSAULTRIFLE                    Assault Rifle
+ASSAULTRIFLESIGHTED             Sighted Assault Rifle
+ASSAULTRIFLEMODIFIED            Modified Assault Rifle
+SHOTGUN                         Shotgun
+SHOTGUNMODIFIED                 Modified Shotgun
+ROCKETLAUNCHER                  Rocket Launcher
+STAKEGUN                        Stake Gun
+GRENADELAUNCHER                 Grenade Launcher
+FLAMETHROWER                    Flamethrower
+CHAINSAW                        Chainsaw
+CHAINGUN                        Chaingun
+CHAINGUNMODIFIED                Modified Chaingun
+INCINERATOR                     Incinerator
+TASER                           Taser
+
+// ammo
+ARROW                           Arrow
+ARROWS05                        Arrows
+ARROWS10                        Arrows
+ARROWS20                        Arrows
+ARROWINC                        Incendiary-tipped Arrow
+ARROWSINC05                     Incendiary-tipped Arrows
+ARROWSINC10                     Incendiary-tipped Arrows
+ARROWSINC20                     Incendiary-tipped Arrows
+ARROWMAG                        Magnesium-tipped Arrow
+ARROWSMAG05                     Magnesium-tipped Arrows
+ARROWSMAG10                     Magnesium-tipped Arrows
+ARROWSMAG20                     Magnesium-tipped Arrows
+ASSAULTRIFLECLIP20              Assault Rifle Clip
+ASSAULTRIFLECLIP40              Assault Rifle Clip
+BOLT                            Crossbow Bolt
+BOLTS05                         Crossbow Bolts
+BOLTS10                         Crossbow Bolts
+BOLTS20                         Crossbow Bolts
+BOLTINC                         Incendiary-tipped Bolt
+BOLTSINC05                      Incendiary-tipped Bolts
+BOLTSINC10                      Incendiary-tipped Bolts
+BOLTSINC20                      Incendiary-tipped Bolts
+BOLTSILVER                      Silver-tipped Bolts
+BOLTMAG                         Magnesium-tipped Bolt
+BOLTMAG05                       Magnesium-tipped Bolts
+BOLTMAG10                       Magnesium-tipped Bolts
+BOLTMAG20                       Magnesium-tipped Bolts
+CHAINGUNROUNDS50                Chaingun Rounds
+CHAINGUNROUNDS100               Chaingun Rounds
+LAUNCHGRENADES                  Launch Grenades
+NAPALMTANK10                    Napalm Canisters
+NAPALMTANK20                    Napalm Canisters
+PISTOLCLIP                      Pistol Clip
+PISTOLCLIPDRAGON                Dragonsbreath Clip
+POWERCEL12                      Power Cel
+POWERCEL24                      Power Cel
+REVOLVERROUNDS                  Revolver Rounds
+RIFLECLIP11                     Rifle Clip
+RIFLECLIP22                     Rifle Clip
+ROCKETPACK01                    Rocket
+ROCKETPACK03                    Rockets
+SHOTGUNSHELLS10                 Shotgun Shells
+SHOTGUNSHELLS20                 Shotgun Shells
+STAKEGUNPACK01                  Stakegun Pack
+STAKEGUNPACK05                  Stakegun Pack
+STAKEGUNPACK10                  Stakegun Pack
+STAKEGUNPACK20                  Stakegun Pack
+SUBMACHINEGUNCLIP16             Submachinegun Clip
+SUBMACHINEGUNCLIP32             Submachinegun Clip
+
+// quick use weapons
+GREEKFIRE                       Greek Fire
+SHURIKEN                        Shuriken
+THROWINGKNIVES                  Throwing Knives
+MOLOTOVCOCKTAIL                 Molotov Cocktail
+FRAGGRENADE                     Fragmentation Grenade
+CONCGRENADE                     Concussion Grenade
+CHEMGRENADE                     Chemical Grenade
+PHOSGRENADE                     White Phosphorous Grenade
+SATCHELCHARGE                   Satchel Charge
+NAPALBOMB                       Napalm Bomb
+HOLYWATER                       Holy Water
+WAXENPOETICA                    Waxen Poetica
+
+// utility items
+FLASHLIGHT                      Flashlight
+FLARE                           Flare
+CELPHONE                        Cellular Phone
+MOTIONDETECTOR                  Motion Detector
+THERMALDETECTOR                 Thermal Detector
+
+// treasure
+DIAMONDS                        Diamonds
+EMERALDS                        Emeralds
+RUBIES                          Rubies
+SAPPHIRES                       Sapphires
+GOLDCOINS                       Gold Coins
+SILVERCOINS                     Silver Coins
+BONDS                           Bonds
+CASH                            Cash
+GOLDBULLION                     Gold Bullion
+GOLDWATCH                       Gold Watch
+SILVERWATCH                     Silver Watch
+
+// orphaned :(
+MAGNUM                          Magnum
+BRONZEARMOR                     Bronze Armor
+COMPOSITEBOW                    Composite Bow
+SCYTHE                          Scythe
+ARMOR                           Armor
+PUNCH                           Punch
+DEMOSHIELD                      Shield
+WOODBUCKLER                     Wood Buckler
+SUNSHIELD                       Sun Shield
+NORMANSHIELD                    Norman Shield
+
+// Projectiles
+XBOW_BOLT                       Crossbow Bolt
+ARROW                           Arrow
+
+// kindred artifacts
+AINKURNSWORD                    Ainkurn Sword
+MONOCLECLARITY_NI               Monocle
+MONOCLECLARITY                  Monocle of Clarity
+ARGENTBATON_NI                  Baton
+ARGENTBATON                     Argent Baton
+GANGRELEYE_NI                   Shrivelled Eye
+GANGRELEYE                      Gangrel Eye
+SIREFINGER_NI                   Index Finger
+SIREFINGER                      Sire's Index Finger
+BESERKERFANG_NI                 Fang
+BESERKERFANG                    Beserker Fang
+BLACKGLOVES_NI                  Gloves
+BLACKGLOVES                     Black Gloves
+HEARTSHIELD_NI                  Plate
+HEARTSHIELD                     HeartShield
+CONCOCTION                      Concoction
+FEMURELDER_NI                   Femur
+FEMURELDER                      Femur of an Elder Tzimisce
+GIANTSBLOOD                     Giant's Blood
+HANDCONRAD_NI                   Shrivelled Hand
+HANDCONRAD                      Hand of Conrad
+IVORYBOW                        Ivory Bow
+JORUM                           Jorum
+TONGUE                          Tongue
+CLOAKSHADOWS                    Cloak of Invisibility
+
+// lesser kindred artifacts
+AMULET                          Amulet
+AMULETDISCIPLINE                Discipline Amulet
+AMULETCONTROL                   Serenity Amulet
+AMULETINT                       Amulet of Intelligence
+AMULETPER                       Amulet of Perception
+AMULETWIT                       Amulet of Wits
+BLOODRING                       Blood Ring
+BLOODBRACELET                   Blood Bracelet
+BLOODNECKLACE                   Blood Necklace
+BRACELETCONTROL                 Serenity Bracelet
+BRACELETDISCIPLINE              Discipline Bracelet
+GAUNTLETACCURACY                Accuracy Gauntlets
+GAUNTLETDEX                     Gauntlets of Dexterity
+GAUNTLETDODGE                   Dodging Gauntlets
+GAUNTLETFORTITUDE               Fortitude Gauntlets
+GAUNTLETPOWER                   Power Gauntlets
+GAUNTLETSTA                     Gauntlets of Stamina
+GAUNTLETSTR                     Gauntlets of Strength
+RINGAPP                         Ring of Appearance
+RINGCHA                         Ring of Charisma
+RINGMAN                         Ring of Manipulation
+RINGCONTROL                     Serenity Ring
+RINGDISCIPLINE                  Discipline Ring
+
+// lesser artifact weapons
+WARHAMMERBERSERKER              Berserker Hammer
+BATTLEAXEBERSERKER              Berserker Axe
+BROADSWORDHOLY                  Blessed Broadsword
+GREATSWORDHOLY                  Blessed Greatsword
+MACEHOLY                        Blessed Mace
+POINTYMACEHOLY                  Blessed Spiked Mace
+BROADSWORDDREAD                 Dread Broadsword
+CLAYMOREDREAD                   Dread Claymore
+FALCHIONDREAD                   Dread Falchion
+FLAMBERGEDREAD                  Dread Flamberge
+GREATSWORDDREAD                 Dread Greatsword
+AXEEVIL                         Evil Axe
+SCIMITARFLAME                   Flaming Scimitar
+BROADSWORDFLAME                 Flaming Broadsword
+
+// lesser artifact armor
+LIGHTHELMHOLY                   Blessed Light Helm
+LIGHTHELMUNHOLY                 Unholy Light Helm
+FULLHELMHOLY                    Blessed Full Helm
+FULLHELMUNHOLY                  Unholy Full Helm
+SHIELDHOLY                      Blessed Shield
+SHIELDUNHOLY                    Unholy Shield
+GREATSHIELDHOLY                 Blessed Great Shield
+GREATSHIELDUNHOLY               Unholy Great Shield
+LEATHERCLOTHINGHOLY             Blessed Leather Armor
+STUDDEDLEATHERHOLY              Blessed Studded Leather Armor
+SCALEMAILHOLY                   Blessed Scalemail
+CHAINMAILHOLY                   Blessed Chainmail
+HALFPLATEHOLY                   Blessed Half Plate
+PLATEMAILHOLY                   Blessed Platemail
+LEATHERCLOTHINGUNHOLY           Unholy Leather Armor
+STUDDEDLEATHERUNHOLY            Unholy Studded Leather Armor
+SCALEMAILUNHOLY                 Unholy Scalemail
+CHAINMAILUNHOLY                 Unholy Chainmail
+HALFPLATEUNHOLY                 Unholy Half Plate
+PLATEMAILUNHOLY                 Unholy Platemail
+
+// kine artifacts
+HOLYRELIC                       Holy Relic
+ORBULAIN                        Orb of Ulain
+GRIFFINRING                     Griffin's Ring
+GAROUCLAW                       The Garou's Claw
+OILSTGEORGE                     Oil of St. George
+RINGCHRYSOSTOM                  Ring of Chrysostom
+MARTYRFIRE                      The Martyr's Fire
+DAGGERTHORNS                    Dagger of Thorns
+DOLOROUSNAIL                    The Dolorous Nail
+HOLYSTATUETTE                   Holy Statuette
+HOLYDAVID                       Holy Star of David
+HOLYCROSS                       Holy Cross
+
+// books, scrolls, journals
+BOOK                            Book
+BOOKS                           Books
+SCROLL                          Scroll
+JOURNAL                         Journal
+DOCUMENT                        Document
+
+THELONIUSJOURNAL                Thelonius' Journal
+LECOMTELETTER                   LeComte's Letter
+ANEZKALETTER                    Letter from Anezka
+ANEZKALETTER2                   Letter from Anezka
+CUTHBERTLETTER                  Sir Cuthbert's Letter to Christof
+LEDGER                          Big Al's Ledger
+
+COUNCILPROC1                    Council Proclamation #1
+COUNCILPROC2                    Council Proclamation #2
+COUNCILPROC3                    Council Proclamation #3
+COUNCILPROC4                    Council Proclamation #4
+LIBUSSAREPORT1                  Libussa Report #1
+LIBUSSAREPORT2                  Libussa Report #2
+LIBUSSAREPORT3                  Libussa Report #3
+LIBUSSAREPORT4                  Libussa Report #4
+
+SOCWORKJOURNAL1                 Worker Journal Entry #1
+SOCWORKJOURNAL2                 Worker Journal Entry #2
+SOCDOC1                         Data Printout #1
+SOCDOC2                         Data Printout #2
+SOCDOC3                         Data Printout #3
+SOCDOC4                         Allatius Journal Entry #1
+SOCDOC5                         Allatius Journal Entry #2
+SOCDOC6                         Allatius Journal Entry #3
+SOCDOC7                         Allatius Journal Entry #4
+SOCDOC8                         Allatius Journal Entry #5
+SOCDOC9                         Allatius Journal Entry #6
+
+// discipline scrolls
+SCROLLACIDICTOUCH               Scroll of Acidic Touch
+SCROLLATROPHY                   Scroll of Atrophy
+SCROLLAURAPERCEPTION            Scroll of Aura Perception
+SCROLLAWAKEN                    Scroll of Awaken
+SCROLLAWE                       Scroll of Awe
+SCROLLBECKONING                 Scroll of Beckoning
+SCROLLBLACKDEATH                Scroll of Black Death
+SCROLLBLOODDEXTERITY            Scroll of Blood Dexterity
+SCROLLBLOODHEALING              Scroll of Blood Healing
+SCROLLBLOODSTAMINA              Scroll of Blood Stamina
+SCROLLBLOODOFPOTENCY            Scroll of Blood Of Potency
+SCROLLBLOODRAGE                 Scroll of Blood Rage
+SCROLLBLOODSTRENGTH             Scroll of Blood Strength
+SCROLLCALLLIGHTNING             Scroll of Call Lightning
+SCROLLCELERITY                  Scroll of Celerity
+SCROLLCAULDRONOFBLOOD           Scroll of Cauldron Of Blood
+SCROLLCLOAKOFSHADOWS            Scroll of Cloak Of Shadows
+SCROLLCLOAKTHEGATHERING         Scroll of Cloak The Gathering
+SCROLLCOMMAND                   Scroll of Command
+SCROLLDARKHUNTER                Scroll of Dark Hunter
+SCROLLDECAY                     Scroll of Decay
+SCROLLDRAWINGOUT                Scroll of Drawing Out The Beast
+SCROLLDREADGAZE                 Scroll of Dread Gaze
+SCROLLEARTHMELD                 Scroll of Earth Meld
+SCROLLENTRANCEMENT              Scroll of Entrancement
+SCROLLEYESOFCHAOS               Scroll of Eyes Of Chaos
+SCROLLEYESOFTHEBEAST            Scroll of Eyes Of The Beast
+SCROLLEYESOFTHESERPENT          Scroll of Eyes Of The Serpent
+SCROLLFERALCLAWS                Scroll of Feral Claws
+SCROLLFERALWHISPERS             Scroll of Feral Whispers
+SCROLLFIREBALL                  Scroll of Fireball
+SCROLLFIRESTORM                 Scroll of Firestorm
+SCROLLFLAMERING                 Scroll of Flame Ring
+SCROLLFORTITUDE                 Scroll of Fortitude
+SCROLLHATCHVIPER                Scroll of Hatch The Viper
+SCROLLHEARTOFSTONE              Scroll of Heart Of Stone
+SCROLLHEIGHTENEDSENSES          Scroll of Heightened Senses
+SCROLLIGNOREFLAME               Scroll of Ignore Flame
+SCROLLIMMOLATE                  Scroll of Immolate
+SCROLLMAJESTY                   Scroll of Majesty
+SCROLLMESMERIZE                 Scroll of Mesmerize
+SCROLLMISTFORM                  Scroll of Mist Form
+SCROLLPASSION                   Scroll of Passion
+SCROLLPLAGUEWIND                Scroll of Plague Wind
+SCROLLPOSSESSION                Scroll of Possession
+SCROLLPOTENCE                   Scroll of Potence
+SCROLLPRISONOFICE               Scroll of Prison Of Ice
+SCROLLPSYCHICPROJECTION         Scroll of Psychic Projection
+SCROLLQUELLBEAST                Scroll of Quell The Beast
+SCROLLSHAMBLINGHORDES           Scroll of Shambling Hordes
+SCROLLSHAPEOFTHEBEAST           Scroll of Shape Of The Beast
+SCROLLSKINOFTHEADDER            Scroll of Skin Of The Adder
+SCROLLSPIRITSTOUCH              Scroll of Spirit's Touch
+SCROLLSUBSUMESPIRIT             Scroll of Subsume The Spirit
+SCROLLSUMMONELEMENTAL           Scroll of Summon Elemental
+SCROLLSUMMONSOUL                Scroll of Summon Soul
+SCROLLFORGETFULMIND             Scroll of The Forgetful Mind
+SCROLLTHEHAUNTING               Scroll of The Haunting
+SCROLLTHEFTVITAE                Scroll of Theft Of Vitae
+SCROLLTONGUEOFTHEASP            Scroll of Tongue Of The Asp
+SCROLLTORCH                     Scroll of Torch
+SCROLLTURNTODUST                Scroll of Turn To Dust
+SCROLLVIGORMORTIS               Scroll of Vigor Mortis
+SCROLLVOICEOFMADNESS            Scroll of Voice Of Madness
+SCROLLWALKTHEABYSS              Scroll of Walk The Abyss
+
+// numina scrolls
+NUMSCROLLFLASH                  Scroll of Flash
+NUMSCROLLINVISIBILITY           Scroll of Invisibility
+NUMSCROLLPRAYER					  Scroll of Prayer
+NUMSCROLLTRUEFAITH              Scroll of True Faith
+NUMSCROLLTRUESIGHT              Scroll of True Sight
+
+// discipline tomes
+TOMEANIMALISM                   Tome of Animalism
+TOMEAUSPEX                      Tome of Auspex
+TOMEBLOODPATH                   Tome of Thaumaturgy - Blood Magic
+TOMECELERITY                    Tome of Celerity
+TOMEDEMENTATION                 Tome of Dementation
+TOMEDOMINATE                    Tome of Dominate
+TOMEFORTITUDE                   Tome of Fortitude
+TOMEHANDSOFDESTRUCTION          Tome of Thaumaturgy - Hands Of Destruction
+TOMELUREOFFLAMES                Tome of Thaumaturgy - Lure Of Flames
+TOMEMORTIS                      Tome of Mortis
+TOMENUMINA                      Tome of Numina
+TOMEOBFUSCATE                   Tome of Obfuscate
+TOMEOBTENEBRATION               Tome of Obtenebration
+TOMEPOTENCE                     Tome of Potence
+TOMEPRESENCE                    Tome of Presence
+TOMEPROTEAN                     Tome of Protean
+TOMERITUALS                     Tome of Thaumaturgy - Blood Rituals
+TOMESERPENTIS                   Tome of Serpentis
+TOMEFAITH                       Tome of Faith
+
+// containers
+CHEST                           Treasure chest
+FOOTLOCKER                      Foot locker
+SUITCASE                        Suitcase
+CRATE                           Crate
+CARDBOARDBOX                    Cardboard box
+
+// quest Items
+LOCKET                          Locket of St. Jude
+NODFRAGMENT                     Book of Nod Fragment
+SHEM                            Maqqabah's Shem
+ECATERINAVITAE                  Ecaterina's Vitae
+RELIQUARY                       Reliquary of St. George
+INVITATION                      Invitation to Orsi's Celebration
+SHACKLES                        Luther's Shackles
+SKYLIGHTKEY                     Stephansdom Skylight Key
+ARCANULUM                       Arcanulum Pieces
+TREMEREAMULET                   Tremere Amulet
+ETRIUSJOURNAL                   Journal of Etrius
+IRONKEY                         Iron key to Tower of London
+LUCRETIAHEART                   Heart of Lucretia
+INTERPOLID                      Interpol IDs
+TRANSMITTER                     Dev/Null's Radio Transmitter
+ACCESSCODE                      Giovanni Warehouse Access Codes
+ORSIPORTRAIT                    Orsi Blood-portrait
+BLOODPALETTE                    Blood Palette
+ANATHEMAVITAE                   Vial of Anathema Vitae
+
+// mystery quest Items
+ARDANMANIFEST                   Ardan's Manifest
+BONEKEY                         Bone Key
+BLOODPACT                       Blood Pact
+GARINOLJOURNAL                  Garinol's Journal
+MERCURIOPLOT                    Mercurio's Plot
+LAMIASKULL                      Skull of the Lamia
+
+// Haven items
+SAVE                            Save
+VAULT                           Vault
+REST                            Rest
+PORTAL                          Walk The Abyss
+
+// Props
+APPARATUSWITHCORPSE             Apparatus With Corpse
+BANNER                          Banner
+BARREL                          Barrel
+BASKET                          Basket
+BENCH                           Bench
+BLOODVATS                       Destroy Blood Vats
+BOAT                            Boat
+BONES                           Bones
+BUCKET                          Bucket
+CANDELABRA                      Candelabra
+CANDLE                          Candle
+CARTEMPTY                       Empty Cart
+CARTFULL                        Full Cart
+CHARTBRAIN                      Brain Chart
+CHARTHEART                      Heart Chart
+CHARTMUSCLE                     Muscle Chart
+CHANDELIER                      Chandelier
+CHEST_GOLDISH                   Goldish Chest
+COFFIN                          Coffin
+COFFINLID                       Coffin Lid
+CORPSE                          Corpse
+CRUSHER                         Crusher
+CURTAIN                         Curtain
+DOOR                            Door
+FLAG                            Flag
+FLASK                           Flask
+FLASK_BLUE                      Blue Flask
+FLASK_GREEN                     Green Flask
+FLASK_RED                       Red Flask
+FLASK_TALLCYAN                  Tall Cyan Flask
+FLASK_TALLORANGE                Tall Orange Flask
+HOE                             Hoe
+LANTERN                         Lantern
+MINECART                        Mine Cart
+MINECART_AXEL                   Axel
+MINECART_DAMAGED                Damaged Mine Cart
+MINECART_WHEEL                  Wheel
+PICK                            Pick
+PITCHER                         Pitcher
+SAW                             Saw
+SEWERSKIFF                      Skiff
+SHOVEL                          Shovel
+SIGN                            Sign
+SKULL                           Skull
+SKULLCANDLES                    Skull to put candles on
+STONEHAND                       Stone Hand
+STONEGARGOYLE                   Stone Gargoyle
+TABLE                           Table
+TONGS                           Tongs
+TREE                            Tree
+TREEROOT                        Tree root
+
+// modern Props
+COMPUTER                        Computer
+HANDTRUCK                       Handtruck
+LAMP                            Lamp
+OILDRUM                         Oil Drum
+HAZDRUM                         Hazardous Material Drum
+PALETTEJACK                     Palette Jack
+PHONEBOOTH                      Phone Booth
+STANCHION                       Stanchion
+STREETLIGHT                     Street Light
+TRASHCAN                        Trash Can
+OTTOVAN				Otto's Van
+
+// ............................................................................ 
+// game messages
+// ............................................................................ 
+
+CODEX_TRAININGPICKUPSWORD       Using your mouse, left-click on the sword to pick it up.
+CODEX_TRAININGWEARSWORD         Open your Inventory Pane and place the sword in Christof's weapon hand.
+CODEX_TRAININGATTACKSZLACHTA    Click on the Szlachta to attack.
+
+CODEX_THREELEVERSHINT           Stay away from the light to open.
+CODEX_FIVEBUTTONDOOR            Look to the mirror.
+
+STE2_BUTTON1                    Button 1
+STE2_BUTTON2                    Button 2
+STE2_BUTTON3                    Button 3
+STE2_BUTTON4                    Button 4
+STE2_BUTTON5                    Button 5
+
+STE3_TIMER_5_SECONDS            You have 5 seconds to activate the second lever.
+STE3_PUZZLE_COMPLETE            Levers locked, doors opened.
+STE3_PUZZLE_RESET               Levers reset.
+
+HHX1_ARCPIECE1PLACED            Arcanulum piece placed.
+HHX1_ARCPIECE2PLACED            Arcanulum piece placed.
+HHX1_ARCPIECE3PLACED            Arcanulum piece placed.
+HHX1_ARCDOOROPENED              Arcanulum Door now allows passage to Etrius' chamber.
+HHX1_ARCDOORSTILLLOCKED         Arcanulum Door impassable - find the Arcanulum pieces to gain access.
+
+SEW1_LEVER1                     Release valve #1
+SEW1_LEVER2                     Release valve #2
+SEW1_LEVER1OPENED               Release valve #1 opened.
+SEW1_LEVER2OPENED               Release valve #2 opened.
+SEW1_DOOROPENED                 Passage opened.
+
+SEW2_LEVER1                     Circuit valve #1
+SEW2_LEVER2                     Circuit valve #2
+SEW2_LEVER3                     Circuit valve #3
+SEW2_LEVER1OPENED               Circuit valve #1 opened.
+SEW2_LEVER2OPENED               Circuit valve #2 opened.
+SEW2_LEVER3OPENED               Circuit valve #3 opened.
+SEW2_RAILPUZZLERESET            Power unstable, circuits reset.
+SEW2_RAILPUZZLESOLVED           Power disabled.
+
+JUNCTIONBOX                     FBI CC Line #204
+
+BACKTOPRAGUE_LOCKED             Unable to leave at this time.
+
+GEN_CLICKOPENDOOR               Click to open door
+GEN_CLICKTURNWHEEL              Click to turn wheel
+GEN_CLICKPULLLEVER              Click to pull the lever
+GEN_CLICKPUSHBUTTON             Click to push button
+GEN_DOORLOCKED			           Locked...
+GEN_DOORUNLOCKED			        Unlocked...
+GEN_DOOR                        Door
+GEN_HIDDENDOOR                  Hidden Door
+GEN_GATE                        Gate
+GEN_GATELOCKED                  Locked...
+GEN_ELEVATORDOOR                Elevator
+GEN_SWITCH                      Switch
+GEN_OPENELSEWHERE               This is opened elsewhere.
+
+SAVE_NOTAVAILABLE               Save (Not Available)
+
+// ............................................................................ 
+// Chronicles
+// ............................................................................ 
+
+PRAGUE                          Prague
+VIENNA                          Vienna
+//PRAGUE2                         Return to Prague
+LONDON                          London
+NEW_YORK                        New York
+
+// ............................................................................ 
+// scene messages
+// ............................................................................ 
+
+SCENE_ERROR_NOSHORTDESC         Could not find Short description for scene.
+SCENE_ERROR_NOLONGDESC          Could not find Long description for scene.
+
+// ............................................................................ 
+// Shop names
+// ............................................................................ 
+
+SMITHY                          Smithy
+UNORNASHOP                      Unorna's Shoppe
+WEAPONSMITHSHOP                 Weaponsmith
+ORDEROFHERMES                   Order of Hermes
+OTTOVAN                         Otto's Van
+CURIOSHOP                       Curio Shop
+GUNHAVEN                        Gun Haven
+NEWMOON                         New Moon
+
+// ............................................................................ 
+// misc UI
+// ............................................................................ 
+UI_NO_SCENE_LOADED				No Scene Loaded.
+
+UI_SCENE						Scene:
+UI_LEVEL						Level:
+UI_VERSION						Version
+

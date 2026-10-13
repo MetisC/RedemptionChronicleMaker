@@ -24,6 +24,9 @@ class CoreTests(unittest.TestCase):
         cls.resources = json.loads((ROOT / "cache/resources.json").read_text(encoding="utf8"))
         cls.source = (ROOT / "tests/fixtures/chronicles/east_demo.yaml").read_text(encoding="utf8")
         cls.data = yaml.safe_load(cls.source)
+        # Builds are disposable. A clean checkout must prepare its own fixture.
+        hints=json.loads((ROOT/'cache/scene_hints.json').read_text(encoding='utf8'))
+        build(Workspace(ROOT,Path(r'H:\GOG\Vampire The Masquerade - Redemption')),parse_project(cls.source,cls.levels,cls.resources),cls.levels,cls.resources,hints,True)
 
     def project(self, data=None):
         return parse_project(yaml.safe_dump(data or self.data, allow_unicode=True), self.levels, self.resources)

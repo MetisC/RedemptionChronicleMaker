@@ -1,0 +1,17 @@
+// *********************************************************************************
+//
+// 11_1_TooLate.nco (conversation file)
+//
+// Copyright (c) 1999-2000 Nihilistic Software, Inc.
+//
+// *********************************************************************************
+
+
+CONVERSATION: 11_1_TooLate 0
+
+EVENT: ev_0
+
+	LINE:         Wilhem_9_1_452               Wilhem
+
+// Wilhem_9_1_452              The Golem has run amok in the Jewish Quarter. Come quickly. Innocent lives are at stake.
+
