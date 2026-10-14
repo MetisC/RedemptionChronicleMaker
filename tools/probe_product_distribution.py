@@ -23,7 +23,7 @@ def main():
                 run=subprocess.run(command,env=dict(env,QT_SCALE_FACTOR=scale),cwd=ROOT,timeout=150,capture_output=True)
                 data=json.loads(report.read_text(encoding='utf8'));record=dict(qt_scale=scale,returncode=run.returncode,report=data,physical_windows_dpi_test=False);records.append(record)
                 captures=destination/('scale_'+scale);captures.mkdir(exist_ok=True)
-                for name in ['welcome','setup','showcase','project','guide','overview','settings','dynamic_wizard','dynamic_boss','dynamic_graph']:shutil.copy2(workspace/'build/probe'/(name+'.png'),captures/(name+'.png'))
+                for name in ['welcome','setup','showcase','project','guide','overview','settings','dynamic_wizard','dynamic_boss','dynamic_graph','delete_references']:shutil.copy2(workspace/'build/probe'/(name+'.png'),captures/(name+'.png'))
                 if run.returncode:raise ValueError(record)
     (destination/'summary.json').write_text(json.dumps(records,ensure_ascii=False,indent=2),encoding='utf8')
     print('Frozen bilingual fresh/repeat runs and four Qt scaling simulations passed. No game was launched.')

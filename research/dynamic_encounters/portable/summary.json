@@ -3,7 +3,7 @@
     "language": "en",
     "phase": "fresh",
     "returncode": 0,
-    "elapsed_seconds": 40.18118460000551,
+    "elapsed_seconds": 34.1259796000013,
     "report": {
       "rc3": {
         "welcome": true,
@@ -36,8 +36,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 14.443921899990528,
-      "total_seconds": 38.97234429999662,
+      "setup_seconds": 10.465516000000207,
+      "total_seconds": 32.98009929999898,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -52,8 +52,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 95679.4451458,
-      "showcase_open_timestamp": 95680.5155612,
+      "tutorial_open_timestamp": 27484.9510193,
+      "showcase_open_timestamp": 27485.9443369,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -66,7 +66,10 @@
         "tutorial_still_format_9": true,
         "real_api_compiled": true,
         "guide_navigation": true,
-        "graph_in_existing_tab": true
+        "graph_in_existing_tab": true,
+        "delete_preview_and_navigation": true,
+        "spawn_point_delete_valid": true,
+        "delete_single_undo": true
       }
     },
     "path_restricted": true,
@@ -76,7 +79,7 @@
     "language": "en",
     "phase": "second",
     "returncode": 0,
-    "elapsed_seconds": 26.740801599997212,
+    "elapsed_seconds": 24.406372200002806,
     "report": {
       "rc3": {
         "welcome": true,
@@ -99,8 +102,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.413791599989054,
-      "total_seconds": 26.32687089999672,
+      "setup_seconds": 2.2729481999995187,
+      "total_seconds": 24.017059800000425,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -115,8 +118,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 95706.108389,
-      "showcase_open_timestamp": 95707.1299629,
+      "tutorial_open_timestamp": 27509.4150595,
+      "showcase_open_timestamp": 27510.3765364,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -129,7 +132,10 @@
         "tutorial_still_format_9": true,
         "real_api_compiled": true,
         "guide_navigation": true,
-        "graph_in_existing_tab": true
+        "graph_in_existing_tab": true,
+        "delete_preview_and_navigation": true,
+        "spawn_point_delete_valid": true,
+        "delete_single_undo": true
       }
     },
     "path_restricted": true,
@@ -160,8 +166,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.3846320000011474,
-      "total_seconds": 26.024485299989465,
+      "setup_seconds": 2.3128723000008904,
+      "total_seconds": 24.35336730000199,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -176,8 +182,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 95732.4937629,
-      "showcase_open_timestamp": 95733.5220414,
+      "tutorial_open_timestamp": 27533.9437629,
+      "showcase_open_timestamp": 27534.9043578,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -190,7 +196,10 @@
         "tutorial_still_format_9": true,
         "real_api_compiled": true,
         "guide_navigation": true,
-        "graph_in_existing_tab": true
+        "graph_in_existing_tab": true,
+        "delete_preview_and_navigation": true,
+        "spawn_point_delete_valid": true,
+        "delete_single_undo": true
       }
     },
     "physical_windows_dpi_test": false
@@ -220,8 +229,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.421552599989809,
-      "total_seconds": 26.622991800002637,
+      "setup_seconds": 2.3228180000005523,
+      "total_seconds": 25.14297760000045,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -236,8 +245,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 95759.093477,
-      "showcase_open_timestamp": 95760.1118068,
+      "tutorial_open_timestamp": 27558.7046854,
+      "showcase_open_timestamp": 27559.7129866,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -250,7 +259,10 @@
         "tutorial_still_format_9": true,
         "real_api_compiled": true,
         "guide_navigation": true,
-        "graph_in_existing_tab": true
+        "graph_in_existing_tab": true,
+        "delete_preview_and_navigation": true,
+        "spawn_point_delete_valid": true,
+        "delete_single_undo": true
       }
     },
     "physical_windows_dpi_test": false
@@ -280,8 +292,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.4130302000121446,
-      "total_seconds": 26.910137000013492,
+      "setup_seconds": 2.3443024000007426,
+      "total_seconds": 25.20890810000128,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -296,8 +308,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 95786.1306667,
-      "showcase_open_timestamp": 95787.1715418,
+      "tutorial_open_timestamp": 27584.3759098,
+      "showcase_open_timestamp": 27585.3710289,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -310,7 +322,10 @@
         "tutorial_still_format_9": true,
         "real_api_compiled": true,
         "guide_navigation": true,
-        "graph_in_existing_tab": true
+        "graph_in_existing_tab": true,
+        "delete_preview_and_navigation": true,
+        "spawn_point_delete_valid": true,
+        "delete_single_undo": true
       }
     },
     "physical_windows_dpi_test": false
@@ -340,8 +355,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.3954483000125038,
-      "total_seconds": 27.63437060000433,
+      "setup_seconds": 2.3343072999996366,
+      "total_seconds": 25.80585059999794,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -356,8 +371,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 95813.7007097,
-      "showcase_open_timestamp": 95814.7332389,
+      "tutorial_open_timestamp": 27610.0832613,
+      "showcase_open_timestamp": 27611.0731117,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -370,7 +385,10 @@
         "tutorial_still_format_9": true,
         "real_api_compiled": true,
         "guide_navigation": true,
-        "graph_in_existing_tab": true
+        "graph_in_existing_tab": true,
+        "delete_preview_and_navigation": true,
+        "spawn_point_delete_valid": true,
+        "delete_single_undo": true
       }
     },
     "physical_windows_dpi_test": false
@@ -379,7 +397,7 @@
     "language": "es",
     "phase": "fresh",
     "returncode": 0,
-    "elapsed_seconds": 39.3483336000063,
+    "elapsed_seconds": 35.28667019999921,
     "report": {
       "rc3": {
         "welcome": true,
@@ -412,8 +430,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 14.035081099995296,
-      "total_seconds": 38.0261954000016,
+      "setup_seconds": 10.937420800000837,
+      "total_seconds": 34.10526079999909,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -428,8 +446,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 95855.3423561,
-      "showcase_open_timestamp": 95856.3657944,
+      "tutorial_open_timestamp": 27646.8324017,
+      "showcase_open_timestamp": 27647.7884277,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -442,7 +460,10 @@
         "tutorial_still_format_9": true,
         "real_api_compiled": true,
         "guide_navigation": true,
-        "graph_in_existing_tab": true
+        "graph_in_existing_tab": true,
+        "delete_preview_and_navigation": true,
+        "spawn_point_delete_valid": true,
+        "delete_single_undo": true
       }
     },
     "path_restricted": true,
@@ -452,7 +473,7 @@
     "language": "es",
     "phase": "second",
     "returncode": 0,
-    "elapsed_seconds": 26.75766119999753,
+    "elapsed_seconds": 24.994253600001684,
     "report": {
       "rc3": {
         "welcome": true,
@@ -475,8 +496,8 @@
         "Preparando el compilador…",
         "Preparando tus copias de los ejemplos…"
       ],
-      "setup_seconds": 2.432384900006582,
-      "total_seconds": 26.310163200003444,
+      "setup_seconds": 2.4144755999986955,
+      "total_seconds": 24.58563679999861,
       "gui_authored_valid": true,
       "build_status": "compiled-unverified-in-game",
       "class_versions": {
@@ -491,8 +512,8 @@
       "clean_machine_test": false,
       "real_opengl": false,
       "game_originals_written": false,
-      "tutorial_open_timestamp": 95881.5057004,
-      "showcase_open_timestamp": 95882.5573621,
+      "tutorial_open_timestamp": 27671.9675926,
+      "showcase_open_timestamp": 27672.9594395,
       "rc4": {
         "wizard_four_pages": true,
         "advanced_collapsed": true,
@@ -505,7 +526,10 @@
         "tutorial_still_format_9": true,
         "real_api_compiled": true,
         "guide_navigation": true,
-        "graph_in_existing_tab": true
+        "graph_in_existing_tab": true,
+        "delete_preview_and_navigation": true,
+        "spawn_point_delete_valid": true,
+        "delete_single_undo": true
       }
     },
     "path_restricted": true,

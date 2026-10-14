@@ -111,6 +111,19 @@ def main(argv=None):
     gen=win.doc.campaign['scenes'][0]['generators'][0];win.guide_panel.navigate(QUrl('rcm://'+win.doc.campaign['scenes'][0]['id']+'/generators/'+gen['id']));rc4['guide_navigation']=win.selection==('generators',0)
     win.center_tabs.setCurrentWidget(win.graph_panel);win.graph_panel.kind.setCurrentIndex(win.graph_panel.kind.findData('generators'));app.processEvents();win.graph_panel.refresh();win.graph_panel.fit();win.grab().save(str(ws.output('build/probe/dynamic_graph.png')));rc4['graph_in_existing_tab']=win.center_tabs.count()==7 and bool(win.graph_panel.scene.items())
     wizard.close()
+    from .deletion import DeleteDialog
+    from ..safe_edit import deletion_plan
+    point_index=next(i for i,p in enumerate(win.doc.data['waypoints']) if p['id']==wizard.new_point['id'])
+    point_path=('scenes',win.doc.active,'waypoints',point_index)
+    delete_plan=deletion_plan(win.doc,point_path,backend)
+    deletion=DeleteDialog(win,point_path,delete_plan);deletion.show();app.processEvents()
+    rc4['delete_preview_and_navigation']=deletion.references.topLevelItemCount()>0 and deletion.preview.topLevelItemCount()>1 and deletion.remove.isEnabled()
+    deletion.grab().save(str(ws.output('build/probe/delete_references.png')));deletion.reject();deletion.deleteLater()
+    original=win.doc.snapshot()
+    QTimer.singleShot(0,lambda:QApplication.activeModalWidget().remove.click())
+    win.select(('waypoints',point_index));win.delete_selected()
+    rc4['spawn_point_delete_valid']=all(p['id']!=wizard.new_point['id'] for p in win.doc.data['waypoints']) and backend.validate(win.doc.snapshot()).valid
+    win.undo_project();rc4['delete_single_undo']=win.doc.snapshot()==original
     win.doc._saved=__import__('rcm.service',fromlist=['source_text']).source_text(win.doc.snapshot());win.close();app.processEvents()
     reopened=AppSettings(args.settings_directory)
     if not all(rc3.values()):raise ValueError('RC3 widget acceptance failed: '+json.dumps(rc3))

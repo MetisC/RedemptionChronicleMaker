@@ -1,5 +1,7 @@
 # Changes · 1.0.0-rc4
 
+- Unified entity deletion with reference navigation and a validated cascade preview. Fresh spawns can be deleted; linked uses can be removed together in one undo operation, without weakening conditions or deleting unrelated actions.
+
 - Fixed startup inventory compatibility in shared/custom launch folders. After an editor playtest, saved item definitions are refreshed in managed folders so returning to another chronicle does not lose them. Saved characters are never edited.
 
 - Dynamic encounter wizard: ambush, waves, continuous spawning, reinforcements and boss phases, in Campaign, assistants and the existing 3D ground menu.

@@ -37,7 +37,7 @@ Sin solapamiento/avance manual dentro de una lista de oleadas (usar generadores 
 
 ## 9. Tests
 
-**431 PASS, 0 FAIL, 0 ERROR, 0 SKIP**; Ruff y alcance mypy configurado PASS. Doubles ejecutan Java generado, save/load, cruces, lethal skip, ownership, retry, transforms, callbacks, políticas, cooldown, batch, contador y un timer. Widgets prueban crear/editar/backup/cancelar/deshacer/referencias/gráfico/idiomas. Stress compila 25 generadores (20 con diez oleadas), 400 entradas, tres templates, dos puntos, diez thresholds y cuarenta callbacks; mayor método 1659/65535 bytes, clases 45.3. No benchmark nativo. Suite y receipts: research/dynamic_encounters/quality, stress.json, regression.json. El EXE se prueba en ocho recorridos offscreen ES/EN/rutas movidas/PATH restringido/escalado Qt; mismo PC, no prueba de Windows DPI real.
+**439 casos correctos tras repetir la comprobación de traducciones; 0 errores y 0 omitidos**; Ruff y alcance mypy configurado PASS. Doubles ejecutan Java generado, save/load, cruces, lethal skip, ownership, retry, transforms, callbacks, políticas, cooldown, batch, contador y un timer. Widgets prueban crear/editar/backup/cancelar/deshacer/referencias/gráfico/idiomas. Stress compila 25 generadores (20 con diez oleadas), 400 entradas, tres templates, dos puntos, diez thresholds y cuarenta callbacks; mayor método 1659/65535 bytes, clases 45.3. No benchmark nativo. Suite y receipts: research/dynamic_encounters/quality, stress.json, regression.json. El EXE se prueba en ocho recorridos offscreen ES/EN/rutas movidas/PATH restringido/escalado Qt; mismo PC, no prueba de Windows DPI real.
 
 ## 10. Ejemplos / Showcase
 
@@ -62,3 +62,7 @@ RedemptionChronicleMaker-1.0.0-rc4-workspace.zip, copia privada con fuentes, tes
 ## Corrección posterior: inventario al arrancar
 
 El acceso habitual cargaba el tutorial/mini en una carpeta compartida sin la definición de la llave que el perfil había recogido en Showcase. Se restauró la biblioteca de arranque y su clase dentro de RCM, con copia de lo sustituido, sin modificar Crypt ni los paquetes del tutorial/mini. Deploy compartido/personalizado y cierre de pruebas desde el editor ahora conservan las definiciones. Seis regresiones nuevas; total 431 PASS, ocho recorridos de EXE PASS. Nueva confirmación LAN pendiente. Evidencia en research/runtime_test/profile_startup_repair.json; originales 43 y archivos protegidos 1798 conservados.
+
+## Borrado de entidades y referencias
+
+El árbol, Supr en el visor y Campaña usan un mismo borrado con vista previa. Las referencias llevan a la acción/condición o entidad editable, nunca a un campo escalar. Se puede cancelar, visitar el uso o eliminar las referencias junto con la entidad en una operación de undo. Se eliminan eventos vacíos y dependencias obligatorias; los puntos alternativos y acciones independientes se conservan. El borrado de una condición no convierte su evento en incondicional. Se retira metadata de asistentes que ya no puede resolverse. Ocho regresiones nuevas con una matriz sobre los diez asistentes. El ejecutable final pasó ocho recorridos en ES/EN y escalado Qt, con clic real de confirmación y undo; capturas del diálogo verificadas. Calidad vigente: research/runtime_test/delete_quality.json; no se modifica runtime, tutorial, mini ni proyectos del usuario.

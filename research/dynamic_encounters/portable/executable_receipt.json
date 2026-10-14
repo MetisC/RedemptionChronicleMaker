@@ -1,6 +1,7 @@
 {
-  "sha256": "bf8c4d16201c3d220ddd5901035dce665874d42f6fe30ec90b8ee539adea9241",
+  "sha256": "67de290ce225ca8dda11ee15d39b53d229441ebeb7264c4892076da62460272d",
   "runs": 8,
   "successful": true,
+  "deletion_preview_and_undo": true,
   "native_engine_test": false
 }

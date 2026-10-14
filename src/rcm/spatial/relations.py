@@ -53,9 +53,9 @@ def graph(data):
     for gi,g in enumerate(data.get('generators',[])):
         p=('generators',gi)
         for pi,key in enumerate(g.get('spawn_points',[])):add(p,'waypoints',key,'spawn point',p+('spawn_points',pi))
-        for wave in g['waves']:
-            for group in wave['groups']:
-                for key in group.get('spawn_points',[]):add(p,'waypoints',key,'spawn point',p)
+        for wi,wave in enumerate(g['waves']):
+            for gi,group in enumerate(wave['groups']):
+                for pi,key in enumerate(group.get('spawn_points',[])):add(p,'waypoints',key,'spawn point',p+('waves',wi,'groups',gi,'spawn_points',pi))
         if g.get('visual'):add(p,'objects',g['visual'],'visual',p+('visual',))
         if g.get('boss',{}).get('actor'):add(p,'actors',g['boss']['actor'],'boss',p+('boss','actor'))
     return links

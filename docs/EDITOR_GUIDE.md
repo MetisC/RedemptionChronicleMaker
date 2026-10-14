@@ -10,6 +10,8 @@
 
 **Gráfico:** muestra ramas y enlaces de conversación o el orden de un evento. Selecciona una tarjeta para editarla. Ajustar vista encuadra el gráfico.
 
+**Eliminar:** selecciona el elemento y pulsa Supr o Eliminar. Sus acciones básicas de aparición se retiran juntas. Si hay referencias cruzadas, el diálogo muestra dónde se usa y qué se borraría: puedes ir directamente al uso, cancelar o elegir «Eliminar y quitar referencias». Los eventos vacíos también se retiran; los usos independientes y puntos alternativos se conservan. Todo el borrado se deshace en una sola operación.
+
 **Prueba / Depuración:** el registro procede del juego; no sustituye la comprobación visual. Al terminar una prueba iniciada por RCM, el editor refresca el registro.
 
 **Guardar:** conserva versiones de cambios previos. Versiones guardadas permite abrir una copia o restaurar con confirmación. Si el archivo cambió externamente, elige recargar, copiar o sobrescribir; sobrescribir no es la opción por defecto. No se permite editar el mismo proyecto en dos ventanas sin aviso.
