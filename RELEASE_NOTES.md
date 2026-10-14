@@ -1,13 +1,13 @@
-# Redemption Chronicle Maker 1.0.0-rc4
+# Redemption Chronicle Maker 1.0.0-rc5
 
-Create dynamic combats without writing Java. Use **+ Dynamic encounter…** in Campaign, assistants or the 3D ground menu. Choose a mode, enemies/count, spawn waypoints and activation. Boss phases use percentage or absolute health crossings and the existing action editor.
+This release builds on RC4 and includes the latest editor safety and deletion workflow improvements.
 
-The original Generator was found and studied. RCM uses confirmed factories, timers, capture/death callbacks, health and native save records with bounded ownership tracking and retries. Defaults retain original health/AI. Existing authored encounters and geometry are preserved.
+The main change is a unified **safe delete** flow across the editor, 3D viewport and campaign tools. Before removing referenced content, RCM now previews incoming references, lets you navigate to them, applies validated cascade rules where supported, removes empty events when appropriate, preserves unrelated references and blocks unsafe removals instead of leaving the project in an invalid state. Deletions remain undoable.
 
-Format 9 opens unchanged. The first dynamic encounter opts into format 10 with backup and undo. Structural changes may require a new game; saves are not migrated.
+RC5 keeps the RC4 dynamic encounter system intact: ambushes, waves, continuous generators, reinforcements and boss phases continue to use confirmed Redemption runtime behaviour and the existing event/action system. Existing authored encounters and original geometry are preserved.
 
-The accepted Quick tutorial is preserved. Open examples/dynamic_lab/project.yaml for the independent combat lab or select the optional dynamic station from the Showcase Guide. Weak original Rats are used; example bosses have increased health to make thresholds visible.
+Format 9 remains supported. Dynamic encounters use format 10 as before. The accepted Quick tutorial is preserved, and the dedicated dynamic encounter lab remains available for native-game testing.
 
-**MANUAL RUNTIME TEST REQUIRED.** Native combat/save ownership remain unaccepted. A lethal hit may skip a threshold; no universal before-death interception is promised. Waves advance on clear. Arbitrary random-volume positions, overlapping/manual advance inside one wave list, direct dynamic-role camera targets and per-entry delay/AI overrides are unavailable. Use separate generators/events and existing action targets where appropriate.
+**MANUAL RUNTIME TEST REQUIRED** still applies to engine-specific behaviour that cannot be fully proven offline, especially native save/load ownership, re-entry, collision/pathfinding for spawned actors and networking. A lethal hit may skip a health threshold; no universal before-death interception is promised.
 
-Projects live outside the program. Settings selects English/Spanish. No original authoring tools or game assets are distributed. Local single-player candidate; networking, independent-PC, physical DPI and real GPU validation remain pending. Not final 1.0.
+Projects live outside the program folder. RCM does not distribute original Vampire: The Masquerade — Redemption assets or the original authoring tools. This remains a release candidate rather than final 1.0.
