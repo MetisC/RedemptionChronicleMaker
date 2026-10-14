@@ -173,9 +173,9 @@ class CampaignPanel(QWidget):
         for k in self.path[:-1]:parent=parent[k]
         if self.path[0]=='scenes' and len(self.path)==2 and len(parent)==1:raise ValueError(tr('La campaña necesita una escena'))
         if not isinstance(parent,list):raise ValueError(tr('No se puede borrar esa selección'))
-        from ..safe_edit import delete_candidate
-        candidate=delete_candidate(self.win.doc,self.path,self.win.backend,remove_spawns=True)
-        if QMessageBox.question(self,tr('Eliminar elemento'),tr('¿Eliminar este elemento? Puedes deshacer la operación.'))!=QMessageBox.StandardButton.Yes:return
+        from .deletion import confirm_delete
+        candidate=confirm_delete(self.win,self.path)
+        if candidate is None:return
         self.win.doc.data=candidate;self.path=None;self.win.selection=('chronicle',);self.win.changed(True)
     def render(self):
         old=self.scroll.takeWidget();panel=QWidget();layout=QVBoxLayout(panel);form=QFormLayout();layout.addLayout(form);self.scroll.setWidget(panel)

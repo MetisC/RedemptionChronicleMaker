@@ -42,9 +42,9 @@ def graph(root):
             for i,row in enumerate(s.get(k,[])):
                 source=('scenes',si,k,i);scan(row,source,source,local)
                 for listkey,targetkind in [('actors','actors'),('inventory','objects'),('points','waypoints')]:
-                    for member in row.get(listkey,[]):
+                    for mi,member in enumerate(row.get(listkey,[])):
                         target=local.get((targetkind,member))
-                        if target:links.append(Link(source,target,listkey,source+(listkey,)))
+                        if target:links.append(Link(source,target,listkey,source+(listkey,mi)))
         if s.get('default_entry'):
             target=local.get(('entries',s['default_entry']))
             if target:links.append(Link(('scenes',si),target,'default_entry',('scenes',si,'default_entry')))

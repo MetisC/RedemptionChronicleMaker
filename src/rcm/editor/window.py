@@ -935,10 +935,19 @@ class MainWindow(QMainWindow):
             if hasattr(self.doc, 'campaign') and path[0] in {'scenes', 'quests','authoring'}:
                 value = self.doc.campaign
                 for key in path: value = value[key]
-                return value.get('title', value.get('name', value.get('id', str(path))))
-            value = self.at(path)
-            return value.get('name', value.get('id', str(path))) if isinstance(value, dict) else str(path[-1])
-        except (KeyError, IndexError):
+            else:value = self.at(path)
+            if isinstance(value,dict) and any(k in value for k in ('title','name','id')):return value.get('title',value.get('name',value.get('id')))
+            from ..safe_edit import at
+            root=self.doc.snapshot();full=tuple(path)
+            if hasattr(self.doc,'campaign') and path[0] not in {'scenes','quests','authoring','state','resources'}:full=('scenes',self.doc.active)+full
+            for length in range(len(full)-1,0,-1):
+                owner=at(root,full[:length])
+                if isinstance(owner,dict) and ('id' in owner or 'name' in owner):
+                    suffix=full[length:];label=owner.get('name',owner.get('id'))
+                    kind=tr('Acción') if 'actions' in suffix else tr('Inventario') if 'inventory' in suffix else tr('Referencia')
+                    return label+' · '+kind+((' '+str(suffix[-1]+1)) if type(suffix[-1]) is int else '')
+            return str(path[-1])
+        except (KeyError, IndexError,TypeError):
             return str(path)
 
     def find_references(self, path=None):
@@ -960,8 +969,10 @@ class MainWindow(QMainWindow):
             parent = QTreeWidgetItem(self.reference_tree, [label, ''])
             for link in links:
                 target = getattr(link, attr)
-                item = QTreeWidgetItem(parent, [link.label, self.reference_label(target)])
-                item.setData(0, ROLE, link.detail if attr == 'source' and link.source[0] in {'events', 'conversations'} else target)
+                from .deletion import editable_reference,reference_kind
+                item = QTreeWidgetItem(parent, [reference_kind(link.label), self.reference_label(target)])
+                item.setData(0, ROLE, editable_reference(self.doc.snapshot(),link.detail) if attr == 'source' else target)
+                item.setToolTip(0,self.reference_label(link.detail));item.setToolTip(1,self.reference_label(target))
             parent.setExpanded(True)
         self.show_bottom(2)
 
@@ -969,6 +980,9 @@ class MainWindow(QMainWindow):
         if path:
             if path[0]=='authoring':
                 self.show_recipe(recipe_id=self.doc.campaign['authoring']['recipes'][path[2]]['id']);return
+            from .deletion import editable_reference
+            path=editable_reference(self.doc.snapshot(),path)
+            if not path:return
             if path[0] in {'scenes', 'quests'}:
                 self.campaign_panel.navigate(path)
                 return
@@ -1111,17 +1125,14 @@ class MainWindow(QMainWindow):
         if len(p) < 2 or p in {("state", "flags")}:
             return
         if not self.commit_properties():return
-        from ..safe_edit import delete_candidate
+        from .deletion import confirm_delete
         path=('scenes',self.doc.active)+p if hasattr(self.doc,'campaign') and p[0]!='state' else p
-        try:candidate=delete_candidate(self.doc,path,self.backend,remove_spawns=True)
+        try:candidate=confirm_delete(self,path)
         except ValueError as error:
-            QMessageBox.warning(self,tr('Elemento referenciado'),diagnostic(error));return
-        extra = tr("\nTambién se retirarán sus acciones de aparición.") if p[0] in {'actors', 'objects'} else ""
-        if QMessageBox.question(self, tr("Eliminar elemento"), tr("¿Eliminar este elemento?") + extra + tr("\nPuedes deshacer esta operación."),
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No) != QMessageBox.StandardButton.Yes:
-            return
+            QMessageBox.warning(self,tr('No se puede eliminar'),diagnostic(error));return
+        if candidate is None:return
         self.doc.data=candidate
-        self.selection = p[:2] if len(p) > 2 and p[0] in {"conversations", "events"} else (("state", "flags") if p[0] == "state" else p[:1])
+        self.selection = ('chronicle',)
         self.changed(True)
 
     def move_selected(self, delta):

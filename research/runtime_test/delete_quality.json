@@ -1,0 +1,61 @@
+{
+  "tests": 439,
+  "passed_after_targeted_retry": true,
+  "full_suite": {
+    "tests": 439,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "successful": false,
+    "elapsed_seconds": 399.1165899000007,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": [
+      {
+        "test": "test_release_translation_keys_cover_editor_calls (test_product_close.ProductTests)",
+        "traceback": "Traceback (most recent call last):\n  File \"H:\\Repositorios\\RedemptionChronicleMaker\\tests\\test_product_close.py\", line 138, in test_release_translation_keys_cover_editor_calls\n    self.assertEqual(missing,[])\nAssertionError: Lists differ: [('deletion.py', 'Inicio del encuentro'), [317 chars]io')] != []\n\nFirst list contains 10 additional elements.\nFirst extra element 0:\n('deletion.py', 'Inicio del encuentro')\n\n+ []\n- [('deletion.py', 'Inicio del encuentro'),\n-  ('deletion.py', 'Aparici\u00f3n'),\n-  ('deletion.py', 'Aparici\u00f3n del grupo'),\n-  ('deletion.py', 'Inventario'),\n-  ('deletion.py', 'Conversaci\u00f3n predeterminada'),\n-  ('deletion.py', 'Zona de activaci\u00f3n'),\n-  ('deletion.py', 'Interlocutor'),\n-  ('deletion.py', 'Flag'),\n-  ('deletion.py', 'Configuraci\u00f3n del asistente'),\n-  ('window.py', 'Inventario')]\n"
+      }
+    ]
+  },
+  "translation_retry": {
+    "command": [
+      "C:\\Users\\Usuario\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+      "-m",
+      "unittest",
+      "test_product_close.ProductTests.test_release_translation_keys_cover_editor_calls",
+      "-v"
+    ],
+    "returncode": 0,
+    "output": "test_release_translation_keys_cover_editor_calls (test_product_close.ProductTests) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.171s\n\nOK\n"
+  },
+  "checks": [
+    {
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "tools",
+        "tests"
+      ],
+      "returncode": 0,
+      "output": "All checks passed!\n"
+    },
+    {
+      "command": [
+        "-m",
+        "mypy",
+        "--follow-imports=skip",
+        "--check-untyped-defs",
+        "--cache-dir",
+        "build/tests/mypy_cache",
+        "src/rcm/paths.py",
+        "src/rcm/input_limits.py",
+        "src/rcm/file_transaction.py"
+      ],
+      "returncode": 0,
+      "output": "Success: no issues found in 3 source files\n"
+    }
+  ],
+  "native_engine_test": false
+}

@@ -4,16 +4,16 @@
   "errors": [],
   "files": {
     "CHANGELOG.md": {
-      "size": 1385,
-      "sha256": "d57b910c93043e0dae2fe8fb991304ac7cb363f42d98c5571a5aa4aa4b6c6a36"
+      "size": 1619,
+      "sha256": "7f6d008eddabbb961829a445693acc6a3039eda13b4591a23991c16536ec8944"
     },
     "README.txt": {
       "size": 532,
       "sha256": "fef656495d40d61c98fe4588509464d2c99767c542b2bf659d5e2cdbc1b9b5b1"
     },
     "RedemptionChronicleMaker.exe": {
-      "size": 4325127,
-      "sha256": "bf8c4d16201c3d220ddd5901035dce665874d42f6fe30ec90b8ee539adea9241"
+      "size": 4331595,
+      "sha256": "67de290ce225ca8dda11ee15d39b53d229441ebeb7264c4892076da62460272d"
     },
     "RELEASE_NOTES.md": {
       "size": 1725,
@@ -48,12 +48,12 @@
       "sha256": "65279c58f47144158153ceb82a871f2e84dee6a5b715a18ecb54300bd19af66c"
     },
     "docs/EDITOR_GUIDE.en.md": {
-      "size": 1506,
-      "sha256": "48392ce504a5fdb893d47be799f6e90354113eaefb1d7dcc6d4aaf0179f5ca8d"
+      "size": 1917,
+      "sha256": "c5dd46471a1e2b75ef244699c24ed7af2c16ac5ad1bff5cf6914c980d46f9149"
     },
     "docs/EDITOR_GUIDE.md": {
-      "size": 1699,
-      "sha256": "3f60154679b80e6a47c66668ae61ee59fc5d1368a5df13e4e12993e836083637"
+      "size": 2139,
+      "sha256": "3db32cabee2a1d9ed9dc85177458572c39b3d6edb3ca1c68161ffe92cffd584e"
     },
     "docs/FIRST_RUN.en.md": {
       "size": 848,
@@ -140,8 +140,8 @@
       "sha256": "c69f3e38bb6472919a2e819926a0c066638f6a07d78a184e1d842e313c9a32a0"
     },
     "examples/showcase/project.yaml": {
-      "size": 35303,
-      "sha256": "1e678a82c3b5e2ba7c5fd31e9b7d626598590fb535e745a493cce181522fe744"
+      "size": 36852,
+      "sha256": "c56c78460c81368929a7dbf881b7201c214b99f58925abc2a5c44a9acc00b720"
     },
     "examples/showcase/README.en.md": {
       "size": 10613,
@@ -633,7 +633,7 @@
     },
     "_internal/base_library.zip": {
       "size": 880490,
-      "sha256": "1ee856c8eb7f26f198410aaee5adee6e6493c39a1727b58b52cb31f0b374375c"
+      "sha256": "68dbe8a3d6b78c5f80d1e71510e034d1412f3c83826e562108f7c3298d907dee"
     },
     "_internal/libcrypto-1_1.dll": {
       "size": 3439512,
@@ -1436,8 +1436,8 @@
       "sha256": "64d133dc8fff64da79b3671e02c6bdda3f83944c4984e196a1a748a2497409ef"
     },
     "_internal/rcm/editor/assets/en.json": {
-      "size": 119453,
-      "sha256": "eb7b3239e268ae675752e8569382aa7183713cf1eb1a1b06970ba8faf593476a"
+      "size": 121052,
+      "sha256": "c144ad34a48964ed20dfad36e0b39c7d355746ad4ad159e19744e3324c433bcb"
     },
     "_internal/shiboken6/Shiboken.pyd": {
       "size": 33080,

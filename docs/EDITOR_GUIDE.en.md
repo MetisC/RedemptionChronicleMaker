@@ -10,6 +10,8 @@
 
 **Graph:** shows conversation branches or an event's action order. Select a card to edit it. Fit view frames the graph.
 
+**Delete:** select an element and press Delete or the Delete button. Its basic spawn actions are removed together. For cross-references, the dialog shows where it is used and what would be removed: go directly to a use, cancel, or choose “Delete and remove references”. Empty events are removed too; unrelated uses and alternative spawn points remain. Undo restores the entire deletion in one operation.
+
 **Playtest / Debug:** the trace comes from the game and does not replace visual verification. When a playtest started by RCM ends, the editor refreshes the trace.
 
 **Save:** retains previous changed versions. Saved versions opens a copy or restores with confirmation. If the file changed externally, reload, copy or explicitly overwrite; overwrite is not the default. Concurrent editing of the same project is blocked with an explanation.

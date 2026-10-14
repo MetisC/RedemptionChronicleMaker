@@ -1,0 +1,19 @@
+{
+  "tutorial_sources": {
+    "chronicles/tutorial/project.yaml": true,
+    "chronicles/tutorial/README.en.md": true,
+    "chronicles/tutorial/README.md": true,
+    "chronicles/tutorial/resources/RCMTutorActor.java": true
+  },
+  "tutorial_classes": {
+    "R_rcm_tutor_s0_Scene": true,
+    "R_rcm_tutor_s0_Passive": true,
+    "R_rcm_tutor_s1_Scene": true,
+    "R_rcm_tutor_s1_Passive": true,
+    "RCMTutorActor": true
+  },
+  "protected_user_files": 1798,
+  "user_files_unchanged": true,
+  "native_engine_test": false,
+  "game_written": false
+}
