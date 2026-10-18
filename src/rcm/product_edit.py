@@ -14,7 +14,7 @@ def duplicate_entity(source,path):
     kind=path[-2];row=copy.deepcopy(rows[path[-1]])
     stem=row['id'][:12];index=2;ident=stem+'_'+str(index)
     while any(r['id']==ident for r in rows):index+=1;ident=stem[:15-len(str(index))]+'_'+str(index)
-    identifier(ident,'ID',16)
+    identifier(ident,'ID',64 if kind=='events' else 16,allow_upper=kind=='events')
     if kind=='generators':rewire_generator(row,row['id'],ident)
     row['id']=ident
     if 'name' in row:row['name']+=' (copy)'

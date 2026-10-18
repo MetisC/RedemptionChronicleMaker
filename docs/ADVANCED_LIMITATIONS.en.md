@@ -9,3 +9,7 @@
 Local adventures load through the game's Multiplayer/LAN menu. This does not establish multi-client network support. Use one local player. The new tutorial requires a fresh game. Previous chronicles and Crypt profiles are not deleted; old tutorial templates remain available to avoid orphaned character profiles when opening LAN.
 
 Human checks remain for camera framing/collision, loaded position, dialogue abort/cursor/control, reentry, rewards and a separate-machine portable run. Neither Embrace parity nor final 1.0 is claimed while these core acceptance checks remain open.
+
+Original objects: a picker and actions can hide/restore/remove identified props, operate framed/pivot doors and create native hover/click interactions with travel or other event actions. This cannot remove NIL faces or synchronize Door/PivotDoor private state. ORG01–06 remain pending; the engine may reject a missing candidate or a door without the required frames.
+
+CLICK01–08: hover, selection/collision, click range, dialogue/notes, native saves, reentry and multiplayer remain manual checks for the new brush layer. Self-scene links are blocked before building; old user proximity triggers are not silently migrated.

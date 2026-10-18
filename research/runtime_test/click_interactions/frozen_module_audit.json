@@ -1,0 +1,32 @@
+{
+  "executable_sha256": "0e76e5217e3264de0a63ae4f8bc822ac9ed4b6416da253b58e6d1bda3a98c63b",
+  "bundled_module": "rcm.click_interactions",
+  "current_runtime_guards_present": {
+    "bindClick": true,
+    "clickSources": true,
+    "eventRunning": true,
+    "THING_FLAG_DISABLECOLLIDE": true
+  },
+  "native_engine_test": false,
+  "bundled_code_matches_current_sources": {
+    "rcm.click_interactions": true,
+    "rcm.original_objects": true,
+    "rcm.campaign": true,
+    "rcm.campaign_generator": true,
+    "rcm.runtime9": true,
+    "rcm.generator": true,
+    "rcm.formats": true,
+    "rcm.spatial.geometry": true,
+    "rcm.spatial.assets": true,
+    "rcm.campaign_document": true,
+    "rcm.recipes": true,
+    "rcm.service": true,
+    "rcm.editor.original_objects": true,
+    "rcm.editor.click_actions": true,
+    "rcm.editor.viewport": true,
+    "rcm.editor.inspector": true,
+    "rcm.editor.campaign_panel": true,
+    "rcm.editor.product_probe": true
+  },
+  "translations_match": true
+}

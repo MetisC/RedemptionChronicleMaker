@@ -68,6 +68,8 @@ def runtime(campaign,scene,p):
                  f' new CodexActor(things[i]).{"ClearActorFlags" if enemy else "SetActorFlags"}(THING_AF_AIPAUSED|THING_AF_NEUTRAL);']
         if a.get('conversation') or any(e.get('actor')==eid and e['when']=='actor_clicked' for e in scene['events']):code += [f' new CodexActor(things[i]).SetActorFlags(THING_AF_TALKTO);']
         for it in a.get('inventory',[]):code += [f' if(!give({entities[it]},things[i])) trace("inventory failed {it}");']
+        from .wtd import actor_java
+        code += actor_java(a,'things['+str(i)+']')
         code += [' break;']
     code += [' } trace("spawn "+template(i)+" guid="+things[i]); }',
              ' public void beginscene(int who,int capture) { if(NetIsClient()) return; player=localPlayer(who); active=-1; starter=0; transitioning=false; if(!restoredState) { ticks=0; pendingStart=true; } restoredState=false; poll(); }',
@@ -130,14 +132,23 @@ def runtime(campaign,scene,p):
             elif k=='show_note':
                 from .notes import note_id
                 statement=f'if(!showNote({js(note_id(p.prefix,ei,ai))})) return false;'
-            elif k=='jump':statement=f'releaseCamera(); transitioning=true; KillTimer(9400); CodexSequence.Jump({js(v)},0);'
+            elif k=='jump':statement=f'if({js(v)}.equals({js(scene["id"])})) {{ trace("SELF_LINK_BLOCKED"); return false; }}' if v==scene['id'] else f'releaseCamera(); transitioning=true; KillTimer(9400); CodexSequence.Jump({js(v)},0);'
             elif k=='travel':statement=f'if(!travel({js(v["scene"])},{js(v["entry"])})) return false;'
+            elif k=='run_event':statement=f'if(!event{next(i for i,row in enumerate(scene["events"]) if row["id"]==v)}()) return false; if(transitioning) return true;'
             elif k=='start_patrol':statement=f'if(!startPatrol({next(i for i,row in enumerate(scene["paths"]) if row["id"]==v)})) return false;'
             elif k=='stop_patrol':statement=f'stopPatrol({entities[v]});'
             elif k in ('open_exit','close_exit'):statement=f'if(!CodexSequence.IsExitValid({js(v)},0)) {{ trace("EXIT_FAILED "+{js(v)}); return false; }} CodexSequence.{"OpenExit" if k=="open_exit" else "CloseExit"}({js(v)},0);'
             elif k=='control_door':
                 call=f'door.MoveToFrame({v["frame"]},{float(v["parameter"])}f)' if v['mode']=='frames' else f'door.RotatePivot({v["frame"]},{float(v["parameter"])*(1 if v["open"] else -1)}f)'
                 statement=f'{{ int guid=CodexThing.GuidFromCastID({js(v["cast_id"])}); if(!local(guid)) {{ trace("DOOR_FAILED missing/local cast ID"); return false; }} CodexThing door=new CodexThing(guid); if(!door.HasFrames() || door.GetNumFrames()<={v["frame"]} || !{call}) {{ trace("DOOR_FAILED frame/motion"); return false; }} }}'
+            elif k=='control_original':
+                from .original_objects import targets,key,OPERATIONS
+                index=list(targets(scene)).index(key(v))
+                statement=f'if(!originalApply({index},{OPERATIONS.index(v["operation"])},{v.get("frame",0)},{float(v.get("parameter",1))}f,{str(v.get("open",True)).lower()})) return false;'
+            elif k in ('set_actor_clan','set_discipline'):
+                guid='player' if v['actor']=='Player' else 'things['+str(entities[v['actor']])+']'
+                call='SetActorClan('+js(v['clan'])+')' if k=='set_actor_clan' else 'SetActorDisciplineLevel('+js(v['discipline'])+','+str(v['level'])+')'
+                statement=f'if(!local({guid}) || !(IsActorGuid({guid})||IsPlayerGuid({guid})) || !new CodexActor({guid}).{call}) {{ trace("ACTOR_TRAIT_FAILED"); return false; }}'
             elif k=='play_sound':
                 point=next(r for r in scene['waypoints'] if r['id']==v['waypoint'])
                 statement=f'new CodexSound({js(v["resource"]+".wav")},{float(v["min_distance"])}f,{float(v["max_distance"])}f,{v["volume"]},0,0,{jv(point["transform"]["position"])});'
@@ -205,7 +216,11 @@ def runtime(campaign,scene,p):
     if campaign.source.get('runtime_profile')=='phase10':
         from .dynamic_runtime import extend_dynamic
         java=extend_dynamic(java,campaign,scene,p)
-    return name,java
+    from .original_runtime import extend as extend_original
+    java=extend_original(java,campaign,scene)
+    from .click_interactions import extend as extend_clicks,guard_events
+    java=extend_clicks(java,scene,p)
+    return name,guard_events(java,scene)
 
 
 def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress=None,runtime_transform=None):
@@ -231,6 +246,9 @@ def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress
             source_map[name+'.java']=mapping
             ws.write(root/'source_map.json',json.dumps(source_map,indent=2))
             return name,java
+        make_runtime.click_objects=[o for o in scene.get('objects',[]) if 'interaction' in o]
+        from .native_arrivals import enabled as native_arrivals_enabled
+        make_runtime.native_arrivals=scene if native_arrivals_enabled(campaign,scene) else None
         try:
             report=build_scene(ws,p,levels,resources,hints,compile_java,progress,make_runtime)
         except ValueError as error:

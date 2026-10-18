@@ -24,6 +24,11 @@ def extend(java,campaign,scene,project):
            ' private String positionText(int who) { float[] p=new CodexThing(who).GetPosition(); return p==null ? "null" : p[0]+","+p[1]+","+p[2]; }',
            f' private int[] patrolPoint=new int[{len(paths)}], patrolWait=new int[{len(paths)}];',
            ' private boolean travel(String destination,String entry) { if(player==0 || active!=-1) return false; int flag=-1;']
+    # New click links and any unvalidated legacy self-link get an independent
+    # runtime guard. Accepted projects without this feature keep their bytes.
+    guarded_travel=any('interaction' in o for o in scene.get('objects',[])) or any('run_event' in a or a.get('travel',{}).get('scene')==scene['id'] for e in scene['events'] for a in e['actions'])
+    if guarded_travel:
+        lines[-1]=lines[-1].replace('if(player==0 || active!=-1)',f'if(transitioning || destination.equals({js(scene["id"])}) || player==0 || active!=-1)')
     # Keep the original world factory first. Its zero result in the native
     # tutorial must not strand the campaign: use the accepted near-player
     # factory and explicitly apply the authored transform, or remove the draft.
@@ -47,7 +52,7 @@ def extend(java,campaign,scene,project):
         for point in s.get('entries',[]):
             index=campaign.reserved['arrival/'+s['id']+'/'+point['id']]
             lines.append(f' if(destination.equals({js(s["id"])}) && entry.equals({js(point["id"])})) flag={index};')
-    lines.append(' if(flag<0) return false;')
+    lines.append(' if(flag<0) return false;'+(' transitioning=true; KillTimer(9400);' if guarded_travel else ''))
     # SDK ChangeScene selects a location's NSD, separately from Jump. Explicitly
     # select the authored layout when multiple locations reuse the same NIL.
     for target,target_project in campaign.scenes:
@@ -58,6 +63,9 @@ def extend(java,campaign,scene,project):
     lines+=[' CodexSequence.SetChronicleFlag(flag); trace("TRAVEL "+destination+" entry="+entry); releaseCamera(); transitioning=true; KillTimer(9400); CodexSequence.Jump(destination,0); return true; }',
             ' private boolean arrive() { if(!needsArrival || player==0) return !needsArrival; int entry=-1;']
     entries=scene.get('entries',[])
+    from .native_arrivals import enabled as native_enabled,ordered as native_ordered
+    native_arrivals=native_enabled(campaign,scene)
+    native_ids={p['id']:i for i,p in enumerate(native_ordered(scene))}
     for i,point in enumerate(entries):
         index=campaign.reserved['arrival/'+scene['id']+'/'+point['id']]
         lines.append(f' if(CodexSequence.GetChronicleFlag({index})) entry={i};')
@@ -65,7 +73,8 @@ def extend(java,campaign,scene,project):
     lines.append(f' if(entry<0) entry={default}; trace("ARRIVAL_BEFORE player="+player+" location="+CodexSequence.GetCurrentLocation()+" xyz="+positionText(player)); boolean ok=true; switch(entry) {{')
     for i,point in enumerate(entries):
         pos=point['transform']['position'];ori=point['transform']['orientation'];flag=campaign.reserved['arrival/'+scene['id']+'/'+point['id']]
-        lines+= [f' case {i}: ok=new CodexThing(player).SetPosition({jv(pos)}); if(ok) ok=new CodexThing(player).SetOrientation({jv(ori)}); if(ok) {{ CodexSequence.ClearChronicleFlag({flag}); trace({js("ARRIVAL "+scene["id"]+"/"+point["id"])}); }} break;']
+        placement=f'CodexPlayer.TeleportPartyToEntrance(player,{native_ids[point["id"]]})' if native_arrivals else f'new CodexThing(player).SetPosition({jv(pos)})'
+        lines+= [f' case {i}: ok={placement}; if(ok) ok=new CodexThing(player).SetOrientation({jv(ori)}); if(ok) {{ CodexSequence.ClearChronicleFlag({flag}); trace({js("ARRIVAL "+scene["id"]+"/"+point["id"])}); }} break;']
     lines+=[' } if(!ok) { trace("ARRIVAL_FAILED: engine rejected position/orientation"); return false; } if(entry>=0) CodexCamera.Release(player); trace("ARRIVAL_AFTER xyz="+positionText(player)); needsArrival=false; return true; }',
             ' private int patrolActor(int route) { switch(route) {']
     for i,row in enumerate(paths):lines.append(f' case {i}: return {entities[row["actor"]]};')
@@ -199,6 +208,13 @@ def extend(java,campaign,scene,project):
         pose+=f' if(CodexSequence.GetChronicleFlag({flag})) {{ restorePosePending=false; restoredState=false; needsArrival=true; pendingStart=true; trace("RESTORE_TRAVEL_ARRIVAL"); return true; }}\n'
     pose+=''' if(!restorePosePending) return true; if(restorePoseDelay>0) { restorePoseDelay--; return false; } if(++restorePoseAttempts>20) { restorePosePending=false; needsArrival=false; pendingStart=false; trace("RESTORE_POSE_FAILED: keeping native player position"); return true; } if(player==0) return false; CodexThing actor=new CodexThing(player); if(!actor.SetPosition(savedPosition) || !actor.SetOrientation(savedOrientation)) { trace("RESTORE_POSE_RETRY"); return false; } restorePosePending=false; needsArrival=false; pendingStart=false; trace("RESTORE_POSE player="+player+" xyz="+positionText(player)); return true; }
 '''
+    # Native TeleportPartyToEntrance resets movement (Thing.Stop) and cancels
+    # the actor action after relocation; SetPosition alone omits both calls.
+    # Opt in for format 10/new click layers; preserve the accepted format 9.
+    if campaign.source.get('runtime_profile')=='phase10' or any('interaction' in o for o in scene.get('objects',[])):
+        pose=pose.replace('if(!actor.SetPosition(savedPosition) || !actor.SetOrientation(savedOrientation))', 'if(!actor.SetPosition(savedPosition))')
+        pose=pose.replace('restorePosePending=false; needsArrival=false; pendingStart=false; trace("RESTORE_POSE player=', 'resetArrivalMotion(); if(!actor.SetOrientation(savedOrientation)) return false; restorePosePending=false; needsArrival=false; pendingStart=false; trace("RESTORE_POSE player=')
+        lines.append(' private void resetArrivalMotion() { CodexActor actor=new CodexActor(player); actor.Stop(); actor.CancelActorAction(); trace("ARRIVAL_MOTION_RESET player="+player); }')
     lines.append(pose)
     replace('public void save(int capture) {','public void save(int capture) { savePlayerPose();')
     replace('public void restore(int capture) {','public void restore(int capture) { readPlayerPose();')

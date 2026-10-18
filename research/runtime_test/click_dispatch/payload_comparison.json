@@ -1,0 +1,9 @@
+{
+  "changed_payloads": [
+    "strings/_R_new_chronicle_s0.nls"
+  ],
+  "unchanged_nsd_geometry_layer": true,
+  "unchanged_not_definitions": true,
+  "nls_change": "Current user source names click2 VELA; previous deployment still had drippyCandle. Authored source was not edited.",
+  "native_engine_test": false
+}

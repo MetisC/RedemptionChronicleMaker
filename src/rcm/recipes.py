@@ -273,6 +273,7 @@ def apply(root, kind, scene_id, config, recipe_id=None, repair=False):
         if kind == 'travel':
             destination = config.get('destination')
             if not any(s['id'] == destination for s in result['scenes']):raise ValueError('Choose a destination scene')
+            if destination==scene_id:raise ValueError('No se permite un enlace hacia la misma escena. Elige otra escena de destino.')
             entry = ensure('entry', 'entries', dict(name='Arrival', transform=transform(config.get('arrival_position', position))), destination)
             if 'arrival_position' in config:entry['transform'] = transform(config['arrival_position'])
             actions = [dict(travel=dict(scene=destination, entry=entry['id']))]

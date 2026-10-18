@@ -1,16 +1,46 @@
 [
   {
-    "path": "backups/c4_test/1791947250755078500.yaml",
+    "path": "backups/c4_test/1792294416505379200.yaml",
     "sha256": "5daf72b8acdf84819df750e8cf6285033a6a8095b2810bf0e5dc75210121cdcb",
     "exact_test_fixture_match": true
   },
   {
-    "path": "backups/east_demo/1791947328431868300.yaml",
+    "path": "backups/east_demo/1792294514957719900.yaml",
     "sha256": "225aece8691c89b3580351c1db1fac71474b6c1af631c5433bd4f0845f9e1ed2",
     "exact_test_fixture_match": true
   },
   {
-    "path": "backups/nueva_campana/1791947475618531300.yaml",
+    "path": "backups/new_chronicle/1792235450419558700.yaml",
+    "sha256": "6711c5d585672ee50f5cace14a105e7fe4c5c479e9fb868d03ea8102c8dbbc0c",
+    "exact_test_fixture_match": false
+  },
+  {
+    "path": "backups/new_chronicle/1792268354998864500.yaml",
+    "sha256": "2ccbb26c8a65df1fcb8877b1e890aaefebfeed364e279e7d9393f58a4cf47609",
+    "exact_test_fixture_match": false
+  },
+  {
+    "path": "backups/new_chronicle/1792291255455064300.yaml",
+    "sha256": "0620ca7141b5b1c2cb7af1b78a59e2ccc5af1ed493ec8a0283c44a8ab07a536f",
+    "exact_test_fixture_match": false
+  },
+  {
+    "path": "backups/new_chronicle/1792291506276220400.yaml",
+    "sha256": "626c25d902705734da5cca88648176f2bec11514feb6e7861e1ba795a74e0fdd",
+    "exact_test_fixture_match": false
+  },
+  {
+    "path": "backups/new_chronicle/1792291745817956900.yaml",
+    "sha256": "e7ba105d6fb5b5656efb7680f33c67a906a53ed3de217dfef369055d8f2606dc",
+    "exact_test_fixture_match": false
+  },
+  {
+    "path": "backups/new_chronicle/1792293246676001300.yaml",
+    "sha256": "8c4678d93d4f7ebdb0c9c6e903bc12799d768222b42771d1b18248c1590f7fce",
+    "exact_test_fixture_match": false
+  },
+  {
+    "path": "backups/nueva_campana/1792294718562796000.yaml",
     "sha256": "e1b820c3daff27d61d09fe5de906225e8fdfe97beb6c8b7ea4c208dcbc434800",
     "exact_test_fixture_match": true
   }

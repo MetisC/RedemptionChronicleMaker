@@ -76,7 +76,11 @@ def discover(ws: Workspace, game: Path, disassemble: bool = True, progress=lambd
             raise ValueError(f"Las fuentes difieren del baseline original; scan cancelado: {changed}")
     entries, manifests, counts, raw_templates = [], [], {}, []
     scene_data = {}
+    from .wtd import IGNORED_ROOT_ARCHIVES
+    ignored=[]
     for archive in sorted(game.glob("*.nob")):
+        if archive.name.casefold() in IGNORED_ROOT_ARCHIVES:
+            ignored.append({'file':archive.name,'size':archive.stat().st_size,'sha256':digest(archive)});continue
         progress('Leyendo recursos: '+archive.name)
         manifests.append({"file": archive.name, "size": archive.stat().st_size, "sha256": digest(archive)})
         with zipfile.ZipFile(archive) as z:
@@ -204,7 +208,7 @@ def discover(ws: Workspace, game: Path, disassemble: bool = True, progress=lambd
     progress('Indexando animaciones disponibles…')
     ws.output('cache/motions.json').unlink(missing_ok=True)
     ensure_catalogue(ws,resources,game)
-    ws.write('cache/installation_identity.json',json.dumps(identity_from_records(manifests,entries),indent=2))
+    ws.write('cache/installation_identity.json',json.dumps(identity_from_records(manifests+ignored,entries),indent=2))
     return summary
 
 

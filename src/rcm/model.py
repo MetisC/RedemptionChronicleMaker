@@ -35,9 +35,10 @@ def mapping(value, allowed, required=(), label="campo"):
     return value
 
 
-def identifier(value, label, limit=24):
-    if not isinstance(value, str) or not re.fullmatch(r"[a-z][a-z0-9_]*", value) or len(value) > limit:
-        raise ValueError(f"{label}: identificador [a-z][a-z0-9_]*, máximo {limit}")
+def identifier(value, label, limit=24, allow_upper=False):
+    pattern=r'[a-z][a-zA-Z0-9_]*' if allow_upper else r'[a-z][a-z0-9_]*'
+    if not isinstance(value, str) or not re.fullmatch(pattern, value) or len(value) > limit:
+        raise ValueError(f"{label}: identificador {pattern}, máximo {limit}")
     if value.upper() in {"CON", "PRN", "AUX", "NUL", *[f"COM{i}" for i in range(1, 10)], *[f"LPT{i}" for i in range(1, 10)]}:
         raise ValueError(f"{label}: nombre reservado por Windows")
     return value

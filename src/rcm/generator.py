@@ -274,7 +274,24 @@ def build(ws: Workspace, p: Project, levels, resources, hints, compile_java=True
     if p.sky:
         environment = environment[:-64] + fixed(p.sky[0]) + fixed(p.sky[1])
     controller, java = (runtime_factory or runtime_java)(p)
-    scene = Scene(prefix + "S", prefix + "L", [[Tag.text(0, "ghost"), Tag.vector(1, anchor["orientation"]), Tag.vector(2, anchor["position"]), Tag.integer(3, anchor["sector"]), Tag.text(11, controller)]], environment).encode()
+    scene_model=Scene(prefix + "S", prefix + "L", [[Tag.text(0, "ghost"), Tag.vector(1, anchor["orientation"]), Tag.vector(2, anchor["position"]), Tag.integer(3, anchor["sector"]), Tag.text(11, controller)]], environment)
+    # Campaign-only selectable brush layer, supplied explicitly by the runtime
+    # factory. The accepted single-scene/tutorial path remains byte-identical.
+    click_objects=getattr(runtime_factory,'click_objects',[])
+    from .click_interactions import validate_placement
+    validate_placement(ws,level,click_objects)
+    for obj in click_objects:
+        from .click_interactions import brush
+        name=prefix+'_'+obj['id'];trans=obj['transform']
+        index=len(scene_model.entities)
+        scene_model.entities.append([Tag.text(0,name),Tag.vector(1,trans['orientation']),Tag.vector(2,trans['position']),Tag.integer(3,obj['interaction']['sector']),Tag.text(11,prefix+'_Passive'),Tag.text(81,name),Tag.text(82,name)])
+        if scene_model.brushes is None:scene_model.brushes={}
+        scene_model.brushes[index]=brush(obj['interaction'])
+    native_scene=getattr(runtime_factory,'native_arrivals',None)
+    if native_scene:
+        from .native_arrivals import records
+        scene_model.entrances=records(ws,level,native_scene)
+    scene=scene_model.encode()
     assert Scene.read(scene).encode() == scene
     templates = []
     custom_scripts={t['id']:t.get('custom_script') for t in resources['templates'] if t.get('custom_script')}
@@ -284,7 +301,7 @@ def build(ws: Workspace, p: Project, levels, resources, hints, compile_java=True
     not_file = NotFile(templates).encode()
     assert NotFile.read(not_file).encode() == not_file
     ref = level["references"][0]
-    original_chronicle = parse_chronicle(ws.output(Path("research/original/Chronicles") / ref["chronicle"]).read_bytes())
+    original_chronicle = {'settings':{}} if level.get('imported_pack') else parse_chronicle(ws.output(Path("research/original/Chronicles") / ref["chronicle"]).read_bytes())
     meta_name = original_chronicle["settings"].get("metafile", [])
     metadata_lines = []
     if meta_name:

@@ -60,8 +60,9 @@ def main(argv=None):
     from PySide6.QtCore import QTimer
     from .product_ui import settings_dialog
     def inspect_settings():
-        dialog=win.findChild(QDialog,'settings_dialog');combo=dialog.findChild(QComboBox,'settings_language')
+        dialog=QApplication.activeModalWidget();combo=dialog.findChild(QComboBox,'settings_language')
         rc3['settings_has_language']=combo is not None and combo.currentData()==args.language
+        rc3['settings_has_wtd_import']=dialog.findChild(QPushButton,'settings_import_wtd') is not None
         dialog.grab().save(str(ws.output('build/probe/settings.png')));dialog.findChild(QDialogButtonBox).button(QDialogButtonBox.StandardButton.Cancel).click()
     QTimer.singleShot(0,inspect_settings);settings_dialog(win)
     report=backend.build(win.doc.snapshot())
@@ -124,6 +125,66 @@ def main(argv=None):
     win.select(('waypoints',point_index));win.delete_selected()
     rc4['spawn_point_delete_valid']=all(p['id']!=wizard.new_point['id'] for p in win.doc.data['waypoints']) and backend.validate(win.doc.snapshot()).valid
     win.undo_project();rc4['delete_single_undo']=win.doc.snapshot()==original
+    from .original_objects import OriginalObjectPicker,PassageDialog
+    picker=OriginalObjectPicker(win);picker.show();app.processEvents()
+    rc4['original_picker_has_static_objects']=picker.tree.topLevelItemCount()>0
+    picker.tree.setCurrentItem(picker.tree.topLevelItem(0));picker.grab().save(str(ws.output('build/probe/original_picker.png')))
+    picker.findChild(QDialogButtonBox).button(QDialogButtonBox.StandardButton.Ok).click()
+    rc4['original_picker_selection']=picker.result()==QDialog.DialogCode.Accepted and bool(picker.selection)
+    passage=PassageDialog(win,picker.selection);passage.show();app.processEvents();passage.grab().save(str(ws.output('build/probe/original_passage.png')))
+    passage.findChild(QDialogButtonBox).button(QDialogButtonBox.StandardButton.Cancel).click();rc4['original_cancel_unchanged']=win.doc.snapshot()==original
+    passage=PassageDialog(win,picker.selection);passage.when.setCurrentIndex(passage.when.findData('scene_start'));passage.operation.setCurrentIndex(passage.operation.findData('hide'));passage.show();app.processEvents();passage.findChild(QDialogButtonBox).button(QDialogButtonBox.StandardButton.Ok).click()
+    rc4['original_action_created_valid']=passage.result()==QDialog.DialogCode.Accepted and backend.validate(win.doc.snapshot()).valid and 'control_original' in win.doc.data['events'][-1]['actions'][0]
+    win.undo_project();rc4['original_action_single_undo']=win.doc.snapshot()==original
+    from ..spatial.assets import Assets
+    from .viewport import Viewport
+    club=Assets(backend).load('ClubTenebrae');door=next(r for r in club.references if r.get('script')=='ClickExit');brush=club.models[door['preview_model']][0]
+    rc4['tenebrae_exit_mesh']=len(brush.material_ids)==48 and door['mesh_materials']==['London\\CTdoor_L']
+    view=Viewport();view.set_level(club);view.sync({'actors':[]},())
+    import numpy as np
+    triangle=brush.triangles[0];center=triangle.mean(0)+door['position'];normal=np.cross(triangle[1]-triangle[0],triangle[2]-triangle[0]);normal/=np.linalg.norm(normal)
+    view.screen_ray=lambda *args:(center+normal*20,-normal)
+    rc4['original_exact_mesh_pick']=view.pick_at(0,0)==('original',club.references.index(door));view.deleteLater()
+    from ..click_interactions import surface as click_surface
+    mid=club.mesh.materials.index('London\\CTdoor_L');index=next(i for i,m in enumerate(club.mesh.material_ids) if m==mid and club.mesh.triangles[i].mean(0)[0]<700);center,click_mesh=click_surface(club.mesh,index,[0,-1,0])
+    surface=PassageDialog(win,dict(fixed_surface=True,level=win.doc.data['level']['source'],material='London/CTdoor_L',position=center,interaction=click_mesh));surface.show();app.processEvents();surface.grab().save(str(ws.output('build/probe/original_fixed_surface.png')))
+    rc4['fixed_surface_native_click']=surface.fixed and not surface.operation.isEnabled() and surface.when.currentData()=='object_clicked' and surface.actions.scroll.widget().findChild(QComboBox,'action_kind').findData('run_event')>=0
+    kind=surface.actions.scroll.widget().findChild(QComboBox,'action_kind');kind.setCurrentIndex(kind.findData('reward_xp'));surface.label.setText('Club entrance' if args.language=='en' else 'Entrada al club');surface.accept()
+    rc4['click_create_valid_no_proximity']=surface.result()==QDialog.DialogCode.Accepted and backend.validate(win.doc.snapshot()).valid and win.doc.data['events'][-1]['when']=='object_clicked' and bool(win.doc.data['objects'][-1].get('interaction'))
+    win.undo_project();rc4['click_single_undo']=win.doc.snapshot()==original
+    # Exercise the packaged importer using our own synthetic definitions and a
+    # synthetic installation. No third-party assets or real game writes.
+    from .. import wtd
+    from ..formats import NotFile,Template,Tag
+    from ..catalogue import rows
+    from ..generator import zip_bytes
+    from PySide6.QtWidgets import QFileDialog
+    tables={}
+    for ext in ('ncd','ndd','ndg'):
+        entry=next(e for e in backend.base_resources['entries'] if e['path'].casefold()=='misc/game.'+ext)
+        tables[ext]=wtd._original(ws,entry)
+    power=list(next(t for _,t in rows(tables['ndd'].decode('cp1252')) if t[3]=='DisciplineBloodHealing'));power[0]='RCM_WTD_ProbePower'
+    clan=list(next(iter(rows(tables['ncd'].decode('cp1252'))))[1]);clan[0]='rcm_wtd_probeclan';clan[2:4]=['none','none']
+    fixture=ws.write('build/probe/wtd_fixture.nob',zip_bytes({'misc/game.ndd':(' '.join(power)+'\n').encode(),'misc/game.ncd':(' '.join(clan)+'\n').encode(),'misc/game.ndg':tables['ndg'],'misc/Templates/_Darkness.NOT':NotFile([Template('RCMWTDProbeActor',[Tag.text(0,'businessWoman')])]).encode()}))
+    original_pick=QFileDialog.getOpenFileName;original_publish=wtd.publish_shared;original_running=deployment_api.game_running
+    def import_through_settings():
+        dialog=QApplication.activeModalWidget();dialog.findChild(QPushButton,'settings_import_wtd').click();dialog.grab().save(str(ws.output('build/probe/wtd_settings.png')));dialog.findChild(QDialogButtonBox).button(QDialogButtonBox.StandardButton.Cancel).click()
+    try:
+        QFileDialog.getOpenFileName=lambda *a,**k:(str(fixture),'')
+        deployment_api.game_running=lambda:False
+        wtd.publish_shared=lambda unused,data,record:original_publish(Workspace(ws.root,fake),data,record)
+        QTimer.singleShot(0,import_through_settings);settings_dialog(win)
+    finally:
+        QFileDialog.getOpenFileName=original_pick;wtd.publish_shared=original_publish;deployment_api.game_running=original_running
+    rc4['wtd_import_bundled_policy']=len(wtd.policy()['keep'])==445 and backend.resources.get('wtd_import',{}).get('counts',{}).get('disciplines')==1 and (fake/'RCM/_content/within_the_darkness'/wtd.ARCHIVE).is_file()
+    from .wtd import TraitsDialog
+    traits=TraitsDialog(win,win.doc.data['actors'][0]);traits.clan.setCurrentIndex(traits.clan.findData('rcm_wtd_probeclan'));traits.discipline.setCurrentIndex(traits.discipline.findData('RCM_WTD_ProbePower'));traits.add();traits.show();app.processEvents();traits.grab().save(str(ws.output('build/probe/wtd_traits.png')));traits.buttons.button(QDialogButtonBox.StandardButton.Ok).click()
+    rc4['wtd_actor_traits_valid']=traits.result()==QDialog.DialogCode.Accepted and backend.validate(win.doc.snapshot()).valid
+    compiled_traits=backend.build(win.doc.snapshot());rc4['wtd_traits_compile_real_api']=compiled_traits['status']=='compiled-unverified-in-game' and wtd.ARCHIVE not in compiled_traits['distribution_files']
+    win.undo_project();rc4['wtd_traits_single_undo']=win.doc.snapshot()==original
+    # Remove only the fixture import so repeated launches still start without
+    # optional content. User imports are never removed by normal application UI.
+    ws.output(wtd.ROOT+'/import.json').unlink();ws.output(wtd.ROOT+'/'+wtd.ARCHIVE).unlink();backend.refresh_import()
     win.doc._saved=__import__('rcm.service',fromlist=['source_text']).source_text(win.doc.snapshot());win.close();app.processEvents()
     reopened=AppSettings(args.settings_directory)
     if not all(rc3.values()):raise ValueError('RC3 widget acceptance failed: '+json.dumps(rc3))

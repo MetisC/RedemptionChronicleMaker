@@ -1,0 +1,16 @@
+{
+  "native_entries": [
+    {
+      "sector": 19,
+      "position": [
+        724.1906127929688,
+        -338.0288391113281,
+        -512.0
+      ],
+      "entry": 0
+    }
+  ],
+  "class_version": "45.3",
+  "source_sha256": "8cba4bf31342b428febc1b44c9139fec83630109b64cbb5bb8a274e8033a5ed5",
+  "native_engine_test": false
+}

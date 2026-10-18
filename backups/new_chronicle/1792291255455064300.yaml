@@ -1,0 +1,65 @@
+schema: 2
+project_format: 10
+chronicle:
+  id: new_chronicle
+  name: Mi nueva crónica
+  description: ''
+state:
+  flags: {}
+entry: scene1
+scenes:
+- id: scene1
+  level:
+    source: RaveClub
+  actors: []
+  objects: []
+  conversations: []
+  events:
+  - id: passage1
+    when: trigger_enter
+    once: true
+    actions:
+    - travel:
+        scene: scene1
+        entry: entry1
+    trigger: passage_zone1
+  triggers:
+  - id: passage_zone1
+    name: Zona del paso
+    shape: sphere
+    radius: 120.0
+    once: true
+    transform:
+      position:
+      - 580.2523654663672
+      - 102.0
+      - -512.0
+      orientation:
+      - 0
+      - 0
+      - 0
+  encounters: []
+  sequences: []
+  entries:
+  - id: entry1
+    name: Nueva entrada
+    transform:
+      placement: absolute
+      position:
+      - 724.1906116294581
+      - -338.02883290420345
+      - -512.0
+      orientation:
+      - 0
+      - 0
+      - 0
+  waypoints: []
+  paths: []
+  generators: []
+  default_entry: entry1
+quests: []
+resources: {}
+metadata:
+  version: 0.1.0
+build_options:
+  debug: true

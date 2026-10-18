@@ -41,7 +41,7 @@ def compatibility_files(game,current_nob):
     archives=[current_nob] if isinstance(current_nob,bytes) else current_nob
     current={}
     for data in archives:current.update(read_templates(data,boot_only=True))
-    known={};classes={}
+    known={};classes={};imported_packs={};imported_templates={}
     manifests=[*(game/'RCM').glob('*/.rcm_deployment.json'),*(game/'RCM').glob('*/.rcm_manifest.json')]
     for path in manifests:
         safe_target(game,path)
@@ -56,7 +56,10 @@ def compatibility_files(game,current_nob):
             data=file.read_bytes()
             if hashlib.sha256(data).hexdigest()!=digest:continue
             if name.endswith('.nob'):
-                try:known.update(read_templates(data))
+                try:
+                    found=read_templates(data);known.update(found)
+                    if name=='rcm_wtd_content.nob':
+                        imported_packs[name]=data;imported_templates.update({key:name for key in found})
                 except (ValueError,zipfile.BadZipFile):continue
             elif re.fullmatch(r'codex/[A-Za-z_][A-Za-z0-9_$]*\.class',name):classes[name]=data
     unavailable=required-current.keys()-known.keys()
@@ -64,9 +67,10 @@ def compatibility_files(game,current_nob):
     if owned:raise ValueError('Falta la definición de un objeto RCM del personaje guardado: '+', '.join(sorted(owned)))
     missing=(required & known.keys())-current.keys()
     if not missing:return {}
-    keep={};scripts=set()
+    keep={};scripts=set();needed_packs=set()
     def collect(name):
         if name in keep or name in current:return
+        if name in imported_templates:needed_packs.add(imported_templates[name]);return
         template=known.get(name)
         if template is None:return  # Parent is an original game definition.
         keep[name]=template;values=template.values()
@@ -75,6 +79,7 @@ def compatibility_files(game,current_nob):
     for name in sorted(missing):collect(name)
     from .generator import zip_bytes
     files={'rcm_compat.nob':zip_bytes({'misc/Templates/_rcm_compat.not':NotFile(list(keep.values())).encode()})}
+    files.update({name:imported_packs[name] for name in needed_packs})
     for script in sorted(scripts):
         name='codex/'+script+'.class'
         if name in classes:files[name]=classes[name]

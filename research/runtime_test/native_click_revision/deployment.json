@@ -1,0 +1,17 @@
+{
+  "chronicle": "new_chronicle",
+  "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\new_chronicle",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_new_chronicle_1792294846928127400.zip",
+  "removed_owned_files": [],
+  "files": {
+    "new_chronicle\\rcm_wtd_content.nob": "5216338894a4cd5a4d60f0ff4146687f35bd88caa51750891086d350733f78f9",
+    "new_chronicle\\codex\\R_new_chronicle_s0_Passive.class": "584e13f521aa48116bd6f15327f11bbc751edf00222ecaac895061986fbe380e",
+    "new_chronicle\\codex\\R_new_chronicle_s0_Scene.class": "93cba4fb5e81138bb5f3e7c15439cc7b081de85f8d6a17553d9874bdcbc5b71f",
+    "new_chronicle\\new_chronicle.nob": "f3e54433379e75496e3355b048ca2750aa40459879d2050a7056888ccadebef5",
+    "new_chronicle\\rcm_compat.nob": "5059126e67d9ddc0af10db1b29ac7b522b9015f4e5b53d795c91193b5cb0f856",
+    "new_chronicle\\codex\\R_rcm_showcase_s0_Passive.class": "2a50f5a85b67eeb73573c7fc2c513cad6653970e8c43c5399eb5bd85d5803f86",
+    "new_chronicle\\.rcm_deployment.json": "c8cc0207608da35a9ea55555d9ebc0927d649555e74b9c61899a66fb408e7c4e"
+  },
+  "native_engine_test": false,
+  "backup_removed_after_verification": true
+}

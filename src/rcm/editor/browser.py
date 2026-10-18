@@ -17,10 +17,13 @@ class ResourceBrowser(QWidget):
         self.search.setObjectName("resource_search")
         self.search.setPlaceholderText(tr("Buscar por nombre o identificador…"))
         self.category = QComboBox()
+        backend.refresh_import()
         self.category.setObjectName("resource_category")
         for name, value in [(tr('Escenarios'), "levels"), (tr("Plantillas de actores"), "actors"),
                             (tr("Objetos"), "items"), (tr("Escenas"), ".nsd"), (tr("Modelos"), ".nod"), ("AI", ".nai")]:
             self.category.addItem(name, value)
+        if backend.resources.get('wtd'):
+            self.category.addItem(tr('Clanes disponibles'),'clans');self.category.addItem(tr('Disciplinas disponibles'),'disciplines')
         row.addWidget(self.search, 1)
         row.addWidget(self.category)
         layout.addLayout(row)
@@ -29,6 +32,7 @@ class ResourceBrowser(QWidget):
         for label, value in [(tr('Todos los recursos'),''),(tr('Objetos'),'items'),('Props','props'),(tr('Armas'),'weapons'),(tr('Armaduras'),'armour'),(tr('Actores'),'actors')]: self.family.addItem(label,value)
         self.origin = QComboBox(); self.origin.setObjectName('resource_origin')
         for label,value in [(tr('Toda procedencia'),''),('Original','Original /'),(tr('Proyecto'),'Proyecto /')]: self.origin.addItem(label,value)
+        if backend.resources.get('wtd'):self.origin.addItem('Within The Darkness','WTD /')
         self.available = QComboBox(); self.available.setObjectName('resource_available')
         self.available.addItem(tr('Todos'),False); self.available.addItem(tr('Sólo seleccionables'),True)
         self.enemies=QComboBox();self.enemies.setObjectName('resource_enemies')
@@ -92,6 +96,14 @@ class ResourceBrowser(QWidget):
 
     def refresh(self):
         if not hasattr(self,'table'): return
+        active=bool(self.backend.resources.get('wtd'))
+        self.category.blockSignals(True)
+        for text,key in [(tr('Clanes disponibles'),'clans'),(tr('Disciplinas disponibles'),'disciplines')]:
+            index=self.category.findData(key)
+            if active and index<0:self.category.addItem(text,key)
+            elif not active and index>=0:self.category.removeItem(index)
+        if active and self.origin.findData('WTD /')<0:self.origin.addItem('Within The Darkness','WTD /')
+        self.category.blockSignals(False)
         kind = self.category.currentData()
         query = self.search.text().strip().casefold()
         rows = []
@@ -102,6 +114,11 @@ class ResourceBrowser(QWidget):
                 info = ('ID: ' + f'{ident}' + tr('\nGeometría: ') + f"{item['nil']}" + tr('\nEscenas: ') + f"{', '.join(item['scenes']) or tr('Sin escena asociada')}" + tr('\nProcedencia: ') + f'{origins}')
                 usable = self.backend.level_usable(ident)
                 rows.append((title + tr(" · ") + ident, item["nil"], origins, tr("Disponible") if usable else tr("Solo catálogo"), ident, info, usable))
+        elif kind in {'clans','disciplines'}:
+            for item in self.backend.resources.get('wtd',{}).get(kind,[]):
+                origin='WTD / Within The Darkness' if item['imported'] else 'Original / Redemption'
+                info=item['id']+'\n'+origin+'\n'+(item.get('script') or ', '.join(item.get('groups',[])))
+                rows.append((item['id'],item.get('group',tr('Clan')),origin,tr('Disponible'),item['id'],info,True))
         elif kind in {"actors", "items"}:
             templates = self.backend.resources["templates"]
             from ..enemy_catalogue import catalogue,details
@@ -115,7 +132,7 @@ class ResourceBrowser(QWidget):
                     continue
                 if kind=='actors' and self.enemies.currentData() and (not enemies.get(item['id'],{}).get('enemy') or item.get('project_owned')):continue
                 if hasattr(self,'allowed_families') and item['kind'] not in self.allowed_families:continue
-                origin_text = ('Proyecto / ' if item.get('project_owned') else 'Original / ')+item["archive"] + " / " + item["path"]
+                origin_text = ('Proyecto / ' if item.get('project_owned') else 'WTD / ' if item.get('imported_pack') else 'Original / ')+item["archive"] + " / " + item["path"]
                 usable = counts[item["id"]] == 1
                 display_origin=self.display_origin(origin_text)
                 info = ((tr('ID exacto: ') + f"{item['id']}" + tr('\nFamilia: ') + f"{item['kind']}" + tr('\nProcedencia: ') + display_origin + tr('\nHereda de: ') + f"{item.get('parent') or tr('Sin padre')}" + tr('\nModelo: ') + f"{item.get('model') or tr('No declarado directamente')}" + '\nAI: ' + f"{item.get('ai') or tr('No declarada directamente')}"))

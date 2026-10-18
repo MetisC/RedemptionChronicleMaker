@@ -202,6 +202,8 @@ def settings_dialog(win):
     autosave=QSpinBox();autosave.setRange(0,600);autosave.setSuffix(tr(' segundos (0 desactiva)'));autosave.setValue(prefs.data.get('autosave_seconds',30));form.addRow(tr('Recuperación automática'),autosave)
     safe=QCheckBox(tr('Iniciar sin visor 3D (al reiniciar)'));safe.setChecked(prefs.data.get('safe_mode',False));form.addRow(safe)
     hint=QCheckBox(tr('Mostrar ayuda al iniciar una prueba'));hint.setChecked(prefs.data.get('show_playtest_hint',True));form.addRow(hint)
+    from .wtd import import_widget
+    import_widget(win,layout)
     buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Ok|QDialogButtonBox.StandardButton.Cancel);layout.addWidget(buttons)
     def accept():
         try:

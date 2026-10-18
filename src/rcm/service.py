@@ -45,12 +45,19 @@ class Backend:
         errors=cache_errors(workspace)
         if errors:raise ValueError('Catálogos ausentes o corruptos. Ejecuta scan o abre el editor para reconstruirlos: '+'; '.join(errors))
         self.levels = json.loads(workspace.output("cache/levels.json").read_text(encoding="utf8"))
-        self.resources = json.loads(workspace.output("cache/resources.json").read_text(encoding="utf8"))
+        self.base_levels=dict(self.levels)
+        self.base_resources = json.loads(workspace.output("cache/resources.json").read_text(encoding="utf8"))
+        from .wtd import overlay
+        self.resources = overlay(workspace,self.base_resources)
         from .motions import ensure_catalogue
         self.resources['motion_catalogue']=ensure_catalogue(workspace,self.resources)
         self.original_resources=self.resources
         self.project_payload={}
         self.hints = json.loads(workspace.output("cache/scene_hints.json").read_text(encoding="utf8"))
+        self.base_hints=dict(self.hints)
+        from .wtd import manifest
+        imported=manifest(workspace)
+        if imported:self.levels.update(imported.get('levels',{}));self.hints.update(imported.get('scene_hints',{}))
         self._build_lock = threading.Lock()
         self.strings = {}
         for path in workspace.output("research/original/Local_Eng.nob/strings").glob("*.nls"):
@@ -60,16 +67,28 @@ class Backend:
                     self.strings[parts[0]] = parts[1]
 
     def sync_resources(self,source):
+        self.refresh_import()
         from .project_resources import prepare
         key=build_inputs_fingerprint(self.ws,{k:source.get(k) for k in ['project_format','resources','chronicle']})
         if key==getattr(self,'_resources_key',None):return
         _,self.resources,self.project_payload,_=prepare(self.ws,source,self.original_resources)
         self._resources_key=key
 
+    def refresh_import(self):
+        from .wtd import manifest,overlay
+        record=manifest(self.ws);signature=record['sha256'] if record else None
+        if signature==self.original_resources.get('wtd_import',{}).get('sha256'):return
+        self.original_resources=overlay(self.ws,self.base_resources)
+        self.levels={**self.base_levels,**(record.get('levels',{}) if record else {})};self.hints={**self.base_hints,**(record.get('scene_hints',{}) if record else {})}
+        from .motions import ensure_catalogue
+        self.original_resources['motion_catalogue']=ensure_catalogue(self.ws,self.original_resources)
+        self.resources=self.original_resources;self.project_payload={};self._resources_key=None
+
     def validate(self, source: str | dict, catalogue=None):
         if not isinstance(source, (str, dict)):
             return Validation(None, [Problem("ERROR", "El proyecto debe ser texto YAML o un objeto de datos")])
         try:
+            self.refresh_import()
             raw = parse_source(source)
             authoring_raw=raw
             resources=catalogue or self.original_resources
@@ -155,6 +174,12 @@ class Backend:
         """Conservative navigation for contextual parser errors, never guessed offsets."""
         if not data:
             return ()
+        if 'misma escena' in message:
+            for si,scene in enumerate(data.get('scenes',[])):
+                for ei,event in enumerate(scene.get('events',[])):
+                    for ai,action in enumerate(event.get('actions',[])):
+                        if action.get('jump')==scene.get('id') or isinstance(action.get('travel'),dict) and action['travel'].get('scene')==scene.get('id'):
+                            return ('scenes',si,'events',ei,'actions',ai)
         if message.startswith("Level") or message.startswith("Recurso sky"):
             return ("level",)
         if "flag" in message.lower() and not message.startswith("Conversación"):
@@ -181,6 +206,7 @@ class Backend:
                 and any(self.hints.get(s.casefold(), {}).get("entities") for s in level.get("scenes", [])))
 
     def level_label(self, name):
+        if self.levels[name].get('display_name'):return self.levels[name]['display_name']
         refs = self.levels[name]["references"]
         return self.strings.get(refs[0]["map_label"], name) if refs else name
 
@@ -223,6 +249,8 @@ class Backend:
                     report=build(staged, validation.project, self.levels, resources, self.hints,
                                  compile_java, progress)
                 if info:report=add_to_build(staged,report,payload,info,compile_java)
+                from .wtd import add_to_build as add_import
+                report=add_import(staged,report,resources)
                 from .output_validation import verify_output
                 report['format_validation']=verify_output(staged,report,resources)
                 report['authoring_source_sha256']=source_fingerprint(source)
@@ -242,6 +270,9 @@ class Backend:
                     if player_cinema:contract['player_cinema_resume_v1']=player_cinema
                 if isinstance(p,Campaign) and p.source.get('runtime_profile')=='phase10':
                     contract['dynamic_records_v1']=[{'scene':s['id'],'generators':s.get('generators',[])} for s,project in p.scenes]
+                if isinstance(p,Campaign) and any(a.get('traits') for s,project in p.scenes for a in s['actors']):
+                    contract['actor_traits']=[{'scene':s['id'],'actors':{a['id']:a['traits'] for a in s['actors'] if a.get('traits')}} for s,project in p.scenes]
+                if report.get('imported_content'):contract['imported_content']=report['imported_content']
                 report['save_schema_sha256']=source_fingerprint(contract)
                 report['new_game_required']=bool(prior) and prior.get('save_schema_sha256')!=report['save_schema_sha256']
                 if report['new_game_required']:report['save_warning']='La estructura persistida ha cambiado o no tiene firma previa. Inicia una partida nueva; no hay migrador de saves nativos.'
@@ -284,7 +315,11 @@ def build_inputs_fingerprint(ws,source):
             if isinstance(level,dict) and level.get('source') in levels:
                 _,record=environment(ws,levels[level['source']],hints,level.get('environment_scene'))
                 profiles[level['source']+'/'+record['id']]=record['source_sha256']
-    return source_fingerprint({'source':data,'owned_files':files,'original_environment_sources':profiles})
+    inputs={'source':data,'owned_files':files,'original_environment_sources':profiles}
+    from .wtd import manifest
+    imported=manifest(ws)
+    if imported:inputs['imported_wtd']=imported['sha256']
+    return source_fingerprint(inputs)
 
 
 def project_source(p: Project):

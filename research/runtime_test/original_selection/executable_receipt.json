@@ -1,0 +1,14 @@
+{
+  "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+  "sha256": "58df93276d8b293e0e0f3eb0edc3f25c981f0c2171218711a8b9bda4977c6e75",
+  "installed": true,
+  "successful": true,
+  "runs": 2,
+  "candidate_pre_focus_revision_runs": 8,
+  "full_suite_cases": 461,
+  "post_focus_cases": 8,
+  "root_shortcut": "H:\\Repositorios\\RedemptionChronicleMaker\\Redemption Chronicle Maker.lnk",
+  "shortcut_target_verified": true,
+  "probes": "research/runtime_test/original_selection/final_portable/summary.json",
+  "native_engine_test": false
+}

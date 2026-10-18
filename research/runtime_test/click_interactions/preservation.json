@@ -1,0 +1,32 @@
+{
+  "originals": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "tutorial_sources": {
+    "chronicles/tutorial/project.yaml": true,
+    "chronicles/tutorial/README.en.md": true,
+    "chronicles/tutorial/README.md": true,
+    "chronicles/tutorial/resources/RCMTutorActor.java": true
+  },
+  "tutorial_classes": {
+    "R_rcm_tutor_s0_Scene": true,
+    "R_rcm_tutor_s0_Passive": true,
+    "R_rcm_tutor_s1_Scene": true,
+    "R_rcm_tutor_s1_Passive": true,
+    "RCMTutorActor": true
+  },
+  "user_content": {
+    "checked_files": 1798,
+    "mismatches": []
+  },
+  "current_user_project": {
+    "path": "chronicles/new_chronicle/project.yaml",
+    "sha256": "0620ca7141b5b1c2cb7af1b78a59e2ccc5af1ed493ec8a0283c44a8ab07a536f",
+    "unchanged_this_revision": true,
+    "known_invalid_link": "scene1/passage1 -> scene1; validation blocks build and navigates to the action"
+  },
+  "post_suite_tutorial_and_user_project_verified": true
+}

@@ -106,8 +106,10 @@ class Viewport(QOpenGLWidget):
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
         self.setMouseTracking(True)
         self.level = None
+        self.original_rays={}
         self.data = None
         self.selection = ()
+        self.context_surface = None
         self.hidden = {('original',)}
         self.show_relations = True
         self.paths = []
@@ -187,6 +189,7 @@ class Viewport(QOpenGLWidget):
     def set_level(self, level):
         changed = self.level is None or self.level.name != level.name
         self.level = level
+        self.original_rays={}
         if changed:
             self.raycaster = Raycaster(level.mesh)
             self.upload = True
@@ -197,6 +200,27 @@ class Viewport(QOpenGLWidget):
 
     def sync(self, data, path):
         self.data, self.selection = data, tuple(path)
+        if self.level:
+            import hashlib,json
+            clicks=[e for e in data.get('objects',[]) if 'interaction' in e]
+            signature=(id(self.level),tuple((e['id'],hashlib.sha256(json.dumps(e['interaction'],sort_keys=True).encode()).hexdigest()) for e in clicks))
+            if signature!=getattr(self,'click_signature',None):
+                self.click_signature=signature
+                for key in list(self.level.models):
+                    if key.startswith('@click/'):del self.level.models[key]
+                from ..click_interactions import validate
+                from ..spatial.geometry import Mesh
+                for e in clicks:
+                    try:
+                        value=validate(e['interaction']);mesh=Mesh(np.asarray(value['vertices'],dtype=np.float32),np.asarray(value['material_ids'],dtype=np.int32),value['materials'],0,0,[])
+                        parent=self.parent();assets=getattr(parent,'assets',None)
+                        if assets:materials=[assets.material(m) for m in mesh.materials]
+                        else:
+                            from ..spatial.assets import Material
+                            materials=[Material(m,bytes([130,170,200,255]),1,1,None) for m in mesh.materials]
+                        self.level.models[self.model_key(e)]=(mesh,materials)
+                    except (ValueError,TypeError,KeyError):pass # Semantic drafts remain inspectable; validation blocks build.
+                self.original_rays={};self.upload=True
         self.update()
 
     def entities(self):
@@ -214,7 +238,33 @@ class Viewport(QOpenGLWidget):
             for i, e in enumerate(self.level.references):
                 if ('original', i) not in self.hidden:
                     out.append((('original', i), e, True))
+        elif self.level and self.selection[:1]==('original',) and len(self.selection)>1 and self.selection[1]<len(self.level.references):
+            out.append((self.selection[:2],self.level.references[self.selection[1]],True))
         return out
+
+    @staticmethod
+    def model_key(e):return '@click/'+e['id'] if 'interaction' in e else e.get('preview_model',e.get('template'))
+
+    @staticmethod
+    def object_rotation(ori):
+        pitch,roll,yaw=np.radians(ori);c,s=math.cos,math.sin
+        return rotation(math.degrees(yaw))@np.array([[1,0,0],[0,c(pitch),-s(pitch)],[0,s(pitch),c(pitch)]])@np.array([[c(roll),0,s(roll)],[0,1,0],[-s(roll),0,c(roll)]])
+
+    def pick_at(self,x,y):
+        if not self.level:return None
+        o,d=self.screen_ray(x,y);nearest=self.raycaster.cast(o,d);distance=nearest.distance+5 if nearest else math.inf;chosen=None
+        candidates=[row for row in self.entities() if not row[2]]
+        if ('geometry',) not in self.hidden:
+            candidates += [(('original',i),e,True) for i,e in enumerate(self.level.references) if ('original',i) not in self.hidden and (self.model_key(e) in self.level.models or ('original',) not in self.hidden)]
+        for path,e,ro in candidates:
+            pos=self.position(path,e);low,high=self.entity_bounds(path,e);ori=e.get('orientation',[0,0,0]) if ro else e['transform'].get('orientation',[0,0,0]);inv=self.object_rotation(ori).T;origin=inv@(o-pos);direction=inv@d
+            if (ro or 'interaction' in e) and self.model_key(e) in self.level.models:
+                key=self.model_key(e)
+                if key not in self.original_rays:self.original_rays[key]=Raycaster(self.level.models[key][0])
+                hit=self.original_rays[key].cast(origin,direction,max_distance=min(distance,nearest.distance+.05) if nearest else distance);t=hit.distance if hit else None
+            else:t=ray_sphere(o-pos,d,e['radius']) if path[0]=='triggers' and e['shape']=='sphere' else ray_box(origin,direction,low,high)
+            if t is not None and t<distance:distance=t;chosen=path
+        return chosen
 
     def position(self, path, e):
         if path[0] == 'original':
@@ -232,8 +282,8 @@ class Viewport(QOpenGLWidget):
         if path[0] == 'triggers':
             extent = np.array(e.get('size', [2 * e.get('radius', 60)] * 3)) / 2
             return -extent, extent
-        if path[0] != 'original' and self.level and e.get('template') in self.level.models:
-            return self.level.models[e['template']][0].bounds
+        if self.level and self.model_key(e) in self.level.models:
+            return self.level.models[self.model_key(e)][0].bounds
         return np.array([-16., -16., 0.]), np.array([16., 16., 110. if path[0] == 'actors' else 32.])
 
     def matrices(self):
@@ -323,16 +373,18 @@ class Viewport(QOpenGLWidget):
                 if ('geometry',) not in self.hidden:
                     self.draw_mesh(self.gpu, QMatrix4x4())
                 linked = affected(self.data, self.selection[:2]) if self.show_relations and self.data else set()
-                for path, e, ro in self.entities():
-                    if not ro and path[0] != 'triggers' and e.get('template') in self.model_gpu:
+                rendered=[row for row in self.entities() if not row[2]]
+                if ('geometry',) not in self.hidden:rendered += [(('original',i),e,True) for i,e in enumerate(self.level.references) if ('original',i) not in self.hidden]
+                for path, e, ro in rendered:
+                    if path[0] != 'triggers' and self.model_key(e) in self.model_gpu:
                         m = QMatrix4x4()
                         m.translate(QVector3D(*self.position(path, e)))
-                        ori = e['transform'].get('orientation', [0, 0, 0])
+                        ori = e.get('orientation',[0,0,0]) if ro else e['transform'].get('orientation', [0, 0, 0])
                         m.rotate(ori[2], 0, 0, 1)
                         m.rotate(ori[0], 1, 0, 0)
                         m.rotate(ori[1], 0, 1, 0)
                         tint = QVector4D(1, 1., 0.65, 1) if path == self.selection[:2] else QVector4D(0.65, 1., 0.85, 1) if path in linked else QVector4D(1, 1, 1, 1)
-                        self.draw_mesh(self.model_gpu[e['template']], m, tint)
+                        self.draw_mesh(self.model_gpu[self.model_key(e)], m, tint)
             except Exception:
                 self.error = traceback.format_exc()
                 self.message.emit(self.error)
@@ -363,6 +415,12 @@ class Viewport(QOpenGLWidget):
         return [np.array([x, y, z]) for z in (low[2], high[2]) for y in (low[1], high[1]) for x in (low[0], high[0])]
 
     def overlays(self, painter):
+        if self.context_surface is not None:
+            surface=self.context_surface;xyz=np.asarray(surface['interaction']['vertices'])[:,:3];center=np.asarray(surface['position'])
+            corners=[self.project(center+p) for p in self.box_corners(xyz.min(0),xyz.max(0))]
+            painter.setPen(QPen(QColor('#ffd064'),2.))
+            for i,j in [(0,1),(0,2),(1,3),(2,3),(4,5),(4,6),(5,7),(6,7),(0,4),(1,5),(2,6),(3,7)]:
+                if corners[i] and corners[j]:painter.drawLine(corners[i],corners[j])
         linked = affected(self.data, self.selection[:2]) if self.show_relations and self.data else set()
         selected_pos = None
         if self.data:
@@ -384,7 +442,7 @@ class Viewport(QOpenGLWidget):
             # Entity helpers are authoring overlays; models remain depth tested.
             low, high = self.entity_bounds(path, e)
             ori = e.get('orientation', [0, 0, 0]) if ro else e['transform'].get('orientation', [0, 0, 0])
-            rot = rotation(ori[2])
+            rot = self.object_rotation(ori)
             points = [self.project(pos + rot @ c) for c in self.box_corners(low, high)]
             painter.setPen(QPen(color, 2. if selected else 1.))
             if path[0] == 'triggers' and e.get('shape') == 'sphere':
@@ -485,6 +543,13 @@ class Viewport(QOpenGLWidget):
         positions = [self.position(p,e) for p,e,ro in self.entities() if p in related]
         target = self.position(*found) if found else np.mean(positions,axis=0) if positions else np.array(self.level.references[0]['position'] if self.level.references else (self.level.mesh.bounds[0]+self.level.mesh.bounds[1])/2)
         self.pos = target + [230., -320., 180.]
+        if found and found[0][0]=='original':
+            low,high=self.entity_bounds(*found);center=target+self.object_rotation(found[1].get('orientation',[0,0,0]))@((low+high)/2);radius=max(40.,np.linalg.norm(high-low)/2);distance=max(220.,radius*2.4)
+            # Frame base scenery from an unobstructed point inside the level.
+            # A fixed world-space offset can put the camera beyond an outer wall.
+            for angle in range(0,360,30):
+                direction=np.array([math.cos(math.radians(angle)),math.sin(math.radians(angle)),0.]);eye=center+direction*distance+[0,0,radius*.3];delta=center-eye
+                if self.raycaster.ground(eye,80,1200) and not self.raycaster.cast(eye,delta,max_distance=np.linalg.norm(delta)-.5):self.pos=eye;target=center-[0,0,55];break
         direction = target + [0,0,55] - self.pos
         self.yaw = math.degrees(math.atan2(direction[1],direction[0]))
         self.pitch = math.degrees(math.atan2(direction[2],np.linalg.norm(direction[:2])))
@@ -583,14 +648,7 @@ class Viewport(QOpenGLWidget):
                     if end and self.line_distance(event.position(),start,end)<10:
                         self.gesture_started.emit()
                         self.drag=(path,self.mode,axis,event.position(),pos.copy(),e['transform'].get('orientation',[0,0,0])[:],e.get('size',[120,120,120])[:],e.get('radius',60));return
-        o,d=self.screen_ray(event.position().x(),event.position().y());nearest=self.raycaster.cast(o,d);distance=nearest.distance+5 if nearest else math.inf;chosen=None
-        for path,e,ro in self.entities():
-            pos=self.position(path,e);low,high=self.entity_bounds(path,e)
-            ori=e.get('orientation',[0,0,0]) if ro else e['transform'].get('orientation',[0,0,0])
-            inv=rotation(-ori[2])
-            t=ray_sphere(o-pos,d,e['radius']) if path[0]=='triggers' and e['shape']=='sphere' else ray_box(inv@(o-pos),inv@d,low,high)
-            if t is not None and t<distance:
-                distance=t;chosen=path
+        chosen=self.pick_at(event.position().x(),event.position().y())
         self.left_pending=chosen;self.left_origin=event.position()
 
     def mouseMoveEvent(self,event):
@@ -728,15 +786,41 @@ class SpatialPanel(QWidget):
 
     def context_menu(self,position):
         menu=QMenu(self);menu.setObjectName('viewport_context_menu')
+        local=self.viewport.mapFromGlobal(position);path=self.viewport.pick_at(local.x(),local.y()) if self.win.doc and self.geometry_matches() else None;target=None;surface=None
+        if path:
+            self.select(path)
+            if path[0]=='original':target=self.viewport.level.references[path[1]]
+        elif self.viewport.level and self.win.doc and self.geometry_matches():
+            o,d=self.viewport.screen_ray(local.x(),local.y());hit=self.viewport.raycaster.cast(o,d)
+            if hit:
+                mid=self.viewport.level.mesh.material_ids[hit.triangle];material=self.viewport.level.mesh.materials[mid] if mid>=0 else ''
+                normal=hit.normal if hit.normal@d<0 else -hit.normal
+                from ..click_interactions import surface as click_surface
+                try:
+                    center,mesh=click_surface(self.viewport.level.mesh,hit.triangle,normal)
+                    surface=dict(level=self.win.doc.data['level']['source'],position=center,material=material,fixed_surface=True,interaction=mesh)
+                except ValueError as error:self.status.setText(str(error))
         for label,cb in [(tr('Enfocar selección · F'),self.viewport.focus_selection),(tr('Mover · 1'),lambda:self.set_mode('move')),(tr('Girar · 2'),lambda:self.set_mode('rotate')),(tr('Tamaño · 3'),lambda:self.set_mode('scale')),(tr('+ Actor…'),self.win.add_actor),(tr('+ Objeto…'),self.add_object),('+ Trigger',self.add_trigger),(tr('+ Entrada'),lambda:self.win.campaign_panel.add_marker('entries')),('+ Waypoint',lambda:self.win.campaign_panel.add_marker('waypoints')),(tr('Ajustar al suelo'),self.snap_selected),(tr('Buscar referencias'),self.win.find_references),(tr('Eliminar · Supr'),self.win.delete_selected)]:
             action=menu.addAction(label);action.triggered.connect(lambda checked=False,cb=cb:self.win.guard(cb))
         from .dynamic_wizard import open_dynamic
+        from .original_objects import use_selected,object_label
+        label=tr('Objeto original / crear paso…')
+        if target:label+=' · '+object_label(target)
+        elif surface:label=tr('Superficie / interacción al hacer clic…')+' · '+surface['material']
+        original=menu.addAction(label);original.setObjectName('use_original');original.triggered.connect(lambda:self.win.guard(lambda:use_selected(self.win,target=surface or target,picker=target is None)));original.setEnabled(self.win.doc is not None)
+        if path and path[0]=='objects' and 'interaction' in self.win.at(path):
+            def edit_click():
+                ident=self.win.at(path)['id'];index=next((i for i,e in enumerate(self.win.doc.data['events']) if e['when']=='object_clicked' and e.get('object')==ident),None)
+                if index is not None:self.win.select(('events',index))
+            original.setText(tr('Editar acciones al hacer clic…'));original.triggered.disconnect();original.triggered.connect(edit_click)
         def encounter_here():
             local=self.viewport.mapFromGlobal(position);o,d=self.viewport.screen_ray(local.x(),local.y());hit=self.viewport.raycaster.cast(o,d) if self.viewport.level else None
             if not hit or abs(hit.normal[2])<=.65:raise ValueError(tr('Selecciona una superficie de suelo válida'))
             open_dynamic(self.win,position=hit.position.tolist())
         action=menu.addAction(tr('Encuentro dinámico aquí…'));action.setObjectName('dynamic_here');action.triggered.connect(lambda:self.win.guard(encounter_here));action.setEnabled(self.win.doc is not None and self.viewport.level is not None)
-        menu.exec(position)
+        self.viewport.context_surface=surface;self.viewport.update()
+        try:menu.exec(position)
+        finally:self.viewport.context_surface=None;self.viewport.update()
 
     def add_object(self):
         from .browser import ResourceDialog

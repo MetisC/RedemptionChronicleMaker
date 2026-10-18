@@ -40,6 +40,10 @@ RCM deliberately **does not edit level geometry**. The original level geometry i
 
 That distinction is important: RCM is a chronicle/module editor, not a map modeller.
 
+Original static props and framed doors can be targeted through **Campaign / Overview → Add… → Original object / create passage…**. Hide, restore, remove and door motion generate runtime actions; fixed NIL surfaces remain immutable. See [Editor guide](docs/EDITOR_GUIDE.en.md) and the pending ORG01–06 native checks.
+
+Optional **Within The Darkness** content is imported from your own NOB through **Settings → Import mod content: Within The Darkness…**. The importer makes usable clans, disciplines, templates, models and the Penthouse level available locally, excluding the mod's menu skin and demo campaign. Without an import, RCM keeps its original content catalogue. Mod assets are not bundled with the public application or chronicle distribution ZIP; recipients need their own local import. See the [Editor guide](docs/EDITOR_GUIDE.en.md) for authoring and deployment.
+
 ---
 
 ## What you can create
@@ -499,10 +503,10 @@ The portable intentionally excludes original Redemption assets.
 
 # Tests and quality checks
 
-Current RC4 workspace status at this commit:
+Latest local RC4 validation:
 
 ```text
-431 PASS
+474 PASS
 0 FAIL
 0 ERROR
 0 SKIP

@@ -2,7 +2,7 @@
   "language": "es",
   "phase": "fresh",
   "returncode": 0,
-  "elapsed_seconds": 35.28667019999921,
+  "elapsed_seconds": 77.18837960000019,
   "report": {
     "rc3": {
       "welcome": true,
@@ -15,6 +15,7 @@
       "errors_open_problems": true,
       "references_open_dock": true,
       "settings_has_language": true,
+      "settings_has_wtd_import": true,
       "human_showcase_guide": true
     },
     "cache_rebuilt": true,
@@ -35,8 +36,8 @@
       "Preparando el compilador…",
       "Preparando tus copias de los ejemplos…"
     ],
-    "setup_seconds": 10.937420800000837,
-    "total_seconds": 34.10526079999909,
+    "setup_seconds": 19.57241780000186,
+    "total_seconds": 75.71890630000053,
     "gui_authored_valid": true,
     "build_status": "compiled-unverified-in-game",
     "class_versions": {
@@ -51,8 +52,8 @@
     "clean_machine_test": false,
     "real_opengl": false,
     "game_originals_written": false,
-    "tutorial_open_timestamp": 27646.8324017,
-    "showcase_open_timestamp": 27647.7884277,
+    "tutorial_open_timestamp": 17286.5315884,
+    "showcase_open_timestamp": 17287.5818069,
     "rc4": {
       "wizard_four_pages": true,
       "advanced_collapsed": true,
@@ -68,7 +69,16 @@
       "graph_in_existing_tab": true,
       "delete_preview_and_navigation": true,
       "spawn_point_delete_valid": true,
-      "delete_single_undo": true
+      "delete_single_undo": true,
+      "original_picker_has_static_objects": true,
+      "original_picker_selection": true,
+      "original_cancel_unchanged": true,
+      "original_action_created_valid": true,
+      "original_action_single_undo": true,
+      "wtd_import_bundled_policy": true,
+      "wtd_actor_traits_valid": true,
+      "wtd_traits_compile_real_api": true,
+      "wtd_traits_single_undo": true
     }
   },
   "path_restricted": true,

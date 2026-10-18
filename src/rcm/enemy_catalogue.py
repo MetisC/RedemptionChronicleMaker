@@ -6,8 +6,10 @@ def catalogue(backend):
     key=id(backend.resources)
     if getattr(backend,'_enemy_catalogue_key',None)==key:return backend._enemy_catalogue
     raw=defaultdict(list)
-    for path in backend.ws.output('research/original').rglob('*.not'):
-        for t in NotFile.read(path.read_bytes()).templates:raw[t.name.casefold()].append(t.values())
+    from .project_resources import original_bytes
+    for entry in backend.resources['entries']:
+        if entry['extension']=='.not' and not entry.get('project_owned'):
+            for t in NotFile.read(original_bytes(backend.ws,entry)).templates:raw[t.name.casefold()].append(t.values())
     templates=defaultdict(list)
     for t in backend.resources['templates']:templates[t['id'].casefold()].append(t)
     usage=defaultdict(set)

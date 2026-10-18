@@ -24,9 +24,13 @@ ACTIONS = {
  'start_patrol': ('Movimiento / Seguir recorrido','paths'), 'stop_patrol': ('Movimiento / Detener actor','actors'),
  'open_exit': ('Salida original / Abrir','native_exit'), 'close_exit': ('Salida original / Cerrar','native_exit'),
  'control_door': ('Puerta existente / Movimiento','door'),
+ 'control_original': ('Escenario original / Objeto o puerta','original'),
+ 'run_event': ('Evento / Ejecutar','events'),
+ 'set_actor_clan': ('Actor / Cambiar clan','wtd_clan'),
+ 'set_discipline': ('Actor / Establecer disciplina','wtd_discipline'),
  'play_sound': ('Audio / Sonido situado','spatial_sound'),
 }
-WHEN = {'scene_start':'Inicia la escena','actor_clicked':'Hablan con actor','object_clicked':'Usan un objeto','note_closed':'Cierran una nota','conversation_ended':'Termina conversación',
+WHEN = {'manual':'Desde otro evento','scene_start':'Inicia la escena','actor_clicked':'Hablan con actor','object_clicked':'Usan un objeto','note_closed':'Cierran una nota','conversation_ended':'Termina conversación',
  'trigger_enter':'Entra en trigger','trigger_leave':'Sale de trigger','actor_killed':'Actor muerto (muestreo)',
  'item_picked_up':'Objeto en inventario (muestreo)','encounter_complete':'Todos los enemigos muertos',
  'timer':'Tiempo desde entrada','state_changed':'Se cumple una condición',
@@ -71,7 +75,8 @@ def parse_campaign(source, levels, resources):
         result={}
         for row in sequence(rows,label):
             if not isinstance(row,dict): raise ValueError(label+': requiere registros')
-            key=identifier(row.get('id'),label+'.id',16)
+            is_event=label.endswith(' events')
+            key=identifier(row.get('id'),label+'.id',64 if is_event else 16,allow_upper=is_event)
             if key in result: raise ValueError(label+': ID duplicado '+key)
             result[key]=row
         return result
@@ -126,9 +131,18 @@ def parse_campaign(source, levels, resources):
             if value in global_items:return
             item(value)
         for a in actors.values():
+            from .wtd import validate_traits
+            validate_traits(a,resources)
             if a.get('behavior','npc') not in {'npc','enemy'}: raise ValueError(label+': comportamiento debe ser npc o enemy')
             for it in sequence(a.get('inventory',[]),'inventory'): item(it)
         for o in objects.values():
+            if 'interaction' in o:
+                from .click_interactions import validate as validate_click
+                if not modern or o['template']!='tracker_thing' or o['transform'].get('placement','absolute')!='absolute':raise ValueError('La superficie pulsable requiere tracker_thing y posición absoluta en formato 9/10')
+                validate_click(o['interaction'])
+                if 'source' in o['interaction']:
+                    from .original_objects import validate as validate_original
+                    validate_original(dict(o['interaction']['source'],operation='hide'),resources,s['level']['source'])
             if type(o.get('quest_item',False)) is not bool: raise ValueError('quest_item requiere booleano')
             if o.get('quest_item'): item(o['id'])
         for g in groups.values():
@@ -180,16 +194,27 @@ def parse_campaign(source, levels, resources):
             k,v=next(iter(a.items()))
             if k not in ACTIONS: raise ValueError('Acción no soportada: '+k)
             kind=ACTIONS[k][1]
+            if kind in {'wtd_clan','wtd_discipline'}:
+                if not modern:raise ValueError('Esta acción requiere formato de proyecto 9')
+                field='clan' if kind=='wtd_clan' else 'discipline'
+                mapping(v,{'actor',field,'level'} if field=='discipline' else {'actor',field},{'actor',field,'level'} if field=='discipline' else {'actor',field},k)
+                if v['actor']!='Player':ref(v['actor'],actors,'actor')
+                from .wtd import validate_traits
+                validate_traits({'traits':{'clan':v['clan']} if field=='clan' else {'disciplines':{v['discipline']:v['level']}}},resources);return
             if kind=='generators':
                 if not dynamic:raise ValueError('Encuentros dinámicos requieren formato de proyecto 10')
                 ref(v,generators,'encuentro dinámico');return
-            if k in {'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','play_sound'} and not modern: raise ValueError('Esta acción requiere formato de proyecto 9')
+            if k in {'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','control_original','play_sound'} and not modern: raise ValueError('Esta acción requiere formato de proyecto 9')
+            if kind=='original':
+                from .original_objects import validate
+                validate(v,resources,s['level']['source']);return
             if kind=='note':
                 from .notes import validate_note
                 validate_note(v)
             elif kind=='arrival':
                 mapping(v,{'scene','entry'},{'scene','entry'},'travel')
                 ref(v['scene'],scenes,'escena de destino')
+                if v['scene']==s['id']:raise ValueError(label+': Evento '+e['id']+': No se permite un enlace hacia la misma escena. Elige otra escena de destino.')
                 ref(v['entry'],{r['id'] for r in scenes[v['scene']].get('entries',[])},'entrada de destino')
             elif kind=='native_exit':
                 if not isinstance(v,str) or not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]{0,62}',v):raise ValueError('Cast ID de salida inválido')
@@ -213,7 +238,12 @@ def parse_campaign(source, levels, resources):
                 if v is not True: raise ValueError(k+': requiere true')
             elif kind=='item': item(v)
             elif kind=='item_global': global_item(v)
-            else: ref(v,{'entity':entities,'actors':actors,'conversations':convs,'flags':flags,'quests':quests,'encounters':groups,'sequences':shots,'scenes':scenes,'music':audio['music'],'ambient':audio['ambient']}[kind],kind)
+            elif k=='run_event':
+                if not modern:raise ValueError('Ejecutar evento requiere formato 9/10')
+                ref(v,events,'evento')
+            else:
+                ref(v,{'entity':entities,'actors':actors,'conversations':convs,'flags':flags,'quests':quests,'encounters':groups,'sequences':shots,'scenes':scenes,'music':audio['music'],'ambient':audio['ambient']}[kind],kind)
+                if k=='jump' and v==s['id']:raise ValueError(label+': Evento '+e['id']+': No se permite un enlace hacia la misma escena. Elige otra escena de destino.')
             if k in {'spawn','spawn_encounter'}:
                 for eid in [v] if k=='spawn' else groups[v]['actors']: spawn_owners[eid]=spawn_owners.get(eid,0)+1
         events=indexed(s['events'],label+' events')
@@ -251,19 +281,34 @@ def parse_campaign(source, levels, resources):
             if any('jump' in a or 'travel' in a for a in actions) and not ('jump' in actions[-1] or 'travel' in actions[-1]): raise ValueError('El viaje debe ser la última acción')
             if e.get('once',w in {'actor_killed','item_picked_up','encounter_complete','timer','state_changed','generator_complete','generator_threshold'}) or (w=='trigger_enter' and triggers[e['trigger']].get('once',True)): reserve('e/'+s['id']+'/'+e['id'])
         from collections import Counter
+        # Reject recursive event chains before they can exhaust the old JVM's
+        # stack. Runtime has a second guard for synchronous native callbacks.
+        visiting=set();visited=set()
+        def visit(eid):
+            if eid in visiting:raise ValueError('Ciclo de llamadas entre eventos: '+eid)
+            if eid in visited:return
+            if len(visiting)>=32:raise ValueError('Demasiadas llamadas anidadas entre eventos (máximo 32)')
+            visiting.add(eid)
+            for a in events[eid]['actions']:
+                if 'run_event' in a:visit(a['run_event'])
+            visiting.remove(eid);visited.add(eid)
+        for eid in events:visit(eid)
         inventory=Counter(it for a in actors.values() for it in a.get('inventory',[]))
         for eid in entities:
             n=spawn_owners.get(eid,0)+inventory[eid]
             if n>1: raise ValueError(label+': múltiples propietarios de creación de '+eid)
         # Use established parsers for transforms, templates, conversations and volumes.
         legacy={'schema':1,'chronicle':{**chron,'id':chron['id']+'_s'+str(si)},'state':{'flags':flags},'level':s['level'],
-                'actors':[{k:v for k,v in a.items() if k not in {'behavior','inventory'}} for a in actors.values()],
-                'objects':[{k:v for k,v in a.items() if k!='quest_item'} for a in objects.values()],
+                'actors':[{k:v for k,v in a.items() if k not in {'behavior','inventory','traits'}} for a in actors.values()],
+                'objects':[{k:v for k,v in a.items() if k not in {'quest_item','interaction'}} for a in objects.values()],
                 'conversations':[{k:v for k,v in c.items() if k!='camera'} for c in s['conversations']],'triggers':s.get('triggers',[]),
                 'events':[{'when':'scene_start','actions':[{'spawn':eid} for eid in entities]}] if entities else []}
         parsed.append((s,parse_project(yaml.safe_dump(legacy,sort_keys=False),levels,resources,allow_empty=True,allow_motions=modern)))
     if modern:
         for s in scenes.values():
+            from .original_objects import targets,BITS
+            for target in targets(s):
+                for bit in BITS:reserve('original/'+s['id']+'/'+target+'/'+bit)
             for point in s.get('entries',[]): reserve('arrival/'+s['id']+'/'+point['id'])
             for e in s['events']:
                 if 'e/'+s['id']+'/'+e['id'] in reserved:
@@ -288,7 +333,7 @@ def integrity(campaign):
         inventory={it for a in s['actors'] for it in a.get('inventory',[])}
         for k in ['actors','objects']:
             for i,e in enumerate(s.get(k,[])):
-                if e['id'] not in spawned|inventory and not any(a.get('give_item')==e['id'] for a in local_actions): findings.append(Problem('WARNING',e['name']+': nunca se crea',('scenes',si,k,i)))
+                if 'interaction' not in e and e['id'] not in spawned|inventory and not any(a.get('give_item')==e['id'] for a in local_actions): findings.append(Problem('WARNING',e['name']+': nunca se crea',('scenes',si,k,i)))
         for ei,e in enumerate(s['events']):
             if e['when']=='actor_clicked' and any(a.get('conversation') for a in s['actors'] if a['id']==e['actor']): findings.append(Problem('ERROR','Actor con vínculo directo y evento de clic; elige uno',('scenes',si,'events',ei)))
     for qi,q in enumerate(campaign.source.get('quests',[])):

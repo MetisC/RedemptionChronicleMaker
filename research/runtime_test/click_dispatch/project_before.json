@@ -1,0 +1,107 @@
+{
+  "project_sha256": "8c4678d93d4f7ebdb0c9c6e903bc12799d768222b42771d1b18248c1590f7fce",
+  "native_engine_test": false,
+  "scenes": [
+    {
+      "id": "scene1",
+      "level": {
+        "source": "RaveClub"
+      },
+      "objects": [
+        {
+          "id": "click1",
+          "name": "Salida",
+          "position": [
+            538.129638671875,
+            201.97222900390625,
+            -290.4259948730469
+          ],
+          "interaction": {
+            "materials": [
+              "London\\CTdoor_L"
+            ],
+            "sector": 25
+          },
+          "triangles": 36
+        },
+        {
+          "id": "click2",
+          "name": "VELA",
+          "position": [
+            1144.0,
+            -504.0,
+            -430.0
+          ],
+          "interaction": {
+            "materials": [
+              "candle2"
+            ],
+            "sector": 13,
+            "source": {
+              "level": "RaveClub",
+              "template": "drippyCandle",
+              "position": [
+                1144.0,
+                -504.0,
+                -430.0
+              ]
+            }
+          },
+          "triangles": 365
+        }
+      ],
+      "events": [
+        {
+          "id": "click1",
+          "when": "object_clicked",
+          "object": "click1",
+          "once": false,
+          "actions": [
+            {
+              "show_note": {
+                "title": "Nota",
+                "text": "Escribe aqu\u00ed lo que leer\u00e1 el jugador."
+              }
+            }
+          ]
+        },
+        {
+          "id": "click2",
+          "when": "object_clicked",
+          "object": "click2",
+          "once": false,
+          "actions": [
+            {
+              "show_note": {
+                "title": "Nota",
+                "text": "NOTA 11"
+              }
+            },
+            {
+              "reward_xp": 1000
+            }
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "id": "entry1",
+          "name": "Nueva entrada",
+          "transform": {
+            "placement": "absolute",
+            "position": [
+              724.1906116294581,
+              -338.02883290420345,
+              -512.0
+            ],
+            "orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

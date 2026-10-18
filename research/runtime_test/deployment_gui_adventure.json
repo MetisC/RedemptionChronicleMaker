@@ -1,15 +1,16 @@
 {
   "chronicle": "gui_adventure",
-  "destination": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\tests\\tmpwjikpuni\\Game\\RCM\\gui_adventure",
-  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_gui_adventure_1791947588560936000.zip",
+  "destination": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\tests\\tmp9urazreq\\Game\\RCM\\gui_adventure",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_gui_adventure_1792294842952037900.zip",
   "removed_owned_files": [],
   "files": {
+    "gui_adventure\\rcm_wtd_content.nob": "5216338894a4cd5a4d60f0ff4146687f35bd88caa51750891086d350733f78f9",
     "gui_adventure\\codex\\R_gui_adventure_s0_Passive.class": "1f6b997244fa3812a3aca1c717d3ac00dee8f39ff112a907ef54f106494ae60b",
     "gui_adventure\\codex\\R_gui_adventure_s0_Scene.class": "e478dbe196cbe6bdfe8fb65128c4f016efa0c27f142ffb8d102ce215ec3f3cf9",
     "gui_adventure\\codex\\R_gui_adventure_s1_Passive.class": "ed560fc4a8155de9adcb02a10fd9aadabbec0613009d385650e2a2bcbff6aa4e",
     "gui_adventure\\codex\\R_gui_adventure_s1_Scene.class": "ab13e763a66c4c97503562be89ecc1355fa1dccfad8bd8ddc272170bc8465df6",
     "gui_adventure\\gui_adventure.nob": "8d22ab60ac73d364292fc14584624deea1fec548769904ffc018f06bbcf07610",
-    "gui_adventure\\.rcm_deployment.json": "2fa831572d1f8f29f643592ea6c4b00292306228d3f54a5403456e9e4385f8c6"
+    "gui_adventure\\.rcm_deployment.json": "4bd6f71d2e5e5e40f090e8dcc2f21e646e54265a8dcfc3b2dfb0ffd15c2df07f"
   },
   "native_engine_test": false
 }

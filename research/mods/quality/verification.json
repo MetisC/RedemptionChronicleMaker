@@ -1,0 +1,96 @@
+{
+  "baseline_full_suite": {
+    "tests": 454,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 430.38126120000015,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "import_enabled_full_initial": {
+    "tests": 454,
+    "failures": 1,
+    "errors": 1,
+    "skipped": 0,
+    "successful": false,
+    "elapsed_seconds": 513.8237437999996,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": [
+      {
+        "test": "test_first_run_fresh_cache_and_repair_from_read_only_game (test_phase6_integration.Phase6IntegrationTests)",
+        "traceback": "Traceback (most recent call last):\n  File \"H:\\Repositorios\\RedemptionChronicleMaker\\tests\\test_phase6_integration.py\", line 77, in test_first_run_fresh_cache_and_repair_from_read_only_game\n    ws=Workspace(Path(tmp),game);ws.write('cache/toolchain/ecj-3.26.0.jar',self.ws.output('cache/toolchain/ecj-3.26.0.jar').read_bytes());result=prepare_workspace(ws);self.assertTrue(result['cache_rebuilt']);self.assertFalse(cache_errors(ws));self.assertEqual(len(Backend(ws).levels),len(self.backend.levels))\nAssertionError: 130 != 131\n"
+      },
+      {
+        "test": "test_every_available_profile_preserves_full_tail (test_phase7_scenes.SceneProfileTests)",
+        "traceback": "Traceback (most recent call last):\n  File \"H:\\Repositorios\\RedemptionChronicleMaker\\tests\\test_phase7_scenes.py\", line 56, in test_every_available_profile_preserves_full_tail\n    source=row['source'];data=self.ws.output(Path('research/original')/source['archive']/source['path']).read_bytes()\n  File \"C:\\Users\\Usuario\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pathlib.py\", line 1126, in read_bytes\n    with self.open(mode='rb') as f:\n  File \"C:\\Users\\Usuario\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pathlib.py\", line 1119, in open\n    return self._accessor.open(self, mode, buffering, encoding, errors,\nFileNotFoundError: [Errno 2] No such file or directory: 'H:\\\\Repositorios\\\\RedemptionChronicleMaker\\\\research\\\\original\\\\rcm_wtd_content.nob\\\\Scenes\\\\WTDPenthouse.nsd'\n"
+      }
+    ]
+  },
+  "import_enabled_retry": [
+    {
+      "pattern": "test_phase6_integration.py",
+      "returncode": 0,
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "elapsed_seconds": 86.59307629999967,
+      "category": "offline-integration-gui-model-build-format",
+      "native_engine_test": false,
+      "failures_detail": []
+    },
+    {
+      "pattern": "test_phase7_scenes.py",
+      "returncode": 0,
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "elapsed_seconds": 8.481072099999437,
+      "category": "offline-integration-gui-model-build-format",
+      "native_engine_test": false,
+      "failures_detail": []
+    },
+    {
+      "pattern": "test_wtd.py",
+      "returncode": 0,
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "elapsed_seconds": 24.29268840000077,
+      "category": "offline-integration-gui-model-build-format",
+      "native_engine_test": false,
+      "failures_detail": []
+    },
+    {
+      "pattern": "test_stability_revision.py",
+      "returncode": 0,
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "elapsed_seconds": 8.450686099997256,
+      "category": "offline-integration-gui-model-build-format",
+      "native_engine_test": false,
+      "failures_detail": []
+    }
+  ],
+  "retry_cases": 52,
+  "all_retries_passed": true,
+  "notes": [
+    "The two import-enabled failures assumed a base-only level count and extracted-only scene bytes. Tests now compare the fresh base catalogue and independently read imported NSD bytes from the local pack. Fixture hashes were not changed.",
+    "Final AI dependency filtering and corrupt-archive handling are exercised by test_wtd.py."
+  ],
+  "ruff_passed": true,
+  "mypy_passed": true,
+  "native_engine_test": false
+}

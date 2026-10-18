@@ -1,0 +1,134 @@
+{
+  "source_sha256": "8cba4bf31342b428febc1b44c9139fec83630109b64cbb5bb8a274e8033a5ed5",
+  "scenes": [
+    {
+      "id": "scene1",
+      "level": {
+        "source": "RaveClub"
+      },
+      "events": [
+        {
+          "id": "click1",
+          "when": "object_clicked",
+          "object": "click1",
+          "once": false,
+          "actions": [
+            {
+              "show_note": {
+                "title": "Nota",
+                "text": "Escribe aqu\u00ed lo que leer\u00e1 el jugador."
+              }
+            }
+          ]
+        },
+        {
+          "id": "click2",
+          "when": "object_clicked",
+          "object": "click2",
+          "once": false,
+          "actions": [
+            {
+              "show_note": {
+                "title": "Nota",
+                "text": "NOTA 11"
+              }
+            },
+            {
+              "reward_xp": 1000
+            }
+          ]
+        },
+        {
+          "id": "click3",
+          "when": "object_clicked",
+          "object": "click3",
+          "once": true,
+          "actions": [
+            {
+              "start_ambient": "amb_monastery"
+            }
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "id": "entry1",
+          "name": "Nueva entrada",
+          "transform": {
+            "placement": "absolute",
+            "position": [
+              724.1906116294581,
+              -338.02883290420345,
+              -512.0
+            ],
+            "orientation": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "objects": [
+        {
+          "id": "click1",
+          "name": "Salida",
+          "template": "tracker_thing",
+          "transform": {
+            "position": [
+              538.129638671875,
+              201.97222900390625,
+              -290.4259948730469
+            ],
+            "orientation": [
+              0,
+              0,
+              0
+            ],
+            "placement": "absolute"
+          },
+          "triangles": 36
+        },
+        {
+          "id": "click2",
+          "name": "VELA",
+          "template": "tracker_thing",
+          "transform": {
+            "position": [
+              1144.0,
+              -504.0,
+              -430.0
+            ],
+            "orientation": [
+              0.0,
+              0.0,
+              90.0
+            ],
+            "placement": "absolute"
+          },
+          "triangles": 365
+        },
+        {
+          "id": "click3",
+          "name": "VELA 2",
+          "template": "tracker_thing",
+          "transform": {
+            "position": [
+              1136.0,
+              -344.0,
+              -430.0
+            ],
+            "orientation": [
+              0.0,
+              0.0,
+              90.0
+            ],
+            "placement": "absolute"
+          },
+          "triangles": 365
+        }
+      ]
+    }
+  ],
+  "native_engine_test": false
+}
