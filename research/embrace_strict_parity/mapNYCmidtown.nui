@@ -1,0 +1,31 @@
+; New York Midtown Map Pane
+name=mapNYCmidtown
+pos=0,0
+
+quad mat=mapNYCmidtown01.tga pos=0,224 size=256,256 
+quad mat=mapNYCmidtown02.tga pos=256,224 size=256,256 
+quad mat=mapNYCmidtown03.tga pos=512,224 size=128,256 
+quad mat=mapNYCmidtown04.tga pos=0,96 size=256,128 
+quad mat=mapNYCmidtown05.tga pos=256,96 size=256,128 
+quad mat=mapNYCmidtown06.tga pos=512,96 size=128,128 
+quad mat=mapNYCmidtown07.tga pos=0,32 size=256,64 
+quad mat=mapNYCmidtown08.tga pos=256,32 size=256,64 
+quad mat=mapNYCmidtown09.tga pos=512,32 size=128,64 
+quad mat=mapNYCmidtown10.tga pos=0,0 size=256,32 
+quad mat=mapNYCmidtown11.tga pos=256,0 size=256,32 
+quad mat=mapNYCmidtown12.tga pos=512,0 size=128,32 
+
+;textbox
+element textbox maxitems=1 name=mapLocations flags=0x02 textboxflags=0x03 pos=0,0 size=640,16
+
+element imagearray name=mapNYMidtownMain size=16,16 flags=0x08 pos=509,134
+element imagearray name=mapCathedralOfFlesh size=16,16 flags=0x08 pos=419,415
+element imagearray name=mapOrsisFactory size=16,16 flags=0x08 pos=557,337
+element imagearray name=mapBarclaySouth size=16,16 flags=0x08 pos=444,180
+element imagearray name=mapSewers size=16,16 flags=0x08 pos=300,168
+element imagearray name=mapNewMoon size=16,16 flags=0x08 pos=324,108
+
+
+;Map Close button
+
+element button name=MapCloseButton pos=300,16 size=40,34 bitmap=closeButton depressed=closeButtonDep

@@ -40,3 +40,17 @@ El writer NSD admite entidades simples, overlays de brush propios y entradas nat
 ## Coreografía optativa sobre la escena
 
 Los travellings propios recuerdan escena/level de creación y avisan si se usan en otro contexto. Un cue o una línea aporta CUÁNDO; las Actions existentes/nuevas aportan QUÉ. No hay otra escena geométrica ni sistema paralelo de eventos. Las entradas nombradas también sirven como puesta en escena antes del diálogo. Sonido en bucle se vincula a waypoint; luz dinámica a entidad propia; clima se cambia mediante nombres demostrados en scripts. Estas funciones requieren aceptación nativa independiente y no reinterpretan bytes opacos del entorno.
+
+## Strict authoring evidence update
+
+Confirmed original-file/native evidence: NSD parameters are the SECOND entity
+variable block (types 1/2/3/7/8 editable), movement frames are orientation XYZ then
+position XYZ (24 bytes); 64 original files lossless. Native interest records are
+72 bytes with a separate group selected by AI interestNum. TreasureClass is tag
+92 uint32 and container-only in RCM. Optional environment patches touch proven
+176-byte tail fields only; unknown bytes remain intact. EAX static precedence
+prevents an effective dynamic override. Full evidence, safety limits and pending
+native checks: research/embrace_strict_parity/codex_linker_format.md,
+treasure_class.md, SAFETY_DECISIONS.md and docs/EMBRACE_AUTHORING_PARITY.md.
+SDK-confirmed NTT/NSC documentation is separate from these original-file proofs.
+Maps customisation remains an analysed route, not an implemented map editor.

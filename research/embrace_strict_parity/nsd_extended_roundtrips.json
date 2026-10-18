@@ -1,0 +1,386 @@
+[
+  {
+    "path": "ANZK_14_1.nsd",
+    "frames": 3,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "ANZK_8_4.nsd",
+    "frames": 4,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "CAST_15_1.nsd",
+    "frames": 15,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "CURI_28_4.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "DEVN_33_2.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "DEVN_36_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "DEVN_LOT_8_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "EGNT_7_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "FAC1_37_4.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "FAC1_LOT_5_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "FAC2_37_4.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "FAC2_LOT_5_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "FAC3_37_4.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "FAC3_LOT_5_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "FRO1_20_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "FROG_20_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "GOLD_7_1.nsd",
+    "frames": 15,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "GOLD_8_1.nsd",
+    "frames": 9,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "GUNH_LOT_1_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "HILLD_4_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "HILL_7_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "IN4D_4_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "INN4_7_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "INN4_7_7.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "INN4_CTD_1_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "INNR_20_1.nsd",
+    "frames": 11,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "JOS1_15_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "JOS1_CTD_3_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "JUDBD_4_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "JUDB_7_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "NEWM_37_4.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "NEWM_LOT_1_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "OLDT_11_1.nsd",
+    "frames": 11,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "OLDT_18_1.nsd",
+    "frames": 11,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "OLDT_25_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "ORDR_20_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "ORSI_37_4.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "OTDY_6_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "OUBL_CTD_2_1.nsd",
+    "frames": 4,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "PRIN_14_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "PRIN_16_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "RABI_CTD_1_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "ROOF_20_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "SEW4_LOT_12_1.nsd",
+    "frames": 16,
+    "parameters": 8,
+    "interests": 0
+  },
+  {
+    "path": "SIMN_7_1.nsd",
+    "frames": 0,
+    "parameters": 27,
+    "interests": 0
+  },
+  {
+    "path": "SLUM_LOT_7_1.nsd",
+    "frames": 2,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "SMTY_7_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "SMYD_4_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "STHM_4_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "STHM_6_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "TOL2_30_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "UNIV_25_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "UNIV_4_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "UNIV_7_7.nsd",
+    "frames": 5,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "UNIV_8_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "UNORD_4_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "UNOR_7_1.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "VEST_20_1.nsd",
+    "frames": 0,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "VYC2_25_1.nsd",
+    "frames": 22,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "WAR1_LOT_11_1.nsd",
+    "frames": 8,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "WAR2_36_1.nsd",
+    "frames": 42,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "WAR2_LOT_11_1.nsd",
+    "frames": 16,
+    "parameters": 0,
+    "interests": 0
+  },
+  {
+    "path": "WEAP_20_2.nsd",
+    "frames": 0,
+    "parameters": 1,
+    "interests": 0
+  },
+  {
+    "path": "WEST_28_4.nsd",
+    "frames": 18,
+    "parameters": 0,
+    "interests": 0
+  }
+]

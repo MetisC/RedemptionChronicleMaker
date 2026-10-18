@@ -1,0 +1,120 @@
+10009ea0: push ebp
+10009ea1: mov ebp, esp
+10009ea3: and esp, 0xfffffff8
+10009ea6: sub esp, 0x614
+10009eac: fld qword ptr [ebp + 8]
+10009eaf: fcomp qword ptr [0x1001e160]
+10009eb5: push ebx
+10009eb6: push esi
+10009eb7: push edi
+10009eb8: mov dword ptr [esp + 0x10], 0
+10009ec0: mov dword ptr [esp + 0x14], 0
+10009ec8: fnstsw ax
+10009eca: test ah, 0x40
+10009ecd: jne 0x10009fff
+10009ed3: fld qword ptr [ebp + 0x10]
+10009ed6: fcomp qword ptr [0x1001e160]
+10009edc: fnstsw ax
+10009ede: test ah, 0x40
+10009ee1: jne 0x10009fff
+10009ee7: fld qword ptr [ebp + 0x18]
+10009eea: fcomp qword ptr [0x1001e160]
+10009ef0: fnstsw ax
+10009ef2: test ah, 0x40
+10009ef5: jne 0x10009fff
+10009efb: mov eax, dword ptr [0x10228d7c]
+10009f00: and eax, 0x800
+10009f05: mov dword ptr [esp + 0x1c], eax
+10009f09: jne 0x10009f2e
+10009f0b: fld qword ptr [0x1001e158]
+10009f11: fdiv qword ptr [ebp + 8]
+10009f14: fstp qword ptr [ebp + 8]
+10009f17: fld qword ptr [0x1001e158]
+10009f1d: fdiv qword ptr [ebp + 0x10]
+10009f20: fstp qword ptr [ebp + 0x10]
+10009f23: fld qword ptr [0x1001e158]
+10009f29: fdiv qword ptr [ebp + 0x18]
+10009f2c: jmp 0x10009f4f
+10009f2e: fld qword ptr [ebp + 8]
+10009f31: fsub qword ptr [0x1001e150]
+10009f37: fmul qword ptr [0x1001e148]
+10009f3d: fmul qword ptr [0x1001e140]
+10009f43: fadd qword ptr [0x1001e138]
+10009f49: fst qword ptr [ebp + 8]
+10009f4c: fst qword ptr [ebp + 0x10]
+10009f4f: mov ebx, dword ptr [0x1022aedc]
+10009f55: fstp qword ptr [ebp + 0x18]
+10009f58: test ebx, ebx
+10009f5a: je 0x10009fff
+10009f60: lea esi, [esp + 0x220]
+10009f67: mov edi, 0x100
+10009f6c: fld qword ptr [esp + 0x10]
+10009f70: fld qword ptr [ebp + 8]
+10009f73: call 0x10015f90
+10009f78: fmul qword ptr [0x1001e130]
+10009f7e: call 0x10015d24
+10009f83: fld qword ptr [esp + 0x10]
+10009f87: fld qword ptr [ebp + 0x10]
+10009f8a: mov word ptr [esi - 0x200], ax
+10009f91: call 0x10015f90
+10009f96: fmul qword ptr [0x1001e130]
+10009f9c: call 0x10015d24
+10009fa1: fld qword ptr [esp + 0x10]
+10009fa5: fld qword ptr [ebp + 0x18]
+10009fa8: mov word ptr [esi], ax
+10009fab: call 0x10015f90
+10009fb0: fmul qword ptr [0x1001e130]
+10009fb6: call 0x10015d24
+10009fbb: fld qword ptr [esp + 0x10]
+10009fbf: fadd qword ptr [0x1001e128]
+10009fc5: mov word ptr [esi + 0x200], ax
+10009fcc: add esi, 2
+10009fcf: dec edi
+10009fd0: fstp qword ptr [esp + 0x10]
+10009fd4: jne 0x10009f6c
+10009fd6: mov eax, dword ptr [esp + 0x1c]
+10009fda: test eax, eax
+10009fdc: je 0x10009ff2
+10009fde: mov eax, dword ptr [ebx]
+10009fe0: lea ecx, [esp + 0x20]
+10009fe4: push ecx
+10009fe5: push 1
+10009fe7: push ebx
+10009fe8: call dword ptr [eax + 0x10]
+10009feb: pop edi
+10009fec: pop esi
+10009fed: pop ebx
+10009fee: mov esp, ebp
+10009ff0: pop ebp
+10009ff1: ret 
+10009ff2: mov edx, dword ptr [ebx]
+10009ff4: lea eax, [esp + 0x20]
+10009ff8: push eax
+10009ff9: push 0
+10009ffb: push ebx
+10009ffc: call dword ptr [edx + 0x10]
+10009fff: pop edi
+1000a000: pop esi
+1000a001: pop ebx
+1000a002: mov esp, ebp
+1000a004: pop ebp
+1000a005: ret 
+1000a006: nop 
+1000a007: nop 
+1000a008: nop 
+1000a009: nop 
+1000a00a: nop 
+1000a00b: nop 
+1000a00c: nop 
+1000a00d: nop 
+1000a00e: nop 
+1000a00f: nop 
+1000a010: sub esp, 0x7c
+1000a013: push edi
+1000a014: mov ecx, 0x1f
+1000a019: xor eax, eax
+1000a01b: lea edi, [esp + 4]
+1000a01f: rep stosd dword ptr es:[edi], eax
+1000a021: mov eax, dword ptr [0x1022aecc]
+1000a026: mov dword ptr [esp + 4], 0x7c
+1000a02e: push eax

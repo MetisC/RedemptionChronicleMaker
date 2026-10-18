@@ -1,0 +1,526 @@
+[
+  {
+    "path": "misc/AI/bossAhzra.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossAl.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossArdan.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossEtrius.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossLeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossLucretia.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossLuther.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossMelmoth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossMercurio.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossOrsi.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossUnderprince.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossVaclav.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossVirst.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/bossVukodlak.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/brujahAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/brujahEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/brujahFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/brujahMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/brujahNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/cappadocianAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/cappadocianEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/cappadocianFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/cappadocianMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/cappadocianNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/civilian.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/crow.nai",
+    "interestNum": "9"
+  },
+  {
+    "path": "misc/AI/enemyDarkHunter.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyGargoyle.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyGeneral.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyGhoulAlligator.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyGhoulRat.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyGhoulSpider.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyGolem.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyHalfCorpse.nai",
+    "interestNum": "8"
+  },
+  {
+    "path": "misc/AI/enemySkeleton.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemySocietyLeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemySocietyWorker.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemySzlachta.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyTeutonic.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyVozhd.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyWarGhoul.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyWerewolf.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyWraith.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/enemyZombu.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/gangrelAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/gangrelEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/gangrelFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/gangrelMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/gangrelNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/gargoyle.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genBrujah.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genCaitiff.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genCappadocian.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genEnemy.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genGangrel.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genGiovanni.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genLasombra.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genMalkavian.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genNosferatu.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genSetite.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genToreador.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genTremere.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genTremereBlack.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genTremerePurple.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genTremereRed.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genTzimisce.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/genVentrue.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/ghoulRat.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/giovanniAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/giovanniEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/giovanniFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/giovanniMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/giovanniNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/golem.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/guard.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/lasombraAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/lasombraEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/lasombraFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/lasombraMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/lasombraNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/malkavianAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/malkavianEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/malkavianFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/malkavianMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/malkavianNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/nosferatuAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/nosferatuEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/nosferatuFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/nosferatuMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/nosferatuNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/parChristof.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/parErik.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/parLily.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/parPink.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/parSamuel.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/parSerena.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/parWilhem.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/passivePed.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/ped.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/psyprojection.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/rat.nai",
+    "interestNum": "8"
+  },
+  {
+    "path": "misc/AI/screamingPed.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/setiteAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/setiteEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/setiteFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/setiteMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/setiteNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/target.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/testEnemy.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/toreadorAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/toreadorEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/toreadorFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/toreadorMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/toreadorNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/tremereAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/tremereEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/tremereFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/tremereMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/tremereNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/tzimisceAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/tzimisceEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/tzimisceFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/tzimisceMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/tzimisceNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/ventrueAnc.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/ventrueEld.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/ventrueFled.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/ventrueMeth.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/ventrueNeo.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/vozhd.nai",
+    "interestNum": "0"
+  },
+  {
+    "path": "misc/AI/werewolf.nai",
+    "interestNum": "0"
+  }
+]

@@ -19,3 +19,17 @@ No todas las propiedades ordenadas en el ejecutable han sido tipadas. Se conserv
 ## Writer limitado
 
 El writer genera hijos y propiedades contrastadas mediante el modelo de recursos propio; conserva tags desconocidos y bytes opacos al recodificar originales. No ofrece edición arbitraria de todas las propiedades del motor. El soporte de cada campo y sus límites se describe en FORMAT_NOTES.md.
+
+## Strict authoring evidence update
+
+Confirmed original-file/native evidence: NSD parameters are the SECOND entity
+variable block (types 1/2/3/7/8 editable), movement frames are orientation XYZ then
+position XYZ (24 bytes); 64 original files lossless. Native interest records are
+72 bytes with a separate group selected by AI interestNum. TreasureClass is tag
+92 uint32 and container-only in RCM. Optional environment patches touch proven
+176-byte tail fields only; unknown bytes remain intact. EAX static precedence
+prevents an effective dynamic override. Full evidence, safety limits and pending
+native checks: research/embrace_strict_parity/codex_linker_format.md,
+treasure_class.md, SAFETY_DECISIONS.md and docs/EMBRACE_AUTHORING_PARITY.md.
+SDK-confirmed NTT/NSC documentation is separate from these original-file proofs.
+Maps customisation remains an analysed route, not an implemented map editor.

@@ -1,0 +1,29 @@
+; London East Map Pane
+name=mapLondonEast
+pos=0,0
+
+quad mat=mapLondonEast01.tga pos=0,224 size=256,256 
+quad mat=mapLondonEast02.tga pos=256,224 size=256,256 
+quad mat=mapLondonEast03.tga pos=512,224 size=128,256 
+quad mat=mapLondonEast04.tga pos=0,96 size=256,128 
+quad mat=mapLondonEast05.tga pos=256,96 size=256,128 
+quad mat=mapLondonEast06.tga pos=512,96 size=128,128 
+quad mat=mapLondonEast07.tga pos=0,32 size=256,64 
+quad mat=mapLondonEast08.tga pos=256,32 size=256,64 
+quad mat=mapLondonEast09.tga pos=512,32 size=128,64 
+quad mat=mapLondonEast10.tga pos=0,0 size=256,32 
+quad mat=mapLondonEast11.tga pos=256,0 size=256,32 
+quad mat=mapLondonEast12.tga pos=512,0 size=128,32 
+
+;textbox
+element textbox maxitems=1 name=mapLocations flags=0x02 textboxflags=0x03 pos=0,0 size=640,16
+
+element imagearray name=mapLondonEastMain size=16,16 flags=0x08 pos=219,313
+element imagearray name=mapSetiteBrothel size=16,16 flags=0x08 pos=234,406
+element imagearray name=mapStMagdalena size=16,16 flags=0x08 pos=84,299
+element imagearray name=mapBridgeHaven size=16,16 flags=0x08 pos=194,165
+element imagearray name=mapTowerOfLondon size=16,16 flags=0x08 pos=297,192
+
+;Map Close button
+
+element button name=MapCloseButton pos=300,16 size=40,34 bitmap=closeButton depressed=closeButtonDep

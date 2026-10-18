@@ -1,0 +1,168 @@
+Compiled from "ClassBobbing.java"
+public class ClassBobbing extends Codex {
+  private CodexThing _tracker;
+
+  private CodexThing _bobber;
+
+  private float _minSpeed;
+
+  private float _maxSpeed;
+
+  private float _delay;
+
+  private boolean bMoved;
+
+  public static java.lang.String[] _params;
+
+  public void beginscene(int, int);
+    Code:
+       0: iconst_3
+       1: newarray       float
+       3: astore_3
+       4: aload_3
+       5: iconst_0
+       6: fconst_0
+       7: fastore
+       8: aload_3
+       9: iconst_1
+      10: fconst_0
+      11: fastore
+      12: aload_3
+      13: iconst_2
+      14: fconst_0
+      15: fastore
+      16: aload_0
+      17: getfield      #14                 // Field _tracker:LCodexThing;
+      20: aload_0
+      21: getfield      #17                 // Field _bobber:LCodexThing;
+      24: invokevirtual #21                 // Method Codex.GetGUID:()I
+      27: iconst_m1
+      28: aload_3
+      29: iconst_0
+      30: invokevirtual #27                 // Method CodexThing.AttachThing:(II[FI)Z
+      33: pop
+      34: aload_0
+      35: getfield      #31                 // Field bMoved:Z
+      38: ifne          76
+      41: aload_0
+      42: getfield      #14                 // Field _tracker:LCodexThing;
+      45: iconst_1
+      46: aload_0
+      47: getfield      #35                 // Field _minSpeed:F
+      50: f2d
+      51: invokestatic  #41                 // Method java/lang/Math.random:()D
+      54: aload_0
+      55: getfield      #44                 // Field _maxSpeed:F
+      58: aload_0
+      59: getfield      #35                 // Field _minSpeed:F
+      62: fsub
+      63: f2d
+      64: dmul
+      65: dadd
+      66: d2f
+      67: invokevirtual #48                 // Method CodexThing.MoveToFrame:(IF)Z
+      70: pop
+      71: aload_0
+      72: iconst_1
+      73: putfield      #31                 // Field bMoved:Z
+      76: return
+
+  public void arrived(int, int, int);
+    Code:
+       0: aload_0
+       1: iload_2
+       2: ifne          18
+       5: invokestatic  #41                 // Method java/lang/Math.random:()D
+       8: aload_0
+       9: getfield      #58                 // Field _delay:F
+      12: f2d
+      13: dmul
+      14: d2f
+      15: goto          19
+      18: fconst_0
+      19: iconst_0
+      20: iload_2
+      21: ifne          28
+      24: iconst_1
+      25: goto          29
+      28: iconst_0
+      29: i2f
+      30: invokevirtual #62                 // Method Codex.SetTimer:(FIF)Z
+      33: pop
+      34: return
+
+  static {};
+    Code:
+       0: iconst_4
+       1: anewarray     #66                 // class java/lang/String
+       4: dup
+       5: iconst_0
+       6: ldc           #68                 // String Bobbing thing
+       8: aastore
+       9: dup
+      10: iconst_1
+      11: ldc           #70                 // String Min speed;8
+      13: aastore
+      14: dup
+      15: iconst_2
+      16: ldc           #72                 // String Max speed;15
+      18: aastore
+      19: dup
+      20: iconst_3
+      21: ldc           #74                 // String Delay;1
+      23: aastore
+      24: putstatic     #78                 // Field _params:[Ljava/lang/String;
+      27: return
+
+  public void timer(int, float, float, float, float);
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field _tracker:LCodexThing;
+       4: fload_2
+       5: f2i
+       6: aload_0
+       7: getfield      #35                 // Field _minSpeed:F
+      10: f2d
+      11: invokestatic  #41                 // Method java/lang/Math.random:()D
+      14: aload_0
+      15: getfield      #44                 // Field _maxSpeed:F
+      18: aload_0
+      19: getfield      #35                 // Field _minSpeed:F
+      22: fsub
+      23: f2d
+      24: dmul
+      25: dadd
+      26: d2f
+      27: invokevirtual #48                 // Method CodexThing.MoveToFrame:(IF)Z
+      30: pop
+      31: return
+
+  public ClassBobbing(CodexThing, float, float, float);
+    Code:
+       0: aload_0
+       1: invokespecial #87                 // Method Codex."<init>":()V
+       4: aload_0
+       5: new           #26                 // class CodexThing
+       8: dup
+       9: aload_0
+      10: invokevirtual #90                 // Method Codex.GetClassThing:()I
+      13: invokespecial #93                 // Method CodexThing."<init>":(I)V
+      16: putfield      #14                 // Field _tracker:LCodexThing;
+      19: aload_0
+      20: new           #26                 // class CodexThing
+      23: dup
+      24: aload_1
+      25: invokevirtual #21                 // Method Codex.GetGUID:()I
+      28: invokespecial #93                 // Method CodexThing."<init>":(I)V
+      31: putfield      #17                 // Field _bobber:LCodexThing;
+      34: aload_0
+      35: fload_2
+      36: putfield      #35                 // Field _minSpeed:F
+      39: aload_0
+      40: fload_3
+      41: putfield      #44                 // Field _maxSpeed:F
+      44: aload_0
+      45: fload         4
+      47: putfield      #58                 // Field _delay:F
+      50: return
+}

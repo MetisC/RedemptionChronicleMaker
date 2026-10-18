@@ -1,0 +1,44 @@
+; Prague Old Town Map Pane
+name=mapPragueOT
+pos=0,0
+
+quad mat=mapPragueOT01.tga pos=0,224 size=256,256 
+quad mat=mapPragueOT02.tga pos=256,224 size=256,256 
+quad mat=mapPragueOT03.tga pos=512,224 size=128,256 
+quad mat=mapPragueOT04.tga pos=0,96 size=256,128 
+quad mat=mapPragueOT05.tga pos=256,96 size=256,128 
+quad mat=mapPragueOT06.tga pos=512,96 size=128,128 
+quad mat=mapPragueOT07.tga pos=0,32 size=256,64 
+quad mat=mapPragueOT08.tga pos=256,32 size=256,64 
+quad mat=mapPragueOT09.tga pos=512,32 size=128,64 
+quad mat=mapPragueOT10.tga pos=0,0 size=256,32 
+quad mat=mapPragueOT11.tga pos=256,0 size=256,32 
+quad mat=mapPragueOT12.tga pos=512,0 size=128,32 
+
+;textbox
+element textbox maxitems=1 name=mapLocations flags=0x02 textboxflags=0x03 pos=0,0 size=640,16
+
+element imagearray name=mapOldTownCenter size=16,16 flags=0x08 pos=364,216
+element imagearray name=mapPrinceRudolfsChambers size=16,16 flags=0x08 pos=89,412
+element imagearray name=mapPragueCastle size=16,16 flags=0x08 pos=103,374
+element imagearray name=mappharmacy size=16,16 flags=0x08 pos=237,400
+element imagearray name=mapGoldenLane size=16,16 flags=0x08 pos=220,351
+element imagearray name=mapUnornas size=16,16 flags=0x08 pos=274,367
+element imagearray name=mapPetrinHillMonastery size=16,16 flags=0x08 pos=86,321
+element imagearray name=mapJudithBridge size=16,16 flags=0x08 pos=220,289
+element imagearray name=mapNorthGate size=16,16 flags=0x08 pos=403,280
+element imagearray name=mapNorthQuarter size=16,16 flags=0x08 pos=452,330
+element imagearray name=mapSmithy size=16,16 flags=0x08 pos=279,227
+element imagearray name=mapFourStagsInn size=16,16 flags=0x08 pos=331,222
+element imagearray name=mapUniversityHaven size=16,16 flags=0x08 pos=453,216
+element imagearray name=mapUniversity size=16,16 flags=0x08 pos=491,206
+element imagearray name=mapConvent size=16,16 flags=0x08 pos=268,125
+element imagearray name=mapSaintThomasCathedral size=16,16 flags=0x08 pos=302,107
+element imagearray name=mapEastGate size=16,16 flags=0x08 pos=507,133
+element imagearray name=mapBonnSilvermines size=16,16 flags=0x08 pos=595,169
+element imagearray name=mapSouthGate size=16,16 flags=0x08 pos=170,96
+element imagearray name=mapVysehradCastle size=16,16 flags=0x08 pos=245,33
+
+;Map Close button
+
+element button name=MapCloseButton pos=300,16 size=40,34 bitmap=closeButton depressed=closeButtonDep

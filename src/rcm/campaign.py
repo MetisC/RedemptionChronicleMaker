@@ -128,6 +128,10 @@ def parse_campaign(source, levels, resources):
         generators=validate_generators(s,resources['templates'],actors) if dynamic else {}
         if dynamic:lower_phases(s)
         entities={**actors,**objects}; convs=indexed(s['conversations'],label+' conversations')
+        from .native_scripts import placement as native_placement
+        native=native_placement(s,resources.get('native_scripts',{}))
+        if native and not modern:raise ValueError('Script nativo requiere formato 9 o 10')
+        if native:s['_native_entities']=sorted(native)
         from .camera_presets import PRESETS,CINEMA_PRESETS
         for conversation in convs.values():
             if 'staging' in conversation:
@@ -359,8 +363,8 @@ def parse_campaign(source, levels, resources):
         # Use established parsers for transforms, templates, conversations and volumes.
         from .cinematics import conversation_source
         legacy={'schema':1,'chronicle':{**chron,'id':chron['id']+'_s'+str(si)},'state':{'flags':flags},'level':s['level'],
-                'actors':[{k:v for k,v in a.items() if k not in {'behavior','inventory','traits'}} for a in actors.values()],
-                'objects':[{k:v for k,v in a.items() if k not in {'quest_item','interaction'}} for a in objects.values()],
+                'actors':[{k:v for k,v in a.items() if k not in {'behavior','inventory','traits','native_script','native_frames'}} for a in actors.values()],
+                'objects':[{k:v for k,v in a.items() if k not in {'quest_item','interaction','native_script','native_frames'}} for a in objects.values()],
                 'conversations':[conversation_source(c) for c in s['conversations']],'triggers':s.get('triggers',[]),
                 'events':[{'when':'scene_start','actions':[{'spawn':eid} for eid in entities]}] if entities else []}
         parsed.append((s,parse_project(yaml.safe_dump(legacy,sort_keys=False),levels,resources,allow_empty=True,allow_motions=modern)))

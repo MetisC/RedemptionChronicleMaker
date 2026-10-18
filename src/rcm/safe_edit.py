@@ -51,6 +51,9 @@ def deletion_plan(doc,path,backend):
         for link in pending:
             processed.add(link);source=tuple(link.source);detail=tuple(link.detail)
             if link.label=='authoring recipe':delete(source);continue
+            if link.label in {'native script parameter','native script class'}:delete(source+('native_script',));continue
+            if link.label=='native movement frames':delete(source);continue
+            if link.label in {'ai','script'}:delete(detail);continue
             if detail==('entry',):
                 scenes=[s for i,s in enumerate(root['scenes']) if not inside(('scenes',i))]
                 if not scenes:raise ValueError('La campaña necesita una escena')

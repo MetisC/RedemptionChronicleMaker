@@ -43,6 +43,8 @@ def current_deploy(ws, report):
         if manifest.get('chronicle') != report['chronicle'] or any(actual.get(k)!=v for k,v in expected.items()):return False
         from .wtd import local_dependencies
         dependencies=local_dependencies(ws,report)
+        from .content_libraries import local_dependencies as library_dependencies
+        dependencies.update(library_dependencies(ws,report))
         if any(actual.get(name)!=hashlib.sha256(data).hexdigest() for name,data in dependencies.items()):return False
         if set(actual)-set(expected)-set(manifest.get('compatibility_files',[]))-set(dependencies):return False
         return all(hashlib.sha256(safe_target(game,dest/name).read_bytes()).hexdigest() == digest for name,digest in actual.items())

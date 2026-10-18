@@ -135,3 +135,29 @@ Los casos siguientes siguen MANUAL RUNTIME TEST REQUIRED. El usuario sólo confi
 | EMB-NCP-03 | Trasladarse entre puntos distintos cambiando orientación. Comprobar extremos, giro corto y encuadre. |
 | EMB-NCP-04 | Intentar posiciones consecutivas iguales y Euler distinto: validación clara, sin archivo inválido ni giro temporizado inventado. |
 | EMB-NCP-05 | Comparar velocidades, cancelar/terminar y repetir. Registrar clipping y devolución del control; el preview no acredita el render nativo. |
+
+
+## Strict non-geometry authoring acceptance
+
+All cases below: **MANUAL RUNTIME TEST REQUIRED**. Use a new game in the optional
+`chronicles/strict_acceptance/project.yaml` (Cargo at the refuge). Automated
+compilation, readback and Qt tests do not certify any native result.
+
+- EMB-ENV-01: change initial music/ambient volume, silence, linear fog RGB/range,
+  ZClip and a compatible paired sky through Level > Environment. Reopen project;
+  test initial scene, re-entry and save/load. EAX is inherited, not editable.
+- EMB-TEMPLATE-01: edit Elena's instance hover/Foley; verify other instances keep
+  their template values. Undo/redo, save/reopen/export. Use model-compatible NMS.
+- EMB-TREASURE-01: break/open class-230 supply barrel and inherited comparison;
+  repeat random rolls. Save/re-enter before and after looting; no duplicate loot.
+- EMB-CODEX-01: cargo moves with original ClassBobbing. Edit scalar speeds/delay
+  and linked target/frame through Native script; no custom Java or raw YAML.
+- EMB-CODEX-02: save/reload while cargo moves; verify handles and callbacks remain
+  with the original script and there is no duplicate entity or reset loop.
+- EMB-CODEX-03: rename linked object/waypoint, inspect References and cascade
+  delete with undo; missing frame must not silently retarget native indices.
+- EMB-INTEREST-01: configure a compatible active AI with interestNum 8 and matching
+  waypoint group; observe native idle interest selection, not an imposed route.
+- EMB-LIBRARY-01: import a data-only NOT/NOB through Settings, select new templates,
+  build/deploy and use one in a scene. Export ZIP must contain references only;
+  absent/changed local dependency must fail clearly. No arbitrary mod code import.

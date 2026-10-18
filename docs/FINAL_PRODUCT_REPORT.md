@@ -39,3 +39,10 @@ Los probes EN/ES con carpeta movida, espacios/unicode y PATH restringido no equi
 5. **¿Qué se entrega?** Editor portable EN/ES, ejemplos, generadores y paquetes propios, compilación 45.3 y evidencia diferenciada de integridad y pruebas. La suite completa es 525/0/0/0 y la regresión posterior de widgets 140/0/0/0. El recibo conserva hashes y alcance de cada verificación.
 
 La geometría, CSG, UV/texturizado estructural, lightmaps y edición estructural de sectores/portales siguen fuera de alcance. No se inicia otra fase ni se buscan nuevas APIs por curiosidad.
+
+Strict parity correction: the current eight-column matrix in
+EMBRACE_AUTHORING_PARITY.md supersedes earlier broad coverage claims. EAX,
+general native regions, sound/light boxes, stationary timed camera keys and
+arbitrary code-bearing library import remain explicit limits. Optional new
+controls are implemented with offline evidence, not native acceptance. No 100%
+non-geometry parity or final 1.0 declaration is made.

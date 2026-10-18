@@ -1,0 +1,128 @@
+[
+  {
+    "meaning": "music",
+    "offset": 0,
+    "width": 32,
+    "type": "cp1252z",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a81c7 + 42c58a..5bd"
+  },
+  {
+    "meaning": "ambient",
+    "offset": 32,
+    "width": 32,
+    "type": "cp1252z",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a81de + 42c5c5..5fb"
+  },
+  {
+    "meaning": "flags",
+    "offset": 64,
+    "width": 4,
+    "type": "u32",
+    "confidence": "UNKNOWN",
+    "writable": false,
+    "evidence": "291 originals zero"
+  },
+  {
+    "meaning": "music_volume",
+    "offset": 68,
+    "width": 4,
+    "type": "u32",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a8209 / 42c5b0"
+  },
+  {
+    "meaning": "ambient_volume",
+    "offset": 72,
+    "width": 4,
+    "type": "u32",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a821a / 42c5ef"
+  },
+  {
+    "meaning": "eax",
+    "offset": 76,
+    "width": 4,
+    "type": "u32",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": false,
+    "evidence": "4a822e / 42c6f9: original static scene takes precedence"
+  },
+  {
+    "meaning": "fog_mode",
+    "offset": 80,
+    "width": 4,
+    "type": "u32",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a823f / 42c4d0 / rlDirect 1000d320"
+  },
+  {
+    "meaning": "fog_rgb",
+    "offset": 84,
+    "width": 12,
+    "type": "3xf32",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a824d / 42c4d3 / renderer"
+  },
+  {
+    "meaning": "fog_distance_1",
+    "offset": 96,
+    "width": 4,
+    "type": "f32",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a825b / 42c4ca / renderer"
+  },
+  {
+    "meaning": "fog_distance_2",
+    "offset": 100,
+    "width": 4,
+    "type": "f32",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a826d / 42c4c4 / renderer"
+  },
+  {
+    "meaning": "zclip",
+    "offset": 104,
+    "width": 4,
+    "type": "f32",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a8280 / 42c53c..580 / 406d91"
+  },
+  {
+    "meaning": "unknown",
+    "offset": 108,
+    "width": 4,
+    "type": "u32",
+    "confidence": "UNKNOWN",
+    "writable": false,
+    "evidence": "291 originals zero"
+  },
+  {
+    "meaning": "sky_model",
+    "offset": 112,
+    "width": 32,
+    "type": "cp1252z",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a82a2..82cf"
+  },
+  {
+    "meaning": "sky_animation",
+    "offset": 144,
+    "width": 32,
+    "type": "cp1252z",
+    "confidence": "CONFIRMED_EXECUTABLE",
+    "writable": true,
+    "evidence": "4a82db..8330"
+  }
+]
