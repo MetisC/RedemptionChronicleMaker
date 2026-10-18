@@ -26,7 +26,7 @@ Ambos laboratorios muestran puntos nativos para la party, conversación con Elen
 
 ## Verificación
 
-La suite completa pasó **525 pruebas, 0 fallos, 0 errores y 0 omitidas**. Tras compactar los controles del inspector pasaron otras **140 pruebas de interfaz**, también sin fallos, errores u omisiones. Ruff y el alcance configurado de mypy pasaron. Los resultados autoritativos actuales están en build/tests/quality_report.json y test_report.json; el recibo final del cierre está en research/embrace_closure/final_flecks_delivery.json. Distinguen suite, Ruff/mypy, compilación real Codex **45.3**, doubles, transacciones Qt, paquetes y portable.
+La suite completa pasó **525 pruebas, 0 fallos, 0 errores y 0 omitidas**. Tras compactar los controles del inspector pasaron otras **140 pruebas de interfaz**, también sin fallos, errores u omisiones. Ruff y el alcance configurado de mypy pasaron. Después se añadió la indicación de apertura de crónica: dos regresiones Qt EN/ES verifican feedback, error/reintento y restauración del cursor. La suite completa no se repitió tras ese ajuste visual. Los resultados autoritativos actuales están en build/tests/quality_report.json y test_report.json; el recibo final del cierre está en research/embrace_closure/final_flecks_delivery.json. Distinguen suite, Ruff/mypy, compilación real Codex **45.3**, doubles, transacciones Qt, paquetes y portable.
 
 Los probes EN/ES con carpeta movida, espacios/unicode y PATH restringido no equivalen a PC independiente, render OpenGL real, GPU o DPI físico. Originales: research/read_only_verification.json, 43 fuentes comprobadas por hash. El código y recursos del juego original permanecen sin modificar fuera de la carpeta RCM autorizada.
 

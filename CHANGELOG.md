@@ -1,5 +1,7 @@
 # Changes · 1.0.0-rc6
 
+- Opening a chronicle now shows a wait cursor and “Opening chronicle…” before loading, including recent-project double-clicks. Repeated opens are blocked during loading; failures restore the cursor and controls. Feedback is translated into English/Spanish.
+
 - Fixed mixed-map Showcase metadata overflowing the native three-currency table before scene startup. One deduplicated, bounded CASH declaration is generated, and unsafe cumulative declarations fail output verification. Corrected initial loading confirmed by the user on 2026-10-18.
 
 - Right-click original scenery to identify and use the pointed object. Inline NSD brush previews, exact triangle picking and Locate in 3D expose generic props such as Tenebrae's exit. Fixed NIL surfaces support native selectable brush overlays with hover labels and ordinary click actions.

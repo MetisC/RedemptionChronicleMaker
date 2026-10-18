@@ -1943,5 +1943,6 @@
   "Música temporal ausente o ambigua": "Temporary music is missing or ambiguous",
   "Volumen de música: 0..100": "Music volume: 0..100",
   "NCP: parámetros inválidos": "NCP: invalid parameters",
-  "Restaura la música anterior antes de iniciar otra música temporal. Después de cargar una partida, usa Música normal para elegir la pista. Restaurar no altera una música cambiada por otro evento o script.": "Restore the previous music before starting another temporary track. After loading a save, use normal Music to choose a track. Restore leaves music changed by another event or script alone."
+  "Restaura la música anterior antes de iniciar otra música temporal. Después de cargar una partida, usa Música normal para elegir la pista. Restaurar no altera una música cambiada por otro evento o script.": "Restore the previous music before starting another temporary track. After loading a save, use normal Music to choose a track. Restore leaves music changed by another event or script alone.",
+  "Abriendo crónica…": "Opening chronicle…"
 }

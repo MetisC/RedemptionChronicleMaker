@@ -1,5 +1,7 @@
 # Redemption Chronicle Maker 1.0.0-rc6
 
+- Opening a chronicle now shows a wait cursor and “Opening chronicle…” before loading, including recent-project double-clicks. Repeated opens are blocked during loading; failures restore the cursor and controls. Feedback is translated into English/Spanish.
+
 This release builds on RC5 with clickable original scenery, corrected arrival navigation, optional Within The Darkness content import and safer editing workflows. Original level geometry remains unchanged.
 
 - Fixed a Showcase module-load crash caused by appending currency declarations from different base maps beyond Redemption's three-slot CASH table. Campaign builds now merge and bound those declarations; the output gate rejects overflowing NMF files. Five regression tests cover this case. The user confirmed corrected initial loading on 2026-10-18; later cinematic/save/network cases remain separate.

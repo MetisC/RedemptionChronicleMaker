@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-10-18T10:54:36.931883+00:00",
+  "recorded_at_utc": "2026-10-18T13:35:58.488954+00:00",
   "version": "1.0.0-rc6",
   "head": "1d505c5ac7f382f2d686e489242c3c778cf8ca12",
   "project_formats": [
@@ -32,7 +32,7 @@
   "ruff_rechecked_after_layout": true,
   "real_codex_class_version": "45.3",
   "frozen_modules_verified": 90,
-  "frozen_executable_sha256": "3daad07fd086ea21431a77cfa901c61c64fced81154b7e06b30894656aee656d",
+  "frozen_executable_sha256": "c63c2f1d2359bc9454f223075452012d77627e57f96d0369d8d9f4fad945a71e",
   "examples": [
     {
       "chronicle": "rcm_showcase",
@@ -139,7 +139,9 @@
       "es/director_staging.png"
     ],
     "clean_machine_verified": false,
-    "physical_gpu_dpi_verified": false
+    "physical_gpu_dpi_verified": false,
+    "baseline_bilingual_probe_executable_sha256": "3daad07fd086ea21431a77cfa901c61c64fced81154b7e06b30894656aee656d",
+    "baseline_probe_scope": "Full bilingual moved-folder probes precede the opening-feedback adjustment; see focused Qt follow-up and current frozen-source identity."
   },
   "original_integrity": {
     "checked_files": 43,
@@ -157,8 +159,8 @@
   "release": {
     "version": "1.0.0-rc6",
     "user_zip": "RedemptionChronicleMaker-1.0.0-rc6-win64.zip",
-    "sha256": "3bf92875a344bcd9a30be247735244262b4783d3d48d7466d37400f668db8082",
-    "size": 89101588,
+    "sha256": "fca3e5a46b4217194b53f7b3ec0647794c91810d8dadd854fa18d3ebb9fb5221",
+    "size": 89102628,
     "files": 366,
     "all_hashes_verified": true,
     "source_archive_separate": true,
@@ -230,7 +232,7 @@
     "src/rcm/editor/smoke.py": "f54693f80177be18d5a229d8213997eb0ef0d03f35c8dc75a2f9350f472a017e",
     "src/rcm/editor/theme.py": "7be7492facf8d5ba1e0356e4f4cff4cf6ac297f080139e8a48783cf0786d629b",
     "src/rcm/editor/viewport.py": "e4e129438543272a187cd2bfa3b7d902b4d00aa2162579dba362c654b4168d56",
-    "src/rcm/editor/window.py": "2141d993051ca0925c0ccd070380564e50ebe40f442d2d1c7f679ab88ce18c2e",
+    "src/rcm/editor/window.py": "74288a28ab9610e557f6da7ca745e1e51d02f33f492fe5991d03cc9178bf8939",
     "src/rcm/editor/wtd.py": "0c9b510ef62894d06c66e387637f5d07cda50e25dfb23d08bf3b556a929a1c25",
     "src/rcm/enemy_catalogue.py": "ae7e43a9e7232a5b2910c93aa9957461db62eb0f7a1adc471f6b9c354b6a725e",
     "src/rcm/file_transaction.py": "c91cf23f31a048e7e7353978fa6eb995e6efcaa3628e1fd0239e8f79e8a81bba",
@@ -274,5 +276,29 @@
     "src/rcm/versioning.py": "485d7139fedecb40598e1fbe2ec63d2851958f486525e7da7f0375014b0473fe",
     "src/rcm/world_effects.py": "a5c655ee675e5967a7c5b27d734bd6dc0569bb49322313eab00d2ca2f0d8d48c",
     "src/rcm/wtd.py": "1cb981e27c27bdc2d27ed34099984d1e4af9fc227270e88c22405c53827f166c"
+  },
+  "full_suite_scope": "Full 525-test gate before the subsequent opening-feedback UI-only adjustment; not rerun as a full suite after that adjustment.",
+  "opening_feedback_follow_up": {
+    "tests": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "elapsed_seconds": 2.0745553000015207,
+      "native_engine_test": false
+    },
+    "english_and_spanish": true,
+    "covers": [
+      "visible message and wait cursor before Document.load",
+      "restore prior cursor and controls on failure",
+      "retry after failure",
+      "reject reentrant open"
+    ],
+    "frozen_modules_match": 90,
+    "current_executable_sha256": "c63c2f1d2359bc9454f223075452012d77627e57f96d0369d8d9f4fad945a71e",
+    "ruff_passed": true,
+    "runtime_java_changed": false,
+    "game_files_changed": false
   }
 }
