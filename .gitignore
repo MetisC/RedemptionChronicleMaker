@@ -55,6 +55,7 @@ runtime_trace.log
 *.temp
 *.bak
 *.old
+*.backup
 *~
 ~$*
 
