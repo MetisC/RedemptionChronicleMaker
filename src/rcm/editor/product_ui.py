@@ -204,6 +204,8 @@ def settings_dialog(win):
     hint=QCheckBox(tr('Mostrar ayuda al iniciar una prueba'));hint.setChecked(prefs.data.get('show_playtest_hint',True));form.addRow(hint)
     from .wtd import import_widget
     import_widget(win,layout)
+    from .content_libraries import import_widget as import_library_widget
+    import_library_widget(win,layout)
     buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Ok|QDialogButtonBox.StandardButton.Cancel);layout.addWidget(buttons)
     def accept():
         try:

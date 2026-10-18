@@ -171,6 +171,7 @@ class Project:
     level_name: str | None = None
     triggers: tuple[SpatialTrigger, ...] = ()
     environment_scene: str | None = None
+    environment_overrides: dict | None = None
 
     @property
     def prefix(self):
@@ -189,7 +190,10 @@ def parse_project(data: str, levels: dict, resources: dict, allow_empty=False, a
     description = chron.get("description", "")
     if not isinstance(description, str) or len(description) > 8192:
         raise ValueError("La descripción interna debe ser texto de hasta 8192 caracteres")
-    level_data = mapping(root["level"], {"source", "sky", "name", "environment_scene"}, {"source"}, "level")
+    level_data = mapping(root["level"], {"source", "sky", "name", "environment_scene", "environment"}, {"source"}, "level")
+    if 'environment' in level_data:
+        from .environment_fields import validate
+        validate(level_data['environment'],resources)
     level_name = text(level_data["name"], "level.name") if "name" in level_data else None
     level = level_data["source"]
     if not isinstance(level, str) or level not in levels or len(levels[level]["geometry"]) != 1 or levels[level].get("alternative_geometry"):
@@ -204,6 +208,7 @@ def parse_project(data: str, levels: dict, resources: dict, allow_empty=False, a
         sky_data = mapping(level_data["sky"], {"model", "animation"}, {"model", "animation"}, "level.sky")
         for key, extension in [("model", ".nod"), ("animation", ".nad")]:
             value = sky_data[key]
+            if sky_data=={'model':'','animation':''}:continue
             if not isinstance(value, str) or not re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]{0,30}", value):
                 raise ValueError("Sky requiere nombres de recursos sin extensión de máximo 31 bytes")
             matches = [r for r in resources["entries"] if r["extension"].lower() == extension and r["id"].casefold() == value.casefold()]
@@ -240,7 +245,7 @@ def parse_project(data: str, levels: dict, resources: dict, allow_empty=False, a
             template = v["template"]
             if not isinstance(template, str) or len(catalogue.get(template, [])) != 1:
                 raise ValueError(f"Plantilla desconocida o ambigua: {template}")
-            expected = {"actors"} if kind == "actor" else {"items", "props", "weapons", "armour"}
+            expected = {"actors"} if kind == "actor" else {"items", "props", "weapons", "armour", "containers"}
             if catalogue[template][0]["kind"] not in expected:
                 raise ValueError(f"La plantilla {template} no sirve como {kind}")
             trans = mapping(v["transform"], {"position", "orientation", "placement"}, {"orientation"}, "transform")
@@ -313,7 +318,7 @@ def parse_project(data: str, levels: dict, resources: dict, allow_empty=False, a
         raise ValueError("Todas las entidades deben tener un único spawn en scene_start o trigger_enter")
     if not allow_empty and (not entities or not conversations):
         raise ValueError("Se requiere al menos una entidad y una conversación")
-    return Project(pid, name, level, flags, tuple(entities), tuple(conversations), tuple(spawns), sky, events, description, level_name, tuple(triggers), environment_scene)
+    return Project(pid, name, level, flags, tuple(entities), tuple(conversations), tuple(spawns), sky, events, description, level_name, tuple(triggers), environment_scene, level_data.get('environment'))
 
 
 def parse_conversation(v, cid, pid, entities, flags,resources=None,allow_motions=False):

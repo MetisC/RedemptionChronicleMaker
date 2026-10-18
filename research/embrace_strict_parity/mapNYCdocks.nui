@@ -1,0 +1,30 @@
+; New York Docks Map Pane
+name=mapNYCdocks
+pos=0,0
+
+quad mat=mapNYCdocks01.tga pos=0,224 size=256,256 
+quad mat=mapNYCdocks02.tga pos=256,224 size=256,256 
+quad mat=mapNYCdocks03.tga pos=512,224 size=128,256 
+quad mat=mapNYCdocks04.tga pos=0,96 size=256,128 
+quad mat=mapNYCdocks05.tga pos=256,96 size=256,128 
+quad mat=mapNYCdocks06.tga pos=512,96 size=128,128 
+quad mat=mapNYCdocks07.tga pos=0,32 size=256,64 
+quad mat=mapNYCdocks08.tga pos=256,32 size=256,64 
+quad mat=mapNYCdocks09.tga pos=512,32 size=128,64 
+quad mat=mapNYCdocks10.tga pos=0,0 size=256,32 
+quad mat=mapNYCdocks11.tga pos=256,0 size=256,32 
+quad mat=mapNYCdocks12.tga pos=512,0 size=128,32 
+
+;textbox
+element textbox maxitems=1 name=mapLocations flags=0x02 textboxflags=0x03 pos=0,0 size=640,16
+
+element imagearray name=mapNYDocksMain size=16,16 flags=0x08 pos=473,250
+element imagearray name=mapGiovanniWarehouse size=16,16 flags=0x08 pos=473,250
+element imagearray name=mapSewers size=16,16 flags=0x08 pos=513,232
+element imagearray name=mapDevNulls size=16,16 flags=0x08 pos=521,195
+element imagearray name=mapGunHaven size=16,16 flags=0x08 pos=586,204
+
+
+;Map Close button
+
+element button name=MapCloseButton pos=300,16 size=40,34 bitmap=closeButton depressed=closeButtonDep

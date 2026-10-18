@@ -23,3 +23,30 @@ The first answer of **NPC sends you somewhere** must end with RETURN 1 to arm th
 Open chronicles/mini_chronicle/project.yaml for a complete example adventure, editable using the same panels and assistants.
 
 **Dynamic encounters:** Campaign → + Dynamic encounter…, assistants or the 3D ground context menu. Choose Ambush/Waves/Continuous/Reinforcements/Boss, enemies/count, points/activation and completion actions. Advanced stays collapsed. [Guide and laboratory](DYNAMIC_ENCOUNTERS.en.md). First use in format 9 makes a backup and opts into format 10; opening the tutorial does not convert it.
+
+
+## Advanced scene and instance properties
+
+Level > Scene environment offers inherited or explicit audio, volume, fog,
+view distance and paired sky. EAX remains inherited from the static original.
+No geometry or lightmaps are changed.
+
+Actor/Object > Instance properties changes AI, Foley, compatible motion set and
+hover text for that instance only. Containers offer inherited treasure, none or
+an actual original GAME.NTT class. Native script (advanced) selects real stock
+constructors and typed entity/scalar parameters. Native frame 0 is the initial
+transform; additional frames select existing waypoints in order. The stock
+script owns its callbacks; conflicting RCM inventory/conversation/dynamic spawn
+ownership is rejected. Some scripts need original region/campaign context.
+
+A waypoint can also belong to native interest group 0..9. Active AI must use the
+same interestNum. This does not impose a patrol route.
+
+Settings > Import template library accepts selected new templates in NOT/NOB,
+resolves parents and data dependencies, and excludes menus, chronicles and code.
+Imported assets remain local dependencies, outside exported ZIPs. Missing
+required external code fails clearly; this is not a universal mod importer.
+
+Cargo at the refuge is an optional example; the accepted tutorial is unchanged.
+New native behaviour requires the manual EMB checklist. Custom map images,
+locations and labels are technically feasible, but no map editor exists yet.

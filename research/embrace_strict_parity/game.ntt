@@ -1,0 +1,1310 @@
+// ==================================================================================================================================================
+//
+// EFFECT GROUPS DEFINITIONS 
+//
+//       name            effect names
+
+GROUP:   GALLSTATS       ef_stat_strength        ef_stat_dexterity       ef_stat_stamina        ef_stat_perception      ef_stat_intelligence    ef_stat_wits    ef_stat_charisma        ef_stat_manipulation    ef_stat_appearance
+
+GROUP:   GSTATSTRENGTH   ef_stat_strength
+GROUP:   GSTATDEXTERITY  ef_stat_dexterity
+GROUP:   GSTATSTAMINA    ef_stat_stamina
+
+GROUP:   GSTATPHYSICAL   ef_stat_strength        ef_stat_dexterity       ef_stat_stamina
+GROUP:   GSTATMENTAL     ef_stat_perception      ef_stat_intelligence    ef_stat_wits
+GROUP:   GSTATSOCIAL     ef_stat_charisma        ef_stat_manipulation    ef_stat_appearance
+
+GROUP:   GALLSOAKS       ef_soak_normal          ef_soak_lethal          ef_soak_aggravated      ef_soak_fire            ef_soak_sun    			ef_soak_cold        		ef_soak_poison    ef_soak_disease
+GROUP:   GSOAKMAJ        ef_soak_normal          ef_soak_lethal          ef_soak_aggravated
+GROUP:   GSOAKNORM       ef_soak_normal
+GROUP:   GSOAKLETH       ef_soak_lethal
+GROUP:   GSOAKAGG        ef_soak_aggravated
+//GROUP:   GSOAKELEC       ef_soak_electrical
+GROUP:   GSOAKFIRE       ef_soak_fire
+GROUP:   GSOAKSUN        ef_soak_sun
+//GROUP:   GSOAKHOLY       ef_soak_holy
+GROUP:   GSOAKCOLD       ef_soak_cold
+GROUP:   GSOAKPOIS       ef_soak_poison
+GROUP:   GSOAKDIS        ef_soak_disease
+
+// ==================================================================================================================================================
+//
+// ALTERATION DEFINITIONS 
+//
+//       name            D|P    GROUPNAME               min     max     dmin    dmax    amin    amax    
+//
+// D|P         : Duration | Permanent
+//  min,  max  : min and max level for an effect
+// dmin, dmax  : min and max durations for the effect (in milliseconds)
+// amin, amax  : amount or number of charges
+
+ALTER:   wearPhysLow     P      GSTATPHYSICAL           1       2       0       0       0       0
+ALTER:   wearMentLow     P      GSTATMENTAL             1       2       0       0       0       0
+ALTER:   wearSocLow      P      GSTATSOCIAL             1       2       0       0       0       0
+ALTER:   wearSoakAll     P      GALLSOAKS               1       2       0       0       0       0
+ALTER:   wearSoakMaj     P      GSOAKMAJ                1       2       0       0       0       0
+ALTER:   wearSoakNor     P      GSOAKNORM               1       2       0       0       0       0
+ALTER:   wearSoakAgg     P      GSOAKAGG                1       2       0       0       0       0
+//ALTER:   wearSoakElec    P      GSOAKELEC               1       2       0       0       0       0
+ALTER:   wearSoakFire    P      GSOAKFIRE               1       2       0       0       0       0
+ALTER:   wearSoakSun     P      GSOAKSUN                1       2       0       0       0       0
+//ALTER:   wearSoakHoly    P      GSOAKHOLY               1       2       0       0       0       0
+ALTER:   wearSoakCold    P      GSOAKCOLD               1       2       0       0       0       0
+ALTER:   wearSoakPois    P      GSOAKPOIS               1       2       0       0       0       0
+ALTER:   wearSoakDis     P      GSOAKDIS                1       2       0       0       0       0
+                                                                                                      
+ALTER:   durPhysLow      D      GSTATPHYSICAL           1       2       20000   60000   1       3
+ALTER:   durPhysMed      D      GSTATPHYSICAL           2       3       15000   45000   1       2
+ALTER:   durPhysHigh     D      GSTATPHYSICAL           1       2       20000   60000   1       3
+ALTER:   durDexLow       D      GSTATDEXTERITY          1       2       20000   60000   1       3
+
+ALTER:   cash0           P      -                       0       0       0       0       1       5
+ALTER:   cash1           P      -                       0       0       0       0       2       10
+ALTER:   cash2           P      -                       0       0       0       0       11      50
+ALTER:   cash3           P      -                       0       0       0       0       51      100
+ALTER:   cash4           P      -                       0       0       0       0       101     500
+ALTER:   cash5           P      -                       0       0       0       0       501     1000
+ALTER:   cash6           P      -                       0       0       0       0       1001    2000
+ALTER:   cash7           P      -                       0       0       0       0       2001    5000
+
+// ==================================================================================================================================================
+//
+// CATEGORY DEFINITIONS 
+//
+//      name            1 to 14 template names for the base objects of this category (by increasing worth)
+
+// Progression-based weapons categories
+CATEG:  baseweapons	   rags broadswordrusty daggerrusty club quarterstaff axerusty mace rapier
+CATEG:  petrinweapons	halberd moroDagger scythe scimitar bastardSword	broadsword dagger club quarterstaff shortBow axe mace rapier
+CATEG:  josefweapons		claymore falchion pointyMace longBow halberd morodagger scythe scimitar bastardSword broadswordrusty daggerrusty shortBow axerusty mace
+CATEG:  ardanweapons		warhammer flamberge bastion claymore falchion pointyMace longBow halberd scimitar bastardSword broadsword dagger axe mace
+CATEG:  stephanweapons	greatSword battleAxe crossBow warhammer flamberge bastion claymore falchion pointyMace longBow halberd scimitar bastardSword
+CATEG:  teutonweapons	lance greatSword battleAxe crossBow warhammer flamberge bastion claymore falchion pointyMace longBow halberd scimitar bastardSword
+CATEG:  hausweapons		lance greatSword battleAxe crossBow warhammer flamberge bastion claymore falchion pointyMace longBow halberd scimitar bastardSword
+CATEG:  vysweapons		lance greatSword battleAxe crossBow warhammer flamberge bastion claymore falchion pointyMace longBow halberd scimitar bastardSword
+CATEG:  socweapons		baseballBat brassKnuckles leadPipe sapGloves pistol incinerator compoundBow
+CATEG:  setweapons		machete shotgun taser chainsaw baseballBat brassKnuckles leadPipe sapGloves pistol incinerator compoundBow
+CATEG:  towerweapons		revolver crossbowMD assaultRifle stakeGun machete shotgun taser chainsaw baseballBat brassKnuckles leadPipe pistol incinerator
+CATEG:  sewerweapons		submachinegun grenadeLauncher revolver crossbow assaultRifle stakeGun machete shotgun taser chainsaw baseballBat pistol incinerator
+CATEG:  wareweapons		rocketLauncher submachinegun grenadeLauncher revolver crossbowMD assaultRifle stakeGun shotgun chainsaw chaingun incinerator
+CATEG:  orsiweapons		flamethrower rocketLauncher submachinegun grenadeLauncher rifle crossbowMD assaultRifle stakeGun shotgun chainsaw chaingun incinerator
+CATEG:  cathweapons		flamethrower rocketLauncher submachinegun grenadeLauncher rifle crossbowMD assaultRifle stakeGun shotgun chainsaw chaingun incinerator
+
+// Progression-based enhanced weapons categories
+CATEG:  baseweapenh		broadswordFine daggerFine axe maceFine rapierFine 
+CATEG:  petrinweapenh	halberdFine moroDaggerFine bastardSwordFine	broadswordFine daggerFine maceFine rapierFine
+CATEG:  josefweapenh		claymoreFine falchionFine pointyMaceFine halberdFine morodaggerFine bastardSwordFine broadswordExq daggerExq maceExq
+CATEG:  ardanweapenh		warhammerFine flambergeFine bastionFine claymoreFine falchionFine pointyMaceFine halberdExq bastardSwordExq broadswordExq
+CATEG:  stephanweapenh	greatSwordFine battleAxeFine warhammerFine flambergeFine bastionFine claymoreExq falchionExq pointyMaceExq shortBow_inc halberdExq bastardSwordExq
+CATEG:  teutonweapenh	lanceFine greatSwordFine battleAxeFine warhammerExq flambergeExq bastionExq claymoreExq falchionExq pointyMaceExq halberdExq bastardSwordExq
+CATEG:  hausweapenh		lanceFine greatSwordExq battleAxeExq warhammerExq flambergeExq bastionExq claymoreExq falchionExq pointyMaceExq longBow_inc halberdExq bastardSwordExq
+CATEG:  vysweapenh		lanceExq greatSwordExq battleAxeExq crossbow_inc warhammerExq flambergeExq bastionExq claymoreExq falchionExq pointyMaceExq longBow_inc halberdExq bastardSwordExq
+CATEG:  socweapenh		pistol_sighted pistol_modified
+CATEG:  setweapenh		shotgun_modified pistol_sighted pistol_modified
+CATEG:  towerweapenh		revolver_sighted revolver_modified assaultRifle_sighted assaultRifle_modified shotgun_modified pistol_sighted pistol_modified
+CATEG:  sewerweapenh		submachinegun_modified revolver_sighted revolver_modified assaultRifle_sighted assaultRifle_modified shotgun_modified pistol_sighted pistol_modified
+CATEG:  wareweapenh		submachinegun_modified revolver_sighted revolver_modified assaultRifle_sighted assaultRifle_modified shotgun_modified pistol_sighted pistol_modified
+CATEG:  orsiweapenh		submachinegun_modified revolver_sighted revolver_modified assaultRifle_sighted assaultRifle_modified shotgun_modified pistol_sighted pistol_modified
+CATEG:  cathweapenh		submachinegun_modified revolver_sighted revolver_modified assaultRifle_sighted assaultRifle_modified shotgun_modified pistol_sighted pistol_modified
+
+// Progression-based ammo categories
+CATEG:  baseammo			arrows_05 arrows_10 arrows_20
+CATEG:  stephanammo		bolts_05 bolts_10 bolts_20
+CATEG:  teutonammo		arrows_inc_05 arrows_inc_10 arrows_inc_20
+CATEG:  vysammo			bolts_inc_05 bolts_inc_10 bolts_inc_20
+CATEG:  socammo			pistol_clip arrows_MD_05 arrows_MD_10 arrows_MD_20
+CATEG:  setammo			pistol_clip shotgun_shells_10 arrows_MD_05 arrows_MD_10 arrows_MD_20
+CATEG:  towerammo			pistol_clip shotgun_shells_10 shotgun_shells_20 revolver_rounds assaultRifle_clip_20
+CATEG:  sewerammo			pistol_clip shotgun_shells_10 shotgun_shells_20 revolver_rounds submachinegun_clip_16 assaultRifle_clip_20
+CATEG:  wareammo			pistol_clip shotgun_shells_10 shotgun_shells_20 revolver_rounds submachinegun_clip_16 assaultRifle_clip_20 rocket_pack_03
+CATEG:  orsiammo			pistol_clip shotgun_shells_20 revolver_rounds submachinegun_clip_32 assaultRifle_clip_40 rocket_pack_03 napalm_tank_10
+CATEG:  cathammo			pistol_clip shotgun_shells_20 revolver_rounds submachinegun_clip_32 assaultRifle_clip_40 rocket_pack_03 napalm_tank_20
+
+// Progression-based armor categories
+CATEG:  basearmor			rags skullcap buckler paddedClothing
+CATEG:  petrinarmor		rags leatherGloves leatherClothing skullcap buckler paddedClothing
+CATEG:  josefarmor		rags gauntlets lightHelm shield studdedLeather leatherGloves leatherClothing shield skullcap buckler paddedClothing
+CATEG:  ardanarmor		largeShield chainMail gauntlets lightHelm shield studdedLeather leatherClothing footmanShield skullcap buckler paddedClothing
+CATEG:  stephanarmor		sunShield scaleMail largeShield chainMail gauntlets lightHelm shield studdedLeather leatherClothing footmanShield skullcap buckler
+CATEG:  teutonarmor 		gauntlets fullHelm halfPlate sunShield scaleMail largeShield chainMail gauntlets lightHelm shield studdedLeather leatherClothing footmanShield
+CATEG:  hausarmor 		greatShield plateMail gauntlets fullHelm halfPlate sunShield scaleMail largeShield chainMail gauntlets lightHelm shield studdedLeather
+CATEG:  vysarmor 			greatShield plateMail gauntlets fullHelm halfPlate sunShield scaleMail largeShield chainMail gauntlets lightHelm shield studdedLeather 
+CATEG:  socarmor			leatherJacket armorTshirt goggles			
+CATEG:  setarmor 			motorcycleHelmet leatherJacket armorTshirt goggles
+CATEG:  towerarmor 		armyHelmet lightBallisticVest riotShield motorcycleHelmet leatherJacket armorTshirt goggles
+CATEG:  sewerarmor		swatHelmet mediumBallisticVest armyHelmet lightBallisticVest riotShield motorcycleHelmet leatherJacket armorTshirt goggles
+CATEG:  warearmor 		nomexSuit tacticalJacket swatHelmet mediumBallisticVest armyHelmet lightBallisticVest riotShield motorcycleHelmet leatherJacket armorTshirt
+CATEG:  orsiarmor 		nomexSuit tacticalJacket swatHelmet mediumBallisticVest armyHelmet lightBallisticVest riotShield motorcycleHelmet leatherJacket armorTshirt
+CATEG:  catharmor 		nomexSuit tacticalJacket swatHelmet mediumBallisticVest armyHelmet lightBallisticVest riotShield motorcycleHelmet leatherJacket armorTshirt
+
+// Progression-based enhanced armor categories
+CATEG:  basearmorenh		rags skullcap buckler paddedClothing leathergloves
+CATEG:  petrinarmorenh	leatherClothing_holy leatherClothing_unholy footmanShield skullcap buckler paddedClothing
+CATEG:  josefarmorenh	studdedLeather_unholy leatherClothing_unholy
+CATEG:  ardanarmorenh	lightHelm_cold lightHelm_elec lightHelm_fire shield_sun studdedLeather_unholy leatherClothing_unholy
+CATEG:  stephanarmorenh	shield_cold shield_elec shield_fire shield_unholy scaleMail_unholy chainMail_unholy studdedLeather_unholy leatherClothing_unholy
+CATEG:  teutonarmorenh	shield_sun shield_elec halfPlate_unholy scaleMail_unholy chainMail_unholy studdedLeather_unholy leatherClothing_unholy
+CATEG:  hausarmorenh		gauntlets_cold gauntlets_grounded gauntlets_fire greatShield_cold greatShield_elec greatShield_fire plateMail_unholy halfPlate_unholy shield_sun scaleMail_unholy chainMail_unholy studdedLeather_unholy
+CATEG:  vysarmorenh		fullHelm_cold fullHelm_elec fullHelm_fire plateMail_unholy halfPlate_unholy scaleMail_unholy chainMail_unholy studdedLeather_unholy 
+CATEG:  socarmorenh		leatherJacket armorTshirt goggles			
+CATEG:  setarmorenh		motorcycleHelmet leatherJacket armorTshirt goggles
+CATEG:  towerarmorenh	armyHelmet lightBallisticVest riotShield motorcycleHelmet leatherJacket armorTshirt goggles
+CATEG:  sewerarmorenh	swatHelmet mediumBallisticVest armyHelmet lightBallisticVest riotShield motorcycleHelmet leatherJacket armorTshirt goggles
+CATEG:  warearmorenh		nomexSuit tacticalJacket swatHelmet mediumBallisticVest armyHelmet lightBallisticVest riotShield motorcycleHelmet leatherJacket armorTshirt
+CATEG:  orsiarmorenh		nomexSuit tacticalJacket swatHelmet mediumBallisticVest armyHelmet lightBallisticVest riotShield motorcycleHelmet leatherJacket armorTshirt
+CATEG:  catharmorenh		nomexSuit tacticalJacket swatHelmet mediumBallisticVest armyHelmet lightBallisticVest riotShield motorcycleHelmet leatherJacket armorTshirt
+
+// Progression-based item categories
+CATEG:  baseitems			potionHealth potionHealth potionHealth potionHealth potionDisease holyWater 
+CATEG:  petrinitems		vitae	vitae vitae vitae vitae vitaeDiseased potionPoison potionDisease
+CATEG:  josefitems	   vitae vitae vitae vitae vitae vitaeDiseased potionPoison potionDisease 
+CATEG:  ardanitems		vitae vitae vitae vitae vitae vitaeDiseased potionPoison bloodstone greekfire 
+CATEG:  stephanitems		vitae vitae vitae vitae vitae vitaeDiseased potionPoison bloodstone greekfire vitaeWerewolf 
+CATEG:  teutonitems		vitae vitae vitae vitae vitae vitaeDiseased potionPoison bloodstone greekfire bloodpearl 
+CATEG:  hausitems			vitae vitae vitae vitae vitae vitaeDiseased potionPoison bloodstone bloodpearl bloodpouch
+CATEG:  vysitems			vitae vitae vitae vitae vitae vitaeDiseased bloodstone bloodpearl bloodpouch 
+CATEG:  socitems			plasmaBag plasmaBag plasmaBag plasmaBag plasmaDiseased 
+CATEG:  setitems			plasmaBag plasmaBag plasmaBag plasmaBag plasmaDiseased potionPoisonMD potionDiseaseMD
+CATEG:  toweritems		plasmaBag plasmaBag plasmaBag plasmaBag plasmaDiseased potionPoisonMD potionDiseaseMD 
+CATEG:  seweritems		plasmaBag plasmaBag plasmaBag plasmaBag plasmaDiseased potionPoisonMD potionDiseaseMD 
+CATEG:  wareitems			plasmaBag plasmaBag plasmaBag plasmaBag plasmaDiseased potionPoisonMD potionDiseaseMD 
+CATEG:  orsiitems			plasmaBag plasmaBag plasmaBag plasmaDiseased potionPoisonMD potionDiseaseMD 
+CATEG:  cathitems			plasmaBag plasmaBag plasmaBag plasmaDiseased potionPoisonMD potionDiseaseMD 
+
+// Progression-based treasure categories
+CATEG:  baseloot			silvercoins silvercoins silvercoins silvercoins ringOnyx ringSilver
+CATEG:  petrinloot		silvercoins silvercoins silvercoins goldcoins goldcoins ringSilver silverBracelet holyCross holyStatuette holyDavid
+CATEG:  josefloot			silvercoins silvercoins goldcoins goldcoins GoldBag ringSilver silverBracelet holyDavid
+CATEG:  ardanloot			silvercoins goldcoins goldcoins GoldBag ringSilver ringGold silverBracelet holyCross holyStatuette 
+CATEG:  stephanloot		silvercoins goldcoins goldcoins GoldBag ringSilver ringGold silverBracelet silverNecklace holyCross holyStatuette
+CATEG:  teutonloot		silvercoins goldcoins goldcoins GoldBag ringSilver ringGold silverBracelet silverNecklace goldNecklace holyCross holyStatuette
+CATEG:  hausloot			silvercoins goldcoins goldcoins GoldBag ringGold silverBracelet silverNecklace goldNecklace holyCross holyStatuette
+CATEG:  vysloot			silvercoins goldcoins goldcoins GoldBag ringGold silverBracelet silverNecklace goldNecklace holyCross holyStatuette 
+CATEG:  socloot			cashUK cashUK cashUK ringSilver ringGold goldWatch holyCross holyStatuette rags
+CATEG:  setloot			cashUK cashUK cashUK ringSilver ringGold goldWatch holyCross holyStatuette rags			
+CATEG:  towerloot			cashUK cashUK cashUK silvercoins goldcoins ringSilver ringGold goldWatch holyCross holyStatuette rags		
+CATEG:  sewerloot			cashUS cashUK cashUK ringSilver ringGold goldWatch holyDavid rags
+CATEG:  wareloot			cashUS cashUS cashUS bonds ringSilver ringGold goldWatch holyCross holyStatuette rags
+CATEG:  orsiloot			cashUS cashUS cashUS silvercoins ringSilver ringGold goldWatch holyCross holyStatuette rags
+CATEG:  cathloot			cashUS cashUS cashUS goldbullion ringSilver ringGold goldWatch holyCross holyStatuette rags
+
+// Enemy-specific ammo categories
+CATEG:  arrowsDA			arrows_05 arrows_10 arrows_20
+CATEG:  boltsDA			bolts_05 bolts_10 bolts_20
+CATEG:  arrowsMD			arrows_MD_05 arrows_MD_10 arrows_MD_20
+CATEG:  boltsMD			bolts_MD_05 bolts_MD_10 bolts_MD_20
+CATEG:  pistolclip    	pistol_clip
+CATEG:  revolverrounds  revolver_rounds
+CATEG:  rifleclip    	rifle_clip_11 rifle_clip_22
+CATEG:  shotgunshells   shotgun_shells_10 shotgun_shells_20
+CATEG:  powercel    	   power_cel_12 power_cel_24
+CATEG:  submachineclip  submachinegun_clip_16 submachinegun_clip_32 		    	 
+CATEG:  assaultclip		assaultRifle_clip_20 assaultRifle_clip_40 		    	 
+CATEG:  launchGrenades  launch_grenades 		    	 
+CATEG:  napalmTank		napalm_tank_10 napalm_tank_20		    	 
+CATEG:  rockets			rocket_pack_03		    	 
+
+// vitae, potions, scrolls, other magical items
+CATEG:  potion          potionHealth potionPoison potionDisease
+CATEG:  potionHealth    potionHealth
+CATEG:  potionPoison    potionPoison
+CATEG:  potionDisease   potionDisease
+CATEG:  vitaeCommon   	vitaeRed vitaeRed vitaeRed vitaeRed bloodPearl bloodPouch bloodStone
+CATEG:  vitaeModern  	plasmaBag plasmaBag plasmaBag plasmaBag bloodPearl bloodPouch bloodStone
+CATEG:  vitaeRare       vitaeKindred vitaeWerewolf vitaeElder vitaeFae
+CATEG:  scrollsTeleport discScroll_WalkTheAbyss_1
+CATEG:  scrollsAwaken   discScroll_Awaken_1
+CATEG:  scrollsIdentify discScroll_SpiritsTouch_1
+CATEG:  scrollsSense    discScroll_HeightenedSenses_1
+CATEG:  scrollsGeneric  discScroll_Celerity_1 discScroll_CloakOfShadows_1 discScroll_Fortitude_1 discScroll_Potence_1 discScroll_Awaken_1 discScroll_WalkTheAbyss_1 discScroll_SpiritsTouch_1
+CATEG:  scrollsOffense  discScroll_Fireball_1 discScroll_FeralClaws_1 discScroll_SummonElemental_1 discScroll_PlagueWind_1 discScroll_TheftOfVitae_1
+CATEG:  scrollsAnimal	discScroll_FeralWhispers_1 discScroll_Beckoning_1 discScroll_QuellBeast_1 discScroll_DrawingOutBeast_1
+CATEG:  scrollsAuspex	discScroll_AuraPerception_1 discScroll_HeightenedSenses_1 discScroll_PsychicProjection_1 discScroll_SpiritsTouch_1
+CATEG:  scrollsCelerity	discScroll_Celerity_1
+CATEG:  scrollsCommon   discScroll_BloodHealing_1 discScroll_BloodStrength_1 discScroll_BloodDexterity_1 discScroll_BloodStamina_1 discScroll_Awaken_1 discScroll_WalkTheAbyss_1 discScroll_SpiritsTouch_1
+CATEG:  scrollsDementation discScroll_EyesOfChaos_1 discScroll_Passion_1 discScroll_TheHaunting_1 discScroll_VoiceOfMadness_1
+CATEG:  scrollsDominate discScroll_Command_1 discScroll_Mesmerize_1 discScroll_TheForgetfulMind_1 discScroll_Possession_1
+CATEG:  scrollsFortitude discScroll_Fortitude_1
+CATEG:  scrollsMortis   discScroll_BlackDeath_1 discScroll_PlagueWind_1 discScroll_ShamblingHordes_1 discScroll_SummonSoul_1 discScroll_VigorMortis_1
+CATEG:  scrollsObfuscate discScroll_CloakOfShadows_1 discScroll_CloakTheGathering_1
+CATEG:  scrollsObtenebration discScroll_DarkHunter_1
+CATEG:  scrollsPotence  discScroll_Potence_1
+CATEG:  scrollsPresence discScroll_Awe_1 discScroll_DreadGaze_1 discScroll_Entrancement_1 discScroll_Majesty_1
+CATEG:  scrollsProtean  discScroll_EarthMeld_1 discScroll_EyesOfTheBeast_1 discScroll_FeralClaws_1 discScroll_MistForm_1 discScroll_ShapeOfTheBeast_1
+CATEG:  scrollsSerpentis discScroll_EyesOfTheSerpent_1 discScroll_HatchTheViper_1 discScroll_SkinOfTheAdder_1
+CATEG:  scrollsThauBlood discScroll_BloodOfPotency_1 discScroll_BloodRage_1 discScroll_CauldronOfBlood_1 discScroll_TheftOfVitae_1
+CATEG:  scrollsThauFlame discScroll_Fireball_1 discScroll_FireStorm_1 discScroll_Torch_1
+CATEG:  scrollsThauHands discScroll_AcidicTouch_1 discScroll_Atrophy_1 discScroll_Decay_1 discScroll_TurnToDust_1
+CATEG:  scrollsThauRituals discScroll_CallLightning_1 discScroll_HeartOfStone_1 discScroll_IgnoreFlame_1 discScroll_PrisonOfIce_1 discScroll_SummonElemental_1 discScroll_WalkTheAbyss_1
+CATEG:  scrollsNumina	numScroll_Flash_1 numScroll_TrueFaith_1 numScroll_TrueSight_1 numScroll_Prayer_1 numScroll_Invisibility_1
+CATEG:  rings           ringSilver ringGold ringOnyx ringDiamond
+CATEG:  necklaces       silverNecklace goldNecklace diamondNecklace
+CATEG:  kineItems       Stake holyWater
+CATEG:  kindredItems    bloodRing bloodNecklace heartShield
+
+// dark ages items
+CATEG:  lightArmorDA    paddedClothing leatherClothing studdedLeather skullcap lightHelm shield
+CATEG:  heavyArmorDA    scaleMail chainMail halfPlate plateMail chestPlate lightHelm fullHelm largeShield greatShield
+CATEG:  shieldsDA    	footmanShield cavalryShield largeShield buckler shield greatShield gauntlets gauntlets_heavy
+CATEG:  headgearDA    	skullcap lightHelm fullHelm
+CATEG:  neckwearDA    	neckGuard
+CATEG:  weapons         broadsword
+CATEG:  rangedWeapons   shortBow longBow
+CATEG:  meleeWeapons    dagger club broadsword halberd mace warHammer pointyMace bastion
+CATEG:  swordsDA       	broadSword falchion scimitar bastardSword claymore greatSword 
+CATEG:  daggersDA       dagger dirk moroDagger poignard 
+CATEG:  bluntDA         mace warhammer club quarterstaff 
+CATEG:  archeryDA       shortBow longBow crossbow 
+CATEG:  polearms    		pitch_fork spear lance halberd bastion poleaxe
+CATEG:  quickuseDA    	greekFire throwingKnives
+CATEG:  ammoDA    		arrows_05 arrows_10 arrows_20 bolts_05 bolts_10 bolts_20
+
+// modern day items
+CATEG:  lightArmorMD		reienforcedClothing leatherVest leatherJacket armorTshirt lightBallisticVest          
+CATEG:  heavyArmorMD		mediumBallisticVest flakJacket tacticalJacket tailoredArmor nomexSuit          
+CATEG:  shieldsMD    	riotShield
+CATEG:  headgearMD    	motorcycleHelmet armyHelmet swatHelmet
+CATEG:  neckwearMD      neckGuard 
+CATEG:  daggersMD       stake 
+CATEG:  bluntMD         leadPipe baseballBat brassKnuckles sapGloves 
+CATEG:  archeryMD       compoundBow crossbowMD
+CATEG:  lightFirearms   revolver pistol
+CATEG:  medFirearms     rifle shotgun
+CATEG:  heavyFirearms   assaultRifle
+CATEG:  artillery   		flameThrower grenadeLauncher rocketLauncher
+CATEG:  quickuseMD    	molotovCocktail fragGrenade concGrenade chemGrenade phosGrenade satchelCharge napalmBomb
+CATEG:  archeryAmmoMD   bolts_MD_05 bolts_MD_10 bolts_MD_20 arrows_MD_05 arrows_MD_10 arrows_MD_20
+CATEG:  lightAmmo    	revolver_rounds pistol_clip rifle_clip_11 shotgun_shells_10
+CATEG:  heavyAmmo			submachinegun_clip_16 submachinegun_clip_32 assaultRifle_clip_20 assaultRifle_clip_40 		    	 
+CATEG:  artilleryAmmo	chaingun_rounds_50 chaingun_rounds_100 napalm_tank_10 napalm_tank_20 rocket_pack_03		    	 
+
+// dark ages treasure
+CATEG:  barrelloot	   rags broadswordrusty daggerrusty axerusty
+CATEG:  silvercoins   	silvercoins
+CATEG:  cashDA   			silvercoins goldcoins
+CATEG:  jewelryDA   		ringSilver ringGold ringOnyx silverBracelet silverNecklace
+CATEG:  gemstonesDA  	sapphires rubies emeralds diamonds
+
+// modern day treasure
+CATEG:  cashUK   			cashUK
+CATEG:  cashUS   			cashUS
+CATEG:  bonds   			bonds
+CATEG:  monetaryUK   	cashUK bonds goldBullion
+CATEG:  monetaryUS   	cashUS bonds goldBullion
+CATEG:  jewelryMD   		ringSilver ringGold ringOnyx ringDiamond silverBracelet goldBracelet goldWatch silverNecklace goldNecklace diamondNecklace
+CATEG:  gemstonesMD  	sapphires rubies emeralds diamonds
+
+// lesser artifacts
+CATEG:  artAmulet 		amuletControl amuletDiscipline amuletINT amuletPER amuletWIT bloodNecklace
+CATEG:  artArmor		   leatherClothing_holy leatherClothing_unholy studdedLeather_holy studdedLeather_unholy chainMail_holy chainMail_unholy scaleMail_holy scaleMail_unholy halfPlate_holy halfPlate_unholy plateMail_holy platemail_unholy 
+CATEG:  artBracelet		braceletBlood braceletControl braceletDiscipline heartShield
+CATEG:  artGauntlet		gauntletAccuracy gauntletDEX gauntletDodge gauntletFortitude gauntletPower gauntletSTA gauntletSTR
+CATEG:  artPotion 		giantBlood vitaeKindred vitaeElder vitaeFae vitaeWerewolf
+CATEG:  artRing	 		bloodRing ringAPP ringCHA ringControl ringDiscipline ringMAN
+CATEG:  artSword	 		BroadSwordDread BroadSwordHoly ClaymoreDread FalchionDread FlambergeDread GreatSwordDread GreatSwordHoly
+CATEG:  artWeapon	 		battleaxeBerserker MaceHoly PointyMaceHoly WarHammerBerserker
+
+// ==================================================================================================================================================
+//
+// TREASURE CLASSES DEFINITIONS 
+//
+//       CATEG            %     ALTER1          FLAG            ALTER2          FLAG            ALTER3          FLAG
+//
+//
+// % is the percentage of chance that an object of the first CITEM is generated. If it fails the system goes to the next CITEM.
+// ALL entries are required on the line, use - 0 for empty entries
+//
+// Flags: 
+// LEVELRANGE	1	the min max values are effect levels, not effect values
+// NEGATE	2	negate the value obtained (create negative effect from a positive one)
+// INVERSE	4	inverse the value obtained (create negative effect from a positive one)
+//
+// 			PROGRESSION-BASED ITEMS
+// 1-5 		SilverMines
+// 6-10    	PetrinHill
+// 11-15		JosefsTunnels
+// 16-20		ArdansChantry
+// 21-25		Stephansdom
+// 26-30   	TeutonicKnightBase
+// 31-35   	HausDeHexe
+// 36-40   	VysehradCastle
+// 41-45   	SocietyOfLeopold
+// 46-50   	SetiteTemple
+// 51-55   	TowerOfLondon
+// 56-60		NYCSewers
+// 61-65		NYCWarehouse
+// 66-70		OrsiFactory
+// 71-75		CathedralOfFlesh
+// 			NPC DROPITEM CLASSES
+// 131-140	Prague npcs
+// 141-150	Vienna npcs
+// 151-160	London npcs
+// 161-170	New York npcs
+// 			POTIONS, VITAE, SCROLLS AND MAGICITEMS 
+// 171-180	Potions
+// 181-190	Vitae
+// 191-200	Scrolls
+// 201-210	Kine items
+// 			GENERIC ITEMS
+// 211-230	Dark Ages items
+// 231-255	Modern day items
+//
+// Final note: the valid classes are from 0 to 255.
+
+// SILVERMINES
+// all items
+CLASS:   1
+CITEM:   baseloot      		30    cash0           0               -               0               -               0
+CITEM:   baseammo      		30    -               0               -               0               -               0
+CITEM:   baseitems      	30    -               0               -               0               -               0
+CITEM:   baseweapons      	30    -               0               -               0               -               0
+CITEM:   basearmor      	90    -               0               -               0               -               0
+
+// small containers
+CLASS:   2
+CITEM:   baseloot      		50    cash0           0               -               0               -               0
+CITEM:   baseitems      	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   3
+CITEM:   baseitems      	50    -               0               -               0               -               0
+CITEM:   baseweapons      	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   4
+CITEM:   baseweapons      	50    -               0               -               0               -               0
+CITEM:   basearmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   5
+CITEM:   baseweapenh       50    -               0               -               0               -               0
+CITEM:   basearmorenh     100    -               0               -               0               -               0
+
+// PETRINHILL
+// all items
+CLASS:   6
+CITEM:   petrinloot    		30    cash1           0               -               0               -               0
+CITEM:   baseammo    		30    -               0               -               0               -               0
+CITEM:   petrinitems      	30    -               0               -               0               -               0
+CITEM:   scrollsCommon    	30    -               0               -               0               -               0
+CITEM:   petrinweapons    	30    -               0               -               0               -               0
+CITEM:   petrinarmor      	90    -               0               -               0               -               0
+
+// small containers
+CLASS:   7
+CITEM:   petrinloot    		50    cash1           0               -               0               -               0
+CITEM:   gemstonesDA   		10    cash1           0               -               0               -               0
+CITEM:   petrinitems      	50    -               0               -               0               -               0
+CITEM:   scrollsCommon    	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   8
+CITEM:   petrinitems      	50    -               0               -               0               -               0
+CITEM:   scrollsCommon    	50    -               0               -               0               -               0
+CITEM:   petrinweapons    	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   9
+CITEM:   petrinweapons    	50    -               0               -               0               -               0
+CITEM:   petrinarmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   10
+CITEM:   petrinweapenh     50    -               0               -               0               -               0
+CITEM:   petrinarmorenh   100    -               0               -               0               -               0
+
+// JOSEFSTUNNELS
+// all items
+CLASS:   11
+CITEM:   josefloot    		30    cash1           0               -               0               -               0
+CITEM:   baseammo     		30    -               0               -               0               -               0
+CITEM:   josefitems      	30    -               0               -               0               -               0
+CITEM:   scrollsCommon    	30    -               0               -               0               -               0
+CITEM:   josefweapons     	30    -               0               -               0               -               0
+CITEM:   josefarmor      	90    -               0               -               0               -               0
+
+// small containers
+CLASS:   12
+CITEM:   josefloot    		50    cash1           0               -               0               -               0
+CITEM:   gemstonesDA   		10    cash2           0               -               0               -               0
+CITEM:   josefitems      	50    -               0               -               0               -               0
+CITEM:   scrollsCommon    	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   13
+CITEM:   josefitems      	50    -               0               -               0               -               0
+CITEM:   scrollsCommon    	50    -               0               -               0               -               0
+CITEM:   josefweapons    	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   14
+CITEM:   josefweapons    	50    -               0               -               0               -               0
+CITEM:   josefarmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   15
+CITEM:   josefweapenh      50    -               0               -               0               -               0
+CITEM:   josefarmorenh    100    -               0               -               0               -               0
+
+// ARDANSCHANTRY
+// all items
+CLASS:   16
+CITEM:   ardanloot    		30    cash2           0               -               0               -               0
+CITEM:   baseammo     		30    -               0               -               0               -               0
+CITEM:   ardanitems      	30    -               0               -               0               -               0
+CITEM:   scrollsGeneric   	30    -               0               -               0               -               0
+CITEM:   ardanweapons     	30    -               0               -               0               -               0
+CITEM:   ardanarmor      	90    -               0               -               0               -               0
+
+// small containers
+CLASS:   17
+CITEM:   ardanloot    		50    cash2           0               -               0               -               0
+CITEM:   gemstonesDA   		10    cash3           0               -               0               -               0
+CITEM:   ardanitems      	50    -               0               -               0               -               0
+CITEM:   scrollsGeneric   	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   18
+CITEM:   ardanitems      	50    -               0               -               0               -               0
+CITEM:   scrollsGeneric   	50    -               0               -               0               -               0
+CITEM:   ardanweapons    	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   19
+CITEM:   ardanweapons    	50    -               0               -               0               -               0
+CITEM:   ardanarmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   20
+CITEM:   ardanweapenh      50    -               0               -               0               -               0
+CITEM:   ardanarmorenh    100    -               0               -               0               -               0
+
+// STEPHANSDOM
+// all items
+CLASS:   21
+CITEM:   stephanloot   		30    cash3           0               -               0               -               0
+CITEM:   stephanammo   		30    -               0               -               0               -               0
+CITEM:   stephanitems     	30    -               0               -               0               -               0
+CITEM:   scrollsGeneric 	30    -               0               -               0               -               0
+CITEM:   stephanweapons   	30    -               0               -               0               -               0
+CITEM:   stephanarmor     	90    -               0               -               0               -               0
+
+// small containers
+CLASS:   22
+CITEM:   stephanloot    	50    cash3           0               -               0               -               0
+CITEM:   gemstonesDA   		10    cash4           0               -               0               -               0
+CITEM:   stephanitems      50    -               0               -               0               -               0
+CITEM:   scrollsGeneric 	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   23
+CITEM:   stephanitems      50    -               0               -               0               -               0
+CITEM:   scrollsGeneric 	50    -               0               -               0               -               0
+CITEM:   stephanweapons    90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   24
+CITEM:   stephanweapons    50    -               0               -               0               -               0
+CITEM:   stephanarmor      90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   25
+CITEM:   stephanweapenh    50    -               0               -               0               -               0
+CITEM:   stephanarmorenh  100    -               0               -               0               -               0
+
+// TEUTONICKNIGHTBASE
+// all items
+CLASS:   26
+CITEM:   teutonloot   		30    cash4           0               -               0               -               0
+CITEM:   teutonammo   		30    -               0               -               0               -               0
+CITEM:   teutonitems     	30    -               0               -               0               -               0
+CITEM:   scrollsThauBlood 	30    -               0               -               0               -               0
+CITEM:   teutonweapons   	30    -               0               -               0               -               0
+CITEM:   teutonarmor     	90    -               0               -               0               -               0
+
+// small containers
+CLASS:   27
+CITEM:   teutonloot    		50    cash4           0               -               0               -               0
+CITEM:   gemstonesDA   		10    cash5           0               -               0               -               0
+CITEM:   teutonitems      	50    -               0               -               0               -               0
+CITEM:   scrollsThauBlood 	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   28
+CITEM:   teutonitems      	50    -               0               -               0               -               0
+CITEM:   scrollsThauBlood 	50    -               0               -               0               -               0
+CITEM:   teutonweapons    	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   29
+CITEM:   teutonweapons    	50    -               0               -               0               -               0
+CITEM:   teutonarmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   30
+CITEM:   teutonweapenh     50    -               0               -               0               -               0
+CITEM:   teutonarmorenh   100    -               0               -               0               -               0
+
+// HAUSDEHEXE
+// all items
+CLASS:   31
+CITEM:   hausloot   			30    cash5           0               -               0               -               0
+CITEM:   teutonammo 			30    -               0               -               0               -               0
+CITEM:   hausitems     		30    -               0               -               0               -               0
+CITEM:   scrollsThauFlame 	30    -               0               -               0               -               0
+CITEM:   hausweapons   		30    -               0               -               0               -               0
+CITEM:   hausarmor     		90    -               0               -               0               -               0
+
+// small containers
+CLASS:   32
+CITEM:   hausloot    		50    cash5           0               -               0               -               0
+CITEM:   gemstonesDA   		10    cash6           0               -               0               -               0
+CITEM:   hausitems      	50    -               0               -               0               -               0
+CITEM:   scrollsThauFlame 	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   33
+CITEM:   hausitems      	50    -               0               -               0               -               0
+CITEM:   scrollsThauFlame 	50    -               0               -               0               -               0
+CITEM:   hausweapons    	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   34
+CITEM:   hausweapons    	50    -               0               -               0               -               0
+CITEM:   hausarmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   35
+CITEM:   hausweapenh       50    -               0               -               0               -               0
+CITEM:   hausarmorenh     100    -               0               -               0               -               0
+
+// VYSEHRADCASTLE
+// all items
+CLASS:   36
+CITEM:   vysloot   			30    cash6           0               -               0               -               0
+CITEM:   vysammo   			30    -               0               -               0               -               0
+CITEM:   vysitems     		30    -               0               -               0               -               0
+CITEM:   scrollsThauHands 	30    -               0               -               0               -               0
+CITEM:   vysweapons   		30    -               0               -               0               -               0
+CITEM:   vysarmor     		90    -               0               -               0               -               0
+
+// small containers
+CLASS:   37
+CITEM:   vysloot    			50    cash6           0               -               0               -               0
+CITEM:   gemstonesDA   		10    cash7           0               -               0               -               0
+CITEM:   vysitems      		50    -               0               -               0               -               0
+CITEM:   scrollsThauHands 	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   38
+CITEM:   vysitems      		50    -               0               -               0               -               0
+CITEM:   scrollsThauHands 	50    -               0               -               0               -               0
+CITEM:   vysweapons    		90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   39
+CITEM:   vysweapons    		50    -               0               -               0               -               0
+CITEM:   vysarmor      		90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   40
+CITEM:   vysweapenh        50    -               0               -               0               -               0
+CITEM:   vysarmorenh      100    -               0               -               0               -               0
+
+// SOCIETYOFLEOPOLD
+// all items
+CLASS:   41
+CITEM:   socloot   			30    cash1           0               -               0               -               0
+CITEM:   socammo   			30    -               0               -               0               -               0
+CITEM:   socitems     		30    -               0               -               0               -               0
+CITEM:   scrollsThauRituals 30    -               0               -               0               -               0
+CITEM:   socweapons   		90    -               0               -               0               -               0
+
+// small containers
+CLASS:   42
+CITEM:   socloot    			50    cash1           0               -               0               -               0
+CITEM:   gemstonesMD   		10    cash2           0               -               0               -               0
+CITEM:   socitems      		50    -               0               -               0               -               0
+CITEM:   scrollsThauRituals   	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   43
+CITEM:   socitems      		50    -               0               -               0               -               0
+CITEM:   scrollsThauRituals 50    -               0               -               0               -               0
+CITEM:   socweapons    		90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   44
+CITEM:   socweapons    		90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   45
+CITEM:   socweapenh       100    -               0               -               0               -               0
+
+// SETITETEMPLE
+// all items
+CLASS:   46
+CITEM:   setloot   			30    cash2           0               -               0               -               0
+CITEM:   setammo   			30    -               0               -               0               -               0
+CITEM:   setitems     		30    -               0               -               0               -               0
+CITEM:   scrollsSerpentis 	30    -               0               -               0               -               0
+CITEM:   setweapons   		30    -               0               -               0               -               0
+CITEM:   setarmor     		90    -               0               -               0               -               0
+
+// small containers
+CLASS:   47
+CITEM:   setloot    			50    cash2           0               -               0               -               0
+CITEM:   gemstonesMD   		10    cash3           0               -               0               -               0
+CITEM:   setitems      		50    -               0               -               0               -               0
+CITEM:   scrollsSerpentis 	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   48
+CITEM:   setitems      		50    -               0               -               0               -               0
+CITEM:   scrollsSerpentis 	50    -               0               -               0               -               0
+CITEM:   setweapons    		90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   49
+CITEM:   setweapons    		50    -               0               -               0               -               0
+CITEM:   setarmor      		90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   50
+CITEM:   setweapenh        50    -               0               -               0               -               0
+CITEM:   setarmorenh      100    -               0               -               0               -               0
+
+// TOWEROFLONDON
+// all items
+CLASS:   51
+CITEM:   towerloot  			30    cash3           0               -               0               -               0
+CITEM:   towerammo  			30    -               0               -               0               -               0
+CITEM:   toweritems    		30    -               0               -               0               -               0
+CITEM:   scrollsOffense   	30    -               0               -               0               -               0
+CITEM:   towerweapons  		30    -               0               -               0               -               0
+CITEM:   towerarmor    		90    -               0               -               0               -               0
+
+// small containers
+CLASS:   52
+CITEM:   towerloot    		50    cash3           0               -               0               -               0
+CITEM:   gemstonesMD   		10    cash4           0               -               0               -               0
+CITEM:   toweritems      	50    -               0               -               0               -               0
+CITEM:   scrollsOffense   	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   53
+CITEM:   toweritems      	50    -               0               -               0               -               0
+CITEM:   scrollsOffense   	50    -               0               -               0               -               0
+CITEM:   towerweapons    	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   54
+CITEM:   towerweapons    	50    -               0               -               0               -               0
+CITEM:   towerarmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   55
+CITEM:   towerweapenh      50    -               0               -               0               -               0
+CITEM:   towerarmorenh    100    -               0               -               0               -               0
+
+// NYCSEWERS
+// all items
+CLASS:   56
+CITEM:   sewerloot  			30    cash4           0               -               0               -               0
+CITEM:   sewerammo  			30    -               0               -               0               -               0
+CITEM:   seweritems    		30    -               0               -               0               -               0
+CITEM:   scrollsDominate  	30    -               0               -               0               -               0
+CITEM:   sewerweapons  		30    -               0               -               0               -               0
+CITEM:   sewerarmor    		90    -               0               -               0               -               0
+
+// small containers
+CLASS:   57
+CITEM:   sewerloot    		50    cash4           0               -               0               -               0
+CITEM:   gemstonesMD   		10    cash5           0               -               0               -               0
+CITEM:   seweritems      	50    -               0               -               0               -               0
+CITEM:   scrollsDominate  	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   58
+CITEM:   seweritems      	50    -               0               -               0               -               0
+CITEM:   scrollsDominate  	50    -               0               -               0               -               0
+CITEM:   sewerweapons    	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   59
+CITEM:   sewerweapons    	50    -               0               -               0               -               0
+CITEM:   sewerarmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   60
+CITEM:   sewerweapenh      50    -               0               -               0               -               0
+CITEM:   sewerarmorenh    100    -               0               -               0               -               0
+
+// NYCWAREHOUSE
+// all items
+CLASS:   61
+CITEM:   wareloot  			30    cash5           0               -               0               -               0
+CITEM:   wareammo  			30    -               0               -               0               -               0
+CITEM:   wareitems    		30    -               0               -               0               -               0
+CITEM:   scrollsMortis    	30    -               0               -               0               -               0
+CITEM:   wareweapons  		30    -               0               -               0               -               0
+CITEM:   warearmor    		90    -               0               -               0               -               0
+
+// small containers
+CLASS:   62
+CITEM:   wareloot    		50    cash5           0               -               0               -               0
+CITEM:   gemstonesMD   		10    cash6           0               -               0               -               0
+CITEM:   wareitems      	50    -               0               -               0               -               0
+CITEM:   scrollsMortis    	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   63
+CITEM:   wareitems      	50    -               0               -               0               -               0
+CITEM:   scrollsMortis    	50    -               0               -               0               -               0
+CITEM:   wareweapons    	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   64
+CITEM:   wareweapons    	50    -               0               -               0               -               0
+CITEM:   warearmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   65
+CITEM:   wareweapenh       50    -               0               -               0               -               0
+CITEM:   warearmorenh     100    -               0               -               0               -               0
+
+// ORSIFACTORY
+// all items
+CLASS:   66
+CITEM:   orsiloot  			30    cash6           0               -               0               -               0
+CITEM:   orsiammo  			30    -               0               -               0               -               0
+CITEM:   orsiitems    		30    -               0               -               0               -               0
+CITEM:   scrollsPresence  	30    -               0               -               0               -               0
+CITEM:   orsiweapons  		30    -               0               -               0               -               0
+CITEM:   orsiarmor    		90    -               0               -               0               -               0
+
+// small containers
+CLASS:   67
+CITEM:   orsiloot    		50    cash6           0               -               0               -               0
+CITEM:   gemstonesMD   		10    cash7           0               -               0               -               0
+CITEM:   orsiitems      	50    -               0               -               0               -               0
+CITEM:   scrollsPresence  	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   68
+CITEM:   orsiitems      	50    -               0               -               0               -               0
+CITEM:   scrollsOffense   	50    -               0               -               0               -               0
+CITEM:   orsiweapons    	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   69
+CITEM:   orsiweapons    	50    -               0               -               0               -               0
+CITEM:   orsiarmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   70
+CITEM:   orsiweapenh       50    -               0               -               0               -               0
+CITEM:   orsiarmorenh     100    -               0               -               0               -               0
+
+// CATHEDRALOFFLESH
+// all items
+CLASS:   71
+CITEM:   cathloot  			30    cash7           0               -               0               -               0
+CITEM:   cathammo  			30    -               0               -               0               -               0
+CITEM:   cathitems    		30    -               0               -               0               -               0
+CITEM:   scrollsMortis    	30    -               0               -               0               -               0
+CITEM:   cathweapons  		30    -               0               -               0               -               0
+CITEM:   catharmor    		90    -               0               -               0               -               0
+
+// small containers
+CLASS:   72
+CITEM:   cathloot    		50    cash7           0               -               0               -               0
+CITEM:   gemstonesMD   		10    cash7           0               -               0               -               0
+CITEM:   cathitems      	50    -               0               -               0               -               0
+CITEM:   scrollsMortis    	90    -               0               -               0               -               0
+
+// large containers
+CLASS:   73
+CITEM:   cathitems      	50    -               0               -               0               -               0
+CITEM:   scrollsOffense   	50    -               0               -               0               -               0
+CITEM:   cathweapons    	90    -               0               -               0               -               0
+
+// huge containers
+CLASS:   74
+CITEM:   cathweapons    	50    -               0               -               0               -               0
+CITEM:   catharmor      	90    -               0               -               0               -               0
+
+// enhanced items
+CLASS:   75
+CITEM:   cathweapenh       50    -               0               -               0               -               0
+CITEM:   catharmorenh     100    -               0               -               0               -               0
+
+// SPECIFIC LEVEL CLASSES
+// Heightened Senses scrolls
+CLASS:   76
+CITEM:   scrollsSense     100    -               0               -               0               -               0
+
+
+// NPC DROPITEM CLASSES
+// Prague npcs
+CLASS:   131
+CITEM:   baseloot          10    cash0           0               -               0               -               0
+CITEM:   silvercoins       30    cash0           0               -               0               -               0
+CITEM:   daggersDA         10    -               0               -               0               -               0
+
+CLASS:   132
+CITEM:   cashDA          	30    cash0           0               -               0               -               0
+CITEM:   arrowsDA    		10    -               0               -               0               -               0
+
+CLASS:   133
+CITEM:   jewelryDA         10    cash0           0               -               0               -               0
+CITEM:   cashDA          	30    cash0           0               -               0               -               0
+CITEM:   swordsDA          10    -               0               -               0               -               0
+
+// Vienna npcs
+CLASS:   141
+CITEM:   jewelryDA         10    cash1           0               -               0               -               0
+CITEM:   cashDA          	50    cash2           0               -               0               -               0
+CITEM:   daggersDA         10    -               0               -               0               -               0
+
+CLASS:   142
+CITEM:   jewelryDA         10    cash1           0               -               0               -               0
+CITEM:   cashDA          	30    cash2           0               -               0               -               0
+CITEM:   arrowsDA   		   10    -               0               -               0               -               0
+
+CLASS:   143
+CITEM:   jewelryDA         10    cash1           0               -               0               -               0
+CITEM:   cashDA          	30    cash2           0               -               0               -               0
+CITEM:   boltsDA    			10    -               0               -               0               -               0
+
+// London npcs
+CLASS:   151
+CITEM:   jewelryMD         10    cash1           0               -               0               -               0
+CITEM:   cashUK           	30    cash2           0               -               0               -               0
+
+CLASS:   152
+CITEM:   jewelryMD         15    cash1           0               -               0               -               0
+CITEM:   cashUK           	13    cash2           0               -               0               -               0
+CITEM:   revolverrounds    30    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+CLASS:   153
+CITEM:   jewelryMD         15    cash1           0               -               0               -               0
+CITEM:   cashUK          	13    cash2           0               -               0               -               0
+CITEM:   pistolclip        20    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+CLASS:   154
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUK          	13    cash2           0               -               0               -               0
+CITEM:   rifleclip         20    -               0               -               0               -               0
+CITEM:   medFirearms       10    -               0               -               0               -               0
+
+CLASS:   155
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUK           	13    cash2           0               -               0               -               0
+CITEM:   shotgunshells     20    -               0               -               0               -               0
+CITEM:   medFirearms       10    -               0               -               0               -               0
+
+CLASS:   156
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUK           	13    cash2           0               -               0               -               0
+CITEM:   submachineclip    20    -               0               -               0               -               0
+CITEM:   heavyFirearms     10    -               0               -               0               -               0
+
+CLASS:   157
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUK           	13    cash2           0               -               0               -               0
+CITEM:   assaultclip       20    -               0               -               0               -               0
+CITEM:   heavyFirearms     10    -               0               -               0               -               0
+
+CLASS:   158
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUK           	13    cash2           0               -               0               -               0
+CITEM:   bluntMD           20    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+// New York npcs
+CLASS:   161
+CITEM:   jewelryMD         10    cash2           0               -               0               -               0
+CITEM:   cashUS           	20    cash2           0               -               0               -               0
+
+CLASS:   162
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUS           	13    cash2           0               -               0               -               0
+CITEM:   revolverrounds    20    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+CLASS:   163
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUS          	13    cash2           0               -               0               -               0
+CITEM:   pistolclip        20    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+CLASS:   164
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUS          	13    cash2           0               -               0               -               0
+CITEM:   rifleclip         20    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+CLASS:   165
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUS           	13    cash2           0               -               0               -               0
+CITEM:   shotgunshells     20    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+CLASS:   166
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUS           	13    cash2           0               -               0               -               0
+CITEM:   submachineclip    20    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+CLASS:   167
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUS           	13    cash2           0               -               0               -               0
+CITEM:   assaultclip       20    -               0               -               0               -               0
+CITEM:   heavyFirearms     10    -               0               -               0               -               0
+
+CLASS:   168
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUS           	13    cash2           0               -               0               -               0
+CITEM:   bluntMD           20    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+CLASS:   169
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUS           	13    cash2           0               -               0               -               0
+CITEM:   launchGrenades    20    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+CLASS:   170
+CITEM:   jewelryMD         15    cash2           0               -               0               -               0
+CITEM:   cashUS           	13    cash2           0               -               0               -               0
+CITEM:   rockets           20    -               0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+
+
+// POTIONS, VITAE, SCROLLS AND MAGICAL ITEMS
+// Potions
+CLASS:   171
+CITEM:   potionHealth      30    -               0               -               0               -               0
+CITEM:   potion            30    -               0               -               0               -               0
+
+CLASS:   172
+CITEM:   potion           100    -               0               -               0               -               0
+
+CLASS:   173
+CITEM:   potionHealth     100    -               0               -               0               -               0
+
+CLASS:   174
+CITEM:   potionPoison     100    -               0               -               0               -               0
+
+CLASS:   175
+CITEM:   potionDisease    100    -               0               -               0               -               0
+
+// Vitae
+CLASS:   181
+CITEM:   vitaeCommon      100    -               0               -               0               -               0
+
+CLASS:   182
+CITEM:   vitaeRare        100    -               0               -               0               -               0
+
+CLASS:   183
+CITEM:   vitaeCommon       90    -               0               -               0               -               0
+CITEM:   vitaeRare        100    -               0               -               0               -               0
+
+CLASS:   184
+CITEM:   vitaeModern      100    -               0               -               0               -               0
+
+// Scrolls
+CLASS:   190
+CITEM:   scrollsTeleport  100    -               0               -               0               -               0
+
+CLASS:   191
+CITEM:   scrollsAwaken    100    -               0               -               0               -               0
+
+CLASS:   192
+CITEM:   scrollsIdentify  100    -               0               -               0               -               0
+
+CLASS:   193
+CITEM:   scrollsGeneric    70    -               0               -               0               -               0
+CITEM:   scrollsOffense   100    -               0               -               0               -               0
+
+CLASS:   194
+CITEM:   scrollsGeneric    25    -               0               -               0               -               0
+CITEM:   scrollsCelerity   33    -               0               -               0               -               0
+CITEM:   scrollsPotence    50    -               0               -               0               -               0
+CITEM:   scrollsPresence  100    -               0               -               0               -               0
+
+CLASS:   195
+CITEM:   scrollsGeneric    25    -               0               -               0               -               0
+CITEM:   scrollsAuspex     33    -               0               -               0               -               0
+CITEM:   scrollsFortitude  25    -               0               -               0               -               0
+CITEM:   scrollsMortis    100    -               0               -               0               -               0
+
+CLASS:   196
+CITEM:   scrollsGeneric    25    -               0               -               0               -               0
+CITEM:   scrollsAnimal     33    -               0               -               0               -               0
+CITEM:   scrollsObfuscate  50    -               0               -               0               -               0
+CITEM:   scrollsPotence   100    -               0               -               0               -               0
+
+CLASS:   197
+CITEM:   scrollsGeneric    25    -               0               -               0               -               0
+CITEM:   scrollsAuspex     20    -               0               -               0               -               0
+CITEM:   scrollsDominate   30    -               0               -               0               -               0
+CITEM:   scrollsThauBlood  30    -               0               -               0               -               0
+CITEM:   scrollsThauFlame  30    -               0               -               0               -               0
+CITEM:   scrollsThauHands  50    -               0               -               0               -               0
+CITEM:   scrollsThauRituals 100    -               0               -               0               -               0
+
+CLASS:   198
+CITEM:   scrollsGeneric    25    -               0               -               0               -               0
+CITEM:   scrollsObfuscate  33    -               0               -               0               -               0
+CITEM:   scrollsPresence   50    -               0               -               0               -               0
+CITEM:   scrollsSerpentis  10    -               0               -               0               -               0
+
+
+CLASS:   199
+CITEM:   scrollsAnimal     3     -               0               -               0               -               0
+CITEM:   scrollsAuspex     4     -               0               -               0               -               0
+CITEM:   scrollsCelerity   5     -               0               -               0               -               0
+CITEM:   scrollsCommon     6     -               0               -               0               -               0
+CITEM:   scrollsDementation 7    -               0               -               0               -               0
+CITEM:   scrollsDominate   8     -               0               -               0               -               0
+CITEM:   scrollsFortitude  9     -               0               -               0               -               0
+CITEM:   scrollsMortis     10    -               0               -               0               -               0
+CITEM:   scrollsObfuscate  10    -               0               -               0               -               0
+CITEM:   scrollsObtenebration 12    -               0               -               0               -               0
+CITEM:   scrollsPotence    13    -               0               -               0               -               0
+CITEM:   scrollsPresence   14    -               0               -               0               -               0
+CITEM:   scrollsProtean    17    -               0               -               0               -               0
+CITEM:   scrollsSerpentis  20    -               0               -               0               -               0
+CITEM:   scrollsThauBlood  25    -               0               -               0               -               0
+CITEM:   scrollsThauFlame  33    -               0               -               0               -               0
+CITEM:   scrollsThauHands  50    -               0               -               0               -               0
+CITEM:   scrollsThauRituals 100    -               0               -               0               -               0
+
+CLASS:   201
+CITEM:   scrollsNumina    100    -               0               -               0               -               0
+
+CLASS:   202
+CITEM:   kineItems        100    -               0               -               0               -               0
+
+CLASS:   205
+CITEM:   artAmulet			12    -               0               -               0               -               0
+CITEM:   artBracelet			14    -               0               -               0               -               0
+CITEM:   artPotion	 	   17    -               0               -               0               -               0
+CITEM:   artRing		 	   20    -               0               -               0               -               0
+CITEM:   artArmor		 		25    -               0               -               0               -               0
+CITEM:   artGauntlet 	   33    -               0               -               0               -               0
+CITEM:   artSword		 	   50    -               0               -               0               -               0
+CITEM:   artWeapon 	 	  100    -               0               -               0               -               0
+
+
+// GENERIC ITEMS
+// Dark Ages
+CLASS:   211
+CITEM:   lightArmorDA     100    -               0               -               0               -               0
+
+CLASS:   212
+CITEM:   heavyArmorDA     100    -               0               -               0               -               0
+
+CLASS:   213
+CITEM:   lightArmorDA    	70    -               0               -               0               -               0
+CITEM:   heavyArmorDA     100    -               0               -               0               -               0
+
+CLASS:   214
+CITEM:   rangedWeapons    100    -               0               -               0               -               0
+
+CLASS:   215
+CITEM:   meleeWeapons     100    -               0               -               0               -               0
+
+CLASS:   216
+CITEM:   swordsDA    	  100    -               0               -               0               -               0
+
+CLASS:   217
+CITEM:   daggersDA    	  100    -               0               -               0               -               0
+
+CLASS:   218
+CITEM:   bluntDA    	  	  100    -               0               -               0               -               0
+
+CLASS:   219
+CITEM:   archeryDA    	  100    -               0               -               0               -               0
+
+CLASS:   220
+CITEM:   polearms    	  100    -               0               -               0               -               0
+
+CLASS:   221
+CITEM:   quickuseDA    	  100    -               0               -               0               -               0
+
+CLASS:   222
+CITEM:   ammoDA    	     100    -               0               -               0               -               0
+
+CLASS:   223
+CITEM:   quickuseDA        50    -               0               -               0               -               0
+CITEM:   ammoDA           100    -               0               -               0               -               0
+
+CLASS:   224
+CITEM:   lightArmorDA    	10    -               0               -               0               -               0
+CITEM:   heavyArmorDA    	12    -               0               -               0               -               0
+CITEM:   shieldsDA    	   13    -               0               -               0               -               0
+CITEM:   headgearDA    	   14    -               0               -               0               -               0
+CITEM:   neckwearDA    	   17    -               0               -               0               -               0
+CITEM:   daggersDA    	   20    -               0               -               0               -               0
+CITEM:   bluntDA    	      25    -               0               -               0               -               0
+CITEM:   archeryDA    	   33    -               0               -               0               -               0
+CITEM:   quickuseDA    	   50    -               0               -               0               -               0
+CITEM:   ammoDA           100    -               0               -               0               -               0
+
+CLASS:   225
+CITEM:   cashDA        		14    -               0               -               0               -               0
+CITEM:   jewelryDA         17    -               0               -               0               -               0
+CITEM:   gemstonesDA       20    -               0               -               0               -               0
+CITEM:   potion       		25    -               0               -               0               -               0
+CITEM:   vitaeCommon       33    -               0               -               0               -               0
+CITEM:   scrollsCommon     50    -               0               -               0               -               0
+CITEM:   ammoDA           100    -               0               -               0               -               0
+
+CLASS:   226
+CITEM:   baseweapenh   		14    -               0               -               0               -               0
+CITEM:   petrinweapenh 		17    -               0               -               0               -               0
+CITEM:   josefweapenh 		20    -               0               -               0               -               0
+CITEM:   ardanweapenh 		25    -               0               -               0               -               0
+CITEM:   stephanweapenh		33    -               0               -               0               -               0
+CITEM:   teutonweapenh 		50    -               0               -               0               -               0
+CITEM:   hausweapenh 	  100    -               0               -               0               -               0
+
+CLASS:   227
+CITEM:   basearmorenh  		14    -               0               -               0               -               0
+CITEM:   petrinarmorenh		17    -               0               -               0               -               0
+CITEM:   josefarmorenh		20    -               0               -               0               -               0
+CITEM:   ardanarmorenh 		25    -               0               -               0               -               0
+CITEM:   stephanarmorenh	33    -               0               -               0               -               0
+CITEM:   teutonarmorenh		50    -               0               -               0               -               0
+CITEM:   hausarmorenh 	  100    -               0               -               0               -               0
+
+CLASS:   228
+CITEM:   silvercoins       10    cash0           0               -               0               -               0
+CITEM:   barrelloot        20 	-               0               -               0               -               0
+CITEM:   potion			   20    -               0               -               0               -               0
+
+CLASS:   229
+CITEM:   stephanweapenh		30    -               0               -               0               -               0
+CITEM:   teutonweapenh 		50    -               0               -               0               -               0
+CITEM:   hausweapenh 	  100    -               0               -               0               -               0
+
+CLASS:   230
+CITEM:   artAmulet			25    -               0               -               0               -               0
+CITEM:   artBracelet			33    -               0               -               0               -               0
+CITEM:   artPotion	 	   50    -               0               -               0               -               0
+CITEM:   artRing		 	  100    -               0               -               0               -               0
+
+CLASS:	231
+CITEM:   artArmor		 		25    -               0               -               0               -               0
+CITEM:   artGauntlet 	   33    -               0               -               0               -               0
+CITEM:   artSword		 	   50    -               0               -               0               -               0
+CITEM:   artWeapon 	 	  100    -               0               -               0               -               0
+
+// Modern day
+CLASS:   233
+CITEM:   lightArmorMD     	70    -               0               -               0               -               0
+CITEM:   heavyArmorMD     100    -               0               -               0               -               0
+
+CLASS:   234
+CITEM:   lightFirearms    100    -               0               -               0               -               0
+
+CLASS:   235
+CITEM:   heavyFirearms    100    -               0               -               0               -               0
+
+CLASS:   236
+CITEM:   artillery         90    -               0               -               0               -               0
+
+CLASS:   237
+CITEM:   jewelryMD         10    cash2           0               -               0               -               0
+CITEM:   cashUK           	30    cash1           0               -               0               -               0
+CITEM:   daggersMD     	   30    -               0               -               0               -               0
+CITEM:   lightAmmo       	50    -               0               -               0               -               0
+CITEM:   lightFirearms     90    -               0               -               0               -               0
+
+CLASS:   238
+CITEM:   quickuseMD        10    -               0               -               0               -               0
+CITEM:   archeryAmmoMD     10    -               0               -               0               -               0
+CITEM:   lightAmmo       	80    -               0               -               0               -               0
+CITEM:   heavyAmmo        100    -               0               -               0               -               0
+
+CLASS:   239
+CITEM:   lightarmorMD     	10    -					 0               -               0               -               0
+CITEM:   heavyarmorMD     	10    -					 0               -               0               -               0
+CITEM:   shieldsMD     		10    -					 0               -               0               -               0
+CITEM:   headgearMD     	10    -					 0               -               0               -               0
+CITEM:   neckwearMD     	10    -					 0               -               0               -               0
+CITEM:   daggersMD     		10    -					 0               -               0               -               0
+CITEM:   bluntMD     		10    -					 0               -               0               -               0
+CITEM:   archeryMD     		10    -					 0               -               0               -               0
+CITEM:   lightFirearms     10    -               0               -               0               -               0
+CITEM:   heavyFirearms     10    -               0               -               0               -               0
+CITEM:   quickuseMD       100    -               0               -               0               -               0
+
+CLASS:   240
+CITEM:   lightarmorMD     	10    -					 0               -               0               -               0
+CITEM:   heavyarmorMD     	10    -					 0               -               0               -               0
+CITEM:   shieldsMD     		10    -					 0               -               0               -               0
+CITEM:   headgearMD     	10    -					 0               -               0               -               0
+CITEM:   quickuseMD       100    -               0               -               0               -               0
+
+CLASS:   241
+CITEM:   heavyFirearms     20    -               0               -               0               -               0
+CITEM:   heavyAmmo     	  100    -               0               -               0               -               0
+
+CLASS:	242
+CITEM:   artillery     		20    -               0               -               0               -               0
+CITEM:   artilleryAmmo 	  100    -               0               -               0               -               0
+
+CLASS:	243
+CITEM:   jewelryMD         10    cash2           0               -               0               -               0
+CITEM:   cashUK           	30    cash1           0               -               0               -               0
+CITEM:   vitaeCommon     	30    -               0               -               0               -               0
+CITEM:   scrollsCommon 	   30    -               0               -               0               -               0
+CITEM:   lightAmmo       	50    -               0               -               0               -               0
+CITEM:   lightFirearms     90    -               0               -               0               -               0
+
+CLASS:   244
+CITEM:   monetaryUS        10    -               0               -               0               -               0
+CITEM:   jewelryMD         10    -               0               -               0               -               0
+CITEM:   gemstonesMD       10    -               0               -               0               -               0
+CITEM:   potion       		10    -               0               -               0               -               0
+CITEM:   vitaeCommon       10    -               0               -               0               -               0
+CITEM:   scrollsCommon     10    -               0               -               0               -               0
+CITEM:   scrollsGeneric   	10    -               0               -               0               -               0
+CITEM:   lightAmmo       	50    -               0               -               0               -               0
+CITEM:   heavyAmmo        100    -               0               -               0               -               0
+
+CLASS:   245
+CITEM:   socweapenh   		40    -               0               -               0               -               0
+CITEM:   setweapenh 			30    -               0               -               0               -               0
+CITEM:   towerweapenh 		30    -               0               -               0               -               0
+CITEM:   sewerweapenh 		30    -               0               -               0               -               0
+CITEM:   wareweapenh			30    -               0               -               0               -               0
+CITEM:   orsiweapenh 		50    -               0               -               0               -               0
+CITEM:   cathweapenh 	  100    -               0               -               0               -               0
+
+CLASS:   246
+CITEM:   socarmorenh  		40    -               0               -               0               -               0
+CITEM:   setarmorenh			30    -               0               -               0               -               0
+CITEM:   towerarmorenh		30    -               0               -               0               -               0
+CITEM:   sewerarmorenh 		30    -               0               -               0               -               0
+CITEM:   warearmorenh		30    -               0               -               0               -               0
+CITEM:   orsiarmorenh		50    -               0               -               0               -               0
+CITEM:   catharmorenh 	  100    -               0               -               0               -               0
+
+CLASS:   247
+CITEM:   stephanweapenh   100    -               0               -               0               -               0
+
+CLASS:   248
+CITEM:   socweapenh   		50    -               0               -               0               -               0
+CITEM:   setweapenh 			50    -               0               -               0               -               0
+CITEM:   towerweapenh 	  100    -               0               -               0               -               0
+
+CLASS:   255
+CITEM:   potion             0    -               0               -               0               -               0
+

@@ -7,7 +7,8 @@ def validate_markers(scene,actors):
     for kind in ('entries','waypoints'):
         rows={}
         for row in sequence(scene.get(kind,[]),kind):
-            mapping(row,{'id','name','transform'},{'id','name','transform'},kind)
+            mapping(row,{'id','name','transform','interest_group'} if kind=='waypoints' else {'id','name','transform'},{'id','name','transform'},kind)
+            if 'interest_group' in row and (type(row['interest_group']) is not int or not 0<=row['interest_group']<=9):raise ValueError('Interest group: integer 0..9')
             key=identifier(row['id'],kind+'.id',16);text(row['name'],kind+'.name')
             if key in rows:raise ValueError(kind+': ID duplicado')
             transform=mapping(row['transform'],{'position','orientation','placement'},{'position','orientation'},kind+'.transform')

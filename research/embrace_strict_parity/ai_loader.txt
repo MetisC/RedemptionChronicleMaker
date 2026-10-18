@@ -1,0 +1,241 @@
+0047c4b0: add byte ptr [eax], al
+0047c4b2: add al, ch
+0047c4b4: call 0x8347c9aa
+0047c4b9: les eax, ptr [eax*4 - 0x147af040]
+0047c4c0: pop es
+0047c4c1: add byte ptr [eax], al
+0047c4c3: push esi
+0047c4c4: lea eax, [esp + 0x18]
+0047c4c8: push 0x1ff
+0047c4cd: push eax
+0047c4ce: call 0x4cb600
+0047c4d3: add esp, 0xc
+0047c4d6: test eax, eax
+0047c4d8: je 0x47ccae
+0047c4de: mov al, byte ptr [esp + 0x14]
+0047c4e2: cmp al, 0x3b
+0047c4e4: je 0x47cc95
+0047c4ea: cmp al, 0x23
+0047c4ec: je 0x47cc95
+0047c4f2: cmp al, 0x2f
+0047c4f4: jne 0x47c501
+0047c4f6: cmp byte ptr [esp + 0x15], 0x2f
+0047c4fb: je 0x47cc95
+0047c501: lea ecx, [esp + 0x14]
+0047c505: push 0x512ac0
+0047c50a: push ecx
+0047c50b: call 0x4dd5f2
+0047c510: mov ebx, eax
+0047c512: add esp, 8
+0047c515: test ebx, ebx
+0047c517: je 0x47cc95
+0047c51d: xor edi, edi
+0047c51f: mov esi, 0x51259c
+0047c524: mov edx, dword ptr [esi]
+0047c526: push ebx
+0047c527: push edx
+0047c528: call 0x4de1b0
+0047c52d: add esp, 8
+0047c530: test eax, eax
+0047c532: je 0x47c543
+0047c534: add esi, 4
+0047c537: inc edi
+0047c538: cmp esi, 0x512638
+0047c53e: jb 0x47c524
+0047c540: or edi, 0xffffffff
+0047c543: push 0x512ac8
+0047c548: push 0
+0047c54a: call 0x4dd5f2
+0047c54f: mov esi, eax
+0047c551: add esp, 8
+0047c554: test esi, esi
+0047c556: je 0x47cc95
+0047c55c: cmp edi, 0x26
+0047c55f: ja 0x47cc95
+0047c565: jmp dword ptr [edi*4 + 0x47cd10]
+0047c56c: push esi
+0047c56d: call 0x4ddc32
+0047c572: add esp, 4
+0047c575: mov dword ptr [ebp + 0x28], eax
+0047c578: jmp 0x47cc95
+0047c57d: lea eax, [ebp + 0x2c]
+0047c580: push eax
+0047c581: push 0x512ad0
+0047c586: push esi
+0047c587: call 0x4ddcf7
+0047c58c: add esp, 0xc
+0047c58f: jmp 0x47cc95
+0047c594: push esi
+0047c595: call 0x4ddd7c
+0047c59a: fmul qword ptr [0x4eb480]
+0047c5a0: add esp, 4
+0047c5a3: call 0x4ddb80
+0047c5a8: mov dword ptr [ebp + 0x30], eax
+0047c5ab: jmp 0x47cc95
+0047c5b0: push esi
+0047c5b1: call 0x4ddd7c
+0047c5b6: fstp dword ptr [ebp + 0x34]
+0047c5b9: add esp, 4
+0047c5bc: jmp 0x47cc95
+0047c5c1: push esi
+0047c5c2: call 0x4ddc32
+0047c5c7: add esp, 4
+0047c5ca: mov dword ptr [ebp + 0x38], eax
+0047c5cd: jmp 0x47cc95
+0047c5d2: lea ecx, [ebp + 0x3c]
+0047c5d5: push ecx
+0047c5d6: push 0x512ad4
+0047c5db: push esi
+0047c5dc: call 0x4ddcf7
+0047c5e1: add esp, 0xc
+0047c5e4: jmp 0x47cc95
+0047c5e9: push esi
+0047c5ea: call 0x4ddd7c
+0047c5ef: fmul qword ptr [0x4eb480]
+0047c5f5: add esp, 4
+0047c5f8: call 0x4ddb80
+0047c5fd: mov dword ptr [ebp + 0x40], eax
+0047c600: jmp 0x47cc95
+0047c605: push esi
+0047c606: call 0x4ddd7c
+0047c60b: fstp dword ptr [ebp + 0x44]
+0047c60e: add esp, 4
+0047c611: jmp 0x47cc95
+0047c616: push esi
+0047c617: call 0x4ddd7c
+0047c61c: fmul qword ptr [0x4eb480]
+0047c622: add esp, 4
+0047c625: call 0x4ddb80
+0047c62a: mov dword ptr [ebp + 0x48], eax
+0047c62d: jmp 0x47cc95
+0047c632: push esi
+0047c633: call 0x4ddd7c
+0047c638: fstp dword ptr [ebp + 0x4c]
+0047c63b: add esp, 4
+0047c63e: jmp 0x47cc95
+0047c643: push esi
+0047c644: call 0x4ddc32
+0047c649: add esp, 4
+0047c64c: mov dword ptr [ebp + 0x50], eax
+0047c64f: jmp 0x47cc95
+0047c654: push esi
+0047c655: call 0x4ddd7c
+0047c65a: fstp dword ptr [ebp + 0x54]
+0047c65d: add esp, 4
+0047c660: jmp 0x47cc95
+0047c665: push esi
+0047c666: call 0x4ddd7c
+0047c66b: fmul qword ptr [0x4eb480]
+0047c671: add esp, 4
+0047c674: call 0x4ddb80
+0047c679: mov dword ptr [ebp + 0x58], eax
+0047c67c: jmp 0x47cc95
+0047c681: push esi
+0047c682: call 0x4ddd7c
+0047c687: fstp dword ptr [ebp + 0x5c]
+0047c68a: add esp, 4
+0047c68d: jmp 0x47cc95
+0047c692: push esi
+0047c693: call 0x4ddc32
+0047c698: add esp, 4
+0047c69b: mov dword ptr [ebp + 0x24], eax
+0047c69e: jmp 0x47cc95
+0047c6a3: push esi
+0047c6a4: call 0x4ddd7c
+0047c6a9: add esp, 4
+0047c6ac: call 0x4ddb80
+0047c6b1: mov dword ptr [ebp + 0x60], eax
+0047c6b4: jmp 0x47cc95
+0047c6b9: push esi
+0047c6ba: call 0x4ddd7c
+0047c6bf: fstp dword ptr [ebp + 0x64]
+0047c6c2: add esp, 4
+0047c6c5: jmp 0x47cc95
+0047c6ca: push esi
+0047c6cb: call 0x4ddd7c
+0047c6d0: fmul qword ptr [0x4eb480]
+0047c6d6: add esp, 4
+0047c6d9: call 0x4ddb80
+0047c6de: mov dword ptr [ebp + 0x68], eax
+0047c6e1: jmp 0x47cc95
+0047c6e6: push esi
+0047c6e7: call 0x4ddd7c
+0047c6ec: fcomp dword ptr [0x4eb424]
+0047c6f2: add esp, 4
+0047c6f5: fnstsw ax
+0047c6f7: test ah, 1
+0047c6fa: jne 0x47c737
+0047c6fc: push esi
+0047c6fd: call 0x4ddd7c
+0047c702: fcomp dword ptr [0x4eb3f4]
+0047c708: add esp, 4
+0047c70b: fnstsw ax
+0047c70d: test ah, 0x41
+0047c710: je 0x47c726
+0047c712: push esi
+0047c713: call 0x4ddd7c
+0047c718: fstp dword ptr [ebp + 0xa8]
+0047c71e: add esp, 4
+0047c721: jmp 0x47cc95
+0047c726: fld dword ptr [0x4eb3f4]
+0047c72c: fstp dword ptr [ebp + 0xa8]
+0047c732: jmp 0x47cc95
+0047c737: fld dword ptr [0x4eb424]
+0047c73d: fstp dword ptr [ebp + 0xa8]
+0047c743: jmp 0x47cc95
+0047c748: push esi
+0047c749: call 0x4ddd7c
+0047c74e: fcomp dword ptr [0x4eb424]
+0047c754: add esp, 4
+0047c757: fnstsw ax
+0047c759: test ah, 1
+0047c75c: jne 0x47c799
+0047c75e: push esi
+0047c75f: call 0x4ddd7c
+0047c764: fcomp dword ptr [0x4eb3f4]
+0047c76a: add esp, 4
+0047c76d: fnstsw ax
+0047c76f: test ah, 0x41
+0047c772: je 0x47c788
+0047c774: push esi
+0047c775: call 0x4ddd7c
+0047c77a: fstp dword ptr [ebp + 0xac]
+0047c780: add esp, 4
+0047c783: jmp 0x47cc95
+0047c788: fld dword ptr [0x4eb3f4]
+0047c78e: fstp dword ptr [ebp + 0xac]
+0047c794: jmp 0x47cc95
+0047c799: fld dword ptr [0x4eb424]
+0047c79f: fstp dword ptr [ebp + 0xac]
+0047c7a5: jmp 0x47cc95
+0047c7aa: push esi
+0047c7ab: call 0x4ddd7c
+0047c7b0: fcomp dword ptr [0x4eb424]
+0047c7b6: add esp, 4
+0047c7b9: fnstsw ax
+0047c7bb: test ah, 1
+0047c7be: jne 0x47c7fb
+0047c7c0: push esi
+0047c7c1: call 0x4ddd7c
+0047c7c6: fcomp dword ptr [0x4eb3f4]
+0047c7cc: add esp, 4
+0047c7cf: fnstsw ax
+0047c7d1: test ah, 0x41
+0047c7d4: je 0x47c7ea
+0047c7d6: push esi
+0047c7d7: call 0x4ddd7c
+0047c7dc: fstp dword ptr [ebp + 0xb0]
+0047c7e2: add esp, 4
+0047c7e5: jmp 0x47cc95
+0047c7ea: fld dword ptr [0x4eb3f4]
+0047c7f0: fstp dword ptr [ebp + 0xb0]
+0047c7f6: jmp 0x47cc95
+0047c7fb: fld dword ptr [0x4eb424]
+0047c801: fstp dword ptr [ebp + 0xb0]
+0047c807: jmp 0x47cc95
+0047c80c: push esi
+0047c80d: call 0x4ddd7c
+0047c812: fcomp dword ptr [0x4eb424]
+0047c818: add esp, 4
+0047c81b: fnstsw ax
+0047c81d: test ah, 1

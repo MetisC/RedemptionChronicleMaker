@@ -1,0 +1,190 @@
+[
+  {
+    "path": "CURI_28_4.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "DEVN_33_2.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "DEVN_36_1.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "DEVN_LOT_8_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "EGNT_7_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "FAC1_37_4.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "FAC1_LOT_5_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "FAC2_37_4.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "FAC2_LOT_5_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "FAC3_37_4.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "FAC3_LOT_5_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "FRO1_20_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "FROG_20_1.nsd",
+    "parameters": 5
+  },
+  {
+    "path": "GUNH_LOT_1_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "HILLD_4_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "HILL_7_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "IN4D_4_1.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "INN4_7_1.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "INN4_7_7.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "INN4_CTD_1_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "JOS1_15_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "JOS1_CTD_3_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "JUDBD_4_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "JUDB_7_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "NEWM_37_4.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "NEWM_LOT_1_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "OLDT_25_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "ORDR_20_1.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "ORSI_37_4.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "OTDY_6_1.nsd",
+    "parameters": 4
+  },
+  {
+    "path": "PRIN_14_1.nsd",
+    "parameters": 3
+  },
+  {
+    "path": "PRIN_16_1.nsd",
+    "parameters": 2
+  },
+  {
+    "path": "RABI_CTD_1_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "ROOF_20_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "SIMN_7_1.nsd",
+    "parameters": 54
+  },
+  {
+    "path": "SMTY_7_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "SMYD_4_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "STHM_4_1.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "STHM_6_1.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "TOL2_30_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "UNIV_25_1.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "UNIV_4_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "UNIV_8_1.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "UNORD_4_1.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "UNOR_7_1.nsd",
+    "parameters": 1
+  },
+  {
+    "path": "VEST_20_1.nsd",
+    "parameters": 0
+  },
+  {
+    "path": "WEAP_20_2.nsd",
+    "parameters": 1
+  }
+]

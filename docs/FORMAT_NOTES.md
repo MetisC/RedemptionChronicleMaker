@@ -373,3 +373,17 @@ Se conserva `conversation.staging: entry_id`. La alternativa optativa es `stagin
 La escritura afecta sólo al NSD propio y exige cuatro counts vacíos de partida. Preserva los otros 176 bytes del entorno. Validación de tamaño, count máximo 64, grupos 0..15, selector cero, matriz ortonormal y floats finitos; roundtrip del subconjunto generado. Las tablas nativas son asignaciones dinámicas: 16 grupos es el límite de autoría adoptado del manual, no una afirmación de array fijo en el loader. No se escribe una tabla desconocida ni un NSD universal.
 
 Los 22 pares NCP de XYZ coincidente encontrados en tres originales también tienen parámetro coincidente; ocho cambian Euler y catorce no. Sus coeficientes no demuestran hold o giro temporizado. El escritor lineal mantiene la restricción; el lector permite parámetros repetidos originales, rechaza negativos/decrecientes, inversos negativos y valores no finitos. Los 174 originales conservan bytes.
+
+## Strict authoring evidence update
+
+Confirmed original-file/native evidence: NSD parameters are the SECOND entity
+variable block (types 1/2/3/7/8 editable), movement frames are orientation XYZ then
+position XYZ (24 bytes); 64 original files lossless. Native interest records are
+72 bytes with a separate group selected by AI interestNum. TreasureClass is tag
+92 uint32 and container-only in RCM. Optional environment patches touch proven
+176-byte tail fields only; unknown bytes remain intact. EAX static precedence
+prevents an effective dynamic override. Full evidence, safety limits and pending
+native checks: research/embrace_strict_parity/codex_linker_format.md,
+treasure_class.md, SAFETY_DECISIONS.md and docs/EMBRACE_AUTHORING_PARITY.md.
+SDK-confirmed NTT/NSC documentation is separate from these original-file proofs.
+Maps customisation remains an analysed route, not an implemented map editor.

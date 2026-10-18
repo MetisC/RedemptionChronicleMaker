@@ -1,0 +1,4314 @@
+{
+  "ActorAIOff_TriggerOn": {
+    "descriptor": "(LCodexActor;F)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Actor"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Delay (seconds before AI is turned on)",
+        "default": 0.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "BatFlying": {
+    "descriptor": "(FF)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min time",
+        "default": 5.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Max time",
+        "default": 25.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ClassBobbing": {
+    "descriptor": "(LCodexThing;FFF)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Bobbing thing"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min speed",
+        "default": 8.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Max speed",
+        "default": 15.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Delay",
+        "default": 1.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ClassBreakable": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;FFFFFF)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 4"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 5"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Velocity X"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Velocity Y"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Velocity Z"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Rotational Velocity X"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Rotational Velocity Y"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Rotational Velocity Z"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ClassCappadocian": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClassDAMagicShop": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClassDarkHunter": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClassDAWeapShop": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "classGroupFear": {
+    "descriptor": "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Group Leader"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Enemy 1"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Enemy 2"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Enemy 3"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Enemy 4"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Enemy 5"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ClassInfectious": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClassMDMagicShop": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClassMDWeapShop": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClassNosferatu": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClassPoisonous": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClassSkeletonWraith": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClassSpiderSac": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClassWander": {
+    "descriptor": "(FFFFFF)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min search radius",
+        "default": 64.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Max search radius",
+        "default": 320.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min delay",
+        "default": 2.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Max delay",
+        "default": 10.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Speed",
+        "default": 210.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Step height to try",
+        "default": 16.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ClassWraith": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ClickExit": {
+    "descriptor": "(I)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Exit number",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "Door": {
+    "descriptor": "(F)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Movement speed",
+        "default": 150.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ConveyerBelt": {
+    "descriptor": "(Ljava/lang/String;II)V",
+    "parameters": [
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Attach Template"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "First Frame"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Speed"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ConveyerHold": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Held Object"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spikes"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spikes Blood"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Roller Blood"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Steam 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Steam 2"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "DoorElevator": {
+    "descriptor": "(FLCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Speed",
+        "default": 50.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "First half door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Second half door"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "DoorPivotSwitchPivot": {
+    "descriptor": "(FFLCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 3.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Switch Time",
+        "default": 0.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Switch"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "DoorRegion": {
+    "descriptor": "(FFILCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Movement speed",
+        "default": 150.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Open Time",
+        "default": 0.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Open Once",
+        "default": 0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Region"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "DoorSwitch": {
+    "descriptor": "(FFLCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Movement speed",
+        "default": 150.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Open Time",
+        "default": 0.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Switch"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "DoorSwitchPivot": {
+    "descriptor": "(FFLCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Movement speed",
+        "default": 150.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Switch Time",
+        "default": 0.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Switch"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "DoubleDoor": {
+    "descriptor": "(FLCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Movement speed",
+        "default": 10.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Second half door"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "DoubleDoorPivotSwitchPivot": {
+    "descriptor": "(FLCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 3.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "First half door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Second half door"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "DoublePivotDoor": {
+    "descriptor": "(IFLCodexThing;)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Rotate around frame",
+        "default": 1
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 3.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Second half door"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "EffectItemBlackGloves": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectWeaponAinkurn": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectWeaponTaser": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ExitMessageRemove": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "FeederRat": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "FeederRatClassWander": {
+    "descriptor": "(FFFFFFI)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min search radius",
+        "default": 64.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Max search radius",
+        "default": 320.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min delay",
+        "default": 2.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Max delay",
+        "default": 10.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Speed",
+        "default": 210.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Step height to try",
+        "default": 16.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Placed in Editor (LEAVE AT 1 IF YOU SEE THIS)",
+        "default": 1
+      }
+    ],
+    "literal_metadata": true
+  },
+  "FlyRegion": {
+    "descriptor": "(Ljava/lang/String;F)V",
+    "parameters": [
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Path name"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Speed",
+        "default": 120.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "FredVarneyCigar": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "funcBreakable": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;FFF)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 4"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 5"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Velocity X"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Velocity Y"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Velocity Z"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "Generator": {
+    "descriptor": "(Ljava/lang/String;FFII)V",
+    "parameters": [
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Template to generate"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Delay",
+        "default": 10.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Frequency",
+        "default": 60.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Max Things",
+        "default": 20
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Max Alive",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ItemAinkurn": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemBlackGloves": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemGangrelEye": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeAnimalism": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeAuspex": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeBloodPath": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeCelerity": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeDementation": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeDominate": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeFaith": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeFortitude": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeHandsOfDestruction": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeLureOfFlames": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeMortis": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeNumina": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeObfuscate": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeObtenebration": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomePotence": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomePresence": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeProtean": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeRituals": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemTomeSerpentis": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemUtilityFlashlight": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemUtilityTorch": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemWeaponArgentBaton": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemWeaponBerserker": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemWeaponDread": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemWeaponFemur": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemWeaponSatchel": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemWeaponTaser": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "Lawmen": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "Lightning": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "MagicCurtain": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "MultiDoor": {
+    "descriptor": "(FILCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Movement speed",
+        "default": 10.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Open Once",
+        "default": 0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Second part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Third part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Fourth part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Fifth part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Sixth part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Seventh part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Eighth part of door"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "MultiPivotDoor": {
+    "descriptor": "(IFIILCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Rotate around frame",
+        "default": 1
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 3.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Open Once",
+        "default": 0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Allow clicked event",
+        "default": 1
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Second part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Third part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Fourth part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Fifth part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Sixth part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Seventh part of door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Eighth part of door"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "MysticSpawner": {
+    "descriptor": "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+    "parameters": [
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Random Good 1 (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Random Good 2 (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Random Bad 1 (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Random Bad 2 (template name)"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ParticleMover": {
+    "descriptor": "(LCodexThing;F)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Particle Emitter"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Speed:1200.0"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "Pedestrian": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "PivotDoor": {
+    "descriptor": "(IF)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Rotate around frame",
+        "default": 1
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 3.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "PointSound": {
+    "descriptor": "(Ljava/lang/String;FFIII)V",
+    "parameters": [
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min Distance",
+        "default": 300.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "MaxDistance",
+        "default": 600.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Volume",
+        "default": 75
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Pan",
+        "default": 0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Flags",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "RegionAnyDamage": {
+    "descriptor": "(Ljava/lang/String;F)V",
+    "parameters": [
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Effect name (from .ned file)"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Damage amount (per tick in .ned file)",
+        "default": 2.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "RegionExit": {
+    "descriptor": "(I)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Exit number",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "RegionProjectileAtThing": {
+    "descriptor": "(LCodexThing;LCodexThing;Ljava/lang/String;IIFIF)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Emitter thing"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Target object"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Template to fire"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Number of projectiles",
+        "default": 1
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Number of times to fire (0 is unlimited)",
+        "default": 0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Delay in between",
+        "default": 0.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Scatter",
+        "default": 0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Delay Inactive",
+        "default": 5.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "RegionTrigger": {
+    "descriptor": "(LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Triggeree"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "RegionTriggerRotate": {
+    "descriptor": "(LCodexThing;IF)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Rotate object"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Rotate around frame",
+        "default": 1
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 3.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "RegionTriggerSound": {
+    "descriptor": "(Ljava/lang/String;FFIIII)V",
+    "parameters": [
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min Distance",
+        "default": 300.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "MaxDistance",
+        "default": 600.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Volume",
+        "default": 50
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Pan",
+        "default": 0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Flags",
+        "default": 0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Play once",
+        "default": 1
+      }
+    ],
+    "literal_metadata": true
+  },
+  "RotateAlways": {
+    "descriptor": "(IFI)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Rotate around frame",
+        "default": 1
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 3.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Delay",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "RpgConversation": {
+    "descriptor": "(Ljava/lang/String;Ljava/lang/String;I)V",
+    "parameters": [
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Conversation name"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Filename"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Execution flags",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SecretDoorSwitch": {
+    "descriptor": "(FLCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Movement speed",
+        "default": 150.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Switch"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SteamBlast": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "StingerSound": {
+    "descriptor": "(Ljava/lang/String;FFIIIFF)V",
+    "parameters": [
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min Distance",
+        "default": 300.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "MaxDistance",
+        "default": 600.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Volume",
+        "default": 75
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Pan",
+        "default": 0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Flags",
+        "default": 0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min Frequency",
+        "default": 5.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Max Frequency",
+        "default": 10.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "StingerSoundMultiWav": {
+    "descriptor": "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;FFIFF)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Number of sounds",
+        "default": 1
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name 1"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name 2"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name 3"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name 4"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name 5"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name 6"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name 7"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name 8"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name 9"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Sound name 10"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min Distance",
+        "default": 300.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "MaxDistance",
+        "default": 600.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Volume",
+        "default": 75
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Min Frequency",
+        "default": 5.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Max Frequency",
+        "default": 10.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SwitchDoubleDoor": {
+    "descriptor": "(FLCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 3.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "First half door"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Second half door"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "TeleportPartyToEntrance": {
+    "descriptor": "(I)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Entrance num",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "TorchBearer": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "TrapCloseRoom": {
+    "descriptor": "(LCodexThing;LCodexThing;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Rotate door 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Rotate door 2"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Number of enemies needed to kill",
+        "default": 5
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Enemy 1 type (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Enemy 2 type (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Enemy 3 type (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Enemy 4 type (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Enemy 5 type (template name)"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spawn 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spawn 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spawn 3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spawn 4"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spawn 5"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "TrapCloseRoom2": {
+    "descriptor": "(LCodexThing;LCodexThing;IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Door 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Door 2"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Speed",
+        "default": 300
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Number of enemies needed to kill",
+        "default": 5
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Enemy 1 type (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Enemy 2 type (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Enemy 3 type (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Enemy 4 type (template name)"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Enemy 5 type (template name)"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spawn 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spawn 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spawn 3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spawn 4"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Spawn 5"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "TrapFloorPlateZap": {
+    "descriptor": "(LCodexThing;ILCodexThing;Ljava/lang/String;III)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Floor plate"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Range to inflict damage",
+        "default": 64
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Beam anchor"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Beam template"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Damage amount (every half second)",
+        "default": 10
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Type of damage",
+        "default": 0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Repeatable",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "TrapRegionProjectile": {
+    "descriptor": "(LCodexThing;Ljava/lang/String;IFIF)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Emitter thing"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Template to fire"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Number of projectiles",
+        "default": 1
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Delay in between",
+        "default": 0.0
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Scatter",
+        "default": 0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Delay Inactive",
+        "default": 5.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "TrapRegionProjectile2": {
+    "descriptor": "(LCodexThing;Ljava/lang/String;Ljava/lang/String;IFF)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Emitter thing"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Template to fire"
+      },
+      {
+        "type": "string",
+        "native_type": 7,
+        "label": "Template for Graphics"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Number of projectiles",
+        "default": 1
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Delay in between",
+        "default": 0.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Delay Inactive",
+        "default": 5.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "triggerMult": {
+    "descriptor": "(ILCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Num Triggers",
+        "default": 0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 4"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "WalkCycle": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "WalkCycleLawmen": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "Weather": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ANZK_14_1": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Anezka"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ANZK_8_4": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Anezka"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ARC1_TremereLines": {
+    "descriptor": "(I)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Line number (1 or 2)"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ARC2_Prison": {
+    "descriptor": "(FLCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Prisoner 1"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Prisoner 2"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ARC2_TremereLines": {
+    "descriptor": "(I)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Line number (1 to 3)"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ARC3_Gargoyle": {
+    "descriptor": "(LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gargoyle ghost"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ClickExitArdan": {
+    "descriptor": "(I)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Exit number",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "CNVT_3_3": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "ArchBishop"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "CNVT_4_1_Anezka": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "CNVT_7_1": {
+    "descriptor": "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Anezka"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Nun"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "ArchBishop"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Ecaterina"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Cosmas"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Revenant 1"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Revenant 2"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Szlachta"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "CURI_Sumner": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DEVN_33_2": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "dev/null"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "DEVN_36_1": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "dev/null"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "DEVN_Exit": {
+    "descriptor": "(LCodexThing;IF)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Window exit"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Exit number",
+        "default": 0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Movement speed",
+        "default": 150.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "EAST_30_1_Main": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Werewolf Ghost"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Fence 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Fence 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Fence 3"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "EAST_32_1_Main": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EAST_Otto": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Parameter 1"
+      }
+    ],
+    "literal_metadata": false
+  },
+  "EGAT_Knights": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EGNT_25_1": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "FAC4_WindowBreak": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Window Edge"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 4"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 5"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 6"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Trigger 7"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "FAC4_WindowGib": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;FFFFFF)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 4"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gib 5"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Velocity X"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Velocity Y"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Velocity Z"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Rotational Velocity X"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Rotational Velocity Y"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Rotational Velocity Z"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "FLS3_LibussaHelp": {
+    "descriptor": "(LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Libussa"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Door"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "FROG_20_3": {
+    "descriptor": "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Kazi"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Teta"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Zil"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Drunk"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Orsi Invitation"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "FROG_Bartender": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "GOLD_JosefTunnelsDoor": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "GUNH_Hank": {
+    "descriptor": "(LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Parameter 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Parameter 2"
+      }
+    ],
+    "literal_metadata": false
+  },
+  "HAVN_11_1": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "HAVN_7_4": {
+    "descriptor": "(LCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Ecaterina"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Cosmas"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "HHX1_Etrius": {
+    "descriptor": "(LCodexActor;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Etrius"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Etrius journal"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gargoyle spawn spot"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "HILL_Main": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "HILL_Main2": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "IN4D_Bartender": {
+    "descriptor": "(LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Health spawn spot"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ItemAmulet": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemNodFragment": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemShem": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ItemShippingManifest": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "JOS1_15_1_Derelict": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "JOS2_GoldenLaneExit": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "JOS3_15_1_Door": {
+    "descriptor": "(F)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "open time",
+        "default": 3.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "JOS3_15_1_Labyrinth": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Codex Hint 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Codex Hint 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Codex Hint 3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Codex Hint 4"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Codex Hint 5"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "LOBY_37_4": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Fred"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "LondonChronicle": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "MON3_MercurioJournal": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "NEWM_Emelia": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "NewYorkChronicle": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "NQTR_14_3": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Josef"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "NRTH_23_1": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "OLDT_11_1": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "OLDT_18_1": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "OLDT_25_1": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "OLDT_EastGateClickExit": {
+    "descriptor": "(I)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Exit number",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "OLDT_Libussa": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "ORDR_Orvus": {
+    "descriptor": "(LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Parameter 1"
+      }
+    ],
+    "literal_metadata": false
+  },
+  "ORSI_37_4": {
+    "descriptor": "(LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Palette"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "OTDY_6_1": {
+    "descriptor": "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Pedestrian 1"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Pedestrian 2"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Pedestrian 3"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Pedestrian 4"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "OUTR_Main": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "player_christof": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "player_pink": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "Prague2Chronicle": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "PragueChronicle": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "PRIN_14_1": {
+    "descriptor": "(LCodexActor;LCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Brandl"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Ecaterina"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Cosmas"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "PRIN_16_1": {
+    "descriptor": "(LCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Brandl"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Ecaterina"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SET1_29_2_Worship": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "SEW2_ElectricPlate": {
+    "descriptor": "(LCodexThing;FLCodexThing;F)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Floor mover"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Floor mover speed",
+        "default": 100.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Wall mover"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Wall mover speed",
+        "default": 90.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SEW2_ElectricVertical": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;F)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "mover 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "mover 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "mover 3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "mover 4"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "mover speed",
+        "default": 100.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SIM1_SIM2Blockade": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Silver mines 2 block"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Silver mines 2 rollover"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Silver mines 3 rollover"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SIM2_AltExitToSIM1": {
+    "descriptor": "(I)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Exit number",
+        "default": 0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SIM2_Main": {
+    "descriptor": "(LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Silver shield"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SIM3_WaterWheel": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Water wheel lever"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Water wheel latch"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Water wheel"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Bucket 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Bucket 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Bucket 3"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SMTY_JiriShop": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "SMYD_4_1": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "SOC1_DataPrintout1": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "SOC1_DataPrintout2": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "SOC1_DataPrintout3": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "SOC1_LastLeoJournal": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "SOC3_Awaken": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g0"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g4"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g5"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g6"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g7"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g8"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g9"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g10"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g11"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g12"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g13"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g14"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "g15"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "SOC3_WorkerJournal1": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "SOC3_WorkerJournal2": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "SOC_FirstGun": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "SOUT_20_1_HausGate": {
+    "descriptor": "(LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gate"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "STE1_21_1": {
+    "descriptor": "(LCodexThing;IF)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Gear"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Rotate around frame",
+        "default": 1
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 2.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "STE1_Door3Levers": {
+    "descriptor": "(FLCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "duration",
+        "default": 10.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "lever 1 (bad one)"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "lever 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "lever 3"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "STE1_Pendulum": {
+    "descriptor": "(LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Damage region"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Deactivating switch"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "STE1_SerenaBurn": {
+    "descriptor": "(LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Target spot"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "STE2_FiveLevers": {
+    "descriptor": "(FLCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Door speed",
+        "default": 20.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "lever 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "lever 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "lever 3 (bad one)"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "lever 4 (bad one)"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "lever 5 (bad one - reset)"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Door piece 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Door piece 2"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "STHM_4_1": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "ArchBishop"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "STHM_6_1": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "ArchBishop"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "TEN1_Bartender": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "TEU1_22_1_Door": {
+    "descriptor": "(FFLCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Movement speed",
+        "default": 150.0
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Switch Time",
+        "default": 0.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Switch"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "TEU3_22_1_Door": {
+    "descriptor": "(F)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "open speed",
+        "default": 20.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "TEU4_22_1_Door": {
+    "descriptor": "(FLCodexThing;)V",
+    "parameters": [
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "open speed",
+        "default": 20.0
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Cell Door 1"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "TOL1_30_1_Main": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "TOL1_guillotine": {
+    "descriptor": "(LCodexThing;F)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Guillotine object"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Falling speed",
+        "default": 250.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "UNIV_14_3": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Ecaterina"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "UNIV_18_1": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Ecaterina"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "UNIV_25_1": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Ecaterina"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "UNIV_8_1": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Ecaterina"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "UNOR_UnornaShop": {
+    "descriptor": "(LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Anezka's letter"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "UTWN_40_1_OutsideCathedral": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Sarcophagus Lid"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Minute Hand"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Hour Hand"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Vukodlak"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "ViennaChronicle": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "VYC1_25_1": {
+    "descriptor": "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Revenant1"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Revenant2"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Revenant3"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Revenant4"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "VYC3_25_1": {
+    "descriptor": "(LCodexActor;LCodexThing;IF)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Vozhd"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Second half of door"
+      },
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Rotate around frame",
+        "default": 1
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 3.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "VYSM_Mob": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Speaker"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "WAR3_AlLedger": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "WEAP_Friedrich": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Parameter 1"
+      }
+    ],
+    "literal_metadata": false
+  },
+  "WEST_28_4_Main": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "CTD_BarKeep": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "CTD_ChamberSkulls": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Reliquary"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Thelonius' Journal"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Pivot Door"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "CTD_Derelict": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "CTD_HavenDoor": {
+    "descriptor": "(IF)V",
+    "parameters": [
+      {
+        "type": "integer",
+        "native_type": 1,
+        "label": "Rotate around frame",
+        "default": 1
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Duration",
+        "default": 3.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "CTD_Labyrinth": {
+    "descriptor": "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Codex Hint 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Codex Hint 2"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Codex Hint 3"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Codex Hint 4"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Codex Hint 5"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "CTD_LeComte": {
+    "descriptor": "(LCodexActor;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Ragwick"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Monocle spawn spot (ghost)"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "CTD_Oubliette_Main": {
+    "descriptor": "(LCodexActor;LCodexActor;LCodexActor;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Melmoth"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Rebecca"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Ragwick"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "LeComte letter"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "CTD_SorvenaShop": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "LOT_FAC4_6_1": {
+    "descriptor": "(LCodexActor;LCodexThing;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Luke"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Sun Room door"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "LOT_GUNH_Hank": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "LOT_LOBY_12_1": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Bill"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "LOT_LOBY_1_1": {
+    "descriptor": "(LCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Bill"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Dominic"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "LOT_LOBY_2_1": {
+    "descriptor": "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Bill"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Dominic"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Heavy G"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Traci"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Arianna"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Schreck"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Mirabilis"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Johnston"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "LOT_LOBY_3_1": {
+    "descriptor": "(LCodexActor;LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Mirabilis"
+      },
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Johnston"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "LOT_LOBY_5_1": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Johnston"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "LOT_LOBY_SlidingDoor": {
+    "descriptor": "(LCodexThing;LCodexThing;F)V",
+    "parameters": [
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Door part 1"
+      },
+      {
+        "type": "thing",
+        "native_type": 3,
+        "label": "Door part 2"
+      },
+      {
+        "type": "float",
+        "native_type": 2,
+        "label": "Movement speed",
+        "default": 100.0
+      }
+    ],
+    "literal_metadata": true
+  },
+  "LOT_NEWM_Emelia": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "LOT_SLUM_7_1": {
+    "descriptor": "(LCodexActor;)V",
+    "parameters": [
+      {
+        "type": "actor",
+        "native_type": 8,
+        "label": "Dominic"
+      }
+    ],
+    "literal_metadata": true
+  },
+  "LOT_Smashface": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "LOT_SUIT_Main": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "LOT_UTWN_Advance": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "MP_CTDChronicle": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "MP_LOTChronicle": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "Discipline": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineAcidicTouch": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineAtrophy": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineAuraPerception": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineAwaken": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineAwe": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineBeckoning": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineBlackDeath": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineBloodDexterity": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineBloodHealing": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineBloodOfPotency": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineBloodRage": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineBloodStamina": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineBloodStrength": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineCallLightning": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineCauldronOfBlood": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineCelerity": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineCloakOfShadows": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineCloakTheGathering": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineCommand": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineDarkHunter": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineDecay": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineDrawingOutBeast": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineDreadGaze": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineEarthMeld": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineEntrancement": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineEyesOfChaos": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineEyesOfTheBeast": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineEyesOfTheSerpent": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineFeed": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineFeralClaws": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineFeralWhispers": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineFireball": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineFireStorm": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineFlameRing": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineFlash": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineFortitude": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineHatchTheViper": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineHeal": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineHeartOfStone": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineHeightenedSenses": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineIgnoreFlame": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineImmolate": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineInvisibility": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineKiss": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineMajesty": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineMask1000Faces": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineMesmerize": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineMistForm": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineNuke": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplinePassion": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplinePlagueWind": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplinePossession": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplinePotence": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplinePrayer": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplinePrisonOfIce": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplinePsychicProjection": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineQuellBeast": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineShamblingHordes": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineShapeOfTheBeast": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineSkinOfTheAdder": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineSpiritsTouch": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineSubsumeTheSpirit": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineSummonElemental": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineSummonSoul": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineTheForgetfulMind": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineTheftOfVitae": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineTheHaunting": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineTongueOfTheAsp": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineTorch": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineTrueFaith": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineTrueSight": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineTurnToDust": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineVigorMortis": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineVoiceOfMadness": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "DisciplineWalkTheAbyss": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscAcidicTouch": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscAtrophy": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscAuraPerception": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscAwaken": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscAwe": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscBeckoning": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscBlackDeath": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscBloodDexterity": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscBloodHealing": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscBloodOfPotency": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscBloodRage": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscBloodStamina": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscBloodStrength": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscCallLightning": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscCauldronOfBlood": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscCelerity": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscCloakOfShadows": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscCloakTheGathering": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscCommand": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscDarkHunter": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscDecay": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscDrawingOutBeast": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscDreadGaze": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscEarthMeld": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscEntrancement": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscEyesOfChaos": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscEyesOfTheBeast": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscEyesOfTheSerpent": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscFeralClaws": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscFeralWhispers": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscFortitude": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscHatchTheViper": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscHeal": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscHeartOfStone": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscHeightenedSenses": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscIgnoreFlame": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscImmolate": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscInvisibility": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscMajesty": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscMask1000Faces": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscMesmerize": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscMistForm": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscPassion": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscPossession": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscPotence": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscPrayer": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscPrisonOfIce": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscPsychicProjection": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscQuellBeast": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscShamblingHordes": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscShapeOfTheBeast": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscSkinOfTheAdder": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscSpiritsTouch": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscSubsumeTheSpirit": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscSummonElemental": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscSummonSoul": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscTheForgetfulMind": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscTheftOfVitae": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscTheHaunting": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscTongueOfTheAsp": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscTorch": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscTrueFaith": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscTrueSight": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscTurnToDust": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscVigorMortis": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscVoiceOfMadness": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "EffectDiscWalkTheAbyss": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "HavenRest": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "HavenSave": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "HavenVault": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  },
+  "Teleporter": {
+    "descriptor": "()V",
+    "parameters": [],
+    "literal_metadata": true
+  }
+}

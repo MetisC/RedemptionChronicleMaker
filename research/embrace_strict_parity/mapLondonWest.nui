@@ -1,0 +1,28 @@
+; London West Map Pane
+name=mapLondonWest
+pos=0,0
+
+quad mat=mapLondonWest01.tga pos=0,224 size=256,256 
+quad mat=mapLondonWest02.tga pos=256,224 size=256,256 
+quad mat=mapLondonWest03.tga pos=512,224 size=128,256 
+quad mat=mapLondonWest04.tga pos=0,96 size=256,128 
+quad mat=mapLondonWest05.tga pos=256,96 size=256,128 
+quad mat=mapLondonWest06.tga pos=512,96 size=128,128 
+quad mat=mapLondonWest07.tga pos=0,32 size=256,64 
+quad mat=mapLondonWest08.tga pos=256,32 size=256,64 
+quad mat=mapLondonWest09.tga pos=512,32 size=128,64 
+quad mat=mapLondonWest10.tga pos=0,0 size=256,32 
+quad mat=mapLondonWest11.tga pos=256,0 size=256,32 
+quad mat=mapLondonWest12.tga pos=512,0 size=128,32 
+
+;textbox
+element textbox maxitems=1 name=mapLocations flags=0x02 textboxflags=0x03 pos=0,0 size=640,16
+
+element imagearray name=mapLondonWestMain size=16,16 flags=0x08 pos=494,253
+element imagearray name=mapCurioShop size=16,16 flags=0x08 pos=453,438
+element imagearray name=mapSocietyOfLeopold size=16,16 flags=0x08 pos=608,333
+element imagearray name=mapClubTenebrae size=16,16 flags=0x08 pos=373,293
+
+;Map Close button
+
+element button name=MapCloseButton pos=300,16 size=40,34 bitmap=closeButton depressed=closeButtonDep

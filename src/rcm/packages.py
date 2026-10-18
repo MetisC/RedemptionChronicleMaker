@@ -49,6 +49,10 @@ def verify_manifest(files,kind):
     return m
 
 def validate_metadata(m):
+    libraries=m.get('local_libraries',[])
+    if not isinstance(libraries,list):raise ValueError('Invalid local library dependencies')
+    for ref in libraries:
+        if not isinstance(ref,dict) or set(ref)!={'id','name','archive','sha256'} or not re.fullmatch(r'lib_[0-9a-f]{12}',str(ref.get('id',''))) or ref.get('archive')!='rcm_'+ref['id']+'.nob' or not re.fullmatch(r'[0-9a-f]{64}',str(ref.get('sha256',''))) or not isinstance(ref.get('name'),str):raise ValueError('Invalid local library dependency')
     for name in ('name','author','description','requires_game','requires_rcm'):
         if name in m and (not isinstance(m[name],str) or len(m[name])>8192):raise ValueError('Texto inválido en manifest: '+name)
     templates=m.get('templates',[])
@@ -71,10 +75,15 @@ def export_project(ws,source,destination):
             files[name]=path.read_bytes();row['source']=name
     files['project.yaml']=source_text(root).encode('utf8');ident=identifier(root['chronicle']['id'],'chronicle',18)
     m=dict(format=1,kind='project',id=ident,name=root['chronicle']['name'],version=root.get('metadata',{}).get('version','0.1.0'),original_game_dependency='Redemption 1.1 installation',custom_code=bool(owned.get('scripts')),files=records(files))
+    from .content_libraries import manifests as libraries
+    dependencies=libraries(ws)
+    if dependencies:m['local_libraries']=[{k:r[k] for k in ('id','name','archive','sha256')} for r in dependencies]
     files['manifest.json']=json.dumps(m,ensure_ascii=False,indent=2).encode('utf8');verify_manifest(files,'project');return ws.write(destination,zip_bytes(files))
 
 def import_project(ws,archive,directory):
     files=read_archive(archive);m=verify_manifest(files,'project');target=ws.output(directory)
+    from .content_libraries import local_dependencies
+    local_dependencies(ws,m)
     if target.exists() and any(target.iterdir()):raise ValueError('Importar requiere una carpeta vacía dentro del workspace')
     from .input_limits import parse_source
     allowed={'project.yaml','manifest.json'}
@@ -111,6 +120,7 @@ def create_package(ws,chronicle,destination):
     source=json.loads((root/'model.json').read_text(encoding='utf8'));metadata=report.get('project_resources',{}).get('metadata',{})
     from . import __version__
     m=dict(format=1,kind='chronicle',id=chronicle,name=source.get('chronicle',{}).get('name',source.get('name',chronicle)),author=metadata.get('author',''),version=metadata.get('version','0.1.0'),description=metadata.get('description',source.get('chronicle',{}).get('description','')),requires_game=metadata.get('requires_game','Redemption 1.1'),requires_rcm=__version__,class_version='45.3',custom_code=bool(report.get('custom_scripts')),dependencies=metadata.get('dependencies',[]),templates=report.get('project_resources',{}).get('templates',[]),files=records(files))
+    if report.get('local_libraries'):m['local_libraries']=report['local_libraries']
     files['manifest.json']=json.dumps(m,ensure_ascii=False,indent=2).encode('utf8');ws.write(destination,zip_bytes(files));inspect_package(ws.output(destination));return m
 
 def inspect_package(archive):
@@ -173,6 +183,8 @@ def install_plan(ws,archive,accept_custom_code=False):
         if registry.get(dep['id'],{}).get('version')!=dep['version']:raise ValueError('Dependencia local ausente o versión incompatible: '+dep['id'])
     from .wtd import shared_dependencies
     shared=shared_dependencies(game)
+    from .content_libraries import local_dependencies as library_dependencies
+    shared.update(library_dependencies(ws,m))
     for name,data in shared.items():
         if name in files and files[name]!=data:raise ValueError('El paquete colisiona con contenido compartido: '+name)
         files[name]=data;m['files'][name]=dict(size=len(data),sha256=hashlib.sha256(data).hexdigest())

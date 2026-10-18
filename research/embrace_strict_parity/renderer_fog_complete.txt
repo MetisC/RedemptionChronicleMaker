@@ -1,0 +1,148 @@
+1000d320: mov eax, dword ptr [0x1022aec0]
+1000d325: push ebx
+1000d326: push esi
+1000d327: push edi
+1000d328: mov ecx, dword ptr [eax + 4]
+1000d32b: xor edi, edi
+1000d32d: test ch, 0x40
+1000d330: mov esi, 1
+1000d335: je 0x1000d33b
+1000d337: xor ebx, ebx
+1000d339: jmp 0x1000d348
+1000d33b: mov ebx, dword ptr [esp + 0x10]
+1000d33f: cmp ebx, 3
+1000d342: ja 0x1000d3f5
+1000d348: jmp dword ptr [ebx*4 + 0x1000d494]
+1000d34f: cmp dword ptr [0x1022b254], edi
+1000d355: je 0x1000d373
+1000d357: cmp dword ptr [0x1022af14], edi
+1000d35d: je 0x1000d373
+1000d35f: mov eax, dword ptr [0x1022aecc]
+1000d364: push edi
+1000d365: push 0x1c
+1000d367: push eax
+1000d368: mov ecx, dword ptr [eax]
+1000d36a: call dword ptr [ecx + 0x50]
+1000d36d: mov dword ptr [0x1022af14], edi
+1000d373: mov dword ptr [0x1022b254], edi
+1000d379: pop edi
+1000d37a: pop esi
+1000d37b: pop ebx
+1000d37c: ret 
+1000d37d: mov eax, dword ptr [0x1022aecc]
+1000d382: push 3
+1000d384: push 0x23
+1000d386: push eax
+1000d387: mov edx, dword ptr [eax]
+1000d389: call dword ptr [edx + 0x50]
+1000d38c: mov eax, dword ptr [0x1022aecc]
+1000d391: mov edx, dword ptr [esp + 0x14]
+1000d395: push edx
+1000d396: push 0x24
+1000d398: mov ecx, dword ptr [eax]
+1000d39a: push eax
+1000d39b: call dword ptr [ecx + 0x50]
+1000d39e: mov eax, dword ptr [0x1022aecc]
+1000d3a3: mov edx, dword ptr [esp + 0x18]
+1000d3a7: push edx
+1000d3a8: push 0x25
+1000d3aa: mov ecx, dword ptr [eax]
+1000d3ac: push eax
+1000d3ad: call dword ptr [ecx + 0x50]
+1000d3b0: jmp 0x1000d3f5
+1000d3b2: mov eax, dword ptr [0x1022aecc]
+1000d3b7: mov edx, dword ptr [esp + 0x14]
+1000d3bb: push edx
+1000d3bc: push 0x26
+1000d3be: mov ecx, dword ptr [eax]
+1000d3c0: push eax
+1000d3c1: call dword ptr [ecx + 0x50]
+1000d3c4: mov eax, dword ptr [0x1022aecc]
+1000d3c9: push esi
+1000d3ca: push 0x23
+1000d3cc: push eax
+1000d3cd: mov ecx, dword ptr [eax]
+1000d3cf: call dword ptr [ecx + 0x50]
+1000d3d2: jmp 0x1000d3f5
+1000d3d4: mov eax, dword ptr [0x1022aecc]
+1000d3d9: mov ecx, dword ptr [esp + 0x14]
+1000d3dd: push ecx
+1000d3de: push 0x26
+1000d3e0: mov edx, dword ptr [eax]
+1000d3e2: push eax
+1000d3e3: call dword ptr [edx + 0x50]
+1000d3e6: mov eax, dword ptr [0x1022aecc]
+1000d3eb: push 2
+1000d3ed: push 0x23
+1000d3ef: push eax
+1000d3f0: mov edx, dword ptr [eax]
+1000d3f2: call dword ptr [edx + 0x50]
+1000d3f5: mov al, byte ptr [0x1022b23c]
+1000d3fa: mov dword ptr [0x1022b254], esi
+1000d400: test al, 2
+1000d402: je 0x1000d406
+1000d404: xor esi, esi
+1000d406: cmp esi, dword ptr [0x1022af14]
+1000d40c: je 0x1000d422
+1000d40e: mov eax, dword ptr [0x1022aecc]
+1000d413: push esi
+1000d414: push 0x1c
+1000d416: push eax
+1000d417: mov ecx, dword ptr [eax]
+1000d419: call dword ptr [ecx + 0x50]
+1000d41c: mov dword ptr [0x1022af14], esi
+1000d422: mov edi, dword ptr [esp + 0x1c]
+1000d426: fld dword ptr [edi]
+1000d428: call 0x10015d24
+1000d42d: fld dword ptr [edi + 4]
+1000d430: mov esi, eax
+1000d432: shl esi, 8
+1000d435: call 0x10015d24
+1000d43a: fld dword ptr [edi + 8]
+1000d43d: or esi, eax
+1000d43f: shl esi, 8
+1000d442: call 0x10015d24
+1000d447: mov edx, dword ptr [esp + 0x14]
+1000d44b: mov ecx, dword ptr [edi]
+1000d44d: or esi, eax
+1000d44f: mov eax, dword ptr [esp + 0x18]
+1000d453: mov dword ptr [0x1022b24c], eax
+1000d458: mov eax, dword ptr [edi + 8]
+1000d45b: mov dword ptr [0x1022b234], eax
+1000d460: mov eax, dword ptr [0x1022aecc]
+1000d465: mov dword ptr [0x1022b248], edx
+1000d46b: mov edx, dword ptr [edi + 4]
+1000d46e: mov dword ptr [0x1022b22c], ecx
+1000d474: mov ecx, dword ptr [eax]
+1000d476: push esi
+1000d477: push 0x22
+1000d479: push eax
+1000d47a: mov dword ptr [0x1022b240], esi
+1000d480: mov dword ptr [0x1022b244], ebx
+1000d486: mov dword ptr [0x1022b230], edx
+1000d48c: call dword ptr [ecx + 0x50]
+1000d48f: pop edi
+1000d490: pop esi
+1000d491: pop ebx
+1000d492: ret 
+1000d493: nop 
+1000d494: dec edi
+1000d495: rol dword ptr [eax], cl
+1000d497: adc byte ptr [ebp - 0x2d], bh
+1000d49a: add byte ptr [eax], dl
+1000d49c: mov dl, 0xd3
+1000d49e: add byte ptr [eax], dl
+1000d4a0: aam 0xd3
+1000d4a2: add byte ptr [eax], dl
+1000d4a4: nop 
+1000d4a5: nop 
+1000d4a6: nop 
+1000d4a7: nop 
+1000d4a8: nop 
+1000d4a9: nop 
+1000d4aa: nop 
+1000d4ab: nop 
+1000d4ac: nop 
+1000d4ad: nop 
+1000d4ae: nop 
+1000d4af: nop 

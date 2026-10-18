@@ -42,6 +42,9 @@ def manifest(ws):
 
 
 def read_entry(ws,entry):
+    if entry.get('imported_pack','').startswith('library:'):
+        from .content_libraries import read_entry as read_library
+        return read_library(ws,entry)
     record=manifest(ws)
     if not record or record['sha256']!=entry['import_sha256']:raise ValueError('Este recurso necesita el contenido importado de Within The Darkness')
     with zipfile.ZipFile(ws.output(ROOT+'/'+ARCHIVE)) as archive:return archive.read(entry['path'])

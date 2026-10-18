@@ -63,6 +63,8 @@ def deploy(ws,chronicle,directory=None,current_source=None):
     dest=safe_target(game,game/'RCM'/(directory or chronicle));files={}
     from .wtd import local_dependencies
     dependencies=local_dependencies(ws,report)
+    from .content_libraries import local_dependencies as library_dependencies
+    dependencies.update(library_dependencies(ws,report))
     for name,data in dependencies.items():files[safe_target(game,dest/name)]=data
     for relative,record in report['distribution_files'].items():
         from .packages import archive_path

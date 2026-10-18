@@ -23,3 +23,34 @@ En **NPC te manda a un lugar**, la primera respuesta debe terminar con RETURN 1 
 Abre chronicles/mini_chronicle/project.yaml para ver una aventura completa de ejemplo, editable con los mismos paneles y asistentes.
 
 **Encuentros dinámicos:** Campaña → + Encuentro dinámico…, Asistentes o botón derecho sobre suelo 3D. Elige Emboscada/Oleadas/Continuo/Refuerzos/Jefe, enemigos/cantidad, puntos/cuándo y acciones finales. Advanced queda plegado. [Guía y laboratorio](DYNAMIC_ENCOUNTERS.md). El primer uso en formato 9 guarda backup y opta por formato 10; abrir el tutorial no lo convierte.
+
+
+## Propiedades avanzadas del escenario y de sus objetos
+
+En **Level base > Entorno de escena** puedes heredar o elegir audio, volumen,
+niebla, distancia visible y cielo. Las unidades son las del motor. EAX conserva
+la escena original. No se modifican geometría ni lightmaps.
+
+En un actor u objeto, **Propiedades de esta instancia** cambia AI/Foley,
+animaciones compatibles y texto al señalar sólo para ese elemento. Los
+contenedores ofrecen botín heredado, ninguno o una clase del GAME.NTT original.
+
+**Script nativo · avanzado** permite elegir una clase original, rellenar
+parámetros y seleccionar entidades por nombre. Frames nativos usa la posición
+inicial como frame 0 y waypoints como destinos. El script posee los callbacks;
+no mezcles esa misma entidad con creación dinámica, inventarios o conversaciones
+RCM. Algunos scripts requieren regiones/datos de la campaña original.
+
+Un waypoint puede ser además punto de interés nativo, grupo 0..9. La AI debe
+estar activa y tener el mismo interestNum; esto no crea un recorrido.
+
+En Ajustes, **Importar biblioteca de plantillas**, selecciona un NOT o NOB y
+las plantillas nuevas. Se importan sus padres y datos necesarios, no menús,
+crónicas ni código. Los archivos importados permanecen como dependencia local;
+los ZIP de exportación no incluyen recursos ajenos. Un recurso con código
+externo obligatorio se rechaza claramente. No es un importador universal de mods.
+
+El ejemplo opcional **Cargo at the refuge** muestra estas propiedades sin cambiar
+el tutorial. Los nuevos comportamientos nativos necesitan las pruebas EMB de la
+lista manual. El análisis de mapas está en research/embrace_strict_parity/MAPS.md:
+los mapas personalizados son viables, pero todavía no hay editor de mapas.

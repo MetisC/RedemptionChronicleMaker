@@ -260,7 +260,11 @@ def runtime(campaign,scene,p):
     java=extend_original(java,campaign,scene)
     from .click_interactions import extend as extend_clicks,guard_events
     java=extend_clicks(java,scene,p)
-    return name,guard_events(java,scene)
+    initial=scene.get('level',{}).get('environment',{})
+    silence=''.join(' CodexSound.Stop'+('Music' if key=='music' else 'Ambient')+'();' for key in ('music','ambient') if initial.get(key,None)=='')
+    if silence:java=java.replace('public void beginscene(int who,int capture) { if(NetIsClient()) return;','public void beginscene(int who,int capture) { if(NetIsClient()) return;'+silence,1)
+    from .native_scripts import adopt_runtime
+    return name,adopt_runtime(guard_events(java,scene),scene,p)
 
 
 def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress=None,runtime_transform=None):
@@ -289,6 +293,8 @@ def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress
         make_runtime.click_objects=[o for o in scene.get('objects',[]) if 'interaction' in o]
         from .native_arrivals import enabled as native_arrivals_enabled
         make_runtime.native_arrivals=scene if native_arrivals_enabled(campaign,scene) else None
+        make_runtime.native_scripts=scene if scene.get('_native_entities') else None
+        make_runtime.interest_scene=scene if any('interest_group' in w for w in scene.get('waypoints',[])) else None
         try:
             report=build_scene(ws,p,levels,resources,hints,compile_java,progress,make_runtime)
         except ValueError as error:
