@@ -1,43 +1,43 @@
 {
-  "version": "1.0.0-rc6",
+  "version": "1.0.0-rc7",
   "successful": true,
   "errors": [],
   "files": {
     "CHANGELOG.md": {
-      "size": 4792,
-      "sha256": "ed1c2e26723dcf31c0d19d615fde2b522a56f5a89455753a80d52bc6a251cd19"
+      "size": 7165,
+      "sha256": "cc91de76bb3d3cab5d0ab85599337ad8b657f3cf713c19f55ead08d7e1dc0a65"
     },
     "README.txt": {
       "size": 532,
-      "sha256": "5f558bc0fa117158bc21e62f58825c4d10407ef89e19c651cdc287c968ab63e0"
+      "sha256": "b1129aa93bfaff8deda55da3cdd2408ae1949ee7ba7a6cb9fcc2d1c89f4e6c7d"
     },
     "RedemptionChronicleMaker.exe": {
-      "size": 4427808,
-      "sha256": "c63c2f1d2359bc9454f223075452012d77627e57f96d0369d8d9f4fad945a71e"
+      "size": 4479516,
+      "sha256": "348b4a8e93dd397c760287d1bea3cdd253f9e07656e24116c789890fb7c25dbb"
     },
     "RELEASE_NOTES.md": {
-      "size": 9169,
-      "sha256": "6cb3ba7e9aa353dddcfe985c58e85ac7893e54ffd6c870240adb718ff131d723"
+      "size": 11542,
+      "sha256": "7d1a860821ebfe39d855ba9e347fabc84bbf386b569fbf1817f73c66d0532384"
     },
     "VERSION": {
       "size": 10,
-      "sha256": "e9f7d2439a6ad239f9c7832a8f7573783a4abe8de9deb55477a4b3c8f084e3d3"
+      "sha256": "35de8f478db2071e8142d3a33610ed7e077b26d80d5f0ffba2ed55a5b0df3c3f"
     },
     "docs/ADVANCED_LIMITATIONS.en.md": {
-      "size": 2200,
-      "sha256": "179c07d9effb61dd9c15db6ebd2fc199e8a2abb85ca4b6caf8525d20bc3b0e1e"
+      "size": 2628,
+      "sha256": "b2f1e63e6bdf1f8c1fd6f8a1445af147020494d543c2eae60231cd1d1855e8ca"
     },
     "docs/ADVANCED_LIMITATIONS.md": {
-      "size": 2513,
-      "sha256": "797e0adc7072ce904560f6ac26f793ce747c8a76894669428582e5a5e47251b3"
+      "size": 2941,
+      "sha256": "d99a084a954fec23c3de16ded3f0b152aeb15d2d44dacb85f6dd70a7cc8fbf99"
     },
     "docs/AUTHORING_GUIDE.en.md": {
-      "size": 3628,
-      "sha256": "d9c9dcd18c15996c5198197c4f7501b3305f9f9ddbe7e72669eae20d2ea0890c"
+      "size": 6732,
+      "sha256": "b42d1cdae3da36574fb0b3058d121d5bfca98d6d5dc784733a0de2fd6bf9d949"
     },
     "docs/AUTHORING_GUIDE.md": {
-      "size": 4092,
-      "sha256": "2dfec3435b636dd62281a89dcb04681bde820c005ba699a85bf40891f3063acf"
+      "size": 7610,
+      "sha256": "3d626d73e32def6abb80f357f7dc8264255a60effbc1aacfdc48a9075fcfd4ef"
     },
     "docs/CINEMATIC_DIRECTOR.en.md": {
       "size": 6245,
@@ -80,12 +80,12 @@
       "sha256": "bf27b5c999824830b70c7fdbe4b2b2b27c57cd0ec359587b7680cd88c96db506"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.en.md": {
-      "size": 16236,
-      "sha256": "de6a36a4b7994e8808d34563e7f9aa9b8ee891fe423fb8607aea92f174d5aab5"
+      "size": 19237,
+      "sha256": "6c1ea94de4a1cdc0c45c57eb591ef1e8882a18837313a6ebee5e7fa367a77602"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.md": {
-      "size": 17514,
-      "sha256": "3e3016c7a13d988527b211fea8851bde7c6556c615dc74f359143548a0f5734c"
+      "size": 20515,
+      "sha256": "95864ada5885b5cdfff9db547faa458c58be755874470018e6291b3e3f986613"
     },
     "docs/SHORTCUTS.en.md": {
       "size": 578,
@@ -174,6 +174,14 @@
     "examples/showcase/resources/RCMShowcaseActor.java": {
       "size": 131,
       "sha256": "370a627384a8828ae206102f398b654a057f1bbb07f077a5adb1e5147139297f"
+    },
+    "examples/strict_acceptance/project.yaml": {
+      "size": 34621,
+      "sha256": "b1def60564779ed816aa3c9e6c6f553ecfdcfc250cfca3e276d7ccfe9d83a2be"
+    },
+    "examples/strict_acceptance/README.md": {
+      "size": 1395,
+      "sha256": "701e9ed914d934cd883c8da9de54e473bd56a9b51bccff58d1b0f4a73ffe6481"
     },
     "examples/tutorial/project.yaml": {
       "size": 15177,
@@ -645,7 +653,7 @@
     },
     "_internal/base_library.zip": {
       "size": 880490,
-      "sha256": "117b1bfb2e845b942999e8082315cde2fa3641916abef3160caf1138335850e5"
+      "sha256": "e3fd237cb6b2c90cee4d4431f20226d5bc0bdabe7590f1267a5c587068cac892"
     },
     "_internal/libcrypto-1_1.dll": {
       "size": 3439512,
@@ -1448,8 +1456,8 @@
       "sha256": "64d133dc8fff64da79b3671e02c6bdda3f83944c4984e196a1a748a2497409ef"
     },
     "_internal/rcm/editor/assets/en.json": {
-      "size": 143564,
-      "sha256": "20b14a1fe1161abbad26884f1fa035e1295bdab688c9b54884b6c2fef193ce52"
+      "size": 155574,
+      "sha256": "0be2dc5d14ee149c35adc46c5cf3d303804c18388f07b37255e3da60676d3bc8"
     },
     "_internal/rcm/editor/assets/wtd_policy.json": {
       "size": 19452,
