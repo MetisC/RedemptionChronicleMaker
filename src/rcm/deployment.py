@@ -61,6 +61,8 @@ def deploy(ws,chronicle,directory=None,current_source=None):
         if report.get('authoring_source_sha256')!=source_fingerprint(current_source):raise ValueError('El proyecto cambió desde el build. Vuelve a compilar antes de Deploy')
         if report.get('build_inputs_sha256')!=build_inputs_fingerprint(ws,current_source):raise ValueError('Los archivos propios cambiaron desde el build; vuelve a compilar')
     dest=safe_target(game,game/'RCM'/(directory or chronicle));files={}
+    from .wtd import local_dependencies
+    for name,data in local_dependencies(ws,report).items():files[safe_target(game,dest/name)]=data
     for relative,record in report['distribution_files'].items():
         from .packages import archive_path
         archive_path(relative)

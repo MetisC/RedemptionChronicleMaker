@@ -1,0 +1,12 @@
+{
+  "successful": true,
+  "full_suite_tests": 477,
+  "initial_passed": 476,
+  "initial_environment_error": "test_workspace_hardlink_blocked (test_safety_unit.SafetyUnitTests)",
+  "safety_rerun_tests": 28,
+  "safety_rerun_passed": true,
+  "lint_and_mypy_passed": true,
+  "native_engine_test": false,
+  "raw_full_result": "full_test_report.json",
+  "raw_safety_rerun": "safety_fast_test_report.json"
+}

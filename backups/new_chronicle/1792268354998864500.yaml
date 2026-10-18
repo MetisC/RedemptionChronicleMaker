@@ -1,0 +1,43 @@
+schema: 2
+project_format: 10
+chronicle:
+  id: new_chronicle
+  name: Mi nueva crónica
+  description: ''
+state:
+  flags: {}
+entry: scene1
+scenes:
+- id: scene1
+  level:
+    source: RaveClub
+  actors: []
+  objects: []
+  conversations: []
+  events: []
+  triggers: []
+  encounters: []
+  sequences: []
+  entries:
+  - id: entry1
+    name: Nueva entrada
+    transform:
+      placement: absolute
+      position:
+      - 724.1906116294581
+      - -338.02883290420345
+      - -512.0
+      orientation:
+      - 0
+      - 0
+      - 0
+  waypoints: []
+  paths: []
+  generators: []
+  default_entry: entry1
+quests: []
+resources: {}
+metadata:
+  version: 0.1.0
+build_options:
+  debug: true

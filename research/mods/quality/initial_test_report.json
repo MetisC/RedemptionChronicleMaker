@@ -1,0 +1,16 @@
+{
+  "tests": 454,
+  "failures": 0,
+  "errors": 1,
+  "skipped": 0,
+  "successful": false,
+  "elapsed_seconds": 445.6616654999998,
+  "category": "offline-integration-gui-model-build-format",
+  "native_engine_test": false,
+  "failures_detail": [
+    {
+      "test": "test_corrupt_cache_repaired_and_resource_change_invalidates (test_stability_revision.MotionCatalogueTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"H:\\Repositorios\\RedemptionChronicleMaker\\tests\\test_stability_revision.py\", line 60, in test_corrupt_cache_repaired_and_resource_change_invalidates\n    self.assertEqual(result['sets']['actor.nms'][0]['slots'][0]['value'],117)\nKeyError: 'actor.nms'\n"
+    }
+  ]
+}

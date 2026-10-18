@@ -1,0 +1,16 @@
+{
+  "tests": 477,
+  "failures": 0,
+  "errors": 1,
+  "skipped": 0,
+  "successful": false,
+  "elapsed_seconds": 579.6744150999948,
+  "category": "offline-integration-gui-model-build-format",
+  "native_engine_test": false,
+  "failures_detail": [
+    {
+      "test": "test_workspace_hardlink_blocked (test_safety_unit.SafetyUnitTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"H:\\Repositorios\\RedemptionChronicleMaker\\tests\\test_safety_unit.py\", line 83, in test_workspace_hardlink_blocked\n    a=self.ws.write('a',b'A');os.link(a,self.root/'b')\nPermissionError: [WinError 5] Acceso denegado: 'H:\\\\Repositorios\\\\RedemptionChronicleMaker\\\\build\\\\tests\\\\tmpj48h1hof\\\\a' -> 'H:\\\\Repositorios\\\\RedemptionChronicleMaker\\\\build\\\\tests\\\\tmpj48h1hof\\\\b'\n"
+    }
+  ]
+}

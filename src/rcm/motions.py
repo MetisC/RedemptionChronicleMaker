@@ -55,29 +55,38 @@ def ensure_catalogue(ws,resources,game=None):
     if dest.is_file():
         try:cached=json.loads(dest.read_text(encoding='utf8'))
         except (ValueError,UnicodeError):cached={}
-        if isinstance(cached,dict) and cached.get('version')==2 and cached.get('codex_sha256')==signature and cached.get('resources_sha256')==source_signature and all(isinstance(cached.get(k),dict) for k in ('sets','templates','modes')):return cached
+        if isinstance(cached,dict) and cached.get('resolver_version')==2 and cached.get('version')==2 and cached.get('codex_sha256')==signature and cached.get('resources_sha256')==source_signature and all(isinstance(cached.get(k),dict) for k in ('sets','templates','modes')):return cached
     if game is None:
         from .deployment import default_game
         game=ws.game or default_game(ws.root)
     if game is None:return {'templates':{},'sets':{},'modes':{}}
     modes=constants(data);sets={};raw={}
-    for archive in sorted(game.glob('*.nob')):
-        with zipfile.ZipFile(archive) as z:
-            for name in z.namelist():
-                if name.lower().endswith('.nms'):
-                    key=PurePosixPath(name.replace('\\','/')).name.casefold()
-                    sets.setdefault(key,[]).append(dict(archive=archive.name,path=name,slots=parse_nms(z.read(name),modes)))
+    from .project_resources import original_bytes
+    def read_entry(entry):
+        if entry.get('imported_pack') or ws.output('research/original/'+entry['archive']+'/'+entry['path']).is_file():return original_bytes(ws,entry)
+        with zipfile.ZipFile(game/entry['archive']) as archive:return archive.read(entry['path'])
+    motion_entries=[e for e in resources['entries'] if e['extension'].lower()=='.nms']
+    if not motion_entries:
+        # Older/minimal catalogue callers rely on discovery from originals.
+        # Optional root mods must still never become an implicit import.
+        from .wtd import IGNORED_ROOT_ARCHIVES
+        for archive in sorted(game.glob('*.nob')):
+            if archive.name.casefold() in IGNORED_ROOT_ARCHIVES:continue
+            with zipfile.ZipFile(archive) as source:
+                motion_entries += [dict(archive=archive.name,path=name) for name in source.namelist() if name.lower().endswith('.nms')]
+    for entry in motion_entries:
+        key=PurePosixPath(entry['path'].replace('\\','/')).name.casefold()
+        sets.setdefault(key,[]).append(dict(archive=entry['archive'],path=entry['path'],slots=parse_nms(read_entry(entry),modes)))
     for entry in resources['entries']:
         if entry['extension'].lower()!='.not':continue
-        path=ws.output('research/original/'+entry['archive']+'/'+entry['path'])
-        for template in NotFile.read(path.read_bytes()).templates:raw.setdefault(template.name.casefold(),[]).append(template.values())
+        for template in NotFile.read(original_bytes(ws,entry)).templates:raw.setdefault(template.name.casefold(),[]).append(template.values())
     def resolve(key,trail=()):
         records=raw.get(key.casefold(),[])
         if len(records)!=1 or key.casefold() in trail:return None
         v=records[0]
         if 9 in v:return cstring(v[9])
         return resolve(cstring(v[0]),trail+(key.casefold(),)) if 0 in v else None
-    result=dict(version=2,codex_sha256=signature,resources_sha256=source_signature,modes=modes,sets=sets,templates={t['id']:resolve(t['id']) for t in resources['templates']})
+    result=dict(version=2,resolver_version=2,codex_sha256=signature,resources_sha256=source_signature,modes=modes,sets=sets,templates={t['id']:resolve(t['id']) for t in resources['templates']})
     ws.write(dest,json.dumps(result,ensure_ascii=False,indent=2));return result
 
 

@@ -1,0 +1,26 @@
+{
+  "protected_files": 1798,
+  "protected_changes": [],
+  "tutorial_files": [
+    "chronicles/tutorial/project.yaml",
+    "chronicles/tutorial/README.en.md",
+    "chronicles/tutorial/README.md",
+    "chronicles/tutorial/resources/RCMTutorActor.java"
+  ],
+  "tutorial_changes": [],
+  "tutorial_classes_changed": [],
+  "original_sources": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "penthouse_available": true,
+  "import_counts": {
+    "clans": 19,
+    "disciplines": 9,
+    "templates": 125,
+    "models": 28,
+    "levels": 1
+  }
+}

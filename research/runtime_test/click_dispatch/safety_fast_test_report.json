@@ -1,0 +1,11 @@
+{
+  "tests": 28,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "elapsed_seconds": 1.4013864000007743,
+  "category": "synthetic-unit-package",
+  "native_engine_test": false,
+  "failures_detail": []
+}

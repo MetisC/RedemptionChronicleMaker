@@ -74,7 +74,7 @@ class Phase6IntegrationTests(unittest.TestCase):
     def test_first_run_fresh_cache_and_repair_from_read_only_game(self):
         game=Path(r'H:\GOG\Vampire The Masquerade - Redemption')
         with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as tmp:
-            ws=Workspace(Path(tmp),game);ws.write('cache/toolchain/ecj-3.26.0.jar',self.ws.output('cache/toolchain/ecj-3.26.0.jar').read_bytes());result=prepare_workspace(ws);self.assertTrue(result['cache_rebuilt']);self.assertFalse(cache_errors(ws));self.assertEqual(len(Backend(ws).levels),len(self.backend.levels))
+            ws=Workspace(Path(tmp),game);ws.write('cache/toolchain/ecj-3.26.0.jar',self.ws.output('cache/toolchain/ecj-3.26.0.jar').read_bytes());result=prepare_workspace(ws);self.assertTrue(result['cache_rebuilt']);self.assertFalse(cache_errors(ws));fresh=Backend(ws);self.assertEqual(fresh.levels,self.backend.base_levels);self.assertNotIn('wtd',fresh.resources)
             ws.write('cache/levels.json','bad');self.assertTrue(prepare_workspace(ws)['cache_rebuilt']);self.assertFalse(cache_errors(ws));self.assertTrue(list(ws.output('research/startup').glob('*_levels.json')))
     def test_large_fixture_counts_validation_and_real_compile(self):
         root=large_source(self.backend);self.assertEqual(len(root['scenes']),5);self.assertEqual(sum(len(s['actors']) for s in root['scenes']),100);self.assertEqual(sum(len(s['events']) for s in root['scenes']),100);self.assertEqual(sum(len(s['conversations']) for s in root['scenes']),50)

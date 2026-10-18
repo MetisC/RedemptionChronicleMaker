@@ -11,7 +11,7 @@
   "thresholds": 10,
   "callbacks": 40,
   "slots": 85,
-  "build_seconds": 2.224339799999143,
+  "build_seconds": 2.1084856999950716,
   "class_metrics": {
     "R_dyn_stress_s0_Passive.class": {
       "version": "45.3",
@@ -29,7 +29,7 @@
     },
     "R_dyn_stress_s0_Scene.class": {
       "version": "45.3",
-      "constant_pool_entries": 1707,
+      "constant_pool_entries": 1721,
       "constant_pool_limit": 65534,
       "largest_method_bytes": 1659,
       "method_limit_bytes": 65535,
@@ -437,7 +437,7 @@
         {
           "name": "arrive",
           "descriptor": "()Z",
-          "code_bytes": 378
+          "code_bytes": 324
         },
         {
           "name": "patrolActor",
@@ -525,6 +525,11 @@
           "code_bytes": 6
         },
         {
+          "name": "resetArrivalMotion",
+          "descriptor": "()V",
+          "code_bytes": 47
+        },
+        {
           "name": "finitePose",
           "descriptor": "([F)Z",
           "code_bytes": 47
@@ -542,7 +547,7 @@
         {
           "name": "restorePlayerPose",
           "descriptor": "()Z",
-          "code_bytes": 254
+          "code_bytes": 260
         },
         {
           "name": "dynamicConfigure",

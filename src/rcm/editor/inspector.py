@@ -195,6 +195,10 @@ class Inspector(QWidget):
             self.note(tr('REFERENCIA ORIGINAL · SÓLO LECTURA\nEl viewport la muestra como referencia. El motor puede cargar contenido estático asociado a la geometría; esta vista no lo elimina.'))
             for k in ('template', 'position', 'orientation', 'sector', 'script', 'origin', 'confidence'):
                 self.note(k + tr(': ') + str(e.get(k)))
+            if hasattr(self.win.doc,'campaign') and e.get('level')==data['level']['source']:
+                from .original_objects import use_selected
+                self.button(tr('Usar este objeto / crear paso…'),lambda:use_selected(self.win),'use_original_object')
+                self.note(tr('Puedes controlar el objeto desde tu crónica sin modificar el recurso original. Ocultar en el árbol sólo afecta al visor.'))
         elif p[0] == "conversations" and len(p) >= 2:
             self.conversation()
         elif p[0] == "events" and len(p) >= 2:
@@ -228,6 +232,14 @@ class Inspector(QWidget):
         actor = self.win.at(p)
         self.line(tr("ID interno"), actor["id"], self.rename, "actor_id", True)
         self.line(tr("Nombre"), actor["name"], lambda v: self.set(p + ("name",), v), "actor_name")
+        if 'interaction' in actor:
+            self.note(tr('Superficie pulsable: el nombre es el texto que aparece al pasar el ratón. Se activa sólo al hacer clic.'))
+            def edit():
+                index=next((i for i,e in enumerate(self.win.doc.data['events']) if e['when']=='object_clicked' and e.get('object')==actor['id']),None)
+                if index is not None:self.win.select(('events',index))
+                else:self.object_interaction('show_note')
+            self.button(tr('Editar acciones al hacer clic…'),edit,'edit_click_actions')
+            return
         self.note(tr("Plantilla: ") + (actor.get("template") or tr("Sin elegir")))
         self.button(tr("Elegir plantilla…"), lambda: self.win.choose_template(p), "choose_template")
         self.note("Level: " + self.win.doc.data["level"].get("source", tr("Sin elegir")))
@@ -238,6 +250,9 @@ class Inspector(QWidget):
                     from .campaign_panel import inventory_dialog
                     inventory_dialog(self.win, actor)
                 self.button(tr('Editar inventario inicial…'), inventory, 'actor_inventory')
+                if self.win.backend.resources.get('wtd') and self.win.doc.campaign.get('project_format') in (9,10):
+                    from .wtd import TraitsDialog
+                    self.button(tr('Clan y disciplinas…'),lambda:TraitsDialog(self.win,actor).exec(),'actor_traits')
             else:
                 self.combo(tr('Objeto de quest'), [(tr('No'), False), (tr('Sí'), True)], actor.get('quest_item', False), lambda v: self.set(p+('quest_item',), v), 'object_quest_item')
         trans = actor["transform"]

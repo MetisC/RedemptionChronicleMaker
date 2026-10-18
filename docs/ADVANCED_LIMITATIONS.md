@@ -9,3 +9,7 @@
 La aventura local utiliza el menú Multiplayer/LAN del juego como mecanismo de carga. Esto no significa que la red con varios clientes esté verificada. Usa un jugador local. El tutorial nuevo cambia el contrato de saves: partida nueva obligatoria. Las crónicas y perfiles Crypt previos no se borran; las plantillas antiguas del tutorial siguen publicadas para evitar perfiles huérfanos al abrir LAN.
 
 Pendientes humanos: aspecto/colisión de cámara, posición al cargar, abortos/ratón/control, reentrada, premios y ensayo portable en otra máquina. No se declara paridad con Embrace ni versión final 1.0 mientras estos casos bloqueantes sigan pendientes.
+
+Objetos originales: hay selector y acciones de ocultar/restaurar/retirar props identificados, además de frames/pivotes de puertas y interacciones nativas por clic con texto de hover y acciones de viaje u otros eventos. No elimina caras del NIL ni sincroniza el estado privado de Door/PivotDoor. ORG01–06 pendientes; el motor puede rechazar un candidato que no exista o no tenga los frames necesarios.
+
+CLICK01–08: quedan pendientes en el juego el texto y resaltado, selección/colisión, alcance, diálogo/notas, guardado, reentrada y multijugador de la capa nueva. Se bloquean los enlaces a la propia escena; no se convierten en silencio los triggers de proximidad anteriores.

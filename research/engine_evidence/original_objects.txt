@@ -1,0 +1,46 @@
+Source: research/ALL_CODEX.bytecode.txt, original Codex scripts.
+
+     326: aload_0
+     327: getfield      #37                 // Field _Anezka:LCodexActor;
+     330: invokevirtual #182                // Method CodexActor.StopActorAction:()V
+     333: aload_0
+     334: aload_0
+     335: getfield      #37                 // Field _Anezka:LCodexActor;
+     338: iconst_2
+     339: invokevirtual #186                // Method CodexThing.GetFramePosition:(I)[F
+     342: putfield      #45                 // Field pos:[F
+     345: aload_0
+     346: getfield      #110                // Field _Christof:LCodexActor;
+     349: aload_0
+     350: getfield      #45                 // Field pos:[F
+     353: invokevirtual #216                // Method CodexThing.SetPosition:([F)Z
+     356: pop
+
+       8: pop
+       9: aload_0
+      10: getfield      #42                 // Field _setiteGuard:LCodexActor;
+      13: iconst_1
+      14: invokevirtual #48                 // Method CodexActor.SetActorFlags:(I)I
+      17: pop
+      18: aload_0
+      19: getfield      #42                 // Field _setiteGuard:LCodexActor;
+      22: bipush        64
+      24: invokevirtual #53                 // Method CodexThing.SetThingFlags:(I)I
+      27: pop
+      28: bipush        85
+      30: invokestatic  #57                 // Method CodexSequence.GetChronicleFlag:(I)Z
+      33: ifeq          54
+      36: aload_0
+      37: getfield      #42                 // Field _setiteGuard:LCodexActor;
+      40: iconst_0
+      41: invokevirtual #60                 // Method CodexThing.SetCollideType:(I)I
+      44: pop
+      45: aload_0
+      46: getfield      #42                 // Field _setiteGuard:LCodexActor;
+      49: iconst_2
+      50: invokevirtual #63                 // Method CodexThing.SetRenderFlags:(I)I
+      53: pop
+      54: return
+
+
+Door/PivotDoor: research/engine_evidence/doors_and_actor_bytecode.txt

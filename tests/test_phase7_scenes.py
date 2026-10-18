@@ -1,5 +1,5 @@
 """Scene/geometry separation, compatibility, environment validation and Qt authoring."""
-import copy,hashlib,struct,tempfile,unittest
+import copy,hashlib,struct,tempfile,unittest,zipfile
 from pathlib import Path
 from rcm.paths import Workspace
 from rcm.formats import Scene
@@ -53,7 +53,11 @@ class SceneProfileTests(unittest.TestCase):
             for row in rows:
                 if 'error' in row:continue
                 block,record=environment(self.ws,self.backend.levels[lid],self.backend.hints,row['id'])
-                source=row['source'];data=self.ws.output(Path('research/original')/source['archive']/source['path']).read_bytes()
+                source=row['source']
+                if source.get('imported_pack'):
+                    from rcm.wtd import ROOT as IMPORT_ROOT,ARCHIVE
+                    with zipfile.ZipFile(self.ws.output(IMPORT_ROOT+'/'+ARCHIVE)) as archive:data=archive.read(source['path'])
+                else:data=self.ws.output(Path('research/original')/source['archive']/source['path']).read_bytes()
                 self.assertEqual(block,bytes(16)+data[-176:]);self.assertEqual(record,row);total+=1
         self.assertGreater(total,100)
     def test_build_explicit_environment_without_importing_original_entities(self):

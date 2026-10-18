@@ -11,7 +11,7 @@ import numpy as np
 from PIL import Image
 from .geometry import Mesh, Reader, read_nil
 
-CACHE_VERSION = 1
+CACHE_VERSION = 2
 
 def normalize(path):
     path = path.replace('\\', '/')
@@ -60,6 +60,9 @@ class Assets:
         e = entries[0]
         if e.get('project_owned'):
             return self.backend.project_payload[e['path']]
+        if e.get('imported_pack'):
+            from ..wtd import read_entry
+            return read_entry(self.ws,e)
         if not self.ws.game:
             raise ValueError('Selecciona una instalación para leer recursos originales')
         with zipfile.ZipFile(self.ws.game / e['archive']) as z:
@@ -146,7 +149,7 @@ class Assets:
         hit = False
         try:
             with np.load(cache, allow_pickle=False) as f:
-                mesh = Mesh(f['vertices'], f['ids'], f['materials'].tolist(), int(f['sectors']), int(f['end']), [])
+                mesh = Mesh(f['vertices'], f['ids'], f['materials'].tolist(), int(f['sectors']), int(f['end']), [],f['triangle_sectors'])
                 if (mesh.vertices.ndim != 2 or mesh.vertices.shape[1] != 5
                     or mesh.material_ids.ndim != 1 or mesh.material_ids.dtype.kind not in 'iu'
                     or len(mesh.vertices) != 3 * len(mesh.material_ids) or not len(mesh.vertices)
@@ -155,13 +158,14 @@ class Assets:
                     or not all(isinstance(m, str) for m in mesh.materials)
                     or not 0 <= mesh.source_end <= len(data) or not 0 < mesh.sectors <= 10000):
                     raise ValueError('Cache corrupto')
+                if mesh.triangle_sectors.shape!=mesh.material_ids.shape or mesh.triangle_sectors.dtype.kind not in 'iu' or np.any(mesh.triangle_sectors<0) or np.any(mesh.triangle_sectors>=mesh.sectors):raise ValueError('Cache de sectores corrupto')
                 hit = True
         except (OSError, ValueError, KeyError, IndexError, TypeError, EOFError, zipfile.BadZipFile):
             progress('Reconstruyendo geometría…')
             mesh = read_nil(data)
             cache.parent.mkdir(parents=True, exist_ok=True)
             temp = cache.with_suffix('.tmp.npz')
-            np.savez_compressed(temp, vertices=mesh.vertices, ids=mesh.material_ids, materials=np.array(mesh.materials), sectors=mesh.sectors, end=mesh.source_end)
+            np.savez_compressed(temp, vertices=mesh.vertices, ids=mesh.material_ids, materials=np.array(mesh.materials), sectors=mesh.sectors, end=mesh.source_end,triangle_sectors=mesh.triangle_sectors)
             os.replace(temp, cache)
         materials = []
         for i, m in enumerate(mesh.materials):
@@ -175,8 +179,25 @@ class Assets:
             for entity in hints.get('entities', []):
                 if entity.get('position'):
                     references.append(dict(entity, origin=scene, read_only=True, confidence='tag-pattern'))
+        from ..original_objects import catalogue
+        original_props=catalogue(self.backend,name)
+        # Story layouts are replaced by RCM. Prefer the actually associated
+        # static objects for runtime authoring; retain old hints only if absent.
+        if original_props:references=[r for r in original_props if r.get('position') is not None]
         warnings = [m.warning for m in materials if m.warning]
         models = {}
+        # Static props belong to the immutable base scenery, not story NPCs.
+        # Inline NSD brushes have no NOD template model (e.g. Tenebrae's exit).
+        for ref in references:
+            try:
+                if 'mesh_offset' in ref:
+                    from .scene_mesh import read_brush
+                    source=self.backend.hints[ref['origin'].casefold()]['source']
+                    brush=read_brush(self.read(source['path'],source['archive']),ref['mesh_offset'])
+                    ref['preview_model']='@original/'+str(ref['offset'])
+                    models[ref['preview_model']]=(brush,[self.material(m) for m in brush.materials])
+                elif ref.get('model'):models[ref['template']]=self.model(ref['model'])
+            except (ValueError,OSError,KeyError) as error:warnings.append(str(error))
         for row in self.backend.resources['templates']:
             if row['id'] in templates and row.get('model'):
                 try:

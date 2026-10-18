@@ -1,0 +1,901 @@
+{
+  "chronicle": "click_test",
+  "status": "compiled-unverified-in-game",
+  "class_versions": {
+    "R_click_test_s0_Scene": "45.3",
+    "R_click_test_s0_Passive": "45.3",
+    "R_click_test_s1_Scene": "45.3",
+    "R_click_test_s1_Passive": "45.3"
+  },
+  "format_validation": {
+    "files_checked": 15,
+    "conversations": 0,
+    "classfiles": 4,
+    "classfile_budgets": {
+      "codex/R_click_test_s0_Passive.class": {
+        "version": "45.3",
+        "constant_pool_entries": 12,
+        "constant_pool_limit": 65534,
+        "largest_method_bytes": 5,
+        "method_limit_bytes": 65535,
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "code_bytes": 5
+          }
+        ]
+      },
+      "codex/R_click_test_s0_Scene.class": {
+        "version": "45.3",
+        "constant_pool_entries": 1231,
+        "constant_pool_limit": 65534,
+        "largest_method_bytes": 1110,
+        "method_limit_bytes": 65535,
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "code_bytes": 634
+          },
+          {
+            "name": "trace",
+            "descriptor": "(Ljava/lang/String;)V",
+            "code_bytes": 201
+          },
+          {
+            "name": "local",
+            "descriptor": "(I)Z",
+            "code_bytes": 67
+          },
+          {
+            "name": "localPlayer",
+            "descriptor": "(I)I",
+            "code_bytes": 77
+          },
+          {
+            "name": "alive",
+            "descriptor": "(I)Z",
+            "code_bytes": 50
+          },
+          {
+            "name": "inventory",
+            "descriptor": "(ILjava/lang/String;)I",
+            "code_bytes": 76
+          },
+          {
+            "name": "owns",
+            "descriptor": "(ILjava/lang/String;)Z",
+            "code_bytes": 13
+          },
+          {
+            "name": "give",
+            "descriptor": "(II)Z",
+            "code_bytes": 244
+          },
+          {
+            "name": "template",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 28
+          },
+          {
+            "name": "spawn",
+            "descriptor": "(I)V",
+            "code_bytes": 299
+          },
+          {
+            "name": "beginscene",
+            "descriptor": "(II)V",
+            "code_bytes": 73
+          },
+          {
+            "name": "timer",
+            "descriptor": "(IFFFF)V",
+            "code_bytes": 25
+          },
+          {
+            "name": "poll",
+            "descriptor": "()V",
+            "code_bytes": 39
+          },
+          {
+            "name": "pollImpl",
+            "descriptor": "()V",
+            "code_bytes": 389
+          },
+          {
+            "name": "volume",
+            "descriptor": "(I)Z",
+            "code_bytes": 66
+          },
+          {
+            "name": "dispatch",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;I)V",
+            "code_bytes": 64
+          },
+          {
+            "name": "event0",
+            "descriptor": "()Z",
+            "code_bytes": 109
+          },
+          {
+            "name": "releaseCamera",
+            "descriptor": "()V",
+            "code_bytes": 25
+          },
+          {
+            "name": "conversation",
+            "descriptor": "(I)Z",
+            "code_bytes": 151
+          },
+          {
+            "name": "clicked",
+            "descriptor": "(III)V",
+            "code_bytes": 72
+          },
+          {
+            "name": "convreached",
+            "descriptor": "(IIIII)V",
+            "code_bytes": 148
+          },
+          {
+            "name": "convended",
+            "descriptor": "(IZI)V",
+            "code_bytes": 115
+          },
+          {
+            "name": "finishDialogue",
+            "descriptor": "()V",
+            "code_bytes": 102
+          },
+          {
+            "name": "completeEntry",
+            "descriptor": "(Ljava/lang/String;)Z",
+            "code_bytes": 24
+          },
+          {
+            "name": "quest",
+            "descriptor": "(Ljava/lang/String;I)Z",
+            "code_bytes": 2
+          },
+          {
+            "name": "save",
+            "descriptor": "(I)V",
+            "code_bytes": 145
+          },
+          {
+            "name": "restore",
+            "descriptor": "(I)V",
+            "code_bytes": 152
+          },
+          {
+            "name": "restored",
+            "descriptor": "(I)V",
+            "code_bytes": 191
+          },
+          {
+            "name": "createAt",
+            "descriptor": "(I[F[F)I",
+            "code_bytes": 248
+          },
+          {
+            "name": "positionText",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 63
+          },
+          {
+            "name": "travel",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;)Z",
+            "code_bytes": 215
+          },
+          {
+            "name": "arrive",
+            "descriptor": "()Z",
+            "code_bytes": 269
+          },
+          {
+            "name": "patrolActor",
+            "descriptor": "(I)I",
+            "code_bytes": 4
+          },
+          {
+            "name": "patrolTarget",
+            "descriptor": "(I)[F",
+            "code_bytes": 4
+          },
+          {
+            "name": "patrolSpeed",
+            "descriptor": "(I)F",
+            "code_bytes": 6
+          },
+          {
+            "name": "commandPatrol",
+            "descriptor": "(I)Z",
+            "code_bytes": 207
+          },
+          {
+            "name": "startPatrol",
+            "descriptor": "(I)Z",
+            "code_bytes": 43
+          },
+          {
+            "name": "stopPatrol",
+            "descriptor": "(I)V",
+            "code_bytes": 66
+          },
+          {
+            "name": "holdPatrols",
+            "descriptor": "()V",
+            "code_bytes": 81
+          },
+          {
+            "name": "resumePatrols",
+            "descriptor": "()V",
+            "code_bytes": 41
+          },
+          {
+            "name": "pollPatrols",
+            "descriptor": "()V",
+            "code_bytes": 321
+          },
+          {
+            "name": "conversationID",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 6
+          },
+          {
+            "name": "resumeEvents",
+            "descriptor": "()V",
+            "code_bytes": 1
+          },
+          {
+            "name": "dialogueCamera",
+            "descriptor": "(II)V",
+            "code_bytes": 6
+          },
+          {
+            "name": "dialoguePartner",
+            "descriptor": "(I)I",
+            "code_bytes": 4
+          },
+          {
+            "name": "faceDialogue",
+            "descriptor": "(II)V",
+            "code_bytes": 49
+          },
+          {
+            "name": "prepareDialogue",
+            "descriptor": "(II)V",
+            "code_bytes": 72
+          },
+          {
+            "name": "schedulePoll",
+            "descriptor": "()V",
+            "code_bytes": 20
+          },
+          {
+            "name": "dialogueMotion",
+            "descriptor": "(III)V",
+            "code_bytes": 6
+          },
+          {
+            "name": "finitePose",
+            "descriptor": "([F)Z",
+            "code_bytes": 47
+          },
+          {
+            "name": "savePlayerPose",
+            "descriptor": "()V",
+            "code_bytes": 200
+          },
+          {
+            "name": "readPlayerPose",
+            "descriptor": "()V",
+            "code_bytes": 121
+          },
+          {
+            "name": "restorePlayerPose",
+            "descriptor": "()Z",
+            "code_bytes": 216
+          },
+          {
+            "name": "dynamicConfigure",
+            "descriptor": "()V",
+            "code_bytes": 14
+          },
+          {
+            "name": "dynamicPosition",
+            "descriptor": "(IIIZ)[F",
+            "code_bytes": 18
+          },
+          {
+            "name": "dynamicPointName",
+            "descriptor": "(III)Ljava/lang/String;",
+            "code_bytes": 20
+          },
+          {
+            "name": "dynamicPoints",
+            "descriptor": "(II)I",
+            "code_bytes": 9
+          },
+          {
+            "name": "dynamicPhases",
+            "descriptor": "(I)V",
+            "code_bytes": 3
+          },
+          {
+            "name": "dynamicNotify",
+            "descriptor": "(Ljava/lang/String;II)V",
+            "code_bytes": 69
+          },
+          {
+            "name": "dynamicHealth",
+            "descriptor": "(IZFLjava/lang/String;)Z",
+            "code_bytes": 153
+          },
+          {
+            "name": "dynamicRoleGuid",
+            "descriptor": "(II)I",
+            "code_bytes": 97
+          },
+          {
+            "name": "dynamicCount",
+            "descriptor": "(ILjava/lang/String;I)I",
+            "code_bytes": 166
+          },
+          {
+            "name": "dynamicOwned",
+            "descriptor": "(II)Z",
+            "code_bytes": 60
+          },
+          {
+            "name": "dynamicKilled",
+            "descriptor": "(II)V",
+            "code_bytes": 168
+          },
+          {
+            "name": "killed",
+            "descriptor": "(III)V",
+            "code_bytes": 103
+          },
+          {
+            "name": "dynamicRetire",
+            "descriptor": "(I)Z",
+            "code_bytes": 83
+          },
+          {
+            "name": "dynamicError",
+            "descriptor": "(ILjava/lang/String;)V",
+            "code_bytes": 94
+          },
+          {
+            "name": "dynamicReset",
+            "descriptor": "(IZ)Z",
+            "code_bytes": 245
+          },
+          {
+            "name": "dynamicBegin",
+            "descriptor": "(Z)V",
+            "code_bytes": 140
+          },
+          {
+            "name": "dynamicCommand",
+            "descriptor": "(II)Z",
+            "code_bytes": 499
+          },
+          {
+            "name": "dynamicEntry",
+            "descriptor": "(I)I",
+            "code_bytes": 244
+          },
+          {
+            "name": "dynamicSpawn",
+            "descriptor": "(II)Z",
+            "code_bytes": 1110
+          },
+          {
+            "name": "dynamicComplete",
+            "descriptor": "(I)V",
+            "code_bytes": 89
+          },
+          {
+            "name": "dynamicPoll",
+            "descriptor": "()V",
+            "code_bytes": 1077
+          },
+          {
+            "name": "dynamicSave",
+            "descriptor": "()V",
+            "code_bytes": 327
+          },
+          {
+            "name": "dynamicRestore",
+            "descriptor": "()V",
+            "code_bytes": 614
+          },
+          {
+            "name": "originalFlag",
+            "descriptor": "(II)I",
+            "code_bytes": 94
+          },
+          {
+            "name": "originalBit",
+            "descriptor": "(II)Z",
+            "code_bytes": 10
+          },
+          {
+            "name": "originalSet",
+            "descriptor": "(IIZ)V",
+            "code_bytes": 28
+          },
+          {
+            "name": "originalError",
+            "descriptor": "(ILjava/lang/String;)Z",
+            "code_bytes": 49
+          },
+          {
+            "name": "originalNear",
+            "descriptor": "([FDDD)Z",
+            "code_bytes": 66
+          },
+          {
+            "name": "originalMatches",
+            "descriptor": "(II)Z",
+            "code_bytes": 160
+          },
+          {
+            "name": "originalFind",
+            "descriptor": "(I)I",
+            "code_bytes": 90
+          },
+          {
+            "name": "originalApply",
+            "descriptor": "(IIIFZ)Z",
+            "code_bytes": 580
+          },
+          {
+            "name": "originalReapply",
+            "descriptor": "()V",
+            "code_bytes": 83
+          },
+          {
+            "name": "bindClick",
+            "descriptor": "(I)V",
+            "code_bytes": 88
+          },
+          {
+            "name": "debugPosition",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 71
+          },
+          {
+            "name": "traceState",
+            "descriptor": "()V",
+            "code_bytes": 116
+          },
+          {
+            "name": "traceStack",
+            "descriptor": "(Ljava/lang/Throwable;)V",
+            "code_bytes": 45
+          }
+        ]
+      },
+      "codex/R_click_test_s1_Passive.class": {
+        "version": "45.3",
+        "constant_pool_entries": 12,
+        "constant_pool_limit": 65534,
+        "largest_method_bytes": 5,
+        "method_limit_bytes": 65535,
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "code_bytes": 5
+          }
+        ]
+      },
+      "codex/R_click_test_s1_Scene.class": {
+        "version": "45.3",
+        "constant_pool_entries": 1091,
+        "constant_pool_limit": 65534,
+        "largest_method_bytes": 1110,
+        "method_limit_bytes": 65535,
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "code_bytes": 598
+          },
+          {
+            "name": "trace",
+            "descriptor": "(Ljava/lang/String;)V",
+            "code_bytes": 201
+          },
+          {
+            "name": "local",
+            "descriptor": "(I)Z",
+            "code_bytes": 67
+          },
+          {
+            "name": "localPlayer",
+            "descriptor": "(I)I",
+            "code_bytes": 77
+          },
+          {
+            "name": "alive",
+            "descriptor": "(I)Z",
+            "code_bytes": 50
+          },
+          {
+            "name": "inventory",
+            "descriptor": "(ILjava/lang/String;)I",
+            "code_bytes": 76
+          },
+          {
+            "name": "owns",
+            "descriptor": "(ILjava/lang/String;)Z",
+            "code_bytes": 13
+          },
+          {
+            "name": "give",
+            "descriptor": "(II)Z",
+            "code_bytes": 244
+          },
+          {
+            "name": "template",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 6
+          },
+          {
+            "name": "spawn",
+            "descriptor": "(I)V",
+            "code_bytes": 262
+          },
+          {
+            "name": "beginscene",
+            "descriptor": "(II)V",
+            "code_bytes": 73
+          },
+          {
+            "name": "timer",
+            "descriptor": "(IFFFF)V",
+            "code_bytes": 25
+          },
+          {
+            "name": "poll",
+            "descriptor": "()V",
+            "code_bytes": 39
+          },
+          {
+            "name": "pollImpl",
+            "descriptor": "()V",
+            "code_bytes": 220
+          },
+          {
+            "name": "volume",
+            "descriptor": "(I)Z",
+            "code_bytes": 66
+          },
+          {
+            "name": "dispatch",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;I)V",
+            "code_bytes": 9
+          },
+          {
+            "name": "releaseCamera",
+            "descriptor": "()V",
+            "code_bytes": 25
+          },
+          {
+            "name": "conversation",
+            "descriptor": "(I)Z",
+            "code_bytes": 151
+          },
+          {
+            "name": "clicked",
+            "descriptor": "(III)V",
+            "code_bytes": 50
+          },
+          {
+            "name": "convreached",
+            "descriptor": "(IIIII)V",
+            "code_bytes": 148
+          },
+          {
+            "name": "convended",
+            "descriptor": "(IZI)V",
+            "code_bytes": 115
+          },
+          {
+            "name": "finishDialogue",
+            "descriptor": "()V",
+            "code_bytes": 102
+          },
+          {
+            "name": "completeEntry",
+            "descriptor": "(Ljava/lang/String;)Z",
+            "code_bytes": 24
+          },
+          {
+            "name": "quest",
+            "descriptor": "(Ljava/lang/String;I)Z",
+            "code_bytes": 2
+          },
+          {
+            "name": "save",
+            "descriptor": "(I)V",
+            "code_bytes": 145
+          },
+          {
+            "name": "restore",
+            "descriptor": "(I)V",
+            "code_bytes": 152
+          },
+          {
+            "name": "restored",
+            "descriptor": "(I)V",
+            "code_bytes": 143
+          },
+          {
+            "name": "createAt",
+            "descriptor": "(I[F[F)I",
+            "code_bytes": 248
+          },
+          {
+            "name": "positionText",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 63
+          },
+          {
+            "name": "travel",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;)Z",
+            "code_bytes": 184
+          },
+          {
+            "name": "arrive",
+            "descriptor": "()Z",
+            "code_bytes": 269
+          },
+          {
+            "name": "patrolActor",
+            "descriptor": "(I)I",
+            "code_bytes": 4
+          },
+          {
+            "name": "patrolTarget",
+            "descriptor": "(I)[F",
+            "code_bytes": 4
+          },
+          {
+            "name": "patrolSpeed",
+            "descriptor": "(I)F",
+            "code_bytes": 6
+          },
+          {
+            "name": "commandPatrol",
+            "descriptor": "(I)Z",
+            "code_bytes": 207
+          },
+          {
+            "name": "startPatrol",
+            "descriptor": "(I)Z",
+            "code_bytes": 43
+          },
+          {
+            "name": "stopPatrol",
+            "descriptor": "(I)V",
+            "code_bytes": 66
+          },
+          {
+            "name": "holdPatrols",
+            "descriptor": "()V",
+            "code_bytes": 81
+          },
+          {
+            "name": "resumePatrols",
+            "descriptor": "()V",
+            "code_bytes": 41
+          },
+          {
+            "name": "pollPatrols",
+            "descriptor": "()V",
+            "code_bytes": 321
+          },
+          {
+            "name": "conversationID",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 6
+          },
+          {
+            "name": "resumeEvents",
+            "descriptor": "()V",
+            "code_bytes": 1
+          },
+          {
+            "name": "dialogueCamera",
+            "descriptor": "(II)V",
+            "code_bytes": 6
+          },
+          {
+            "name": "dialoguePartner",
+            "descriptor": "(I)I",
+            "code_bytes": 4
+          },
+          {
+            "name": "faceDialogue",
+            "descriptor": "(II)V",
+            "code_bytes": 49
+          },
+          {
+            "name": "prepareDialogue",
+            "descriptor": "(II)V",
+            "code_bytes": 72
+          },
+          {
+            "name": "schedulePoll",
+            "descriptor": "()V",
+            "code_bytes": 20
+          },
+          {
+            "name": "dialogueMotion",
+            "descriptor": "(III)V",
+            "code_bytes": 6
+          },
+          {
+            "name": "finitePose",
+            "descriptor": "([F)Z",
+            "code_bytes": 47
+          },
+          {
+            "name": "savePlayerPose",
+            "descriptor": "()V",
+            "code_bytes": 200
+          },
+          {
+            "name": "readPlayerPose",
+            "descriptor": "()V",
+            "code_bytes": 121
+          },
+          {
+            "name": "restorePlayerPose",
+            "descriptor": "()Z",
+            "code_bytes": 216
+          },
+          {
+            "name": "dynamicConfigure",
+            "descriptor": "()V",
+            "code_bytes": 14
+          },
+          {
+            "name": "dynamicPosition",
+            "descriptor": "(IIIZ)[F",
+            "code_bytes": 18
+          },
+          {
+            "name": "dynamicPointName",
+            "descriptor": "(III)Ljava/lang/String;",
+            "code_bytes": 20
+          },
+          {
+            "name": "dynamicPoints",
+            "descriptor": "(II)I",
+            "code_bytes": 9
+          },
+          {
+            "name": "dynamicPhases",
+            "descriptor": "(I)V",
+            "code_bytes": 3
+          },
+          {
+            "name": "dynamicNotify",
+            "descriptor": "(Ljava/lang/String;II)V",
+            "code_bytes": 69
+          },
+          {
+            "name": "dynamicHealth",
+            "descriptor": "(IZFLjava/lang/String;)Z",
+            "code_bytes": 153
+          },
+          {
+            "name": "dynamicRoleGuid",
+            "descriptor": "(II)I",
+            "code_bytes": 97
+          },
+          {
+            "name": "dynamicCount",
+            "descriptor": "(ILjava/lang/String;I)I",
+            "code_bytes": 166
+          },
+          {
+            "name": "dynamicOwned",
+            "descriptor": "(II)Z",
+            "code_bytes": 60
+          },
+          {
+            "name": "dynamicKilled",
+            "descriptor": "(II)V",
+            "code_bytes": 168
+          },
+          {
+            "name": "killed",
+            "descriptor": "(III)V",
+            "code_bytes": 103
+          },
+          {
+            "name": "dynamicRetire",
+            "descriptor": "(I)Z",
+            "code_bytes": 83
+          },
+          {
+            "name": "dynamicError",
+            "descriptor": "(ILjava/lang/String;)V",
+            "code_bytes": 94
+          },
+          {
+            "name": "dynamicReset",
+            "descriptor": "(IZ)Z",
+            "code_bytes": 245
+          },
+          {
+            "name": "dynamicBegin",
+            "descriptor": "(Z)V",
+            "code_bytes": 140
+          },
+          {
+            "name": "dynamicCommand",
+            "descriptor": "(II)Z",
+            "code_bytes": 499
+          },
+          {
+            "name": "dynamicEntry",
+            "descriptor": "(I)I",
+            "code_bytes": 244
+          },
+          {
+            "name": "dynamicSpawn",
+            "descriptor": "(II)Z",
+            "code_bytes": 1110
+          },
+          {
+            "name": "dynamicComplete",
+            "descriptor": "(I)V",
+            "code_bytes": 89
+          },
+          {
+            "name": "dynamicPoll",
+            "descriptor": "()V",
+            "code_bytes": 1077
+          },
+          {
+            "name": "dynamicSave",
+            "descriptor": "()V",
+            "code_bytes": 327
+          },
+          {
+            "name": "dynamicRestore",
+            "descriptor": "()V",
+            "code_bytes": 614
+          },
+          {
+            "name": "debugPosition",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 71
+          },
+          {
+            "name": "traceState",
+            "descriptor": "()V",
+            "code_bytes": 116
+          },
+          {
+            "name": "traceStack",
+            "descriptor": "(Ljava/lang/Throwable;)V",
+            "code_bytes": 45
+          }
+        ]
+      }
+    },
+    "native_engine_test": false
+  },
+  "geometry_in_package": false,
+  "native_engine_test": false
+}

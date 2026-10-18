@@ -18,6 +18,11 @@ def deploy_many(ws,chronicles,directory,current_sources=None,preserve_siblings=F
             source=current_sources[ident]
             if report.get('authoring_source_sha256')!=source_fingerprint(source) or report.get('build_inputs_sha256')!=build_inputs_fingerprint(ws,source):raise ValueError('Proyecto cambiado desde build: '+ident)
         owners[ident]=list(report['distribution_files'])
+        from .wtd import local_dependencies
+        for name,data in local_dependencies(ws,report).items():
+            target=safe_target(game,dest/name)
+            if target in files and files[target]!=data:raise ValueError('Imported content packs conflict')
+            files[target]=data;owners[ident].append(name)
         for relative,record in report['distribution_files'].items():
             archive_path(relative);target=safe_target(game,dest/relative);data=ws.output(root/'bundle'/relative).read_bytes()
             if hashlib.sha256(data).hexdigest()!=record['sha256']:raise ValueError('Build modificado: '+relative)

@@ -138,12 +138,12 @@ class CampaignDocument(Document):
         self.data=recovered.snapshot()
         return True
     def rename(self,collection,index,new):
-        identifier(new,'ID',16);rows=self.data[collection];old=rows[index]['id']
+        identifier(new,'ID',64 if collection=='events' else 16,allow_upper=collection=='events');rows=self.data[collection];old=rows[index]['id']
         if any(i!=index and v['id']==new for i,v in enumerate(rows)):raise ValueError('ID duplicado')
         rows[index]['id']=new
         from .recipes import rename_references
         rename_references(self.campaign,collection,old,new,self.campaign['scenes'][self.active]['id'])
-        keys={'actors':{'speaker','actor','reference','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus','visual'},'conversations':{'default','then','start_conversation','conversation'},'generators':{'generator','start_generator','stop_generator','pause_generator','resume_generator','reset_generator'},'events':set(),'triggers':{'trigger'},'entries':{'default_entry'},'waypoints':set()}[collection]
+        keys={'actors':{'speaker','actor','reference','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus','visual'},'conversations':{'default','then','start_conversation','conversation'},'generators':{'generator','start_generator','stop_generator','pause_generator','resume_generator','reset_generator'},'events':{'run_event'},'triggers':{'trigger'},'entries':{'default_entry'},'waypoints':set()}[collection]
         self._replace(self.campaign['scenes'][self.active],keys,old,new)
         if collection=='entries':
             sid=self.campaign['scenes'][self.active]['id']

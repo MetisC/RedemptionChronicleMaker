@@ -28,6 +28,9 @@ def original_entry(catalogue,kind,name):
     return entries[0]
 
 def original_bytes(ws,entry):
+    if entry.get('imported_pack'):
+        from .wtd import read_entry
+        return read_entry(ws,entry)
     p=ws.output('research/original/'+entry['archive']+'/'+entry['path'])
     if p.exists():return p.read_bytes()
     if not ws.game:raise ValueError('Selecciona la instalación para leer '+entry['id'])

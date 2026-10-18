@@ -1,0 +1,18 @@
+{
+  "counts": {
+    "clans": 19,
+    "disciplines": 9,
+    "templates": 125,
+    "models": 28,
+    "levels": 1
+  },
+  "files": 416,
+  "source_sha256": "c678cbfa936162a05e6fb69267b0507a7b942db011c0c80e7539ecfd12f469cf",
+  "import_sha256": "5216338894a4cd5a4d60f0ff4146687f35bd88caa51750891086d350733f78f9",
+  "workspace_pack": "H:\\Repositorios\\RedemptionChronicleMaker\\content_packs\\within_the_darkness\\rcm_wtd_content.nob",
+  "shared_pack": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\_content\\within_the_darkness\\rcm_wtd_content.nob",
+  "game_root_written": false,
+  "penthouse_geometry_identical": true,
+  "source_unchanged": true,
+  "native_game_test": false
+}

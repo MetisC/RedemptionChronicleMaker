@@ -24,6 +24,8 @@ class CampaignPanel(QWidget):
             else:
                 action=more.addAction(label);action.setObjectName(name);action.triggered.connect(lambda checked=False,cb=cb:win.guard(cb))
         from .dynamic_wizard import open_dynamic
+        from .original_objects import use_selected
+        original=more.addAction(tr('Objeto original / crear paso…'));original.setObjectName('use_original_object');original.triggered.connect(lambda:win.guard(lambda:use_selected(win)))
         dynamic=QPushButton(tr('+ Encuentro dinámico…'));dynamic.setObjectName('add_dynamic');dynamic.clicked.connect(lambda:win.guard(lambda:open_dynamic(win)));spatial.addWidget(dynamic)
         from .recipe_wizard import open_wizard
         guided=QPushButton(tr('Asistente…'));guided.setObjectName('open_recipe');guided.clicked.connect(lambda:win.guard(lambda:open_wizard(win)));spatial.addWidget(guided)
@@ -189,7 +191,7 @@ class CampaignPanel(QWidget):
                     if rename and len(self.path)==2:self.win.doc.rename_global(self.path[0],self.path[1],w.text())
                     elif rename:
                         from ..model import identifier
-                        identifier(w.text(),'ID',16);old=row[key];coll=self.path[-2]
+                        coll=self.path[-2];identifier(w.text(),'ID',64 if coll=='events' else 16,allow_upper=coll=='events');old=row[key]
                         if any(x is not row and x['id']==w.text() for x in root['scenes'][self.path[1]][coll]):raise ValueError(tr('ID duplicado'))
                         row[key]=w.text();keys={'encounters':{'spawn_encounter','remove_encounter','encounter'},'sequences':{'play_sequence'},'paths':{'start_patrol','move_path'}}[coll]
                         self.win.doc._replace(root['scenes'][self.path[1]],keys,old,w.text())
@@ -391,10 +393,20 @@ def event_properties(ins):
         ins.note(tr('Las condiciones de la lista se combinan con AND; cada grupo puede usar ALL, ANY o NOT. Eventos de estado, muerte, pickup, encuentro y timer se ejecutan una vez por defecto.'))
     elif p[-2]=='actions':
         a=w.at(p);kind=next(iter(a),'spawn')
-        def change(v):a.clear();a[v]={'title':tr('Nota'),'text':tr('Escribe aquí lo que leerá el jugador.')} if v=='show_note' else {'resource':'','waypoint':'','volume':100,'min_distance':128,'max_distance':512} if v=='play_sound' else {'cast_id':'','mode':'frames','frame':1,'parameter':150,'open':True} if v=='control_door' else {'scene':'','entry':''} if v=='travel' else True if ACTIONS[v][1]=='none' else 100 if ACTIONS[v][1]=='number' else '';w.changed(True)
-        advanced={'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','play_sound'}
-        ins.combo(tr('Acción'),[(tr(label),key) for key,(label,_) in ACTIONS.items() if (w.doc.campaign.get('project_format')==10 or not key.endswith('_generator')) and (w.doc.campaign.get('project_format') in (9,10) or key not in advanced)],kind,change,'action_kind');category=ACTIONS.get(kind,('','none'))[1]
-        if category=='note':
+        def change(v):
+            a.clear();a[v]={'actor':'Player','clan':w.backend.resources['wtd']['clans'][0]['id']} if v=='set_actor_clan' else {'actor':'Player','discipline':w.backend.resources['wtd']['disciplines'][0]['id'],'level':1} if v=='set_discipline' else {'level':s['level']['source'],'template':'','operation':'hide'} if v=='control_original' else {'title':tr('Nota'),'text':tr('Escribe aquí lo que leerá el jugador.')} if v=='show_note' else {'resource':'','waypoint':'','volume':100,'min_distance':128,'max_distance':512} if v=='play_sound' else {'cast_id':'','mode':'frames','frame':1,'parameter':150,'open':True} if v=='control_door' else {'scene':'','entry':''} if v=='travel' else True if ACTIONS[v][1]=='none' else 100 if ACTIONS[v][1]=='number' else '';w.changed(True)
+        advanced={'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','control_original','play_sound'}
+        advanced|={'set_actor_clan','set_discipline'}
+        ins.combo(tr('Acción'),[(tr(label),key) for key,(label,_) in ACTIONS.items() if (w.backend.resources.get('wtd') or key not in {'set_actor_clan','set_discipline'}) and (w.doc.campaign.get('project_format')==10 or not key.endswith('_generator')) and (w.doc.campaign.get('project_format') in (9,10) or key not in advanced)],kind,change,'action_kind');category=ACTIONS.get(kind,('','none'))[1]
+        if category in {'wtd_clan','wtd_discipline'}:
+            value=a[kind];data=w.backend.resources.get('wtd',{});field='clan' if category=='wtd_clan' else 'discipline'
+            ins.combo(tr('Actor'),[(tr('Jugador'),'Player')]+ins.ids('actors'),value['actor'],lambda v:ins.set(p+(kind,'actor'),v),'trait_actor')
+            ins.combo(tr('Clan' if field=='clan' else 'Disciplina'),[(r['id'],r['id']) for r in data.get('clans' if field=='clan' else 'disciplines',[])],value[field],lambda v:ins.set(p+(kind,field),v),'trait_value')
+            if field=='discipline':ins.spin(tr('Nivel'),value['level'],lambda v:ins.set(p+(kind,'level'),v),'trait_level',maximum=5)
+        elif category=='original':
+            from .original_objects import choose_target
+            choose_target(ins,p+(kind,),a[kind])
+        elif category=='note':
             value=a[kind]
             ins.line(tr('Título'),value['title'],lambda v:ins.set(p+(kind,'title'),v),'note_title')
             control=ins.text(tr('Texto'),value['text'],lambda v:ins.set(p+(kind,'text'),v),'note_text');control.setMaximumHeight(350);control.setMinimumHeight(180)
@@ -402,7 +414,8 @@ def event_properties(ins):
         elif category=='arrival':
             value=a[kind]
             def destination(v):value['scene']=v;value['entry']='';w.changed(True)
-            ins.combo(tr('Escena destino'),[(tr('Elige…'),'')]+[(row['id']+tr(' · ')+row['level']['source'],row['id']) for row in w.doc.campaign['scenes']],value['scene'],destination,'travel_scene')
+            ins.combo(tr('Escena destino'),[(tr('Elige…'),'')]+[(row['id']+tr(' · ')+row['level']['source'],row['id']) for row in w.doc.campaign['scenes'] if row['id']!=s['id']],value['scene'],destination,'travel_scene')
+            ins.note(tr('El destino debe ser otra escena. Para cambiar un layout, crea otra escena que reutilice el mismo level.'))
             target=next((row for row in w.doc.campaign['scenes'] if row['id']==value['scene']),{})
             ins.combo(tr('Entrada destino'),[(tr('Elige…'),'')]+[(row['name'],row['id']) for row in target.get('entries',[])],value['entry'],lambda v:ins.set(p+(kind,'entry'),v),'travel_entry')
         elif category=='spatial_sound':
@@ -434,7 +447,7 @@ def event_properties(ins):
                 choices=[(o['name'],o['id']) for o in s.get('objects',[]) if templates.get(o['template']) in {'items','weapons','armour'}]
                 if category=='item_global': choices += [(sc['id']+' / '+o['name'],sc['id']+'.'+o['id']) for sc in w.doc.campaign['scenes'] for o in sc.get('objects',[]) if templates.get(o['template']) in {'items','weapons','armour'}]
             elif category in {'music','ambient'}:choices=[(r['id'],r['id']) for r in w.backend.resources['entries'] if r['path'].lower().startswith('sounds/'+('stereoambient' if category=='ambient' else category)+'/')]
-            elif category in {'quests','scenes'}:choices=[(r.get('title',r['id']),r['id']) for r in w.doc.campaign.get(category,[])]
+            elif category in {'quests','scenes'}:choices=[(r.get('title',r['id']),r['id']) for r in w.doc.campaign.get(category,[]) if category!='scenes' or r['id']!=s['id']]
             else:choices=[(r.get('name',r['id']),r['id']) for r in s.get(category,[])]
             ins.combo(tr('Objetivo'),[(tr('Elige…'),'')]+choices,a.get(kind,''),lambda v:ins.set(p+(kind,),v),'action_target')
     elif p[-2]=='conditions':render_condition(ins,w.at(p),p)

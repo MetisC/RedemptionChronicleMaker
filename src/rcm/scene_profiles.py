@@ -25,7 +25,10 @@ def reference(level, hints, selected=None):
 
 def read_profile(ws, name, hint):
     source = hint['source']
-    data = ws.output(Path('research/original') / source['archive'] / source['path']).read_bytes()
+    if source.get('imported_pack'):
+        from .wtd import read_entry
+        data=read_entry(ws,source)
+    else:data = ws.output(Path('research/original') / source['archive'] / source['path']).read_bytes()
     digest = hashlib.sha256(data).hexdigest()
     if source.get('sha256') != digest:
         raise ValueError('Entorno: la copia original NSD difiere del catálogo; vuelve a escanear')

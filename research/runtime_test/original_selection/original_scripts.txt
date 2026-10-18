@@ -1,0 +1,1556 @@
+Compiled from "ClickExit.java"
+public class ClickExit extends Codex {
+  private CodexThing exitThing;
+
+  private int _exitNumber;
+
+  private java.lang.String _locationName;
+
+  private java.lang.String originalDescID;
+
+  private boolean bGotID;
+
+  public static java.lang.String[] _params;
+
+  public void clicked(int, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field bGotID:Z
+       4: ifne          8
+       7: return
+       8: aload_0
+       9: getfield      #18                 // Field _locationName:Ljava/lang/String;
+      12: aload_0
+      13: getfield      #22                 // Field _exitNumber:I
+      16: invokestatic  #28                 // Method CodexSequence.IsExitClosed:(Ljava/lang/String;I)Z
+      19: ifne          33
+      22: aload_0
+      23: getfield      #22                 // Field _exitNumber:I
+      26: iload_2
+      27: invokestatic  #32                 // Method CodexSequence.TakeExit:(II)V
+      30: goto          57
+      33: new           #34                 // class CodexSound
+      36: ldc           #36                 // String locked_large_02.WAV
+      38: ldc           #37                 // float 300.0f
+      40: ldc           #38                 // float 600.0f
+      42: bipush        100
+      44: iconst_0
+      45: iconst_0
+      46: iload_2
+      47: invokespecial #42                 // Method CodexSound."<init>":(Ljava/lang/String;FFIIII)V
+      50: iload_2
+      51: iconst_0
+      52: ldc           #44                 // String GEN_DOORLOCKED
+      54: invokestatic  #50                 // Method CodexConsole.PrintNLS:(IILjava/lang/String;)V
+      57: return
+
+  public ClickExit(int);
+    Code:
+       0: aload_0
+       1: invokespecial #58                 // Method Codex."<init>":()V
+       4: aload_0
+       5: ldc           #60                 // String
+       7: putfield      #18                 // Field _locationName:Ljava/lang/String;
+      10: aload_0
+      11: ldc           #60                 // String
+      13: putfield      #63                 // Field originalDescID:Ljava/lang/String;
+      16: aload_0
+      17: new           #65                 // class CodexThing
+      20: dup
+      21: aload_0
+      22: invokevirtual #69                 // Method Codex.GetClassThing:()I
+      25: invokespecial #72                 // Method CodexThing."<init>":(I)V
+      28: putfield      #76                 // Field exitThing:LCodexThing;
+      31: aload_0
+      32: iload_1
+      33: putfield      #22                 // Field _exitNumber:I
+      36: return
+
+  public void beginscene(int, int);
+    Code:
+       0: aload_0
+       1: getfield      #76                 // Field exitThing:LCodexThing;
+       4: ldc           #78                 // int 2097152
+       6: invokevirtual #82                 // Method CodexThing.SetThingFlags:(I)I
+       9: pop
+      10: new           #65                 // class CodexThing
+      13: dup
+      14: iload_1
+      15: invokespecial #72                 // Method CodexThing."<init>":(I)V
+      18: astore_3
+      19: aload_3
+      20: invokevirtual #85                 // Method CodexThing.GetLocationNum:()I
+      23: istore        4
+      25: aload_0
+      26: iload         4
+      28: invokestatic  #89                 // Method CodexSequence.GetLocationName:(I)Ljava/lang/String;
+      31: putfield      #18                 // Field _locationName:Ljava/lang/String;
+      34: aload_0
+      35: getfield      #14                 // Field bGotID:Z
+      38: ifne          57
+      41: aload_0
+      42: aload_0
+      43: getfield      #76                 // Field exitThing:LCodexThing;
+      46: invokevirtual #93                 // Method CodexThing.GetDescriptionID:()Ljava/lang/String;
+      49: putfield      #63                 // Field originalDescID:Ljava/lang/String;
+      52: aload_0
+      53: iconst_1
+      54: putfield      #14                 // Field bGotID:Z
+      57: aload_0
+      58: getfield      #18                 // Field _locationName:Ljava/lang/String;
+      61: aload_0
+      62: getfield      #22                 // Field _exitNumber:I
+      65: invokestatic  #96                 // Method CodexSequence.IsExitValid:(Ljava/lang/String;I)Z
+      68: ifne          84
+      71: aload_0
+      72: getfield      #76                 // Field exitThing:LCodexThing;
+      75: bipush        64
+      77: invokevirtual #82                 // Method CodexThing.SetThingFlags:(I)I
+      80: pop
+      81: goto          94
+      84: aload_0
+      85: getfield      #76                 // Field exitThing:LCodexThing;
+      88: bipush        64
+      90: invokevirtual #99                 // Method CodexThing.ClearThingFlags:(I)I
+      93: pop
+      94: aload_0
+      95: getfield      #18                 // Field _locationName:Ljava/lang/String;
+      98: aload_0
+      99: getfield      #22                 // Field _exitNumber:I
+     102: invokestatic  #28                 // Method CodexSequence.IsExitClosed:(Ljava/lang/String;I)Z
+     105: ifeq          141
+     108: aload_0
+     109: getfield      #76                 // Field exitThing:LCodexThing;
+     112: new           #101                // class java/lang/StringBuffer
+     115: dup
+     116: invokespecial #102                // Method java/lang/StringBuffer."<init>":()V
+     119: aload_0
+     120: getfield      #63                 // Field originalDescID:Ljava/lang/String;
+     123: invokevirtual #106                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     126: ldc           #108                // String _L
+     128: invokevirtual #106                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     131: invokevirtual #111                // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     134: invokevirtual #115                // Method CodexThing.SetDescriptionID:(Ljava/lang/String;)Z
+     137: pop
+     138: goto          153
+     141: aload_0
+     142: getfield      #76                 // Field exitThing:LCodexThing;
+     145: aload_0
+     146: getfield      #63                 // Field originalDescID:Ljava/lang/String;
+     149: invokevirtual #115                // Method CodexThing.SetDescriptionID:(Ljava/lang/String;)Z
+     152: pop
+     153: return
+
+  public void restore(int);
+    Code:
+       0: aload_0
+       1: invokestatic  #122                // Method CodexSequence.RestoreBoolean:()Z
+       4: putfield      #14                 // Field bGotID:Z
+       7: aload_0
+       8: invokestatic  #125                // Method CodexSequence.RestoreString:()Ljava/lang/String;
+      11: putfield      #63                 // Field originalDescID:Ljava/lang/String;
+      14: aload_0
+      15: invokestatic  #125                // Method CodexSequence.RestoreString:()Ljava/lang/String;
+      18: putfield      #18                 // Field _locationName:Ljava/lang/String;
+      21: return
+
+  static {};
+    Code:
+       0: iconst_1
+       1: anewarray     #128                // class java/lang/String
+       4: dup
+       5: iconst_0
+       6: ldc           #130                // String Exit number;0
+       8: aastore
+       9: putstatic     #134                // Field _params:[Ljava/lang/String;
+      12: return
+
+  public void save(int);
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field bGotID:Z
+       4: invokestatic  #138                // Method CodexSequence.SaveBoolean:(Z)Z
+       7: pop
+       8: aload_0
+       9: getfield      #63                 // Field originalDescID:Ljava/lang/String;
+      12: invokestatic  #142                // Method CodexSequence.SaveString:(Ljava/lang/String;)I
+      15: pop
+      16: aload_0
+      17: getfield      #18                 // Field _locationName:Ljava/lang/String;
+      20: invokestatic  #142                // Method CodexSequence.SaveString:(Ljava/lang/String;)I
+      23: pop
+      24: return
+
+  public void exitstatechanged();
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field bGotID:Z
+       4: ifne          8
+       7: return
+       8: aload_0
+       9: getfield      #18                 // Field _locationName:Ljava/lang/String;
+      12: aload_0
+      13: getfield      #22                 // Field _exitNumber:I
+      16: invokestatic  #28                 // Method CodexSequence.IsExitClosed:(Ljava/lang/String;I)Z
+      19: ifeq          55
+      22: aload_0
+      23: getfield      #76                 // Field exitThing:LCodexThing;
+      26: new           #101                // class java/lang/StringBuffer
+      29: dup
+      30: invokespecial #102                // Method java/lang/StringBuffer."<init>":()V
+      33: aload_0
+      34: getfield      #63                 // Field originalDescID:Ljava/lang/String;
+      37: invokevirtual #106                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      40: ldc           #108                // String _L
+      42: invokevirtual #106                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      45: invokevirtual #111                // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+      48: invokevirtual #115                // Method CodexThing.SetDescriptionID:(Ljava/lang/String;)Z
+      51: pop
+      52: goto          67
+      55: aload_0
+      56: getfield      #76                 // Field exitThing:LCodexThing;
+      59: aload_0
+      60: getfield      #63                 // Field originalDescID:Ljava/lang/String;
+      63: invokevirtual #115                // Method CodexThing.SetDescriptionID:(Ljava/lang/String;)Z
+      66: pop
+      67: return
+}
+Compiled from "TEN1_28_1_MeetPink.java"
+public class TEN1_28_1_MeetPink extends Codex {
+  private LondonChronicle chronScript;
+
+  public boolean b28_1_MeetPink1Conversation;
+
+  private CodexPlayer _Pink;
+
+  private CodexActor _Christof;
+
+  private int christofGUID;
+
+  private int pinkGUID;
+
+  public static java.lang.String[] _params;
+
+  public void clicked(int, int, int);
+    Code:
+       0: bipush        50
+       2: invokestatic  #16                 // Method CodexSequence.GetChronicleFlag:(I)Z
+       5: ifne          20
+       8: bipush        50
+      10: invokestatic  #19                 // Method CodexSequence.SetChronicleFlag:(I)Z
+      13: pop
+      14: aload_0
+      15: iload_2
+      16: iconst_0
+      17: invokevirtual #23                 // Method c28_1_MeetPink1Conversation:(II)V
+      20: return
+
+  public void convended(int, boolean, int);
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field b28_1_MeetPink1Conversation:Z
+       4: ifeq          107
+       7: invokestatic  #39                 // Method CodexSound.PopMusic:()V
+      10: aload_0
+      11: invokevirtual #42                 // Method Codex.AIOn:()V
+      14: aload_0
+      15: iconst_0
+      16: putfield      #33                 // Field b28_1_MeetPink1Conversation:Z
+      19: aload_0
+      20: getfield      #46                 // Field _Pink:LCodexPlayer;
+      23: aload_0
+      24: getfield      #46                 // Field _Pink:LCodexPlayer;
+      27: iconst_1
+      28: invokevirtual #52                 // Method CodexThing.GetFramePosition:(I)[F
+      31: invokevirtual #56                 // Method CodexThing.SetPosition:([F)Z
+      34: pop
+      35: aload_0
+      36: getfield      #46                 // Field _Pink:LCodexPlayer;
+      39: invokevirtual #61                 // Method CodexActor.StopActorAction:()V
+      42: aload_0
+      43: getfield      #46                 // Field _Pink:LCodexPlayer;
+      46: invokevirtual #65                 // Method CodexActor.CancelOverrideActorWeapon:()Z
+      49: pop
+      50: iload_1
+      51: invokestatic  #71                 // Method CodexCamera.Release:(I)V
+      54: ldc           #73                 // String WestLondon
+      56: ldc           #75                 // String WEST_28_4.nsd
+      58: invokestatic  #79                 // Method CodexSequence.ChangeScene:(Ljava/lang/String;Ljava/lang/String;)V
+      61: ldc           #81                 // String EastLondon
+      63: ldc           #83                 // String EAST_28_4.nsd
+      65: invokestatic  #79                 // Method CodexSequence.ChangeScene:(Ljava/lang/String;Ljava/lang/String;)V
+      68: ldc           #81                 // String EastLondon
+      70: iconst_4
+      71: invokestatic  #87                 // Method CodexSequence.OpenExit:(Ljava/lang/String;I)V
+      74: ldc           #89                 // String Brothel
+      76: iconst_0
+      77: invokestatic  #87                 // Method CodexSequence.OpenExit:(Ljava/lang/String;I)V
+      80: ldc           #91                 // String lightRain
+      82: invokestatic  #95                 // Method Codex.SetWeatherEffect:(Ljava/lang/String;)V
+      85: new           #97                 // class CodexQuest
+      88: dup
+      89: ldc           #99                 // String L1_InfiltrateSetite
+      91: invokestatic  #103                // Method CodexQuest.Load:(Ljava/lang/String;)I
+      94: invokespecial #106                // Method CodexQuest."<init>":(I)V
+      97: astore        4
+      99: ldc           #89                 // String Brothel
+     101: bipush        8
+     103: invokestatic  #110                // Method CodexSequence.SetLocationFlags:(Ljava/lang/String;I)I
+     106: pop
+     107: return
+
+  public TEN1_28_1_MeetPink(CodexPlayer);
+    Code:
+       0: aload_0
+       1: invokespecial #117                // Method Codex."<init>":()V
+       4: aload_0
+       5: aload_0
+       6: iconst_0
+       7: invokevirtual #121                // Method Codex.GetChronicleScript:(I)Ljava/lang/Object;
+      10: checkcast     #123                // class LondonChronicle
+      13: putfield      #127                // Field chronScript:LLondonChronicle;
+      16: aload_0
+      17: new           #129                // class CodexPlayer
+      20: dup
+      21: aload_1
+      22: invokevirtual #133                // Method Codex.GetGUID:()I
+      25: invokespecial #134                // Method CodexPlayer."<init>":(I)V
+      28: putfield      #46                 // Field _Pink:LCodexPlayer;
+      31: aload_0
+      32: aload_0
+      33: getfield      #46                 // Field _Pink:LCodexPlayer;
+      36: invokevirtual #133                // Method Codex.GetGUID:()I
+      39: invokevirtual #137                // Method Codex.CaptureThing:(I)Z
+      42: pop
+      43: return
+
+  public void beginscene(int, int);
+    Code:
+       0: aload_0
+       1: ldc           #140                // String Christof
+       3: invokestatic  #143                // Method CodexThing.GuidFromCastID:(Ljava/lang/String;)I
+       6: putfield      #146                // Field christofGUID:I
+       9: aload_0
+      10: ldc           #148                // String Pink
+      12: invokestatic  #143                // Method CodexThing.GuidFromCastID:(Ljava/lang/String;)I
+      15: putfield      #151                // Field pinkGUID:I
+      18: aload_0
+      19: new           #60                 // class CodexActor
+      22: dup
+      23: aload_0
+      24: getfield      #146                // Field christofGUID:I
+      27: invokespecial #152                // Method CodexActor."<init>":(I)V
+      30: putfield      #156                // Field _Christof:LCodexActor;
+      33: bipush        50
+      35: invokestatic  #16                 // Method CodexSequence.GetChronicleFlag:(I)Z
+      38: ifne          66
+      41: aload_0
+      42: getfield      #46                 // Field _Pink:LCodexPlayer;
+      45: sipush        144
+      48: iconst_0
+      49: ldc           #157                // float 30.0f
+      51: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+      54: pop
+      55: aload_0
+      56: getfield      #46                 // Field _Pink:LCodexPlayer;
+      59: sipush        128
+      62: invokevirtual #165                // Method CodexActor.SetActorFlags:(I)I
+      65: pop
+      66: return
+
+  public void c28_1_MeetPink1Conversation(int, int);
+    Code:
+       0: ldc           #169                // String MD_Conversation_1.mp3
+       2: bipush        50
+       4: invokestatic  #172                // Method CodexSound.PushMusic:(Ljava/lang/String;I)V
+       7: aload_0
+       8: iconst_1
+       9: putfield      #33                 // Field b28_1_MeetPink1Conversation:Z
+      12: aload_0
+      13: invokevirtual #175                // Method Codex.AIOff:()V
+      16: invokestatic  #178                // Method CodexPlayer.GetCurrentPlayer:()I
+      19: iconst_0
+      20: invokestatic  #182                // Method CodexPlayer.TeleportPartyToConversation:(II)Z
+      23: pop
+      24: aload_0
+      25: iload_1
+      26: iload_2
+      27: ldc           #184                // String 28_1_MeetPink1
+      29: ldc           #186                // String 28_1_MeetPink1.nco
+      31: iconst_4
+      32: invokevirtual #190                // Method Codex.ExecuteConversation:(IILjava/lang/String;Ljava/lang/String;I)Z
+      35: pop
+      36: bipush        100
+      38: invokestatic  #193                // Method CodexPlayer.AwardPartyExperience:(I)V
+      41: return
+
+  public void convreached(int, int, int, int, int);
+    Code:
+       0: iload_2
+       1: tableswitch   { // 0 to 2
+
+                     0: 28
+
+                     1: 810
+
+                     2: 869
+               default: 1552
+          }
+      28: iload_3
+      29: tableswitch   { // 0 to 22
+
+                     0: 136
+
+                     1: 186
+
+                     2: 213
+
+                     3: 239
+
+                     4: 266
+
+                     5: 292
+
+                     6: 318
+
+                     7: 345
+
+                     8: 372
+
+                     9: 398
+
+                    10: 424
+
+                    11: 451
+
+                    12: 491
+
+                    13: 524
+
+                    14: 564
+
+                    15: 597
+
+                    16: 623
+
+                    17: 649
+
+                    18: 675
+
+                    19: 701
+
+                    20: 727
+
+                    21: 753
+
+                    22: 780
+               default: 807
+          }
+     136: aload_0
+     137: getfield      #46                 // Field _Pink:LCodexPlayer;
+     140: ldc           #196                // String weapMug
+     142: iconst_0
+     143: iconst_0
+     144: invokevirtual #200                // Method CodexActor.OverrideActorWeapon:(Ljava/lang/String;ZZ)Z
+     147: pop
+     148: aload_0
+     149: getfield      #46                 // Field _Pink:LCodexPlayer;
+     152: sipush        141
+     155: iconst_0
+     156: ldc           #157                // float 30.0f
+     158: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     161: pop
+     162: iload_1
+     163: aload_0
+     164: getfield      #146                // Field christofGUID:I
+     167: aload_0
+     168: getfield      #151                // Field pinkGUID:I
+     171: invokestatic  #204                // Method CodexCamera.SetupCutscene:(III)V
+     174: iload_1
+     175: iconst_1
+     176: iconst_2
+     177: iconst_2
+     178: iconst_0
+     179: fconst_0
+     180: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     183: goto          807
+     186: aload_0
+     187: getfield      #46                 // Field _Pink:LCodexPlayer;
+     190: sipush        144
+     193: iconst_0
+     194: ldc           #157                // float 30.0f
+     196: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     199: pop
+     200: iload_1
+     201: bipush        6
+     203: iconst_2
+     204: iconst_2
+     205: iconst_0
+     206: fconst_0
+     207: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     210: goto          807
+     213: aload_0
+     214: getfield      #46                 // Field _Pink:LCodexPlayer;
+     217: sipush        143
+     220: iconst_0
+     221: ldc           #157                // float 30.0f
+     223: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     226: pop
+     227: iload_1
+     228: iconst_1
+     229: iconst_2
+     230: iconst_2
+     231: iconst_0
+     232: fconst_0
+     233: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     236: goto          807
+     239: aload_0
+     240: getfield      #46                 // Field _Pink:LCodexPlayer;
+     243: sipush        141
+     246: iconst_0
+     247: ldc           #157                // float 30.0f
+     249: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     252: pop
+     253: iload_1
+     254: bipush        7
+     256: iconst_2
+     257: iconst_2
+     258: iconst_0
+     259: fconst_0
+     260: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     263: goto          807
+     266: aload_0
+     267: getfield      #46                 // Field _Pink:LCodexPlayer;
+     270: sipush        144
+     273: iconst_0
+     274: ldc           #157                // float 30.0f
+     276: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     279: pop
+     280: iload_1
+     281: iconst_3
+     282: iconst_2
+     283: iconst_2
+     284: iconst_0
+     285: fconst_0
+     286: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     289: goto          807
+     292: aload_0
+     293: getfield      #46                 // Field _Pink:LCodexPlayer;
+     296: sipush        143
+     299: iconst_0
+     300: ldc           #157                // float 30.0f
+     302: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     305: pop
+     306: iload_1
+     307: iconst_1
+     308: iconst_2
+     309: iconst_2
+     310: iconst_0
+     311: fconst_0
+     312: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     315: goto          807
+     318: aload_0
+     319: getfield      #46                 // Field _Pink:LCodexPlayer;
+     322: sipush        144
+     325: iconst_0
+     326: ldc           #157                // float 30.0f
+     328: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     331: pop
+     332: iload_1
+     333: bipush        6
+     335: iconst_2
+     336: iconst_2
+     337: iconst_0
+     338: fconst_0
+     339: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     342: goto          807
+     345: aload_0
+     346: getfield      #46                 // Field _Pink:LCodexPlayer;
+     349: sipush        143
+     352: iconst_0
+     353: ldc           #157                // float 30.0f
+     355: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     358: pop
+     359: iload_1
+     360: bipush        7
+     362: iconst_2
+     363: iconst_2
+     364: iconst_0
+     365: fconst_0
+     366: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     369: goto          807
+     372: aload_0
+     373: getfield      #46                 // Field _Pink:LCodexPlayer;
+     376: sipush        144
+     379: iconst_0
+     380: ldc           #157                // float 30.0f
+     382: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     385: pop
+     386: iload_1
+     387: iconst_3
+     388: iconst_2
+     389: iconst_2
+     390: iconst_0
+     391: fconst_0
+     392: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     395: goto          807
+     398: aload_0
+     399: getfield      #46                 // Field _Pink:LCodexPlayer;
+     402: sipush        143
+     405: iconst_0
+     406: ldc           #157                // float 30.0f
+     408: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     411: pop
+     412: iload_1
+     413: iconst_1
+     414: iconst_2
+     415: iconst_2
+     416: iconst_0
+     417: fconst_0
+     418: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     421: goto          807
+     424: aload_0
+     425: getfield      #46                 // Field _Pink:LCodexPlayer;
+     428: sipush        143
+     431: iconst_0
+     432: ldc           #157                // float 30.0f
+     434: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     437: pop
+     438: iload_1
+     439: bipush        7
+     441: iconst_2
+     442: iconst_2
+     443: iconst_0
+     444: fconst_0
+     445: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     448: goto          807
+     451: aload_0
+     452: getfield      #46                 // Field _Pink:LCodexPlayer;
+     455: sipush        144
+     458: iconst_0
+     459: ldc           #157                // float 30.0f
+     461: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     464: pop
+     465: aload_0
+     466: getfield      #156                // Field _Christof:LCodexActor;
+     469: sipush        152
+     472: iconst_0
+     473: ldc           #157                // float 30.0f
+     475: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     478: pop
+     479: iload_1
+     480: iconst_3
+     481: iconst_2
+     482: iconst_2
+     483: iconst_0
+     484: fconst_0
+     485: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     488: goto          807
+     491: aload_0
+     492: getfield      #156                // Field _Christof:LCodexActor;
+     495: invokevirtual #61                 // Method CodexActor.StopActorAction:()V
+     498: aload_0
+     499: getfield      #46                 // Field _Pink:LCodexPlayer;
+     502: sipush        141
+     505: iconst_0
+     506: ldc           #157                // float 30.0f
+     508: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     511: pop
+     512: iload_1
+     513: iconst_1
+     514: iconst_2
+     515: iconst_2
+     516: iconst_0
+     517: fconst_0
+     518: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     521: goto          807
+     524: aload_0
+     525: getfield      #156                // Field _Christof:LCodexActor;
+     528: sipush        152
+     531: iconst_0
+     532: ldc           #157                // float 30.0f
+     534: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     537: pop
+     538: aload_0
+     539: getfield      #46                 // Field _Pink:LCodexPlayer;
+     542: sipush        144
+     545: iconst_0
+     546: ldc           #157                // float 30.0f
+     548: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     551: pop
+     552: iload_1
+     553: iconst_3
+     554: iconst_2
+     555: iconst_2
+     556: iconst_0
+     557: fconst_0
+     558: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     561: goto          807
+     564: aload_0
+     565: getfield      #156                // Field _Christof:LCodexActor;
+     568: invokevirtual #61                 // Method CodexActor.StopActorAction:()V
+     571: aload_0
+     572: getfield      #46                 // Field _Pink:LCodexPlayer;
+     575: sipush        142
+     578: iconst_0
+     579: ldc           #157                // float 30.0f
+     581: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     584: pop
+     585: iload_1
+     586: iconst_1
+     587: iconst_2
+     588: iconst_2
+     589: iconst_0
+     590: fconst_0
+     591: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     594: goto          807
+     597: aload_0
+     598: getfield      #46                 // Field _Pink:LCodexPlayer;
+     601: sipush        144
+     604: iconst_0
+     605: ldc           #157                // float 30.0f
+     607: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     610: pop
+     611: iload_1
+     612: iconst_3
+     613: iconst_2
+     614: iconst_2
+     615: iconst_0
+     616: fconst_0
+     617: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     620: goto          807
+     623: aload_0
+     624: getfield      #46                 // Field _Pink:LCodexPlayer;
+     627: sipush        143
+     630: iconst_0
+     631: ldc           #157                // float 30.0f
+     633: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     636: pop
+     637: iload_1
+     638: iconst_1
+     639: iconst_2
+     640: iconst_2
+     641: iconst_0
+     642: fconst_0
+     643: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     646: goto          807
+     649: aload_0
+     650: getfield      #46                 // Field _Pink:LCodexPlayer;
+     653: sipush        144
+     656: iconst_0
+     657: ldc           #157                // float 30.0f
+     659: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     662: pop
+     663: iload_1
+     664: iconst_3
+     665: iconst_2
+     666: iconst_2
+     667: iconst_0
+     668: fconst_0
+     669: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     672: goto          807
+     675: aload_0
+     676: getfield      #46                 // Field _Pink:LCodexPlayer;
+     679: sipush        143
+     682: iconst_0
+     683: ldc           #157                // float 30.0f
+     685: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     688: pop
+     689: iload_1
+     690: iconst_1
+     691: iconst_2
+     692: iconst_2
+     693: iconst_0
+     694: fconst_0
+     695: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     698: goto          807
+     701: aload_0
+     702: getfield      #46                 // Field _Pink:LCodexPlayer;
+     705: sipush        144
+     708: iconst_0
+     709: ldc           #157                // float 30.0f
+     711: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     714: pop
+     715: iload_1
+     716: iconst_3
+     717: iconst_2
+     718: iconst_2
+     719: iconst_0
+     720: fconst_0
+     721: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     724: goto          807
+     727: aload_0
+     728: getfield      #46                 // Field _Pink:LCodexPlayer;
+     731: sipush        143
+     734: iconst_0
+     735: ldc           #157                // float 30.0f
+     737: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     740: pop
+     741: iload_1
+     742: iconst_1
+     743: iconst_2
+     744: iconst_2
+     745: iconst_0
+     746: fconst_0
+     747: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     750: goto          807
+     753: aload_0
+     754: getfield      #46                 // Field _Pink:LCodexPlayer;
+     757: sipush        144
+     760: iconst_0
+     761: ldc           #157                // float 30.0f
+     763: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     766: pop
+     767: iload_1
+     768: bipush        6
+     770: iconst_2
+     771: iconst_2
+     772: iconst_0
+     773: fconst_0
+     774: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     777: goto          807
+     780: aload_0
+     781: getfield      #46                 // Field _Pink:LCodexPlayer;
+     784: sipush        144
+     787: iconst_0
+     788: ldc           #157                // float 30.0f
+     790: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     793: pop
+     794: iload_1
+     795: bipush        6
+     797: iconst_2
+     798: iconst_2
+     799: iconst_0
+     800: fconst_0
+     801: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     804: goto          807
+     807: goto          1552
+     810: iload_3
+     811: tableswitch   { // 0 to 0
+
+                     0: 828
+               default: 866
+          }
+     828: aload_0
+     829: getfield      #46                 // Field _Pink:LCodexPlayer;
+     832: sipush        143
+     835: iconst_0
+     836: ldc           #157                // float 30.0f
+     838: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     841: pop
+     842: iload_1
+     843: aload_0
+     844: getfield      #146                // Field christofGUID:I
+     847: aload_0
+     848: getfield      #151                // Field pinkGUID:I
+     851: invokestatic  #204                // Method CodexCamera.SetupCutscene:(III)V
+     854: iload_1
+     855: iconst_1
+     856: iconst_2
+     857: iconst_2
+     858: iconst_0
+     859: fconst_0
+     860: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+     863: goto          866
+     866: goto          1552
+     869: iload_3
+     870: tableswitch   { // 0 to 20
+
+                     0: 968
+
+                     1: 1025
+
+                     2: 1051
+
+                     3: 1077
+
+                     4: 1103
+
+                     5: 1129
+
+                     6: 1155
+
+                     7: 1181
+
+                     8: 1207
+
+                     9: 1233
+
+                    10: 1259
+
+                    11: 1286
+
+                    12: 1313
+
+                    13: 1339
+
+                    14: 1365
+
+                    15: 1391
+
+                    16: 1417
+
+                    17: 1443
+
+                    18: 1470
+
+                    19: 1496
+
+                    20: 1522
+               default: 1549
+          }
+     968: aload_0
+     969: getfield      #46                 // Field _Pink:LCodexPlayer;
+     972: sipush        142
+     975: iconst_0
+     976: ldc           #157                // float 30.0f
+     978: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+     981: pop
+     982: iload_1
+     983: aload_0
+     984: getfield      #146                // Field christofGUID:I
+     987: aload_0
+     988: getfield      #151                // Field pinkGUID:I
+     991: invokestatic  #204                // Method CodexCamera.SetupCutscene:(III)V
+     994: iload_1
+     995: iconst_1
+     996: iconst_2
+     997: iconst_2
+     998: iconst_0
+     999: fconst_0
+    1000: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1003: aload_0
+    1004: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1007: invokevirtual #211                // Method CodexPlayer.AddToParty:()Z
+    1010: pop
+    1011: aload_0
+    1012: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1015: sipush        128
+    1018: invokevirtual #214                // Method CodexActor.ClearActorFlags:(I)I
+    1021: pop
+    1022: goto          1549
+    1025: aload_0
+    1026: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1029: sipush        144
+    1032: iconst_0
+    1033: ldc           #157                // float 30.0f
+    1035: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1038: pop
+    1039: iload_1
+    1040: iconst_3
+    1041: iconst_2
+    1042: iconst_2
+    1043: iconst_0
+    1044: fconst_0
+    1045: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1048: goto          1549
+    1051: aload_0
+    1052: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1055: sipush        143
+    1058: iconst_0
+    1059: ldc           #157                // float 30.0f
+    1061: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1064: pop
+    1065: iload_1
+    1066: iconst_1
+    1067: iconst_2
+    1068: iconst_2
+    1069: iconst_0
+    1070: fconst_0
+    1071: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1074: goto          1549
+    1077: aload_0
+    1078: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1081: sipush        144
+    1084: iconst_0
+    1085: ldc           #157                // float 30.0f
+    1087: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1090: pop
+    1091: iload_1
+    1092: iconst_1
+    1093: iconst_2
+    1094: iconst_2
+    1095: iconst_0
+    1096: fconst_0
+    1097: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1100: goto          1549
+    1103: aload_0
+    1104: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1107: sipush        143
+    1110: iconst_0
+    1111: ldc           #157                // float 30.0f
+    1113: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1116: pop
+    1117: iload_1
+    1118: iconst_1
+    1119: iconst_2
+    1120: iconst_2
+    1121: iconst_0
+    1122: fconst_0
+    1123: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1126: goto          1549
+    1129: aload_0
+    1130: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1133: sipush        144
+    1136: iconst_0
+    1137: ldc           #157                // float 30.0f
+    1139: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1142: pop
+    1143: iload_1
+    1144: iconst_3
+    1145: iconst_2
+    1146: iconst_2
+    1147: iconst_0
+    1148: fconst_0
+    1149: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1152: goto          1549
+    1155: aload_0
+    1156: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1159: sipush        143
+    1162: iconst_0
+    1163: ldc           #157                // float 30.0f
+    1165: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1168: pop
+    1169: iload_1
+    1170: iconst_1
+    1171: iconst_2
+    1172: iconst_2
+    1173: iconst_0
+    1174: fconst_0
+    1175: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1178: goto          1549
+    1181: aload_0
+    1182: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1185: sipush        144
+    1188: iconst_0
+    1189: ldc           #157                // float 30.0f
+    1191: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1194: pop
+    1195: iload_1
+    1196: iconst_3
+    1197: iconst_2
+    1198: iconst_2
+    1199: iconst_0
+    1200: fconst_0
+    1201: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1204: goto          1549
+    1207: aload_0
+    1208: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1211: sipush        143
+    1214: iconst_0
+    1215: ldc           #157                // float 30.0f
+    1217: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1220: pop
+    1221: iload_1
+    1222: iconst_1
+    1223: iconst_2
+    1224: iconst_2
+    1225: iconst_0
+    1226: fconst_0
+    1227: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1230: goto          1549
+    1233: aload_0
+    1234: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1237: sipush        144
+    1240: iconst_0
+    1241: ldc           #157                // float 30.0f
+    1243: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1246: pop
+    1247: iload_1
+    1248: iconst_3
+    1249: iconst_2
+    1250: iconst_2
+    1251: iconst_0
+    1252: fconst_0
+    1253: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1256: goto          1549
+    1259: aload_0
+    1260: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1263: sipush        143
+    1266: iconst_0
+    1267: ldc           #157                // float 30.0f
+    1269: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1272: pop
+    1273: iload_1
+    1274: bipush        7
+    1276: iconst_2
+    1277: iconst_2
+    1278: iconst_0
+    1279: fconst_0
+    1280: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1283: goto          1549
+    1286: aload_0
+    1287: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1290: sipush        144
+    1293: iconst_0
+    1294: ldc           #157                // float 30.0f
+    1296: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1299: pop
+    1300: iload_1
+    1301: bipush        6
+    1303: iconst_2
+    1304: iconst_2
+    1305: iconst_0
+    1306: fconst_0
+    1307: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1310: goto          1549
+    1313: aload_0
+    1314: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1317: sipush        143
+    1320: iconst_0
+    1321: ldc           #157                // float 30.0f
+    1323: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1326: pop
+    1327: iload_1
+    1328: iconst_1
+    1329: iconst_2
+    1330: iconst_2
+    1331: iconst_0
+    1332: fconst_0
+    1333: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1336: goto          1549
+    1339: aload_0
+    1340: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1343: sipush        144
+    1346: iconst_0
+    1347: ldc           #157                // float 30.0f
+    1349: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1352: pop
+    1353: iload_1
+    1354: iconst_3
+    1355: iconst_2
+    1356: iconst_2
+    1357: iconst_0
+    1358: fconst_0
+    1359: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1362: goto          1549
+    1365: aload_0
+    1366: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1369: sipush        143
+    1372: iconst_0
+    1373: ldc           #157                // float 30.0f
+    1375: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1378: pop
+    1379: iload_1
+    1380: iconst_1
+    1381: iconst_2
+    1382: iconst_2
+    1383: iconst_0
+    1384: fconst_0
+    1385: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1388: goto          1549
+    1391: aload_0
+    1392: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1395: sipush        144
+    1398: iconst_0
+    1399: ldc           #157                // float 30.0f
+    1401: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1404: pop
+    1405: iload_1
+    1406: iconst_3
+    1407: iconst_2
+    1408: iconst_2
+    1409: iconst_0
+    1410: fconst_0
+    1411: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1414: goto          1549
+    1417: aload_0
+    1418: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1421: sipush        143
+    1424: iconst_0
+    1425: ldc           #157                // float 30.0f
+    1427: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1430: pop
+    1431: iload_1
+    1432: iconst_1
+    1433: iconst_2
+    1434: iconst_2
+    1435: iconst_0
+    1436: fconst_0
+    1437: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1440: goto          1549
+    1443: aload_0
+    1444: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1447: sipush        144
+    1450: iconst_0
+    1451: ldc           #157                // float 30.0f
+    1453: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1456: pop
+    1457: iload_1
+    1458: bipush        6
+    1460: iconst_2
+    1461: iconst_2
+    1462: iconst_0
+    1463: fconst_0
+    1464: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1467: goto          1549
+    1470: aload_0
+    1471: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1474: sipush        143
+    1477: iconst_0
+    1478: ldc           #157                // float 30.0f
+    1480: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1483: pop
+    1484: iload_1
+    1485: iconst_1
+    1486: iconst_2
+    1487: iconst_2
+    1488: iconst_0
+    1489: fconst_0
+    1490: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1493: goto          1549
+    1496: aload_0
+    1497: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1500: sipush        144
+    1503: iconst_0
+    1504: ldc           #157                // float 30.0f
+    1506: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1509: pop
+    1510: iload_1
+    1511: iconst_3
+    1512: iconst_2
+    1513: iconst_2
+    1514: iconst_0
+    1515: fconst_0
+    1516: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1519: goto          1549
+    1522: aload_0
+    1523: getfield      #46                 // Field _Pink:LCodexPlayer;
+    1526: sipush        143
+    1529: iconst_0
+    1530: ldc           #157                // float 30.0f
+    1532: invokevirtual #161                // Method CodexThing.PlayMotionSetMode:(IZF)I
+    1535: pop
+    1536: iload_1
+    1537: bipush        7
+    1539: iconst_2
+    1540: iconst_2
+    1541: iconst_0
+    1542: fconst_0
+    1543: invokestatic  #208                // Method CodexCamera.SetShot:(IIIIIF)V
+    1546: goto          1549
+    1549: goto          1552
+    1552: return
+
+  static {};
+    Code:
+       0: iconst_1
+       1: anewarray     #220                // class java/lang/String
+       4: dup
+       5: iconst_0
+       6: ldc           #148                // String Pink
+       8: aastore
+       9: putstatic     #224                // Field _params:[Ljava/lang/String;
+      12: return
+}
+Compiled from "TEN1_Bartender.java"
+public class TEN1_Bartender extends Codex {
+  private LondonChronicle chronScript;
+
+  private int ownerGuid;
+
+  private CodexActor owner;
+
+  private java.lang.String descriptionID;
+
+  private int flags;
+
+  private float buyRate;
+
+  private float sellRate;
+
+  private int sellFlags;
+
+  private static java.lang.String[] greetingLine;
+
+  private static final int numGreetingLines;
+
+  private boolean bActive;
+
+  public boolean bBartenderMenuConversation;
+
+  public void BartenderMenuConversation(int, int);
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: putfield      #14                 // Field bBartenderMenuConversation:Z
+       5: aload_0
+       6: invokevirtual #18                 // Method Codex.AIOff:()V
+       9: aload_0
+      10: iload_1
+      11: iload_2
+      12: ldc           #20                 // String 28_1_BartenderMenu
+      14: ldc           #22                 // String 28_1_BartenderMenu.nco
+      16: iconst_4
+      17: invokevirtual #26                 // Method Codex.ExecuteConversation:(IILjava/lang/String;Ljava/lang/String;I)Z
+      20: pop
+      21: return
+
+  public void clicked(int, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #34                 // Field bActive:Z
+       4: ifeq          8
+       7: return
+       8: aload_0
+       9: getfield      #37                 // Field ownerGuid:I
+      12: invokestatic  #41                 // Method Codex.IsActorGuid:(I)Z
+      15: ifeq          80
+      18: aload_0
+      19: getfield      #45                 // Field owner:LCodexActor;
+      22: bipush        117
+      24: iconst_0
+      25: ldc           #46                 // float 30.0f
+      27: invokevirtual #52                 // Method CodexActor.PlayActorMotionSetMode:(IZF)I
+      30: istore        4
+      32: aload_0
+      33: iconst_1
+      34: putfield      #34                 // Field bActive:Z
+      37: aload_0
+      38: getfield      #45                 // Field owner:LCodexActor;
+      41: bipush        64
+      43: invokevirtual #58                 // Method CodexThing.SetThingFlags:(I)I
+      46: pop
+      47: bipush        51
+      49: invokestatic  #63                 // Method CodexSequence.GetChronicleFlag:(I)Z
+      52: ifne          70
+      55: bipush        51
+      57: invokestatic  #66                 // Method CodexSequence.SetChronicleFlag:(I)Z
+      60: pop
+      61: aload_0
+      62: iload_2
+      63: iconst_0
+      64: invokevirtual #70                 // Method BartenderMenuConversation:(II)V
+      67: goto          80
+      70: aload_0
+      71: ldc           #71                 // float 0.5f
+      73: iconst_1
+      74: iload_2
+      75: i2f
+      76: invokevirtual #75                 // Method Codex.SetTimer:(FIF)Z
+      79: pop
+      80: return
+
+  public void convended(int, boolean, int);
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field bBartenderMenuConversation:Z
+       4: ifeq          20
+       7: aload_0
+       8: invokevirtual #82                 // Method Codex.AIOn:()V
+      11: aload_0
+      12: iconst_0
+      13: putfield      #14                 // Field bBartenderMenuConversation:Z
+      16: iload_1
+      17: invokestatic  #88                 // Method CodexCamera.Release:(I)V
+      20: aload_0
+      21: iload_1
+      22: invokevirtual #91                 // Method BuySellInterface:(I)V
+      25: return
+
+  public void beginscene(int, int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokevirtual #97                 // Method Codex.GetClassThing:()I
+       5: putfield      #37                 // Field ownerGuid:I
+       8: aload_0
+       9: getfield      #37                 // Field ownerGuid:I
+      12: invokestatic  #41                 // Method Codex.IsActorGuid:(I)Z
+      15: ifeq          33
+      18: aload_0
+      19: new           #51                 // class CodexActor
+      22: dup
+      23: aload_0
+      24: getfield      #37                 // Field ownerGuid:I
+      27: invokespecial #100                // Method CodexActor."<init>":(I)V
+      30: putfield      #45                 // Field owner:LCodexActor;
+      33: return
+
+  public TEN1_Bartender();
+    Code:
+       0: aload_0
+       1: invokespecial #103                // Method Codex."<init>":()V
+       4: aload_0
+       5: ldc           #105                // String BARTENDER
+       7: putfield      #109                // Field descriptionID:Ljava/lang/String;
+      10: aload_0
+      11: ldc           #110                // float 1.25f
+      13: putfield      #114                // Field buyRate:F
+      16: aload_0
+      17: ldc           #115                // float 0.8f
+      19: putfield      #118                // Field sellRate:F
+      22: aload_0
+      23: bipush        12
+      25: putfield      #121                // Field sellFlags:I
+      28: aload_0
+      29: aload_0
+      30: iconst_0
+      31: invokevirtual #125                // Method Codex.GetChronicleScript:(I)Ljava/lang/Object;
+      34: checkcast     #127                // class LondonChronicle
+      37: putfield      #131                // Field chronScript:LLondonChronicle;
+      40: return
+
+  public void endscene(int, int, int);
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: putfield      #34                 // Field bActive:Z
+       5: aload_0
+       6: getfield      #45                 // Field owner:LCodexActor;
+       9: bipush        64
+      11: invokevirtual #134                // Method CodexThing.ClearThingFlags:(I)I
+      14: pop
+      15: return
+
+  public void convreached(int, int, int, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field bBartenderMenuConversation:Z
+       4: ifeq          48
+       7: iload_3
+       8: tableswitch   { // 0 to 0
+
+                     0: 28
+               default: 48
+          }
+      28: iload_1
+      29: iload         5
+      31: iconst_0
+      32: invokestatic  #139                // Method CodexCamera.SetupCutscene:(III)V
+      35: iload_1
+      36: bipush        6
+      38: iconst_2
+      39: iconst_1
+      40: iconst_0
+      41: fconst_0
+      42: invokestatic  #143                // Method CodexCamera.SetShot:(IIIIIF)V
+      45: goto          48
+      48: return
+
+  static {};
+    Code:
+       0: iconst_2
+       1: anewarray     #149                // class java/lang/String
+       4: dup
+       5: iconst_0
+       6: ldc           #151                // String MDBart1_0_0_1915.wav
+       8: aastore
+       9: dup
+      10: iconst_1
+      11: ldc           #153                // String MDBart1_0_0_1917
+      13: aastore
+      14: putstatic     #157                // Field greetingLine:[Ljava/lang/String;
+      17: return
+
+  public void BuySellInterface(int);
+    Code:
+       0: aload_0
+       1: ldc           #159                // String ClubTen.nbs
+       3: aload_0
+       4: getfield      #37                 // Field ownerGuid:I
+       7: aload_0
+       8: getfield      #109                // Field descriptionID:Ljava/lang/String;
+      11: aload_0
+      12: getfield      #162                // Field flags:I
+      15: aload_0
+      16: getfield      #114                // Field buyRate:F
+      19: aload_0
+      20: getfield      #118                // Field sellRate:F
+      23: aload_0
+      24: getfield      #121                // Field sellFlags:I
+      27: invokevirtual #166                // Method Codex.AddBuySell:(Ljava/lang/String;ILjava/lang/String;IFFI)Z
+      30: pop
+      31: aload_0
+      32: aload_0
+      33: getfield      #37                 // Field ownerGuid:I
+      36: iload_1
+      37: iconst_4
+      38: invokevirtual #170                // Method Codex.ExecuteBuySell:(III)Z
+      41: pop
+      42: return
+
+  public void timer(int, float, float, float, float);
+    Code:
+       0: iload_1
+       1: iconst_1
+       2: if_icmpne     57
+       5: aload_0
+       6: getfield      #45                 // Field owner:LCodexActor;
+       9: bipush        117
+      11: iconst_0
+      12: ldc           #46                 // float 30.0f
+      14: invokevirtual #52                 // Method CodexActor.PlayActorMotionSetMode:(IZF)I
+      17: pop
+      18: new           #173                // class CodexSound
+      21: getstatic     #157                // Field greetingLine:[Ljava/lang/String;
+      24: invokestatic  #179                // Method java/lang/Math.random:()D
+      27: ldc2_w        #180                // double 2.0d
+      30: dmul
+      31: d2i
+      32: aaload
+      33: ldc           #182                // float 300.0f
+      35: ldc           #183                // float 600.0f
+      37: bipush        100
+      39: iconst_0
+      40: iconst_0
+      41: aload_0
+      42: getfield      #37                 // Field ownerGuid:I
+      45: invokespecial #186                // Method CodexSound."<init>":(Ljava/lang/String;FFIIII)V
+      48: aload_0
+      49: fload_2
+      50: f2i
+      51: invokevirtual #91                 // Method BuySellInterface:(I)V
+      54: goto          125
+      57: iload_1
+      58: iconst_2
+      59: if_icmpne     92
+      62: aload_0
+      63: getfield      #45                 // Field owner:LCodexActor;
+      66: bipush        117
+      68: iconst_0
+      69: ldc           #46                 // float 30.0f
+      71: invokevirtual #52                 // Method CodexActor.PlayActorMotionSetMode:(IZF)I
+      74: istore        6
+      76: aload_0
+      77: iload         6
+      79: sipush        1000
+      82: idiv
+      83: i2f
+      84: iconst_3
+      85: invokevirtual #189                // Method Codex.SetTimer:(FI)Z
+      88: pop
+      89: goto          125
+      92: iload_1
+      93: iconst_3
+      94: if_icmpne     125
+      97: aload_0
+      98: getfield      #45                 // Field owner:LCodexActor;
+     101: bipush        33
+     103: iconst_0
+     104: ldc           #46                 // float 30.0f
+     106: invokevirtual #52                 // Method CodexActor.PlayActorMotionSetMode:(IZF)I
+     109: pop
+     110: aload_0
+     111: iconst_0
+     112: putfield      #34                 // Field bActive:Z
+     115: aload_0
+     116: getfield      #45                 // Field owner:LCodexActor;
+     119: bipush        64
+     121: invokevirtual #134                // Method CodexThing.ClearThingFlags:(I)I
+     124: pop
+     125: return
+
+  public void buysellended(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #37                 // Field ownerGuid:I
+       4: invokestatic  #41                 // Method Codex.IsActorGuid:(I)Z
+       7: ifeq          17
+      10: aload_0
+      11: fconst_2
+      12: iconst_2
+      13: invokevirtual #189                // Method Codex.SetTimer:(FI)Z
+      16: pop
+      17: return
+}

@@ -1,0 +1,63 @@
+{
+  "level": "ClubTenebrae",
+  "nil": "L1_TEN1.nil",
+  "static_scene": "L1_TEN1.nsd",
+  "original_chronicle": "Chronicles/London.nsc:35,42",
+  "chronicle_exit": "WestLondon,3 <-> ClubTenebrae,0",
+  "exit_object": {
+    "level": "ClubTenebrae",
+    "template": "tracker_thing",
+    "position": [
+      105.0,
+      -1122.0,
+      -368.0
+    ],
+    "orientation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "sector": 10,
+    "origin": "L1_TEN1.nsd",
+    "offset": 6560,
+    "script": "ClickExit",
+    "model": null,
+    "description_key": "TEN1_EXIT_DESC_1",
+    "read_only": true,
+    "confidence": "static NSD tag-pattern; runtime identity required",
+    "mesh_offset": 6800,
+    "mesh_bounds": [
+      [
+        -69.6310043334961,
+        -70.6317138671875,
+        -144.0
+      ],
+      [
+        70.37635803222656,
+        69.375732421875,
+        144.0
+      ]
+    ],
+    "mesh_materials": [
+      "London\\CTdoor_L"
+    ],
+    "preview_model": "@original/6560"
+  },
+  "exit_mesh_triangles": 48,
+  "fixed_door_triangles": 138,
+  "fixed_door_bounds": [
+    [
+      436.0,
+      184.0,
+      -512.0
+    ],
+    [
+      1156.0,
+      208.0,
+      -207.99937438964844
+    ]
+  ],
+  "static_scene_sha256": "c4a02629b20ab36235091ae9366ac76a35af2f0a8e8ebe10cd12f60b0628e03b",
+  "original_files_written": false,
+  "native_game_test": false
+}

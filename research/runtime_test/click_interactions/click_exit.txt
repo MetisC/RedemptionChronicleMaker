@@ -1,0 +1,217 @@
+Compiled from "ClickExit.java"
+public class ClickExit extends Codex {
+  private CodexThing exitThing;
+
+  private int _exitNumber;
+
+  private java.lang.String _locationName;
+
+  private java.lang.String originalDescID;
+
+  private boolean bGotID;
+
+  public static java.lang.String[] _params;
+
+  public void clicked(int, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field bGotID:Z
+       4: ifne          8
+       7: return
+       8: aload_0
+       9: getfield      #18                 // Field _locationName:Ljava/lang/String;
+      12: aload_0
+      13: getfield      #22                 // Field _exitNumber:I
+      16: invokestatic  #28                 // Method CodexSequence.IsExitClosed:(Ljava/lang/String;I)Z
+      19: ifne          33
+      22: aload_0
+      23: getfield      #22                 // Field _exitNumber:I
+      26: iload_2
+      27: invokestatic  #32                 // Method CodexSequence.TakeExit:(II)V
+      30: goto          57
+      33: new           #34                 // class CodexSound
+      36: ldc           #36                 // String locked_large_02.WAV
+      38: ldc           #37                 // float 300.0f
+      40: ldc           #38                 // float 600.0f
+      42: bipush        100
+      44: iconst_0
+      45: iconst_0
+      46: iload_2
+      47: invokespecial #42                 // Method CodexSound."<init>":(Ljava/lang/String;FFIIII)V
+      50: iload_2
+      51: iconst_0
+      52: ldc           #44                 // String GEN_DOORLOCKED
+      54: invokestatic  #50                 // Method CodexConsole.PrintNLS:(IILjava/lang/String;)V
+      57: return
+
+  public ClickExit(int);
+    Code:
+       0: aload_0
+       1: invokespecial #58                 // Method Codex."<init>":()V
+       4: aload_0
+       5: ldc           #60                 // String
+       7: putfield      #18                 // Field _locationName:Ljava/lang/String;
+      10: aload_0
+      11: ldc           #60                 // String
+      13: putfield      #63                 // Field originalDescID:Ljava/lang/String;
+      16: aload_0
+      17: new           #65                 // class CodexThing
+      20: dup
+      21: aload_0
+      22: invokevirtual #69                 // Method Codex.GetClassThing:()I
+      25: invokespecial #72                 // Method CodexThing."<init>":(I)V
+      28: putfield      #76                 // Field exitThing:LCodexThing;
+      31: aload_0
+      32: iload_1
+      33: putfield      #22                 // Field _exitNumber:I
+      36: return
+
+  public void beginscene(int, int);
+    Code:
+       0: aload_0
+       1: getfield      #76                 // Field exitThing:LCodexThing;
+       4: ldc           #78                 // int 2097152
+       6: invokevirtual #82                 // Method CodexThing.SetThingFlags:(I)I
+       9: pop
+      10: new           #65                 // class CodexThing
+      13: dup
+      14: iload_1
+      15: invokespecial #72                 // Method CodexThing."<init>":(I)V
+      18: astore_3
+      19: aload_3
+      20: invokevirtual #85                 // Method CodexThing.GetLocationNum:()I
+      23: istore        4
+      25: aload_0
+      26: iload         4
+      28: invokestatic  #89                 // Method CodexSequence.GetLocationName:(I)Ljava/lang/String;
+      31: putfield      #18                 // Field _locationName:Ljava/lang/String;
+      34: aload_0
+      35: getfield      #14                 // Field bGotID:Z
+      38: ifne          57
+      41: aload_0
+      42: aload_0
+      43: getfield      #76                 // Field exitThing:LCodexThing;
+      46: invokevirtual #93                 // Method CodexThing.GetDescriptionID:()Ljava/lang/String;
+      49: putfield      #63                 // Field originalDescID:Ljava/lang/String;
+      52: aload_0
+      53: iconst_1
+      54: putfield      #14                 // Field bGotID:Z
+      57: aload_0
+      58: getfield      #18                 // Field _locationName:Ljava/lang/String;
+      61: aload_0
+      62: getfield      #22                 // Field _exitNumber:I
+      65: invokestatic  #96                 // Method CodexSequence.IsExitValid:(Ljava/lang/String;I)Z
+      68: ifne          84
+      71: aload_0
+      72: getfield      #76                 // Field exitThing:LCodexThing;
+      75: bipush        64
+      77: invokevirtual #82                 // Method CodexThing.SetThingFlags:(I)I
+      80: pop
+      81: goto          94
+      84: aload_0
+      85: getfield      #76                 // Field exitThing:LCodexThing;
+      88: bipush        64
+      90: invokevirtual #99                 // Method CodexThing.ClearThingFlags:(I)I
+      93: pop
+      94: aload_0
+      95: getfield      #18                 // Field _locationName:Ljava/lang/String;
+      98: aload_0
+      99: getfield      #22                 // Field _exitNumber:I
+     102: invokestatic  #28                 // Method CodexSequence.IsExitClosed:(Ljava/lang/String;I)Z
+     105: ifeq          141
+     108: aload_0
+     109: getfield      #76                 // Field exitThing:LCodexThing;
+     112: new           #101                // class java/lang/StringBuffer
+     115: dup
+     116: invokespecial #102                // Method java/lang/StringBuffer."<init>":()V
+     119: aload_0
+     120: getfield      #63                 // Field originalDescID:Ljava/lang/String;
+     123: invokevirtual #106                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     126: ldc           #108                // String _L
+     128: invokevirtual #106                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     131: invokevirtual #111                // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     134: invokevirtual #115                // Method CodexThing.SetDescriptionID:(Ljava/lang/String;)Z
+     137: pop
+     138: goto          153
+     141: aload_0
+     142: getfield      #76                 // Field exitThing:LCodexThing;
+     145: aload_0
+     146: getfield      #63                 // Field originalDescID:Ljava/lang/String;
+     149: invokevirtual #115                // Method CodexThing.SetDescriptionID:(Ljava/lang/String;)Z
+     152: pop
+     153: return
+
+  public void restore(int);
+    Code:
+       0: aload_0
+       1: invokestatic  #122                // Method CodexSequence.RestoreBoolean:()Z
+       4: putfield      #14                 // Field bGotID:Z
+       7: aload_0
+       8: invokestatic  #125                // Method CodexSequence.RestoreString:()Ljava/lang/String;
+      11: putfield      #63                 // Field originalDescID:Ljava/lang/String;
+      14: aload_0
+      15: invokestatic  #125                // Method CodexSequence.RestoreString:()Ljava/lang/String;
+      18: putfield      #18                 // Field _locationName:Ljava/lang/String;
+      21: return
+
+  static {};
+    Code:
+       0: iconst_1
+       1: anewarray     #128                // class java/lang/String
+       4: dup
+       5: iconst_0
+       6: ldc           #130                // String Exit number;0
+       8: aastore
+       9: putstatic     #134                // Field _params:[Ljava/lang/String;
+      12: return
+
+  public void save(int);
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field bGotID:Z
+       4: invokestatic  #138                // Method CodexSequence.SaveBoolean:(Z)Z
+       7: pop
+       8: aload_0
+       9: getfield      #63                 // Field originalDescID:Ljava/lang/String;
+      12: invokestatic  #142                // Method CodexSequence.SaveString:(Ljava/lang/String;)I
+      15: pop
+      16: aload_0
+      17: getfield      #18                 // Field _locationName:Ljava/lang/String;
+      20: invokestatic  #142                // Method CodexSequence.SaveString:(Ljava/lang/String;)I
+      23: pop
+      24: return
+
+  public void exitstatechanged();
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field bGotID:Z
+       4: ifne          8
+       7: return
+       8: aload_0
+       9: getfield      #18                 // Field _locationName:Ljava/lang/String;
+      12: aload_0
+      13: getfield      #22                 // Field _exitNumber:I
+      16: invokestatic  #28                 // Method CodexSequence.IsExitClosed:(Ljava/lang/String;I)Z
+      19: ifeq          55
+      22: aload_0
+      23: getfield      #76                 // Field exitThing:LCodexThing;
+      26: new           #101                // class java/lang/StringBuffer
+      29: dup
+      30: invokespecial #102                // Method java/lang/StringBuffer."<init>":()V
+      33: aload_0
+      34: getfield      #63                 // Field originalDescID:Ljava/lang/String;
+      37: invokevirtual #106                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      40: ldc           #108                // String _L
+      42: invokevirtual #106                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      45: invokevirtual #111                // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+      48: invokevirtual #115                // Method CodexThing.SetDescriptionID:(Ljava/lang/String;)Z
+      51: pop
+      52: goto          67
+      55: aload_0
+      56: getfield      #76                 // Field exitThing:LCodexThing;
+      59: aload_0
+      60: getfield      #63                 // Field originalDescID:Ljava/lang/String;
+      63: invokevirtual #115                // Method CodexThing.SetDescriptionID:(Ljava/lang/String;)Z
+      66: pop
+      67: return
+}

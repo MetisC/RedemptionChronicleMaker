@@ -313,3 +313,41 @@ El record `player_pose_record_v1` consta de SaveBoolean y seis SaveFloat: XYZ y 
 scene.generators añade modo, waves/groups, rol/template/cantidad, waypoints, límites, intervalos, políticas, boss/phases y acciones normales. YAML sin aliases, compatible con loader seguro. Formato 9 se abre sin mutación; primer generador crea backup y conversión optativa con undo.
 
 Se siguen generando NSC/NMF/NSD/NOT/NLS/NCO/NVO/NQD/NTX y Java/classes según contenido. NIL se referencia sin editar. dynamic_records_v1 añade SaveInt(1), estado/oleada/espera/cursors/batch/puntos/retries/counters, booleanos de seguridad/oleada/boss y float HP anterior; después slots GUID/entrada, counts por entrada/rol y done/pending por fase. Restore lee el mismo orden y rechaza propiedad/cursors inválidos. La firma incluye configuración dinámica: cambios estructurales requieren nueva partida. No es un writer completo del save nativo.
+
+### Objetos originales · acción optativa en formatos 9/10
+
+`control_original` contiene `level`, `template`, `position` XYZ y/o `cast_id`, y `operation`: `hide`, `restore`, `remove`, `frame` o `pivot`. El selector obtiene la identidad del NSD estático catalogado; no copia ni reescribe su bloque. Para movimiento requiere `frame` 0..255 y `parameter` positivo; `open` controla el signo de duración del pivote. La pertenencia al level y la plantilla original de tipo prop se validan antes de generar.
+
+La generación añade Java y siete Chronicle Flags internos por identidad, deduplicados entre acciones. Conserva los bits originales de render, colisión, bloqueo visual y bloqueo de cámara, más estado oculto/retirado. Al restaurar sólo repone esos bits; al cargar/reentrar reaplica la visibilidad o retirada. No añade campos a los records Save/Restore. El movimiento de frames se delega al motor; su persistencia visual no está certificada. Sin acciones `control_original` no se inyecta este runtime.
+
+### Importación local WTD
+
+`content_packs/within_the_darkness/import.json` registra hashes de fuente/paquete, catálogo resuelto y geometría/NSD de Penthouse. `rcm_wtd_content.nob` contiene sólo la selección local: política de nombres suministrada por el usuario, excepción expresa NIL/NSD de Penthouse y NLS propio de su label. NCD/NDD/NDG se regeneran desde filas verificadas conservando las definiciones originales; sólo se añaden nombres sin colisión con Java/dependencias presentes. Se comprueba que cada implementación de disciplina hereda realmente de `Discipline` leyendo su classfile, sin ejecutarlo. NOT nuevas contienen únicamente registros seleccionados y herencia resuelta; no copian las colas no referenciadas del archivo fuente. Los NMS que colisionaban con originales se renombran y sólo las plantillas importadas apuntan a ellos.
+
+En formato 9/10, `actors[].traits` admite `clan` por nombre NCD y `disciplines` como mapa nombre NDD → nivel 0..5. Usa SetActorClan y SetActorDisciplineLevel al crear un actor nuevo; no reinicializa un actor restaurado. Las acciones `set_actor_clan: {actor: Player, clan: salubri}` y `set_discipline: {actor: Player, discipline: Panacea, level: 1}` admiten Player o ID local. Requieren una importación válida, con validación y navegación de referencias normal.
+
+`build_inputs_sha256` y contrato de saves incluyen la dependencia importada. El informe `imported_content` conserva ID/hash, sin meter el paquete en el ZIP de distribución; Deploy comprueba el hash y lo copia sólo a RCM. La compatibilidad de inventarios conserva el paquete completo cuando una plantilla de perfil lo necesita, evitando duplicar sus definiciones en `rcm_compat`. Sin importación/traits/acciones nuevas, el Java aceptado se genera idéntico.
+
+Las AI importadas también se filtran por sus instrucciones `discipline`: cada nombre debe existir en la tabla NDD efectiva y cada nivel estar entre 0 y 5. Se excluyen las AI no resolubles y, por dependencia, sus plantillas; no se sustituyen por comportamientos inventados.
+
+## Previsualización de objetos incrustados y selección 3D
+
+`spatial/scene_mesh.py` reconoce de forma acotada un cuerpo de brush NSD: materiales de 32 bytes, vértices de 40 bytes, índices uint16 y grupos de 28 bytes. Exige cuentas/índices coherentes, floats finitos y bounds finales coincidentes. La búsqueda termina en el siguiente registro de entidad; no cruza hacia la malla de otro objeto. No es un lector completo del NSD variable ni un writer. Tenebrae: cuerpo en offset 6800, 78 vértices y 48 triángulos, material `London\CTdoor_L`, entidad `tracker_thing` en offset 6560.
+
+Las previsualizaciones originales se transforman con yaw/pitch/roll y se seleccionan por triángulos, con oclusión NIL. La selección no cambia el YAML. Para superficies NIL, el asistente genera exclusivamente trigger y travel; nunca `control_original`. Evidencia en `research/runtime_test/original_selection/tenebrae_evidence.json`.
+
+## Interacciones nativas por clic
+
+En formato 9/10, un objeto `tracker_thing` puede llevar `interaction: {materials, vertices, material_ids, sector}`. Los vértices expandidos contienen XYZUV locales (cinco floats), tres por triángulo; los IDs enlazan materiales de 32 bytes. Límites: 2048 triángulos, 64 materiales, coordenadas finitas y transform absoluto. El nombre del objeto genera el NLS del tag 82; Cast ID y script pasivo permiten `CaptureThing` en el controlador de escena. Son props cargados por nuestro NSD; no se simula un clic con un trigger ni se intenta recrearlos sin brush mediante CreateThing.
+
+El codec NSD ahora acepta además el subconjunto propio: frames=0, parámetros=0, brush=1, cuerpo material/vértices/índices/grupos/bounds, seis planos axiales válidos, sectores de región=0, datos de luz=0. Cuentas y datos deben coincidir al releer. El escritor usa el patrón original flags=6, vértices de 40 bytes con normal/UV y floats finales 1/0, grupo de 28 bytes con word 4 y cuenta repetida. No es un escritor universal de NSD ni una edición del NIL. Los 20 bytes vacíos siguen idénticos para entidades anteriores.
+
+`object_clicked` referencia el ID del objeto. Puede ejecutar cualquier acción normal; `run_event: ID` llama a otro evento local, y `when: manual` evita activación automática. El validador rechaza ciclos y cadenas mayores de 32; el runtime protege la reentrada síncrona. `travel` y `jump` no permiten el ID de su escena de origen. Otra escena puede usar el mismo NIL para otro layout. Los triggers de proximidad anteriores no se migran automáticamente.
+
+El campo opcional `interaction.source` conserva el selector original (`level`, `template`, `position` y/o `cast_id`, sin operación). Comparte la búsqueda de identidad acotada de control_original. La capa sigue el transform y visibilidad del prop original; si no se identifica de forma única queda oculta y sin highlight. El proxy desactiva colisión física y se captura una sola vez por GUID. El clic nativo, movimiento/render y carga/restore de esta combinación siguen pendientes en CLICK01–08.
+
+## Entradas NSD propias y nombres de eventos
+
+Después de entidades y el contador de scripts globales (0), se escribe count uint32 y count×60 bytes: sector uint32, base 3×3 float32, posición XYZ float32, entrada uint32 e integrante uint32. Siguen contadores de salidas/posiciones de conversación (0) y entorno de 176 bytes. Se validan matrices, tamaños y truncado. Base identidad; orientación autoral mediante SetOrientation. Los planos NIL cacheados permiten identificar el sector sin modificar geometría. Entrada 0: punto predeterminado. Escenas sin esta función conservan sus bytes.
+
+IDs de eventos: 64 caracteres y mayúsculas tras el primer carácter minúsculo. Son strings internos, no nombres fijos NOD. Así click_drippyCandle_4 conserva la plantilla exacta sin alargar el ID compacto del objeto ni su plantilla nativa. La caja temporal de superficies usa la misma región conectada de material que la interacción; cancelar no crea datos.

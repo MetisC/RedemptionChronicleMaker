@@ -20,7 +20,7 @@ def inspect_template(ws,resource,payload=None):
         data=(payload or {}).get(resource['path'])
         if data is None:raise ValueError('Compila o valida la biblioteca propia antes de inspeccionar sus bytes')
         return next(r for r in inspect_not(data)['templates'] if r['name']==resource['id'])
-    path=ws.output('research/original/'+resource['archive']+'/'+resource['path'])
+    from .project_resources import original_bytes
     # Template catalogue path points at NOT, not a generated record.
-    rows=inspect_not(path.read_bytes())['templates']
+    rows=inspect_not(original_bytes(ws,resource))['templates']
     return next(r for r in rows if r['name']==resource['id'])

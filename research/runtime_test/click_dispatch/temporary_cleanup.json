@@ -1,0 +1,7 @@
+{
+  "removed": [
+    "research\\runtime_test\\click_dispatch\\portable\\Moved App",
+    "research\\runtime_test\\click_dispatch\\portable\\Prueba con espacios \u00f1",
+    "build\\portable_click_dispatch"
+  ]
+}

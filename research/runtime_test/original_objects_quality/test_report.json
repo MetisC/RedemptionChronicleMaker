@@ -1,0 +1,16 @@
+{
+  "tests": 444,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "successful": false,
+  "elapsed_seconds": 410.38980770000035,
+  "category": "offline-integration-gui-model-build-format",
+  "native_engine_test": false,
+  "failures_detail": [
+    {
+      "test": "test_curated_examples_and_easy_optional_enemy (test_round0.Round0)",
+      "traceback": "Traceback (most recent call last):\n  File \"H:\\Repositorios\\RedemptionChronicleMaker\\tests\\test_round0.py\", line 126, in test_curated_examples_and_easy_optional_enemy\n    self.assertEqual(sorted(p.name for p in (ROOT/'chronicles').iterdir()),['dynamic_lab','mini_chronicle','showcase','tutorial'])\nAssertionError: Lists differ: ['dynamic_lab', 'mini_chronicle', 'new_chronicle', 'showcase', 'tutorial'] != ['dynamic_lab', 'mini_chronicle', 'showcase', 'tutorial']\n\nFirst differing element 2:\n'new_chronicle'\n'showcase'\n\nFirst list contains 1 additional elements.\nFirst extra element 4:\n'tutorial'\n\n- ['dynamic_lab', 'mini_chronicle', 'new_chronicle', 'showcase', 'tutorial']\n?                                   -----------------\n\n+ ['dynamic_lab', 'mini_chronicle', 'showcase', 'tutorial']\n"
+    }
+  ]
+}

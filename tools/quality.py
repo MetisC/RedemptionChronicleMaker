@@ -6,6 +6,7 @@ if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8',err
 parser=argparse.ArgumentParser();parser.add_argument('--fast',action='store_true');parser.add_argument('--no-coverage',action='store_true',help='Run the complete suite without tracing coverage');args=parser.parse_args()
 env=dict(os.environ,PYTHONIOENCODING='utf-8',PYTHONPATH=os.pathsep.join([str(ROOT/'cache/devtools'),str(ROOT/'cache/vendor'),str(ROOT/'src')]))
 commands=[['-m','ruff','check','src','tools','tests'],['-m','mypy','--follow-imports=skip','--check-untyped-defs','--cache-dir','build/tests/mypy_cache','src/rcm/paths.py','src/rcm/input_limits.py','src/rcm/file_transaction.py'],['tools/test.py',*(['--fast'] if args.fast else ([] if args.no_coverage else ['--coverage']))]]
+if not args.fast:commands.insert(0,['tools/prepare_native_sectors.py'])
 records=[]
 for cmd in commands:
     run=subprocess.run([sys.executable,*cmd],cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace');records.append({'command':cmd,'returncode':run.returncode,'output':run.stdout+run.stderr});print((run.stdout+run.stderr)[-5000:])

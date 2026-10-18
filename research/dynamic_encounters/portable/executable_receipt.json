@@ -1,7 +1,23 @@
 {
-  "sha256": "67de290ce225ca8dda11ee15d39b53d229441ebeb7264c4892076da62460272d",
-  "runs": 8,
-  "successful": true,
-  "deletion_preview_and_undo": true,
-  "native_engine_test": false
+  "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+  "sha256": "0e76e5217e3264de0a63ae4f8bc822ac9ed4b6416da253b58e6d1bda3a98c63b",
+  "verified_closed_before_swap": true,
+  "portable_fresh_languages": [
+    "en",
+    "es"
+  ],
+  "same_executable_as_tested": true,
+  "current_sources_match_bundle": true,
+  "tests": 474,
+  "tests_passed": true,
+  "focused_tests": 13,
+  "shortcut": {
+    "target": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+    "relative": "..\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+    "cwd": "H:\\Repositorios\\RedemptionChronicleMaker",
+    "arguments": "--workspace \"H:\\Repositorios\\RedemptionChronicleMaker\"",
+    "icon": "H:\\Repositorios\\RedemptionChronicleMaker\\src\\rcm\\editor\\assets\\chronicle.ico"
+  },
+  "native_game_test": false,
+  "game_rcm_updated": false
 }

@@ -1,0 +1,33 @@
+{
+  "tests": 444,
+  "passed_after_targeted_retry": true,
+  "full_suite": {
+    "tests": 444,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "successful": false,
+    "elapsed_seconds": 410.38980770000035,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": [
+      {
+        "test": "test_curated_examples_and_easy_optional_enemy (test_round0.Round0)",
+        "traceback": "Traceback (most recent call last):\n  File \"H:\\Repositorios\\RedemptionChronicleMaker\\tests\\test_round0.py\", line 126, in test_curated_examples_and_easy_optional_enemy\n    self.assertEqual(sorted(p.name for p in (ROOT/'chronicles').iterdir()),['dynamic_lab','mini_chronicle','showcase','tutorial'])\nAssertionError: Lists differ: ['dynamic_lab', 'mini_chronicle', 'new_chronicle', 'showcase', 'tutorial'] != ['dynamic_lab', 'mini_chronicle', 'showcase', 'tutorial']\n\nFirst differing element 2:\n'new_chronicle'\n'showcase'\n\nFirst list contains 1 additional elements.\nFirst extra element 4:\n'tutorial'\n\n- ['dynamic_lab', 'mini_chronicle', 'new_chronicle', 'showcase', 'tutorial']\n?                                   -----------------\n\n+ ['dynamic_lab', 'mini_chronicle', 'showcase', 'tutorial']\n"
+      }
+    ]
+  },
+  "targeted_retry": {
+    "tests": 16,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 20.55247589999999,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "reason": "Test incorrectly rejected a legitimate user project in chronicles; now verifies required bundled masters without prohibiting authored projects.",
+  "native_engine_test": false
+}

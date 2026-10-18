@@ -1,0 +1,700 @@
+{
+  "chronicle": "new_chronicle",
+  "status": "compiled-unverified-in-game",
+  "scenes": [
+    "scene1"
+  ],
+  "class_versions": {
+    "R_new_chronicle_s0_Scene": "45.3",
+    "R_new_chronicle_s0_Passive": "45.3"
+  },
+  "geometry_in_package": false,
+  "files": {
+    "chronicles/R_new_chronicle.nmf": {
+      "size": 193,
+      "sha256": "7c3fdb43b39e5040956479426dd68a5a1791a6eded377dfedb1275c15bc829fd"
+    },
+    "chronicles/R_new_chronicle_s0.nmf": {
+      "size": 142,
+      "sha256": "5dbe65a1a448638bb11bde8d3ea66afd6abd441e68a217e81c34325230b82abf"
+    },
+    "chronicles/new_chronicle.nsc": {
+      "size": 151,
+      "sha256": "0a5fc418d2a5dd933673da0614bde99a21f693efe05b04f0e15321705098e9bc"
+    },
+    "misc/templates/_R_new_chronicle_s0.not": {
+      "size": 636,
+      "sha256": "25da322e2ce98bdf302efe89e9eafc869cc9204dfcff45d63ece4fe24afda1ff"
+    },
+    "scenes/R_new_chronicle_s0.nsd": {
+      "size": 98490,
+      "sha256": "dc91dad4f84f4794075552083e22027ea0fb94961fd052c61901c9202a5e229a"
+    },
+    "sounds/voice/R_new_chronicle_s0_silence.wav": {
+      "size": 176444,
+      "sha256": "9954b1ec94cd58bd7debcf5e3a34585c545100427917cee822de476787090e3c"
+    },
+    "strings/R_new_chronicle.ntx": {
+      "size": 208,
+      "sha256": "cd7859027085c3061f82db833f5da5c45f06476f389a373ce15bc7b85c3b003a"
+    },
+    "strings/R_new_chronicle_s0.nvo": {
+      "size": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    "strings/_R_new_chronicle.nls": {
+      "size": 32,
+      "sha256": "8e856ceed1d8d8aace74880b9382024b7e692bc613cfa50396b422180b331d4a"
+    },
+    "strings/_R_new_chronicle_s0.nls": {
+      "size": 211,
+      "sha256": "291444dd0c90c7d8e6f879daf516e06e5c7da5e52d49a3713d1e0ba8fc9de631"
+    },
+    "codex/R_new_chronicle_s0_Passive.class": {
+      "size": 215,
+      "sha256": "584e13f521aa48116bd6f15327f11bbc751edf00222ecaac895061986fbe380e"
+    },
+    "codex/R_new_chronicle_s0_Scene.class": {
+      "size": 31776,
+      "sha256": "93cba4fb5e81138bb5f3e7c15439cc7b081de85f8d6a17553d9874bdcbc5b71f"
+    }
+  },
+  "distribution_files": {
+    "codex/R_new_chronicle_s0_Passive.class": {
+      "size": 215,
+      "sha256": "584e13f521aa48116bd6f15327f11bbc751edf00222ecaac895061986fbe380e"
+    },
+    "codex/R_new_chronicle_s0_Scene.class": {
+      "size": 31776,
+      "sha256": "93cba4fb5e81138bb5f3e7c15439cc7b081de85f8d6a17553d9874bdcbc5b71f"
+    },
+    "new_chronicle.nob": {
+      "size": 277925,
+      "sha256": "f3e54433379e75496e3355b048ca2750aa40459879d2050a7056888ccadebef5"
+    }
+  },
+  "native_engine_test": false,
+  "reserved_flags": {
+    "e/scene1/click3": 256,
+    "original/scene1/575a6c2c52a135b4/captured": 257,
+    "original/scene1/575a6c2c52a135b4/render": 258,
+    "original/scene1/575a6c2c52a135b4/collide": 259,
+    "original/scene1/575a6c2c52a135b4/visibility": 260,
+    "original/scene1/575a6c2c52a135b4/camera": 261,
+    "original/scene1/575a6c2c52a135b4/hidden": 262,
+    "original/scene1/575a6c2c52a135b4/removed": 263,
+    "original/scene1/73a43362a094d73b/captured": 264,
+    "original/scene1/73a43362a094d73b/render": 265,
+    "original/scene1/73a43362a094d73b/collide": 266,
+    "original/scene1/73a43362a094d73b/visibility": 267,
+    "original/scene1/73a43362a094d73b/camera": 268,
+    "original/scene1/73a43362a094d73b/hidden": 269,
+    "original/scene1/73a43362a094d73b/removed": 270,
+    "arrival/scene1/entry1": 271,
+    "progress/scene1/click3": 272,
+    "action/scene1/click3/0": 273
+  },
+  "environment_profiles": {
+    "scene1": {
+      "id": "L1_TEN1.nsd",
+      "source": {
+        "id": "L1_TEN1",
+        "archive": "Resource.nob",
+        "path": "scenes/L1_TEN1.nsd",
+        "extension": ".nsd",
+        "size": 22758,
+        "crc32": "eb1b66ca",
+        "sha256": "c4a02629b20ab36235091ae9366ac76a35af2f0a8e8ebe10cd12f60b0628e03b"
+      },
+      "source_sha256": "c4a02629b20ab36235091ae9366ac76a35af2f0a8e8ebe10cd12f60b0628e03b",
+      "environment_sha256": "0a14905e9ab6af167433436642841a8922ad55877eec8d2650c299e1a7e1d47e",
+      "sky_model": "",
+      "sky_animation": "",
+      "unknown_bytes_preserved": true,
+      "sky_override": false
+    }
+  },
+  "custom_scripts": [],
+  "project_resources": {
+    "templates": [],
+    "ai_profiles": [],
+    "textures": [],
+    "metadata": {
+      "version": "0.1.0"
+    },
+    "debug": true,
+    "not_path": "misc/templates/_R_new_chronicle_custom.not"
+  },
+  "not_writer_status": "experimental-awaiting-native-acceptance",
+  "imported_content": [
+    {
+      "id": "within_the_darkness",
+      "name": "Within The Darkness",
+      "sha256": "5216338894a4cd5a4d60f0ff4146687f35bd88caa51750891086d350733f78f9",
+      "archive": "rcm_wtd_content.nob"
+    }
+  ],
+  "format_validation": {
+    "files_checked": 10,
+    "conversations": 0,
+    "classfiles": 2,
+    "classfile_budgets": {
+      "codex/R_new_chronicle_s0_Passive.class": {
+        "version": "45.3",
+        "constant_pool_entries": 12,
+        "constant_pool_limit": 65534,
+        "largest_method_bytes": 5,
+        "method_limit_bytes": 65535,
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "code_bytes": 5
+          }
+        ]
+      },
+      "codex/R_new_chronicle_s0_Scene.class": {
+        "version": "45.3",
+        "constant_pool_entries": 1313,
+        "constant_pool_limit": 65534,
+        "largest_method_bytes": 1110,
+        "method_limit_bytes": 65535,
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "code_bytes": 645
+          },
+          {
+            "name": "trace",
+            "descriptor": "(Ljava/lang/String;)V",
+            "code_bytes": 201
+          },
+          {
+            "name": "local",
+            "descriptor": "(I)Z",
+            "code_bytes": 67
+          },
+          {
+            "name": "localPlayer",
+            "descriptor": "(I)I",
+            "code_bytes": 77
+          },
+          {
+            "name": "alive",
+            "descriptor": "(I)Z",
+            "code_bytes": 50
+          },
+          {
+            "name": "inventory",
+            "descriptor": "(ILjava/lang/String;)I",
+            "code_bytes": 76
+          },
+          {
+            "name": "owns",
+            "descriptor": "(ILjava/lang/String;)Z",
+            "code_bytes": 13
+          },
+          {
+            "name": "give",
+            "descriptor": "(II)Z",
+            "code_bytes": 244
+          },
+          {
+            "name": "template",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 44
+          },
+          {
+            "name": "spawn",
+            "descriptor": "(I)V",
+            "code_bytes": 357
+          },
+          {
+            "name": "beginscene",
+            "descriptor": "(II)V",
+            "code_bytes": 73
+          },
+          {
+            "name": "timer",
+            "descriptor": "(IFFFF)V",
+            "code_bytes": 25
+          },
+          {
+            "name": "poll",
+            "descriptor": "()V",
+            "code_bytes": 39
+          },
+          {
+            "name": "pollImpl",
+            "descriptor": "()V",
+            "code_bytes": 595
+          },
+          {
+            "name": "volume",
+            "descriptor": "(I)Z",
+            "code_bytes": 66
+          },
+          {
+            "name": "dispatch",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;I)V",
+            "code_bytes": 174
+          },
+          {
+            "name": "event0",
+            "descriptor": "()Z",
+            "code_bytes": 80
+          },
+          {
+            "name": "event1",
+            "descriptor": "()Z",
+            "code_bytes": 120
+          },
+          {
+            "name": "event2",
+            "descriptor": "()Z",
+            "code_bytes": 132
+          },
+          {
+            "name": "releaseCamera",
+            "descriptor": "()V",
+            "code_bytes": 25
+          },
+          {
+            "name": "conversation",
+            "descriptor": "(I)Z",
+            "code_bytes": 165
+          },
+          {
+            "name": "clicked",
+            "descriptor": "(III)V",
+            "code_bytes": 176
+          },
+          {
+            "name": "convreached",
+            "descriptor": "(IIIII)V",
+            "code_bytes": 148
+          },
+          {
+            "name": "convended",
+            "descriptor": "(IZI)V",
+            "code_bytes": 115
+          },
+          {
+            "name": "finishDialogue",
+            "descriptor": "()V",
+            "code_bytes": 102
+          },
+          {
+            "name": "completeEntry",
+            "descriptor": "(Ljava/lang/String;)Z",
+            "code_bytes": 24
+          },
+          {
+            "name": "quest",
+            "descriptor": "(Ljava/lang/String;I)Z",
+            "code_bytes": 2
+          },
+          {
+            "name": "save",
+            "descriptor": "(I)V",
+            "code_bytes": 145
+          },
+          {
+            "name": "restore",
+            "descriptor": "(I)V",
+            "code_bytes": 152
+          },
+          {
+            "name": "restored",
+            "descriptor": "(I)V",
+            "code_bytes": 206
+          },
+          {
+            "name": "createAt",
+            "descriptor": "(I[F[F)I",
+            "code_bytes": 248
+          },
+          {
+            "name": "positionText",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 63
+          },
+          {
+            "name": "travel",
+            "descriptor": "(Ljava/lang/String;Ljava/lang/String;)Z",
+            "code_bytes": 146
+          },
+          {
+            "name": "arrive",
+            "descriptor": "()Z",
+            "code_bytes": 240
+          },
+          {
+            "name": "patrolActor",
+            "descriptor": "(I)I",
+            "code_bytes": 4
+          },
+          {
+            "name": "patrolTarget",
+            "descriptor": "(I)[F",
+            "code_bytes": 4
+          },
+          {
+            "name": "patrolSpeed",
+            "descriptor": "(I)F",
+            "code_bytes": 6
+          },
+          {
+            "name": "commandPatrol",
+            "descriptor": "(I)Z",
+            "code_bytes": 207
+          },
+          {
+            "name": "startPatrol",
+            "descriptor": "(I)Z",
+            "code_bytes": 43
+          },
+          {
+            "name": "stopPatrol",
+            "descriptor": "(I)V",
+            "code_bytes": 66
+          },
+          {
+            "name": "holdPatrols",
+            "descriptor": "()V",
+            "code_bytes": 81
+          },
+          {
+            "name": "resumePatrols",
+            "descriptor": "()V",
+            "code_bytes": 41
+          },
+          {
+            "name": "pollPatrols",
+            "descriptor": "()V",
+            "code_bytes": 321
+          },
+          {
+            "name": "conversationID",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 6
+          },
+          {
+            "name": "resumeEvents",
+            "descriptor": "()V",
+            "code_bytes": 30
+          },
+          {
+            "name": "dialogueCamera",
+            "descriptor": "(II)V",
+            "code_bytes": 6
+          },
+          {
+            "name": "dialoguePartner",
+            "descriptor": "(I)I",
+            "code_bytes": 4
+          },
+          {
+            "name": "faceDialogue",
+            "descriptor": "(II)V",
+            "code_bytes": 49
+          },
+          {
+            "name": "prepareDialogue",
+            "descriptor": "(II)V",
+            "code_bytes": 72
+          },
+          {
+            "name": "schedulePoll",
+            "descriptor": "()V",
+            "code_bytes": 20
+          },
+          {
+            "name": "dialogueMotion",
+            "descriptor": "(III)V",
+            "code_bytes": 6
+          },
+          {
+            "name": "resetArrivalMotion",
+            "descriptor": "()V",
+            "code_bytes": 47
+          },
+          {
+            "name": "finitePose",
+            "descriptor": "([F)Z",
+            "code_bytes": 47
+          },
+          {
+            "name": "savePlayerPose",
+            "descriptor": "()V",
+            "code_bytes": 200
+          },
+          {
+            "name": "readPlayerPose",
+            "descriptor": "()V",
+            "code_bytes": 121
+          },
+          {
+            "name": "restorePlayerPose",
+            "descriptor": "()Z",
+            "code_bytes": 222
+          },
+          {
+            "name": "showNote",
+            "descriptor": "(Ljava/lang/String;)Z",
+            "code_bytes": 193
+          },
+          {
+            "name": "textended",
+            "descriptor": "(I)V",
+            "code_bytes": 33
+          },
+          {
+            "name": "finishNote",
+            "descriptor": "()V",
+            "code_bytes": 66
+          },
+          {
+            "name": "dynamicConfigure",
+            "descriptor": "()V",
+            "code_bytes": 14
+          },
+          {
+            "name": "dynamicPosition",
+            "descriptor": "(IIIZ)[F",
+            "code_bytes": 18
+          },
+          {
+            "name": "dynamicPointName",
+            "descriptor": "(III)Ljava/lang/String;",
+            "code_bytes": 20
+          },
+          {
+            "name": "dynamicPoints",
+            "descriptor": "(II)I",
+            "code_bytes": 9
+          },
+          {
+            "name": "dynamicPhases",
+            "descriptor": "(I)V",
+            "code_bytes": 3
+          },
+          {
+            "name": "dynamicNotify",
+            "descriptor": "(Ljava/lang/String;II)V",
+            "code_bytes": 69
+          },
+          {
+            "name": "dynamicHealth",
+            "descriptor": "(IZFLjava/lang/String;)Z",
+            "code_bytes": 153
+          },
+          {
+            "name": "dynamicRoleGuid",
+            "descriptor": "(II)I",
+            "code_bytes": 97
+          },
+          {
+            "name": "dynamicCount",
+            "descriptor": "(ILjava/lang/String;I)I",
+            "code_bytes": 166
+          },
+          {
+            "name": "dynamicOwned",
+            "descriptor": "(II)Z",
+            "code_bytes": 60
+          },
+          {
+            "name": "dynamicKilled",
+            "descriptor": "(II)V",
+            "code_bytes": 168
+          },
+          {
+            "name": "killed",
+            "descriptor": "(III)V",
+            "code_bytes": 103
+          },
+          {
+            "name": "dynamicRetire",
+            "descriptor": "(I)Z",
+            "code_bytes": 83
+          },
+          {
+            "name": "dynamicError",
+            "descriptor": "(ILjava/lang/String;)V",
+            "code_bytes": 94
+          },
+          {
+            "name": "dynamicReset",
+            "descriptor": "(IZ)Z",
+            "code_bytes": 245
+          },
+          {
+            "name": "dynamicBegin",
+            "descriptor": "(Z)V",
+            "code_bytes": 140
+          },
+          {
+            "name": "dynamicCommand",
+            "descriptor": "(II)Z",
+            "code_bytes": 499
+          },
+          {
+            "name": "dynamicEntry",
+            "descriptor": "(I)I",
+            "code_bytes": 244
+          },
+          {
+            "name": "dynamicSpawn",
+            "descriptor": "(II)Z",
+            "code_bytes": 1110
+          },
+          {
+            "name": "dynamicComplete",
+            "descriptor": "(I)V",
+            "code_bytes": 89
+          },
+          {
+            "name": "dynamicPoll",
+            "descriptor": "()V",
+            "code_bytes": 1077
+          },
+          {
+            "name": "dynamicSave",
+            "descriptor": "()V",
+            "code_bytes": 327
+          },
+          {
+            "name": "dynamicRestore",
+            "descriptor": "()V",
+            "code_bytes": 614
+          },
+          {
+            "name": "originalFlag",
+            "descriptor": "(II)I",
+            "code_bytes": 174
+          },
+          {
+            "name": "originalBit",
+            "descriptor": "(II)Z",
+            "code_bytes": 10
+          },
+          {
+            "name": "originalSet",
+            "descriptor": "(IIZ)V",
+            "code_bytes": 28
+          },
+          {
+            "name": "originalError",
+            "descriptor": "(ILjava/lang/String;)Z",
+            "code_bytes": 49
+          },
+          {
+            "name": "originalNear",
+            "descriptor": "([FDDD)Z",
+            "code_bytes": 66
+          },
+          {
+            "name": "originalMatches",
+            "descriptor": "(II)Z",
+            "code_bytes": 238
+          },
+          {
+            "name": "originalFind",
+            "descriptor": "(I)I",
+            "code_bytes": 90
+          },
+          {
+            "name": "originalApply",
+            "descriptor": "(IIIFZ)Z",
+            "code_bytes": 580
+          },
+          {
+            "name": "originalReapply",
+            "descriptor": "()V",
+            "code_bytes": 83
+          },
+          {
+            "name": "clickMatches",
+            "descriptor": "(II)Z",
+            "code_bytes": 47
+          },
+          {
+            "name": "findClick",
+            "descriptor": "(I)I",
+            "code_bytes": 133
+          },
+          {
+            "name": "bindClick",
+            "descriptor": "(I)V",
+            "code_bytes": 181
+          },
+          {
+            "name": "debugPosition",
+            "descriptor": "(I)Ljava/lang/String;",
+            "code_bytes": 71
+          },
+          {
+            "name": "traceState",
+            "descriptor": "()V",
+            "code_bytes": 65
+          },
+          {
+            "name": "traceStack",
+            "descriptor": "(Ljava/lang/Throwable;)V",
+            "code_bytes": 45
+          }
+        ]
+      }
+    },
+    "native_engine_test": false
+  },
+  "authoring_source_sha256": "f7017a9e6fbe2486456f21b915e0c6973890c7a3066359d66d15a17ab8d1ba26",
+  "build_inputs_sha256": "11f4340594e452e892642cee13d29ec82006be02a801821d32a724544bb24196",
+  "save_schema_sha256": "94d2057c27299e308376d2ba9b93a6f497adee910b61f7f9cde0fd6205223cec",
+  "new_game_required": false,
+  "generated_artifacts": [
+    "build/new_chronicle/build_report.json",
+    "build/new_chronicle/bundle/codex/R_new_chronicle_s0_Passive.class",
+    "build/new_chronicle/bundle/codex/R_new_chronicle_s0_Scene.class",
+    "build/new_chronicle/bundle/new_chronicle.nob",
+    "build/new_chronicle/generated/java/R_new_chronicle_s0_Passive.java",
+    "build/new_chronicle/generated/java/R_new_chronicle_s0_Scene.java",
+    "build/new_chronicle/model.json",
+    "build/new_chronicle/new_chronicle.nob",
+    "build/new_chronicle/new_chronicle_distribution.zip",
+    "build/new_chronicle/runtime/chronicles/new_chronicle.nsc",
+    "build/new_chronicle/runtime/chronicles/R_new_chronicle.nmf",
+    "build/new_chronicle/runtime/chronicles/R_new_chronicle_s0.nmf",
+    "build/new_chronicle/runtime/codex/R_new_chronicle_s0_Passive.class",
+    "build/new_chronicle/runtime/codex/R_new_chronicle_s0_Scene.class",
+    "build/new_chronicle/runtime/misc/templates/_R_new_chronicle_s0.not",
+    "build/new_chronicle/runtime/scenes/R_new_chronicle_s0.nsd",
+    "build/new_chronicle/runtime/sounds/voice/R_new_chronicle_s0_silence.wav",
+    "build/new_chronicle/runtime/strings/_R_new_chronicle.nls",
+    "build/new_chronicle/runtime/strings/_R_new_chronicle_s0.nls",
+    "build/new_chronicle/runtime/strings/R_new_chronicle.ntx",
+    "build/new_chronicle/runtime/strings/R_new_chronicle_s0.nvo",
+    "build/new_chronicle/source_map.json",
+    "build/new_chronicle_s0/build_report.json",
+    "build/new_chronicle_s0/bundle/codex/R_new_chronicle_s0_Passive.class",
+    "build/new_chronicle_s0/bundle/codex/R_new_chronicle_s0_Scene.class",
+    "build/new_chronicle_s0/bundle/new_chronicle_s0.nob",
+    "build/new_chronicle_s0/compiler.log",
+    "build/new_chronicle_s0/generated/java/R_new_chronicle_s0_Passive.java",
+    "build/new_chronicle_s0/generated/java/R_new_chronicle_s0_Scene.java",
+    "build/new_chronicle_s0/model.json",
+    "build/new_chronicle_s0/new_chronicle_s0.nob",
+    "build/new_chronicle_s0/new_chronicle_s0_distribution.zip",
+    "build/new_chronicle_s0/runtime/chronicles/new_chronicle_s0.nsc",
+    "build/new_chronicle_s0/runtime/chronicles/R_new_chronicle_s0.nmf",
+    "build/new_chronicle_s0/runtime/codex/R_new_chronicle_s0_Passive.class",
+    "build/new_chronicle_s0/runtime/codex/R_new_chronicle_s0_Scene.class",
+    "build/new_chronicle_s0/runtime/misc/templates/_R_new_chronicle_s0.not",
+    "build/new_chronicle_s0/runtime/scenes/R_new_chronicle_s0.nsd",
+    "build/new_chronicle_s0/runtime/sounds/voice/R_new_chronicle_s0_silence.wav",
+    "build/new_chronicle_s0/runtime/strings/_R_new_chronicle_s0.nls",
+    "build/new_chronicle_s0/runtime/strings/R_new_chronicle_s0.nvo"
+  ]
+}

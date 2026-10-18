@@ -1,7 +1,8 @@
 """Independent binary codecs derived from installation bytes.
 
-Unknown NOT tags and trailing data survive a roundtrip. NSD is restricted to
-entities without meshes, frames or script parameters. See FORMAT_NOTES.md.
+Unknown NOT tags and trailing data survive a roundtrip. NSD supports simple
+entities and our bounded click brushes, without frames or script parameters.
+See FORMAT_NOTES.md.
 """
 from dataclasses import dataclass
 import struct
@@ -133,6 +134,8 @@ class Scene:
     entities: list[list[Tag]]
     environment: bytes = bytes(192)
     header: bytes | None = None
+    brushes: dict[int, bytes] | None = None
+    entrances: list[bytes] | None = None
 
     @classmethod
     def read(cls, data: bytes):
@@ -141,16 +144,34 @@ class Scene:
         n = u32(data, 80)
         if n > 100000:
             raise ValueError("Número excesivo de entidades")
-        entities, p = [], 84
+        entities, p, brushes = [], 84, {}
         for _ in range(n):
             tags, p = read_tags(data, p)
-            if p + 20 > len(data) or data[p:p + 20] != bytes(20):
+            if p + 12 > len(data) or data[p:p+8] != bytes(8):
                 raise ValueError("NSD con parámetros/meshes/frames: fuera del subconjunto Fase 1")
-            p += 20
+            mesh=u32(data,p+8);p+=12
+            if mesh:
+                if mesh!=1:raise ValueError('NSD: unsupported mesh count')
+                from .spatial.scene_mesh import read_brush
+                start=p;body=read_brush(data,p);p=body.source_end
+                from .click_interactions import box_planes
+                expected=box_planes([*body.bounds[0],*body.bounds[1]])
+                if data[p:p+len(expected)]!=expected:raise ValueError('NSD: collision planes outside generated subset')
+                p+=len(expected);brushes[len(entities)]=data[start:p]
+            if data[p:p+8]!=bytes(8):raise ValueError('NSD: region/lighting blocks outside generated subset')
+            p+=8
             entities.append(tags)
+        entrances=[]
+        if len(data)-p>=192 and data[p:p+4]==bytes(4):
+            count=u32(data,p+4)
+            if count>4096:raise ValueError('NSD: excessive entrances')
+            if count:
+                from .native_arrivals import validate_record
+                entrances=[validate_record(data[p+8+i*60:p+8+(i+1)*60]) for i in range(count)]
+                data=data[:p+4]+bytes(4)+data[p+8+count*60:]
         if len(data) - p != 192:
             raise ValueError("NSD con bloques variables: fuera del subconjunto Fase 1")
-        return cls(cstring(data[8:40]), cstring(data[40:72]), entities, data[p:], data[:84])
+        return cls(cstring(data[8:40]), cstring(data[40:72]), entities, data[p:], data[:84],brushes or None,entrances or None)
 
     def encode(self):
         if len(self.environment) != 192:
@@ -164,7 +185,23 @@ class Scene:
             if cstring(header[40:72]) != self.layout_name:
                 header[40:72] = fixed(self.layout_name)
         struct.pack_into("<I", header, 80, len(self.entities))
-        return bytes(header) + b"".join(encode_tags(tags) + bytes(20) for tags in self.entities) + self.environment
+        brushes=self.brushes or {}
+        if any(type(i) is not int or not 0<=i<len(self.entities) for i in brushes):raise ValueError('NSD: invalid brush entity')
+        chunks=[]
+        for i,tags in enumerate(self.entities):
+            body=brushes.get(i)
+            if body is not None:
+                from .spatial.scene_mesh import read_brush
+                from .click_interactions import box_planes
+                mesh=read_brush(body,0);end=mesh.source_end;expected=box_planes([*mesh.bounds[0],*mesh.bounds[1]])
+                if body[end:]!=expected:raise ValueError('NSD: brush requires six bounded collision planes')
+            chunks.append(encode_tags(tags)+(bytes(8)+struct.pack('<I',1)+body+bytes(8) if body is not None else bytes(20)))
+        environment=self.environment
+        if self.entrances:
+            from .native_arrivals import validate_record
+            if environment[:16]!=bytes(16) or len(self.entrances)>4096:raise ValueError('NSD: entrance table requires an empty generated global section')
+            environment=environment[:4]+struct.pack('<I',len(self.entrances))+b''.join(validate_record(r) for r in self.entrances)+environment[8:]
+        return bytes(header)+b''.join(chunks)+environment
 
 
 def scene_entity_hints(data: bytes):

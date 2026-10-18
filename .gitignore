@@ -63,6 +63,8 @@ runtime_trace.log
 # Do NOT commit original game assets/binaries
 # ------------------------------------------------------------
 research/original/
+# Locally imported third-party mod assets and their installation manifest
+content_packs/
 
 # Generated binary-analysis dumps
 research/*.bytecode.txt

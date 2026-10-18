@@ -85,6 +85,9 @@ def compile_scenario(out,campaign,harness,doubles_transform=None):
     needed=sorted(set(re.findall(r'\bCAM_(?:SHOT|DIST|ANGLE)_[A-Z_]+\b',code)))
     doubles=doubles.replace('class Codex {','class Codex {'+''.join('static final int '+c+'='+str(200+i)+';' for i,c in enumerate(needed) if not re.search(r'\b'+c+r'\s*=',doubles)))
     doubles=doubles.replace('static void Jump(String s,int e)','static void ChangeScene(String s,String file){} static void Jump(String s,int e)')
+    from rcm.native_arrivals import ordered
+    entrance_cases=''.join('case '+str(i)+': CE.world.get(who).pos=new float[]{'+','.join(str(float(v))+'f' for v in p['transform']['position'])+'};break;' for i,p in enumerate(ordered(campaign.scenes[0][0])))
+    doubles=doubles.replace('CE.teleports++;return CE.valid(who);','CE.teleports++;if(CE.rejectPose)return false;CE.poseWrites++;switch(entry){'+entrance_cases+'}return CE.valid(who);')
     if doubles_transform:doubles=doubles_transform(doubles)
     out.mkdir(parents=True,exist_ok=True)
     for file,text in [(name+'.java',code),('CampaignEngine.java',doubles),('StabilityHarness.java',harness)]:

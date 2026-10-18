@@ -490,8 +490,9 @@ class MainWindow(QMainWindow):
         add(tr('Geometría original · sólo lectura'), ('geometry',))
         original = add(tr('Referencias originales · sólo lectura'), ('original',))
         if self.spatial.viewport and self.spatial.viewport.level:
+            from .original_objects import object_label
             for i, e in enumerate(self.spatial.viewport.level.references):
-                add(e['template'] + tr(' · ') + str(e.get('sector', '?')), ('original', i), original)
+                add(object_label(e) + tr(' · ') + str(e.get('sector', '?')), ('original', i), original)
         for key, label in [("actors", tr("Actores")), ("objects", tr("Objetos")), ("entries", tr("Entradas")), ("waypoints", tr('Puntos de recorrido')), ("triggers", tr('Zonas de activación')), ("conversations", tr("Conversaciones")), ("events", tr("Eventos")),("generators",tr("Encuentros dinámicos"))]:
             parent = add(label, (key,))
             if self.doc:

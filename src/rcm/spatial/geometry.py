@@ -29,6 +29,8 @@ class Mesh:
     sectors: int
     source_end: int
     warnings: list[str]
+    triangle_sectors: np.ndarray | None = None
+    sector_planes: list | None = None
     @property
     def triangles(self):
         return self.vertices[:, :3].reshape(-1, 3, 3)
@@ -44,10 +46,10 @@ def read_nil(data):
     r.take(12)
     materials = [r.take(32).split(b'\0', 1)[0].decode('cp1252') for _ in range(r.count('I', 10000))]
     nsectors = r.count('I', 100000)
-    vertices, material_ids, warnings = [], [], []
+    vertices, material_ids, warnings,triangle_sectors,sector_planes = [], [], [],[],[]
     for si in range(nsectors):
         r.take(16)
-        r.take(r.count('B', 255) * 16)
+        sector_planes.append(np.frombuffer(r.take(r.count('B',255)*16),'<f4').reshape(-1,4).tolist())
         r.take(r.count('H', 65535) * 16)
         r.take(r.count('H', 65535) * 8)
         points = np.frombuffer(r.take(r.count('H', 16383) * 12), '<f4').reshape(-1, 3)
@@ -81,6 +83,7 @@ def read_nil(data):
                 for k in range(1, count - 1):
                     vertices.extend([polygon[0], polygon[k], polygon[k + 1]])
                     material_ids.append(material)
+                    triangle_sectors.append(si)
                 ci += count
             if ci - before != ngcorners:
                 raise ValueError(f'NIL: conteo de corners no coincide, sector {si}')
@@ -92,4 +95,4 @@ def read_nil(data):
     array = np.asarray(vertices, dtype=np.float32).reshape(-1, 5)
     if not len(array) or not np.isfinite(array).all():
         raise ValueError('NIL: geometría vacía o no finita')
-    return Mesh(array, np.asarray(material_ids, dtype=np.int32), materials, nsectors, r.pos, warnings)
+    return Mesh(array, np.asarray(material_ids, dtype=np.int32), materials, nsectors, r.pos, warnings,np.asarray(triangle_sectors,dtype=np.int32),sector_planes)
