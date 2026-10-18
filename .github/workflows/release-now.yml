@@ -1,0 +1,151 @@
+name: Release Now (one-shot)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/release-now.yml"
+
+permissions:
+  contents: write
+
+env:
+  TARGET_SHA: 196686cba3d41ede9b061f180f232fbe9aeebe5c
+
+jobs:
+  release-now:
+    name: Build and publish RC7 portable
+    runs-on: windows-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out release source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-editor.txt
+            requirements-dev.txt
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Install build dependencies
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --target cache/vendor -r requirements.txt -r requirements-editor.txt
+          python -m pip install --target cache/devtools -r requirements-dev.txt
+
+      - name: Download and verify ECJ
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force cache/toolchain | Out-Null
+          $url = "https://repo.maven.apache.org/maven2/org/eclipse/jdt/ecj/3.26.0/ecj-3.26.0.jar"
+          $file = "cache/toolchain/ecj-3.26.0.jar"
+          $expected = "ac0ba5876eaf7ebb47749a0d1be179c51f194b9dd0b875d1c09e1b530f5a2db5"
+          Invoke-WebRequest -Uri $url -OutFile $file
+          $actual = (Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($actual -ne $expected) { throw "ECJ hash mismatch: expected $expected, got $actual" }
+
+      - name: Resolve version metadata
+        id: metadata
+        shell: pwsh
+        run: |
+          $version = (python -c "import sys; sys.path.insert(0, 'src'); import rcm; print(rcm.__version__)").Trim()
+          if ($version -notmatch '^\d+\.\d+\.\d+(-rc\d+)?$') { throw "Unsupported release version format: $version" }
+          "version=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          "tag=v$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          "archive=RedemptionChronicleMaker-$version-win64.zip" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Run fast quality gate
+        shell: pwsh
+        run: python tools/quality.py --fast
+
+      - name: Build portable application
+        shell: pwsh
+        run: python tools/build_portable.py
+
+      - name: Audit and package release
+        shell: pwsh
+        run: python tools/product_release.py
+
+      - name: Verify release payload
+        shell: pwsh
+        run: |
+          $archive = "${{ steps.metadata.outputs.archive }}"
+          if (-not (Test-Path -LiteralPath $archive)) { throw "Expected release archive was not produced: $archive" }
+          $manifest = Get-Content release_manifest.json -Raw | ConvertFrom-Json
+          if ($manifest.version -ne "${{ steps.metadata.outputs.version }}") { throw "release_manifest.json version mismatch" }
+          if ($manifest.user_zip -ne $archive) { throw "release_manifest.json archive mismatch" }
+          if (-not $manifest.all_hashes_verified) { throw "Release audit did not verify every file hash" }
+
+      - name: Generate SHA256SUMS.txt
+        shell: pwsh
+        run: |
+          $archive = "${{ steps.metadata.outputs.archive }}"
+          $hash = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$hash  $archive" | Out-File SHA256SUMS.txt -Encoding ascii
+
+      - name: Create release tag
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = "${{ steps.metadata.outputs.tag }}"
+          git ls-remote --exit-code --tags origin "refs/tags/$tag" *> $null
+          if ($LASTEXITCODE -eq 0) {
+            $remote = (git ls-remote --tags origin "refs/tags/$tag" | ForEach-Object { ($_ -split '\s+')[0] }).Trim()
+            if ($remote -ne "$env:TARGET_SHA") { throw "Tag $tag already exists on a different commit: $remote" }
+          } else {
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag -a $tag $env:TARGET_SHA -m "Redemption Chronicle Maker ${{ steps.metadata.outputs.version }}"
+            git push origin $tag
+            if ($LASTEXITCODE -ne 0) { throw "Could not push release tag $tag" }
+          }
+
+      - name: Preserve release artifacts in Actions
+        uses: actions/upload-artifact@v4
+        with:
+          name: RedemptionChronicleMaker-${{ steps.metadata.outputs.version }}-release
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            ${{ steps.metadata.outputs.archive }}
+            SHA256SUMS.txt
+            release_manifest.json
+            RELEASE_NOTES.md
+
+      - name: Publish GitHub Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = "${{ steps.metadata.outputs.tag }}"
+          $version = "${{ steps.metadata.outputs.version }}"
+          $archive = "${{ steps.metadata.outputs.archive }}"
+          $assets = @($archive, "SHA256SUMS.txt", "release_manifest.json")
+          gh release view $tag --repo "${{ github.repository }}" *> $null
+          if ($LASTEXITCODE -eq 0) {
+            gh release upload $tag @assets --clobber --repo "${{ github.repository }}"
+            if ($LASTEXITCODE -ne 0) { throw "Could not refresh release assets" }
+          } else {
+            $args = @("release", "create", $tag, "--repo", "${{ github.repository }}", "--title", "Redemption Chronicle Maker $version", "--notes-file", "RELEASE_NOTES.md", "--verify-tag")
+            if ($version -match '-rc\d+$') { $args += "--prerelease" } else { $args += "--latest" }
+            $args += $assets
+            gh @args
+            if ($LASTEXITCODE -ne 0) { throw "Could not create GitHub Release" }
+          }
