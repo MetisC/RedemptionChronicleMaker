@@ -1,6 +1,6 @@
-# Producto vigente · 1.0.0-rc6
+# Producto vigente · 1.0.0-rc7
 
-RCM crea crónicas sobre geometría original inmutable mediante autoría visual, datos propios, formatos generados y Java compilado contra Codex. No ejecuta Embrace, NOT Editor ni otros programas originales de autoría. Se mantienen formatos 9/10 y la versión rc6; no se declara 1.0 final.
+RCM crea crónicas sobre geometría original inmutable mediante autoría visual, datos propios, formatos generados y Java compilado contra Codex. No ejecuta Embrace, NOT Editor ni otros programas originales de autoría. Se mantienen formatos 9/10 y la versión rc7; no se declara 1.0 final.
 
 ## Cierre quirúrgico
 
