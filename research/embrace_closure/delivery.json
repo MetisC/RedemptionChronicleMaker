@@ -1,0 +1,68 @@
+{
+  "recorded_at_utc": "2026-10-18T09:01:24.950068+00:00",
+  "version": "1.0.0-rc6",
+  "tests": 508,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "quality": true,
+  "frozen_modules": 90,
+  "frozen_executable_sha256": "0caf9fec0a97ca84d5ef27d4775a7330dca1b67f308f28d9a8793a4463b86cb4",
+  "examples": [
+    {
+      "chronicle": "rcm_director",
+      "source_sha256": "941bb5c366fbb59947770bd195289b1bfb754f8afd15d1fdf1b88eceb0f7afe1",
+      "compiled_versions": {
+        "R_rcm_director_s0_Scene": "45.3",
+        "R_rcm_director_s0_Passive": "45.3",
+        "R_rcm_director_s1_Scene": "45.3",
+        "R_rcm_director_s1_Passive": "45.3"
+      },
+      "source_and_build_match": true,
+      "own_ncp_packaged": true,
+      "distribution_verified": true,
+      "deployed_hashes_verified": true,
+      "largest_method_bytes": 1110
+    },
+    {
+      "chronicle": "rcm_showcase",
+      "source_sha256": "5e544fca7ad9c00ad33c2b258b698d4c2e69a6dc795b71385726692f1f443416",
+      "compiled_versions": {
+        "R_rcm_showcase_s0_Scene": "45.3",
+        "R_rcm_showcase_s0_Passive": "45.3",
+        "R_rcm_showcase_s1_Scene": "45.3",
+        "R_rcm_showcase_s1_Passive": "45.3",
+        "R_rcm_showcase_s2_Scene": "45.3",
+        "R_rcm_showcase_s2_Passive": "45.3",
+        "R_rcm_showcase_s3_Scene": "45.3",
+        "R_rcm_showcase_s3_Passive": "45.3",
+        "RCMShowcaseActor": "45.3"
+      },
+      "source_and_build_match": true,
+      "own_ncp_packaged": true,
+      "distribution_verified": true,
+      "deployed_hashes_verified": true,
+      "largest_method_bytes": 2924
+    }
+  ],
+  "release": {
+    "version": "1.0.0-rc6",
+    "user_zip": "RedemptionChronicleMaker-1.0.0-rc6-win64.zip",
+    "sha256": "58ede0d125d6949497498465541193e1a993e5c87397617cd291ceded7866229",
+    "size": 89090609,
+    "files": 366,
+    "all_hashes_verified": true,
+    "source_archive_separate": true,
+    "native_game_verified": false,
+    "clean_machine_verified": false
+  },
+  "original_verification": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "manual_cases": "EMB01–24 / DYN01–12",
+  "native_game_test": false,
+  "independent_machine_test": false
+}

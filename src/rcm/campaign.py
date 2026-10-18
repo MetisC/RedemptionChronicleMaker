@@ -29,6 +29,20 @@ ACTIONS = {
  'set_actor_clan': ('Actor / Cambiar clan','wtd_clan'),
  'set_discipline': ('Actor / Establecer disciplina','wtd_discipline'),
  'play_sound': ('Audio / Sonido situado','spatial_sound'),
+ 'stop_sound': ('Audio / Detener sonido situado','sound_source'),
+ 'camera_shot': ('Cámara / Cambiar plano','camera_shot'),
+ 'play_camera_path': ('Cámara / Reproducir travelling','camera_path_action'),
+ 'camera_fade': ('Cámara / Fundido','camera_fade'),
+ 'camera_flash': ('Cámara / Flash blanco','camera_flash'),
+ 'camera_filter': ('Cámara / Filtro blanco','camera_filter'),
+ 'clear_camera_effects': ('Cámara / Limpiar efectos','none'),
+ 'look_at': ('Actor / Mirar a actor','look_at'),
+ 'look_at_point': ('Actor / Mirar a punto','look_at_point'),
+ 'play_motion': ('Actor / Reproducir gesto','play_motion'),
+ 'stop_actor': ('Actor / Detener acción','actors'),
+ 'set_weather': ('Ambiente / Cambiar clima','weather'),
+ 'set_dynamic_light': ('Ambiente / Luz dinámica','dynamic_light'),
+ 'clear_dynamic_light': ('Ambiente / Retirar luz dinámica','entity'),
 }
 WHEN = {'manual':'Desde otro evento','scene_start':'Inicia la escena','actor_clicked':'Hablan con actor','object_clicked':'Usan un objeto','note_closed':'Cierran una nota','conversation_ended':'Termina conversación',
  'trigger_enter':'Entra en trigger','trigger_leave':'Sale de trigger','actor_killed':'Actor muerto (muestreo)',
@@ -115,6 +129,7 @@ def parse_campaign(source, levels, resources):
         entities={**actors,**objects}; convs=indexed(s['conversations'],label+' conversations')
         from .camera_presets import PRESETS,CINEMA_PRESETS
         for conversation in convs.values():
+            if 'staging' in conversation and (not modern or conversation['staging'] not in {p['id'] for p in s.get('entries',[])}):raise ValueError('Puesta en escena requiere una entrada existente')
             if 'camera' in conversation and (not modern or conversation['camera'] not in ('native','medium',*PRESETS)):
                 raise ValueError('Cámara de conversación requiere formato 9 y preset conocido')
         if set(actors)&set(objects): raise ValueError(label+': IDs compartidos actor/objeto')
@@ -153,12 +168,12 @@ def parse_campaign(source, levels, resources):
                 ref(a,actors,'actor de encuentro')
                 if actors[a].get('behavior')!='enemy': raise ValueError('Miembro de encuentro debe ser enemigo')
         for seq in shots.values():
-            mapping(seq,{'id','name','actor','duration','shot','angle','preset','steps','move_path','camera_path','path_speed','move_at','prop_motion','reference'},{'id','name','actor','duration','shot','angle'},'sequence')
+            mapping(seq,{'id','name','actor','duration','shot','angle','preset','steps','move_path','camera_path','path_speed','move_at','prop_motion','reference','cues'},{'id','name','actor','duration','shot','angle'},'sequence')
             text(seq['name'],'sequence.name')
             if seq['actor']=='Player':
-                if not modern or 'steps' not in seq:raise ValueError('Player requiere formato 9 y secuencia de planos')
+                if not modern or not any(k in seq for k in ('steps','camera_path','cues')):raise ValueError('Player requiere formato 9 y secuencia de planos')
             else:ref(seq['actor'],actors,'actor de cámara')
-            if 'reference' in seq:ref(seq['reference'],actors,'referencia de cámara')
+            if 'reference' in seq and seq['reference']!='Player':ref(seq['reference'],actors,'referencia de cámara')
             if type(seq['duration']) not in (float,int) or not math.isfinite(seq['duration']) or not .1<=seq['duration']<=120: raise ValueError('Duración de cámara 0.1..120 s')
             if seq['shot'] not in ('medium','close','wide') or seq['angle'] not in ('low','medium','high'): raise ValueError('Plano/ángulo de cámara inválido')
             if 'preset' in seq and (not modern or seq['preset'] not in CINEMA_PRESETS):raise ValueError('Preset de cámara requiere formato 9 y valor conocido')
@@ -194,6 +209,8 @@ def parse_campaign(source, levels, resources):
             k,v=next(iter(a.items()))
             if k not in ACTIONS: raise ValueError('Acción no soportada: '+k)
             kind=ACTIONS[k][1]
+            from .cinematics import validate_action
+            if validate_action(k,v,s,actors,objects,resources,modern):return
             if kind in {'wtd_clan','wtd_discipline'}:
                 if not modern:raise ValueError('Esta acción requiere formato de proyecto 9')
                 field='clan' if kind=='wtd_clan' else 'discipline'
@@ -224,13 +241,20 @@ def parse_campaign(source, levels, resources):
                 if v['mode'] not in ('frames','pivot') or type(v['frame']) is not int or not 0<=v['frame']<=255 or type(v['open']) is not bool:raise ValueError('Modo/frame/estado de puerta inválido')
                 if type(v['parameter']) not in (int,float) or not math.isfinite(v['parameter']) or not 0<v['parameter']<=1000:raise ValueError('Parámetro de movimiento de puerta: 0..1000')
             elif kind=='spatial_sound':
-                mapping(v,{'resource','waypoint','volume','min_distance','max_distance'},{'resource','waypoint','volume','min_distance','max_distance'},'play_sound')
+                mapping(v,{'resource','waypoint','volume','min_distance','max_distance','id','loop'},{'resource','waypoint','volume','min_distance','max_distance'},'play_sound')
+                if 'loop' in v and type(v['loop']) is not bool:raise ValueError('Sonido en bucle requiere booleano')
+                if v.get('loop'):
+                    identifier(v.get('id'),'ID de sonido en bucle')
+                elif 'id' in v:raise ValueError('Un sonido con ID requiere bucle')
                 matches=[r for r in resources['entries'] if r['extension'].lower()=='.wav' and r['id']==v['resource']]
                 if len(matches)!=1:raise ValueError('Sonido ausente o ambiguo')
                 ref(v['waypoint'],{r['id'] for r in s.get('waypoints',[])},'waypoint de sonido')
                 if type(v['volume']) is not int or not 0<=v['volume']<=100:raise ValueError('Volumen de sonido: 0..100')
                 lo,hi=v['min_distance'],v['max_distance']
                 if any(type(n) not in (int,float) or not math.isfinite(n) for n in (lo,hi)) or not 0<=lo<hi<=100000:raise ValueError('Radios de sonido inválidos')
+            elif kind=='sound_source':
+                from .audio import loops
+                if not modern or v not in loops(s):raise ValueError('Sonido en bucle ausente')
             elif kind=='paths':ref(v,paths,'recorrido')
             elif kind=='number':
                 if type(v) is not int or not 1<=v<=1000000: raise ValueError('Experiencia: entero 1..1000000')
@@ -260,7 +284,7 @@ def parse_campaign(source, levels, resources):
             if w in {'object_clicked','note_closed'} and not modern:raise ValueError('Notas y clic de objeto requieren formato de proyecto 9')
             if w=='sequence_ended':
                 if not modern or e.get('sequence') not in shots:raise ValueError('Fin de secuencia requiere formato 9 y secuencia existente')
-                if not any(k in shots[e['sequence']] for k in ('steps','move_path','camera_path','prop_motion')):raise ValueError('Fin de secuencia requiere timeline o recorrido')
+                if not any(k in shots[e['sequence']] for k in ('steps','move_path','camera_path','prop_motion','cues')):raise ValueError('Fin de secuencia requiere timeline o recorrido')
             if type(e.get('once',False)) is not bool: raise ValueError('event.once requiere booleano')
             filter_key={'object_clicked':'object','actor_clicked':'actor','actor_killed':'actor','conversation_ended':'conversation','trigger_enter':'trigger','trigger_leave':'trigger','item_picked_up':'item','encounter_complete':'encounter','sequence_ended':'sequence'}.get(w)
             for fk in ('actor','object','conversation','trigger','item','encounter','sequence','result','seconds'):
@@ -281,6 +305,26 @@ def parse_campaign(source, levels, resources):
             if any('jump' in a or 'travel' in a for a in actions) and not ('jump' in actions[-1] or 'travel' in actions[-1]): raise ValueError('El viaje debe ser la última acción')
             if e.get('once',w in {'actor_killed','item_picked_up','encounter_complete','timer','state_changed','generator_complete','generator_threshold'}) or (w=='trigger_enter' and triggers[e['trigger']].get('once',True)): reserve('e/'+s['id']+'/'+e['id'])
         from collections import Counter
+        e={'id':'director'}
+        for seq in shots.values():
+            cues=sequence(seq.get('cues',[]),'cues');previous=-1
+            if len(cues)>64:raise ValueError('Timeline: máximo 64 acciones de escena')
+            if cues and not modern:raise ValueError('Acciones de escena requieren formato de proyecto 9 o 10')
+            for cue in cues:
+                mapping(cue,{'at','actions'},{'at','actions'},'Acción de escena')
+                at=cue['at']
+                if type(at) not in (int,float) or not math.isfinite(at) or not previous<=at<seq['duration'] or at<0:raise ValueError('Acciones de escena: tiempos ordenados dentro de la duración')
+                previous=at
+                if not isinstance(cue['actions'],list) or not 1<=len(cue['actions'])<=32:raise ValueError('Acción de escena: requiere 1..32 acciones')
+                for a in cue['actions']:action(a)
+        for conversation in convs.values():
+            for node in conversation.get('nodes',[]):
+                for line in node['lines']:
+                    if 'actions' not in line:continue
+                    if not modern or not isinstance(line['actions'],list) or not 1<=len(line['actions'])<=32:raise ValueError('Acciones de línea: requiere formato 9/10 y 1..32 acciones')
+                    for a in line['actions']:
+                        if any(k in a for k in ('start_conversation','play_sequence','show_note','jump','travel')):raise ValueError('La línea no puede abrir otra interfaz ni abandonar la conversación; usa conversación terminada')
+                        action(a)
         # Reject recursive event chains before they can exhaust the old JVM's
         # stack. Runtime has a second guard for synchronous native callbacks.
         visiting=set();visited=set()
@@ -293,15 +337,18 @@ def parse_campaign(source, levels, resources):
                 if 'run_event' in a:visit(a['run_event'])
             visiting.remove(eid);visited.add(eid)
         for eid in events:visit(eid)
+        from .cinematics import validate_calls
+        validate_calls(s)
         inventory=Counter(it for a in actors.values() for it in a.get('inventory',[]))
         for eid in entities:
             n=spawn_owners.get(eid,0)+inventory[eid]
             if n>1: raise ValueError(label+': múltiples propietarios de creación de '+eid)
         # Use established parsers for transforms, templates, conversations and volumes.
+        from .cinematics import conversation_source
         legacy={'schema':1,'chronicle':{**chron,'id':chron['id']+'_s'+str(si)},'state':{'flags':flags},'level':s['level'],
                 'actors':[{k:v for k,v in a.items() if k not in {'behavior','inventory','traits'}} for a in actors.values()],
                 'objects':[{k:v for k,v in a.items() if k not in {'quest_item','interaction'}} for a in objects.values()],
-                'conversations':[{k:v for k,v in c.items() if k!='camera'} for c in s['conversations']],'triggers':s.get('triggers',[]),
+                'conversations':[conversation_source(c) for c in s['conversations']],'triggers':s.get('triggers',[]),
                 'events':[{'when':'scene_start','actions':[{'spawn':eid} for eid in entities]}] if entities else []}
         parsed.append((s,parse_project(yaml.safe_dump(legacy,sort_keys=False),levels,resources,allow_empty=True,allow_motions=modern)))
     if modern:
@@ -320,14 +367,29 @@ def parse_campaign(source, levels, resources):
                     reserve('generator/'+s['id']+'/'+g['id']+'/started')
     return Campaign(root,tuple(parsed),reserved)
 
-def integrity(campaign):
+def integrity(campaign,resources=None):
     from .service import Problem
     findings=[]
-    all_actions=[a for s,p in campaign.scenes for e in s['events'] for a in e['actions']]
+    def actions(value):
+        if isinstance(value,list):
+            for child in value:yield from actions(child)
+        elif isinstance(value,dict):
+            if len(value)==1 and next(iter(value)) in ACTIONS:yield value
+            else:
+                for child in value.values():yield from actions(child)
+    all_actions=[a for s,p in campaign.scenes for a in actions(s)]
     for si,(s,p) in enumerate(campaign.scenes):
+        for i,row in enumerate(s.get('sequences',[])):
+            if row.get('camera_path'):
+                entry=next((e for e in (resources or {}).get('entries',[]) if e['extension']=='.ncp' and e['id']==row['camera_path']),None)
+                if entry and entry.get('project_owned') and (entry.get('creation_scene')!=s['id'] or entry.get('creation_level')!=s['level']['source']):findings.append(Problem('WARNING','Travelling creado para otra escena o escenario; comprueba sus puntos de cámara',('scenes',si,'sequences',i)))
+        for action in actions(s):
+            if 'play_camera_path' in action:
+                entry=next((e for e in (resources or {}).get('entries',[]) if e['extension']=='.ncp' and e['id']==action['play_camera_path']['resource']),None)
+                if entry and entry.get('project_owned') and (entry.get('creation_scene')!=s['id'] or entry.get('creation_level')!=s['level']['source']):findings.append(Problem('WARNING','Travelling creado para otra escena o escenario; comprueba sus puntos de cámara',('scenes',si)))
         from .dynamic_encounters import integrity as dynamic_integrity
         for gi,message in dynamic_integrity(s):findings.append(Problem('WARNING',message,('scenes',si,'generators',gi)))
-        local_actions=[a for e in s['events'] for a in e['actions']]
+        local_actions=list(actions(s))
         spawned={a.get('spawn') for a in local_actions}
         spawned|={m for g in s.get('encounters',[]) for m in g['actors'] if any(a.get('spawn_encounter')==g['id'] for a in local_actions)}
         inventory={it for a in s['actors'] for it in a.get('inventory',[])}

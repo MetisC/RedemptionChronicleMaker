@@ -1,22 +1,22 @@
-# Pruebas y calidad · RC4
+# Pruebas y evidencia vigentes
 
-Desde la raíz, Python y dependencias locales preparados:
+Desde la raíz, con dependencias locales preparadas:
 
 ```powershell
 python tools/quality.py --fast
 python tools/quality.py --no-coverage
-python tools/test.py --pattern test_dynamic_encounters.py
-python tools/test.py --pattern test_dynamic_gui.py
-python tools/audit_spawners.py
+python tools/test.py --pattern "test_director*.py"
+python tools/test.py --pattern test_camera_paths.py
+python tools/audit_embrace_closure.py
 python tools/rcm.py verify-originals
 ```
 
-439 casos correctos tras repetir la comprobación de traducciones; 0 errores y 0 omitidos. Ruff y mypy en paths/input_limits/file_transaction; no tipado completo. Resultados actuales archivados en research/dynamic_encounters/quality. Doubles de Java y Qt offscreen no prueban el motor, OpenGL real ni DPI físico. Los ocho recorridos empaquetados y capturas están en research/dynamic_encounters/portable.
+Gate: build/tests/quality_report.json; detalle: build/tests/test_report.json. Ruff/mypy comprueban su alcance configurado. Evidencia del cierre: research/embrace_closure. Los 174 NCP originales deben conservar sus bytes en roundtrip; no cambiar fixtures/hashes para ocultar regresiones.
 
-Stress: 25 generadores, 20 con diez oleadas, 400 entradas, tres templates, diez umbrales, callbacks y múltiples puntos. Bytecode/métodos medidos en stress.json; no rendimiento nativo certificado. Tutorial/clases, originales y archivos de usuario comparados en regression.json.
+Separar datos/generación/paquetes, compilación real Codex 45.3, escenarios con doubles, widgets/transacciones y aplicación empaquetada, y observación del usuario en Redemption/PC independiente.
 
-Cuatro fuentes vigentes: chronicles/tutorial, showcase, mini_chronicle y dynamic_lab. Baselines históricos necesarios sólo en tests/fixtures; no cambiar hashes para esconder fallos. Dependencias cache/vendor, devtools y toolchain.
+El gate no abre ni juega a Redemption. Los probes del EXE sólo leen la instalación real y escriben contra instalaciones sintéticas. Carpeta movida/PATH restringido/offscreen no certifica otro PC ni render OpenGL/DPI físico.
 
-Manual: MANUAL_RUNTIME_CHECKLIST.md, DYN01–12. Generado, compilado, probado con doubles/widgets y verificado en Redemption son estados separados. No se ha automatizado el juego.
+Tutorial, mini y laboratorio dinámico permanecen. Showcase añade una sala opcional; director_acceptance es independiente. La comparación narrativa retira sólo adiciones opcionales antes del fixture fijo.
 
-Borrado: test_delete_flow.py cubre punto de aparición → eliminar / cancelar / navegar / deshacer, puntos alternativos, inventarios, condiciones y entidades creadas por los diez asistentes. La pasada de 439 casos detectó textos nuevos ausentes del catálogo de inglés; se corrigió y se repitió esa comprobación, con Ruff/mypy actuales correctos. El recibo conserva el intento completo y el resultado de la repetición; no es evidencia de juego nativo.
+Manual: MANUAL_RUNTIME_CHECKLIST.md/.en.md, EMB01–24, DYN01–12, puertas/WTD/cargas/red. Un PASS offline no convierte un caso manual en PASS.

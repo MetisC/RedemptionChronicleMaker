@@ -120,7 +120,12 @@ def inspect_package(archive):
         if name==m['id']+'.nob':
             import io
             inner=read_archive(io.BytesIO(data))
-            if any(Path(p).suffix.lower() not in {'.nsc','.nmf','.nss','.nco','.nvo','.nls','.ntx','.npc','.nai','.nqd','.nbs','.not','.nsd','.tga','.wav'} for p in inner):raise ValueError('El paquete contiene geometría/modelos/binarios originales o no admitidos')
+            if any(Path(p).suffix.lower() not in {'.nsc','.nmf','.nss','.nco','.nvo','.nls','.ntx','.npc','.nai','.nqd','.nbs','.not','.nsd','.tga','.wav','.ncp'} for p in inner):raise ValueError('El paquete contiene geometría/modelos/binarios originales o no admitidos')
+            from .camera_paths import CameraPath
+            for path,payload in inner.items():
+                if Path(path).suffix.lower()=='.ncp':
+                    if not re.fullmatch(r'paths/[A-Za-z_][A-Za-z0-9_]{0,30}\.ncp',path):raise ValueError('Ruta de travelling propio inválida')
+                    CameraPath.read(payload)
         elif re.fullmatch(r'codex/[A-Za-z_][A-Za-z0-9_$]*\.class',name):
             if data[:8]!=b'\xca\xfe\xba\xbe\x00\x03\x00\x2d':raise ValueError('Clase no compatible con JVM 45.3')
         else:raise ValueError('Archivo de distribución no permitido: '+name)
@@ -157,8 +162,10 @@ def install_plan(ws,archive,accept_custom_code=False):
         from .formats import NotFile
         template_ids={t['id'].casefold() for t in originals['templates']}
         original_paths={e['path'].casefold() for e in originals['entries']}
+        original_camera_names={e['id'].casefold() for e in originals['entries'] if e['extension'].lower()=='.ncp'}
         for name,data in inner.items():
             if name.casefold() in original_paths:raise ValueError('El paquete intenta reemplazar un recurso original: '+name)
+            if name.lower().endswith('.ncp') and Path(name).stem.casefold() in original_camera_names:raise ValueError('Travelling propio colisiona con original')
             if name.lower().endswith('.not') and any(t.name.casefold() in template_ids for t in NotFile.read(data).templates):raise ValueError('Template del paquete colisiona con original')
     for other in registry.values():
         if other['id']!=m['id'] and {x.casefold() for x in m.get('templates',[])}&{x.casefold() for x in other.get('templates',[])}:raise ValueError('ID de template propio colisiona con paquete '+other['id'])

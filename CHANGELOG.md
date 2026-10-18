@@ -21,3 +21,5 @@
 First-run, safe saving, deployment, cache identity and language preferences remain. Native gameplay, independent-PC and real GPU/DPI checks remain manual. Not final 1.0.
 
 Native click interactions: hover label plus arbitrary existing actions, including Event / Run. Self-scene travel/jump is rejected in validation and destination selectors. New click runtimes guard self travel, synchronous event recursion and repeated transition entry. The accepted tutorial runtime remains unchanged; native CLICK01â€“08 checks are pending.
+
+Cinematic Director closure: own linear NCP capture/editor/writer, timed shared Actions and dialogue line Actions, native camera effects/staging, spatial loops with Stop, entity-attached lights and demonstrated weather. Optional Showcase lab plus refuge acceptance chronicle. Native rendering/audio/save/reentry checks remain EMB01–24; existing accepted content preserved. Version remains rc6.

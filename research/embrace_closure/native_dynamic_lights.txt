@@ -1,0 +1,154 @@
+FUNCTION 0x4763f0
+004763f0: mov edx, dword ptr [esp + 8]
+004763f4: test edx, edx
+004763f6: je 0x47641b
+004763f8: mov eax, dword ptr [0x6a4670]
+004763fd: mov ecx, dword ptr [esp + 4]
+00476401: push esi
+00476402: push eax
+00476403: mov esi, dword ptr [ecx]
+00476405: push edx
+00476406: push ecx
+00476407: call dword ptr [esi + 0x190]
+0047640d: push eax
+0047640e: call 0x4ae420
+00476413: add esp, 4
+00476416: test eax, eax
+00476418: pop esi
+00476419: jne 0x476420
+0047641b: xor al, al
+0047641d: ret 8
+00476420: mov ecx, dword ptr [eax + 0x1d4]
+00476426: test ecx, ecx
+00476428: je 0x47642f
+0047642a: xor al, al
+0047642c: ret 8
+0047642f: push 1
+00476431: mov ecx, eax
+00476433: call 0x4b1840
+00476438: mov al, 1
+0047643a: ret 8
+0047643d: nop 
+0047643e: nop 
+0047643f: nop 
+00476440: mov edx, dword ptr [esp + 8]
+00476444: test edx, edx
+00476446: je 0x47646b
+00476448: mov eax, dword ptr [0x6a4670]
+0047644d: mov ecx, dword ptr [esp + 4]
+00476451: push esi
+00476452: push eax
+00476453: mov esi, dword ptr [ecx]
+00476455: push edx
+00476456: push ecx
+00476457: call dword ptr [esi + 0x190]
+0047645d: push eax
+FUNCTION 0x476530
+00476530: mov edx, dword ptr [esp + 8]
+00476534: test edx, edx
+00476536: je 0x47655b
+00476538: mov eax, dword ptr [0x6a4670]
+0047653d: mov ecx, dword ptr [esp + 4]
+00476541: push esi
+00476542: push eax
+00476543: mov esi, dword ptr [ecx]
+00476545: push edx
+00476546: push ecx
+00476547: call dword ptr [esi + 0x190]
+0047654d: push eax
+0047654e: call 0x4ae420
+00476553: add esp, 4
+00476556: test eax, eax
+00476558: pop esi
+00476559: jne 0x476560
+0047655b: xor al, al
+0047655d: ret 0xc
+00476560: mov eax, dword ptr [eax + 0x1d4]
+00476566: test eax, eax
+00476568: jne 0x47656f
+0047656a: xor al, al
+0047656c: ret 0xc
+0047656f: fld dword ptr [esp + 0xc]
+00476573: fabs 
+00476575: fstp dword ptr [eax + 0x48]
+00476578: mov al, 1
+0047657a: ret 0xc
+0047657d: nop 
+0047657e: nop 
+0047657f: nop 
+00476580: push esi
+00476581: mov esi, dword ptr [esp + 8]
+00476585: push 3
+00476587: push esi
+00476588: mov eax, dword ptr [esi]
+0047658a: call dword ptr [eax + 0x2d4]
+00476590: test eax, eax
+00476592: mov dword ptr [esp + 8], eax
+00476596: jne 0x47659c
+00476598: pop esi
+00476599: ret 8
+0047659c: mov ecx, dword ptr [esp + 0xc]
+004765a0: push ebx
+004765a1: push ebp
+004765a2: push edi
+004765a3: test ecx, ecx
+004765a5: je 0x4765c4
+FUNCTION 0x476620
+00476620: mov ecx, dword ptr [esp + 8]
+00476624: sub esp, 0xc
+00476627: test ecx, ecx
+00476629: push esi
+0047662a: je 0x47664d
+0047662c: mov eax, dword ptr [0x6a4670]
+00476631: mov esi, dword ptr [esp + 0x14]
+00476635: push eax
+00476636: push ecx
+00476637: mov edx, dword ptr [esi]
+00476639: push esi
+0047663a: call dword ptr [edx + 0x190]
+00476640: push eax
+00476641: call 0x4ae420
+00476646: add esp, 4
+00476649: test eax, eax
+0047664b: jne 0x476656
+0047664d: xor al, al
+0047664f: pop esi
+00476650: add esp, 0xc
+00476653: ret 0xc
+00476656: mov eax, dword ptr [eax + 0x1d4]
+0047665c: test eax, eax
+0047665e: mov dword ptr [esp + 0x18], eax
+00476662: jne 0x47666d
+00476664: xor al, al
+00476666: pop esi
+00476667: add esp, 0xc
+0047666a: ret 0xc
+0047666d: mov eax, dword ptr [esi]
+0047666f: push ebx
+00476670: push ebp
+00476671: push edi
+00476672: mov edi, dword ptr [esp + 0x28]
+00476676: push 0
+00476678: push edi
+00476679: push esi
+0047667a: call dword ptr [eax + 0x2f4]
+00476680: mov ecx, eax
+00476682: push 0
+00476684: push eax
+00476685: push edi
+00476686: mov ebx, dword ptr [ecx]
+00476688: push esi
+00476689: mov ebp, dword ptr [ecx + 4]
+0047668c: mov edx, dword ptr [ecx + 8]
+0047668f: mov ecx, dword ptr [esi]
+00476691: mov dword ptr [esp + 0x28], edx
+00476695: call dword ptr [ecx + 0x314]
+0047669b: pop edi
+0047669c: mov edx, dword ptr [esp + 0x20]
+004766a0: mov eax, dword ptr [esp + 0x14]
+004766a4: add edx, 0x14
+004766a7: mov dword ptr [edx], ebx
+004766a9: mov dword ptr [edx + 4], ebp
+004766ac: pop ebp
+004766ad: pop ebx
+004766ae: pop esi

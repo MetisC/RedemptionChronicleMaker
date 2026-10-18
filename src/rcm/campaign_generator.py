@@ -5,6 +5,8 @@ from .generator import build as build_scene, zip_bytes, java_string as js, java_
 
 
 def runtime(campaign,scene,p):
+    from .cinematics import compile_scene
+    scene=compile_scene(scene)
     name=p.prefix+'_Scene'; entities={e.id:i for i,e in enumerate(p.entities)}; convs={c.id:i for i,c in enumerate(p.conversations)}
     quests={q['id']:q for q in campaign.source.get('quests',[])};groups={g['id']:g for g in scene.get('encounters',[])}
     actors={a['id']:a for a in scene['actors']}
@@ -117,7 +119,10 @@ def runtime(campaign,scene,p):
         if progress_marker in reserved:code+=[' '+setflag(progress_marker)]
         for ai,a in enumerate(e['actions']):
             k,v=next(iter(a.items()));statement=''
-            if k=='spawn':
+            from .cinematics import action_java
+            director_statement=action_java(k,v,scene,p)
+            if director_statement is not None:statement=director_statement
+            elif k=='spawn':
                 statement=f'enabled[{entities[v]}]=true; spawn({entities[v]});'
                 if campaign.source.get('runtime_profile') in ('phase9','phase10'):statement+=f' if(!createdOnce[{entities[v]}]) return false;'
             elif k=='remove':statement=f'if(local(things[{entities[v]}])) new CodexThing(things[{entities[v]}]).Remove(); enabled[{entities[v]}]=false;'
@@ -152,6 +157,12 @@ def runtime(campaign,scene,p):
             elif k=='play_sound':
                 point=next(r for r in scene['waypoints'] if r['id']==v['waypoint'])
                 statement=f'new CodexSound({js(v["resource"]+".wav")},{float(v["min_distance"])}f,{float(v["max_distance"])}f,{v["volume"]},0,0,{jv(point["transform"]["position"])});'
+                if v.get('loop'):
+                    from .audio import loops
+                    statement=f'if(!startSceneSound({list(loops(scene)).index(v["id"])})) return false;'
+            elif k=='stop_sound':
+                from .audio import loops
+                statement=f'stopSceneSound({list(loops(scene)).index(v)});'
             elif k=='start_music':statement=f'CodexSound.StartMusic({js(v)},100);'
             elif k=='start_ambient':statement=f'CodexSound.StartAmbient({js(v)},100);'
             elif k in ('stop_music','stop_ambient'):statement=f'CodexSound.{"StopMusic" if k=="stop_music" else "StopAmbient"}();'
@@ -163,7 +174,10 @@ def runtime(campaign,scene,p):
                     from .camera_presets import shot_arguments
                     args=shot_arguments(seq['preset'],seq['angle'])
                     statement=f'if(!alive({entities[seq["actor"]]}) || player==0 || active!=-1) return false; CodexCamera.SetupCutscene(player,things[{entities[seq["actor"]]}],player); CodexCamera.SetShot(player,{args},0,0.3f); cameraPlayer=player; cameraTicks={math.ceil(seq["duration"]/.15)};'
-                if any(k in seq for k in ('steps','camera_path','move_path','prop_motion')):
+                if seq.get('reference') and seq['actor']!='Player':
+                    subject=f'things[{entities[seq["actor"]]}]';reference='player' if seq['reference']=='Player' else f'things[{entities[seq["reference"]]}]'
+                    statement=f'if(!local({reference})) return false; '+statement.replace(f'SetupCutscene(player,{subject},0)',f'SetupCutscene(player,{subject},{reference})').replace(f'SetupCutscene(player,{subject},player)',f'SetupCutscene(player,{subject},{reference})')
+                if any(k in seq for k in ('steps','camera_path','move_path','prop_motion','cues')):
                     statement=f'if(!beginCinema({scene["sequences"].index(seq)})) return false;'
             elif k in ('enable_ai','disable_ai'):statement=f'if(IsActorGuid(things[{entities[v]}])) new CodexActor(things[{entities[v]}]).{"ClearActorFlags" if k=="enable_ai" else "SetActorFlags"}(THING_AF_AIPAUSED);'
             elif k in ('start_generator','stop_generator','pause_generator','resume_generator','reset_generator'):

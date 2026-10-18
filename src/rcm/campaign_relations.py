@@ -6,6 +6,7 @@ def graph(root):
     index={};links=[]
     for qi,q in enumerate(root.get('quests',[])):index[('quest',q['id'])]=('quests',qi)
     for i,t in enumerate(root.get('resources',{}).get('templates',[])):index[('templates',t['id'])]=('resources','templates',i)
+    for i,t in enumerate(root.get('resources',{}).get('camera_paths',[])):index[('camera_paths',t['id'])]=('resources','camera_paths',i)
     for alias in root.get('state',{}).get('flags',{}):index[('flag',alias)]=('state','flags',alias)
     for si,s in enumerate(root['scenes']):
         index[('scene',s['id'])]=('scenes',si)
@@ -13,6 +14,9 @@ def graph(root):
         for i,o in enumerate(s.get('objects',[])):index[('objects',s['id']+'.'+o['id'])]=('scenes',si,'objects',i)
     entry=index.get(('scene',root.get('entry')))
     if entry:links.append(Link(('entry',),entry,'entry',('entry',)))
+    for i,row in enumerate(root.get('resources',{}).get('camera_paths',[])):
+        target=index.get(('scene',row.get('scene')))
+        if target:links.append(Link(('resources','camera_paths',i),target,'creation scene',('resources','camera_paths',i,'scene')))
     def scan(value,path,source,local):
         if isinstance(value,list):
             for i,v in enumerate(value):scan(v,path+(i,),source,local)
@@ -23,6 +27,10 @@ def graph(root):
                         target=index.get((category,name))
                         if target:links.append(Link(source,target,'travel',path+(k,)))
                 category={'reference':'actors','sequence':'sequences','move_path':'paths','focus':'objects','object':'objects','speaker':'actors','actor':'actors','actor_alive':'actors','entity_exists':'entity','item':'objects','item_global':'objects','owns_item':'objects','conversation':'conversations','default':'conversations','then':'conversations','trigger':'triggers','encounter':'encounters','quest':'quest','flag':'flag','when_flag':'flag','generator':'generators','visual':'objects','template':'templates'}.get(k)
+                category={'camera_path':'camera_paths','staging':'entries','target':'actors','waypoint':'waypoints','stop_actor':'actors','entity':'entity'}.get(k,category)
+                if k=='resource' and path[-1:]==('play_camera_path',):category='camera_paths'
+                if k=='stop_sound' and isinstance(v,str):
+                    for target in local.get(('sound_loop',v),[]):links.append(Link(source,target,'stop_sound',path+(k,)))
                 if k in ACTIONS:category={'flags':'flag','quests':'quest','scenes':'scene','item':'objects','item_global':'objects'}.get(ACTIONS[k][1],ACTIONS[k][1])
                 if isinstance(v,str) and category:
                     target=index.get((category,v)) or local.get((category,v))
@@ -38,6 +46,14 @@ def graph(root):
             for i,row in enumerate(s.get(k,[])):
                 local[(k,row['id'])]=('scenes',si,k,i)
                 if k in ('actors','objects'):local[('entity',row['id'])]=('scenes',si,k,i)
+        def sound_definitions(value,path):
+            if isinstance(value,list):
+                for i,child in enumerate(value):sound_definitions(child,path+(i,))
+            elif isinstance(value,dict):
+                sound=value.get('play_sound')
+                if isinstance(sound,dict) and sound.get('loop') is True:local.setdefault(('sound_loop',sound.get('id')),[]).append(path)
+                for key,child in value.items():sound_definitions(child,path+(key,))
+        sound_definitions(s,('scenes',si))
         for k in ('actors','objects','triggers','conversations','events','encounters','sequences','entries','waypoints','paths','generators'):
             for i,row in enumerate(s.get(k,[])):
                 source=('scenes',si,k,i);scan(row,source,source,local)

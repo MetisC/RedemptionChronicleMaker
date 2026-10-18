@@ -4,7 +4,7 @@ import argparse,json,os,re,shutil,subprocess,sys
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'cache/devtools'),str(ROOT/'cache/vendor'),str(ROOT/'src')]
 from rcm.paths import Workspace
-USER_DOCS=['GETTING_STARTED','EDITOR_GUIDE','AUTHORING_GUIDE','TUTORIAL','SHOWCASE','FIRST_RUN','TROUBLESHOOTING','SHORTCUTS','ADVANCED_LIMITATIONS','DYNAMIC_ENCOUNTERS','MANUAL_RUNTIME_CHECKLIST']
+USER_DOCS=['GETTING_STARTED','EDITOR_GUIDE','AUTHORING_GUIDE','TUTORIAL','SHOWCASE','FIRST_RUN','TROUBLESHOOTING','SHORTCUTS','ADVANCED_LIMITATIONS','DYNAMIC_ENCOUNTERS','CINEMATIC_DIRECTOR','MANUAL_RUNTIME_CHECKLIST']
 
 def resolve_jlink(java_home=None):
     for home in [java_home,os.environ.get('JAVA_HOME')]:
@@ -50,7 +50,7 @@ def main(argv=None):
     for name in ['CHANGELOG.md','RELEASE_NOTES.md']:shutil.copy2(ROOT/name,app/name)
     ws.write(app/'README.txt','Redemption Chronicle Maker '+__version__+'\n\nOpen RedemptionChronicleMaker.exe. Choose Vampire.exe when requested. Projects stay in Documents, outside this program. Open Quick tutorial or Full showcase, then press F5 to playtest.\n\nAbre RedemptionChronicleMaker.exe. Selecciona Vampire.exe. Tus proyectos se guardan en Documentos, fuera del programa. Abre Tutorial rapido o Showcase completo y pulsa F5 para probar.\n\nUnofficial fan-made authoring tool for Vampire: The Masquerade - Redemption. Requires your own complete game installation.\n')
     ws.write(app/'VERSION',__version__+'\n')
-    for folder in ('tutorial','showcase','mini_chronicle','dynamic_lab'):
+    for folder in ('tutorial','showcase','mini_chronicle','dynamic_lab','director_acceptance'):
         target=app/'examples'/folder
         if target.exists():shutil.rmtree(ws.output(target))
         for file in (ROOT/'chronicles'/folder).rglob('*'):

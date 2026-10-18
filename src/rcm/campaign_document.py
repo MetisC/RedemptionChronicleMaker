@@ -45,11 +45,14 @@ class CampaignDocument(Document):
         validate_authoring(data)
         if not isinstance(data.get('resources',{}),dict):raise ValueError('Recursos: requiere objeto')
         for key,rows in data.get('resources',{}).items():
-            if key not in {'templates','ai_profiles','textures','scripts'} or not isinstance(rows,list):raise ValueError('Categoría de recursos inválida')
+            if key not in {'templates','ai_profiles','textures','scripts','camera_paths'} or not isinstance(rows,list):raise ValueError('Categoría de recursos inválida')
             for row in rows:
                 if not isinstance(row,dict) or not isinstance(row.get('id'),str):raise ValueError('Recurso: requiere registro e ID')
                 if key in {'scripts','textures'} and not isinstance(row.get('source'),str):raise ValueError('Recurso: requiere source')
                 if key in {'templates','ai_profiles'} and (not isinstance(row.get('base'),str) or not isinstance(row.get('properties',{}),dict)):raise ValueError('Template/AI: requiere base y propiedades')
+                if key=='camera_paths':
+                    from .camera_paths import authored
+                    authored(row.get('points'))
         if not isinstance(data.get('scenes'),list) or not data['scenes']:raise ValueError('Campaña sin escenas')
         def records(value,label):
             if not isinstance(value,list) or any(not isinstance(v,dict) for v in value):raise ValueError(label+': requiere registros')
@@ -143,7 +146,8 @@ class CampaignDocument(Document):
         rows[index]['id']=new
         from .recipes import rename_references
         rename_references(self.campaign,collection,old,new,self.campaign['scenes'][self.active]['id'])
-        keys={'actors':{'speaker','actor','reference','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus','visual'},'conversations':{'default','then','start_conversation','conversation'},'generators':{'generator','start_generator','stop_generator','pause_generator','resume_generator','reset_generator'},'events':{'run_event'},'triggers':{'trigger'},'entries':{'default_entry'},'waypoints':set()}[collection]
+        keys={'actors':{'speaker','actor','reference','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol','stop_actor','target'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus','visual'},'conversations':{'default','then','start_conversation','conversation'},'generators':{'generator','start_generator','stop_generator','pause_generator','resume_generator','reset_generator'},'events':{'run_event'},'triggers':{'trigger'},'entries':{'default_entry','staging'},'waypoints':{'waypoint'}}[collection]
+        if collection in {'actors','objects'}:keys=keys|{'entity'}
         self._replace(self.campaign['scenes'][self.active],keys,old,new)
         if collection=='entries':
             sid=self.campaign['scenes'][self.active]['id']

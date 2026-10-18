@@ -82,15 +82,25 @@ def matrix(root):
     for scene in root['scenes']:
         sid=scene['id']
         for kind in ('entries','actors','objects','triggers','waypoints','paths','sequences','conversations','generators'):
-            for row in scene.get(kind,[]):rows.append(dict(capability=kind,classification='NORMAL',scene=sid,entity=row['id'],link='rcm://'+sid+'/'+kind+'/'+row['id'],in_game=True,in_editor=True,runtime_verified=False))
+            for row in scene.get(kind,[]):
+                link='rcm://'+sid+'/'+kind+'/'+row['id']
+                rows.append(dict(capability=kind,classification='NORMAL',scene=sid,entity=row['id'],link=link,in_game=True,in_editor=True,runtime_verified=False))
+                def nested(value):
+                    if isinstance(value,list):
+                        for child in value:nested(child)
+                    elif isinstance(value,dict):
+                        if len(value)==1 and next(iter(value)) in ACTIONS:rows.append(dict(capability='action:'+next(iter(value)),classification='NORMAL',scene=sid,entity=row['id'],link=link,in_game=True,in_editor=True,runtime_verified=False))
+                        else:
+                            for child in value.values():nested(child)
+                nested(row)
         for event in scene['events']:
             for capability in ['when:'+event['when'],*['action:'+k for action in event['actions'] for k in action]]:
                 rows.append(dict(capability=capability,classification='NORMAL',scene=sid,entity=event['id'],link='rcm://'+sid+'/events/'+event['id'],in_game=True,in_editor=True,runtime_verified=False))
     found={r['capability'] for r in rows}
     for capability in [*['when:'+k for k in WHEN],*['action:'+k for k in ACTIONS]]:
         if capability not in found:rows.append(dict(capability=capability,classification='ADVANCED' if capability in {'action:control_door','action:open_exit','action:close_exit'} else 'NORMAL',scene='',entity='',link='',in_game=False,in_editor=True,runtime_verified=False))
-    for capability in ('Original NCP','Native door/exit with valid Cast ID','Static inspector','NOT writer fields','Custom Java','Model-specific motions','Viewport camera XYZ/FOV'):
-        rows.append(dict(capability=capability,classification='EXPERIMENTAL',scene='',entity='',link='',in_game=False,in_editor=capability!='Viewport camera XYZ/FOV',runtime_verified=False))
+    for capability in ('Original NCP','Native door/exit with valid Cast ID','Static inspector','NOT writer fields','Custom Java','Model-specific motions','Own camera path capture'):
+        rows.append(dict(capability=capability,classification='EXPERIMENTAL',scene='',entity='',link='',in_game=capability=='Own camera path capture',in_editor=True,runtime_verified=False))
     return rows
 
 
@@ -102,6 +112,8 @@ def main():
     validation=backend.validate(root)
     if not validation.valid:raise ValueError([p.message for p in validation.problems if p.severity=='ERROR'])
     ws.write('chronicles/showcase/project.yaml',source_text(root))
+    from closure_examples import main as add_director
+    add_director();root=parse_source((ROOT/'chronicles/showcase/project.yaml').read_text(encoding='utf8'))
     rows=matrix(root);ws.write('research/product_close/showcase_matrix.json',json.dumps(rows,ensure_ascii=False,indent=2))
     headers='| CAPACIDAD | NORMAL / ADVANCED / EXPERIMENTAL | DEMO IN GAME | DEMO IN EDITOR | SCENE | ENTITY | DEEPLINK | OFFLINE VERIFIED | RUNTIME VERIFIED |\n|---|---|---|---|---|---|---|---|---|'
     lines=['# Showcase: capacidades reales','', 'Generada desde las entidades del ejemplo y ACTIONS/WHEN actuales. Sin demo significa que se conserva en autoría o como límite; no se simula una puerta mediante un prop. Compilación y ejecución con doubles se documentan por separado del ensayo nativo.','',headers]

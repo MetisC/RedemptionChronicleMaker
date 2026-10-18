@@ -235,11 +235,17 @@ class ShowcaseGuide(unittest.TestCase):
         # pinned after removing those named additions, never normalise broadly.
         if current.get('project_format')==10:
             current['project_format']=9
-            current['quests']=[q for q in current['quests'] if q['id']!='dynamic_lab']
+            # The requested closure adds one named optional cinematic room and
+            # its menu hub. Keep the ORIGINAL fixture pinned, removing only
+            # these explicit additions before comparing the main story.
+            current['scenes']=[s for s in current['scenes'] if s['id']!='director_lab']
+            current['quests']=[q for q in current['quests'] if q['id'] not in {'dynamic_lab','director'}]
+            for key in ('director_ready','director_fight','director_knock'):current['state']['flags'].pop(key,None)
+            current['resources'].pop('camera_paths',None)
             for scene in current['scenes']:
                 scene.pop('generators',None)
-                scene['events']=[e for e in scene['events'] if e['id'] not in {'dyn_menu','dyn_begin','dyn_next','dyn_end','dyn_stop','dyn_portal'}]
-                scene['conversations']=[c for c in scene['conversations'] if c['id']!='dyn']
+                scene['events']=[e for e in scene['events'] if e['id'] not in {'dyn_menu','dyn_begin','dyn_next','dyn_end','dyn_stop','dyn_portal','dyn_hub_play','dyn_hub_cinema','dyn_hub_back'}]
+                scene['conversations']=[c for c in scene['conversations'] if c['id'] not in {'dyn','dyn_hub'}]
                 for conversation in scene['conversations']:
                     if conversation['id']=='guide':conversation['choices']=[c for c in conversation['choices'] if c.get('result')!=8]
         for data in (original,current):

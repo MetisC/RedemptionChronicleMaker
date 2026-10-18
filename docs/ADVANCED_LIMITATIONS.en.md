@@ -4,7 +4,7 @@
 
 **ADVANCED / EXPERIMENTAL:** NOT editing with unknown-byte preservation; supported original doors; conservative static handling; geometry-specific original NCP playback; model-specific animation slots; existing AI and positioned sounds. Compilation and format readback do not verify every native field.
 
-**POST-1.0:** NCP writer, arbitrary XYZ/FOV cameras, universal doors, full static ALL/NONE/SELECTIVE, advanced AI/audio, verified replicated networking and native save migration. Geometry editing stays out of scope.
+**NOT IMPLEMENTED:** arbitrary FOV keys, universal doors, full static ALL/NONE/SELECTIVE, unrestricted AI authoring, verified replicated networking and native save migration. Geometry editing stays out of scope. Own linear NCP authoring, timed/line Actions, positioned loops and small runtime light/weather controls are implemented; visual/audio/restore acceptance remains EMB01–24.
 
 Local adventures load through the game's Multiplayer/LAN menu. This does not establish multi-client network support. Use one local player. The new tutorial requires a fresh game. Previous chronicles and Crypt profiles are not deleted; old tutorial templates remain available to avoid orphaned character profiles when opening LAN.
 

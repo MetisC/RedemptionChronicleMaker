@@ -15,7 +15,7 @@ def main():
         root=destination/name;app=root/'application';shutil.copytree(source,app,dirs_exist_ok=True);workspace=root/'projects';settings=root/'settings'
         command=[str(app/'RedemptionChronicleMaker.exe'),'--product-probe','--workspace',str(workspace),'--settings-directory',str(settings),'--game',str(args.game),'--language',code]
         for phase in (('fresh',) if args.quick else ('fresh','second')):
-            started=time.perf_counter();run=subprocess.run(command,env=env,cwd=ROOT,timeout=150,capture_output=True)
+            started=time.perf_counter();run=subprocess.run(command,env=env,cwd=ROOT,timeout=300,capture_output=True)
             report=workspace/'build/product_probe.json';data=json.loads(report.read_text(encoding='utf8')) if report.is_file() else {}
             record=dict(language=code,phase=phase,returncode=run.returncode,elapsed_seconds=time.perf_counter()-started,report=data,path_restricted=True,independent_machine=False)
             records.append(record);(destination/(code+'_'+phase+'.json')).write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf8')

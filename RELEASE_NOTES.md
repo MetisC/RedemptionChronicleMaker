@@ -48,3 +48,10 @@ Startup inventory compatibility is preserved: required custom template libraries
 - Broader native save/load ownership, re-entry, spawned-actor collision/navigation and networking still require the applicable manual checks. A lethal hit may skip a health threshold; no universal before-death interception is promised.
 
 RCM does not distribute original Vampire: The Masquerade — Redemption assets or the original authoring tools. This remains a release candidate rather than final 1.0.
+
+## Cinematic Director and native world authoring closure
+
+- Capture/edit project camera paths from the viewport, with a conservative linear NCP writer founded on all 174 originals and the native reader/evaluator. One-point fixed shots, ordered keyframes, project packaging, fingerprints, references and cascade deletion; no invented FOV keys.
+- Choreograph films with timed normal Actions and line-start dialogue Actions. Native shot/effect, LookAt/known motion, named conversation staging, positioned loop/Stop, small entity-attached dynamic light and demonstrated weather controls use real Codex APIs.
+- New cue films cancel safely on load to avoid replaying side effects; old films keep their previous policy. No automatic project format conversion or new main tab.
+- Optional Showcase Director lab and separate Arrival at the refuge example, available from Help. Accepted tutorial/mini remain preserved. Generated files, compilation, doubles and packaged UI checks are distinct from native acceptance. EMB01–24 document pending user checks; no new version number or final-1.0 claim.

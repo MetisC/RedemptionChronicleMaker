@@ -1,11 +1,9 @@
-# RC4 readiness
+# Current readiness · rc6
 
-IMPLEMENTED: dynamic encounter wizard, five modes, original enemy metadata, health/counter/state conditions, bounded native ownership/save records and references/graph/debug. Format 10 opt-in backup; format 9 tutorial preserved.
+Implemented authoring includes scenes over immutable NIL, actors/objects, native interactions, dialogue/notes/quests/state, encounters/generators and the Cinematic Director. Closure adds own linear NCPs, timed/line Actions, staging and small runtime sound/light/weather controls. No extra main tab or conversion on opening.
 
-VERIFIED OFFLINE: 425 PASS, 0 FAIL, 0 ERROR, 0 SKIP; real Codex 45.3 builds, class budgets, native doubles, shipped Qt controls and eight frozen bilingual/scaling runs on this PC. Evidence: research/dynamic_encounters. No independent-machine/GPU/native-combat acceptance.
+Current results: build/tests/quality_report.json. Research, real compilation and packaged probes: research/embrace_closure. Historical counts are not the current gate.
 
-VERIFIED IN REDEMPTION: prior tutorial acceptance remains scoped to that story. This pass did not open or automate Redemption.
+The user accepted the preserved tutorial and earlier click/initial navigation repair within those scenarios. EMB01–24, DYN01–12, save/re-entry/networking and an independent PC remain manual. Not final 1.0.
 
-REQUIRES HUMAN RUNTIME TEST: DYN01–12, Showcase/save/load/reentry, F5/first run, existing-item LAN and independent-PC/DPI checks. MANUAL RUNTIME TEST REQUIRED. Not final 1.0.
-
-LIMITS: lethal damage can skip phases, no universal pre-death hook, clear-only waves, no direct dynamic-role cameras or arbitrary random-volume placement. Unresolved ownership stalls rather than duplicating enemies. Network remains experimental. Native effects/checkpoints are not atomic; no structural-save migration.
+See FINAL_PRODUCT_REPORT.md and EMBRACE_AUTHORING_PARITY.md. Geometry/CSG/UV/lightmaps/structural sectors are deliberately excluded. No further feature phase is opened to defer acceptance.

@@ -1,0 +1,8 @@
+{
+  "acceptance": "chronicles/director_acceptance/project.yaml",
+  "showcase_lab": "director_lab",
+  "original_door": "RaveClub tracker_thing NSD offset 6560",
+  "door_operation": "hide and clear collision; not fabricated animation",
+  "ground_positions_checked": true,
+  "native_engine_test": false
+}

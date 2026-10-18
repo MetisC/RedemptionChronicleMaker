@@ -4,7 +4,7 @@
 
 **ADVANCED / EXPERIMENTAL:** writer NOT con campos editables y preservación de bytes desconocidos; puertas originales conocidas; static conservador; NCP original ligado a una geometría; animaciones propias de cada modelo; AI existente y sonidos situados. La compilación o el readback de formatos no acreditan todos los campos nativos. La lista de animaciones depende del modelo; evita convertir slots inexistentes en presets universales.
 
-**POST-1.0:** writer NCP, cámara XYZ/FOV libre, puertas universales, static ALL/NONE/SELECTIVE completo, AI avanzada, audio espacial avanzado, red replicada verificada y migración de saves. La geometría permanece fuera de alcance.
+**NO IMPLEMENTADO:** FOV por keyframe, puertas universales, static ALL/NONE/SELECTIVE completo, autoría AI sin restricciones, red replicada verificada y migración de saves. La geometría permanece fuera de alcance. NCP lineales propios, acciones temporales/de línea, bucles situados y controles pequeños de luz/clima están implementados; aceptación visual/sonora/restore pendiente en EMB01–24.
 
 La aventura local utiliza el menú Multiplayer/LAN del juego como mecanismo de carga. Esto no significa que la red con varios clientes esté verificada. Usa un jugador local. El tutorial nuevo cambia el contrato de saves: partida nueva obligatoria. Las crónicas y perfiles Crypt previos no se borran; las plantillas antiguas del tutorial siguen publicadas para evitar perfiles huérfanos al abrir LAN.
 

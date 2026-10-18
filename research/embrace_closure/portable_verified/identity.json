@@ -1,0 +1,7 @@
+{
+  "executable_sha256": "0caf9fec0a97ca84d5ef27d4775a7330dca1b67f308f28d9a8793a4463b86cb4",
+  "bilingual": true,
+  "mode": "Moved frozen app, restricted PATH, Qt offscreen",
+  "independent_machine": false,
+  "native_game_test": false
+}

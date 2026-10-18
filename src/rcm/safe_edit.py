@@ -62,6 +62,8 @@ def deletion_plan(doc,path,backend):
                 delete(action)
                 actions=action[:-1]
                 if not list_uses(actions):
+                    if 'lines' in actions:
+                        delete(actions);continue
                     # Event/phase without actions cannot run; remove it as well.
                     delete(actions[:-1])
                 continue
@@ -83,7 +85,7 @@ def deletion_plan(doc,path,backend):
             delete(source)
     # Deleting an action directly uses the same empty-container policy.
     for p in tuple(removed):
-        if len(p)>=2 and p[-2]=='actions' and not list_uses(p[:-1]):delete(p[:-2])
+        if len(p)>=2 and p[-2]=='actions' and not list_uses(p[:-1]):delete(p[:-1] if 'lines' in p else p[:-2])
     if 'scenes' in root and all(inside(('scenes',i)) for i in range(len(root['scenes']))):raise ValueError('La campaña necesita una escena')
     removed={p for p in removed if not any(p!=other and p[:len(other)]==other for other in removed)}
     candidate=copy.deepcopy(root)

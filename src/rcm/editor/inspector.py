@@ -442,6 +442,7 @@ class Inspector(QWidget):
                 from ..camera_presets import PRESETS, DEFAULT_DIALOGUE_CAMERA
                 cameras=[(tr(PRESETS[DEFAULT_DIALOGUE_CAMERA][0])+tr(' (predeterminada)'),DEFAULT_DIALOGUE_CAMERA)]+[(tr(v[0]),k) for k,v in PRESETS.items() if k!=DEFAULT_DIALOGUE_CAMERA]+[(tr('Automática del motor (experimental)'),'native')]
                 self.combo(tr('Cámara de diálogo'),cameras,conv.get('camera',DEFAULT_DIALOGUE_CAMERA),lambda v:self.set(p+('camera',),v),'conversation_camera')
+                self.combo(tr('Puesta en escena'),[(tr('Automática'),None)]+self.ids('entries'),conv.get('staging'),lambda v:self.set(p+('staging',),v,True),'conversation_staging')
             if "nodes" in conv:
                 self.combo(tr("Nodo de entrada"), [(n["id"], n["id"]) for n in conv["nodes"]], conv.get("entry", ""), lambda v: self.set(p + ("entry",), v), "conversation_entry")
                 self.note(tr("Las respuestas pueden llevar a otro nodo o terminar con un resultado. Las acciones de flags se aplican al terminar."))
@@ -460,6 +461,9 @@ class Inspector(QWidget):
             self.combo(tr("Actor"), self.ids("actors"), line.get("speaker", conv["speaker"]), lambda v: self.set(p + ("speaker",), v), "line_speaker")
             self.text(tr("Texto"), line["text"], lambda v: self.set(p + ("text",), v), "line_text")
             self.dialogue_motion(p,line,line.get('speaker',conv['speaker']),True)
+            if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
+                from .director import edit_actions
+                self.button(tr('Acciones al comenzar esta línea…'),lambda:edit_actions(self.win,line.get('actions',[]),lambda values:self.set(p+('actions',),values) if values else self.set(p+('actions',),None,True)),'director_line_actions')
             self.note(tr("Escribe un solo parlamento por línea, sin saltos de párrafo. Puedes añadir varias líneas al nodo y reordenarlas."))
         elif p[-2] == "choices":
             answer = self.win.at(p)

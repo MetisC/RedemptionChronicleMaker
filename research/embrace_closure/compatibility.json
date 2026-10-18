@@ -1,0 +1,75 @@
+{
+  "tutorial": [
+    {
+      "path": "chronicles/tutorial/project.yaml",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "3980af804d2d1399fc589c1032db51579e1c79217f8691c6c0a4e4277954b562",
+      "comparison": "text normalized only for git CRLF checkout"
+    },
+    {
+      "path": "chronicles/tutorial/README.en.md",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "e8386b46e8a905537b9d7c1aad792bb8553ff00114f5b6c5e41c467dae9c734d",
+      "comparison": "text normalized only for git CRLF checkout"
+    },
+    {
+      "path": "chronicles/tutorial/README.md",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "5d181950a32a6aca77c56eb13938a377959d81b9bf0e914039bcb10b91e40041",
+      "comparison": "text normalized only for git CRLF checkout"
+    },
+    {
+      "path": "chronicles/tutorial/resources/RCMTutorActor.java",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "87839aee530e1fe6a948b93d65b885e829f443ff62934ce9c29e059249d1e5b8",
+      "comparison": "text normalized only for git CRLF checkout"
+    }
+  ],
+  "mini_chronicle": [
+    {
+      "path": "chronicles/mini_chronicle/project.yaml",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "602c7c94c00619cd31cae135627ea1f114ec74b0ac9efa599981fedc24083bfc",
+      "comparison": "text normalized only for git CRLF checkout"
+    },
+    {
+      "path": "chronicles/mini_chronicle/README.en.md",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "1cf06dd51b9c8f3317f1cb020e894ae29c44683ccff9bf56d2174f6f0268a490",
+      "comparison": "text normalized only for git CRLF checkout"
+    },
+    {
+      "path": "chronicles/mini_chronicle/README.md",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "a4ec92451dd46f95731b452081d052beba1943f84d33ca6517bd70517777fe9f",
+      "comparison": "text normalized only for git CRLF checkout"
+    },
+    {
+      "path": "chronicles/mini_chronicle/resources/RCMMiniActor.java",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "c69f3e38bb6472919a2e819926a0c066638f6a07d78a184e1d842e313c9a32a0",
+      "comparison": "text normalized only for git CRLF checkout"
+    }
+  ],
+  "dynamic_lab": [
+    {
+      "path": "chronicles/dynamic_lab/project.yaml",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "271bddf5a1a96174e210ac10cc380aab72db99414cd4b3a2b468fbf8327b3e98",
+      "comparison": "text normalized only for git CRLF checkout"
+    },
+    {
+      "path": "chronicles/dynamic_lab/README.en.md",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "0af53c1ccff2f6160dc6f3a2b70f8992b257213faabeea77c6d35f9fcc39d013",
+      "comparison": "text normalized only for git CRLF checkout"
+    },
+    {
+      "path": "chronicles/dynamic_lab/README.md",
+      "git_content_unchanged": true,
+      "working_bytes_sha256": "e67fb88c7aaf75b381fe81666ef7308c454347ed421ac9a51a14884c11b8e37c",
+      "comparison": "text normalized only for git CRLF checkout"
+    }
+  ],
+  "all_preserved": true
+}

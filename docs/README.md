@@ -7,6 +7,7 @@ Para usar el editor:
 - [Autoría](AUTHORING_GUIDE.md) · [English](AUTHORING_GUIDE.en.md)
 - [Tutorial](TUTORIAL.md) · [English](TUTORIAL.en.md)
 - [Encuentros dinámicos](DYNAMIC_ENCOUNTERS.md) · [English](DYNAMIC_ENCOUNTERS.en.md)
+- [Director de escenas](CINEMATIC_DIRECTOR.md) · [English](CINEMATIC_DIRECTOR.en.md)
 - [Showcase](SHOWCASE.md) · [English](SHOWCASE.en.md)
 - [Atajos](SHORTCUTS.md) · [English](SHORTCUTS.en.md)
 - [Resolución de problemas](TROUBLESHOOTING.md) · [English](TROUBLESHOOTING.en.md)
@@ -20,3 +21,5 @@ Para desarrollar y comprobar el producto:
 - [Dependencias y avisos](DEPENDENCIES_LICENSES.md); sus textos completos están en licenses/portable.
 
 No se mantienen documentos de fases anteriores ni historiales de correcciones. Los datos antiguos necesarios para regresión están en tests/fixtures, no son ejemplos visibles para crear crónicas.
+
+Paridad de autoría: [matriz](EMBRACE_AUTHORING_PARITY.md) y [auditoría](../research/embrace_closure/EMBRACE_AUTHORING_CLOSURE.md).

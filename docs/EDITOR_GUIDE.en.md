@@ -37,3 +37,5 @@ Once installed in RCM, the pack applies to all managed RCM launch folders, regar
 **Tenebrae decorative doors:** the two back doors belong to the NIL. Right-click identifies the surface and adds a selectable prop matching it; the NIL and wall remain intact. The original exit uses `tracker_thing` + `ClickExit`. The new layer uses the same native hover/click mechanism with RCM actions. A decorative door does not gain an opening animation.
 
 Old proximity triggers/events are not silently converted. Delete the previous trigger/event with the cascade preview, recreate the click interaction, rebuild and deploy. Self-links are blocked by validation. Native hover, click, highlighting, saves and networking for this layer remain pending (CLICK01–08).
+
+Campaign → Sequences → Create/edit camera path captures the current 3D view. Add/reorder points and apply once; the window stays open while navigating. Timed Actions use the ordinary inspector. Dialogue line Properties offers Actions at line start. See CINEMATIC_DIRECTOR.en.md and the Help acceptance example.

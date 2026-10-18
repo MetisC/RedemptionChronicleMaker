@@ -37,7 +37,7 @@ class GuidePanel(QWidget):
         if scene=='wizard':
             from .recipe_wizard import open_wizard
             open_wizard(self.win,kind,ident if ident!='new' else None);return
-        if scene=='resources' and kind in ('templates','ai_profiles','textures','scripts'):
+        if scene=='resources' and kind in ('templates','ai_profiles','textures','scripts','camera_paths'):
             panel=self.win.project_resources_panel;index=panel.kind.findData(kind)
             if index>=0:
                 panel.kind.setCurrentIndex(index);panel.refresh()

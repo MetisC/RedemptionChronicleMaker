@@ -1,0 +1,111 @@
+{
+  "samples": [
+    {
+      "kind": "entries",
+      "id": "safe",
+      "position": [
+        365,
+        -976,
+        -512
+      ],
+      "surface": [
+        365.0,
+        -976.0,
+        -512.0
+      ],
+      "triangle": 6266
+    },
+    {
+      "kind": "actors",
+      "id": "mentor",
+      "position": [
+        300,
+        -850,
+        -512
+      ],
+      "surface": [
+        300.0,
+        -850.0,
+        -512.0
+      ],
+      "triangle": 6266
+    },
+    {
+      "kind": "actors",
+      "id": "guard",
+      "position": [
+        430,
+        -900,
+        -512
+      ],
+      "surface": [
+        430.0,
+        -900.0,
+        -512.0
+      ],
+      "triangle": 6254
+    },
+    {
+      "kind": "actors",
+      "id": "rat",
+      "position": [
+        600,
+        -750,
+        -512
+      ],
+      "surface": [
+        600.0,
+        -750.0,
+        -512.0
+      ],
+      "triangle": 106
+    },
+    {
+      "kind": "waypoints",
+      "id": "guard_a",
+      "position": [
+        430,
+        -900,
+        -512
+      ],
+      "surface": [
+        430.0,
+        -900.0,
+        -512.0
+      ],
+      "triangle": 6254
+    },
+    {
+      "kind": "waypoints",
+      "id": "guard_b",
+      "position": [
+        430,
+        -780,
+        -488
+      ],
+      "surface": [
+        430.0,
+        -780.0,
+        -488.0
+      ],
+      "triangle": 5977
+    },
+    {
+      "kind": "waypoints",
+      "id": "noise",
+      "position": [
+        600,
+        -750,
+        -512
+      ],
+      "surface": [
+        600.0,
+        -750.0,
+        -512.0
+      ],
+      "triangle": 106
+    }
+  ],
+  "native_walkability_verified": false,
+  "native_camera_collision_verified": false
+}

@@ -415,6 +415,19 @@ class Viewport(QOpenGLWidget):
         return [np.array([x, y, z]) for z in (low[2], high[2]) for y in (low[1], high[1]) for x in (low[0], high[0])]
 
     def overlays(self, painter):
+        preview=getattr(self,'director_preview',[])
+        painter.setPen(QPen(QColor('#ffd064'),2))
+        for i,point in enumerate(preview):
+            painter.setPen(QPen(QColor('#ffffff' if i==getattr(self,'director_selected',-1) else '#ffd064'),3 if i==getattr(self,'director_selected',-1) else 2))
+            position=np.asarray(point['position']);screen=self.project(position)
+            if not screen:continue
+            painter.drawEllipse(screen,5,5);painter.drawText(screen+QPointF(7,-7),str(i+1))
+            pitch,roll,yaw=np.radians(point['orientation']);forward=np.array([-math.sin(yaw)*math.cos(pitch),math.cos(yaw)*math.cos(pitch),math.sin(pitch)])
+            tip=self.project(position+forward*70)
+            if tip:painter.drawLine(screen,tip)
+            if i:
+                previous=self.project(preview[i-1]['position'])
+                if previous:painter.drawLine(previous,screen)
         if self.context_surface is not None:
             surface=self.context_surface;xyz=np.asarray(surface['interaction']['vertices'])[:,:3];center=np.asarray(surface['position'])
             corners=[self.project(center+p) for p in self.box_corners(xyz.min(0),xyz.max(0))]

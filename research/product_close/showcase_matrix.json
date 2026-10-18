@@ -350,6 +350,16 @@
     "runtime_verified": false
   },
   {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_hub",
+    "link": "rcm://quay/conversations/dyn_hub",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "generators",
     "classification": "NORMAL",
     "scene": "quay",
@@ -361,6 +371,26 @@
   },
   {
     "capability": "generators",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_boss",
+    "link": "rcm://quay/generators/dyn_boss",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_generator",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_boss",
+    "link": "rcm://quay/generators/dyn_boss",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:play_sound",
     "classification": "NORMAL",
     "scene": "quay",
     "entity": "dyn_boss",
@@ -1590,6 +1620,66 @@
     "runtime_verified": false
   },
   {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_hub_play",
+    "link": "rcm://quay/events/dyn_hub_play",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_hub_play",
+    "link": "rcm://quay/events/dyn_hub_play",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_hub_cinema",
+    "link": "rcm://quay/events/dyn_hub_cinema",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:travel",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_hub_cinema",
+    "link": "rcm://quay/events/dyn_hub_cinema",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_hub_back",
+    "link": "rcm://quay/events/dyn_hub_back",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "quay",
+    "entity": "dyn_hub_back",
+    "link": "rcm://quay/events/dyn_hub_back",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "entries",
     "classification": "NORMAL",
     "scene": "archive",
@@ -2360,6 +2450,616 @@
     "runtime_verified": false
   },
   {
+    "capability": "entries",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "safe",
+    "link": "rcm://director_lab/entries/safe",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "actors",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "mentor",
+    "link": "rcm://director_lab/actors/mentor",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "actors",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "guard",
+    "link": "rcm://director_lab/actors/guard",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "actors",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "rat",
+    "link": "rcm://director_lab/actors/rat",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "objects",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_door",
+    "link": "rcm://director_lab/objects/refuge_door",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "guard_a",
+    "link": "rcm://director_lab/waypoints/guard_a",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "guard_b",
+    "link": "rcm://director_lab/waypoints/guard_b",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "waypoints",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "noise",
+    "link": "rcm://director_lab/waypoints/noise",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "paths",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "guard_walk",
+    "link": "rcm://director_lab/paths/guard_walk",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "sequences",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:look_at",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_dynamic_light",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:play_motion",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_patrol",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:play_sound",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:play_camera_path",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:camera_fade",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "welcome",
+    "link": "rcm://director_lab/conversations/welcome",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:camera_shot",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "welcome",
+    "link": "rcm://director_lab/conversations/welcome",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:look_at",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "welcome",
+    "link": "rcm://director_lab/conversations/welcome",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:play_motion",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "welcome",
+    "link": "rcm://director_lab/conversations/welcome",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "wait",
+    "link": "rcm://director_lab/conversations/wait",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "after",
+    "link": "rcm://director_lab/conversations/after",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "conversations",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "waiting",
+    "link": "rcm://director_lab/conversations/waiting",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:scene_start",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "arrival",
+    "link": "rcm://director_lab/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "arrival",
+    "link": "rcm://director_lab/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "arrival",
+    "link": "rcm://director_lab/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_quest",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "arrival",
+    "link": "rcm://director_lab/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:show_note",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "arrival",
+    "link": "rcm://director_lab/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:object_clicked",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "click_refuge",
+    "link": "rcm://director_lab/events/click_refuge",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "click_refuge",
+    "link": "rcm://director_lab/events/click_refuge",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:control_original",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "click_refuge",
+    "link": "rcm://director_lab/events/click_refuge",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "click_refuge",
+    "link": "rcm://director_lab/events/click_refuge",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "watch",
+    "link": "rcm://director_lab/events/watch",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:play_sequence",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "watch",
+    "link": "rcm://director_lab/events/watch",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "skip",
+    "link": "rcm://director_lab/events/skip",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:run_event",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "skip",
+    "link": "rcm://director_lab/events/skip",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:sequence_ended",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "film_end",
+    "link": "rcm://director_lab/events/film_end",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:run_event",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "film_end",
+    "link": "rcm://director_lab/events/film_end",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:manual",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "begin_guard",
+    "link": "rcm://director_lab/events/begin_guard",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "begin_guard",
+    "link": "rcm://director_lab/events/begin_guard",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "begin_guard",
+    "link": "rcm://director_lab/events/begin_guard",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:spawn",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "begin_guard",
+    "link": "rcm://director_lab/events/begin_guard",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:clear_dynamic_light",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "begin_guard",
+    "link": "rcm://director_lab/events/begin_guard",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:show_note",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "begin_guard",
+    "link": "rcm://director_lab/events/begin_guard",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_killed",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "rat_defeated",
+    "link": "rcm://director_lab/events/rat_defeated",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_flag",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "rat_defeated",
+    "link": "rcm://director_lab/events/rat_defeated",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "rat_defeated",
+    "link": "rcm://director_lab/events/rat_defeated",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "leave_refuge",
+    "link": "rcm://director_lab/events/leave_refuge",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:advance_quest",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "leave_refuge",
+    "link": "rcm://director_lab/events/leave_refuge",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:complete_quest",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "leave_refuge",
+    "link": "rcm://director_lab/events/leave_refuge",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:camera_fade",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "leave_refuge",
+    "link": "rcm://director_lab/events/leave_refuge",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:travel",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "leave_refuge",
+    "link": "rcm://director_lab/events/leave_refuge",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_clicked",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "mentor_start",
+    "link": "rcm://director_lab/events/mentor_start",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "mentor_start",
+    "link": "rcm://director_lab/events/mentor_start",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_clicked",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "mentor_resume",
+    "link": "rcm://director_lab/events/mentor_resume",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "mentor_resume",
+    "link": "rcm://director_lab/events/mentor_resume",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_clicked",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "mentor_wait",
+    "link": "rcm://director_lab/events/mentor_wait",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "mentor_wait",
+    "link": "rcm://director_lab/events/mentor_wait",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "when:actor_clicked",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "mentor_after",
+    "link": "rcm://director_lab/events/mentor_after",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_conversation",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "mentor_after",
+    "link": "rcm://director_lab/events/mentor_after",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "when:generator_started",
     "classification": "NORMAL",
     "scene": "",
@@ -2470,6 +3170,96 @@
     "runtime_verified": false
   },
   {
+    "capability": "action:set_actor_clan",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_discipline",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:stop_sound",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:camera_flash",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:camera_filter",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:clear_camera_effects",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:look_at_point",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:stop_actor",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:set_weather",
+    "classification": "NORMAL",
+    "scene": "",
+    "entity": "",
+    "link": "",
+    "in_game": false,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "action:pause_generator",
     "classification": "NORMAL",
     "scene": "",
@@ -2560,13 +3350,13 @@
     "runtime_verified": false
   },
   {
-    "capability": "Viewport camera XYZ/FOV",
+    "capability": "Own camera path capture",
     "classification": "EXPERIMENTAL",
     "scene": "",
     "entity": "",
     "link": "",
-    "in_game": false,
-    "in_editor": false,
+    "in_game": true,
+    "in_editor": true,
     "runtime_verified": false
   }
 ]

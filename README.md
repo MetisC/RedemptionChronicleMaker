@@ -89,7 +89,7 @@ In particular:
 - RCM does not ship the original game, original game assets or the old authoring tools;
 - it does not automate playing the game or click through Redemption’s menus for you;
 - arbitrary freeform camera XYZ/FOV authoring is not the normal workflow;
-- there is no universal NCP writer;
+- own linear NCP camera paths can now be captured from the viewport; original splines round-trip without modification, while native framing remains a manual check;
 - universal door editing and universal removal of arbitrary original static content are not guaranteed features;
 - multiplayer/network behaviour is not the main certified target;
 - some native-engine behaviours — especially save/load, re-entry, collision/pathfinding and very large dynamic encounters — still require manual testing in the actual game.
@@ -621,3 +621,9 @@ If you only want to use RCM:
 ```
 
 That is the intended workflow: **idea → author → F5 → play in Redemption**.
+
+## Cinematic Director closure
+
+Campaign → Sequences now captures camera points from the 3D viewport, writes project-owned linear NCPs and coordinates normal Actions on a timed list. The same Actions work at dialogue line start. Effects, LookAt/known motions, named conversation staging, spatial loops and entity-attached runtime light/weather controls extend the existing runtime without changing the accepted tutorial.
+
+Open **Help → Acceptance chronicle: the refuge** or the optional Director lab from the Showcase guide. See [Cinematic Director](docs/CINEMATIC_DIRECTOR.en.md), [parity matrix](docs/EMBRACE_AUTHORING_PARITY.md) and EMB01–24 in the manual checklist. Original geometry and mod archives remain untouched. This closes implemented authoring gaps, while new native visual/audio/save acceptance remains pending; it is not final 1.0.
