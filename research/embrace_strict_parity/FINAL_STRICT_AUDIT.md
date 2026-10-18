@@ -28,7 +28,7 @@ announce 100% parity or final 1.0. The accepted tutorial remains format 9.
    This remains an explicit gap rather than a geometry-only dismissal.
 8. **External NOT libraries without Embrace? Yes for selected data.** Normal
    Settings import selects templates, resolves parents/data and retains local
-   ownership. Unsupported required code fails clearly. No universal mod claim.
+   ownership. Settings also removes verified local copies with project/library dependency guards. Unsupported required code fails clearly. No universal mod claim.
 9. **Useful authoring still requiring YAML?** Newly implemented intentions have
    controls and undo. Missing native box/region capabilities cannot be made safe
    simply by typing YAML. Manual format edits are not advertised as parity.
@@ -57,3 +57,12 @@ Maps: eight original NUI map layouts and NSC/NLS point mapping are understood.
 Own illustration/locations/labels and native visibility flags are feasible
 without NIL edits. A normal map editor is not implemented. MAPS.md separates
 that conclusion from existing authored scene/map inheritance.
+
+Post-audit regressions: custom Java must actually inherit Codex and match its
+public constructor; explicit script removal clears inherited custom dispatch.
+Instance resource changes invalidate cached metadata, and animation selectors
+use the effective instance motion set. Synthetic instance templates are hidden
+from normal browsing/base selection. Resource-only refreshes no longer reload
+unrelated level catalogues; full build/deploy fingerprints still verify them.
+Difficulty was then implemented separately; research/combat_difficulty/EVIDENCE.md
+records factors, real APIs and native acceptance limits.

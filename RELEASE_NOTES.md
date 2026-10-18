@@ -87,3 +87,22 @@ RCM does not distribute original Vampire: The Masquerade — Redemption assets o
   remain explicit limits. New native cases require user observation in game.
 - Investigated original map illustrations/points/names/visibility: custom maps
   are feasible without Embrace or NIL editing; no map editor is advertised yet.
+
+
+## Optional chronicle combat difficulty
+
+Chronicle properties now offer Easy, Normal, Hard and Nightmare in English and
+Spanish. Normal is unchanged. Fresh RCM enemy health/maximum and native
+Strength/Stamina use conservative factors (Easy .8/.9/.9, Hard1.2/1.1/1.1,
+Nightmare1.5/1.2/1.2). Dynamic HP overrides are applied first. Enemy team/neutral
+checks exclude allies, players and ordinary conversation NPCs. Existing GUIDs
+and save/re-entry do not rescale; no new native save record is added. Changing
+difficulty recommends a new game for uniform results. Native balance, equipment,
+save/load and multiplayer observation remain DIFF manual checks.
+
+Imported-library management now checks project and parent dependencies before
+removing local copies. Shared deployments and saved inventories retain complete
+verified data libraries, including transitive resources. Custom-script builds
+verify actual Codex inheritance as well as constructor signatures. Instance
+animation selectors refresh after motion-set changes; internal generated
+inheritance records are hidden from ordinary browsing.

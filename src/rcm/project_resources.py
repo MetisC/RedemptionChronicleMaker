@@ -59,7 +59,7 @@ def prepare(ws,source,catalogue):
     if type(root['project_format']) is not int or root['project_format'] not in (5,9,10) or root.get('schema')!=2:raise ValueError('project_format soportado: 5, 9 o 10 con schema 2')
     modern=root['project_format'] in (9,10)
     from .instance_overrides import lower as lower_overrides
-    lower_overrides(root)
+    instance_templates=lower_overrides(root)
     if 'authoring' in root:
         from .recipes import validate_authoring
         if not modern:raise ValueError('Authoring recipes require project format 9')
@@ -150,6 +150,7 @@ def prepare(ws,source,catalogue):
                 # as in businessWoman's inherited original "ped.nai" field.
                 engine_props[key]=Path(entry['path']).name
         new=patch_template(new,{'cast_id':name,'description_id':name,**engine_props});record={**record,'id':name,'parent':base,'archive':'PROJECT','path':not_path,'project_owned':True}
+        if name in instance_templates:record['instance_owned']=True
         if 'motions' in engine_props:record['motions']=engine_props['motions']
         if 'hover_text' in row:record['description_override']=name
         for k in ('model','ai','script'):
@@ -165,7 +166,9 @@ def prepare(ws,source,catalogue):
                 entry=original_entry(catalogue,'.class',script)
                 valid=any(r['descriptor']=='()V' for r in constructors(original_bytes(ws,entry)))
             if not valid:raise ValueError('Script con parámetros: usa Script nativo en la instancia, no un script sin argumentos de plantilla')
-        if props.get('script'):record['custom_script']=props['script']
+        if 'script' in props:
+            if props['script']:record['custom_script']=props['script']
+            else:record.pop('custom_script',None)
         resolved[name]=(new,record);visiting.remove(name);return new,record
     for name in ts:resolve(name)
     if ts:
@@ -188,6 +191,20 @@ def add_to_build(ws,report,payload,info,compile_java=True):
         result=subprocess.run(command,capture_output=True,text=True);ws.write(root/'custom_compiler.log',result.stdout+result.stderr)
         if result.returncode:raise ValueError('Java propio no compila; consulta custom_compiler.log: '+result.stderr[:1000])
         for name in info['scripts']:
+            main=out/(name+'.class')
+            if not main.is_file():raise ValueError('La clase Java debe usar el nombre declarado y el paquete por defecto: '+name)
+            from .classfile_limits import inspect_class
+            parent=inspect_class(main.read_bytes())['superclass'];seen=set()
+            while parent!='Codex':
+                if not parent or parent in seen or '/' in parent:raise ValueError('El script Java debe heredar de Codex: '+name)
+                seen.add(parent);own=out/(parent+'.class')
+                original=ws.output('research/original/Codex.nob/'+parent+'.class')
+                if own.is_file():data=own.read_bytes()
+                elif original.is_file():data=original.read_bytes()
+                elif ws.game:
+                    with zipfile.ZipFile(ws.game/'Codex.nob') as archive:data=archive.read(parent+'.class')
+                else:raise ValueError('No se puede verificar la herencia Codex: '+name)
+                parent=inspect_class(data)['superclass']
             for p in out.glob(name+'*.class'):
                 if p.stem!=name and not p.stem.startswith(name+'$'):continue
                 data=p.read_bytes()

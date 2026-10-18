@@ -1,0 +1,1662 @@
+PDF PAGE 5
+“What is your name, boy?” asked Sir
+Cuthbert.
+“Christof Romuald, of St. Claire.” 
+“Thou art a brave lad, and true, Christof
+Romuald of St. Claire. Dost thou love God?”
+“Aye, my liege.”
+“Seek ye salvation of thy sinner’s soul?”
+“With all my heart, my liege.”
+“Art thou prepared to die for the
+Kingdom of God?”
+“Aye, my liege.”
+“No longer shall thou fight upon the line.
+Thou shalt join my retinue and smite all who
+would kill me.”
+Christof felt light-headed. Almost giddy.
+“I obey, my liege,” he said, breathlessly.
+“Thou hast cleft the devil’s skull in twain
+and lived to boast of it.”
+Christof nodded slowly. 
+“God has smiled upon thee. He spared
+thee from certain death because He has
+conceived a higher purpose for thee.
+Therefore, fear not in battle, but give the
+devil his due, for thou art blessed!” 
+“Aye.” Chirstof replied, though he was far
+from reassured. 
+Christof slept deeply that night, dragged
+under by weariness and wine. For the first
+time, the hateful, hollow eyes of the dead
+boar and the dead barbarian no longer
+haunted him. Instead, all he could see were
+the hateful, living eyes of a dead man. 
+“Saved,” he hoarsely bellowed, “by the
+grace of God!” The troops cheered again,
+louder. 
+Christof tried to follow Sir Cuthbert out
+of the tent, but the empiric blocked his path.
+The old man peeled back the blood-soaked
+mail from Christof’s right forearm and
+gripped his bicep to stanch the blood flow.
+He forced Christof to sit on a barrel. 
+“The demon unleashed a torrent of blood
+from thy arm,” the old man scolded, pouring
+wine over the jagged claw marks. “Thy very
+life leaks out upon the uncaring soil!” He
+gently rinsed grit from the wound and
+wrapped it tightly in fresh linen. “Disturb
+not this dressing,” he said sternly. When he
+finished, the empiric retrieved Christof’s
+broadsword from the ground. The old man
+scowled as he handed Christof the weapon,
+saying, “When next thou are inclined to
+chase the spawn of Hell... pray remember to
+bring thy sword!” And just for a moment,
+Christof thought he saw a hint of smile on
+the sour face of the old man who had
+witnessed so much suffering and death.
+Outside the tent, Friar Bertrand intoned,
+“In the name of our Lord and God Jesus
+Christ, for His glory and for the exaltation of
+His holy faith. Amen. The barbarian dogs
+felt the sting of God’s wrath in our swords,
+and they fear us. They flee our wrath like
+coward’s! They cannot win by honest force of
+arms, so they have sent a devil to our camp
+to slay your lord and master, Sir Cuthbert.
+But the Lord was with us this day and drove
+the devil from the sight of righteous men!”
+The Crusaders cheered again, louder. As
+Friar Bertrand continued his litany, Sir
+Cuthbert stepped back into the tent. He
+approached his steward and said, “Give the
+men an extra tot of brandy tonight, or they
+will never rest.” 
+“But is that wise?” the steward asked. “We
+must rise before dawn! If we should delay
+further, that barbarian hoard shall surely-”
+“We’ve lost those jackals,” Sir Cuthbert
+snapped. “We could wander these hills for
+weeks and not find their trail. The filthy
+barbarians wear armour of fur so that they
+may run like deer and hide like mice. But it
+will protect them no more than it did the
+beast they skinned!” He paused and
+composed himself. “No. Let the men sleep
+past sunrise. We’ve pushed them hard enough
+for one week.” 
+“Whither do we go after sunrise?” the
+steward asked.
+“T o the barbarian supply camp! We shall
+seek for it here in these Moravian hills. It was
+doubtless the hoards destination. And we are
+close, by God, or their demon master would
+never have risked entering our camp, even by
+night!”
+“Yes, my lord!” the steward replied. “But
+they will continue to seek thy murder!” 
+“Aye. My retinue will protect me, if God
+wills it. Now fetch the men their brandy.
+T omorrow we scout these hills. I want the
+men full of vigour when we find the
+barbarian camp.” 
+“It shall be so,” the steward nodded,
+turning to leave. 
+Sir Cuthbert glanced at Christof.
+“Who is this boy?” he snapped at
+the steward. 
+“The very one who smote the demon and
+drove him from this tent!”
+Cuthbert studied Christof a moment and
+then motioned him to approach. Christof
+stepped forward, trying to conceal the
+trembling in his knees. He had never been
+this close to the great Crusader before.
+Christof fumbled as he clumsily sheathed his
+sword and knelt. 
+UK_Vampire  3/26/02  5:18 PM  Page 8
+
+PDF PAGE 13
+27
+CHARACTERWINDOW
+The character’s T raits are shown in this
+window: Their name, clan, rank and
+generation followed by their Attributes,
+Health, Blood Pool, Humanity and Frenzy
+levels.
+The character’s Attributes are shown
+with the current level, influenced by
+wounds, Discipline use or magic, first
+followed by their base level. This allows
+you to gauge the effect of different
+equipment and powers on your character. 
+Another important Attribute that is
+listed is your Humanity level. Your actions
+within the story will change your
+humanity, and if your Humanity falls to
+zero, then your character will go mad, and
+the game will end. 
+The range for the character’s currently
+equipped weapon is displayed along with
+the damage type. Also, the soak totals for
+all of your armour (including helms,
+shields and body armour) against both
+normal damage and elemental attacks are
+clearly shown here as well.
+All of these character T raits are
+explained in their own sections later in
+this manual.
+INVENTORYWINDOW
+This window shows all of the items and
+money that the character is carrying. A
+graphical icon, which takes up a certain
+number of inventory slots, represents items
+carried by the character. Characters are
+limited to how much they can carry in
+their inventory by having a finite number
+of inventory slots. You will receive an
+audio cue if your character is
+overburdened and cannot carry any more
+items. If a character is unable to use a
+certain item, then it will highlight in red,
+and there will be an audio cue if you
+attempt to use it.
+T o equip an item, simply drag it to the
+appropriate spot on your character
+portrait. Items can only be placed in a
+specific location on the character portrait.
+Weapons (e.g. bows, swords, guns) can
+only be placed in the slot with the “sword”
+icon, and shields or utility items (e.g.
+footman’s shield, torch, flashlight) can
+only be placed in the slot with the “shield’
+icon. T o equip armour, simply drag the
+piece of armour to the “chest” slot, and
+helms can be equipped by dragging it to
+the “head” slot. Finally, necklaces can be
+placed in the slot to the left of the “head”
+icon, and items such as rings can be placed
+in the “hand” slots.
+26
+TEXTBOX
+Below the In-Game Screen, but above
+the Portraits Box, is an area where you will
+see various text messages displayed. These
+text messages cover a variety of situations
+but usually appear when you attempt an
+action or something happens to one of
+your characters. In multiplayer games, this
+area is also used to show text messages
+from other players (refer to the Multiplayer
+and Storytelling chapter for more
+information on multiplayer games).
+Extended rollover text will appear in place
+of the character portraits.
+PORTRAITBOX
+An animated head on the bottom of the
+screen represents each person in your
+coterie, including the main character, and
+this portrait is used to show what state, or
+condition, each character is currently in. A
+few of these conditions are listed below:
+Damaged: The portrait will show the
+character is under pain when taking damage.
+Unconscious: The character’s head will
+roll back and stop moving when he is
+unconscious/dead.
+Frenzy: The portrait will flash red; the
+character’s portrait will show a frenzied look.
+The Kiss: As the character feeds, his or
+her portrait is displayed with fangs bared.
+Animal: If you change into an animal
+form (e.g. a wolf), the portrait will change
+into that animal’s head.
+Below the portrait are three bars of
+different colours, representing the status of
+the characters Health (Blue), Blood (Red)
+and Frenzy (Orange) statistics. A full bar
+means that the character is at his or her
+maximum for that character T rait. As the
+level falls, the T rait is correspondingly lower.
+This is very useful information as it provides
+quick access to a character’s overall state of
+being and whether or not s/he is about to
+die, run out of blood or enter into a frenzy. 
+If you place the cursor over a character’s
+portrait you will receive a numerical display
+of his or her Health, Blood Pool and
+Frenzy levels (Health, Mana and Faith for
+humans.) You can transfer inventory items
+between characters by dragging an item
+onto the character portrait. If the
+characters are close enough to each other,
+the item will be transferred.
+QUICKITEMS
+Within the status bar are five slots for
+quick use items. These items can be used
+by either right clicking on them or by
+pressing the function keys F1-F5. Items
+may also be dragged/dropped from the
+inventory screen into these slots.
+QUICKDISCIPLINES
+The status bar also displays six slots for
+quick selection of Disciplines. Any of these
+Disciplines can be selected as active by
+either left clicking on them or by pressing
+the numeric keys 1-6. You can set up
+which Disciplines are housed in the Quick
+Discipline slots by opening your Discipline
+Window and left-clicking on the desired
+Discipline’s icon and dragging/dropping it
+into the correct slot.
+UK_Vampire  3/26/02  5:18 PM  Page 26
+
+PDF PAGE 14
+29
+When buying, you are presented with a
+list of the merchant’s wares with prices. If
+you highlight an item you will see it’s icon
+and be able to hit the Buy button to
+purchase it if you have sufficient money.
+The cost of the item will then be deducted
+from your cash reserves. If you do not
+have enough money to buy an item, then
+that item will be greyed out. Also, if an
+item is listed in red, then your character
+does not currently have the Attributes to
+wield the weapon or wear the armour. You
+can still purchase the item, however you
+will not be able to equip it until you meet
+the item’s minimum Attribute
+requirements. When selling, you can select
+any of the items that your character is
+carrying, and the price you are being
+offered will appear on the merchant’s side
+of the screen. If you accept the offer, hit
+the Sell button, and the money will be
+added to your total. 
+On a side note, the price your character
+pays for items and the money they receive
+for selling can be higher or lower
+depending on the Manipulation Attribute.
+Thus, a Manipulation of 90 will garner a
+much better buying and selling price then
+if your character has a manipulation of 10.
+ADVANCEMENTSCREEN
+Between completing quests in the
+single player chronicle, you will have the
+opportunity to spend the experience
+points you have earned on the various
+character Attributes. In certain missions,
+an advancement window will
+automatically pop up after the mission is
+complete. You can also visit your Haven at
+any time to spend experience points for
+any of your coterie. T o do this, when you
+are at your Haven, just click on the coffin
+in your Haven to bring up the
+Advancement Screen. In multiplayer
+games, you can click on the coffin in your
+Haven to bring up the advancement
+screen, however it is also up to the
+Storyteller’s discretion to award extra
+experience points for a well played
+scenario or completing a quest.
+The Advancement Screen shows your
+character sheet with the current levels of
+Attributes and Disciplines, and crosses
+next to each item that you may advance.
+T o increase the level of your Attribute or
+Discipline, simply click on the cross to
+spend your experience points in exchange
+for the increase. If you place your cursor
+over an Attribute or Discipline, the
+experience point cost will appear in the
+dialogue box at the bottom of the screen.
+You can cancel or reverse changes in order
+to tweak things as desired by hitting the
+reverse arrow below your character sheet.
+Once you are satisfied, hit the OK button.
+As you gain experience from your
+battles, your ranking will go up as well.
+Starting as a Fledgling, your character will
+climb the ranks as more experience is
+gained. As your character’s ranking
+increases, the character’s Health will also
+increase, as well as the Blood Pool. Thus,
+the Blood Pool and Health level of an
+Antediluvian will far exceed a character,
+who is merely a Neonate.
+The Storyteller has access to an
+Advancement Screen similar to this,
+although s/he has the capability of
+modifying the experience you receive,
+along with what new Disciplines are
+available to you. There is an Advancement
+28
+Please note, if the sword or weapon
+that you are equipping is a two-handed
+weapon (this can be seen by rolling your
+cursor over the weapon and seeing “2H”
+appear in the item description), then you
+cannot equip a shield or utility item. If
+you have a shield or utility item equipped,
+then you will have to first remove this
+item, prior to equipping the sword. Also,
+some weapons and armour have a
+minimum requirement to equip them.
+Some items may require a certain
+Strength, Humanity or even Faith
+requirement before you can equip them. If
+you cannot equip an item, please roll your
+cursor over the item to bring up the item
+description. Verify that you have the
+requisite characteristics, if any, in order to
+equip this item. 
+DISCIPLINEWINDOW
+A list of the character’s current
+Disciplines is displayed, including the
+current level of proficiency in each,
+indicated by the number of filled dots.
+You may set up the Quick Discipline slots
+by dragging and dropping the Discipline
+icons into one of the six slots in the status
+bar. You may also left-click to select a
+Discipline from this list (and later right-
+click to use it) or right-click on any
+Discipline in this list from this pane to
+activateit immediately.
+CONVERSATIONBOX
+During some conversations between
+your characters and non-player characters,
+you will be given the option to choose one
+of several responses. Your response has an
+affect upon how the non-player character
+responds back to you and, in some cases,
+the state of the game. When these response
+options appear, you must select one by
+clicking on it with your cursor.
+PURCHASEWINDOW
+When dealing with merchants, a
+purchase menu will appear, allowing you
+to buy or sell items. The merchant’s wares
+will be displayed on the left-hand side of
+the screen, while your character’s inventory
+will be on the right. T o switch the
+character that is purchasing or selling to
+the merchant, just hit TAB or click on the
+character’s portrait.
+UK_Vampire  3/26/02  5:19 PM  Page 28
+
+PDF PAGE 15
+31
+SOAKING
+Before damage is applied, the victim
+has the chance to absorb part or all of the
+damage before it affects the character’s
+Health. This ability to absorb damage is
+also known as “soaking.” Soaking accounts
+for the existence of armour and other
+natural and preternatural abilities to resist
+damage. As indicated above, there are
+specific requirements for soaking certain
+types of damage. The factors involved in
+soaking are:
+ARMOUR
+Armour allows soaking of all three
+forms of damage, except for the specialised
+Aggravated types of fire, sunlight, holy,
+electrical and cold (some exceptions exist
+here, like special grounding armour,
+magically enhanced items or heated
+devices.)
+STAMINA
+Humans may soak only Bashing
+damage using their Stamina. Vampires use
+their Stamina to soak both Bashing and
+Lethal damage but not Aggravated.
+FORTITUDE
+Fortitude is a specialised Discipline that
+allows soaking of Aggravated damage. It
+has an advantage over items and armours
+which normally only defend against a
+limited number of Aggravated damage
+types. Fortitude also adds to the soak
+values for Bashing and Lethal damage.
+STAKING
+When a vampire is impaled in the heart
+with implements of wood, it renders them
+completely immobile until the stake is
+removed. If one of your characters is staked,
+another member of the coterie can remove
+the stake by selecting the available character
+and then left-clicking on the staked
+character. Also, if you do not have a
+character that can unstake you, a staked
+character will be able to expel the stake from
+his or her body after some time has passed.
+Staking can occur with actual stakes
+(used as a melee weapon) or with ranged
+weapons such as crossbows and stake-guns.
+If the stake hit is considered critical, a
+staking occurs. 
+COTERIE COMBAT AI
+During play, all coterie members, other
+than the ones you have selected, will move
+and attack on their own, but in accordance
+with any coterie commands you have
+selected. AI controlled characters can
+perform a wide range of tasks
+automatically, including reloading their
+weapons, switching from a ranged attack
+to a melee weapon, as well as healing and
+replenishing their Blood Pools. Also, by
+holding down CTRL and left-clicking on
+an enemy, you can tell the rest of your
+coterie to concentrate their attacks on that
+one opponent.
+30
+Screen for each character (showing the 3D
+head and other stats of the character) from
+which the Storyteller can assign and spend
+experience points for each coterie member,
+thereafter returning to the game
+IN-GAMEMENU
+You can press ESC at any time to bring
+up the In-Game Menu. This pauses the
+game in single player and allows you to
+resume the game, exit the game, load a
+saved game or adjust options. 
+SOME GENERAL NOTES
+ABOUT COMBAT
+DAMAGETYPES
+There are three main types of damage
+that can be suffered in the game: Bashing,
+Lethal and Aggravated. These types are
+distinguished in order to allow for certain
+resistances that vampires may have and to
+show how human and Kindred alike can
+soak them. 
+BASHING
+These attacks include punches, kicks
+and any other kind of blunt trauma, which
+are less likely to kill a victim instantly
+(especially a vampire). All characters
+(including humans) can use Stamina to
+soak Bashing damage.
+LETHAL
+These are attacks meant to cause
+immediate and fatal injury to a victim.
+Vampires can soak Lethal damage with
+their Stamina Attribute, but humans have
+no natural resistance to it.
+AGGRAVATED
+Attacks that are deadly even to the
+undead, including fire, sunlight, the teeth
+and claws of vampires and werewolves and
+certain Holy attacks, are considered to be
+Aggravated attacks. Aggravated damage
+can only be soaked with the Fortitude
+Discipline.
+In addition to these three main types of
+damage, the game supports resistance or
+sensitivity to the following specialised
+forms of damage:
+Electrical
+Includes lightning bolts, high-
+voltage traps, etc.
+Cold
+Freezing attacks, ice weapons,
+freezer traps, etc.
+Fire
+Fireballs, fire traps, lava, hot
+rooms, etc.
+Sunlight
+Direct sunlight or sunlight-
+casting artifacts. Only damages
+vampires.
+Holy
+Prayers, attacks with holy water
+or holy ground. Only damages
+vampires.
+UK_Vampire  3/26/02  5:19 PM  Page 30
+
+PDF PAGE 16
+33
+Wits
+Wits is the ability to maintain your cool
+and think on your feet, especially in intense
+situations. Most importantly, characters
+with high Wits will have a slower
+progression towards becoming frenzied.
+SOCIALATTRIBUTES
+Charisma
+Charisma measures your character’s force
+of personality and command. Characters
+with a high Charisma are better able to
+overwhelm the minds of their foes with
+Disciplines such as Dominate and Presence.
+Manipulation
+Manipulation is the ability to lie,
+connive and convince others of your point
+of view. It is an insidious Attribute that
+allows you to influence others.
+Manipulation grants you success at some
+mental Disciplines and also lowers prices
+at shops.
+Appearance
+Appearance is the measure of the
+character’s physical attractiveness, poise
+and natural beauty. This becomes
+extremely important as you use the
+Presence Disciplines.
+RANK
+Based on a character’s experience
+points, they are given a Rank. This can be
+very useful in quickly determining how
+ancient, powerful and dangerous a
+particular character is. Refer to the
+“Generations of Caine” section in Chapter
+Six for detailed information on each Rank.
+In the game, a character’s rank will apply
+bonuses to his or her Blood Pool and
+Health as s/he gains experience.
+BLOODPOOL
+A Character’s Blood Pool measures how
+much blood (a.k.a. vitae) the vampire has
+in his or her body, and it is from their
+Blood Pool that characters draw energy to
+use their supernatural powers. Most
+Disciplines drain anywhere from a small to
+a large amount of your character’s Blood
+Pool when activated (the rollover text will
+list each Discipline’s specific cost.)
+Vampire characters may replenish their
+Blood Pool by drinking blood from any
+number of sources including bottles of
+vitae or humans.
+HEALTH
+Health measures a character’s physical
+condition, from perfect health to torpor or
+Final Death. As characters are wounded
+their Health level goes down and they have
+a harder time performing actions. The
+more a character’s Health diminishes the
+harder it will be for him or her to do the
+things you want him or her to do. As a
+character loses Health, s/he will move
+slower and suffer penalties to his or her
+Attributes. Once a vampire’s Health
+reaches zero, s/he will collapse into a
+comatose state know as torpor. Without
+the intervention of an ally with the
+Awaken Discipline, this sleep of the ages
+can lead to Final Death.
+Note: Characters in frenzy ignore all
+Health-related penalties.
+FRENZYRATING
+The Frenzy rating is the character’s
+tendency to frenzy and speed at which s/he
+will reach it. As a character takes damage
+or loses blood, s/he becomes more prone
+to frenzy, eventual falling into an
+uncontrolled rage. While a character is
+frenzied, s/he will attack anyone without
+any discretion. Over time, the Frenzy level
+will subside and the character will regain
+his senses. 
+HUMANITYRATING
+The T rait of Humanity is an integral
+part of the underlying theme of any V:TM
+game. It is a moral code that allows
+vampires to retain their mortal sensibilities
+even though they’ve been transformed into
+32
+Much of a character’s life comes from the
+way in which you describe and roleplay
+him. However, certain aspects of a character,
+his physical prowess, looks and special
+powers, are described in numerical terms
+and used in conjunction with the mechanics
+of the game. These features are called T raits
+and Disciplines.
+CHARACTER TRAITS
+Most T raits are based on a 1-100 scale
+for player characters, though there is no
+upper numerical limit. Disciplines are the
+exception, as they utilise a system of dots
+(•) to represent levels of power. The more
+dots, the more power a character has in
+that particular Discipline, with the
+maximum being five dots.
+PHYSICALATTRIBUTES
+Strength
+The raw brute power the character can
+use for lifting, pushing and inflicting
+melee attacks. Strength allows the
+character to be able to move large objects
+and also modifies the amount of damage
+inflicted by melee weapons. Some items,
+such as armour, have minimum Strength
+limitations you must meet before you can
+utilise the equipment. 
+Dexterity
+Dexterity modifies the base movement
+and attack speeds for the character and also
+increases the aiming ability for projectile
+weapons. A high Dexterity will also increase
+a character’s chance of making a critical hit,
+which causes an enormous amount of
+damage. Also, some weapons have a
+minimum Dexterity for usage.
+Stamina
+Stamina is the character’s constitutional
+ability to soak damage. Humans use
+Stamina to soak only Bashing damage,
+while Ghouls, Vampires and some
+monsters can soak Bashing and Lethal
+damage with their Stamina Attribute.
+MENTALATTRIBUTES
+Perception
+Perception is the ability to observe one’s
+environment. 
+Intelligence
+Intelligence is the character’s grasp of
+facts and knowledge and ability to reason
+and solve problems. A high Intelligence is
+required for the most advanced Disciplines.
+CHAPTERTHREE:TRAITSAND
+DISCIPLINES
+CHAPTERTHREE:TRAITSAND
+DISCIPLINES
+UK_Vampire  3/26/02  5:19 PM  Page 32
+
+PDF PAGE 17
+35
+COMMON DISCIPLINES
+Note that in V:TM- Redemption all
+vampiric characters automatically
+start with the Feed and Blood
+Healing Disciplines. This represents the
+inherent ability of all vampires to feed and heal
+themselves. In multiplayer games, all vampires
+and ghouls will start with these abilities.
+However, human characters will not have any
+inherent T raits.
+FEED
+Various levels of this Discipline
+indicate the ability to effectively
+drain a creature of its’ blood
+without killing the victim.
+Feeding is remarkably important
+for a vampire, as it is the best way to replenish
+your Blood Pool. As your level increases, your
+ability to feed without killing your victim will
+increase as well.
+BLOODHEALING
+This allows a vampire to convert
+Blood Pool points into Health
+points, in order to heal his or
+her wounds. The various levels
+of the Discipline dictate how
+fast you can heal and how much Health is
+regained and may enable healing of
+extraneous things like disease. 
+BLOODSTRENGTH
+This Discipline grants a
+temporary increase of the
+character’s Strength Attribute,
+which can be used to increase
+melee damage or for any
+Strength-related puzzles.
+BLOODDEXTERITY
+This Discipline grants a
+temporary increase of the
+character’s Dexterity Attribute,
+which can be used to increase
+combat effectiveness.
+BLOODSTAMINA
+This Discipline grants a
+temporary increase of the
+character’s Stamina Attribute,
+which can allow for the soaking
+of more damage than normal.
+It does not grant you the ability to soak
+Aggravated damage.
+AWAKEN
+This Discipline is normally
+used to awaken, or reanimate,
+another Vampire who has
+nearly been killed and lies in
+torpor. Unless a character has
+died an unequivocal Final Death, the use of
+this Discipline allows the subject to be
+awakened. Such characters will awaken
+with little blood or Health and will need to
+feed very soon, since they are quite prone to
+frenzy with their need for blood.
+WALKTHEABYSS
+This dark power draws on the
+connection between a vampire
+and its Haven, opening a
+mystical portal between the two.
+When this Discipline is used, a
+two-way gate opens between the coterie’s
+current location and its Haven. T o be able to
+open such a portal, you must know the
+location of your Haven and the abyssal
+portal can be blocked by mystical means.
+Key Attributes: Intelligence and Wits.
+ANIMALISM
+Vampires with the Discipline of
+Animalism find themselves with
+greater control over both the
+animal world and the Beast Within. While
+the Gangrel are known to be the masters of
+this Discipline group, other clans, such as the
+Nosferatu, have shown skill in Animalism 
+as well.
+Key Attributes are Charisma and
+Manipulation.
+34
+parasitic monsters. In essence, it is what
+keeps a vampire from becoming a mindless
+animal, enslaved by his or her thirst for
+blood. In game terms, the lower a character’s
+Humanity is, the more monstrous s/he
+appears to others. If a character’s Humanity
+rating reaches zero, then that character has
+lost all sense of reason and becomes nothing
+more than a mindless beast of evil over
+which you no longer have control.
+Certain events during the chronicle may
+raise or lower your Humanity: Killing the
+innocent will almost always cause it to 
+drop, while protecting the weak may cause
+it to rise.
+INCREASINGTRAITS
+Between completing quests in the
+single player chronicle you will have the
+opportunity to visit your Haven to spend
+the Experience Points (XP) you have
+earned. In multiplayer games you receive
+this opportunity after each scene in the
+story (or whenever the Storyteller decides.)
+T o spend your characters’ experience
+points, you must go to your Haven and
+click on the rest coffin.
+HUMANCHARACTERS
+Mortal characters, who are available in
+multiplayer games, differ from the
+Kindred. They do not use blood, cannot
+frenzy and use Numina and Holy Power
+instead of Disciplines.
+The Faith T rait, which is unique to
+humans, empowers any holy powers they
+possess. The Faith T rait can be raised with
+experience and can also be temporarily
+boosted by the possession of holy objects.
+Many holy powers have a minimum Faith
+requirement.
+Instead of blood, human characters rely
+on Mana, which is used to fuel the spells
+and abilities of Holy Power and Numina.
+Unlike vampires, who need to feed to gain
+power, humans naturally regenerate their
+Mana pools over time.
+There are certain items in the game,
+which may only be used by human
+characters. Likewise, humans may not use
+Kindred Disciplines or mystical items.
+DISCIPLINES
+Though vampirism is a curse, the Blood
+of Caine grants great mystical powers to
+those with the insight and dedication to
+pursue them. These powers are known as
+Disciplines.
+Following is a list of the more common
+Disciplines wielded by vampires and other
+supernatural creatures. Rare vampires and
+stranger creatures may have powers not on
+this list, as there are mysteries that remain
+hidden within the World of Darkness. The
+term Discipline refers to both the
+Discipline group (Animalism, for example)
+and the powers within that group (Feral
+Whispers.) Each clan possesses a group of
+Disciplines that are common among their
+ranks. However, it has been whispered that
+vampires can learn Disciplines outside their
+clan’s strengths but at a much higher cost.
+Most Disciplines are linked to a key
+Attribute and will be resisted if used upon
+an enemy. There is also a chance of failing
+to use a Discipline based upon the
+character’s Attributes and power in the
+Discipline. Almost all Disciplines have
+minimum Attribute requirements; for
+example, you cannot use Heightened
+Senses unless you are already perceptive or
+Fireball unless you are very intelligent.
+As you gain more experience through
+your battles, you can use this experience in
+order to increase your specialty in your
+Disciplines. As you increase in power, your
+mastery over the Discipline will allow you
+to cast the Discipline more effectively and
+at a lower blood cost. Thus, if you have a
+Discipline of five dots, then you are truly a
+master, while a vampire with a Discipline
+level of one dot will be casting it a very
+rudimentary level.
+UK_Vampire  3/26/02  5:19 PM  Page 34
+
+PDF PAGE 20
+41
+EARTHMELD
+Using this Discipline, the
+character can burrow into the
+earth and remain there,
+basically safe, until he or she
+chooses to emerge. The frenzy
+reduction rate is doubled when buried, and
+the character also gains Health back slowly
+(without further blood usage.)
+SHAPEOFTHEBEAST
+The character may transform
+into a wolf; gaining increased
+movement speed and the ability
+to cause Aggravated damage with
+his or her bite. The character may
+not use any items or most other powers while
+this Discipline is active.
+MISTFORM
+The character transforms into 
+a cloud of misty vapour. The
+character may not attack while in
+mist form but can be damaged
+only by sunlight or fire.
+THAUMATURGY
+- GENERAL
+Thaumaturgy is a form of vampiric sorcery
+that is divided into a number of Paths, each
+with its own focus and special range of spells.
+These Disciplines are largely restricted to the
+T remere, although certain other clans are
+rumoured to employ them as well, such as the
+Assamite viziers and the Koldunic sorcerers of
+the Tzimisce.
+THAUMATURGY
+- BLOOD MAGIC
+The Blood Path is based upon 
+the manipulation of blood, both
+mortal and Kindred vitae.
+Key Attribute is Intelligence.
+BLOODRAGE
+This power allows the character
+to force another to spend blood
+against his or her will. This act
+has two effects; it reduces the
+amount of blood the target has
+in him or her, and increases the likelihood
+that the target will lose control of the Beast
+and enter frenzy. 
+Key Attribute: Intelligence and Wits.
+BLOODOFPOTENCY
+The character gains such control
+over his own blood that he may
+effectively concentrate, or focus it,
+making his or her blood more
+powerful for a limited time.
+While this power is active, all other Disciplines
+will cost less blood to use.
+Key Attribute: Intelligence.
+THEFTOFVITAE
+A character using this power 
+can siphon blood from a distant
+target, effectively feeding from 
+the target without any physical
+contact. This power can cause
+serious harm to mortals and enrage vampires.
+Key Attribute: Intelligence.
+CAULDRONOFBLOOD
+This dreadful power causes the
+blood within the target’s body to
+boil and burst into flame. It
+causes Aggravated fire damage
+and “burns off” a large portion
+of his or her Blood Pool. Few beings can
+survive even a single attack with this dreadful
+power.
+Key Attribute: Intelligence.
+40
+POTENCE
+Characters with Potence are
+terrifying opponents, for they
+possess the strength of several
+humans. The higher the level of Potence is,
+the stronger the character. The Giovanni ,
+Brujah, Lasombra and Nosferatu clans have
+superhuman strength through the use of
+this Discipline.
+PRESENCE
+All supernatural creatures are
+impressive, scary monsters, but
+those with the Discipline of
+Presence are particularly captivating.
+Characters with Presence can manipulate
+others’ emotions, becoming their victims’
+dream lovers - or their most terrifying
+nightmares. Vampires must learn to be wary
+of their feelings when they are in the
+company of a Brujah, Malkavian, T oreador
+or Ventrue as these clans are known for their
+skills in this Discipline.
+Key Attribute is Charisma.
+AWE
+The character gains a charismatic
+aura, becoming a natural leader,
+seducer and orator. This power
+draws mortal victims near and
+stops enemies from attacking. 
+Key Attribute: Charisma.
+DREADGAZE
+The character, by hissing and
+baring fangs, instills an
+unnatural terror in foes. This
+power instills fear in those who
+are targeted by it. 
+Key Attribute: Charisma.
+ENTRANCEMENT
+The character becomes super-
+humanly fascinating and the
+victim becomes convinced that
+the character is his friend, lover
+or whatever - a figure to be
+protected and adored. 
+Key Attribute: Appearance.
+MAJESTY
+Characters with Majesty are
+quite literally awesome. Majesty
+bestows an almost godlike aura
+upon the vampire; mortals fall to
+their knees in worship or terror,
+and even other supernatural creatures must
+struggle with themselves to attack, insult or
+be anything other than respectful and
+deferential to the character. This power
+allows the character to do anything without
+fear of reproach. 
+Key Attribute: Charisma.
+PROTEAN
+Protean is the Discipline most
+closely associated with the shape-
+shifting Gangrel, though they
+have taught their secrets to a few outside of
+their clan. Characters with Protean may
+shape-shift into a variety of forms. 
+EYESOFTHEBEAST
+This power increases a character’s
+visual senses. In some instances it
+has been known to cause fear in
+mortals that see it in action, as
+the user’s eyes turn a sinister red
+in colour. 
+FERALCLAWS
+The character’s nails transform
+into long, bestial claws. These
+talons are wickedly sharp, able to
+rend flesh with ease and even
+carve stone and metal with little
+trouble. These talons cause Aggravated
+damage and are feared by all in combat.
+UK_Vampire  3/26/02  5:19 PM  Page 40
+
+PDF PAGE 21
+43
+TURNTODUST
+This fearsome power accelerates
+decrepitude in its victims.
+Mortals literally crumble to dust
+at the mere touch of a skillful
+practitioner of this Discipline.
+When used on supernatural creatures, this
+power causes massive damage. If a vampire
+dies from this damage, they too will crumble
+to dust, leaving nothing behind to Awaken. 
+Key Attributes: Intelligence and Low
+Humanity.
+THAUMATURGY
+- BLOOD RITUALS
+Rituals are unique thaumaturgical
+formulas, meticulously researched
+and prepared, that create powerful
+magical effects. Rituals are less versatile than
+Paths, as their effects are singular and
+straightforward, but they are better suited
+towards specific ends. 
+Key Attributes: Intelligence and Wits.
+HEARTOFSTONE
+While it lasts, this ritual protects
+the character from being staked. 
+Key Attributes: Intelligence
+and Wits.
+PRISONOFICE
+This power engulfs the target in
+an icy prison, immobilising him
+or her for a short period, during
+which time s/he suffers from a
+freezing form of Aggravated
+damage. 
+Key Attributes: Intelligence and Wits.
+CALLLIGHTNING
+The character calls forth a 
+bolt of lightning from above,
+obliterating the intended target. 
+Key Attributes: Intelligence
+and Wits.
+IGNORETHESEARINGFLAME
+This power temporarily makes
+the caster immune to the effects
+of fire and, at higher levels,
+sunlight.
+Key Attribute: Intelligence
+and Wits.
+SUMMONELEMENTAL
+The caster summons forth a
+supernatural creature of the
+elements that will remain under
+the character’s control for a short
+period of time. Use of this power
+has its dangers, as sometimes the summoned
+elemental will attack the one who called 
+it forth. 
+Key Attribute: Intelligence and Wits.
+FAITH
+Faith is one of the few truly
+powerful personal weapons a
+mortal has against his or her
+supernatural foes. With Faith, a hunter can
+cause a Vampire to turn away or be unable to
+approach any further. Although the character
+may believe that this power comes from a
+higher power, it is actually the strength of his
+or her belief that protects him or her.
+HEAL
+This power draws on a mortal’s
+inner strength to repair damage
+to his or her body.
+Key Attribute: Faith42
+THAUMATURGY
+- LURE OF FLAMES
+The Path Lure of Flames is based
+upon the manipulation of fire;
+through it, a traditional bane of
+vampiric existence has been harnessed by the
+sorcery of the T remere. 
+Key Attribute is Intelligence.
+TORCH
+This power allows the character
+to call forth a small magical flame
+that floats near his or her head.
+The light from this flame is
+similar to that of a hand-held
+torch. Though this flame provides light, it
+does not generate any heat. 
+Key Attribute: Intelligence.
+FIREBALL
+The character may hurl mystical
+fireballs that engulf their target in
+a fiery conflagration. This spell
+may hurt friends as well as foes
+and so should be used with care.
+Key Attribute: Intelligence.
+FLAMERING
+The character generates a pulse
+of heat and flames that surrounds
+him or her for an instant,
+incinerating any nearby enemies.
+The mystical nature of the flames
+means that neither the caster nor those they
+ally with can be harmed.
+Key Attribute: Intelligence
+IMMOLATE
+This power calls a bolt of fire into
+existence that strikes a single
+enemy, doing extreme damage.
+Key Attribute: Intelligence
+THAUMATURGY
+- HANDS OF DESTRUCTION
+This Path is practiced almost
+exclusively by the thaumaturges of
+the Sabbat. Though it is not widely
+seen outside of that sect, a few non-Sabbat
+have managed to learn its secrets. 
+Key Attributes: Intelligence and low
+Humanity.
+DECAY
+This power accelerates the
+decrepitude of its target, causing
+it to wither, rot or otherwise
+break down. Key Attributes:
+Intelligence and Low Humanity.
+ACIDICTOUCH
+The caster secretes a bilious,
+acidic fluid from any portion of
+his body. The viscous acid
+corrodes metal, destroys wood
+and causes horrendous chemical
+burns to living tissue. In combat, this power
+provides the user with an attack causing
+Aggravated damage. 
+Key Attributes: Intelligence and Low
+Humanity.
+ATROPHY
+This power withers a victim’s
+limbs, leaving only a desiccated,
+almost mummified husk of 
+bone and skin. The effects are
+instantaneous; in mortals, they
+are also irreversible. Enemies so afflicted
+suffer a long-term reduction in their physical
+Attributes.
+Key Attributes: Intelligence and Low
+Humanity.
+UK_Vampire  3/26/02  5:19 PM  Page 42
+
+PDF PAGE 24
+49
+is added to your base dexterity, when
+calculating the chance of you hitting an
+enemy. If a weapon has an Accuracy of 10
+and you have a Dexterity of 20, then the
+game will assume that you are attacking
+with a Dexterity of 30. Certain weapons
+will have an accuracy bonus while others
+will not, and this usually depends on the
+type of weapon, it’s size, ability to be
+wielded easily, etc. Finally, speed is the
+amount of time it takes for your character
+to swing the weapon again. If the weapon
+that you are wielding has a high number,
+then you will be able to swing this
+particular weapon faster than one with a
+low number, which indicates that the
+weapon cannot be swung as easily.
+BLADEDWEAPONS
+Bladed weapons include
+anything with a sharp edge
+and are primarily found in
+the Dark Ages, but they
+continue to be used by some
+even in the modern nights.
+In game terms, these sharp
+bladed weapons do Lethal
+damage. 
+One-handed blades include anything
+with a sharp edge or pointy tip. One-
+handed weapons come in a great variety of
+shapes and sizes and are the most common
+armaments found in the Dark Ages. They
+occupy the weapon slot on your character
+and can be used with a shield. Examples of
+one-handed bladed weapons include the
+Dagger, Hand-Axe, Broadsword and the
+feared Wooden Stake. 
+T wo-handed weapons are less common
+and usually found in the hands of
+professional soldiers. Due to their size, these
+weapons occupy both the weapon and shield
+slots on your character. Heavy, unwieldy,
+and quite dangerous examples include the
+Great Sword, Battle-Axe and Spear.
+BLUNTWEAPONS
+Any weapon without a
+bladed edge or sharp point
+is considered to be a blunt
+weapon. Instead of cutting
+their targets, these weapons
+deliver their damage
+through hard, crushing
+blows. Painful bruises,
+broken bones and ruptured
+internal organs are the result of attacks
+from these weapons. In game terms, blunt
+weapons cause Bashing damage. 
+One-handed blunt weapons include any
+blunt weapon that can be held in one
+hand. They occupy only the weapon slot
+on your character and can be used with a
+shield. Common examples include the
+Club, Mace and Flail.
+T wo-handed blunt weapons are slower
+than their one-handed cousins but are
+capable of delivering much more damage
+in any given attack. These weapons occupy
+both the weapon and shield slots on your
+character. Examples of these weapons
+include the Quarterstaff and Warhammer.
+RANGEDWEAPONS
+In both the Dark Ages
+and modern nights, there
+are many weapons that can
+inflict damage from afar.
+These weapons are
+collectively referred to as
+ranged weapons. Some
+examples from the Dark
+Ages include the Short Bow
+and Crossbow. Modern examples include
+everything from a simple Pistol to such
+heavy weapons as the Rocket Launcher. A
+unique component of ranged weapons is
+Ammo, each ranged weapon uses a certain
+type of Ammo and becomes useless once
+that supply has been exhausted. Special
+Ammo types can enhance, or even alter, a
+ranged weapons affect.
+48
+VIPERS
+A powerful Setite (using
+the Serpentis Discipline)
+may disgorge from his
+mouth a large
+poisonous serpent.
+The Setites use
+these creations as
+guards, patrolling
+their temples. Most
+are individually marked
+with a pattern representing their creator.
+They attack with a fierce poisonous bite.
+GHOUL-ALLIGATORS
+Within the sewers of NYC, the
+Nosferatu have drawn all sorts of beasts to
+their lairs through the use of Animalism.
+The most dangerous of these is the small
+number of alligators in the sewers, flushed
+there by those in the city who won them
+at Coney Island. They’ve since been
+transformed by Nosferatu blood into
+horrendous creatures of great size and
+disfigurement, having enormous maws and
+extruded points of bone.
+EQUIPMENT AND
+TREASURE
+Throughout your adventures, the
+coterie will find many items – some of
+them mundane, others concealing secret
+powers. You may also find unique items
+such as a Discipline T ome, which will give
+your character the ability to learn a new
+set of Disciplines that would normally not
+be available to him.
+Most items need to be equipped in
+your inventory to prove useful, and each
+has a specific place to go. Other items
+require activation, which can be done with
+a right-click on the object or by using the
+Quick Slot inventory hot-keys.
+A few items that you find will require
+identification to reveal their secrets. T o
+identify an item, you must use the Spirit’s
+T ouch Discipline (which can also be found
+as a blood scroll). When you activate this
+Discipline, your cursor will change into
+the identify icon. Then, bring up the
+Inventory Pane of your character, and left
+click on the item that you wish to identify.
+The item should now be identified, and a
+description will appear when you leave
+your cursor on top of the item.
+WEAPONS
+There are many weapons to be found
+and used in V:TM Redemption , ranging
+from medieval swords to modern assault
+rifles.
+Weapons’ statistics fall into three
+categories: Damage, which determines how
+much hurt you can inflict with the
+weapon; Accuracy, which adds a bonus to
+your chance-to-hit and increases the
+chances of a critical strike; and Speed,
+which determines how fast your character
+can wield his or her weapon. This
+information will appear in the rollover text
+for each weapon.
+Not all weapons are created equal: You
+may find rusty and other poor quality
+items on your travels as well as fine and
+even exquisite weaponry. The quality of
+the weapon adds bonuses to the base
+weapons statistics. Even modern firearms
+can be modified to increase their power
+with laser sights and other adaptations.
+Some weapons have minimum
+Attribute requirements representing a
+particular difficulty in using those items:
+For example, a Great Sword requires a
+high score in your Strength Attribute to
+wield. Likewise, characters with low
+Strength cannot wear some heavy armour. 
+All weapons also have three different
+stats: Damage, Accuracy and Speed. The
+damage number is quite simply the
+amount of damage that you will inflict on
+an enemy. Accuracy is the amount, which
+UK_Vampire  3/26/02  5:19 PM  Page 48
+
+PDF PAGE 25
+51
+POTIONSANDVIALS
+Ranging from witches brews to modern
+pharmaceuticals, potions can save a
+character’s life. Humans can use a range of
+salves and cures ranging from Herbal
+Salves (which restore lost Health) to
+Disease Vaccines (which cure infections.)
+Vampires scorn such mortal concerns,
+carefully hoarding vials of vitae and other
+stranger blood with which to restore their
+strength. Kindred can find vitae in many
+forms, including simple bottles and
+mystically created Bloodstones. Not all
+vitae is simple blood, and you may find
+strange blood vials with unpredictable
+effects such as Fae Blood or Elder Ichor.
+T o use a potion, vial or stranger source
+of blood, right-click on the item in your
+inventory or use the Quick Slot hot-keys.
+SCROLLS
+Scrolls are another product of sorcerous
+research – the essence of a Discipline or
+Numina encoded onto paper, their power
+stored to be released at a later time.
+Human mages have created Numina scrolls
+that temporarily awaken the power of
+human potential, and Kindred alchemists
+have made Discipline scrolls (also known
+as bloodscrolls) that unlock powerful
+Disciplines to any Cainite.
+T o use a scroll, either activate it from a
+Quick Slot or right-click on it from your
+inventory. The power’s icon will appear in
+your Active Discipline slot. You can use
+that power once, activating it as you
+would any other Discipline (right-clicking
+on an appropriate target). Using a scroll
+costs neither blood nor Mana, and you
+require no ability in the power being
+activated, so these items are greatly prized.
+DISCIPLINETOMES
+These rare books contain the Cainite
+wisdom of the ages, revealing secrets of the
+blood that unlock great power. Each fabled
+tome is named after a specific Discipline
+so, according to legend, there is one for
+each Discipline group. The character that
+studies such a tome will unlock its
+Discipline group and be able to develop
+powers from it.
+TREASURE
+In addition to items that you can
+equip, you can find many forms of
+treasure in the game: Such treasures range
+from negotiable currency (silver coins to
+modern cash), precious stones and even
+gold bullion. All of this treasure can be
+sold to merchants to allow your characters
+to buy the equipment they need.
+ARTIFACTS
+Unique and extremely rare, artifacts are
+handcrafted items with mystical powers.
+Every artifact is a one-of-a-kind creation.
+There are a number of artifacts scattered
+throughout the world, but examples
+include the Ainkurn Sword, the Monocle
+of Clarity and any number of Holy Relics.
+AINKURNSWORD
+An ancient Cainite relic, this blade is
+rumoured to have been quenched in the
+blood of an Antediluvian during its
+forging. The blade is entirely black, with a
+matte look. 
+MONOCLEOFCLARITY
+This device, created by the T remere for
+the purpose of unmasking Nosferatu spies,
+appears a heavy glass monocle framed in
+gold and silver filigree. 
+HOLYRELICS
+Items imbued with the venerated power
+of Faith, the use of these weapons is limited
+to mortals, as simply being in the presence
+of one of these relics causes pain and
+discomfort to most supernatural creatures. 
+50
+THROWNWEAPONS
+Thrown weapons are a special class of
+ranged weapons. These items are all
+individually thrown at an opponent and
+disappear after one use. These weapons
+can be activated by equipping them in the
+character’s hands or by using the Quick
+Inventory slots. Examples include Greek
+Fire, Holy Water, Concussion Grenades
+and Satchel Charges.
+ARMOUR
+There are many types of armour
+available in V:TM – Redemption, ranging
+from simple leather clothing through full
+Gothic plate and modern tailored Kevlar.
+Just like weapons, certain types of armour
+may require your character to have a
+minimum level in an Attribute (normally
+Strength) to be able to equip them.
+Each piece of armour provides soak
+bonuses against Bashing, Lethal and
+Aggravated damage. Some special armour
+will also provide protection from
+environmental damage and even T rue Faith.
+Such special armour is very rare indeed.
+PIECESOFARMOUR
+Sets of armour usually
+come in individual pieces
+that can be equipped in the
+different slots of your
+inventory. Helmets need to
+placed on the character’s
+head; gloves and gauntlets
+on their arms and hands;
+and large sets onto the
+character’s body slot: Thus, a character
+may have a metal chest plate, leather
+gloves and no headgear at all as his
+armour. Examples of armour include
+Chain and Plate Mail, Tailored Armour,
+Full Helms and Motorcycle Helmets.
+SHIELDS
+Shields are a special class
+of armour that is equipped
+in the character’s
+shield/utility slot. If you
+want to use a weapon that
+requires both hands, such as
+the Halberd, you will not be able to equip
+a shield. Likewise, you may have to choose
+between equipping a shield and equipping
+a utility item such as a torch. Shields are
+more common in the medieval period than
+today, with the exception of police riot
+shields. Example shields include the
+Buckler and the Footman’s Shield. 
+OTHER EQUIPMENT
+Your character can find many other
+pieces of equipment in the World of
+Darkness. Some of these items are merely
+cosmetic, others can be powerful indeed.
+Most of these items need to be equipped
+in the appropriate inventory slot for their
+power to take affect. Others require
+activation by right clicking on the object
+in question or activating them from a
+Quick Item slot with keys F1 – F5.
+UTILITYITEMS
+The most common utility items that
+you will find are sources of light. Such
+items can be equipped in your character’s
+utility/shield slot thus negating the use of
+a shield or two-handed weapon. Examples
+include a T orch and a Flashlight.
+RINGSANDJEWELLERY
+Rings and jewellery are often merely
+cosmetic, but many conceal hidden
+powers. You will need to equip rings on
+the character’s hands, bracelets on his or
+her arms and a necklace about his or her
+neck. You may find magic jewellery that
+alters your character’s Attributes, makes
+the use of Disciplines easier and many
+other powers.
+UK_Vampire  3/26/02  5:19 PM  Page 50
+
+PDF PAGE 27
+55
+The character creation screen functions
+exactly the same as the character
+advancement screen, which is used in
+Single Player (See Chapter T wo).
+Next to each Attribute or Discipline
+that you can spend experience to increase
+will be a cross; clicking on that cross
+spends the experience necessary to raise
+that T rait to the next level. The rollover
+text will provide full details of the cost
+and, for Disciplines, the minimum
+requirements.
+Once you have spent your initial
+experience point allocation, hit OK to
+continue.
+LAN GAMES:
+LOBBY AND CHAT
+When you join a LAN game, you will
+begin in the LAN lobby. At the top left of
+the screen will be a list of all the players
+on the LAN, and to the right will be a list
+of all the games currently up. The two
+windows at the bottom of the screen are
+for general (Lobby) chat and in-game chat.
+T o chat with other players on the LAN,
+enter your text in the window to the left,
+and to chat to only the other players in the
+same game as you enter type the text in
+the window to the right. You can use TAB
+to switch between the two boxes.
+The Create Game button allows you to
+create your own game.
+The Player Setup button takes you back
+to the Haven.
+The Join Game button allows you to
+join a game that is running. First highlight
+the name of the game in the window to
+the top left, and then click this button.
+The Start Game button allows
+you to launch a game you have
+created or joined.
+The Game Options button will show
+you additional details of the game you
+have joined.
+The Cancel button takes you back to
+the main menu.
+STARTINGANDJOININGA
+LAN GAME
+T o join a LAN game that is already in
+progress, highlight the name of the game,
+and click the Join Game button. After a
+few seconds, you will have joined the game
+and be able to chat to the other players.
+When you are ready to start a game, click
+on the Start Game button. 
+Note: The Start Game button will be
+greyed out until the host/Storyteller has
+started a game.
+T o create your own game, click on the
+Create Game button to go to the game
+creation screen.
+54
+Vampires begin play with the most
+basic vampiric abilities (Feed and Blood
+Healing) but are able to spend starting
+points on three Discipline groups
+according to their clan. 
+Ghouls are caught in the no-man’s land
+between vampires and the mortal herd.
+Gifted with blood and power by their
+masters, they can use basic vampiric
+Disciplines, according to their master’s
+clan, but cannot feed like a true vampire.
+They must rely on stored blood (vials,
+etc.) to restore their dark power.
+A Human is one of the herd, but no
+common mortal. Through faith,
+dedication or strange events, you can
+access the awakened powers known as
+Faith and Numina. Lacking the great
+supernatural powers of vampires, or even
+ghouls, a human character has to rely on
+equipment for many tasks, such as healing
+or defending themselves. A human
+character does not have a Blood Pool but,
+instead, relies on Mana that regenerates
+slowly over time. One major advantage of
+a human character is that he will not
+frenzy when damaged. As a result, the
+frenzy bar is replaced by your Faith level,
+which indicates the level of strength and
+belief that you are crusading for the good
+forces in the world.
+SELECTINGA CLAN
+If you are a vampire or a ghoul, your
+choice of clan is very important. (Humans
+may not choose a clan.) Your clan
+determines your character’s blood lineage
+from Caine and defines his or her
+supernatural abilities: As a ghoul, you are
+selecting the clan of your domitor
+(vampire master) whose blood defines your
+supernatural abilities. Nine of the great
+Cainite clans are available to play in
+multiplayer games.
+STARTINGCLANDISCIPLINES
+Brujah - Celerity, Potence and Presence
+Cappadocian - Auspex, Fortitude and Mortis
+Gangrel - Animalism, Fortitude and Protean
+Giovanni - Dominate, Mortis and Potence
+Malkavian - Auspex, Dementation and Obfuscate
+Nosferatu - Animalism, Obfuscate and Potence
+T oreador - Auspex, Celerity and Presence
+T remere - Auspex, Dominate and Thaumaturgy
+Ventrue - Dominate, Fortitude and Presence
+Caitiff - Any
+Each blood lineage defines itself
+through the Disciplines its members excel
+in. Each clan has immediate access to
+three Discipline groups in addition to the
+common powers of vampires, and you may
+only spend your starting points on these
+powers. Choose your clan wisely, as it will
+determine your character’s future progress.
+There are also the Caitiff, clanless
+vampires, who can chose from the full-
+range of Disciplines but pay greater
+experience costs due to the lack of
+refinement in their blood. The starting
+Disciplines that come with the blood are
+always the cheapest for you to learn and
+enhance, other Disciplines will always to
+harder for you to master.
+More details on the vampire clans can
+be found in Chapter Six: the World of
+Darkness.
+DEFININGYOURTRAITS
+UK_Vampire  3/26/02  5:19 PM  Page 54

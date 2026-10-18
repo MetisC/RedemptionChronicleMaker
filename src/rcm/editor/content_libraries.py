@@ -37,3 +37,25 @@ def open_import(win):
 
 def import_widget(win,layout):
     row=QHBoxLayout();button=QPushButton(tr('Importar biblioteca de plantillas NOT/NOB…'));button.setObjectName('settings_import_library');button.clicked.connect(lambda:open_import(win));row.addWidget(button);layout.addLayout(row)
+    manage=QPushButton(tr('Bibliotecas importadas…'));manage.setObjectName('settings_manage_libraries');manage.clicked.connect(lambda:manage_libraries(win));row.addWidget(manage)
+
+
+def manage_libraries(win):
+    if not win.commit_properties():return
+    from ..content_libraries import manifests,remove_content
+    dialog=QDialog(win);dialog.setWindowTitle(tr('Bibliotecas importadas'));dialog.resize(620,420);layout=QVBoxLayout(dialog)
+    note=QLabel(tr('Retirar una biblioteca elimina sólo la copia importada de este workspace. No modifica el mod original, otras crónicas ni lo instalado en Redemption. Las crónicas que la necesiten requerirán importarla otra vez.'));note.setWordWrap(True);layout.addWidget(note)
+    tree=QTreeWidget();tree.setObjectName('installed_libraries');tree.setHeaderLabels([tr('Biblioteca'),tr('Plantillas')]);layout.addWidget(tree,1)
+    def refresh():
+        tree.clear()
+        for r in manifests(win.backend.ws):
+            item=QTreeWidgetItem(tree,[r['name'],str(len(r['templates']))]);item.setData(0,Qt.ItemDataRole.UserRole,r['id']);item.setToolTip(0,r['id'])
+    refresh();remove=QPushButton(tr('Retirar biblioteca seleccionada'));remove.setObjectName('library_remove');layout.addWidget(remove)
+    def uninstall():
+        item=tree.currentItem()
+        if item is None:return
+        if QMessageBox.question(dialog,tr('Retirar biblioteca'),tr('¿Retirar esta biblioteca del workspace?'))!=QMessageBox.StandardButton.Yes:return
+        try:
+            remove_content(win.backend,item.data(0,Qt.ItemDataRole.UserRole),win.doc.snapshot() if win.doc else None);win.refresh();win.browser.refresh();refresh()
+        except (ValueError,OSError) as error:QMessageBox.warning(dialog,tr('No se pudo retirar'),diagnostic(error))
+    remove.clicked.connect(uninstall);buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Close);buttons.rejected.connect(dialog.reject);layout.addWidget(buttons);dialog.exec()

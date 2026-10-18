@@ -1,0 +1,152 @@
+{
+  "GetActorStat": {
+    "address": "0x50ceb0",
+    "hits": [
+      {
+        "offset": "0x10c768",
+        "words": [
+          "0x50ceb0",
+          "0x50cec0",
+          "0x46be10",
+          "0x50cec8",
+          "0x50ced8"
+        ]
+      }
+    ]
+  },
+  "SetActorStat": {
+    "address": "0x50cec8",
+    "hits": [
+      {
+        "offset": "0x10c774",
+        "words": [
+          "0x50cec8",
+          "0x50ced8",
+          "0x46be60",
+          "0x50cee0",
+          "0x50cef4"
+        ]
+      }
+    ]
+  },
+  "GetActorBaseStat": {
+    "address": "0x50cee0",
+    "hits": [
+      {
+        "offset": "0x10c780",
+        "words": [
+          "0x50cee0",
+          "0x50cef4",
+          "0x46c040",
+          "0x50cefc",
+          "0x50cf10"
+        ]
+      }
+    ]
+  },
+  "SetActorBaseStat": {
+    "address": "0x50cefc",
+    "hits": [
+      {
+        "offset": "0x10c78c",
+        "words": [
+          "0x50cefc",
+          "0x50cf10",
+          "0x46c090",
+          "0x50cf18",
+          "0x50cf28"
+        ]
+      }
+    ]
+  },
+  "GetActorSoak": {
+    "address": "0x50cf18",
+    "hits": [
+      {
+        "offset": "0x10c798",
+        "words": [
+          "0x50cf18",
+          "0x50cf28",
+          "0x46c0f0",
+          "0x50cf30",
+          "0x50cf40"
+        ]
+      }
+    ]
+  },
+  "SetActorSoak": {
+    "address": "0x50cf30",
+    "hits": [
+      {
+        "offset": "0x10c7a4",
+        "words": [
+          "0x50cf30",
+          "0x50cf40",
+          "0x46c140",
+          "0x50cf48",
+          "0x50cf5c"
+        ]
+      }
+    ]
+  },
+  "SetActorBaseSoak": {
+    "address": "0x50cf64",
+    "hits": [
+      {
+        "offset": "0x10c7bc",
+        "words": [
+          "0x50cf64",
+          "0x50cf78",
+          "0x46c1f0",
+          "0x50cf80",
+          "0x50cf90"
+        ]
+      }
+    ]
+  },
+  "SetActorMaxHealth": {
+    "address": "0x50ce94",
+    "hits": [
+      {
+        "offset": "0x10c75c",
+        "words": [
+          "0x50ce94",
+          "0x50cea8",
+          "0x46bc60",
+          "0x50ceb0",
+          "0x50cec0"
+        ]
+      }
+    ]
+  },
+  "GetActorMaxHealth": {
+    "address": "0x50ce7c",
+    "hits": [
+      {
+        "offset": "0x10c750",
+        "words": [
+          "0x50ce7c",
+          "0x50ce90",
+          "0x46bc20",
+          "0x50ce94",
+          "0x50cea8"
+        ]
+      }
+    ]
+  },
+  "SetActorHealth": {
+    "address": "0x50ce64",
+    "hits": [
+      {
+        "offset": "0x10c744",
+        "words": [
+          "0x50ce64",
+          "0x50ce74",
+          "0x46bbb0",
+          "0x50ce7c",
+          "0x50ce90"
+        ]
+      }
+    ]
+  }
+}

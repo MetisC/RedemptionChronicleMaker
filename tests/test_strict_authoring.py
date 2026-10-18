@@ -26,6 +26,14 @@ class StrictAuthoring(TestCase):
         for a,b in [(64,68),(76,80),(108,176)]:self.assertEqual(changed[a:b],original[a:b])
         for value in [dict(eax=3),dict(zclip=float('nan')),dict(music_volume=True),dict(fog=dict(mode='linear',color=[0,1,2],start=3,end=2))]:
             with self.assertRaises(ValueError):validate(value,self.backend.resources)
+    def test_resource_only_fingerprint_does_not_reload_unrelated_level_catalogues(self):
+        from unittest.mock import patch as mock_patch
+        from rcm.service import build_inputs_fingerprint
+        original=Path.read_text;forbidden={self.ws.output('cache/levels.json'),self.ws.output('cache/scene_hints.json')}
+        def read(path,*args,**kwargs):
+            if path in forbidden:raise AssertionError('Resource-only cache reloaded geometry/scene catalogues')
+            return original(path,*args,**kwargs)
+        with mock_patch.object(Path,'read_text',read):self.assertEqual(len(build_inputs_fingerprint(self.ws,dict(chronicle=dict(id='a',name='A'),resources={}))),64)
     def test_environment_original_corpus_and_sky_unknown_preservation(self):
         rows=json.loads((ROOT/'research/embrace_strict_parity/environment_corpus.json').read_text())
         for row in rows:
@@ -71,6 +79,22 @@ class StrictAuthoring(TestCase):
         self.assertEqual(len(rows),380);self.assertEqual(sum(r['literal_metadata'] for r in rows.values()),376)
         self.assertEqual(rows['ClassBobbing']['parameters'][1],dict(type='float',native_type=2,label='Min speed',default=8.0))
         self.assertEqual(rows['ActorAIOff_TriggerOn']['parameters'][0]['type'],'actor')
+    def test_explicit_script_removal_does_not_inherit_custom_dispatch(self):
+        from rcm.native_scripts import catalogue as constructors
+        script=next(k for k,r in constructors(self.ws,self.backend.resources).items() if not r['parameters'])
+        root=blank();root['resources']['templates']=[dict(id='Scripted',base='Anezka',properties=dict(script=script)),dict(id='Silent',base='Scripted',properties=dict(script=''))]
+        _,catalog,_,_=prepare(self.ws,root,self.backend.original_resources)
+        self.assertEqual(next(t for t in catalog['templates'] if t['id']=='Scripted')['custom_script'],script)
+        self.assertFalse(next(t for t in catalog['templates'] if t['id']=='Silent').get('custom_script'))
+    def test_custom_constructor_metadata_requires_real_codex_subclass_and_signature(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as tmp:
+            path=Path(tmp)/'StrictOwner.java';root=blank();root['chronicle']['id']='custom_meta';root['scenes']=root['scenes'][:1]
+            root['resources']['scripts']=[dict(id='StrictOwner',source=path.relative_to(ROOT).as_posix(),parameters=[dict(type='integer',label='Value')])]
+            for parent,kind,message in [('', 'int','heredar de Codex'),(' extends Codex','float','Constructor Java')]:
+                path.write_text('public class StrictOwner'+parent+' {public StrictOwner('+kind+' v){}}')
+                with self.assertRaisesRegex(ValueError,message):self.backend.build(root)
+            path.write_text('public class StrictOwner extends Codex {public StrictOwner(int v){}}')
+            self.assertEqual(self.backend.build(root)['class_versions']['StrictOwner'],'45.3')
     def test_native_parameters_reject_bad_counts_bounds_and_unknown_types(self):
         from rcm.script_parameters import authored,read as read_args
         values=[authored(1,-3,{}),authored(2,1.5,{}),authored(3,'box',{'box':2}),authored(7,'Hola',{}),authored(8,'npc',{'npc':3})]

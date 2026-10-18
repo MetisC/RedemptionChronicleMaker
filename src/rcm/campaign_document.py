@@ -39,6 +39,8 @@ class CampaignDocument(Document):
     @classmethod
     def load_data(cls,ws,data,path):
         from .input_limits import check_data
+        from .combat_difficulty import selected
+        selected(data)
         check_project_format(data)
         check_data(data)
         from .recipes import validate_authoring

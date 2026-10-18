@@ -153,3 +153,23 @@ compilation, readback and Qt tests do not certify any native result.
 - EMB-LIBRARY-01: import a data-only NOT/NOB through Settings, select new templates,
   build/deploy and use one in a scene. Export ZIP must contain references only;
   absent/changed local dependency must fail clearly. No arbitrary mod code import.
+
+
+## DIFF — optional combat difficulty
+
+MANUAL RUNTIME TEST REQUIRED. Use a disposable new chronicle/game and compare the
+same weak enemy in Normal, Easy, Hard and Nightmare; do not overwrite your saves.
+
+- DIFF01: default/Normal retains familiar combat, NPC conversations and movement.
+- DIFF02: compare melee enemies and equipped enemies at each setting; confirm
+  Easy does not break their equipment/AI and harder modes retain relative roles.
+- DIFF03: spawn manual enemies and dynamic waves/bosses; allies and neutral NPCs
+  stay unchanged. With custom HP50, Nightmare starts at75; percent phases track
+  the scaled maximum while absolute thresholds stay absolute.
+- DIFF04: wound an enemy, save/load and re-enter; no healing, repeated scaling or
+  duplicate enemy, phase or reward. Check subsequent genuinely new spawns too.
+- DIFF05: change difficulty, rebuild and load a disposable existing save: old
+  enemies keep old values; new enemies use the new setting. Inspector/build warn
+  to start a new game for consistent balance; no save migration is promised.
+- DIFF06: if testing multiple clients, verify host-only initialisation and native
+  stat replication. Offline doubles do not certify network combat/persistence.

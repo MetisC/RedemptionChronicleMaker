@@ -144,6 +144,9 @@ class Inspector(QWidget):
             name_control = self.line(tr("Nombre"), chron["name"], lambda v: self.set(("chronicle", "name"), v), "chronicle_name")
             name_control.setToolTip(str(self.win.doc.path))
             self.text(tr("Descripción"), chron.get("description", ""), lambda v: self.set(("chronicle", "description"), v), "chronicle_description")
+            if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
+                self.combo(tr('Dificultad de combate'),[(tr('Fácil'),'easy'),(tr('Normal'),'normal'),(tr('Difícil'),'hard'),(tr('Pesadilla'),'nightmare')],chron.get('difficulty','normal'),lambda value:self.set(('chronicle','difficulty'),value),'chronicle_difficulty')
+                self.note(tr('Sólo afecta a enemigos nuevos. Los enemigos ya guardados conservan sus atributos. Inicia una partida nueva después de cambiar la dificultad para obtener un resultado uniforme.'))
             self.note(tr("Cada escena usa un escenario original. Puedes crear varias escenas para contar tu historia. Usa F5 cuando quieras probar tus cambios."))
         elif p == ("level",):
             source = data["level"].get("source", "")
@@ -445,7 +448,9 @@ class Inspector(QWidget):
         available=[]
         for key in speakers:
             actor=next((a for a in self.win.doc.data['actors'] if a['id']==key),None)
-            available.append(slots(self.win.backend.resources,actor['template']) if actor else [])
+            from ..instance_overrides import effective_template
+            template=effective_template(self.win.doc.campaign,self.win.doc.campaign['scenes'][self.win.doc.active],actor) if actor else None
+            available.append(slots(self.win.backend.resources,template) if actor else [])
         options=[s for s in available[0] if all(any(o['mode']==s['mode'] for o in group) for group in available[1:])] if available else []
         default=tr('Heredar animación del nodo') if line else tr('Automática del motor (hablar / escuchar)')
         control=self.combo(tr('Animación al hablar'),[(default,None)]+[(tr(label(s)),s['mode']) for s in options],row.get('motion'),lambda v:self.set(path+('motion',),v,True),'dialogue_motion')

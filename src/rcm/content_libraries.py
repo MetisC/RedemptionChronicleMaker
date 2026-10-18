@@ -9,6 +9,7 @@ from pathlib import Path,PurePosixPath
 from .formats import NotFile,cstring,u32
 
 ROOT='content_packs/libraries'
+DEPENDENCIES='rcm/library_dependencies.json'
 ALLOWED={'.nod','.nad','.nms','.nai','.nag','.nam','.tga','.wav','.mp3'}
 
 
@@ -24,6 +25,10 @@ def manifests(ws):
         data=ws.output(ROOT+'/'+record['id']+'/'+record['archive']).read_bytes()
         if sha(data)!=record.get('sha256'):raise ValueError('Local content library changed: '+record['name'])
         result.append(record)
+    by_id={r['id']:r for r in result}
+    for record in result:
+        for ref in record.get('dependencies',[]):
+            if not isinstance(ref,dict) or ref.get('id') not in by_id or any(ref.get(k)!=by_id[ref['id']][k] for k in ('archive','sha256')):raise ValueError('Missing or changed parent library: '+record['name'])
     return result
 
 
@@ -55,7 +60,8 @@ def prepare_import(ws,source,library,selected,base):
     files=inspect_source(source)
     if library not in files or not library.lower().endswith('.not'):raise ValueError('Select a NOT library in the archive')
     if not isinstance(selected,list) or not selected or len(selected)>1000 or any(not isinstance(n,str) for n in selected):raise ValueError('Select at least one template (maximum 1000)')
-    original={};templates={};origins={}
+    original={};templates={};origins={};dependencies=set()
+    template_owners={t['id'].casefold():str(t.get('imported_pack','')) for t in base['templates']}
     for entry in base['entries']:
         if entry['extension']=='.not':
             for row in NotFile.read(original_bytes(ws,entry)).templates:original.setdefault(row.name.casefold(),[]).append(row)
@@ -76,6 +82,7 @@ def prepare_import(ws,source,library,selected,base):
             if len(original[key])!=1:raise ValueError('Ambiguous original parent: '+name)
             if key in templates and templates[key].tags!=original[key][0].tags:raise ValueError('External template overrides original: '+name)
             row=original[key][0]
+            if template_owners.get(key,'').startswith('library:'):dependencies.add(template_owners[key][8:])
         elif key in templates:
             row=templates[key];used[key]=row
         else:raise ValueError('Missing external template parent: '+name)
@@ -92,6 +99,8 @@ def prepare_import(ws,source,library,selected,base):
         if len(original)>1 or len(external)>1:raise ValueError('Ambiguous library resource: '+name)
         if original:
             if external and sha(files[external[0]])!=sha(original_bytes(ws,original[0])):raise ValueError('Library would replace an existing resource: '+name)
+            owner=str(original[0].get('imported_pack',''))
+            if owner.startswith('library:'):dependencies.add(owner[8:])
             return
         if ext=='.class':raise ValueError('External compiled code is not imported. Review Java through project scripts: '+name)
         if ext not in ALLOWED or not external:raise ValueError('Missing or unsupported library dependency: '+name)
@@ -107,6 +116,14 @@ def prepare_import(ws,source,library,selected,base):
         elif ext in {'.nms','.nai','.nag','.nam'}:
             text=data.decode('cp1252')
             if '\0' in text:raise ValueError('Invalid text library resource: '+name)
+            if ext=='.nai':
+                from .catalogue import rows
+                from .project_resources import original_entry
+                powers=[v for _,v in rows(text) if v[0].casefold()=='discipline']
+                if powers:
+                    table=original_bytes(ws,original_entry(base,'.ndd','game')).decode('cp1252')
+                    known={v[0].casefold() for _,v in rows(table)}
+                    if any(len(v)!=3 or v[1].casefold() not in known or not v[2].isdigit() or not 0<=int(v[2])<=5 for v in powers):raise ValueError('Library AI requires an unavailable discipline: '+name)
             for line in text.splitlines():
                 line=line.split(';',1)[0].split('//',1)[0].split('#',1)[0]
                 for token in line.split():
@@ -149,6 +166,8 @@ def prepare_import(ws,source,library,selected,base):
         from .not_library import patch_template
         payload[nls_path]=('\r\n'.join(aliases[k]+' '+v for k,v in sorted(strings.items()))+'\r\n').encode('cp1252')
         payload[not_path]=NotFile([patch_template(t,{'description_id':aliases[cstring(resolved[k][82])]}) if 82 in resolved[k] and cstring(resolved[k][82]) in aliases else t for k,t in used.items()]).encode()
+    parent_refs=[{k:r[k] for k in ('id','name','archive','sha256')} for r in manifests(ws) if r['id'] in dependencies]
+    if parent_refs:payload[DEPENDENCIES]=json.dumps(dict(format=1,libraries=parent_refs),sort_keys=True).encode('utf8')
     from .generator import zip_bytes
     data=zip_bytes(payload);digest=sha(data)
     entries=[dict(id=PurePosixPath(n).stem,path=n,archive=archive,extension=PurePosixPath(n).suffix.lower(),size=len(v),imported_pack='library:'+ident,import_sha256=digest) for n,v in payload.items()]
@@ -160,7 +179,26 @@ def prepare_import(ws,source,library,selected,base):
         if kind not in {'actors','items','props','weapons','armour','containers','none'}:raise ValueError('Unsupported external template kind: '+row.name)
         records.append(dict(id=row.name,path=not_path,archive=archive,imported_pack='library:'+ident,import_sha256=digest,kind=kind,parent=cstring(row.values()[0]) if 0 in row.values() else None,model=cstring(v[4]) if 4 in v else None,ai=cstring(v[56]) if 56 in v else None,script=cstring(v[11]) if 11 in v else None,inheritance_complete=True,tag_ids=[t.id for t in row.tags]))
         if 82 in v and cstring(v[82]) in aliases:records[-1]['description_override']=aliases[cstring(v[82])]
-    return data,dict(format=1,id=ident,name=Path(source).stem,archive=archive,sha256=digest,source_sha256=sha(Path(source).read_bytes()),entries=entries,templates=records,not_path=not_path,nls_path=nls_path,code_imported=False,redistribute=False)
+    return data,dict(format=1,id=ident,name=Path(source).stem,archive=archive,sha256=digest,source_sha256=sha(Path(source).read_bytes()),entries=entries,templates=records,not_path=not_path,nls_path=nls_path,dependencies=parent_refs,code_imported=False,redistribute=False)
+
+
+def remove_content(backend,ident,current_source=None):
+    """Uninstall only verified owned copies, never source mods or user projects."""
+    records=manifests(backend.ws);record=next((r for r in records if r['id']==ident),None)
+    if record is None:raise ValueError('Local library not found')
+    dependents=[r['name'] for r in records if any(ref['id']==ident for ref in r.get('dependencies',[]))]
+    if dependents:raise ValueError('Other libraries require this content: '+', '.join(dependents))
+    names={t['id'].casefold() for t in record['templates']};assets={r['id'].casefold() for r in record['entries']}
+    def used(value):
+        if isinstance(value,list):return any(used(v) for v in value)
+        if not isinstance(value,dict):return False
+        return any((k in {'template','base'} and isinstance(v,str) and v.casefold() in names) or (k in {'model','ai','foley','motions'} and isinstance(v,str) and PurePosixPath(v.replace('\\','/')).stem.casefold() in assets) or used(v) for k,v in value.items())
+    if current_source and used(current_source):raise ValueError('The open chronicle uses this library. Replace its template/resource references first.')
+    ws=backend.ws;folder=ROOT+'/'+record['id'];paths=[ws.output(folder+'/'+record['archive']),ws.output(folder+'/import.json')]
+    from .file_transaction import replace_files
+    rollback=ws.output('build/.library_remove_'+ident+'.zip')
+    if rollback.exists():raise ValueError('Library removal rollback already exists')
+    replace_files({},paths,rollback,ws.root,ws.output);rollback.unlink();backend.refresh_import()
 
 
 def import_content(backend,source,library,selected):
