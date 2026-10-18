@@ -1,4 +1,4 @@
-# Changes Â· 1.0.0-rc4
+# Changes · 1.0.0-rc6
 
 - Right-click original scenery to identify and use the pointed object. Inline NSD brush previews, exact triangle picking and Locate in 3D expose generic props such as Tenebrae's exit. Fixed NIL surfaces support native selectable brush overlays with hover labels and ordinary click actions.
 

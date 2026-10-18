@@ -1,6 +1,6 @@
-# Redemption Chronicle Maker 1.0.0-rc5
+# Redemption Chronicle Maker 1.0.0-rc6
 
-This release builds on RC4 with clickable original scenery, corrected arrival navigation, optional Within The Darkness content import and safer editing workflows. Original level geometry remains unchanged.
+This release builds on RC5 with clickable original scenery, corrected arrival navigation, optional Within The Darkness content import and safer editing workflows. Original level geometry remains unchanged.
 
 ## Original scenery and click actions
 
