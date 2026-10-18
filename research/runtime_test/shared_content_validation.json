@@ -1,0 +1,33 @@
+{
+  "checks": [
+    {
+      "suite": "test_shared_content",
+      "log": "build/tests/progress_14512.log",
+      "successful": true
+    },
+    {
+      "suite": "test_profile_startup",
+      "log": "build/tests/progress_18584.log",
+      "successful": true
+    },
+    {
+      "suite": "test_wtd",
+      "log": "build/tests/progress_24996.log",
+      "successful": true
+    },
+    {
+      "suite": "test_product_close",
+      "log": "build/tests/progress_28384.log",
+      "successful": true
+    },
+    {
+      "suite": "test_safety_unit",
+      "log": "build/tests/progress_9072.log",
+      "successful": true
+    }
+  ],
+  "quality_fast_successful": true,
+  "executable": "build/portable/RedemptionChronicleMaker/RedemptionChronicleMaker.exe",
+  "executable_sha256": "866f2406b4f43b6d57542161ed70bdc18a8f46b9febd6b0fc7a58558a7e4af42",
+  "native_engine_test": false
+}

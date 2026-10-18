@@ -35,6 +35,8 @@ class WTDImport(TestCase):
         cls.base=Backend(Workspace(ROOT,GAME))
         cls.good_script='DisciplineBloodHealing'
     def setUp(self):
+        # Synthetic imports must not depend on the developer's installed pack.
+        shared=patch('rcm.wtd.shared_dependencies',return_value={});shared.start();self.addCleanup(shared.stop)
         (ROOT/'build/tests').mkdir(parents=True,exist_ok=True);self.tmp=tempfile.TemporaryDirectory(dir=ROOT/'build/tests');self.root=Path(self.tmp.name)
         self.ws=Workspace(self.root,GAME)
         for file in ('levels','resources','scene_hints'):self.ws.write('cache/'+file+'.json',ROOT.joinpath('cache/'+file+'.json').read_bytes())
@@ -140,8 +142,8 @@ class WTDImport(TestCase):
         source=self.source();data,record=prepare_import(self.ws,source,self.backend.base_resources);before=source.read_bytes()
         game=self.root/'fake_game';game.mkdir();ws=Workspace(self.root/'publish',game)
         with patch('rcm.deployment.game_running',return_value=False):publish_shared(ws,data,record)
-        self.assertEqual((game/'RCM/_content/within_the_darkness'/ARCHIVE).read_bytes(),data);self.assertEqual(source.read_bytes(),before);self.assertFalse((game/ARCHIVE).exists())
-        (game/'RCM/_content/within_the_darkness'/ARCHIVE).write_bytes(b'foreign')
+        self.assertEqual((game/'RCM'/ARCHIVE).read_bytes(),data);self.assertEqual(source.read_bytes(),before);self.assertFalse((game/ARCHIVE).exists())
+        (game/'RCM'/ARCHIVE).write_bytes(b'foreign')
         with patch('rcm.deployment.game_running',return_value=False),self.assertRaises(ValueError):publish_shared(ws,data,record)
     def test_profile_dependency_keeps_pack_instead_of_copying_its_templates(self):
         from rcm.profile_compatibility import compatibility_files

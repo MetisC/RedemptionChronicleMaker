@@ -12340,6 +12340,57 @@ scenes:
         - 1136.0
         - -344.0
         - -430.0
+  - id: click4
+    name: Grafitti
+    template: tracker_thing
+    transform:
+      position:
+      - 811.5
+      - 220.75
+      - -325.0
+      orientation:
+      - 0
+      - 0
+      - 0
+      placement: absolute
+    interaction:
+      materials:
+      - London\grafitti3_L
+      vertices:
+      - - 47.5
+        - 0.0
+        - 138.0
+        - -0.004484942182898521
+        - -1.037584662437439
+      - - -47.5
+        - 0.0
+        - 138.0
+        - -0.004484942182898521
+        - -0.034628551453351974
+      - - -47.5
+        - 0.0
+        - -138.0
+        - -1.0027488470077515
+        - -0.034628551453351974
+      - - 47.5
+        - 0.0
+        - 138.0
+        - -0.004484942182898521
+        - -1.037584662437439
+      - - -47.5
+        - 0.0
+        - -138.0
+        - -1.0027488470077515
+        - -0.034628551453351974
+      - - 47.5
+        - 0.0
+        - -138.0
+        - -1.0027488470077515
+        - -1.037584662437439
+      material_ids:
+      - 0
+      - 0
+      sector: 20
   conversations: []
   events:
   - id: click1
@@ -12365,6 +12416,12 @@ scenes:
     once: true
     actions:
     - start_ambient: amb_monastery
+  - id: click_grafitti3_L_4
+    when: object_clicked
+    object: click4
+    once: false
+    actions:
+    - start_ambient: amb_rainfall_heavy
   triggers: []
   encounters: []
   sequences: []

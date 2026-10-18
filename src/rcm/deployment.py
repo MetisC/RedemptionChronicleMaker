@@ -62,7 +62,8 @@ def deploy(ws,chronicle,directory=None,current_source=None):
         if report.get('build_inputs_sha256')!=build_inputs_fingerprint(ws,current_source):raise ValueError('Los archivos propios cambiaron desde el build; vuelve a compilar')
     dest=safe_target(game,game/'RCM'/(directory or chronicle));files={}
     from .wtd import local_dependencies
-    for name,data in local_dependencies(ws,report).items():files[safe_target(game,dest/name)]=data
+    dependencies=local_dependencies(ws,report)
+    for name,data in dependencies.items():files[safe_target(game,dest/name)]=data
     for relative,record in report['distribution_files'].items():
         from .packages import archive_path
         archive_path(relative)
@@ -73,7 +74,7 @@ def deploy(ws,chronicle,directory=None,current_source=None):
         files[safe_target(game,dest/path)]=data
     compatibility={}
     from .profile_compatibility import compatibility_files
-    compatibility=compatibility_files(game,files[safe_target(game,dest/(chronicle+'.nob'))])
+    compatibility=compatibility_files(game,[data for path,data in files.items() if path.suffix=='.nob'])
     for name,data in compatibility.items():
         target=safe_target(game,dest/name)
         if target in files:
@@ -103,7 +104,7 @@ def deploy(ws,chronicle,directory=None,current_source=None):
     if not directory:
         from .product import ensure_runtime_root
         ensure_runtime_root(game)
-    ownership={'format':1,'chronicle':chronicle,'compatibility_files':list(compatibility),'files':{str(p.relative_to(dest)).replace('\\','/'):hashlib.sha256(d).hexdigest() for p,d in files.items()}}
+    ownership={'format':1,'chronicle':chronicle,'shared_content_files':list(dependencies),'compatibility_files':list(compatibility),'files':{str(p.relative_to(dest)).replace('\\','/'):hashlib.sha256(d).hexdigest() for p,d in files.items()}}
     from .profile_compatibility import profile_signature
     ownership['profile_refs_sha256']=profile_signature(game)
     files[manifest]=json.dumps(ownership,indent=2).encode('utf8')

@@ -41,7 +41,10 @@ def current_deploy(ws, report):
         from .profile_compatibility import profile_signature
         if manifest.get('profile_refs_sha256')!=profile_signature(game):return False
         if manifest.get('chronicle') != report['chronicle'] or any(actual.get(k)!=v for k,v in expected.items()):return False
-        if set(actual)-set(expected)-set(manifest.get('compatibility_files',[])):return False
+        from .wtd import local_dependencies
+        dependencies=local_dependencies(ws,report)
+        if any(actual.get(name)!=hashlib.sha256(data).hexdigest() for name,data in dependencies.items()):return False
+        if set(actual)-set(expected)-set(manifest.get('compatibility_files',[]))-set(dependencies):return False
         return all(hashlib.sha256(safe_target(game,dest/name).read_bytes()).hexdigest() == digest for name,digest in actual.items())
     except (OSError,ValueError,KeyError):return False
 

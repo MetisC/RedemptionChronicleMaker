@@ -2,7 +2,7 @@
 
 - Right-click original scenery to identify and use the pointed object. Inline NSD brush previews, exact triangle picking and Locate in 3D expose generic props such as Tenebrae's exit. Fixed NIL surfaces support native selectable brush overlays with hover labels and ordinary click actions.
 
-- Optional Within The Darkness import from a user-supplied NOB: usable clans, disciplines, actors/models and reusable Penthouse geometry, excluding demo/menu reskin. Initial actor traits and event rewards use the real Codex API. Imported assets stay local, outside program/chronicle distribution ZIPs.
+- Optional Within The Darkness import from a user-supplied NOB: usable clans, disciplines, actors/models and reusable Penthouse geometry, excluding demo/menu reskin. Initial actor traits and event rewards use the real Codex API. Imported assets stay local, outside program/chronicle distribution ZIPs. Installed content now applies across managed RCM launches independently of the current workspace import: the root owns the pack and isolated native launch folders receive verified mirrors. Normal launches without RCM remain unchanged.
 
 - Original static-object picker and passage helper: hide/restore/remove props, operate framed or pivot doors, and create click/travel events without editing base geometry. Native identity checks reject missing or ambiguous targets; door appearance, collision and original-script interaction remain manual checks.
 
