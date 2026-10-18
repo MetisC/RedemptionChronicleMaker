@@ -4,7 +4,7 @@
 
 RCM reuses the game’s existing levels, models, templates, scripting API and runtime, then gives you a modern workflow for placing actors and objects, writing conversations, building quests, wiring events, creating cinematics, travelling between scenes, authoring encounters and playtesting the result directly in Redemption.
 
-> **Current version:** `1.0.0-rc4`
+> **Current version:** `1.0.0-rc6`
 >
 > **Status:** release candidate. The editor, build pipeline and automated/offline test suite are in good shape, but some native-game scenarios still require manual verification inside Redemption. Networking is experimental; the primary target is local single-player authoring/playtesting.
 
@@ -503,10 +503,10 @@ The portable intentionally excludes original Redemption assets.
 
 # Tests and quality checks
 
-Latest local RC4 validation:
+Latest recorded validation:
 
 ```text
-474 PASS
+482 PASS
 0 FAIL
 0 ERROR
 0 SKIP
@@ -533,9 +533,9 @@ See [Testing](docs/TESTING.md) and [Manual runtime checklist](docs/MANUAL_RUNTIM
 
 # Current release status and known limitations
 
-`1.0.0-rc4` is a **release candidate**, not final 1.0.
+`1.0.0-rc6` is a **release candidate**, not final 1.0.
 
-The current head also includes the post-RC4 startup-inventory compatibility fix for shared/custom launch folders.
+The current release includes the startup-inventory compatibility fix for shared/custom launch folders.
 
 Known areas that still require manual/native confidence include:
 
