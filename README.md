@@ -1,4 +1,4 @@
-# Redemption Chronicle Maker · 1.0.0-rc6
+# Redemption Chronicle Maker · 1.0.0-rc7
 
 Create chronicles for **Vampire: The Masquerade — Redemption** using an independent editor and generators. Original level geometry is a reusable, immutable base. Normal authoring does not require Embrace, NOT Editor or another original authoring program.
 
