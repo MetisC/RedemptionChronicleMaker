@@ -26,3 +26,5 @@ Manual: MANUAL_RUNTIME_CHECKLIST.md/.en.md, EMB01–24, DYN01–12, puertas/WTD/
 Último gate completo del cierre: **525 tests, 0 failures, 0 errors, 0 skipped**. Ruff y mypy configurado pasan; 112 catálogos de sector verificados. Después del ajuste final de ancho de propiedades: **140 widgets/regressions, 0/0/0**, en build/tests/post_layout_gui_report.json, sin sustituir el informe de la suite completa. Las pruebas focales por sí solas no son un nuevo gate completo.
 
 El recibo research/embrace_closure/final_flecks_delivery.json enlaza compilación real 45.3, portable EN/ES, integridad de 43 fuentes originales y la aceptación limitada de carga inicial por el usuario. Nuevos casos manuales: EMB-MUSIC-01..03, EMB-CONV-01..05 y EMB-NCP-01..05.
+
+Ajuste posterior de apertura: build/tests/open_feedback_report.json registra dos regresiones Qt EN/ES de feedback previo a lectura, error/reintento, no reentrada y restauración de cursor previo. La suite completa de 525 corresponde al gate anterior a este ajuste visual; no se presenta el resultado focal como una nueva suite completa.

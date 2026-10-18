@@ -3,12 +3,12 @@ from pathlib import Path
 import traceback
 import time
 
-from PySide6.QtCore import Qt, QTimer, QThread, QObject, Signal, Slot
+from PySide6.QtCore import Qt, QTimer, QThread, QObject, Signal, Slot, QEventLoop
 from PySide6.QtGui import QAction, QShortcut, QPalette, QColor
 from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter,
     QTreeWidget, QTreeWidgetItem, QLabel, QPushButton, QScrollArea, QDockWidget,
     QTabWidget, QPlainTextEdit, QTableWidget, QTableWidgetItem, QHeaderView,
-    QFileDialog, QMessageBox, QDialog, QFormLayout, QLineEdit, QDialogButtonBox, QComboBox)
+    QFileDialog, QMessageBox, QDialog, QFormLayout, QLineEdit, QDialogButtonBox, QComboBox, QApplication)
 
 from ..document import Document
 from ..model import identifier
@@ -767,6 +767,33 @@ class MainWindow(QMainWindow):
             self.guard(lambda: self.open_path(path))
 
     def open_path(self, path):
+        if getattr(self, '_opening_project', False):
+            return False
+        self._opening_project = True
+        message = tr('Abriendo crónica…')
+        welcome = getattr(self, 'welcome', None)
+        previous_text = welcome.status.text() if welcome else ''
+        previous_enabled = welcome.isEnabled() if welcome else True
+        QApplication.setOverrideCursor(Qt.CursorShape.WaitCursor)
+        try:
+            self.statusBar().showMessage(message)
+            if welcome:
+                welcome.status.setText(message)
+                welcome.setEnabled(False)
+            # Paint feedback before synchronous parsing/catalogue validation.
+            # User input remains excluded, so another double-click cannot reopen.
+            QApplication.processEvents(QEventLoop.ProcessEventsFlag.ExcludeUserInputEvents)
+            return self._open_path(path)
+        finally:
+            QApplication.restoreOverrideCursor()
+            self._opening_project = False
+            if welcome:
+                welcome.status.setText(previous_text)
+                welcome.setEnabled(previous_enabled)
+            if self.statusBar().currentMessage() == message:
+                self.statusBar().clearMessage()
+
+    def _open_path(self, path):
         document = Document.load(self.backend.ws, path)
         from ..project_safety import ProjectLock
         existing=getattr(self,'project_lock',None)
@@ -777,7 +804,10 @@ class MainWindow(QMainWindow):
         if document.recovery_path.exists():
             from datetime import datetime
             choice=QMessageBox(self);choice.setWindowTitle(tr('Recuperación disponible'));choice.setText(tr('Proyecto guardado: ')+datetime.fromtimestamp(document.path.stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S')+'\n'+tr('Recuperación: ')+datetime.fromtimestamp(document.recovery_path.stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S'))
-            recover=choice.addButton(tr('Recuperar'),QMessageBox.ButtonRole.AcceptRole);ignore=choice.addButton(tr('Ignorar por ahora'),QMessageBox.ButtonRole.RejectRole);discard=choice.addButton(tr('Descartar recuperación'),QMessageBox.ButtonRole.DestructiveRole);choice.setDefaultButton(ignore);choice.exec()
+            recover=choice.addButton(tr('Recuperar'),QMessageBox.ButtonRole.AcceptRole);ignore=choice.addButton(tr('Ignorar por ahora'),QMessageBox.ButtonRole.RejectRole);discard=choice.addButton(tr('Descartar recuperación'),QMessageBox.ButtonRole.DestructiveRole);choice.setDefaultButton(ignore)
+            QApplication.restoreOverrideCursor()
+            try:choice.exec()
+            finally:QApplication.setOverrideCursor(Qt.CursorShape.WaitCursor)
             if choice.clickedButton()==recover:document.recover()
             elif choice.clickedButton()==discard:self.backend.ws.output(document.recovery_path).unlink()
         self.doc = document

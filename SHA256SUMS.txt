@@ -1,1 +1,1 @@
-3bf92875a344bcd9a30be247735244262b4783d3d48d7466d37400f668db8082  RedemptionChronicleMaker-1.0.0-rc6-win64.zip
+fca3e5a46b4217194b53f7b3ec0647794c91810d8dadd854fa18d3ebb9fb5221  RedemptionChronicleMaker-1.0.0-rc6-win64.zip

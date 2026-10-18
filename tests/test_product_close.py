@@ -161,6 +161,57 @@ class ProductTests(TestCase):
 class ProductGuiTests(TestCase):
     @classmethod
     def setUpClass(cls):cls.app=QApplication.instance() or QApplication([]);cls.backend=Backend(Workspace(ROOT))
+    def test_recent_open_shows_loading_before_read_in_both_languages(self):
+        from PySide6.QtCore import Qt
+        from PySide6.QtWidgets import QListWidgetItem
+        from rcm.editor.window import MainWindow
+        from rcm.editor import i18n
+        win=MainWindow(self.backend);load=Document.load
+        try:
+            with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as tmp:
+                path=Path(tmp)/'project.yaml';path.write_text(source_text(source()),encoding='utf8')
+                for language,message in [('en','Opening chronicle…'),('es','Abriendo crónica…')]:
+                    with self.subTest(language=language),patch.object(i18n,'_language',language):
+                        previous=win.welcome.status.text()
+                        def checked_load(ws,selected):
+                            self.assertEqual(QApplication.overrideCursor().shape(),Qt.CursorShape.WaitCursor)
+                            self.assertEqual(win.welcome.status.text(),message)
+                            self.assertFalse(win.welcome.isEnabled())
+                            return load(ws,selected)
+                        item=QListWidgetItem('Test');item.setData(Qt.ItemDataRole.UserRole,str(path))
+                        with patch('rcm.editor.window.Document.load',side_effect=checked_load) as reading:
+                            win.welcome.open_recent(item)
+                        self.assertEqual(reading.call_count,1)
+                        self.assertEqual(win.doc.path,path)
+                        self.assertIsNone(QApplication.overrideCursor())
+                        self.assertTrue(win.welcome.isEnabled())
+                        self.assertEqual(win.welcome.status.text(),previous)
+                win.project_lock.release()
+        finally:
+            win.doc=None;win.close();self.app.processEvents()
+
+    def test_failed_recent_open_restores_cursor_and_allows_retry_without_reentry(self):
+        from PySide6.QtCore import Qt,QTimer
+        from PySide6.QtWidgets import QListWidgetItem,QMessageBox
+        from rcm.editor.window import MainWindow
+        win=MainWindow(self.backend);item=QListWidgetItem('Missing');item.setData(Qt.ItemDataRole.UserRole,'missing.yaml')
+        previous=win.welcome.status.text();reentry=[]
+        QApplication.setOverrideCursor(Qt.CursorShape.CrossCursor)
+        try:
+            def warning(*args):
+                self.assertEqual(QApplication.overrideCursor().shape(),Qt.CursorShape.CrossCursor)
+                self.assertTrue(win.welcome.isEnabled())
+                self.assertFalse(win._opening_project)
+                self.assertEqual(win.welcome.status.text(),previous)
+            with patch('rcm.editor.window.Document.load',side_effect=ValueError('Missing project')) as reading,patch.object(QMessageBox,'warning',side_effect=warning) as notice:
+                QTimer.singleShot(0,lambda:reentry.append(win.open_path('another.yaml')))
+                win.welcome.open_recent(item)
+                self.assertEqual(reentry,[False]);self.assertEqual(reading.call_count,1)
+                win.welcome.open_recent(item)
+                self.assertEqual(reading.call_count,2);self.assertEqual(notice.call_count,2)
+        finally:
+            QApplication.restoreOverrideCursor();win.doc=None;win.close();self.app.processEvents()
+
     def test_welcome_actions_and_new_project_scenario_are_real_widgets(self):
         from rcm.editor.window import MainWindow,NewProjectDialog
         win=MainWindow(self.backend)
