@@ -1,7 +1,7 @@
 {
   "recorded_at_utc": "2026-10-18T13:35:58.488954+00:00",
   "version": "1.0.0-rc6",
-  "head": "1d505c5ac7f382f2d686e489242c3c778cf8ca12",
+  "head": "37b5267a043075c62b5c2fc9d437f767b6feafd5",
   "project_formats": [
     9,
     10
@@ -159,13 +159,11 @@
   "release": {
     "version": "1.0.0-rc6",
     "user_zip": "RedemptionChronicleMaker-1.0.0-rc6-win64.zip",
-    "sha256": "fca3e5a46b4217194b53f7b3ec0647794c91810d8dadd854fa18d3ebb9fb5221",
-    "size": 89102628,
-    "files": 366,
-    "all_hashes_verified": true,
-    "source_archive_separate": true,
-    "native_game_verified": false,
-    "clean_machine_verified": false
+    "sha256": "6da67a1b657b79aae2326d874aa1d75e5978a5c86023fb360d6e8a52f7d5798e",
+    "size": 92766776,
+    "source_commit": "890d30d28364a0fd2b997e0979ee64d6a341baa8",
+    "published_at": "2026-10-18T04:03:04Z",
+    "note": "Published rc6 predates the final-flecks implementation. The post-closure source is being released as rc7 rather than moving the public rc6 tag."
   },
   "native_acceptance": {
     "initial_showcase_loading": "RUNTIME VERIFIED by user: Funciona bien y abre.",
@@ -300,5 +298,22 @@
     "ruff_passed": true,
     "runtime_java_changed": false,
     "game_files_changed": false
-  }
+  },
+  "baseline_commit": "1d505c5ac7f382f2d686e489242c3c778cf8ca12",
+  "closure_implementation_commit": "a16d9838ea3a31f5405a416e630622d02fe3282a",
+  "full_suite_source_commit": "a16d9838ea3a31f5405a416e630622d02fe3282a",
+  "head_semantics": "Repository HEAD immediately before this evidence-only receipt correction; the 525-test full suite belongs to full_suite_source_commit.",
+  "release_target_version": "1.0.0-rc7",
+  "candidate_package": {
+    "version": "1.0.0-rc6",
+    "user_zip": "RedemptionChronicleMaker-1.0.0-rc6-win64.zip",
+    "sha256": "fca3e5a46b4217194b53f7b3ec0647794c91810d8dadd854fa18d3ebb9fb5221",
+    "size": 89102628,
+    "files": 366,
+    "all_hashes_verified": true,
+    "source_archive_separate": true,
+    "native_game_verified": false,
+    "clean_machine_verified": false
+  },
+  "receipt_scope": "Full 525-test gate covers the final-flecks implementation commit. The later opening-feedback UI-only adjustment has focused EN/ES regressions and CI, not a repeated full native-dependent suite."
 }
