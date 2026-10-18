@@ -343,6 +343,8 @@ def install(win):
     help_menu=win.help_menu
     tutorial_action=help_menu.addAction(tr('Tutorial rápido'),lambda:win.guard(lambda:open_example(win,'tutorial')));tutorial_action.setObjectName('help_tutorial')
     showcase_action=help_menu.addAction(tr('Showcase completo'),lambda:win.guard(lambda:open_example(win,'showcase')));showcase_action.setObjectName('help_showcase')
+    help_menu.addAction(tr('Crónica de prueba: el refugio'),lambda:win.guard(lambda:open_example(win,'director_acceptance'))).setObjectName('help_director_acceptance')
+    help_menu.addAction(tr('Director de escenas: guía'),lambda:win.guard(lambda:help_document(win,'CINEMATIC_DIRECTOR'))).setObjectName('help_director_guide')
     help_menu.addAction(tr('Crear paquete de soporte…'),lambda:win.guard(lambda:support_dialog(win)))
     help_menu.addAction(tr('Atajos'),lambda:win.guard(lambda:help_document(win,'SHORTCUTS')),'F1').setObjectName('help_shortcuts')
     help_menu.addAction(tr('Acerca de'),lambda:QMessageBox.information(win,tr('Acerca de'),'Redemption Chronicle Maker '+__import__('rcm').__version__+'\n\n'+tr('Herramienta de autoría no oficial para Vampire: The Masquerade — Redemption.')))

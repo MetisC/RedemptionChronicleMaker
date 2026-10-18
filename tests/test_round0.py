@@ -128,7 +128,9 @@ class Round0(TestCase):
         self.assertTrue({'dynamic_lab','mini_chronicle','showcase','tutorial'}.issubset(p.name for p in (ROOT/'chronicles').iterdir()))
         for folder in ['tutorial','mini_chronicle','showcase']:
             doc=Document.load(self.backend.ws,'chronicles/'+folder+'/project.yaml');result=self.backend.validate(doc.snapshot());self.assertTrue(result.valid)
-            enemies=[a for s in doc.campaign['scenes'] for a in s['actors'] if a.get('behavior')=='enemy'];self.assertEqual(len(enemies),1);self.assertEqual(enemies[0]['template'],'Rat')
+            enemies=[a for s in doc.campaign['scenes'] if s['id']!='director_lab' for a in s['actors'] if a.get('behavior')=='enemy'];self.assertEqual(len(enemies),1);self.assertEqual(enemies[0]['template'],'Rat')
+            lab=[a for s in doc.campaign['scenes'] if s['id']=='director_lab' for a in s['actors'] if a.get('behavior')=='enemy']
+            if folder=='showcase':self.assertEqual([a['template'] for a in lab],['Rat'])
             for s in doc.campaign['scenes']:
                 for e in s['events']:
                     if e['when']=='scene_start':self.assertFalse(any(a.get('spawn_encounter') for a in e['actions']))

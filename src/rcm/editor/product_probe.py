@@ -176,7 +176,7 @@ def main(argv=None):
         QTimer.singleShot(0,import_through_settings);settings_dialog(win)
     finally:
         QFileDialog.getOpenFileName=original_pick;wtd.publish_shared=original_publish;deployment_api.game_running=original_running
-    rc4['wtd_import_bundled_policy']=len(wtd.policy()['keep'])==445 and backend.resources.get('wtd_import',{}).get('counts',{}).get('disciplines')==1 and (fake/'RCM/_content/within_the_darkness'/wtd.ARCHIVE).is_file()
+    rc4['wtd_import_bundled_policy']=len(wtd.policy()['keep'])==445 and backend.resources.get('wtd_import',{}).get('counts',{}).get('disciplines')==1 and (fake/'RCM'/wtd.ARCHIVE).is_file()
     from .wtd import TraitsDialog
     traits=TraitsDialog(win,win.doc.data['actors'][0]);traits.clan.setCurrentIndex(traits.clan.findData('rcm_wtd_probeclan'));traits.discipline.setCurrentIndex(traits.discipline.findData('RCM_WTD_ProbePower'));traits.add();traits.show();app.processEvents();traits.grab().save(str(ws.output('build/probe/wtd_traits.png')));traits.buttons.button(QDialogButtonBox.StandardButton.Ok).click()
     rc4['wtd_actor_traits_valid']=traits.result()==QDialog.DialogCode.Accepted and backend.validate(win.doc.snapshot()).valid
@@ -185,12 +185,29 @@ def main(argv=None):
     # Remove only the fixture import so repeated launches still start without
     # optional content. User imports are never removed by normal application UI.
     ws.output(wtd.ROOT+'/import.json').unlink();ws.output(wtd.ROOT+'/'+wtd.ARCHIVE).unlink();backend.refresh_import()
+    director={}
+    path=copy_example(ws,'director_acceptance');win.doc._saved=__import__('rcm.service',fromlist=['source_text']).source_text(win.doc.snapshot());win.open_path(path);app.processEvents()
+    baseline=win.doc.snapshot();director['example_valid']=backend.validate(baseline).valid
+    win.campaign_panel.navigate(('scenes',0,'sequences',0));app.processEvents()
+    director['existing_tab_controls']=win.center_tabs.count()==7 and win.campaign_panel.findChild(QPushButton,'director_camera_path') is not None
+    win.grab().save(str(ws.output('build/probe/director_sequence.png')))
+    from .director import CameraPathDialog
+    win.spatial.viewport=Viewport(win.spatial)
+    dialog=CameraPathDialog(win,('scenes',0,'sequences',0));dialog.show();app.processEvents();dialog.grab().save(str(ws.output('build/probe/director_path.png')))
+    director['points_and_modeless']=dialog.list.count()==2 and not dialog.isModal()
+    dialog.name.setText('Probe path');dialog.accept();director['atomic_edit']=dialog.result()==QDialog.DialogCode.Accepted and win.doc.snapshot()!=baseline
+    win.undo_project();director['atomic_undo']=win.doc.snapshot()==baseline
+    win.select(('conversations',0,'nodes',0,'lines',0));app.processEvents();director['line_actions']=win.properties.widget().findChild(QPushButton,'director_line_actions') is not None
+    director['help_example']=any(a.objectName()=='help_director_acceptance' for a in win.help_menu.actions())
+    compiled=backend.build(win.doc.snapshot());director['compiled_real_api']=compiled['status']=='compiled-unverified-in-game' and all(v=='45.3' for v in compiled['class_versions'].values())
+    director['ncp_packaged']=any(name.lower().endswith('.ncp') for name in compiled['files'])
+    if not all(director.values()):raise ValueError('Director widget acceptance failed: '+json.dumps(director))
     win.doc._saved=__import__('rcm.service',fromlist=['source_text']).source_text(win.doc.snapshot());win.close();app.processEvents()
     reopened=AppSettings(args.settings_directory)
     if not all(rc3.values()):raise ValueError('RC3 widget acceptance failed: '+json.dumps(rc3))
     if not all(rc4.values()):raise ValueError('RC4 widget acceptance failed: '+json.dumps(rc4))
     result=dict(rc3=rc3,cache_rebuilt=preparation['cache_rebuilt'],fresh_settings=fresh,welcome=self_ready,setup_steps=steps,setup_seconds=prepared-started,total_seconds=time.perf_counter()-started,gui_authored_valid=valid,build_status=report['status'],class_versions=report['class_versions'],synthetic_deployment=str(deployment['destination']),setup_not_repeated=reopened.data.get('setup_complete',False),tutorial_unmodified=before==hashlib.sha256(ws.output('chronicles/tutorial/project.yaml').read_bytes()).hexdigest(),language=args.language,native_game_test=False,clean_machine_test=False,real_opengl=False,game_originals_written=False,tutorial_open_timestamp=tutorial_open,showcase_open_timestamp=showcase_open)
-    result['rc4']=rc4;ws.write('build/product_probe.json',json.dumps(result,ensure_ascii=False,indent=2));return 0
+    result['rc4']=rc4;result['director']=director;ws.write('build/product_probe.json',json.dumps(result,ensure_ascii=False,indent=2));return 0
 
 
 if __name__=='__main__':raise SystemExit(main())

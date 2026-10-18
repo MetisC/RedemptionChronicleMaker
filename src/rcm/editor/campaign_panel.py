@@ -2,7 +2,7 @@ from .i18n import tr
 """Campaign authoring controls over the existing window/document and event inspector."""
 import copy
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QLabel,QPushButton,QComboBox,QLineEdit,QTreeWidget,QTreeWidgetItem,QScrollArea,QFormLayout,QSpinBox,QDoubleSpinBox,QListWidget,QListWidgetItem,QMessageBox,QDialog,QSplitter,QDialogButtonBox,QInputDialog,QMenu
+from PySide6.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QLabel,QPushButton,QComboBox,QLineEdit,QTreeWidget,QTreeWidgetItem,QScrollArea,QFormLayout,QSpinBox,QDoubleSpinBox,QListWidget,QListWidgetItem,QMessageBox,QDialog,QSplitter,QDialogButtonBox,QInputDialog,QMenu,QLayout
 from .browser import ResourceDialog
 from ..campaign import ACTIONS,WHEN
 from ..campaign_document import CampaignDocument
@@ -254,7 +254,7 @@ class CampaignPanel(QWidget):
         elif self.path[2]=='sequences':
             line(tr('Nombre'),'name','sequence_name');s=root['scenes'][self.path[1]]
             mode=QComboBox();mode.setObjectName('sequence_mode')
-            for label,key in [('Plano','shot'),('Secuencia de planos','timeline'),('Travelling original','ncp')]:mode.addItem(tr(label),key)
+            for label,key in [('Plano','shot'),('Secuencia de planos','timeline'),('Travelling','ncp')]:mode.addItem(tr(label),key)
             current_mode='ncp' if row.get('camera_path') else 'timeline' if row.get('steps') else 'shot'
             mode.setCurrentIndex(mode.findData(current_mode));form.addRow(tr('Tipo de cámara'),mode)
             def change_mode():
@@ -270,8 +270,7 @@ class CampaignPanel(QWidget):
                 self.mutate(change,True)
             mode.currentIndexChanged.connect(change_mode)
             combo(tr('Actor enfocado'),'actor',[(tr('Jugador'),'Player')]+[(a['name'],a['id']) for a in s['actors']],'sequence_actor')
-            if row['actor']=='Player':
-                combo(tr('Referencia de cámara'),'reference',[(tr('Sin referencia'),None)]+[(a['name'],a['id']) for a in s['actors']],'sequence_reference')
+            combo(tr('Referencia de cámara'),'reference',[(tr('Automática'),None)]+([] if row['actor']=='Player' else [(tr('Jugador'),'Player')])+[(a['name'],a['id']) for a in s['actors'] if a['id']!=row['actor']],'sequence_reference')
             combo(tr('Plano'),'shot',[(tr('Medio'),'medium'),(tr('Cercano'),'close'),(tr('Amplio'),'wide')],'sequence_shot');combo(tr('Ángulo'),'angle',[(tr('Bajo'),'low'),(tr('Medio'),'medium'),(tr('Alto'),'high')],'sequence_angle')
             if root.get('project_format') in (9,10):
                 from ..camera_presets import CINEMA_PRESETS as PRESETS
@@ -299,7 +298,8 @@ class CampaignPanel(QWidget):
                         value=QDoubleSpinBox();value.setRange(-10000,10000);value.setPrefix(label+' ');value.setValue(motion['translation'][axis]);value.valueChanged.connect(lambda v,axis=axis:self.mutate(lambda:motion['translation'].__setitem__(axis,v)));axisbar.addWidget(value)
                     form.addRow(tr('Desplazamiento'),axes)
                 if not row.get('steps'):
-                    combo(tr('Travelling original NCP'),'camera_path',[(tr('Sin recorrido de cámara'),None)]+[(e['id'],e['id']) for e in self.win.backend.resources['entries'] if e['extension'].lower()=='.ncp'],'sequence_camera_path')
+                    combo(tr('Travelling'),'camera_path',[(tr('Sin recorrido de cámara'),None)]+[(tr('Del proyecto')+' · '+e['id'] if e.get('project_owned') else tr('Original')+' · '+e['id'],e['id']) for e in self.win.backend.resources['entries'] if e['extension'].lower()=='.ncp'],'sequence_camera_path')
+                    speed=QDoubleSpinBox();speed.setObjectName('sequence_path_speed');speed.setRange(.01,100);speed.setValue(row.get('path_speed',30));speed.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('path_speed',v)));form.addRow(tr('Velocidad del travelling'),speed)
                 if current_mode!='ncp':
                     def add_shot():
                         def change():
@@ -325,6 +325,13 @@ class CampaignPanel(QWidget):
                         if i>0:
                             remove=QPushButton('−');remove.clicked.connect(lambda checked=False,i=i:self.mutate(lambda:row['steps'].pop(i),True));bar.addWidget(remove)
                         form.addRow(tr('Plano ')+str(i+1),controls)
+                        reference=QComboBox();reference.setObjectName('sequence_step_reference_'+str(i));reference.addItem(tr('Automática'),None)
+                        if step['actor']!='Player':reference.addItem(tr('Jugador'),'Player')
+                        for a in s['actors']:
+                            if a['id']!=step['actor']:reference.addItem(a['name'],a['id'])
+                        reference.setCurrentIndex(max(0,reference.findData(step.get('reference'))))
+                        reference.currentIndexChanged.connect(lambda _,c=reference,st=step:self.mutate(lambda:st.__setitem__('reference',c.currentData()) if c.currentData() else st.pop('reference',None)))
+                        form.addRow(tr('Referencia de cámara'),reference)
                         form.addRow(tr('Enfocar decorado (plano ')+str(i+1)+')',focus)
                         angle=QComboBox();angle.setObjectName('sequence_step_angle_'+str(i))
                         for name,key in [(tr('Bajo'),'low'),(tr('Medio'),'medium'),(tr('Picado'),'high')]:angle.addItem(name,key)
@@ -333,8 +340,12 @@ class CampaignPanel(QWidget):
                         form.addRow(tr('Ángulo (plano ')+str(i+1)+')',angle)
             w=QDoubleSpinBox();w.setObjectName('sequence_duration');w.setRange(.1,120);w.setValue(row['duration']);w.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('duration',v)));form.addRow(tr('Duración (s)'),w)
             b=QPushButton(tr('Enfocar actor en viewport'));b.clicked.connect(lambda:self.preview_sequence(row));form.addRow(b)
-            note=QLabel(tr('Los planos y el movimiento se ejecutan con la API del motor. Travelling NCP reutiliza un recorrido original: comprueba que corresponda al escenario. El preview sólo enfoca al actor. Al cargar partida se cancela la cutscene y se devuelve el control.'));note.setWordWrap(True);form.addRow(note)
-            if row['actor']=='Player':note.setText(tr('La secuencia presenta al jugador. Usa una referencia de cámara para orientar los planos. Al cargar una partida a mitad, esta película empieza de nuevo y su progreso se completa una sola vez.'))
+            if root.get('project_format') in (9,10):
+                from .director import cue_controls,open_camera_path
+                button=QPushButton(tr('Crear / editar travelling propio…'));button.setObjectName('director_camera_path');button.clicked.connect(lambda:open_camera_path(self.win,self.path));form.addRow(button)
+                cue_controls(self,form,row)
+            note=QLabel(tr('Planos y movimiento usan el motor. El travelling puede ser original o propio: comprueba el encuadre final en Redemption. Las películas con acciones temporales se cancelan al cargar y devuelven el control.'));note.setWordWrap(True);form.addRow(note)
+            if row['actor']=='Player' and not row.get('cues'):note.setText(tr('La secuencia presenta al jugador. Usa una referencia de cámara para orientar los planos. Al cargar una partida a mitad, esta película empieza de nuevo y su progreso se completa una sola vez.'))
             # Hide irrelevant camera controls without modifying their stored data.
             for control in panel.findChildren(QComboBox):
                 name=control.objectName()
@@ -364,6 +375,8 @@ class CampaignPanel(QWidget):
                 w=QDoubleSpinBox();w.setObjectName('path_'+key);w.setRange(lo,hi);w.setValue(row.get(key,default));w.valueChanged.connect(lambda v,k=key:self.mutate(lambda:row.__setitem__(k,v)));form.addRow(label,w)
             form.addRow(QLabel(tr('Usa Iniciar / Detener recorrido en un evento. Navegación, colisiones y velocidad pendientes de prueba manual en Redemption.')))
         layout.addStretch()
+        layout.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
+        panel.setMinimumHeight(layout.sizeHint().height())
     def preview_sequence(self,row):
         for i,a in enumerate(self.win.doc.data['actors']):
             if a['id']==row['actor']:self.win.select(('actors',i));self.win.center_tabs.setCurrentIndex(0);self.win.spatial.viewport.focus_selection();return
@@ -394,11 +407,19 @@ def event_properties(ins):
     elif p[-2]=='actions':
         a=w.at(p);kind=next(iter(a),'spawn')
         def change(v):
+            from ..cinematics import DIRECTOR_ACTIONS
+            if v in DIRECTOR_ACTIONS:
+                from .director import default_action
+                a.clear();a[v]=default_action(v,s);w.changed(True);return
             a.clear();a[v]={'actor':'Player','clan':w.backend.resources['wtd']['clans'][0]['id']} if v=='set_actor_clan' else {'actor':'Player','discipline':w.backend.resources['wtd']['disciplines'][0]['id'],'level':1} if v=='set_discipline' else {'level':s['level']['source'],'template':'','operation':'hide'} if v=='control_original' else {'title':tr('Nota'),'text':tr('Escribe aquí lo que leerá el jugador.')} if v=='show_note' else {'resource':'','waypoint':'','volume':100,'min_distance':128,'max_distance':512} if v=='play_sound' else {'cast_id':'','mode':'frames','frame':1,'parameter':150,'open':True} if v=='control_door' else {'scene':'','entry':''} if v=='travel' else True if ACTIONS[v][1]=='none' else 100 if ACTIONS[v][1]=='number' else '';w.changed(True)
         advanced={'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','control_original','play_sound'}
         advanced|={'set_actor_clan','set_discipline'}
+        from ..cinematics import DIRECTOR_ACTIONS
+        advanced|=DIRECTOR_ACTIONS
         ins.combo(tr('Acción'),[(tr(label),key) for key,(label,_) in ACTIONS.items() if (w.backend.resources.get('wtd') or key not in {'set_actor_clan','set_discipline'}) and (w.doc.campaign.get('project_format')==10 or not key.endswith('_generator')) and (w.doc.campaign.get('project_format') in (9,10) or key not in advanced)],kind,change,'action_kind');category=ACTIONS.get(kind,('','none'))[1]
-        if category in {'wtd_clan','wtd_discipline'}:
+        from .director import render_action
+        if render_action(ins,kind,a[kind],p,s):pass
+        elif category in {'wtd_clan','wtd_discipline'}:
             value=a[kind];data=w.backend.resources.get('wtd',{});field='clan' if category=='wtd_clan' else 'discipline'
             ins.combo(tr('Actor'),[(tr('Jugador'),'Player')]+ins.ids('actors'),value['actor'],lambda v:ins.set(p+(kind,'actor'),v),'trait_actor')
             ins.combo(tr('Clan' if field=='clan' else 'Disciplina'),[(r['id'],r['id']) for r in data.get('clans' if field=='clan' else 'disciplines',[])],value[field],lambda v:ins.set(p+(kind,field),v),'trait_value')
@@ -426,7 +447,19 @@ def event_properties(ins):
             ins.combo(tr('Posición'),[(tr('Elige…'),'')]+[(r['name'],r['id']) for r in s.get('waypoints',[])],value['waypoint'],lambda v:ins.set(p+(kind,'waypoint'),v),'sound_waypoint')
             for label,key,hi in [(tr('Volumen'),'volume',100),(tr('Radio interior'),'min_distance',100000),(tr('Radio exterior'),'max_distance',100000)]:
                 ins.spin(label,value[key],lambda v,k=key:ins.set(p+(kind,k),v),'sound_'+key,key!='volume',0,hi)
-            ins.note(tr('Reproducción única situada. El ambient continuo sigue siendo el de la escena; no se ofrece un loop espacial persistente sin contrato de restauración contrastado.'))
+            def loop(v):
+                if v:value['loop']=True;value.setdefault('id','sound_loop')
+                else:value.pop('loop',None);value.pop('id',None)
+                w.changed(True)
+            ins.combo(tr('Reproducción'),[(tr('Una vez'),False),(tr('Bucle mientras escena activa'),True)],value.get('loop',False),loop,'sound_loop')
+            if value.get('loop'):
+                def rename_loop(v):
+                    from ..audio import rename_loop as rename
+                    rename(s,value['id'],v);w.changed(False)
+                ins.line(tr('Nombre del sonido'),value['id'],rename_loop,'sound_source_id',True)
+        elif category=='sound_source':
+            from ..audio import loops
+            ins.combo(tr('Sonido'),[(name,name) for name in loops(s)],a[kind],lambda v:ins.set(p+(kind,),v),'sound_stop_source')
         elif category=='door':
             value=a[kind]
             ins.line(tr('Cast ID existente'),value['cast_id'],lambda v:ins.set(p+(kind,'cast_id'),v),'door_cast_id',True)

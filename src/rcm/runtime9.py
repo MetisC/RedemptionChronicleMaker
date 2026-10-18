@@ -224,6 +224,10 @@ def extend(java,campaign,scene,project):
     java=java[:-2]+'\n'+factory+'\n'+'\n'.join(lines)+'\n}\n'
     from .cinematics import extend_runtime
     java=extend_runtime(java,scene,project)
+    from .audio import extend as extend_audio
+    java=extend_audio(java,scene,project)
+    from .world_effects import extend as extend_world_effects
+    java=extend_world_effects(java,scene,project)
     if any('show_note' in a for e in scene['events'] for a in e['actions']) or any(e['when']=='note_closed' for e in scene['events']):
         from .notes_runtime import extend_notes
         java=extend_notes(java)

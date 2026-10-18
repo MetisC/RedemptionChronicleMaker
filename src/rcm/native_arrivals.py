@@ -12,7 +12,7 @@ import zlib
 
 
 def enabled(campaign,scene):
-    return bool(scene.get('entries')) and (campaign.source.get('runtime_profile')=='phase10' or any('interaction' in o for o in scene.get('objects',[])))
+    return bool(scene.get('entries')) and (campaign.source.get('runtime_profile')=='phase10' or any('interaction' in o for o in scene.get('objects',[])) or any(c.get('staging') for c in scene.get('conversations',[])))
 
 
 def ordered(scene):

@@ -1,35 +1,35 @@
 {
-  "version": "1.0.0-rc4",
+  "version": "1.0.0-rc6",
   "successful": true,
   "errors": [],
   "files": {
     "CHANGELOG.md": {
-      "size": 2915,
-      "sha256": "50518148948aba9b3be21f61af51d37de5e117a2aed2f0114420c90a41a69a2c"
+      "size": 3546,
+      "sha256": "d87abb8779133227f3d3963cd3d0758b2647cd9c0afcbb5c7ac314e52ea0b67b"
     },
     "README.txt": {
       "size": 532,
-      "sha256": "fef656495d40d61c98fe4588509464d2c99767c542b2bf659d5e2cdbc1b9b5b1"
+      "sha256": "5f558bc0fa117158bc21e62f58825c4d10407ef89e19c651cdc287c968ab63e0"
     },
     "RedemptionChronicleMaker.exe": {
-      "size": 4388769,
-      "sha256": "6a85353a5a725e6ac3fa17f9a15b61b0dcb5bea3b6de75fe11db233bce2d6a35"
+      "size": 4421526,
+      "sha256": "0caf9fec0a97ca84d5ef27d4775a7330dca1b67f308f28d9a8793a4463b86cb4"
     },
     "RELEASE_NOTES.md": {
-      "size": 3112,
-      "sha256": "f0e41063cb3fb03c17337d2fc941c9066e78e723426d15ff915b9341980dd5a4"
+      "size": 6805,
+      "sha256": "fd73ea0a0740a93633d9cea25ead4ba8e896fc85c0f88476fa12bc5f7c6b6038"
     },
     "VERSION": {
       "size": 10,
-      "sha256": "0154a537b045039a1b520ad6e3ae09427927735353def083e30ee8536377fad2"
+      "sha256": "e9f7d2439a6ad239f9c7832a8f7573783a4abe8de9deb55477a4b3c8f084e3d3"
     },
     "docs/ADVANCED_LIMITATIONS.en.md": {
-      "size": 2031,
-      "sha256": "260d0e56b4739f57dbdd435a14f3c6a7ea31143c35c22a793041cc3cb0d1c56d"
+      "size": 2200,
+      "sha256": "179c07d9effb61dd9c15db6ebd2fc199e8a2abb85ca4b6caf8525d20bc3b0e1e"
     },
     "docs/ADVANCED_LIMITATIONS.md": {
-      "size": 2345,
-      "sha256": "7b3a281fd07c83bab7f5dca8b0be1f525c7da90637969cc644eec3a48eea70f1"
+      "size": 2513,
+      "sha256": "797e0adc7072ce904560f6ac26f793ce747c8a76894669428582e5a5e47251b3"
     },
     "docs/AUTHORING_GUIDE.en.md": {
       "size": 3628,
@@ -38,6 +38,14 @@
     "docs/AUTHORING_GUIDE.md": {
       "size": 4092,
       "sha256": "2dfec3435b636dd62281a89dcb04681bde820c005ba699a85bf40891f3063acf"
+    },
+    "docs/CINEMATIC_DIRECTOR.en.md": {
+      "size": 4856,
+      "sha256": "3e01ef7c2315f7699802ccdef16b0a068dddfeb48ef77480aa80211cc1d58939"
+    },
+    "docs/CINEMATIC_DIRECTOR.md": {
+      "size": 4798,
+      "sha256": "4647ab5c6d4c78813fce090c19b647cdba24f30b87be25d9ff1f5fa74286371b"
     },
     "docs/DYNAMIC_ENCOUNTERS.en.md": {
       "size": 6386,
@@ -48,12 +56,12 @@
       "sha256": "65279c58f47144158153ceb82a871f2e84dee6a5b715a18ecb54300bd19af66c"
     },
     "docs/EDITOR_GUIDE.en.md": {
-      "size": 5829,
-      "sha256": "90e93050cb1bf1b52df1a4758d562ef49b12149e2b9f928c38ad796136867636"
+      "size": 6487,
+      "sha256": "68f971333b78501d6ae933ca9c768eceec9cfa2a66c20c13e76f13badf07084b"
     },
     "docs/EDITOR_GUIDE.md": {
-      "size": 6805,
-      "sha256": "0316e205a98f59434daa065f657c4a686056dec1099cd38491be215dda378c00"
+      "size": 7519,
+      "sha256": "4ffa27340b1c87602f19d8054004b2406eb57fc81a64bed89ebf5c17c9d557f0"
     },
     "docs/FIRST_RUN.en.md": {
       "size": 848,
@@ -72,12 +80,12 @@
       "sha256": "bf27b5c999824830b70c7fdbe4b2b2b27c57cd0ec359587b7680cd88c96db506"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.en.md": {
-      "size": 8169,
-      "sha256": "632f0298662850bfdc7f93487906beac1b2ced810c19fe623571a7c802ec6f35"
+      "size": 13855,
+      "sha256": "5b500a13738972e6027ded27cda1b69ebb531c6d6ec1473dfa3fe543ac7febf9"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.md": {
-      "size": 9706,
-      "sha256": "6f2fade195ddf257f81c125a8ab9c9974a59fb939dff497261bdb78574b05a68"
+      "size": 15052,
+      "sha256": "60b7649792baa72518d9cbec6e6c83fa7e2650f92b2b2a10893c80f11a3b6c19"
     },
     "docs/SHORTCUTS.en.md": {
       "size": 578,
@@ -111,6 +119,18 @@
       "size": 2329,
       "sha256": "5c5d0d6c5113f943ade3f7afca71e476c787ae188807f79a722b01be82a08f38"
     },
+    "examples/director_acceptance/project.yaml": {
+      "size": 29661,
+      "sha256": "941bb5c366fbb59947770bd195289b1bfb754f8afd15d1fdf1b88eceb0f7afe1"
+    },
+    "examples/director_acceptance/README.en.md": {
+      "size": 1394,
+      "sha256": "02758d25a2acc357fa087a44f44a1152d495ed9fc1f12e9635e75a4d3bc770a6"
+    },
+    "examples/director_acceptance/README.md": {
+      "size": 1513,
+      "sha256": "beb1e6b3f71cc2b420b8dac2d2dc1daa43080a3e12dc5404196786605ebfb206"
+    },
     "examples/dynamic_lab/project.yaml": {
       "size": 5241,
       "sha256": "271bddf5a1a96174e210ac10cc380aab72db99414cd4b3a2b468fbf8327b3e98"
@@ -140,16 +160,16 @@
       "sha256": "c69f3e38bb6472919a2e819926a0c066638f6a07d78a184e1d842e313c9a32a0"
     },
     "examples/showcase/project.yaml": {
-      "size": 36852,
-      "sha256": "c56c78460c81368929a7dbf881b7201c214b99f58925abc2a5c44a9acc00b720"
+      "size": 64797,
+      "sha256": "5e544fca7ad9c00ad33c2b258b698d4c2e69a6dc795b71385726692f1f443416"
     },
     "examples/showcase/README.en.md": {
-      "size": 10613,
-      "sha256": "175556f664e5348ee2633c3860fdaa027f3d2bdd84c3e5c7d74211d97bc9e440"
+      "size": 10953,
+      "sha256": "8c070d9d59245c803e991b94a8b0a2108d2c6e8e29d62c90fcba264e0ffa434f"
     },
     "examples/showcase/README.md": {
-      "size": 10957,
-      "sha256": "15e9fabba50d2a725827add737557147d324713410e9d109c5fc3185c492af3d"
+      "size": 11344,
+      "sha256": "191b1c3b1257ee4d4122b840dfbf7b9550ff3c6994f2d5263afa90681b641371"
     },
     "examples/showcase/resources/RCMShowcaseActor.java": {
       "size": 131,
@@ -172,252 +192,244 @@
       "sha256": "87839aee530e1fe6a948b93d65b885e829f443ff62934ce9c29e059249d1e5b8"
     },
     "runtime/release": {
-      "size": 75,
-      "sha256": "ab9546573b9c9bcbe72eae8c0caeeb4d91df2de2cfacfa50bc90860e2bedab51"
+      "size": 74,
+      "sha256": "6a9591067262d411cf5f469bb0c862fe550143b3476e4ef337e0764b487cc245"
     },
     "runtime/bin/api-ms-win-core-console-l1-1-0.dll": {
-      "size": 22072,
-      "sha256": "88ace577a9c51061cb7d1a36babbbefa48212fadc838ffde98fdfff60de18386"
+      "size": 22008,
+      "sha256": "cb3f7b194d220004ffa6eef1305849bcef38033c49cb1b16c5ab3c3d60bd9d20"
     },
     "runtime/bin/api-ms-win-core-console-l1-2-0.dll": {
-      "size": 22056,
-      "sha256": "c062477ad3bfdc57b0cc402179637a214dab5045c8d644592c7decca7d18aa50"
+      "size": 21992,
+      "sha256": "10fcfff7576ee04217b535a62c36b7f844e7af1684ab6adfc33112fffc6495b8"
     },
     "runtime/bin/api-ms-win-core-datetime-l1-1-0.dll": {
-      "size": 22056,
-      "sha256": "1bd81dfd19204b44662510d9054852fb77c9f25c1088d647881c9b976cc16818"
+      "size": 22024,
+      "sha256": "2161c0add0ee0a312e12d0346a1b24b6e5e1356a5a7e264911650a8e1d017e1c"
     },
     "runtime/bin/api-ms-win-core-debug-l1-1-0.dll": {
-      "size": 21944,
-      "sha256": "591358eb4d1531e9563ee0813e4301c552ce364c912ce684d16576eabf195dc3"
+      "size": 22008,
+      "sha256": "cf7dc6f5abe58e31b41912b4a84cabd106eecf7cad7f5a1942c4befaca703536"
     },
     "runtime/bin/api-ms-win-core-errorhandling-l1-1-0.dll": {
-      "size": 22096,
-      "sha256": "d56ce7b1cd76108ad6c137326ec694a14c99d48c3d7b0ace8c3ff4d9bcee3ce8"
+      "size": 22008,
+      "sha256": "41dd8451c6b25a7a924a7a42a3d466350bcd2820fca4177ef5f6305e6eadb97a"
     },
     "runtime/bin/api-ms-win-core-fibers-l1-1-0.dll": {
-      "size": 22072,
-      "sha256": "91d249d7bc0e38ef6bcb17158b1fdc6dd8888dc086615c9b8b750b87e52a5fb3"
-    },
-    "runtime/bin/api-ms-win-core-fibers-l1-1-1.dll": {
-      "size": 22072,
-      "sha256": "fc9d86cec621383eab636ebc87ddd3f5c19a3cb2a33d97be112c051d0b275429"
+      "size": 22008,
+      "sha256": "70ea8113b1825f3529b307ce2edb1048ebc60c83c016892b6177f3c8cb56b9bc"
     },
     "runtime/bin/api-ms-win-core-file-l1-1-0.dll": {
-      "size": 26152,
-      "sha256": "1ca895aba4e7435563a6b43e85eba67a0f8c74aa6a6a94d0fc48fa35535e2585"
+      "size": 26120,
+      "sha256": "a198091842029a252e0112120b93bf7323b04ed647a3d2bd27fde72637385a7b"
     },
     "runtime/bin/api-ms-win-core-file-l1-2-0.dll": {
-      "size": 22056,
-      "sha256": "4cadbc0c39da7c6722206fdcebd670abe5b8d261e7b041dd94f9397a89d1990d"
+      "size": 22024,
+      "sha256": "68e28b5944193ab45be2cc14e49424ba0c5d8713bb6b027e96ff1c16147f19a3"
     },
     "runtime/bin/api-ms-win-core-file-l2-1-0.dll": {
-      "size": 21960,
-      "sha256": "93c624b366ba16c643fc8933070a26f03b073ad0cf7f80173266d67536c61989"
+      "size": 22024,
+      "sha256": "57cb180884f33b064957d9c1dd509bb5e8fd541e9458b84d88e025790c1dc986"
     },
     "runtime/bin/api-ms-win-core-handle-l1-1-0.dll": {
-      "size": 21944,
-      "sha256": "39095f59c41d76ec81bb2723d646fde4c148e7cc3402f4980d2ade95cb9c84f9"
+      "size": 22024,
+      "sha256": "39dbe64591ef5d0aa48bd61ab9262bb6ca37a896dd71169aafbf90bba82dea53"
     },
     "runtime/bin/api-ms-win-core-heap-l1-1-0.dll": {
-      "size": 22072,
-      "sha256": "8f105771b236dbcb859de271f0a6822ce1cb79c36988dd42c9e3f6f55c5f7eb9"
+      "size": 21984,
+      "sha256": "9669ee54d953bba692fc6b5e806f7f7645258c5f0618d253f8043e832fe75e2d"
     },
     "runtime/bin/api-ms-win-core-interlocked-l1-1-0.dll": {
-      "size": 22072,
-      "sha256": "53b25e753ca785bf8b695d89dde5818a318890211dc992a89146f16658f0b606"
-    },
-    "runtime/bin/api-ms-win-core-kernel32-legacy-l1-1-1.dll": {
-      "size": 22080,
-      "sha256": "a9b13a1cd1b8c19b0c6b4afcd5bb0dd29c0e2288231ac9e6db8510094ce68ba6"
+      "size": 22008,
+      "sha256": "39883213a6434f6f3a3f6d174630a1286c28ef7f47b7e3e1de4623cd9f3ce270"
     },
     "runtime/bin/api-ms-win-core-libraryloader-l1-1-0.dll": {
-      "size": 22056,
-      "sha256": "7f39ba298b41e4963047341288cab36b6a241835ee11ba4ad70f44dacd40906c"
+      "size": 22024,
+      "sha256": "b942e2a62d69ce41534ca7c9822f672edeb8ff37b8e650001c9432c28b765cd7"
     },
     "runtime/bin/api-ms-win-core-localization-l1-2-0.dll": {
-      "size": 22080,
-      "sha256": "6ee44dd0d8510dc024c9f7c79b1b9fa88c987b26b6beb6653ddd11751c34e5dc"
+      "size": 22008,
+      "sha256": "361ebbef6e0d77624560b87d888464b331403e09845836a04f5800682aa4ed48"
     },
     "runtime/bin/api-ms-win-core-memory-l1-1-0.dll": {
-      "size": 22056,
-      "sha256": "0512a35316ec9180437f86696a84c5c06a7e4e82e050055a656e5bf9fca206f9"
+      "size": 21984,
+      "sha256": "52785bb917c6e38fb69ed5bc1d2bcf01a1c84ec6fb0b94319dde3835cf64fb7c"
     },
     "runtime/bin/api-ms-win-core-namedpipe-l1-1-0.dll": {
-      "size": 22096,
-      "sha256": "c05f1fffe3b5a2738ea54ce9485cca026fb9635f982626fba1e1dcc531897273"
+      "size": 21984,
+      "sha256": "8019b8c033e5e556c006fefd540a754d85fb4bc68ab851ae78bb4c6fa42f3413"
     },
     "runtime/bin/api-ms-win-core-processenvironment-l1-1-0.dll": {
-      "size": 21968,
-      "sha256": "c4eca98c3c67b6395d5b005b00ac1eb0318b86b23aa71035a44c2b1602befba9"
+      "size": 22008,
+      "sha256": "f4d5be821780a3db520258a451b50fa8cde1486b607477a958f6f529dcb74f43"
     },
     "runtime/bin/api-ms-win-core-processthreads-l1-1-0.dll": {
-      "size": 22096,
-      "sha256": "5ccb89e93d67bc3288d4e84649c5346e66e15e3d7cd65d989daf3f4cb584be9a"
+      "size": 22024,
+      "sha256": "ae507dcdd0e6c6bded417a64918ef0cc76e41ffe475f67478b841ba05cc73bbb"
     },
     "runtime/bin/api-ms-win-core-processthreads-l1-1-1.dll": {
-      "size": 22072,
-      "sha256": "4ad565a8ba3ef0ea8ab87221ad11f83ee0bc844ce236607958406663b407333e"
+      "size": 21984,
+      "sha256": "92bb2dd3172befd83dc039deb83577efc0f4e42390aa3d428d6f296bd3f462fa"
     },
     "runtime/bin/api-ms-win-core-profile-l1-1-0.dll": {
-      "size": 22080,
-      "sha256": "7809160932f44e59b021699f5bc68799eb7293ee1fa926d6fcca3c3445302e61"
+      "size": 21984,
+      "sha256": "f30d1aba7bb55874ab6b91b0d81378face8570420aefcc89f18e420459ca9b7a"
     },
     "runtime/bin/api-ms-win-core-rtlsupport-l1-1-0.dll": {
-      "size": 21960,
-      "sha256": "9dc1e91e71c7c054854bd1487cb4e6946d82c9f463430f1c4e8d1471005172b1"
+      "size": 21984,
+      "sha256": "b3237f2efe5e22eb802caded8cc85aeb104192dfdea31cfe7381b58c1b37affe"
     },
     "runtime/bin/api-ms-win-core-string-l1-1-0.dll": {
-      "size": 22056,
-      "sha256": "60fc31d2a0c634412f529dba76af3b9bf991352877c6dae528186d3935704cfd"
+      "size": 22024,
+      "sha256": "4451084c3993c3a1bd3ec0613005c59ca23c722bbc73da47d64893ee46f22103"
     },
     "runtime/bin/api-ms-win-core-synch-l1-1-0.dll": {
-      "size": 22056,
-      "sha256": "3a72b4f29f39a265d32ad12f0ce15dbf60129c840e10d84d427829ede45e78ad"
+      "size": 22024,
+      "sha256": "347a1267a70015b30d6d5752b7d1b60dd51f2b89b7cdf97c7128444d6af1ffb2"
     },
     "runtime/bin/api-ms-win-core-synch-l1-2-0.dll": {
-      "size": 22080,
-      "sha256": "efc1e4460984a73cf47a3def033af1c8f3b1dbc1a56cd27781d3aacf3e3330cb"
+      "size": 21968,
+      "sha256": "24dd4de212b4b43c2e3d565d0c253509f44edd06e59ed9600db3fcbbf04aedb8"
     },
     "runtime/bin/api-ms-win-core-sysinfo-l1-1-0.dll": {
-      "size": 22072,
-      "sha256": "b203d862ddef1dd62bf623fc866c7f7a9c317c1c2ae30d1f52cb41f955b5698e"
-    },
-    "runtime/bin/api-ms-win-core-sysinfo-l1-2-0.dll": {
-      "size": 22080,
-      "sha256": "2703635d835396afd0f138d7c73751afe7e33a24f4225d08c1690b0a371932c0"
+      "size": 22024,
+      "sha256": "eccae6c70ef79c70dd3eaa6d7ec4e14f8b341169aa772bb0100de550f0a44cb4"
     },
     "runtime/bin/api-ms-win-core-timezone-l1-1-0.dll": {
-      "size": 22056,
-      "sha256": "33f4fddc181066fce06b2227bded813f95e94ed1f3d785e982c6b6b56c510c57"
+      "size": 22024,
+      "sha256": "bc0a3295b1e552f47f7034d47dcaa9123caa9423d202df5737b9301d68cb6667"
     },
     "runtime/bin/api-ms-win-core-util-l1-1-0.dll": {
-      "size": 21944,
-      "sha256": "6eda016742a6171205a387a14b3c0b331841567740376f56768f8c151724207d"
+      "size": 21984,
+      "sha256": "222f7e8b5774968ffd899a9ee2139f9934eb5a50b9a9da2cf0592134d3ad54b5"
     },
     "runtime/bin/api-ms-win-crt-conio-l1-1-0.dll": {
-      "size": 22056,
-      "sha256": "b762061b688aae679afe788904d2c9970f74a7dac98f3b42463d08f25e483d3f"
+      "size": 22024,
+      "sha256": "b33d0e78ff6e9a9bf3bf369942412eb9c85f02b65230e77cb11a99730f6c4030"
     },
     "runtime/bin/api-ms-win-crt-convert-l1-1-0.dll": {
-      "size": 26056,
-      "sha256": "ebb2ae5535a64f65daeab8235585114fc9dd2cf1a49f5852d446250b998b6ae4"
+      "size": 26104,
+      "sha256": "43f20e591ae0afece324a2a9636ba557690f0bca29935967a0f33098725c94fb"
     },
     "runtime/bin/api-ms-win-crt-environment-l1-1-0.dll": {
-      "size": 22080,
-      "sha256": "17d63275d00bdd8670422b95bd264c532998e0a1b041079e54fce4b6b7a55819"
+      "size": 21984,
+      "sha256": "41d678da2ed4089e9abd91ce70309d6bfadeeded25b7a96cc9a1071f1efdac12"
     },
     "runtime/bin/api-ms-win-crt-filesystem-l1-1-0.dll": {
-      "size": 22056,
-      "sha256": "9a9e2a65a281644e368d0f272b95ba5f6b445d1c35910d06056c5ebeb77402db"
+      "size": 22024,
+      "sha256": "03f4bffe5e2c273be4ad87cbb84363e80f3d1a63f9e2965045a0922c76cadc69"
     },
     "runtime/bin/api-ms-win-crt-heap-l1-1-0.dll": {
-      "size": 22096,
-      "sha256": "bab9ac3ec83e380ae51e4295ef3bf2c738627812d3a49d1e713661abbc8dc57a"
+      "size": 21984,
+      "sha256": "8c7d51aa0042969b8f1c99ee7d692a214e5b220b6c59a2016ddf60b030466b2f"
     },
     "runtime/bin/api-ms-win-crt-locale-l1-1-0.dll": {
-      "size": 22080,
-      "sha256": "bd14c67ea28e21d6257ad780a37122c9b5773f69e693f5db6bffaee4d839526e"
+      "size": 22008,
+      "sha256": "c0225ee09d6779288c86db3bfcbdfbab58e39eb9355844653b5761ca09faf0ed"
     },
     "runtime/bin/api-ms-win-crt-math-l1-1-0.dll": {
-      "size": 30248,
-      "sha256": "606d66d82db562ea7979179d06486a0f94d079941d26b80a1e2c49d29959df6f"
+      "size": 30176,
+      "sha256": "d4247022622bcecfa9e25c212e8833de1602aab55756eb3d1a54515704984e41"
     },
     "runtime/bin/api-ms-win-crt-multibyte-l1-1-0.dll": {
-      "size": 30248,
-      "sha256": "95f49efbe8107786733fa7c474025cf3fee0ac632f240367b296c736d06572aa"
+      "size": 30216,
+      "sha256": "2a563f80714375bf636785848333a54c350d37136773d024722543f93412ae01"
     },
     "runtime/bin/api-ms-win-crt-private-l1-1-0.dll": {
-      "size": 75328,
-      "sha256": "1bc82bed6143d2bf1b6b08a7809f4a5e29317d6fddd338a7da3c0223522e4bbf"
+      "size": 75232,
+      "sha256": "285281fcdc0ff9a51b7b503ebb8d6e464cbd6b0ce43553a31ba8d0a9a2ec2216"
     },
     "runtime/bin/api-ms-win-crt-process-l1-1-0.dll": {
-      "size": 22096,
-      "sha256": "f6156b1020380ec4f0e48577ebedaaef5fb1ab1f337d8b4e72e6a33a7567a9cc"
+      "size": 22008,
+      "sha256": "5e0543b480befd83f440f2a1a30c5b7a9a9f49abd305fe02ed8ca4f156076a09"
     },
     "runtime/bin/api-ms-win-crt-runtime-l1-1-0.dll": {
-      "size": 26152,
-      "sha256": "c5902934d026d7e15fbe9917d474f3322846a41a25e66f4b2b1f758801879f4b"
+      "size": 26080,
+      "sha256": "707073941e2b24bd94e7ef11e1fa7aca92fd63fcc6babf42865615ea6bb1f388"
     },
     "runtime/bin/api-ms-win-crt-stdio-l1-1-0.dll": {
-      "size": 26168,
-      "sha256": "a9c5a153d8c0286f9b41a2b1c65854ad9e6471b8755b7de87bae4470e60bcab6"
+      "size": 26120,
+      "sha256": "56f1507c3bcdb39d4db5af07908542486200488bc47927b9724a532e99134b8e"
     },
     "runtime/bin/api-ms-win-crt-string-l1-1-0.dll": {
-      "size": 26176,
-      "sha256": "25b8f83a7767211b11132775a0e27a45aa4ec8ab4e6572599f9c172ae3606b40"
+      "size": 26120,
+      "sha256": "bc0d452a9638c86705d93ef6b8a4dd8912cc6cfda8403dc6c6e9061599d6875e"
     },
     "runtime/bin/api-ms-win-crt-time-l1-1-0.dll": {
-      "size": 22096,
-      "sha256": "7c7f6393f06de11750adb09cc5698ae55cd9fb27b2e51e207286feb1b5b2b156"
+      "size": 21984,
+      "sha256": "e748d40325659477feda7e7b4d2d770fb69cbc94c3c28289fa45b60617c413d0"
     },
     "runtime/bin/api-ms-win-crt-utility-l1-1-0.dll": {
-      "size": 21952,
-      "sha256": "d8ba5f17b9ffcbf3aeaf3fa1da226832d2fa90f81acce0cd669464e76ce434ac"
+      "size": 22024,
+      "sha256": "2c9404ea15c37fd0fb6fff964917512c2191c73241cbaa40e056244b265b1171"
     },
     "runtime/bin/java.dll": {
-      "size": 122536,
-      "sha256": "bd32ce0677b5dc044305db88153414ed2e2529e7d07b29c70599d569f6eab503"
+      "size": 110592,
+      "sha256": "048a9c152a3eef768d97c31e35b404de341320d1cade35f6ea2b4f004c47643d"
     },
     "runtime/bin/java.exe": {
-      "size": 50344,
-      "sha256": "5e0fab9f07952ceb6e71eb9fd33e1ed69959904ca00cf70869b7baf516a98016"
+      "size": 39424,
+      "sha256": "78072b27b2f6faf6b94fe41ec093a9cf3e6c173ca3423cf03110cd6a2e90bcc9"
     },
     "runtime/bin/javaw.exe": {
-      "size": 50344,
-      "sha256": "0773cc34c8468eae9caf31fc2c36548a2b5d92762cd912a43354f2bee9dcab87"
+      "size": 39424,
+      "sha256": "30df929940d262a6fc33f0eb8f63f93fceef461cafa71be5b2c894256295c375"
     },
     "runtime/bin/jimage.dll": {
-      "size": 34472,
-      "sha256": "3720bd728631cca1fbfdb328adc6d9aca225c766118952c59e0721b429597741"
+      "size": 23040,
+      "sha256": "65ccd7b31173ce4e8e8f618703069f705527f284d70c6b161aeded25b439afad"
     },
     "runtime/bin/jli.dll": {
-      "size": 89768,
-      "sha256": "4ac0488a5604ad6d509cbfa88eeabbd6ed59d8c3f246b7eecafb0280c6d84171"
+      "size": 79360,
+      "sha256": "7907556698451ae61917e2d923af5f8e57ee18e8365c71a4ce8757991bec6bcf"
     },
     "runtime/bin/keytool.exe": {
-      "size": 24744,
-      "sha256": "b7039941ea565e8f1484d0c54a5f53cb297938dce0959c16437f2be213a676e6"
+      "size": 13312,
+      "sha256": "a8b1880d52123fff947abff276c0cd6443457a37225a0e21f449378ec33b342d"
     },
     "runtime/bin/msvcp140.dll": {
-      "size": 575056,
-      "sha256": "a4c2229bdc2a2a630acdc095b4d86008e5c3e3bc7773174354f3da4f5beb9cde"
+      "size": 571824,
+      "sha256": "a88b8c1c8f27bf90fe960e0e8bd56984ad48167071af92d96ec1051f89f827fb"
     },
     "runtime/bin/net.dll": {
-      "size": 60072,
-      "sha256": "7be667a7a539a410a0fe28808068f57a01a011f6a6899c930823a8d7229a7815"
+      "size": 49152,
+      "sha256": "8655cb8c4694113cb45c4521d9a4b2f39967a7f4ad2cab6c6acef338a9225d26"
     },
     "runtime/bin/nio.dll": {
-      "size": 80552,
-      "sha256": "258ff5c878daf328ad6dca0df2101ac432b4461cb7669077659a1431bd8e6224"
+      "size": 69632,
+      "sha256": "0a4b10a6d0a171ed2dfd860e93517ed5301fe9e02084154123e422349e45cfd3"
     },
     "runtime/bin/syslookup.dll": {
-      "size": 28840,
-      "sha256": "6752203122ab86f1d27d0b7660fd36e2e0cb028fa95585f4e15dcafc48117a1c"
+      "size": 17408,
+      "sha256": "5354f53bab5524bae2a119ea097d08c0f3673393fa564c04d34fcb5441be81ca"
     },
     "runtime/bin/ucrtbase.dll": {
-      "size": 1361448,
-      "sha256": "2e5fb14b7bf8540278f3614a12f0226e56a7cc9e64b81cbd976c6fcf2f71cbfb"
+      "size": 1123792,
+      "sha256": "903806c8888e3c9ac0212ed50be6889c21cf4fd12f49931da8b548b5326a0bf8"
     },
     "runtime/bin/vcruntime140.dll": {
-      "size": 119888,
-      "sha256": "02c6aa0e6e624411a9f19b0360a7865ab15908e26024510e5c38a9c08362c35a"
+      "size": 97656,
+      "sha256": "475ab98b7722e965bd38c8fa6ed23502309582ccf294ff1061cb290c7988f0d1"
     },
     "runtime/bin/vcruntime140_1.dll": {
-      "size": 49640,
-      "sha256": "7dd9aa02e271c68ca6d5f18d651d23a15d7259715af43326578f7dde27f37637"
+      "size": 37240,
+      "sha256": "0579d460ea1f7e8a815fa55a8821a5ff489c8097f051765e9beaf25d8d0f27d6"
     },
     "runtime/bin/verify.dll": {
-      "size": 54952,
-      "sha256": "7bd4c47a9f08bab90f4d2bd16e53dcf9d632dbbfad0dac0b76fbe5b540f30533"
+      "size": 44544,
+      "sha256": "8eeed98d8fb38fc0655d265444f9b21b335b5e97e86cb06d73d4ebd2aba0568f"
     },
     "runtime/bin/zip.dll": {
-      "size": 87208,
-      "sha256": "a7730f7aedad64aa48dc9d1b886ff96f22ed7f43497a8b8f4683cd55f9c36fb3"
+      "size": 78848,
+      "sha256": "beafa3b9f0bc6a2ced01b58c9c15dcbe739fbfdad907c036bbcffd8852b3acc0"
+    },
+    "runtime/bin/client/jvm.dll": {
+      "size": 7970304,
+      "sha256": "214f09499f83e263c378e1ed806cec835f27940b99b681f0de0f553c07ddab34"
     },
     "runtime/bin/server/jvm.dll": {
-      "size": 13917864,
-      "sha256": "9dac8ae1dfe88cb107e27ee952071682f48ab67266920cbecf03b15bb02ce181"
+      "size": 13950976,
+      "sha256": "7be3be4e318e160f35d2722c098bf366812b3532d8c54662263663a0673aea87"
     },
     "runtime/conf/net.properties": {
       "size": 7504,
@@ -428,8 +440,8 @@
       "sha256": "d51bcab7ed301caeff3779a5e777e6019864cecee5e2abc102ef991b0de77af2"
     },
     "runtime/conf/security/java.security": {
-      "size": 72150,
-      "sha256": "de75a6bb6a9cd330717507cd16b3179d0caac696e98063c0bc98c99070099b96"
+      "size": 66070,
+      "sha256": "30aa2a4064ba35256ef319cc332f96a6e8e53327619d722f460fa2a77ebcc2ac"
     },
     "runtime/conf/security/policy/README.txt": {
       "size": 2390,
@@ -505,7 +517,7 @@
     },
     "runtime/legal/java.base/zlib.md": {
       "size": 1010,
-      "sha256": "c9c70c36a1f0325e8788771906202d42ba6ab4205caca44ec0f665707e83226b"
+      "sha256": "809b62ba648e02302f7d9ea6b6886c10d5253ac86ad528038a50c73eada5fce2"
     },
     "runtime/legal/java.compiler/ADDITIONAL_LICENSE_INFO": {
       "size": 49,
@@ -532,28 +544,28 @@
       "sha256": "86e0516b888276a492b19f9a84f5a866ed36925fae1510b3a94a0b6213e69192"
     },
     "runtime/lib/classlist": {
-      "size": 78927,
-      "sha256": "bee5fb44a1db38097034c3e6f85af40c76df6da815f75d5fe782ff0d296081c0"
+      "size": 79269,
+      "sha256": "2753acc310eb373dba79a2c2b0bb978e5dc8b71a8599afc6b087c9d92b81cc57"
     },
     "runtime/lib/jrt-fs.jar": {
-      "size": 110122,
-      "sha256": "e551d0cfe50d4467db1a5a11021863e1a6995fbc06ec78f6aab9cab9e3e525af"
+      "size": 110119,
+      "sha256": "397a13409e75dd9b287a742057eb467a95926e92c244a703b5249299bb492d33"
     },
     "runtime/lib/jvm.cfg": {
-      "size": 29,
-      "sha256": "aa9efb969444c1484e29adecab55a122458090616e766b2f1230ef05bc3867e0"
+      "size": 28,
+      "sha256": "54ac5bb838f64585085f6c04b73431a96b9246cc0090943c48b067ab05086180"
     },
     "runtime/lib/jvm.lib": {
-      "size": 1190266,
-      "sha256": "58fbee0f29d91056c2b251a11627d1c090f19a877ec254eb02ecb02d1477d50a"
+      "size": 1189682,
+      "sha256": "d2110d24c4eafb37531d4ab92e83b22b5baacb80061b67c6135f4af65af0700a"
     },
     "runtime/lib/modules": {
-      "size": 25760660,
-      "sha256": "ad79c34ec29bd2889cefbe725754874b777e303cbd6b51b1ffdba34475a10c30"
+      "size": 25704684,
+      "sha256": "d155a030930e0e242d96d408b412b9a3e4a6e73cee100406c8210c60c7a7e573"
     },
     "runtime/lib/tzdb.dat": {
-      "size": 102820,
-      "sha256": "36cf71e63ce2816fe4456e9195e6c27fa7c9cd431c89ba762eba394ec2c7a1e3"
+      "size": 101803,
+      "sha256": "fd55364d6c1619040abd43ef6af9232e704dfb5d4f9c34feba58c35e2a08a4bf"
     },
     "runtime/lib/tzmappings": {
       "size": 22190,
@@ -564,8 +576,8 @@
       "sha256": "583500b76965eb54b03493372989ab4d3426f85462d1db232c5ae6706a4d6c58"
     },
     "runtime/lib/security/cacerts": {
-      "size": 187607,
-      "sha256": "c3ca801bfc5d9f9e50c69f55537e78dc83e4e50c1ddea30db81e4b672b5a8aee"
+      "size": 192137,
+      "sha256": "c7530c11fc5a75f30a14691d87c941fb98b4c04b8c8a57463f4801264e95a6a7"
     },
     "runtime/lib/security/default.policy": {
       "size": 11380,
@@ -633,7 +645,7 @@
     },
     "_internal/base_library.zip": {
       "size": 880490,
-      "sha256": "e606da510c0d4fd35cc44f1885c9811f45b017372c8cda3dad582d9b85365d17"
+      "sha256": "e76d305b4f0dc00fe4fb94253f0bd908166cde91923d99fe898776a809a7a121"
     },
     "_internal/libcrypto-1_1.dll": {
       "size": 3439512,
@@ -1436,8 +1448,8 @@
       "sha256": "64d133dc8fff64da79b3671e02c6bdda3f83944c4984e196a1a748a2497409ef"
     },
     "_internal/rcm/editor/assets/en.json": {
-      "size": 133927,
-      "sha256": "03acf30415b92e3d5d8ce6402a35a87c0042f848e4c1e4d25f49cc714a76354a"
+      "size": 141400,
+      "sha256": "d3db639e97757b4ce546b559c83fb64c829a86071000a774a685f341966b8a78"
     },
     "_internal/rcm/editor/assets/wtd_policy.json": {
       "size": 19452,

@@ -29,7 +29,7 @@ paths:
 
 Fragmento de escena: orientation es pitch/roll/yaw; marcadores absolutos. Validación de finitud, referencias,2..128 puntos y un recorrido por actor. Acciones `travel: {scene: archive, entry: safe}`, `start_patrol: walk`, `stop_patrol: guide`; exits por Cast ID; control_door diferencia frames/pivot. play_sound referencia WAV único y waypoint con volumen/radios. La GUI ofrece estos campos; identificar Cast IDs sigue siendo técnico si no existe catálogo fiable.
 
-Chronicle Flags reservados para arrival, progreso once y checkpoint por acción, sin solapar los0..255 del autor. El límite nativo1024 se valida. Arrays de patrol cambian la firma de save; no se migran saves entre builds. NCP: tamaño observado8+104*n en174 originales, sin writer completo. Se generan directamente NOT/NSD/NCO/NVO/NLS/NSC/NMF/NQD/WAV/NOB y Java45.3; no se escribe NIL.
+Chronicle Flags reservados para arrival, progreso once y checkpoint por acción, sin solapar los0..255 del autor. El límite nativo1024 se valida. Arrays de patrol cambian la firma de save; no se migran saves entre builds. NCP: 8+104*n en174 originales; lector sin pérdidas y escritor lineal propio contrastado con evaluador nativo, descrito al final de este documento. Se generan directamente NOT/NSD/NCO/NVO/NLS/NSC/NMF/NQD/WAV/NOB y Java45.3; no se escribe NIL.
 
 classfile_limits lee constant pool y atributos Code reales, informa mayor método/pool. Header45.3 obligatorio, Code<=65535, pool<=65534. ECJ puede rechazar métodos enormes antes del readback; no hay partición automática general de un evento gigante.
 
@@ -276,7 +276,7 @@ Los contenedores nuevos `.rcmproject` y `.rcmpack` son ZIP con manifest JSON, ha
 
 ## Cámaras e inventario en formato 9
 
-Conversaciones admiten camera: native (no cámara propia) o un preset de camera_presets.PRESETS. Desde 0.9.9, si falta camera se usa ots_speaker_close; native es una elección explícita experimental. Secuencias admiten steps: lista ordenada de {at, actor, preset, angle?, transition?}; primer plano en 0, tiempos crecientes dentro de duration, actores/presets válidos y valores finitos. move_path referencia un recorrido local existente. camera_path referencia un NCP original único; es excluyente con steps. path_speed: 0.01..100. No se generan NCP.
+Conversaciones admiten camera: native (no cámara propia) o un preset de camera_presets.PRESETS. Desde 0.9.9, si falta camera se usa ots_speaker_close; native es una elección explícita experimental. Secuencias admiten steps: lista ordenada de {at, actor, preset, angle?, transition?}; primer plano en 0, tiempos crecientes dentro de duration, actores/presets válidos y valores finitos. move_path referencia un recorrido local existente. camera_path referencia un NCP original o propio único; es excluyente con steps. path_speed: 0.01..100, tasa nativa, no segundos. Los NCP propios lineales se generan desde resources.camera_paths.
 
 La timeline usa timer nativo de 150 ms; los tiempos se cuantizan a ticks. Desde 0.9.11, captura/restauración guarda una marca de película activa y el índice del actor movido por una cutscene, además de los records de patrol; restore cancela la película y detiene ese recorrido. service.py incluye cinema_record_v2 por escena en la firma del contrato de saves. Sin migración nativa entre contratos.
 
@@ -334,7 +334,7 @@ Las AI importadas también se filtran por sus instrucciones `discipline`: cada n
 
 `spatial/scene_mesh.py` reconoce de forma acotada un cuerpo de brush NSD: materiales de 32 bytes, vértices de 40 bytes, índices uint16 y grupos de 28 bytes. Exige cuentas/índices coherentes, floats finitos y bounds finales coincidentes. La búsqueda termina en el siguiente registro de entidad; no cruza hacia la malla de otro objeto. No es un lector completo del NSD variable ni un writer. Tenebrae: cuerpo en offset 6800, 78 vértices y 48 triángulos, material `London\CTdoor_L`, entidad `tracker_thing` en offset 6560.
 
-Las previsualizaciones originales se transforman con yaw/pitch/roll y se seleccionan por triángulos, con oclusión NIL. La selección no cambia el YAML. Para superficies NIL, el asistente genera exclusivamente trigger y travel; nunca `control_original`. Evidencia en `research/runtime_test/original_selection/tenebrae_evidence.json`.
+Las previsualizaciones originales se transforman con yaw/pitch/roll y se seleccionan por triángulos, con oclusión NIL. La selección no cambia el YAML. Para superficies NIL, el asistente genera interacción nativa por clic con acciones normales; nunca `control_original` sobre caras fijas. Evidencia en `research/runtime_test/original_selection/tenebrae_evidence.json`.
 
 ## Interacciones nativas por clic
 
@@ -351,3 +351,13 @@ El campo opcional `interaction.source` conserva el selector original (`level`, `
 Después de entidades y el contador de scripts globales (0), se escribe count uint32 y count×60 bytes: sector uint32, base 3×3 float32, posición XYZ float32, entrada uint32 e integrante uint32. Siguen contadores de salidas/posiciones de conversación (0) y entorno de 176 bytes. Se validan matrices, tamaños y truncado. Base identidad; orientación autoral mediante SetOrientation. Los planos NIL cacheados permiten identificar el sector sin modificar geometría. Entrada 0: punto predeterminado. Escenas sin esta función conservan sus bytes.
 
 IDs de eventos: 64 caracteres y mayúsculas tras el primer carácter minúsculo. Son strings internos, no nombres fijos NOD. Así click_drippyCandle_4 conserva la plantilla exacta sin alargar el ID compacto del objeto ni su plantilla nativa. La caja temporal de superficies usa la misma región conectada de material que la interacción; cancelar no crea datos.
+
+## Director de escenas · extensión optativa 9/10
+
+Sin conversión automática ni formato 11: `resources.camera_paths` contiene id/name, scene/level de creación y points con position/orientation. Datos inline viajan con Duplicate/export/import; prepare genera `paths/<id>.ncp` y su entrada PROJECT. Rechaza colisiones originales, valores no finitos y puntos consecutivos coincidentes. Los datos participan en fingerprints y References/Safe Delete.
+
+NCP little endian: u32 count, float32 total, count × 26 float32. count 1..128 por buffer nativo. Registro: parámetro acumulado, inverso de tramo, base/lineal/cuadrática/cúbica XYZ, base/lineal/cuadrática/cúbica Euler. Se evalúa base + L*u + Q*u² + C*u³. Escritor propio: distancia acumulada, inverso y coeficientes lineales; Q/C=0. Un punto produce plano fijo; no hay FOV por keyframe. Los 174 originales conservan todos sus floats y bytes. Fuente: research/embrace_closure/ncp_format.md y desensamblado original, no conjetura sobre tamaños.
+
+`sequences[].cues` contiene at/actions ordenados; máximo 64 cues, 32 acciones por cue y duración de secuencia hasta 120 s, límites propios de presupuesto de compilación/tick. `conversations[].nodes[].lines[].actions` usa las mismas Actions, máximo 32; se rechaza abrir otra interacción modal directa o indirectamente. Se bajan a eventos normales sólo en copia del compilador. NCO conserva GOTO/RETURN. `conversations[].staging` referencia una entrada local nombrada.
+
+Contratos optativos: director_v1 incorpora coreografía/puesta en escena; películas con cues se cancelan al cargar para no repetir side effects. Se preserva la reanudación anterior de películas Player sin cues. spatial_loop_v1 guarda configuración y booleanos de fuentes ordenadas por ID, recreando handles no serializados. world_effects_v1 guarda índices de comandos de luz/clima ordenados canónicamente y reaplica una vez al GUID restaurado; un rechazo no genera reintento/log por tick. Sin estos campos no se añaden records nuevos al runtime antiguo. Cambiar contrato requiere partida nueva; no hay migración de saves.

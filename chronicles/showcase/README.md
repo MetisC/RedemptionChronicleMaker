@@ -173,3 +173,7 @@ Habla con la Guía y elige el laboratorio de encuentros dinámicos. Puedes proba
 - [return · finish_peace](rcm://return/events/finish_peace)
 - [return · finish_force](rcm://return/events/finish_force)
 - [return · arrival_trigger](rcm://return/events/arrival_trigger)
+
+## Laboratorio opcional de dirección
+
+Desde la Guía elige los laboratorios y después el Director de escenas. Viajas al club: pulsa Refugio, habla con Elena, mira u omite la llegada, vence a la rata y vuelve con ella. El regreso conserva el encargo principal. La zona utiliza el mismo compilador y acciones normales; su aceptación dentro del juego sigue pendiente en EMB01–24.

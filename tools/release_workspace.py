@@ -70,6 +70,7 @@ def create(ws,path):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--output',default='RedemptionChronicleMaker-1.0.0-rc4-workspace.zip');parser.add_argument('--verify',type=Path)
+    from rcm import __version__
+    parser=argparse.ArgumentParser();parser.add_argument('--output',default='RedemptionChronicleMaker-'+__version__+'-workspace.zip');parser.add_argument('--verify',type=Path)
     args=parser.parse_args();ws=Workspace(ROOT)
     print(json.dumps(dict(verified_files=verify(ws.output(args.verify))) if args.verify else create(ws,args.output),indent=2))

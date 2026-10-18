@@ -12,7 +12,7 @@ class ProjectResourcesPanel(QWidget):
     def __init__(self,win):
         super().__init__();self.win=win;self.index=-1
         layout=QVBoxLayout(self);bar=QHBoxLayout();self.kind=QComboBox();self.kind.setObjectName('project_resource_kind')
-        for name,key in [(tr('Templates propios'),'templates'),(tr('Perfiles AI propios'),'ai_profiles'),(tr('Texturas propias'),'textures'),(tr('Java propio · avanzado'),'scripts')]:self.kind.addItem(name,key)
+        for name,key in [(tr('Templates propios'),'templates'),(tr('Perfiles AI propios'),'ai_profiles'),(tr('Texturas propias'),'textures'),(tr('Java propio · avanzado'),'scripts'),(tr('Recorridos de cámara propios'),'camera_paths')]:self.kind.addItem(name,key)
         bar.addWidget(self.kind)
         for text,name,cb in [(tr('Upgrade formato 5'),'upgrade_format',self.upgrade),(tr('Clonar / Nuevo'),'clone_project_resource',self.new),(tr('Duplicar'),'duplicate_project_resource',self.duplicate),(tr('Borrar'),'delete_project_resource',self.delete)]:
             b=QPushButton(text);b.setObjectName(name);b.clicked.connect(lambda checked=False,cb=cb:win.guard(cb));bar.addWidget(b)
@@ -47,6 +47,11 @@ class ProjectResourcesPanel(QWidget):
     def new(self):
         if not self.upgrade():return
         kind=self.kind.currentData();rows=self.root()['resources'].setdefault(kind,[])
+        if kind=='camera_paths':
+            scene=self.root()['scenes'][self.win.doc.active]
+            if not scene.get('sequences'):raise ValueError(tr('Crea primero una secuencia en Campaña.'))
+            from .director import open_camera_path
+            open_camera_path(self.win,('scenes',self.win.doc.active,'sequences',0));return
         if kind in {'templates','ai_profiles'}:
             category='.nai'
             if kind=='templates':
@@ -96,7 +101,8 @@ class ProjectResourcesPanel(QWidget):
         def walk(v,path=()):
             if isinstance(v,dict):
                 for k,x in v.items():
-                    if k in {'template','base','ai','script'} and x==ident:found.append(path+(k,))
+                    if k in {'template','base','ai','script','camera_path'} and x==ident:found.append(path+(k,))
+                    elif k=='resource' and path[-1:]==('play_camera_path',) and x==ident:found.append(path+(k,))
                     else:walk(x,path+(k,))
             elif isinstance(v,list):
                 for i,x in enumerate(v):walk(x,path+(i,))
@@ -104,6 +110,11 @@ class ProjectResourcesPanel(QWidget):
     def delete(self):
         if self.index<0:return
         ident=self.rows()[self.index]['id'];refs=self.references(ident)
+        if self.kind.currentData()=='camera_paths':
+            from .deletion import confirm_delete
+            candidate=confirm_delete(self.win,('resources','camera_paths',self.index))
+            if candidate is not None:self.win.doc.data=candidate;self.win.history_time=0;self.win.changed(True)
+            return
         if refs:raise ValueError(tr('No se borra ')+ident+tr(': ')+str(len(refs))+tr(' referencias. Reasigna las entidades/recursos primero'))
         if QMessageBox.question(self,tr('Borrar recurso propio'),tr('Borrar ')+ident+tr(' del proyecto? Los archivos fuente se conservan.'))!=QMessageBox.StandardButton.Yes:return
         self.rows().pop(self.index);self.win.changed(True)
@@ -170,6 +181,11 @@ class ProjectResourcesPanel(QWidget):
                 spin=QDoubleSpinBox();spin.setObjectName('ai_'+key);spin.setRange(low,high);spin.setDecimals(3);spin.setValue(props.get(key,float(match[1])));spin.valueChanged.connect(lambda v,k=key:change(k,v));form.addRow(labels[key],spin)
             note=QLabel(tr('Son ajustes de campos del perfil base, no un árbol de comportamiento. La afinidad y pausa del actor se controlan aparte; verifica su resultado en partida.'));note.setWordWrap(True);form.addRow(note)
             raw=QPlainTextEdit(text);raw.setReadOnly(True);form.addRow(tr('Base original; líneas desconocidas preservadas'),raw)
+        elif kind=='camera_paths':
+            form.addRow(QLabel(row.get('name',row['id'])+' · '+str(len(row['points']))+' · '+row['level']+' / '+row['scene']))
+            sequence=next((('scenes',si,'sequences',i) for si,s in enumerate(root['scenes']) for i,seq in enumerate(s.get('sequences',[])) if seq.get('camera_path')==row['id']),None)
+            from .director import open_camera_path
+            button=QPushButton(tr('Editar puntos de cámara…'));button.clicked.connect(lambda:open_camera_path(self.win,sequence,row['id']));form.addRow(button)
         elif kind=='scripts':
             path=self.win.backend.ws.output(row['source']);editor=QPlainTextEdit(path.read_text(encoding='utf8'));editor.setObjectName('custom_java');form.addRow(tr('Java propio, no generado por Build'),editor)
             editor._rcm_pending=False

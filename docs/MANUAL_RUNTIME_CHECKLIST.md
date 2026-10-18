@@ -77,6 +77,39 @@ CLICK01â€“08 â€” PENDING / PENDIENTE (new native brush layer):
 | CLICK07 | Remove a click prop during gameplay and revisit; check intended lifecycle and no invisible blocking volume. Editor deletion/cascade and undo preserve unrelated events. |
 | CLICK08 | Multiplayer: client selection reaches server once, target belongs to the correct scene; no duplicate action or transition. Not certified by doubles. |
 
-CLICK09 / ARRIVAL01 — PENDING: In «Mi nueva crónica» (RaveClub), start a new game, issue one nearby floor click immediately after arrival and verify the direct route; repeat after travel and save/load. Hover/click Salida: first note. Hover/click second prop: NOTA 11 and 1000 XP, exactly once per click. Walking past must not run either action. Inspect CLICK_BOUND/CLICK_RECEIVED and absence of repeated SPAWN_FAILED in RCM/new_chronicle/runtime_trace.log.
+CLICK09 / ARRIVAL01 — USER CONFIRMED for the tested new-game clicks and initial movement; load/re-entry remain PENDING: In «Mi nueva crónica» (RaveClub), start a new game, issue one nearby floor click immediately after arrival and verify the direct route; repeat after travel and save/load. Hover/click Salida: first note. Hover/click second prop: NOTA 11 and 1000 XP, exactly once per click. Walking past must not run either action. Inspect CLICK_BOUND/CLICK_RECEIVED and absence of repeated SPAWN_FAILED in RCM/new_chronicle/runtime_trace.log.
 
-CLICK10 / ARRIVAL02 — PENDING: «Mi nueva crónica», new game after native NSD entry build. Hover all three click props and invoke each authored action. First floor click after entry must use the correct route; repeat after travel and load. Expected trace: CLICK_BOUND and CLICK_RECEIVED; ARRIVAL_AFTER must match the authored native entry. In editor, create a fourth drippyCandle interaction: click_drippyCandle_4, editable. Right-click an unbound fixed door: temporary bounds remain during menu/dialog and disappear on cancel, without new data.
+CLICK10 / ARRIVAL02 — USER CONFIRMED for the tested new-game clicks and initial movement; load/re-entry remain PENDING: «Mi nueva crónica», new game after native NSD entry build. Hover all three click props and invoke each authored action. First floor click after entry must use the correct route; repeat after travel and load. Expected trace: CLICK_BOUND and CLICK_RECEIVED; ARRIVAL_AFTER must match the authored native entry. In editor, create a fourth drippyCandle interaction: click_drippyCandle_4, editable. Right-click an unbound fixed door: temporary bounds remain during menu/dialog and disappear on cancel, without new data.
+
+# Cierre del Director de escenas · EMB01–24
+
+**PENDIENTE DE PRUEBA DENTRO DEL JUEGO.** Usa una copia nueva de Ayuda → Crónica de prueba: el refugio y copias del Showcase para los casos específicos. No cambies el tutorial aceptado. Anota resultado, huella del build, guardado y traza. Validación, compilación real y doubles son evidencias distintas.
+
+| Caso | Procedimiento y resultado esperado |
+|---|---|
+| EMB01 | Pulsa la salida original del club con etiqueta Refugio. Tiene hover; acercarse no dispara nada; el clic inicia la conversación una vez. La aceptación anterior del usuario se conserva para aquel escenario/build. |
+| EMB02 | En copia usa una puerta original con frames/pivote conocidos. Abre/cierra, guarda/carga y regresa. Comprueba colisión y script original. La salida del refugio se oculta: no demuestra animación de puerta. |
+| EMB03 | Crea interacción sobre otra superficie fija. Sólo se ilumina y responde el parche elegido; los bytes NIL no cambian. |
+| EMB04 | Habla con Elena: plano sobre hombro, interlocutores visibles y orientados, sin pose T. Al terminar/cancelar vuelven GUI, ratón y movimiento. En copia prueba una entrada de puesta en escena nombrada. |
+| EMB05 | En copia añade tres acciones temporales de cambio de plano, variando sujeto/referencia e incluyendo al jugador. Se ejecutan en orden y conservan el control de la película. |
+| EMB06 | El guardia mira y gesticula durante la llegada; no desaparece y recupera una pose válida. Prueba otro gesto ofrecido para su NMS real. |
+| EMB07 | El guardia camina durante la película. Terminar/cancelar detiene el recorrido iniciado por ella y libera la cámara. Los recorridos anteriores mantienen su política. |
+| EMB08 | Elige un NCP original conocido para esa geometría. Se reproduce y termina. Un travelling de otro escenario no sirve para juzgar el encuadre. |
+| EMB09 | Captura un único punto de cámara y reprodúcelo como plano fijo. Comprueba XYZ/orientación y devolución del control. No se ofrece FOV por punto. |
+| EMB10 | Captura tres puntos distintos. Comprueba orden, extremos, orientación y giro corto. Evita paredes: el preview no simula el clipping del motor. |
+| EMB11 | Repite a velocidades 15, 30 y 60. Más velocidad debe reducir tiempo sin cambiar extremos. El parámetro no son segundos. |
+| EMB12 | Fundido desde negro al entrar y a negro al terminar; limpia efectos. Cancelar/cargar no deja pantalla negra permanente. |
+| EMB13 | En copia añade flash blanco y filtro blanco breves, después limpia efectos. Comprueba intensidad/duración reales. No hay presets de color inventados. |
+| EMB14 | Oye el sonido situado una vez durante la escena. Comprueba volumen y distancia al waypoint; no se repite cada tick. |
+| EMB15 | Al terminar la llegada se libera el control, cambia el journal y aparece una rata débil. Esperar/repetir clic/poll no duplica el evento. |
+| EMB16 | Guarda durante una película con cues, carga y espera: se cancela, vuelve GUI y no repite efectos ya ejecutados. La mentora permite continuar. Comprueba aparte la política anterior de reanudación de películas antiguas del jugador. |
+| EMB17 | Omite/cancela; en otra copia retira un actor requerido antes de su cue. Fallo acotado y control recuperado, sin traza de fallo cada tick. Intenta iniciar otra película/conversación mientras una tiene el control. |
+| EMB18 | Dos líneas con acciones de mirar, plano y sonido: se ejecutan en la línea correcta y GOTO/RETURN sigue funcionando. Se rechazan interacciones modales desde una línea, también mediante run_event. |
+| EMB19 | En copia inicia bucle espacial al entrar en trigger y detén al salir. Guarda activo/carga, viaja/regresa y repite. Un único sonido propio se recrea; Detener lo termina. |
+| EMB20 | En copia luz dinámica sobre prop propio: estilo/color/radio, retirar, guardar/cargar y reentrar. Prueba llovizna, lluvia ligera/intensa y nieve por separado. Comprueba aspecto/estado; no cambia iluminación horneada. |
+| EMB21 | Con importación local WTD usa actor/gesto compatibles y clan/disciplina durante secuencia. Guarda/carga. Sin WTD los ejemplos ordinarios funcionan y los paquetes públicos no contienen assets del mod. |
+| EMB22 | Completa Llegada al refugio: clic → diálogo → película u omitir → rata débil → mentora → fundido/viaje → epílogo. Repite desde inicio y guardado; sin premio duplicado. |
+| EMB23 | Edita punto/cue/acción de línea, undo/redo, guarda, cierra/reabre y F5. El travelling acompaña al proyecto e invalida build. Exporta/importa proyecto y paquete; borrar recurso usado ofrece cascade validado. |
+| EMB24 | PC/VM Windows independiente, sin Python/JDK del sistema: portable EN/ES, instalación propia, abrir/construir/ejecutar ejemplo manualmente. Anota GPU/DPI físico, cámara y audio. Mover carpeta y usar offscreen no lo certifica. |
+
+Esta batería nueva queda pendiente de observación del usuario. El primer desplazamiento y los clics reparados ya fueron confirmados en su prueba anterior; no acredita cinematics nuevas, cargas, reentrada o red. EMB02 depende del recurso: no anima caras fijas del NIL.

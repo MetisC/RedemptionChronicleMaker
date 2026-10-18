@@ -74,13 +74,21 @@ def prepare(ws,source,catalogue):
     for p in sequence(root.get('playtests',[]),'playtests'):
         mapping(p,{'id','name','instructions'},{'id','name','instructions'},'playtest');identifier(p['id'],'playtest')
         if not all(isinstance(p[k],str) for k in ('name','instructions')):raise ValueError('Playtest requiere textos')
-    owned=mapping(root.get('resources',{}),{'templates','ai_profiles','scripts','textures'},label='resources')
+    owned=mapping(root.get('resources',{}),{'templates','ai_profiles','scripts','textures','camera_paths'},label='resources')
     ts=indexed(owned.get('templates',[]),'templates');ais=indexed(owned.get('ai_profiles',[]),'ai_profiles');scripts=indexed(owned.get('scripts',[]),'scripts');textures=indexed(owned.get('textures',[]),'textures')
     originals={}
     for t in catalogue['templates']:originals.setdefault(t['id'].casefold(),[]).append(t)
     # Custom inventory templates must exist during LAN character restoration.
     not_path='misc/templates/_R_'+root['chronicle']['id']+'_custom.not'
     entries=copy.deepcopy(catalogue['entries']);templates=copy.deepcopy(catalogue['templates']);payload={};resolved={};visiting=set()
+    from .camera_paths import validate_resource
+    camera_paths=indexed(owned.get('camera_paths',[]),'camera_paths')
+    if camera_paths and not modern:raise ValueError('Travelling propio requiere formato de proyecto 9 o 10')
+    for name,row in camera_paths.items():
+        if any(e['extension'].lower()=='.ncp' and e['id'].casefold()==name.casefold() for e in entries):raise ValueError('Travelling propio colisiona con original')
+        data=validate_resource(row,root['scenes'] and {s['level']['source'] for s in root['scenes']},root['scenes']).encode()
+        path='paths/'+name+'.ncp';payload[path]=data
+        entries.append(dict(id=name,path=path,archive='PROJECT',extension='.ncp',size=len(data),project_owned=True,creation_scene=row['scene'],creation_level=row['level']))
     for name,row in ais.items():
         mapping(row,{'id','base','properties'},{'id','base'},'AI '+name)
         if any(e['extension'].lower()=='.nai' and e['id'].casefold()==name.casefold() for e in entries):raise ValueError('AI propia colisiona con original')

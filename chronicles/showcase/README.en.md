@@ -173,3 +173,7 @@ Talk to the guide and choose the dynamic encounter laboratory. Try [two rats](rc
 - [return · finish_peace](rcm://return/events/finish_peace)
 - [return · finish_force](rcm://return/events/finish_force)
 - [return · arrival_trigger](rcm://return/events/arrival_trigger)
+
+## Optional Cinematic Director lab
+
+Ask the Guide for laboratories, then choose the Cinematic Director. In the club click Refugio, speak to Elena, watch or skip the arrival, defeat the rat and return to her. Returning preserves the main quest. The lab uses ordinary Actions and the same compiler; native acceptance remains EMB01–24.

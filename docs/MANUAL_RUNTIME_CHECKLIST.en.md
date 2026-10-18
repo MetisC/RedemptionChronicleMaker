@@ -68,6 +68,39 @@ CLICK01â€“08 â€” PENDING / PENDIENTE (new native brush layer):
 | CLICK07 | Remove a click prop during gameplay and revisit; check intended lifecycle and no invisible blocking volume. Editor deletion/cascade and undo preserve unrelated events. |
 | CLICK08 | Multiplayer: client selection reaches server once, target belongs to the correct scene; no duplicate action or transition. Not certified by doubles. |
 
-CLICK09 / ARRIVAL01 — PENDING: In «Mi nueva crónica» (RaveClub), start a new game, issue one nearby floor click immediately after arrival and verify the direct route; repeat after travel and save/load. Hover/click Salida: first note. Hover/click second prop: NOTA 11 and 1000 XP, exactly once per click. Walking past must not run either action. Inspect CLICK_BOUND/CLICK_RECEIVED and absence of repeated SPAWN_FAILED in RCM/new_chronicle/runtime_trace.log.
+CLICK09 / ARRIVAL01 — USER CONFIRMED for the tested new-game clicks and initial movement; load/re-entry remain PENDING: In «Mi nueva crónica» (RaveClub), start a new game, issue one nearby floor click immediately after arrival and verify the direct route; repeat after travel and save/load. Hover/click Salida: first note. Hover/click second prop: NOTA 11 and 1000 XP, exactly once per click. Walking past must not run either action. Inspect CLICK_BOUND/CLICK_RECEIVED and absence of repeated SPAWN_FAILED in RCM/new_chronicle/runtime_trace.log.
 
-CLICK10 / ARRIVAL02 — PENDING: «Mi nueva crónica», new game after native NSD entry build. Hover all three click props and invoke each authored action. First floor click after entry must use the correct route; repeat after travel and load. Expected trace: CLICK_BOUND and CLICK_RECEIVED; ARRIVAL_AFTER must match the authored native entry. In editor, create a fourth drippyCandle interaction: click_drippyCandle_4, editable. Right-click an unbound fixed door: temporary bounds remain during menu/dialog and disappear on cancel, without new data.
+CLICK10 / ARRIVAL02 — USER CONFIRMED for the tested new-game clicks and initial movement; load/re-entry remain PENDING: «Mi nueva crónica», new game after native NSD entry build. Hover all three click props and invoke each authored action. First floor click after entry must use the correct route; repeat after travel and load. Expected trace: CLICK_BOUND and CLICK_RECEIVED; ARRIVAL_AFTER must match the authored native entry. In editor, create a fourth drippyCandle interaction: click_drippyCandle_4, editable. Right-click an unbound fixed door: temporary bounds remain during menu/dialog and disappear on cancel, without new data.
+
+# Cinematic Director closure · EMB01–24
+
+**MANUAL RUNTIME TEST REQUIRED.** Use a fresh copy of Help → Acceptance chronicle: the refuge, plus copies of the Showcase for specialist cases. Never alter the accepted tutorial to perform these tests. Record pass/fail, build fingerprint, save name and trace. Offline validation, real Codex compilation and doubles are separate evidence.
+
+| Case | Procedure and expected result |
+|---|---|
+| EMB01 | Click the original club exit labelled Refugio. Its hover label is visible; approaching does nothing; clicking starts the configured conversation once. The user's earlier scenery click acceptance remains valid for that earlier build/scenario. |
+| EMB02 | In a copy, select an original framed/pivot door with documented frames. Open, close, save, load and return. Check collision and original scripts. The refuge exit is hidden, not an animated-door demonstration. |
+| EMB03 | Add a fixed-surface click overlay to a separate door. Only the selected patch highlights and runs its action; original NIL bytes stay unchanged. |
+| EMB04 | Speak to Elena. OTS framing, visible participants facing each other, no T pose; cursor, movement and GUI return on finish/abort. Try a named staging entry in a copy. |
+| EMB05 | In a sequence copy add three timed camera_shot Actions with different subject/reference pairs, including Player. Each runs in order and preserves control ownership. |
+| EMB06 | Watch the guard LookAt and gesture in the refuge arrival. He remains visible and resumes a valid idle pose. Try another motion offered by his real NMS catalogue. |
+| EMB07 | Watch the guard walk during the film. End/abort releases the camera and stops a route started by the film; routes already running before it keep their previous policy. |
+| EMB08 | In a suitable scene copy select an original NCP known to belong to that geometry. It plays and ends; do not interpret a path authored elsewhere as a camera failure. |
+| EMB09 | Capture one viewport camera point and save the path. In a copy play it as a fixed shot, checking position, pitch/yaw/roll and control return. No FOV key is offered. |
+| EMB10 | Capture at least three distinct points. Play the path and compare order, endpoints, orientation and shortest rotation. Confirm it stays clear of walls; the editor preview does not model native clipping. |
+| EMB11 | Play the same path at 15, 30 and 60. Increasing rate must shorten playback without changing endpoints. Rate is not a duration in seconds. |
+| EMB12 | At entry fade from black; near the film end fade to black; clear effects and return. No lasting black screen after abort or load. |
+| EMB13 | In a copy add a short white flash and white filter, then clear effects. Check actual intensity/duration. Arbitrary color presets are excluded. |
+| EMB14 | Hear the positioned sound cue once while moving the camera. Check volume and distance from its waypoint; no per-tick repetition. |
+| EMB15 | Finish the arrival. The normal completion event releases control, updates the journal and spawns one weak rat. Waiting, repeated clicks and a second poll must not repeat it. |
+| EMB16 | Save during a cue film, load and wait. The film cancels, UI returns and no already-run side effect replays. Verify the mentor allows the scenario to continue. Separately verify old Player films retain their prior resume policy. |
+| EMB17 | Abort/skip; in a separate copy remove a required actor before its cue. Expect bounded failure trace and restored controls, with no repeated failure every tick. Try a second film/conversation while one owns control. |
+| EMB18 | Add line-start LookAt, camera and sound Actions to two lines. They run at the appropriate line; GOTO/RETURN still work. Opening another modal interaction from a line is rejected, including through run_event. |
+| EMB19 | In a copy start a named spatial loop on entering a trigger, stop on leaving. Save active/load, travel/return and repeat. At most one owned sound handle is recreated and Stop ends it. |
+| EMB20 | In a copy attach a dynamic light to an authored prop; change style/color/radius, remove, save/load and re-enter. Test drizzle/lightRain/heavyRain/snow separately. Check appearance and state; no baked lighting is modified. |
+| EMB21 | With local WTD import, use a supported actor/motion and clan/discipline in a sequence. Save/load. Without WTD, ordinary examples still work; public packages contain no imported mod assets. |
+| EMB22 | Complete Arrival at the refuge: click → dialogue → film or skip → weak rat → mentor → fade/travel → epilogue. Repeat from a fresh game and from a save; no duplicate reward. |
+| EMB23 | In the editor edit a point/cue/line action, undo/redo, save, close/reopen and F5. Path data stays with the project and build invalidates. Export/import project and distribution package; referenced resource deletion offers validated cascade. |
+| EMB24 | On an independent supported Windows PC/VM, open the portable EN/ES editor without system Python/JDK. Select a legitimate game installation, open the example, build and run manually. Record physical DPI/GPU, camera and audio results. A moved-folder/offscreen probe is insufficient. |
+
+The new EMB suite is pending user observation. Initial navigation and repaired original clicks were previously confirmed by the user; that does not certify new cinema, restore, re-entry or network combinations. EMB02 is resource-dependent and cannot turn fixed NIL faces into animated doors.

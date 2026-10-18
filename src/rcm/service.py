@@ -98,7 +98,7 @@ class Backend:
             if isinstance(raw, dict) and raw.get('schema') == 2:
                 from .campaign import parse_campaign, integrity
                 campaign = parse_campaign(raw, self.levels, resources)
-                problems = integrity(campaign)
+                problems = integrity(campaign,resources)
                 from .recipes import recipes,missing
                 for i,recipe in enumerate(recipes(authoring_raw)):
                     absent=missing(authoring_raw,recipe)
@@ -264,10 +264,19 @@ class Backend:
                     contract['runtime_profile']='phase9-v1'
                     contract['player_pose_record_v1']=[s['id'] for s,project in p.scenes]
                     contract['movement']=[{'scene':s['id'],'paths':s.get('paths',[]),'entries':s.get('entries',[])} for s,project in p.scenes]
-                    cinematic_scenes=[s['id'] for s,project in p.scenes if any(any(k in seq for k in ('steps','move_path','camera_path','prop_motion')) for seq in s.get('sequences',[]))]
+                    cinematic_scenes=[s['id'] for s,project in p.scenes if any(any(k in seq for k in ('steps','move_path','camera_path','prop_motion','cues')) for seq in s.get('sequences',[]))]
                     if cinematic_scenes:contract['cinema_record_v2']=cinematic_scenes
-                    player_cinema=[s['id'] for s,project in p.scenes if any(seq['actor']=='Player' for seq in s.get('sequences',[]))]
+                    player_cinema=[s['id'] for s,project in p.scenes if any(seq['actor']=='Player' and not seq.get('cues') for seq in s.get('sequences',[]))]
                     if player_cinema:contract['player_cinema_resume_v1']=player_cinema
+                    director=[dict(scene=s['id'],sequences=[seq for seq in s.get('sequences',[]) if seq.get('cues')],conversations=[c for c in s['conversations'] if c.get('staging') or any(l.get('actions') for n in c.get('nodes',[]) for l in n['lines'])]) for s,project in p.scenes]
+                    director=[s for s in director if s['sequences'] or s['conversations']]
+                    if director:contract['director_v1']=director
+                    from .audio import loops
+                    sound_scenes=[dict(scene=s['id'],sources=loops(s)) for s,project in p.scenes if loops(s)]
+                    if sound_scenes:contract['spatial_loop_v1']=sound_scenes
+                    from .world_effects import configurations
+                    world_scenes=[dict(scene=s['id'],configurations=configurations(s)) for s,project in p.scenes if any(configurations(s))]
+                    if world_scenes:contract['world_effects_v1']=world_scenes
                 if isinstance(p,Campaign) and p.source.get('runtime_profile')=='phase10':
                     contract['dynamic_records_v1']=[{'scene':s['id'],'generators':s.get('generators',[])} for s,project in p.scenes]
                 if isinstance(p,Campaign) and any(a.get('traits') for s,project in p.scenes for a in s['actors']):

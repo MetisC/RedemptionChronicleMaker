@@ -20,7 +20,7 @@ class ResourceBrowser(QWidget):
         backend.refresh_import()
         self.category.setObjectName("resource_category")
         for name, value in [(tr('Escenarios'), "levels"), (tr("Plantillas de actores"), "actors"),
-                            (tr("Objetos"), "items"), (tr("Escenas"), ".nsd"), (tr("Modelos"), ".nod"), ("AI", ".nai")]:
+                            (tr("Objetos"), "items"), (tr("Escenas"), ".nsd"), (tr("Modelos"), ".nod"), ("AI", ".nai"),(tr('Recorridos de cámara'),'.ncp')]:
             self.category.addItem(name, value)
         if backend.resources.get('wtd'):
             self.category.addItem(tr('Clanes disponibles'),'clans');self.category.addItem(tr('Disciplinas disponibles'),'disciplines')

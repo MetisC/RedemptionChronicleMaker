@@ -1,0 +1,201 @@
+004bb5b0: push ebp
+004bb5b1: mov ebp, esp
+004bb5b3: sub esp, 0x28
+004bb5b6: lea eax, [ebp - 8]
+004bb5b9: push eax
+004bb5ba: lea ecx, [ebp - 0x20]
+004bb5bd: push ecx
+004bb5be: mov edx, dword ptr [ebp + 0xc]
+004bb5c1: mov eax, dword ptr [edx]
+004bb5c3: push eax
+004bb5c4: call 0x4be9f2
+004bb5c9: add esp, 0xc
+004bb5cc: lea ecx, [ebp - 0x28]
+004bb5cf: push ecx
+004bb5d0: lea edx, [ebp - 4]
+004bb5d3: push edx
+004bb5d4: mov eax, dword ptr [ebp + 0xc]
+004bb5d7: mov ecx, dword ptr [eax + 8]
+004bb5da: push ecx
+004bb5db: call 0x4be9f2
+004bb5e0: add esp, 0xc
+004bb5e3: lea edx, [ebp - 0xc]
+004bb5e6: push edx
+004bb5e7: lea eax, [ebp - 0x24]
+004bb5ea: push eax
+004bb5eb: mov ecx, dword ptr [ebp + 0xc]
+004bb5ee: mov edx, dword ptr [ecx + 4]
+004bb5f1: push edx
+004bb5f2: call 0x4be9f2
+004bb5f7: add esp, 0xc
+004bb5fa: fld dword ptr [ebp - 0x28]
+004bb5fd: fmul dword ptr [ebp - 0xc]
+004bb600: fstp dword ptr [ebp - 0x10]
+004bb603: fld dword ptr [ebp - 4]
+004bb606: fmul dword ptr [ebp - 0x24]
+004bb609: fstp dword ptr [ebp - 0x1c]
+004bb60c: fld dword ptr [ebp - 0x28]
+004bb60f: fmul dword ptr [ebp - 0x24]
+004bb612: fstp dword ptr [ebp - 0x18]
+004bb615: fld dword ptr [ebp - 4]
+004bb618: fmul dword ptr [ebp - 0xc]
+004bb61b: fstp dword ptr [ebp - 0x14]
+004bb61e: fld dword ptr [ebp - 0x1c]
+004bb621: fchs 
+004bb623: fmul dword ptr [ebp - 0x20]
+004bb626: fadd dword ptr [ebp - 0x10]
+004bb629: mov eax, dword ptr [ebp + 8]
+004bb62c: fstp dword ptr [eax]
+004bb62e: fld dword ptr [ebp - 0x18]
+004bb631: fmul dword ptr [ebp - 0x20]
+004bb634: fadd dword ptr [ebp - 0x14]
+004bb637: mov ecx, dword ptr [ebp + 8]
+004bb63a: fstp dword ptr [ecx + 4]
+004bb63d: fld dword ptr [ebp - 0x24]
+004bb640: fchs 
+004bb642: fmul dword ptr [ebp - 8]
+004bb645: mov edx, dword ptr [ebp + 8]
+004bb648: fstp dword ptr [edx + 8]
+004bb64b: fld dword ptr [ebp - 4]
+004bb64e: fchs 
+004bb650: fmul dword ptr [ebp - 8]
+004bb653: mov eax, dword ptr [ebp + 8]
+004bb656: fstp dword ptr [eax + 0xc]
+004bb659: fld dword ptr [ebp - 0x28]
+004bb65c: fmul dword ptr [ebp - 8]
+004bb65f: mov ecx, dword ptr [ebp + 8]
+004bb662: fstp dword ptr [ecx + 0x10]
+004bb665: mov edx, dword ptr [ebp + 8]
+004bb668: mov eax, dword ptr [ebp - 0x20]
+004bb66b: mov dword ptr [edx + 0x14], eax
+004bb66e: fld dword ptr [ebp - 0x14]
+004bb671: fmul dword ptr [ebp - 0x20]
+004bb674: fadd dword ptr [ebp - 0x18]
+004bb677: mov ecx, dword ptr [ebp + 8]
+004bb67a: fstp dword ptr [ecx + 0x18]
+004bb67d: fld dword ptr [ebp - 0x20]
+004bb680: fchs 
+004bb682: fmul dword ptr [ebp - 0x10]
+004bb685: fadd dword ptr [ebp - 0x1c]
+004bb688: mov edx, dword ptr [ebp + 8]
+004bb68b: fstp dword ptr [edx + 0x1c]
+004bb68e: fld dword ptr [ebp - 0xc]
+004bb691: fmul dword ptr [ebp - 8]
+004bb694: mov eax, dword ptr [ebp + 8]
+004bb697: fstp dword ptr [eax + 0x20]
+004bb69a: push 0xc
+004bb69c: mov ecx, dword ptr [ebp + 0x10]
+004bb69f: push ecx
+004bb6a0: mov edx, dword ptr [ebp + 8]
+004bb6a3: add edx, 0x24
+004bb6a6: push edx
+004bb6a7: call 0x4df490
+004bb6ac: add esp, 0xc
+004bb6af: mov esp, ebp
+004bb6b1: pop ebp
+004bb6b2: ret 
+004bb6b3: push ebp
+004bb6b4: mov ebp, esp
+004bb6b6: push 0xc
+004bb6b8: mov eax, dword ptr [ebp + 0xc]
+004bb6bb: push eax
+004bb6bc: mov ecx, dword ptr [ebp + 8]
+004bb6bf: add ecx, 0xc
+004bb6c2: push ecx
+004bb6c3: call 0x4df490
+004bb6c8: add esp, 0xc
+004bb6cb: mov edx, dword ptr [ebp + 8]
+004bb6ce: fld dword ptr [0x4ec064]
+004bb6d4: fmul dword ptr [edx + 0x10]
+004bb6d7: mov eax, dword ptr [ebp + 8]
+004bb6da: fld dword ptr [0x4ec060]
+004bb6e0: fmul dword ptr [eax + 0x14]
+004bb6e3: fsubp st(1)
+004bb6e5: mov ecx, dword ptr [ebp + 8]
+004bb6e8: fstp dword ptr [ecx]
+004bb6ea: mov edx, dword ptr [ebp + 8]
+004bb6ed: fld dword ptr [0x4ec05c]
+004bb6f3: fmul dword ptr [edx + 0x14]
+004bb6f6: mov eax, dword ptr [ebp + 8]
+004bb6f9: fld dword ptr [0x4ec064]
+004bb6ff: fmul dword ptr [eax + 0xc]
+004bb702: fsubp st(1)
+004bb704: mov ecx, dword ptr [ebp + 8]
+004bb707: fstp dword ptr [ecx + 4]
+004bb70a: mov edx, dword ptr [ebp + 8]
+004bb70d: fld dword ptr [0x4ec060]
+004bb713: fmul dword ptr [edx + 0xc]
+004bb716: mov eax, dword ptr [ebp + 8]
+004bb719: fld dword ptr [0x4ec05c]
+004bb71f: fmul dword ptr [eax + 0x10]
+004bb722: fsubp st(1)
+004bb724: mov ecx, dword ptr [ebp + 8]
+004bb727: fstp dword ptr [ecx + 8]
+004bb72a: mov edx, dword ptr [ebp + 8]
+004bb72d: push edx
+004bb72e: call 0x4baf60
+004bb733: add esp, 4
+004bb736: fcomp dword ptr [0x4eb424]
+004bb73c: fnstsw ax
+004bb73e: test ah, 0x40
+004bb741: je 0x4bb819
+004bb747: mov eax, dword ptr [ebp + 8]
+004bb74a: fld dword ptr [0x4ec048]
+004bb750: fmul dword ptr [eax + 0x14]
+004bb753: mov ecx, dword ptr [ebp + 8]
+004bb756: fld dword ptr [0x4ec04c]
+004bb75c: fmul dword ptr [ecx + 0x10]
+004bb75f: fsubp st(1)
+004bb761: mov edx, dword ptr [ebp + 8]
+004bb764: fstp dword ptr [edx + 0x18]
+004bb767: mov eax, dword ptr [ebp + 8]
+004bb76a: fld dword ptr [0x4ec04c]
+004bb770: fmul dword ptr [eax + 0xc]
+004bb773: mov ecx, dword ptr [ebp + 8]
+004bb776: fld dword ptr [0x4ec044]
+004bb77c: fmul dword ptr [ecx + 0x14]
+004bb77f: fsubp st(1)
+004bb781: mov edx, dword ptr [ebp + 8]
+004bb784: fstp dword ptr [edx + 0x1c]
+004bb787: mov eax, dword ptr [ebp + 8]
+004bb78a: fld dword ptr [0x4ec044]
+004bb790: fmul dword ptr [eax + 0x10]
+004bb793: mov ecx, dword ptr [ebp + 8]
+004bb796: fld dword ptr [0x4ec048]
+004bb79c: fmul dword ptr [ecx + 0xc]
+004bb79f: fsubp st(1)
+004bb7a1: mov edx, dword ptr [ebp + 8]
+004bb7a4: fstp dword ptr [edx + 0x20]
+004bb7a7: mov eax, dword ptr [ebp + 8]
+004bb7aa: add eax, 0x18
+004bb7ad: push eax
+004bb7ae: call 0x4baf60
+004bb7b3: fstp st(0)
+004bb7b5: add esp, 4
+004bb7b8: mov ecx, dword ptr [ebp + 8]
+004bb7bb: mov edx, dword ptr [ebp + 8]
+004bb7be: fld dword ptr [ecx + 0x10]
+004bb7c1: fmul dword ptr [edx + 0x20]
+004bb7c4: mov eax, dword ptr [ebp + 8]
+004bb7c7: mov ecx, dword ptr [ebp + 8]
+004bb7ca: fld dword ptr [eax + 0x14]
+004bb7cd: fmul dword ptr [ecx + 0x1c]
+004bb7d0: fsubp st(1)
+004bb7d2: mov edx, dword ptr [ebp + 8]
+004bb7d5: fstp dword ptr [edx]
+004bb7d7: mov eax, dword ptr [ebp + 8]
+004bb7da: mov ecx, dword ptr [ebp + 8]
+004bb7dd: fld dword ptr [eax + 0x14]
+004bb7e0: fmul dword ptr [ecx + 0x18]
+004bb7e3: mov edx, dword ptr [ebp + 8]
+004bb7e6: mov eax, dword ptr [ebp + 8]
+004bb7e9: fld dword ptr [edx + 0xc]
+004bb7ec: fmul dword ptr [eax + 0x20]
+004bb7ef: fsubp st(1)
+004bb7f1: mov ecx, dword ptr [ebp + 8]
+004bb7f4: fstp dword ptr [ecx + 4]
+004bb7f7: mov edx, dword ptr [ebp + 8]
+004bb7fa: mov eax, dword ptr [ebp + 8]
+004bb7fd: fld dword ptr [edx + 0xc]
+004bb800: fmul dword ptr [eax + 0x1c]
+004bb803: mov ecx, dword ptr [ebp + 8]
