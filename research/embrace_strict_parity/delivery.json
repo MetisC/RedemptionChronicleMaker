@@ -1,0 +1,264 @@
+{
+  "recorded_at_utc": "2026-10-18T21:00:34.417478+00:00",
+  "version": "1.0.0-rc7",
+  "baseline": "51982be45c9931495c4655d02239178b053e189a",
+  "tested_code_commit": "63134e5d7d020ceb1b59e02e8252cec6766f6fed",
+  "branch": "codex/strict-authoring-and-difficulty",
+  "pull_request": "https://github.com/MetisC/RedemptionChronicleMaker/pull/1",
+  "quality": {
+    "successful": true,
+    "checks": [
+      {
+        "command": [
+          "tools/prepare_native_sectors.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "command": [
+          "-m",
+          "ruff",
+          "check",
+          "src",
+          "tools",
+          "tests"
+        ],
+        "returncode": 0
+      },
+      {
+        "command": [
+          "-m",
+          "mypy",
+          "--follow-imports=skip",
+          "--check-untyped-defs",
+          "--cache-dir",
+          "build/tests/mypy_cache",
+          "src/rcm/paths.py",
+          "src/rcm/input_limits.py",
+          "src/rcm/file_transaction.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "command": [
+          "tools/test.py"
+        ],
+        "returncode": 0
+      }
+    ],
+    "report_sha256": "96f7a3153d17c13146fc8e98dc192eb69cf0a7467dbb1c251ac16e3227396966",
+    "coverage_tracing": false
+  },
+  "suite": {
+    "tests": 567,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 673.706763299997,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "examples": [
+    {
+      "example": "tutorial",
+      "id": "rcm_tutor",
+      "elapsed_seconds": 5.08,
+      "source_sha256": "3980af804d2d1399fc589c1032db51579e1c79217f8691c6c0a4e4277954b562",
+      "package_sha256": "9ffa45c2463e08191f1c743406165fd4c0462b186608c884aa4fdf797e912f86",
+      "format_validation": {
+        "files_checked": 28,
+        "conversations": 5,
+        "classfiles": 5
+      },
+      "native_game_test": false,
+      "compiled_class_versions": {
+        "R_rcm_tutor_s0_Scene": "45.3",
+        "R_rcm_tutor_s0_Passive": "45.3",
+        "R_rcm_tutor_s1_Scene": "45.3",
+        "R_rcm_tutor_s1_Passive": "45.3",
+        "RCMTutorActor": "45.3"
+      }
+    },
+    {
+      "example": "mini_chronicle",
+      "id": "rcm_mini",
+      "elapsed_seconds": 7.0,
+      "source_sha256": "602c7c94c00619cd31cae135627ea1f114ec74b0ac9efa599981fedc24083bfc",
+      "package_sha256": "db0cb98e6a09312c1d174900d8d0adb39817f07287b959e9a16bc0a21e0bf817",
+      "format_validation": {
+        "files_checked": 41,
+        "conversations": 10,
+        "classfiles": 7
+      },
+      "native_game_test": false,
+      "compiled_class_versions": {
+        "R_rcm_mini_s0_Scene": "45.3",
+        "R_rcm_mini_s0_Passive": "45.3",
+        "R_rcm_mini_s1_Scene": "45.3",
+        "R_rcm_mini_s1_Passive": "45.3",
+        "R_rcm_mini_s2_Scene": "45.3",
+        "R_rcm_mini_s2_Passive": "45.3",
+        "RCMMiniActor": "45.3"
+      }
+    },
+    {
+      "example": "dynamic_lab",
+      "id": "rcm_dynamic",
+      "elapsed_seconds": 3.03,
+      "source_sha256": "271bddf5a1a96174e210ac10cc380aab72db99414cd4b3a2b468fbf8327b3e98",
+      "package_sha256": "426dec546c6706242d8e84fbe711517ca35005037bc38113e8c51103b2df4807",
+      "format_validation": {
+        "files_checked": 13,
+        "conversations": 1,
+        "classfiles": 2
+      },
+      "native_game_test": false,
+      "compiled_class_versions": {
+        "R_rcm_dynamic_s0_Scene": "45.3",
+        "R_rcm_dynamic_s0_Passive": "45.3"
+      }
+    },
+    {
+      "example": "showcase",
+      "id": "rcm_showcase",
+      "elapsed_seconds": 11.91,
+      "source_sha256": "0eea90b8547f1e91c1cd024ed02d8b78d097f30619b8cfcdddc91970240bce45",
+      "package_sha256": "c5551e2fd3a1230ab0f5df4cfe735879148f207f6b9529892f19bcbb31c802bd",
+      "format_validation": {
+        "files_checked": 77,
+        "conversations": 31,
+        "classfiles": 9
+      },
+      "native_game_test": false,
+      "compiled_class_versions": {
+        "R_rcm_showcase_s0_Scene": "45.3",
+        "R_rcm_showcase_s0_Passive": "45.3",
+        "R_rcm_showcase_s1_Scene": "45.3",
+        "R_rcm_showcase_s1_Passive": "45.3",
+        "R_rcm_showcase_s2_Scene": "45.3",
+        "R_rcm_showcase_s2_Passive": "45.3",
+        "R_rcm_showcase_s3_Scene": "45.3",
+        "R_rcm_showcase_s3_Passive": "45.3",
+        "RCMShowcaseActor": "45.3"
+      }
+    },
+    {
+      "example": "director_acceptance",
+      "id": "rcm_director",
+      "elapsed_seconds": 4.93,
+      "source_sha256": "081cf420bf0d827dabc4948ad993bad37ed483443e9ec27c05fefcd7732d0772",
+      "package_sha256": "38b4986ac6bc9713bea9f1d7a3d1e74b344838661c430c41ffa294e3128f07ee",
+      "format_validation": {
+        "files_checked": 25,
+        "conversations": 4,
+        "classfiles": 4
+      },
+      "native_game_test": false,
+      "compiled_class_versions": {
+        "R_rcm_director_s0_Scene": "45.3",
+        "R_rcm_director_s0_Passive": "45.3",
+        "R_rcm_director_s1_Scene": "45.3",
+        "R_rcm_director_s1_Passive": "45.3"
+      }
+    },
+    {
+      "example": "strict_acceptance",
+      "id": "rcm_strict",
+      "elapsed_seconds": 5.65,
+      "source_sha256": "b1def60564779ed816aa3c9e6c6f553ecfdcfc250cfca3e276d7ccfe9d83a2be",
+      "package_sha256": "9a38845aa52e60fe630b98bc63380c42828259b17bfc03e07c81c9998d87a194",
+      "format_validation": {
+        "files_checked": 27,
+        "conversations": 4,
+        "classfiles": 4
+      },
+      "native_game_test": false,
+      "compiled_class_versions": {
+        "R_rcm_strict_s0_Scene": "45.3",
+        "R_rcm_strict_s0_Passive": "45.3",
+        "R_rcm_strict_s1_Scene": "45.3",
+        "R_rcm_strict_s1_Passive": "45.3"
+      }
+    }
+  ],
+  "interface": {
+    "en": {
+      "strict": {
+        "language": "en",
+        "successful": true,
+        "screens": [
+          "difficulty",
+          "environment",
+          "native_script",
+          "instance",
+          "libraries"
+        ],
+        "project_unchanged": true,
+        "native_game_test": false,
+        "offscreen": true
+      },
+      "forms_inspected": 83,
+      "untranslated_known_labels": [],
+      "project_unchanged": true,
+      "preference_persisted": true,
+      "portable_fresh_passed": true,
+      "portable_path_restricted": true,
+      "portable_elapsed_seconds": 83.77702899998985
+    },
+    "es": {
+      "strict": {
+        "language": "es",
+        "successful": true,
+        "screens": [
+          "difficulty",
+          "environment",
+          "native_script",
+          "instance",
+          "libraries"
+        ],
+        "project_unchanged": true,
+        "native_game_test": false,
+        "offscreen": true
+      },
+      "forms_inspected": 83,
+      "untranslated_known_labels": [],
+      "project_unchanged": true,
+      "preference_persisted": true,
+      "portable_fresh_passed": true,
+      "portable_path_restricted": true,
+      "portable_elapsed_seconds": 90.56600489999983
+    }
+  },
+  "portable_source_modules_verified": 104,
+  "portable_executable_sha256": "348b4a8e93dd397c760287d1bea3cdd253f9e07656e24116c789890fb7c25dbb",
+  "release": {
+    "version": "1.0.0-rc7",
+    "user_zip": "RedemptionChronicleMaker-1.0.0-rc7-win64.zip",
+    "sha256": "168e5bd37f1083ea68234d9641dfbc0b9170b8de7843a449333e8ef5a9e16534",
+    "size": 89173912,
+    "files": 368,
+    "all_hashes_verified": true,
+    "source_archive_separate": true,
+    "native_game_verified": false,
+    "clean_machine_verified": false
+  },
+  "tutorial_format": 9,
+  "tutorial_and_mini_sources_unchanged_from_baseline": true,
+  "original_game_written": false,
+  "game_launched": false,
+  "native_engine_test": false,
+  "independent_machine_verified": false,
+  "physical_gpu_dpi_verified": false,
+  "strict_parity_100_percent": false,
+  "remaining_limits": [
+    "editable EAX original static priority",
+    "general native regions and callback contexts",
+    "native soundboxes and lightboxes",
+    "stationary timed NCP rotation",
+    "arbitrary external code-bearing library imports",
+    "map editor not implemented; feasibility analysed"
+  ],
+  "manual_acceptance": "docs/MANUAL_RUNTIME_CHECKLIST.md"
+}

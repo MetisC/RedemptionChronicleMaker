@@ -66,3 +66,9 @@ from normal browsing/base selection. Resource-only refreshes no longer reload
 unrelated level catalogues; full build/deploy fingerprints still verify them.
 Difficulty was then implemented separately; research/combat_difficulty/EVIDENCE.md
 records factors, real APIs and native acceptance limits.
+
+Final delivery: 567 tests passed, zero failures/errors/skips; Ruff and configured
+mypy passed. All six examples compiled against real Codex, JVM45.3. Portable
+source verification matched104 modules; moved fresh EN/ES offscreen probes
+passed. The public ZIP passed its368-file hash audit. delivery.json records
+exact artifacts, source commit and limits. No game process was launched.
