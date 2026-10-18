@@ -177,3 +177,7 @@ Habla con la Guía y elige el laboratorio de encuentros dinámicos. Puedes proba
 ## Laboratorio opcional de dirección
 
 Desde la Guía elige los laboratorios y después el Director de escenas. Viajas al club: pulsa Refugio, habla con Elena, mira u omite la llegada, vence a la rata y vuelve con ella. El regreso conserva el encargo principal. La zona utiliza el mismo compilador y acciones normales; su aceptación dentro del juego sigue pendiente en EMB01–24.
+
+## Colocar al grupo y cambiar música
+
+En el refugio opcional, selecciona la bienvenida de Elena → Puesta en escena: verás cuatro puntos con nombre que puedes mover en Espacio 3D. La película cambia London_Hub por DA_Boss_1 y devuelve la música anterior antes de terminar; al cancelar sólo restaura su propia instantánea. Son cues normales editables en Campaña → Secuencia. Formación, encuadre y guardado/carga requieren prueba en el juego.

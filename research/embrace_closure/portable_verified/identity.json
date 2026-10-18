@@ -1,7 +1,11 @@
 {
-  "executable_sha256": "0caf9fec0a97ca84d5ef27d4775a7330dca1b67f308f28d9a8793a4463b86cb4",
+  "executable_sha256": "3daad07fd086ea21431a77cfa901c61c64fced81154b7e06b30894656aee656d",
   "bilingual": true,
   "mode": "Moved frozen app, restricted PATH, Qt offscreen",
   "independent_machine": false,
-  "native_game_test": false
+  "native_game_test": false,
+  "reviewed_layout_screenshots": [
+    "en/director_staging.png",
+    "es/director_staging.png"
+  ]
 }

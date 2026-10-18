@@ -1,0 +1,278 @@
+{
+  "recorded_at_utc": "2026-10-18T10:54:36.931883+00:00",
+  "version": "1.0.0-rc6",
+  "head": "1d505c5ac7f382f2d686e489242c3c778cf8ca12",
+  "project_formats": [
+    9,
+    10
+  ],
+  "quality": true,
+  "suite": {
+    "tests": 525,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 619.5648900000087,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "post_layout_widget_regression": {
+    "tests": 140,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 247.08600450000085,
+    "native_engine_test": false,
+    "scope": "Post-layout widget regression; full suite remains a separate report",
+    "failures_detail": []
+  },
+  "ruff_rechecked_after_layout": true,
+  "real_codex_class_version": "45.3",
+  "frozen_modules_verified": 90,
+  "frozen_executable_sha256": "3daad07fd086ea21431a77cfa901c61c64fced81154b7e06b30894656aee656d",
+  "examples": [
+    {
+      "chronicle": "rcm_showcase",
+      "source": "chronicles/showcase/project.yaml",
+      "source_sha256": "0eea90b8547f1e91c1cd024ed02d8b78d097f30619b8cfcdddc91970240bce45",
+      "source_and_build_match": true,
+      "class_versions": {
+        "codex/RCMShowcaseActor.class": "45.3",
+        "codex/R_rcm_showcase_s0_Passive.class": "45.3",
+        "codex/R_rcm_showcase_s0_Scene.class": "45.3",
+        "codex/R_rcm_showcase_s1_Passive.class": "45.3",
+        "codex/R_rcm_showcase_s1_Scene.class": "45.3",
+        "codex/R_rcm_showcase_s2_Passive.class": "45.3",
+        "codex/R_rcm_showcase_s2_Scene.class": "45.3",
+        "codex/R_rcm_showcase_s3_Passive.class": "45.3",
+        "codex/R_rcm_showcase_s3_Scene.class": "45.3"
+      },
+      "largest_method_bytes": 2924,
+      "native_staging_records": {
+        "scenes/R_rcm_showcase_s0.nsd": 0,
+        "scenes/R_rcm_showcase_s1.nsd": 0,
+        "scenes/R_rcm_showcase_s2.nsd": 0,
+        "scenes/R_rcm_showcase_s3.nsd": 4
+      },
+      "own_ncp_packaged": [
+        "paths/rcm_refuge_cam.ncp"
+      ],
+      "package_verified": true,
+      "package_sha256": "f31c87f3874224fd76df20f6b08f37268de42219090ca1c6083433c88d948db1",
+      "nob_sha256": "c5551e2fd3a1230ab0f5df4cfe735879148f207f6b9529892f19bcbb31c802bd",
+      "deployed_hashes_verified": true
+    },
+    {
+      "chronicle": "rcm_director",
+      "source": "chronicles/director_acceptance/project.yaml",
+      "source_sha256": "081cf420bf0d827dabc4948ad993bad37ed483443e9ec27c05fefcd7732d0772",
+      "source_and_build_match": true,
+      "class_versions": {
+        "codex/R_rcm_director_s0_Passive.class": "45.3",
+        "codex/R_rcm_director_s0_Scene.class": "45.3",
+        "codex/R_rcm_director_s1_Passive.class": "45.3",
+        "codex/R_rcm_director_s1_Scene.class": "45.3"
+      },
+      "largest_method_bytes": 1110,
+      "native_staging_records": {
+        "scenes/R_rcm_director_s0.nsd": 4,
+        "scenes/R_rcm_director_s1.nsd": 0
+      },
+      "own_ncp_packaged": [
+        "paths/rcm_refuge_cam.ncp"
+      ],
+      "package_verified": true,
+      "package_sha256": "f7b127912114042e54a3f3d46a8d3bb957a73dd24ef686746795be424399580e",
+      "nob_sha256": "38b4986ac6bc9713bea9f1d7a3d1e74b344838661c430c41ffa294e3128f07ee",
+      "deployed_hashes_verified": true
+    }
+  ],
+  "portable": {
+    "probes": [
+      {
+        "language": "en",
+        "returncode": 0,
+        "path_restricted": true,
+        "director": {
+          "example_valid": true,
+          "existing_tab_controls": true,
+          "points_and_modeless": true,
+          "atomic_edit": true,
+          "atomic_undo": true,
+          "line_actions": true,
+          "native_staging_control": true,
+          "help_example": true,
+          "compiled_real_api": true,
+          "ncp_packaged": true,
+          "native_staging_records": true,
+          "temporary_music_compiled": true
+        },
+        "independent_machine": false
+      },
+      {
+        "language": "es",
+        "returncode": 0,
+        "path_restricted": true,
+        "director": {
+          "example_valid": true,
+          "existing_tab_controls": true,
+          "points_and_modeless": true,
+          "atomic_edit": true,
+          "atomic_undo": true,
+          "line_actions": true,
+          "native_staging_control": true,
+          "help_example": true,
+          "compiled_real_api": true,
+          "ncp_packaged": true,
+          "native_staging_records": true,
+          "temporary_music_compiled": true
+        },
+        "independent_machine": false
+      }
+    ],
+    "mode": "Moved folder / spaces and Unicode / restricted PATH / Qt offscreen",
+    "screenshots_reviewed": [
+      "en/director_staging.png",
+      "es/director_staging.png"
+    ],
+    "clean_machine_verified": false,
+    "physical_gpu_dpi_verified": false
+  },
+  "original_integrity": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "protected_source_paths_unchanged_against_head": [
+    "chronicles/tutorial",
+    "chronicles/mini_chronicle",
+    "chronicles/dynamic_lab",
+    "user_workspaces",
+    "tests/fixtures"
+  ],
+  "release": {
+    "version": "1.0.0-rc6",
+    "user_zip": "RedemptionChronicleMaker-1.0.0-rc6-win64.zip",
+    "sha256": "3bf92875a344bcd9a30be247735244262b4783d3d48d7466d37400f668db8082",
+    "size": 89101588,
+    "files": 366,
+    "all_hashes_verified": true,
+    "source_archive_separate": true,
+    "native_game_verified": false,
+    "clean_machine_verified": false
+  },
+  "native_acceptance": {
+    "initial_showcase_loading": "RUNTIME VERIFIED by user: Funciona bien y abre.",
+    "new_music_and_native_party_staging": "MANUAL RUNTIME TEST REQUIRED",
+    "game_automated": false,
+    "independent_machine_verified": false
+  },
+  "remaining_limitations": [
+    "Stationary authored NCP rotation remains PARTIAL; no invented timing span",
+    "Temporary music is a single transient Codex snapshot; no claimed save persistence",
+    "Bounded NSD/NOT codecs and supported door mechanisms only; original geometry remains immutable"
+  ],
+  "manual_checklists": [
+    "EMB01–24",
+    "DYN01–12",
+    "EMB-MUSIC-01..03",
+    "EMB-CONV-01..05",
+    "EMB-NCP-01..05"
+  ],
+  "source_files": {
+    "src/rcm/__init__.py": "2ced5063c09eab0ba50f9a72d468896377b34f20c14ec50626a9b490cbbe40f5",
+    "src/rcm/app_settings.py": "f718536bf61f77816de2bb32d7e9820c45b52d4bfded032114907449bcff3901",
+    "src/rcm/audio.py": "2f7b684365e044c49413b8f40f485b28d905054f9b283914efdbb06ba5a7375d",
+    "src/rcm/authoring9.py": "7294f489b229287ee6a00a3d5521a2b87beedc6eaab5bcb48ca7a441d88ccd56",
+    "src/rcm/build_transaction.py": "230740266f73db6733df38053ead5ce1b781dd0e7d925d55ca08fc1348e714a1",
+    "src/rcm/camera_paths.py": "612e07c2f717687e55317b5cf2e2865050e3c4089f7bac077e83f016dfd57f84",
+    "src/rcm/camera_presets.py": "11027a43c21a1faa2d7d06a81be866aba0347c3f99b9b7e0a49557a24e00a3af",
+    "src/rcm/campaign.py": "dcb9d6e1df9e42a67b323dbefe8f498dd2aca32c0da4305b6798f4f959562638",
+    "src/rcm/campaign_document.py": "0b92044f2b8915511a0e38db98ebef28e5b0f1d0a3e3548dbb7cd1bcecaa3566",
+    "src/rcm/campaign_generator.py": "80ab4ce7eb8469535d17a2a49069cfd342c78544033c2852953559615cfb5730",
+    "src/rcm/campaign_relations.py": "9fbb236242247f6eacc05b30a30e16348a98fc06668b03306d73232f55554f6c",
+    "src/rcm/catalogue.py": "6abfc7140df874150f3862adae0d76fd38b56738ca30406cc4f1f5e4a618e1c1",
+    "src/rcm/cinematics.py": "a8077ed6e9b21812821749f6536235456bc2e503cf62b576511257f079bea1c7",
+    "src/rcm/classfile_limits.py": "9803d0063bfc29426369cb86cb5f149c4fe78418f0b03a5ac0fffa19836acc2f",
+    "src/rcm/cli.py": "50f5ad2781eb5f6ee4efea0007e71a5a5db1351620c6db4eb7e4960b6f0a85aa",
+    "src/rcm/click_interactions.py": "2d529cf35d67a56d82ff66092acbdd640839d94cc38d3b818a30f5c51b32fc29",
+    "src/rcm/debugging.py": "3e7617df19473b1cffcdafbc61058881340238078f167ae93ba7490824e86206",
+    "src/rcm/deployment.py": "a7510d60387c026f401834f74ec64326b0ec0345b7f6e88dd2614d2e04fbbbb5",
+    "src/rcm/deployment_many.py": "650a3c159f7bc9b12e1bfc4a28b3c4dcca8d3601c979cd1d06757d5dd9cde420",
+    "src/rcm/diagnostics.py": "3e878c22c7dc792b378041c480255f8987076125aa6c68cc951920617531cb9c",
+    "src/rcm/document.py": "d6c63cdb63a42af49095683b989edf959ae80523f2c7ea5123feaaafee8595b1",
+    "src/rcm/dynamic_encounters.py": "d5505271a969104d1b2488c3a289a435a8e39a468a16ab17dec28ea1122902b2",
+    "src/rcm/dynamic_runtime.py": "b4e58bda2879b32e4d04e1415e4015449e8234f38fc67415e2afa8c197562717",
+    "src/rcm/editor/__init__.py": "3559ba9794dc95c5c6b72d2d6a992409d83e998ce536a63795c22daf664a84cb",
+    "src/rcm/editor/app.py": "5484643aab7716073ae9d27272ce38c10ce0bedb5692cf8b7c5acc8a1a223929",
+    "src/rcm/editor/browser.py": "9e56827e782690f3c8dcd6663294e34b492473d2371f8834c0ebc563d9f1bfa5",
+    "src/rcm/editor/campaign_panel.py": "8b4946cc50154cd75dc401ed6feebcf2af7127939e13117f1e93116905bf8a93",
+    "src/rcm/editor/click_actions.py": "97a2c10e5e877559e367ebecd8618bf746ff130f1dd67e88b3581d4e46caf8c3",
+    "src/rcm/editor/debug_panel.py": "c5e72702665c83c069ce2e705ad4e0c4fcc613eae32ccbb11d4127e1ee47b907",
+    "src/rcm/editor/deletion.py": "5b3ad851aeca1425bb5c80c85165ff764cbb6a21f90c4ce01209cc9e926d427d",
+    "src/rcm/editor/director.py": "d495855d9c8861d2c65e69890081a33809235d2c70148a6c776dc0326c718727",
+    "src/rcm/editor/dynamic_wizard.py": "eed9ff8f1ebcb0569c576e6e6b51f67c6ff5766a939317e9881c69f1df7f219c",
+    "src/rcm/editor/graph_panel.py": "92213d3877d27201644f505a4ea5d4305a25e443a983f6081e3628aa766cb22c",
+    "src/rcm/editor/guide_panel.py": "8190f71f04a043c62e3fdb54f3a1b68f4ddb514affcd729c5f0a0cc0a3a3efad",
+    "src/rcm/editor/i18n.py": "677d75e67fe7867580e6c782e6df34d30971d496142068ba83f810e6df5cdf68",
+    "src/rcm/editor/identity.py": "4e92b8f29f4931a5dcc662569f59549afa2529c494861f28a7845803e4357609",
+    "src/rcm/editor/inspector.py": "411cdcc6f2e4d32209432c6c52cf2a1456ffcd174a7380baa01ed678a6e261fe",
+    "src/rcm/editor/original_objects.py": "cedf0c5194f29b0fe79eafca643124dc81e93c4440f8d60e7a86f505d4eca78d",
+    "src/rcm/editor/package_panel.py": "b4a71f4ff1144d37be5419cb6f2231b80309c54425603210fd1dfa11b3ff3428",
+    "src/rcm/editor/product_probe.py": "220cc1089ac2ac5b6c3c266430f634ab1beaf426e2cf2df95aaa4710d1daa06a",
+    "src/rcm/editor/product_ui.py": "37129ff141e92abc59f5904efed793efe0e846d7a3c0cf2c4771c4f326817d4b",
+    "src/rcm/editor/recipe_wizard.py": "ea20181d69e37acfc33ada6e45c0cd3188891d24caf8fcefc74bd718e7653f32",
+    "src/rcm/editor/resource_panel.py": "11111ee23fff83fec9c763a7350ff9ad4478dfae351abaf3382541b8835c7979",
+    "src/rcm/editor/smoke.py": "f54693f80177be18d5a229d8213997eb0ef0d03f35c8dc75a2f9350f472a017e",
+    "src/rcm/editor/theme.py": "7be7492facf8d5ba1e0356e4f4cff4cf6ac297f080139e8a48783cf0786d629b",
+    "src/rcm/editor/viewport.py": "e4e129438543272a187cd2bfa3b7d902b4d00aa2162579dba362c654b4168d56",
+    "src/rcm/editor/window.py": "2141d993051ca0925c0ccd070380564e50ebe40f442d2d1c7f679ab88ce18c2e",
+    "src/rcm/editor/wtd.py": "0c9b510ef62894d06c66e387637f5d07cda50e25dfb23d08bf3b556a929a1c25",
+    "src/rcm/enemy_catalogue.py": "ae7e43a9e7232a5b2910c93aa9957461db62eb0f7a1adc471f6b9c354b6a725e",
+    "src/rcm/file_transaction.py": "c91cf23f31a048e7e7353978fa6eb995e6efcaa3628e1fd0239e8f79e8a81bba",
+    "src/rcm/formats.py": "ba08d7ab2afca02ba01328aa59d053aa55278ae9cc79d0d7f17b152094557712",
+    "src/rcm/generator.py": "868aae6f8616a481b52dd15be33248ce5673c91b145f28de875ec465b350094f",
+    "src/rcm/input_limits.py": "1a3fd2c3b2fcd7d0d2e27454cf830349fcd2628e055c435fce901611fa27e5a1",
+    "src/rcm/managed_deployments.py": "6faceca84a1d16489b8f7c9457dc9a4be4cfed4758c82d5d4a7652a50d9013aa",
+    "src/rcm/model.py": "eff4d2fc9a14d46ca9e05da544cb75d11e93025972461acd457c7d0daece4b90",
+    "src/rcm/motions.py": "0c55615b20fe4f0a12a4de4719d5cf24bfa99b35463f5c24f363b418022d41bd",
+    "src/rcm/native_arrivals.py": "62eda1e6dd348b995367ed54e2433cbb14d1b98a8bf9201302ecac426db2434f",
+    "src/rcm/not_inspector.py": "7f6c61748cacc5eb7cc862b74f87555a166f1eff9c99b02e78c23bd059a334c1",
+    "src/rcm/not_library.py": "fd2145ddffbcf0ba0036f979b16b1858ec62dcd946239a2ffb665a78379ff7de",
+    "src/rcm/notes.py": "cdc08f7538cf94054f09a809518d4263a6973ed5a5e6d2a5ee7eb1a8668b5653",
+    "src/rcm/notes_runtime.py": "c28b9db21e6375ee8b564f7f01f362e0fd3c796a557ac0f624c628148046670d",
+    "src/rcm/original_objects.py": "fa914a168ee7c37207fb993eba7cbc3aaeda18d4e46ceed568318afd5b4a8039",
+    "src/rcm/original_runtime.py": "9b35cacde818594dc15839d23d4d10d07e4a8733cda9ac2e68fbe31277c2fa73",
+    "src/rcm/output_validation.py": "1e269e72ca1e210cd9cccb4cd56d3c207dd852ff1391e19a51a4bcf6ef93c19a",
+    "src/rcm/packages.py": "3030ad708f8e9c0fec30287dcb57c215e31f70dd76bd2421a40113dfcfb8c722",
+    "src/rcm/paths.py": "562ce3be2a87bad630f12c9f60625f7508dfe6922ad26163c65edb38e7879eab",
+    "src/rcm/playtest.py": "e70b75dc0ca6847d225c3e622ecb6843f0f33c0cd0a21f0d814c8c199b8900c4",
+    "src/rcm/product.py": "42bbf3c8ab0d1e50603fcd1a668325b2a5183641a828e52c68dbaa8141616e2a",
+    "src/rcm/product_edit.py": "a17d1650c8d8d4c25fac909cf8b08bb5a8d7aa80c8e944e5159be24d8132ac21",
+    "src/rcm/profile_compatibility.py": "d14ced85f97d5fd4d69dd9e63cbaa44332bf7441b89f6736ede83e19f73151a3",
+    "src/rcm/project_resources.py": "00e553e480be7998e66aa8708eb7e2791102a2553388193a3f00a6500ad948ea",
+    "src/rcm/project_safety.py": "c693aad0140305e5631ee99a53accc6c323f79d71eca35386175ebef168594fb",
+    "src/rcm/recipes.py": "4c09d166051ccf852b27e1ba17b28e94f87c203c5913372fcdc2b3e66b236d70",
+    "src/rcm/runtime9.py": "f3e40d58c7a123541b0696aacb90c1b6a258a8491b58224a26be512ce614dc75",
+    "src/rcm/safe_edit.py": "a2b6355f7ff9e365b10cc63903ce961a68e5e885897b4781e82dfc34443ad500",
+    "src/rcm/scene_profiles.py": "63242a93078f7f970ed837ff5c3203f9c23082a74b7ddd4b06cedfa064247bd0",
+    "src/rcm/service.py": "e9ecb01441e1fe46dd4502efd4246770fd1bc393c531054c6e56097ddf538f7f",
+    "src/rcm/shortcut.py": "dfd120127a82aa0fdd71629ea18e762075b6df76741e100ec4b0107531e6d4b7",
+    "src/rcm/spatial/__init__.py": "0b46a35bac1399c36fc41f0087cd21851d0f0d4a76c0ac2c0acd37f7d7791941",
+    "src/rcm/spatial/assets.py": "fec8ec8191e1b4078b11c44a43184cf64239200d8bd2d48ad6f050025fc772a0",
+    "src/rcm/spatial/geometry.py": "1ec7d84ae0c828fc58c83f48c5dbecb4ae71a41688f8da6628f543c617a14b6b",
+    "src/rcm/spatial/math3d.py": "752e773be933941b856703f9d391311e6353cfd36fa733e851e3785b9a7a6b2a",
+    "src/rcm/spatial/relations.py": "05bd71550dd17ef91f53ed7dfc886580e6a933e02b8c9c4880fd4b67a78cc72e",
+    "src/rcm/spatial/scene_mesh.py": "ed0c769bd1b2949f9e9373a7b73eb2a11b79f9e3ae41cdb14566284acfdf7e15",
+    "src/rcm/startup.py": "2a3d233e3a07ca90c2ed0ce54b6f1ccf7e7ee1ceccad6c15572ca93a68f94032",
+    "src/rcm/story_graph.py": "9943e87fa3ef1336a50bd16033edf48cf8eb63113eabbcb6b768746b0ea75372",
+    "src/rcm/support.py": "2a05aa5ac870bd3d340048ada63bd4345625ff3c8146031676455780cb6e37d6",
+    "src/rcm/versioning.py": "485d7139fedecb40598e1fbe2ec63d2851958f486525e7da7f0375014b0473fe",
+    "src/rcm/world_effects.py": "a5c655ee675e5967a7c5b27d734bd6dc0569bb49322313eab00d2ca2f0d8d48c",
+    "src/rcm/wtd.py": "1cb981e27c27bdc2d27ed34099984d1e4af9fc227270e88c22405c53827f166c"
+  }
+}

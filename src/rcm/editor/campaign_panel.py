@@ -408,17 +408,23 @@ def event_properties(ins):
         a=w.at(p);kind=next(iter(a),'spawn')
         def change(v):
             from ..cinematics import DIRECTOR_ACTIONS
+            if v=='push_music':
+                a.clear();a[v]=dict(resource=next((r['id'] for r in w.backend.resources['entries'] if r['path'].lower().startswith('sounds/music/') and r['extension'].lower()=='.mp3'),''),volume=50);w.changed(True);return
             if v in DIRECTOR_ACTIONS:
                 from .director import default_action
                 a.clear();a[v]=default_action(v,s);w.changed(True);return
             a.clear();a[v]={'actor':'Player','clan':w.backend.resources['wtd']['clans'][0]['id']} if v=='set_actor_clan' else {'actor':'Player','discipline':w.backend.resources['wtd']['disciplines'][0]['id'],'level':1} if v=='set_discipline' else {'level':s['level']['source'],'template':'','operation':'hide'} if v=='control_original' else {'title':tr('Nota'),'text':tr('Escribe aquí lo que leerá el jugador.')} if v=='show_note' else {'resource':'','waypoint':'','volume':100,'min_distance':128,'max_distance':512} if v=='play_sound' else {'cast_id':'','mode':'frames','frame':1,'parameter':150,'open':True} if v=='control_door' else {'scene':'','entry':''} if v=='travel' else True if ACTIONS[v][1]=='none' else 100 if ACTIONS[v][1]=='number' else '';w.changed(True)
-        advanced={'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','control_original','play_sound'}
+        advanced={'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','control_original','play_sound','push_music','pop_music'}
         advanced|={'set_actor_clan','set_discipline'}
         from ..cinematics import DIRECTOR_ACTIONS
         advanced|=DIRECTOR_ACTIONS
         ins.combo(tr('Acción'),[(tr(label),key) for key,(label,_) in ACTIONS.items() if (w.backend.resources.get('wtd') or key not in {'set_actor_clan','set_discipline'}) and (w.doc.campaign.get('project_format')==10 or not key.endswith('_generator')) and (w.doc.campaign.get('project_format') in (9,10) or key not in advanced)],kind,change,'action_kind');category=ACTIONS.get(kind,('','none'))[1]
         from .director import render_action
         if render_action(ins,kind,a[kind],p,s):pass
+        elif category=='temporary_music':
+            ins.combo(tr('Música'),[(r['id'],r['id']) for r in w.backend.resources['entries'] if r['path'].lower().startswith('sounds/music/') and r['extension'].lower()=='.mp3'],a[kind]['resource'],lambda v:ins.set(p+(kind,'resource'),v),'temporary_music_resource')
+            ins.spin(tr('Volumen'),a[kind]['volume'],lambda v:ins.set(p+(kind,'volume'),v),'temporary_music_volume',maximum=100)
+            ins.note(tr('Restaura la música anterior antes de iniciar otra música temporal. Después de cargar una partida, usa Música normal para elegir la pista. Restaurar no altera una música cambiada por otro evento o script.'))
         elif category in {'wtd_clan','wtd_discipline'}:
             value=a[kind];data=w.backend.resources.get('wtd',{});field='clan' if category=='wtd_clan' else 'discipline'
             ins.combo(tr('Actor'),[(tr('Jugador'),'Player')]+ins.ids('actors'),value['actor'],lambda v:ins.set(p+(kind,'actor'),v),'trait_actor')

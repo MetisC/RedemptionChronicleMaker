@@ -1,0 +1,145 @@
+{
+  "original_nsd_files": 291,
+  "supported": [
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/CURI_28_4.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/DEVN_LOT_8_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/EGNT_7_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/FAC1_37_4.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/FAC1_LOT_5_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/FAC2_37_4.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/FAC2_LOT_5_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/FAC3_37_4.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/FAC3_LOT_5_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/FRO1_20_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/GUNH_LOT_1_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/HILL_7_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/HILLD_4_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/INN4_CTD_1_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/JOS1_15_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/JOS1_CTD_3_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/JUDB_7_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/JUDBD_4_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/NEWM_37_4.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/NEWM_LOT_1_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/OLDT_25_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/RABI_CTD_1_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/ROOF_20_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/SMTY_7_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/SMYD_4_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/TOL2_30_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/UNIV_4_1.nsd",
+      "lossless": true
+    },
+    {
+      "archive": "Resource.nob",
+      "path": "scenes/VEST_20_1.nsd",
+      "lossless": true
+    }
+  ]
+}

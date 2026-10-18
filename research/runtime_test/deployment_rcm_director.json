@@ -1,18 +1,18 @@
 {
   "chronicle": "rcm_director",
   "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\rcm_director",
-  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_rcm_director_1792313771122589900.zip",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_rcm_director_1792320540479416600.zip",
   "removed_owned_files": [],
   "files": {
     "rcm_director\\rcm_wtd_content.nob": "5216338894a4cd5a4d60f0ff4146687f35bd88caa51750891086d350733f78f9",
     "rcm_director\\codex\\R_rcm_director_s0_Passive.class": "4549e4dbc51f1c8d5edbb0a3c23a5861a69627e7ce32772bd7c9a6af643cdd03",
-    "rcm_director\\codex\\R_rcm_director_s0_Scene.class": "17c28b958cdf573a1d4c51cb77452c1066f078f696300d27509983a048dbfad1",
+    "rcm_director\\codex\\R_rcm_director_s0_Scene.class": "ef205a6f51744bebf282ad94c2947ade6b8462ef5fa60997faf8742e999b6798",
     "rcm_director\\codex\\R_rcm_director_s1_Passive.class": "e243f046e1f83946de96518454f26551aaeadbb2d5bad31f535ccc0c86de958a",
-    "rcm_director\\codex\\R_rcm_director_s1_Scene.class": "f5c723f3c6944ef484d5fec074275e8659dbce619f1c33ac010635881f7496f7",
-    "rcm_director\\rcm_director.nob": "9ffa25ba1c4a4f71f024f0e65a58ad92b26cc7563e74e3a7c94bc0a949216861",
+    "rcm_director\\codex\\R_rcm_director_s1_Scene.class": "16bbabae006ccfc0f3364216fd5a6b9bc3849bfc81d39ad53a5b16b42f1f3ce7",
+    "rcm_director\\rcm_director.nob": "38b4986ac6bc9713bea9f1d7a3d1e74b344838661c430c41ffa294e3128f07ee",
     "rcm_director\\rcm_compat.nob": "5059126e67d9ddc0af10db1b29ac7b522b9015f4e5b53d795c91193b5cb0f856",
     "rcm_director\\codex\\R_rcm_showcase_s0_Passive.class": "2a50f5a85b67eeb73573c7fc2c513cad6653970e8c43c5399eb5bd85d5803f86",
-    "rcm_director\\.rcm_deployment.json": "5278a822d6eabff4898158cfb6204332ab30c50b80744f6a8c4b105c9807cb72"
+    "rcm_director\\.rcm_deployment.json": "6af05d80bde79539953704e5d280111da468a020c12f82a5b3f881bcc2c8d790"
   },
   "native_engine_test": false
 }

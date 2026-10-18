@@ -320,9 +320,13 @@ def extend_staging(java,scene,project):
         code.append(' } catch(Throwable error) { trace("CINEMA_LINE_FAILED "+error); } }')
         java=java.replace('dialogueCamera(who,target); cameraPlayer=who; cameraTicks=0;', 'dialogueCamera(who,target); cameraPlayer=who; cameraTicks=0; directorLine(event,line);',1)
     if staged:
-        from .native_arrivals import ordered
+        from .native_arrivals import ordered,conversation_groups
         entries={p['id']:i for i,p in enumerate(ordered(scene))}
-        setup='switch(index) { '+''.join(f'case {ci}: if(!CodexPlayer.TeleportPartyToEntrance(player,{entries[name]})) return false; new CodexThing(player).SetOrientation({jv(next(p for p in scene["entries"] if p["id"]==name)["transform"].get("orientation",[0,0,0]))}); break; ' for ci,name in staged)+' } '
+        groups=conversation_groups(scene);cases=[]
+        for ci,name in staged:
+            if isinstance(name,dict):cases.append(f'case {ci}: if(!CodexPlayer.TeleportPartyToConversation(player,{groups.index(tuple(name["entries"]))})) return false; break; ')
+            else:cases.append(f'case {ci}: if(!CodexPlayer.TeleportPartyToEntrance(player,{entries[name]})) return false; new CodexThing(player).SetOrientation({jv(next(p for p in scene["entries"] if p["id"]==name)["transform"].get("orientation",[0,0,0]))}); break; ')
+        setup='switch(index) { '+''.join(cases)+' } '
         java=java.replace('holdPatrols(); prepareDialogue(',setup+'holdPatrols(); prepareDialogue(',1)
     if code:java=java[:-2]+'\n'+'\n'.join(code)+'\n}\n'
     return java

@@ -47,15 +47,15 @@ Los originales examinados usan líneas de tokens, comentarios y cadenas de resto
 
 | Formato | Evidencia estructural | Soporte actual |
 |---|---|---|
-| `.nsc` | `location ID NIL NSD/null NUI MAPLABEL FLAGS`, `exit A,index B,index [flags]`, ajustes | Lector de ubicaciones/settings/exits; escritor de una ubicación |
+| `.nsc` | `location ID NIL NSD/null NUI MAPLABEL FLAGS`, `exit A,index B,index [flags]`, ajustes | Lector de ubicaciones/settings/exits; escritor de campañas con varias ubicaciones |
 | `.nmf` | `NLS`, `NVO`, `PLAYER`, `SPEAKER`, `CASH`, `NTX`, `NST`, `NSS` | Lee filas para seleccionar NLS/CASH; escribe metadatos propios |
 | `.nss` | `Scene locationNumber sequenceIndex sceneName` | Lee asociaciones adicionales; no escribe secuencias |
 | `.nco` | Conversation/Event/Line/AnswerReturn/AnswerGoto/Delay/Jump | Genera eventos/nodos, varias líneas, ANSWERGOTO y ANSWERRETURN; conserva el caso simple |
 | `.nvo` | `lineID voiceResource text...` | Genera textos de todas las líneas/respuestas con voz silenciosa propia |
 | `.nls` | `stringID text...` | Genera tabla propia `_R_<id>.nls`: nombre de crónica, actores y etiquetas corta/larga del NSD |
 | `.npc` | Stats min/max/current, cash, experiencia, disciplinas e inventario | Copia e inventaría; no genera personajes jugadores |
-| `.nai` | Attack/move/AI flags, distancias, wander y disciplinas | Copia e inventaría; no genera AI personalizada |
-| `.nqd` | `QUEST flags flags shortID longID icon reward`, otras filas según recurso | Copia e inventaría; semántica completa pendiente |
+| `.nai` | Attack/move/AI flags, distancias, wander y disciplinas | Genera perfiles propios a partir de una base, con propiedades editables acotadas |
+| `.nqd` | `QUEST flags flags shortID longID icon reward`, otras filas según recurso | Genera entradas propias de journal; progreso y recompensa mediante Java, sin codec universal de quests |
 | `.nbs` | `D template copies` o `R treasureClass copies`; 0 = infinito según comentarios originales | Copia e inventaría; no genera tiendas |
 
 Las filas `.nss` se asocian por índice de la ubicación en NSC; esa correspondencia sigue siendo una inferencia. Las referencias estáticas NSC tienen archivo y línea explícitos. El catálogo de escenas incluye ambos tipos; no convierte una asociación NSS en prueba de carga.
@@ -106,7 +106,7 @@ Los tags usan varios tipos de payload: string C de hasta 31 bytes, uint32, float
 | 82 | Description ID |
 | 114 | Actor flags |
 
-El escritor del prototipo crea una plantilla nueva con padre original y tags 11, 81 y 82 propios. No modifica `modernDay.not`, no duplica modelos y no requiere NOT Editor. El efecto de esa nueva plantilla y su herencia en la carga del juego sigue pendiente de verificar.
+El escritor del prototipo crea una plantilla nueva con padre original y tags 11, 81 y 82 propios. No modifica `modernDay.not`, no duplica modelos y no requiere NOT Editor. El tutorial aceptado usa wrappers propios; campos de herencia o plantillas nuevas distintos de los probados requieren su verificación nativa específica.
 
 ## NSD: subconjunto reconstruido
 
@@ -121,15 +121,15 @@ Todos los 291 NSD examinados comienzan por `NSD\x10`, versión DWORD 8. El subco
 | 72 / 8 | Campos no interpretados, preservados al leer |
 | 80 / 4 | Número de entidades |
 | 84 / variable | Registros de entidades |
-| Final / 192 | Cuatro contadores globales vacíos (16) + metadatos de entorno (176) |
+| Final / 192 por defecto | Cuatro contadores globales (16), tablas propias opcionales de entradas/conversación, y metadatos de entorno (176) |
 
 Una entidad simple tiene `uint32 tagCount`, `tagCount × (uint32 tagID + payload32)` y **20 bytes de bloques variables vacíos**. No se atribuye un significado completo a los cinco DWORD de esos 20 bytes. Los registros complejos tienen parámetros, frames o datos geométricos y salen de este subconjunto.
 
-24 escenas originales se leen y reemiten exactamente con esta estructura. El codec rechaza `EAST_28_4.nsd` y otras escenas complejas, en vez de reinterpretarlas incorrectamente.
+28 de los 291 NSD originales se leen y reemiten exactamente con el subconjunto actual (research/embrace_closure/nsd_codec_subset.json). El codec rechaza `EAST_28_4.nsd` y otras escenas complejas, en vez de reinterpretarlas incorrectamente.
 
 La escena mínima de referencia tiene **480 bytes**, una única entidad `ghost` con tags 0, 1, 2, 3 y 11. Los parámetros/bloques variables quedan vacíos. El script propio se indica en el tag 11; no se escribe en el encabezado NSD.
 
-El anchor del ghost se toma automáticamente de una entidad existente en una escena relacionada con el level. Para EastLondon son posición `[1184,1660,114]` y sector 19. Se conservan los últimos **176** bytes de metadatos y se anteponen 16 bytes cero para nuestras cuatro listas globales vacías. Copiar 192 bytes de una escena compleja podría arrastrar el final de un registro de entrada. No se copian sus actores, triggers, scripts o geometría de entidades.
+El anchor del ghost se toma automáticamente de una entidad existente en una escena relacionada con el level. Para EastLondon son posición `[1184,1660,114]` y sector 19. Se conservan los últimos **176** bytes de metadatos y se anteponen los cuatro contadores globales, vacíos por defecto; las tablas propias optativas de entradas y conversación se escriben explícitamente con sus contadores. Copiar 192 bytes de una escena compleja podría arrastrar el final de un registro de entrada. No se copian sus actores, triggers, scripts o geometría de entidades.
 
 El lector nativo NSD v8 lee al final dos nombres de 32 bytes para modelo y animación del cielo, offsets -64 y -32. Los recursos se resuelven desde el juego. Se conserva el entorno original completo; EastLondon mantiene ambos nombres vacíos y el fondo gris aceptado. La semántica completa de los otros 112 bytes sigue pendiente.
 
@@ -143,7 +143,7 @@ No existe escritor NIL ni modificación/copia de NIL en los paquetes. `Levels.no
 
 `.nod` y `.nad` son binarios: **no llevan necesariamente magic ASCII NOD/NAD**. Los ejemplos `.nod` comienzan por DWORD 7 seguido de valores variables; los `.nad` por DWORD 3 seguido de valores variables. Esos primeros valores no se denominan formalmente versión sin más evidencia. Se inventarían modelos, animaciones y recursos asociados, pero no se generan ni se editan mallas.
 
-El lector resuelve las superficies/sectores NIL, la malla estática NOD y texturas NAM/TGA; siguen pendientes NIL global, NSD complejo, todos los tags NOT, cola no indexada, NAD, materiales avanzados, paths de cámara y auxiliares. Que sean binarios no obliga a usar herramientas antiguas: se ampliarán nuestros codecs cuando una función concreta lo requiera.
+El lector resuelve las superficies/sectores NIL, la malla estática NOD y texturas NAM/TGA; siguen pendientes NIL global, NSD complejo, todos los tags NOT, cola no indexada, NAD, materiales avanzados, semántica temporal de NCP estacionarios y otros auxiliares. Que sean binarios no obliga a usar herramientas antiguas: se ampliarán nuestros codecs cuando una función concreta lo requiera.
 
 ## Java, WAV y reproducibilidad
 
@@ -361,3 +361,15 @@ NCP little endian: u32 count, float32 total, count × 26 float32. count 1..128 p
 `sequences[].cues` contiene at/actions ordenados; máximo 64 cues, 32 acciones por cue y duración de secuencia hasta 120 s, límites propios de presupuesto de compilación/tick. `conversations[].nodes[].lines[].actions` usa las mismas Actions, máximo 32; se rechaza abrir otra interacción modal directa o indirectamente. Se bajan a eventos normales sólo en copia del compilador. NCO conserva GOTO/RETURN. `conversations[].staging` referencia una entrada local nombrada.
 
 Contratos optativos: director_v1 incorpora coreografía/puesta en escena; películas con cues se cancelan al cargar para no repetir side effects. Se preserva la reanudación anterior de películas Player sin cues. spatial_loop_v1 guarda configuración y booleanos de fuentes ordenadas por ID, recreando handles no serializados. world_effects_v1 guarda índices de comandos de luz/clima ordenados canónicamente y reaplica una vez al GUID restaurado; un rechazo no genera reintento/log por tick. Sin estos campos no se añaden records nuevos al runtime antiguo. Cambiar contrato requiere partida nueva; no hay migración de saves.
+
+NMF CASH: el lector nativo consume hasta tres nombres por línea y los añade a una tabla global de tres slots, sin comprobar capacidad. Varias líneas pueden sobrescribir su contador y causar un cierre durante la carga. El combinador de campañas conserva primeras apariciones únicas (sin distinguir mayúsculas), emite una sola línea con hasta tres monedas y registra las restantes en build_report.currency_profile.omitted_templates. La comprobación de salida rechaza más de tres consumos acumulados. No edita NMF originales. Evidencia: research/embrace_closure/METADATA_LOAD_FIX.md y native_metadata_cash.txt.
+
+## Cierre quirúrgico: música y conversación nativa
+
+`push_music: {resource: London_Hub, volume: 50}` y `pop_music: true` son Actions ordinarias, en formatos 9/10. Se valida una pista MP3 de música única y volumen entero 0..100. CodexSound.PushMusic(String,int) guarda nombre/volumen previos en un único par estático Java; PopMusic los vuelve a reproducir. No es una pila nativa. RCM limita la propiedad a una operación, comprueba que la instantánea siga siendo suya y no guarda/reconstruye una pila. Restore descarta propiedad transitoria sin Pop desconocido.
+
+Se conserva `conversation.staging: entry_id`. La alternativa optativa es `staging: {mode: native, entries: [speaker_side, companion_side]}`: de una a cuatro entradas existentes, hasta 16 grupos distintos por escena. No hay índices nativos en la UX. La tabla convstart generada está en el cuarto count global, offset +12 del bloque global vacío, después de la tabla de entradas y una tabla de registros de 72 bytes que se mantiene vacía. Sus registros son `<I12fII>` (60 bytes): sector, matriz de rotación/traslación, grupo y selector de miembro. Se emiten selectores cero, como los 473 registros originales validados; el lookup usa sucesivos registros del grupo para la party. Rotación propia acotada al eje Z.
+
+La escritura afecta sólo al NSD propio y exige cuatro counts vacíos de partida. Preserva los otros 176 bytes del entorno. Validación de tamaño, count máximo 64, grupos 0..15, selector cero, matriz ortonormal y floats finitos; roundtrip del subconjunto generado. Las tablas nativas son asignaciones dinámicas: 16 grupos es el límite de autoría adoptado del manual, no una afirmación de array fijo en el loader. No se escribe una tabla desconocida ni un NSD universal.
+
+Los 22 pares NCP de XYZ coincidente encontrados en tres originales también tienen parámetro coincidente; ocho cambian Euler y catorce no. Sus coeficientes no demuestran hold o giro temporizado. El escritor lineal mantiene la restricción; el lector permite parámetros repetidos originales, rechaza negativos/decrecientes, inversos negativos y valores no finitos. Los 174 originales conservan bytes.

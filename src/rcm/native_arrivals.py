@@ -20,6 +20,38 @@ def ordered(scene):
     return sorted(rows,key=lambda e:e['id']!=scene.get('default_entry'))
 
 
+def conversation_groups(scene):
+    """Native groups reuse authored Entry markers, with no raw indices in YAML."""
+    groups=[]
+    for conversation in scene.get('conversations',[]):
+        value=conversation.get('staging')
+        if isinstance(value,dict):
+            from .model import mapping
+            mapping(value,{'mode','entries'},{'mode','entries'},'Puesta en escena nativa')
+            points=value['entries']
+            if value['mode']!='native' or not isinstance(points,list) or not 1<=len(points)<=4 or any(not isinstance(p,str) for p in points):raise ValueError('Puesta en escena nativa: selecciona 1..4 entradas')
+            if len(set(points))!=len(points):raise ValueError('Puesta en escena nativa: puntos duplicados')
+            entries={p['id']:p for p in scene.get('entries',[])}
+            for name in points:
+                if name not in entries:raise ValueError('Puesta en escena requiere una entrada existente')
+                if any(abs(float(v))>.001 for v in entries[name]['transform'].get('orientation',[0,0,0])[:2]):raise ValueError('Puesta en escena nativa: usa giro Z; inclinación X/Y debe ser cero')
+            if tuple(points) not in groups:groups.append(tuple(points))
+    if len(groups)>16:raise ValueError('Máximo 16 grupos de conversación nativa por escena')
+    return groups
+
+
+def conversation_records(ws,level,scene):
+    groups=conversation_groups(scene)
+    if not groups:return []
+    sectors=planes(ws,level);entries={p['id']:p for p in scene['entries']};result=[]
+    for index,names in enumerate(groups):
+        for name in names:
+            transform=entries[name]['transform'];pos=transform['position']
+            angle=math.radians(transform.get('orientation',[0,0,0])[2]);c,s=math.cos(angle),math.sin(angle)
+            result.append(validate_record(struct.pack('<I12fII',sector_at(sectors,pos),c,-s,0,s,c,0,0,0,1,*pos,index,0)))
+    return result
+
+
 def validate_record(data):
     if len(data)!=60:raise ValueError('NSD: invalid entrance record size')
     sector,*values,entry,player=struct.unpack('<I12fII',data)

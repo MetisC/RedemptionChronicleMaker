@@ -136,6 +136,7 @@ class Scene:
     header: bytes | None = None
     brushes: dict[int, bytes] | None = None
     entrances: list[bytes] | None = None
+    conversation_starts: list[bytes] | None = None
 
     @classmethod
     def read(cls, data: bytes):
@@ -169,9 +170,18 @@ class Scene:
                 from .native_arrivals import validate_record
                 entrances=[validate_record(data[p+8+i*60:p+8+(i+1)*60]) for i in range(count)]
                 data=data[:p+4]+bytes(4)+data[p+8+count*60:]
+        conversations=[]
+        if len(data)-p>=192 and data[p:p+12]==bytes(12):
+            count=u32(data,p+12)
+            if count>64:raise ValueError('NSD: excessive generated conversation starts')
+            if count:
+                from .native_arrivals import validate_record
+                conversations=[validate_record(data[p+16+i*60:p+16+(i+1)*60]) for i in range(count)]
+                if any(u32(row,52)>15 or u32(row,56)!=0 for row in conversations):raise ValueError('NSD: invalid generated conversation group')
+                data=data[:p+12]+bytes(4)+data[p+16+count*60:]
         if len(data) - p != 192:
             raise ValueError("NSD con bloques variables: fuera del subconjunto Fase 1")
-        return cls(cstring(data[8:40]), cstring(data[40:72]), entities, data[p:], data[:84],brushes or None,entrances or None)
+        return cls(cstring(data[8:40]), cstring(data[40:72]), entities, data[p:], data[:84],brushes or None,entrances or None,conversations or None)
 
     def encode(self):
         if len(self.environment) != 192:
@@ -197,9 +207,17 @@ class Scene:
                 if body[end:]!=expected:raise ValueError('NSD: brush requires six bounded collision planes')
             chunks.append(encode_tags(tags)+(bytes(8)+struct.pack('<I',1)+body+bytes(8) if body is not None else bytes(20)))
         environment=self.environment
+        if self.conversation_starts:
+            from .native_arrivals import validate_record
+            records=self.conversation_starts
+            if environment[:16]!=bytes(16) or len(records)>64:raise ValueError('NSD: conversation table requires an empty generated global section')
+            for record in records:
+                validate_record(record)
+                if u32(record,52)>15 or u32(record,56)!=0:raise ValueError('NSD: invalid generated conversation group')
+            environment=environment[:12]+struct.pack('<I',len(records))+b''.join(records)+environment[16:]
         if self.entrances:
             from .native_arrivals import validate_record
-            if environment[:16]!=bytes(16) or len(self.entrances)>4096:raise ValueError('NSD: entrance table requires an empty generated global section')
+            if self.environment[:16]!=bytes(16) or len(self.entrances)>4096:raise ValueError('NSD: entrance table requires an empty generated global section')
             environment=environment[:4]+struct.pack('<I',len(self.entrances))+b''.join(validate_record(r) for r in self.entrances)+environment[8:]
         return bytes(header)+b''.join(chunks)+environment
 

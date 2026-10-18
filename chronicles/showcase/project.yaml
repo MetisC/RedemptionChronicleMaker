@@ -1517,6 +1517,39 @@ scenes:
       - 0
       - 0
       - 90
+  - id: party_left
+    name: 'Party: left'
+    transform:
+      position:
+      - 300
+      - -976
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 90
+  - id: party_right
+    name: 'Party: right'
+    transform:
+      position:
+      - 430
+      - -976
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 90
+  - id: party_back
+    name: 'Party: back'
+    transform:
+      position:
+      - 365
+      - -1040
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 90
   actors:
   - id: mentor
     name: Elena
@@ -2420,6 +2453,13 @@ scenes:
         result: 1
       - text: Skip the film and continue.
         result: 2
+    staging:
+      mode: native
+      entries:
+      - safe
+      - party_left
+      - party_right
+      - party_back
   - id: wait
     speaker: mentor
     camera: ots_speaker_close
@@ -2470,6 +2510,9 @@ scenes:
     cues:
     - at: 0
       actions:
+      - push_music:
+          resource: DA_Boss_1
+          volume: 50
       - look_at:
           actor: mentor
           target: guard
@@ -2482,6 +2525,9 @@ scenes:
           intensity: 1
           radius: 180
           style: constant
+      - look_at:
+          actor: guard
+          target: mentor
     - at: 1
       actions:
       - play_motion:
@@ -2509,6 +2555,9 @@ scenes:
           initial: 255
           target: 0
           duration: 1
+    - at: 9.7
+      actions:
+      - pop_music: true
   events:
   - id: arrival
     when: scene_start
@@ -2516,6 +2565,7 @@ scenes:
     actions:
     - spawn: mentor
     - spawn: guard
+    - start_music: London_Hub
     - start_quest: director
     - show_note:
         title: Arrival at the refuge
@@ -2542,6 +2592,7 @@ scenes:
     result: 1
     once: false
     actions:
+    - start_music: London_Hub
     - play_sequence: refuge_film
   - id: skip
     when: conversation_ended
@@ -2549,6 +2600,7 @@ scenes:
     result: 2
     once: false
     actions:
+    - start_music: London_Hub
     - run_event: begin_guard
   - id: film_end
     when: sequence_ended

@@ -24,7 +24,7 @@ Fades provide **From black**, **To black** and custom intensities. White flash a
 
 Select a dialogue line and choose **Actions when this line starts…**. Set a close-up, a look, gesture, sound or state change without changing RETURN/GOTO. Start another conversation, a film, a note or travel after the dialogue ends, rather than opening competing interfaces from a line.
 
-The conversation's **Staging** option can use a named existing entry. It relocates the party through the native entrance mechanism and applies the authored orientation before dialogue. It does not create a second set of spatial markers or rewrite the level.
+Conversation **Staging** offers Automatic, RCM entry and Native conversation point. Both placed modes reuse existing named Entry markers: create and move them in 3D Space. RCM entry keeps its previous behaviour. Native mode writes the proven conversation-start table and calls TeleportPartyToConversation; select up to three additional companion points. The mechanisms are not internally identical, particularly in multiplayer. Native points support Z rotation without X/Y tilt. Verify formation, orientation and collision in Redemption.
 
 ## Sound, light and weather
 
@@ -40,3 +40,13 @@ Dynamic light attaches to one of your entities. Set RGB components, intensity, r
 The refuge door demonstrates hiding/restoring native scenery and clearing collision. It does **not** pretend that its frameless original mesh has an opening animation. Compatible framed/pivot doors retain their existing tools.
 
 New data remains optional in project formats 9/10. Opening an older project never upgrades it. Structural cinematic/audio/light changes can require a new game; RCM reports the changed save contract. See EMB01–24 in the manual checklist: compilation and offline tests are not visual/audio acceptance in Redemption.
+
+## Temporary music
+
+In any normal Actions list choose **Audio / Temporary music**, a track and volume. Later, **Audio / Restore previous music** restores the prior track and volume. Both work in line actions and cinematic cues. Codex holds one previous-track snapshot, not a nested stack; a second owned Push is rejected.
+
+Film cancellation/end restores only a still-owned snapshot started by that film. Scene exit performs the same ownership check. Permanent music changes abandon ownership. Loading discards transient ownership and does not Pop an unknown snapshot; use normal Music to establish an explicit post-load track. Native snapshot persistence is not promised without evidence.
+
+## A camera without translation
+
+One point holds a fixed shot. Authored NCPs require distinct consecutive positions. Repeated XYZ in original paths also repeats the parameter and can have nontrivial cubic coefficients; it is not proof of a timed stationary turn. No arbitrary minimum span is invented. Originals remain lossless and play through the engine. New manual cases: EMB-MUSIC, EMB-CONV and EMB-NCP.

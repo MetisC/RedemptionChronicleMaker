@@ -4,6 +4,30 @@ import hashlib,json,math
 from .generator import build as build_scene, zip_bytes, java_string as js, java_vector as jv
 
 
+def merge_metadata(lines):
+    """One native CASH table per chronicle, never one appended per scene.
+
+    Vampire 1.1 stores three template pointers at +0x1aeb8, immediately
+    followed by their count at +0x1aec4. Each CASH line appends up to three
+    pointers without a capacity check (0x497b65..0x497c24).
+    """
+    from .catalogue import rows
+    result=[]; currencies=[]; seen=set(); cash_at=None
+    for line in dict.fromkeys(lines):
+        tokens=next(iter(rows(line)),(0,[]))[1]
+        if tokens and tokens[0].casefold()=='cash':
+            if cash_at is None:cash_at=len(result)
+            # The native tokenizer also accepts commas as separators.
+            names=' '.join(tokens[1:]).replace(',',' ').split()
+            for name in names[:3]:
+                if name.casefold() not in seen:
+                    seen.add(name.casefold());currencies.append(name)
+        else:result.append(line)
+    if currencies:result.insert(cash_at,'CASH '+' '.join(currencies[:3]))
+    return result,{'templates':currencies[:3],'omitted_templates':currencies[3:],
+                   'capacity':3,'policy':'first-seen unique native currencies'}
+
+
 def runtime(campaign,scene,p):
     from .cinematics import compile_scene
     scene=compile_scene(scene)
@@ -164,6 +188,8 @@ def runtime(campaign,scene,p):
                 from .audio import loops
                 statement=f'stopSceneSound({list(loops(scene)).index(v)});'
             elif k=='start_music':statement=f'CodexSound.StartMusic({js(v)},100);'
+            elif k=='push_music':statement=f'if(!pushTemporaryMusic({js(v["resource"]+".mp3")},{v["volume"]})) return false;'
+            elif k=='pop_music':statement='if(!popTemporaryMusic()) return false;'
             elif k=='start_ambient':statement=f'CodexSound.StartAmbient({js(v)},100);'
             elif k in ('stop_music','stop_ambient'):statement=f'CodexSound.{"StopMusic" if k=="stop_music" else "StopAmbient"}();'
             elif k=='release_camera':statement='releaseCamera();'
@@ -287,7 +313,8 @@ def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress
     order=[x for x in locations if x.split()[1]==campaign.source['entry']]+[x for x in locations if x.split()[1]!=campaign.source['entry']]
     prefix='R_'+campaign.id
     payload['chronicles/'+campaign.id+'.nsc']=('\r\n'.join(['# RCM campaign',*order,'metafile '+prefix+'.nmf','reviveloc '+campaign.source['entry']+' 0','flags 0x3'])+'\r\n').encode('cp1252')
-    payload['chronicles/'+prefix+'.nmf']=('\r\n'.join(dict.fromkeys(meta))+'\r\n').encode('cp1252')
+    merged_meta,currency_profile=merge_metadata(meta)
+    payload['chronicles/'+prefix+'.nmf']=('\r\n'.join(merged_meta)+'\r\n').encode('cp1252')
     nls=[campaign.id+' '+campaign.name]
     for qi,q in enumerate(campaign.source.get('quests',[])):
         qn=prefix+'_q'+str(qi)
@@ -331,7 +358,8 @@ def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress
         'scenes':[s['id'] for s,p in campaign.scenes],'class_versions':versions,'geometry_in_package':False,
         'files':{k:{'sha256':hashlib.sha256(v).hexdigest(),'size':len(v)} for k,v in sorted(payload.items())},
         'distribution_files':{k:{'sha256':hashlib.sha256(v).hexdigest(),'size':len(v)} for k,v in sorted(distribution.items())},
-        'native_engine_test':False,'reserved_flags':campaign.reserved,'environment_profiles':environments}
+        'native_engine_test':False,'reserved_flags':campaign.reserved,'environment_profiles':environments,
+        'currency_profile':currency_profile}
     ws.write(root/'source_map.json',json.dumps(source_map,indent=2));ws.write(root/'model.json',json.dumps(campaign.source,ensure_ascii=False,indent=2))
     ws.write(root/'build_report.json',json.dumps(report,ensure_ascii=False,indent=2));return report
 

@@ -73,6 +73,11 @@ class CampaignDocument(Document):
             # Extended conditions are checked by the campaign validator, not the old flag-only shape check.
             view['events']=[]
             draft_shape(view)
+            for conversation in s['conversations']:
+                staging=conversation.get('staging')
+                if staging is not None and not isinstance(staging,(str,dict)):raise ValueError('Puesta en escena: requiere entrada o grupo nativo')
+                if isinstance(staging,dict):
+                    if staging.get('mode')!='native' or not isinstance(staging.get('entries'),list) or not 1<=len(staging['entries'])<=4 or any(not isinstance(p,str) for p in staging['entries']):raise ValueError('Puesta en escena nativa: requiere 1..4 entradas nombradas')
             if not isinstance(s.get('events'),list) or any(not isinstance(e,dict) or not isinstance(e.get('actions'),list) or not isinstance(e.get('conditions',[]),list) for e in s['events']):raise ValueError('Forma de evento inválida')
             for e in s['events']:
                 strings(e,['id','when'],'Evento');records(e['actions'],'Acciones')
@@ -151,6 +156,9 @@ class CampaignDocument(Document):
         self._replace(self.campaign['scenes'][self.active],keys,old,new)
         if collection=='entries':
             sid=self.campaign['scenes'][self.active]['id']
+            for conversation in self.data['conversations']:
+                staging=conversation.get('staging')
+                if isinstance(staging,dict):staging['entries']=[new if p==old else p for p in staging.get('entries',[])]
             for s in self.campaign['scenes']:
                 for e in s['events']:
                     for a in e['actions']:

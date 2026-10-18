@@ -1,21 +1,21 @@
 {
   "chronicle": "rcm_showcase",
   "destination": "H:\\GOG\\Vampire The Masquerade - Redemption\\RCM\\rcm_showcase",
-  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_rcm_showcase_1792313774899497600.zip",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\deploy_rcm_showcase_1792320539455979700.zip",
   "removed_owned_files": [],
   "files": {
     "rcm_showcase\\rcm_wtd_content.nob": "5216338894a4cd5a4d60f0ff4146687f35bd88caa51750891086d350733f78f9",
     "rcm_showcase\\codex\\R_rcm_showcase_s0_Passive.class": "2a50f5a85b67eeb73573c7fc2c513cad6653970e8c43c5399eb5bd85d5803f86",
-    "rcm_showcase\\codex\\R_rcm_showcase_s0_Scene.class": "75235fe1ba8cc0c7ec7cf4fc07d834b0ec2e3bd1e4f6daece6c4a5d95572ebaf",
+    "rcm_showcase\\codex\\R_rcm_showcase_s0_Scene.class": "0860c0e54cc10b4c1da7604ac4959fd483e9573f857e0d05a1f4941fe60db130",
     "rcm_showcase\\codex\\R_rcm_showcase_s1_Passive.class": "a354bd381e90801df8498b05e52bc4e5432744cae991ca1d3e828443f81d7ab4",
-    "rcm_showcase\\codex\\R_rcm_showcase_s1_Scene.class": "74776fd38f42c120dc6c8c6094116bdaec38eb8924bcbaed54fad5c3f6361059",
+    "rcm_showcase\\codex\\R_rcm_showcase_s1_Scene.class": "69bb27c05580776942a1783eabd40acea317971ef3fae6009940377d505115c7",
     "rcm_showcase\\codex\\R_rcm_showcase_s2_Passive.class": "96d39d729ef5e572ee5b392703b2ab00ada991dd3c7651fd63443d3ecd918e5c",
-    "rcm_showcase\\codex\\R_rcm_showcase_s2_Scene.class": "258257aa892516d87e59a68f2bc3ff27601b3da22ad8ea7454f8d0d6ea885cd1",
+    "rcm_showcase\\codex\\R_rcm_showcase_s2_Scene.class": "1f16196893d6c3a0c1f1c7d5b641bab726dcd3022804a11f363326d377fa8bd6",
     "rcm_showcase\\codex\\R_rcm_showcase_s3_Passive.class": "610cdc8684e6d8925f84404cba5ba6293339f1af8767aeb9d1df5cf8ae5b13c9",
-    "rcm_showcase\\codex\\R_rcm_showcase_s3_Scene.class": "78c8252ed73920e572536b502f5aa9cfdb7e19f758c1743842d26b7e7d2618d5",
+    "rcm_showcase\\codex\\R_rcm_showcase_s3_Scene.class": "aa8dffa7e56b507cffc3e8a8dba4f40e40b6d0acd1533360e67f21789e965531",
     "rcm_showcase\\codex\\RCMShowcaseActor.class": "622f9cfca8940e3f4751638ba6a1935cbc8c3b9025edd69870f73e1fb06169d6",
-    "rcm_showcase\\rcm_showcase.nob": "51618c5630d004cd4d39bf0ecc3cf44343566229788265835b8fb8020ea1bf01",
-    "rcm_showcase\\.rcm_deployment.json": "ae29f4e784a03c9c8b534701287399cc2625c1b491da0042b6a97abfff3b428a"
+    "rcm_showcase\\rcm_showcase.nob": "c5551e2fd3a1230ab0f5df4cfe735879148f207f6b9529892f19bcbb31c802bd",
+    "rcm_showcase\\.rcm_deployment.json": "ff9f1f2705f1bf23bd5849f877ac6272b81506dd4fc7bdede4f391692fcb8378"
   },
   "native_engine_test": false
 }

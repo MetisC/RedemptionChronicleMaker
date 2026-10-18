@@ -177,3 +177,7 @@ Talk to the guide and choose the dynamic encounter laboratory. Try [two rats](rc
 ## Optional Cinematic Director lab
 
 Ask the Guide for laboratories, then choose the Cinematic Director. In the club click Refugio, speak to Elena, watch or skip the arrival, defeat the rat and return to her. Returning preserves the main quest. The lab uses ordinary Actions and the same compiler; native acceptance remains EMB01–24.
+
+## Native party staging and temporary music
+
+In the optional refuge scene, select Elena’s welcome conversation → Staging to see four existing named markers. Move them in 3D Space. The film temporarily replaces London_Hub with DA_Boss_1 and restores it before ending; cancellation restores only its owned snapshot. Edit these ordinary cues in Campaign → Sequence. Native formation, framing and save/load remain manual checks.

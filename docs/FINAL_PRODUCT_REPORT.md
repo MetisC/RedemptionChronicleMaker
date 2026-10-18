@@ -1,39 +1,41 @@
 # Producto vigente · 1.0.0-rc6
 
-RCM crea crónicas sobre geometría original inmutable mediante datos propios, formatos generados y Java compilado contra Codex. No ejecuta Embrace, NOT Editor ni otro programa original de autoría. Mantiene la versión existente; no declara 1.0 final ni automatiza Redemption.
+RCM crea crónicas sobre geometría original inmutable mediante autoría visual, datos propios, formatos generados y Java compilado contra Codex. No ejecuta Embrace, NOT Editor ni otros programas originales de autoría. Se mantienen formatos 9/10 y la versión rc6; no se declara 1.0 final.
 
-## Cierre de autoría
+## Cierre quirúrgico
 
-La [auditoría nueva](../research/embrace_closure/EMBRACE_AUTHORING_CLOSURE.md) contrasta manual, API/bytecode, scripts y archivos. La [matriz final](EMBRACE_AUTHORING_PARITY.md) separa capacidad implementada, exclusiones geométricas y aceptación nativa pendiente.
+La auditoría actual está en research/embrace_closure/FINAL_FLECKS_AUDIT.md. Se revisó HEAD real y se reconfirmaron referencias en el archivo Codex original: PushMusic 55 clases, PopMusic 53 y TeleportPartyToConversation 107. Son referencias de bytecode, no ejecuciones observadas.
 
-- Travellings propios: captura/edición visual y escritor NCP lineal. Los 174 originales conservan sus bytes tras roundtrip. El evaluador nativo demuestra coeficientes y buffer de 128 puntos; sin FOV por punto ni smoothing idéntico anunciado.
-- Secuencias: Actions normales en una lista temporal, reutilizando compilador/poll y pestañas. Planos, mirada, gesto, recorrido, sonido, efectos, estado y eventos; sin timer por cue.
-- Diálogo: Actions al comenzar línea y puesta en escena con entradas nombradas. GOTO/RETURN permanece. Se rechazan interacciones modales competidoras directas o mediante run_event.
-- Sonido en bucle situado con Stop/ownership; luz dinámica sobre entidad propia y clima demostrado en scripts. No se tocan lightmaps ni bytes opacos de niebla.
-- Recursos propios: puntos inline viajan con Duplicate/export/import; NCP en NOB/paquetes, con validación, referencias, borrado conjunto y fingerprints. Editar un path usado en un cue conserva los planos iniciales.
+- **Música temporal**: Actions normales, pista MP3 válida y volumen 0..100. Usa los métodos reales PushMusic/PopMusic. Codex conserva un único snapshot Java, no una pila anidada. RCM limita propiedad, rechaza Push anidado/Pop ajeno y limpia sólo su snapshot conocido. No inventa persistencia: Restore descarta propiedad transitoria. Start/Stop Music/Ambient se conservan.
+- **Conversación nativa**: Automática, Entrada RCM anterior o grupo nativo mediante una a cuatro entradas nombradas existentes. Se reutilizan viewport, transforms, referencias, borrado y undo. Se escribe sólo la tabla demostrada en NSD propio y se llama a TeleportPartyToConversation. Se probaron 99 tablas originales / 473 registros; la formación y diferencias reales en MP requieren observación.
+- **NCP estacionario**: PARTIAL. Los 22 pares de posición repetida también repiten parámetro. No demuestran una duración para giro/hold. Se conserva la restricción al escribir, el roundtrip de los 174 originales y el plano fijo de un punto. No se inventa un mínimo de tiempo o distancia.
 
-Extensiones optativas en formatos 9/10, sin conversión al abrir. Un cambio de contrato requiere partida nueva. Las películas con cues se cancelan al cargar para no repetir efectos/recompensas; las anteriores conservan su política. Conflictos/fallos liberan control de forma comprobada con doubles, pendiente de confirmación nativa.
+Sin nueva pestaña, subsistema de música, formato 11, editor de marcadores paralelo ni controles geométricos. Los casos compartidos usan Events/Actions/Sequences/Resources existentes.
 
-## Contenido y compatibilidad
+## Contenido preservado y ejemplos
 
-Tutorial «Una carta al amanecer», mini crónica y Dynamic Encounter Lab se preservan respecto a HEAD: research/embrace_closure/compatibility.json. Los fixtures no cambian. Showcase conserva su historia y añade una única sala opcional desde la Guía. **RCM · Arrival at the refuge**, en Ayuda, prueba clic → diálogo → escena u omitir → rata débil → Elena → viaje/epílogo.
+Tutorial aceptado «Una carta al amanecer» en formato 9, mini crónica, Dynamic Encounter Lab, fuentes y recursos personales se preservan. El Showcase conserva la historia del libro; sólo se amplía su laboratorio opcional. Arrival at the refuge es una aventura independiente disponible en Ayuda.
 
-Hover/clic y primer desplazamiento reparados fueron confirmados por el usuario en la prueba anterior. No se reescriben. Puertas con frames/pivote dependen de su recurso; el refugio oculta el objeto compatible y despeja colisión, sin simular una animación de geometría fija.
+Ambos laboratorios muestran puntos nativos para la party, conversación con Elena, cámara, mirada del guardia, gesto, recorrido, travelling propio, audio situado, música dramática temporal, fundido, una rata débil, journal y viaje. La puerta original se oculta y deja paso; no se inventa una animación para una cara fija del NIL. Las puertas con frames/pivote mantienen su soporte acotado.
 
-WTD sigue local/opcional: clanes, disciplinas, plantillas/modelos y Penthouse filtrados. El paquete instalado pertenece a la raíz RCM y se refleja en carpetas administradas, independientemente de la crónica. No se distribuyen assets del mod. Se conservan perfiles Crypt y compatibilidad de inventarios anterior a LAN. Importar no acredita licencia ajena ni cada disciplina/AI nativa.
+## Aceptación nativa existente
 
-## Evidencia vigente
+- El usuario confirmó el tutorial anterior y las reparaciones de hover/clic y primer desplazamiento en su prueba previa.
+- El cierre del Taller al cargar se localizó en la escritura nativa CASH (Vampire.exe+0x97c16): varios mapas acumulaban referencias sobre una tabla de tres slots. El generador unifica/deduplica y el gate rechaza desbordamientos.
+- El usuario confirmó la carga inicial corregida el 18/10/2026: **«Funciona bien y abre»**. Esa confirmación no certifica los nuevos puntos nativos, música, cine, guardados, reentrada o red.
 
-El gate autoritativo es build/tests/quality_report.json: Ruff, alcance mypy configurado y batería completa; detalle en test_report.json. Las regresiones incluyen todos los NCP, datos inválidos, recursos/borrado, exportación/paquetes, conflictos/restore, audio/luz y transacciones Qt. Compilación real: clases 45.3. Doubles/Qt no certifican gráficos/sonido del motor.
+## Verificación
 
-research/embrace_closure contiene auditoría, call sites, análisis nativo, compatibilidad, compilación/paquetes y portable EN/ES. research/read_only_verification.json compara 43 fuentes originales. OFFLINE VERIFIED, COMPILED AGAINST REAL CODEX, PACKAGED, MANUAL RUNTIME TEST REQUIRED y RUNTIME VERIFIED son estados distintos; el último sólo se atribuye a observación concreta del usuario.
+La suite completa pasó **525 pruebas, 0 fallos, 0 errores y 0 omitidas**. Tras compactar los controles del inspector pasaron otras **140 pruebas de interfaz**, también sin fallos, errores u omisiones. Ruff y el alcance configurado de mypy pasaron. Los resultados autoritativos actuales están en build/tests/quality_report.json y test_report.json; el recibo final del cierre está en research/embrace_closure/final_flecks_delivery.json. Distinguen suite, Ruff/mypy, compilación real Codex **45.3**, doubles, transacciones Qt, paquetes y portable.
 
-Ejecutable: build/portable/RedemptionChronicleMaker/RedemptionChronicleMaker.exe; acceso directo en la raíz. Incluye dependencias, guías y ejemplos propios, sin originales/WTD. Carpeta movida/PATH restringido no equivale a PC/GPU/DPI independiente.
+Los probes EN/ES con carpeta movida, espacios/unicode y PATH restringido no equivalen a PC independiente, render OpenGL real, GPU o DPI físico. Originales: research/read_only_verification.json, 43 fuentes comprobadas por hash. El código y recursos del juego original permanecen sin modificar fuera de la carpeta RCM autorizada.
 
-## Pendientes y límites
+## Preguntas de cierre
 
-[EMB01–24](MANUAL_RUNTIME_CHECKLIST.md) cubre cámara propia, coreografía, efectos, sonido/luz/clima, save/load, reentrada, WTD y aventura completa. DYN01–12 y los casos previos siguen independientes. La aceptación del tutorial no certifica automáticamente Showcase, nueva aventura ni multijugador.
+1. **¿Queda una capacidad material no geométrica necesaria para una crónica normal?** No se ha identificado otro bloqueo material de autoría en los mecanismos auditados. Esto no es una certificación universal de cada opción de Embrace ni de toda su API.
+2. **¿Qué limitación no geométrica concreta queda?** Crear giros NCP estacionarios temporizados sigue PARTIAL: no existe una regla de duración suficientemente demostrada. Se mantienen además los límites explícitos de codec NSD/NOT, planos sin FOV por key, puertas no universales y snapshot musical transitorio. No se anuncian como funciones completas.
+3. **¿Qué significa cobertura?** El flujo normal permite construir la escena de aceptación desde la UI, sin Java/NCP manuales ni herramientas originales. IMPLEMENTED y OFFLINE VERIFIED no equivalen a RUNTIME VERIFIED. No se afirma 100 % de paridad ni 100 % de comportamiento nativo verificado.
+4. **¿Qué pruebas manuales quedan?** EMB01–24, DYN01–12 y EMB-MUSIC-01..03, EMB-CONV-01..05 y EMB-NCP-01..05. Incluyen framing/clipping, party/colisión/MP, cancelación, música/save/load/travel, reentrada, WTD y PC/GPU/DPI independiente. La carga inicial aceptada sólo acredita esa parte de LOAD-META-01.
+5. **¿Qué se entrega?** Editor portable EN/ES, ejemplos, generadores y paquetes propios, compilación 45.3 y evidencia diferenciada de integridad y pruebas. La suite completa es 525/0/0/0 y la regresión posterior de widgets 140/0/0/0. El recibo conserva hashes y alcance de cada verificación.
 
-Fuera de alcance: geometría, CSG, UV/texturizado estructural, lightmaps y sectores/portales estructurales. Sin codec universal NSD/NOT, migración general de partidas, puertas universales o red replicada verificada. Los perfiles conservan el entorno cuando no se demuestra control más preciso; EastLondon sigue gris.
-
-Se cierran los huecos de autoría justificados, sin declarar «100 % verificado» ocultando pruebas manuales ni iniciar otra fase de funciones.
+La geometría, CSG, UV/texturizado estructural, lightmaps y edición estructural de sectores/portales siguen fuera de alcance. No se inicia otra fase ni se buscan nuevas APIs por curiosidad.

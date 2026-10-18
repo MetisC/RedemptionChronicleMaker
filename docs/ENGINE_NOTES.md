@@ -140,3 +140,19 @@ Lector NCP sin pérdidas y escritor lineal; captura/edit/reordenación visual, c
 ### INFERIDO / PENDIENTE DE VERIFICAR
 
 La conversión de orientación de la cámara del visor se deriva de la base nativa; su encuadre visual debe confirmarse en EMB09–11. Escala/apariencia de luz, audio, weather, clipping y contratos reales de carga/reentrada nuevos permanecen en EMB01–24. No se reclama igualdad de smoothing del editor original ni WYSIWYG. No hay observación nativa de las funciones nuevas por el agente.
+
+### CONFIRMADO EN ARCHIVOS ORIGINALES — cargador NMF CASH
+
+El error de Windows al cargar el Taller (18/10/2026 11:21:32, 0xc0000005, Vampire.exe+0x97c16) coincide con la escritura del tercer token CASH. El ejecutable añade hasta tres referencias por línea a slots +0x1aeb8..+0x1aec0; su contador está en +0x1aec4. Varias líneas acumuladas pueden sobrescribirlo. El NMF combinado del Taller tenía cinco referencias consumidas. Evidencia y corrección: research/embrace_closure/METADATA_LOAD_FIX.md, native_metadata_cash.txt y metadata_cash_crash.json. La generación unifica/deduplica hasta tres y el gate rechaza el desbordamiento.
+
+### CONFIRMADO POR EL USUARIO — carga inicial corregida
+
+El usuario observó el cierre del paquete anterior. El paquete corregido está compilado y desplegado; el usuario confirmó su carga inicial: «Funciona bien y abre» (18/10/2026). No se ha ejecutado el juego automáticamente. La auditoría adicional se completó después de esta confirmación; sus funciones nuevas no están incluidas en esa aceptación.
+
+### CONFIRMADO EN API / BYTECODE / ARCHIVOS — cierre quirúrgico
+
+La nueva exploración del Codex original reconfirma 55 clases con referencias PushMusic, 53 PopMusic, 107 TeleportPartyToConversation y una TeleportPartyToEntrance. Push/Pop son wrappers Java con un solo snapshot público de pista/volumen; un segundo Push lo sobrescribe. No es una pila nativa anidada y no hay evidencia de persistencia. Las Actions de RCM conservan propiedad acotada y transitoria, sin guardar un stack inventado.
+
+Entrada y conversación usan tablas NSD separadas y wrappers nativos distintos. Se validaron 99 tablas originales de conversación / 473 registros de 60 bytes; posición, matriz de orientación, sector, grupo y selector. El escritor sólo añade esta tabla demostrada a escenas propias. Los grupos 0..15 son el límite adoptado de autoría Embrace, no un array nativo fijo. Se reutilizan entradas nombradas existentes (una a cuatro por grupo); el runtime llama a TeleportPartyToConversation. Formación, colisión y diferencias en MP permanecen pendientes de observación.
+
+Los 22 pares NCP de posición repetida también repiten parámetro; ocho cambian Euler. No demuestran una regla temporal segura para giros estacionarios. Se conserva la restricción de autoría y el roundtrip sin pérdidas de los 174 originales. Evidencia, decisiones y límites: research/embrace_closure/FINAL_FLECKS_AUDIT.md. Gate: 525 pruebas, 0/0/0; regresión posterior de widgets: 140, 0/0/0. Compilación real 45.3; audio/puesta en escena nuevos siguen MANUAL RUNTIME TEST REQUIRED.

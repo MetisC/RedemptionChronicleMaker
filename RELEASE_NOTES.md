@@ -2,6 +2,8 @@
 
 This release builds on RC5 with clickable original scenery, corrected arrival navigation, optional Within The Darkness content import and safer editing workflows. Original level geometry remains unchanged.
 
+- Fixed a Showcase module-load crash caused by appending currency declarations from different base maps beyond Redemption's three-slot CASH table. Campaign builds now merge and bound those declarations; the output gate rejects overflowing NMF files. Five regression tests cover this case. The user confirmed corrected initial loading on 2026-10-18; later cinematic/save/network cases remain separate.
+
 ## Original scenery and click actions
 
 - Identify original objects directly from the 3D viewport, open the object picker with the clicked object selected, and locate objects in the scene. Embedded scene brushes are included, making doors easier to identify.
@@ -42,8 +44,8 @@ Startup inventory compatibility is preserved: required custom template libraries
 
 ## Validation and remaining checks
 
-- Latest recorded automated run: **482 tests passed**, with no failures, errors or skipped tests. These cover offline integration, editor models, generated formats and build behaviour.
-- Generated Java was compiled against the real Codex API with the required Java 45.3 class format. Packaged editor checks passed in English and Spanish.
+- Latest recorded automated run: **525 tests passed**, with no failures, errors or skipped tests. These cover offline integration, editor models, generated formats and build behaviour.
+- An additional 140 widget regressions passed after compacting the property controls. Generated Java was compiled against the real Codex API with the required Java 45.3 class format. Packaged editor checks run in English and Spanish, with restricted PATH and moved folders; this is not independent-machine or native gameplay acceptance.
 - Native acceptance includes the previously accepted tutorial and the user's latest confirmation of scenery click interactions and initial movement. This confirmation applies to the tested scenario and does not certify every level or runtime configuration.
 - Broader native save/load ownership, re-entry, spawned-actor collision/navigation and networking still require the applicable manual checks. A lethal hit may skip a health threshold; no universal before-death interception is promised.
 
@@ -55,3 +57,11 @@ RCM does not distribute original Vampire: The Masquerade — Redemption assets o
 - Choreograph films with timed normal Actions and line-start dialogue Actions. Native shot/effect, LookAt/known motion, named conversation staging, positioned loop/Stop, small entity-attached dynamic light and demonstrated weather controls use real Codex APIs.
 - New cue films cancel safely on load to avoid replaying side effects; old films keep their previous policy. No automatic project format conversion or new main tab.
 - Optional Showcase Director lab and separate Arrival at the refuge example, available from Help. Accepted tutorial/mini remain preserved. Generated files, compilation, doubles and packaged UI checks are distinct from native acceptance. EMB01–24 document pending user checks; no new version number or final-1.0 claim.
+
+## Final targeted authoring closure
+
+- Temporary music and Restore previous music are ordinary Actions, available in events, click interactions, dialogue lines, film cues and boss phases. Investigation of the actual Codex bytecode shows a single Java snapshot, not a nested native stack. Nested pushes and unowned restores fail closed; ownership is transient across load, with explicit normal music available for recovery.
+- Conversation properties now offer native party staging using one to four existing named Entry markers. RCM writes the evidenced 60-byte conversation records in generated NSD and calls the real TeleportPartyToConversation API. Existing automatic and RCM Entry staging remain supported. Named references, safe deletion, rename, undo and packaging are covered.
+- All 174 original NCP files were rechecked. Repeated-position keys also repeat their path parameter, so no timed stationary rotation is invented. Authored stationary NCP rotation remains PARTIAL; one-point fixed holds and original paths remain available.
+- Optional Showcase/refuge labs demonstrate the new music and party staging. Normal music is explicitly set when retrying or skipping the film. Compact dropdowns and full-text tooltips keep property forms usable at narrow widths.
+- New manual cases are EMB-MUSIC-01..03, EMB-CONV-01..05 and EMB-NCP-01..05, in addition to the retained EMB01–24 and DYN01–12. New native behaviour remains MANUAL RUNTIME TEST REQUIRED. Version and formats remain rc6 and 9/10.

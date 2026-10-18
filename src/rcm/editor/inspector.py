@@ -72,6 +72,10 @@ class Inspector(QWidget):
     def combo(self, label, choices, selected, callback, name):
         control = QComboBox()
         control.setObjectName(name)
+        control.setSizeAdjustPolicy(QComboBox.SizeAdjustPolicy.AdjustToMinimumContentsLengthWithIcon)
+        control.setMinimumContentsLength(12)
+        control.setMinimumWidth(0)
+        control.setSizePolicy(QSizePolicy.Policy.Expanding,QSizePolicy.Policy.Preferred)
         for text, value in choices:
             control.addItem(str(text), value)
         index = control.findData(selected)
@@ -79,6 +83,8 @@ class Inspector(QWidget):
             control.addItem(tr("Referencia pendiente: ") + str(selected), selected)
             index = control.count()-1
         control.setCurrentIndex(max(index, 0))
+        control.setToolTip(control.currentText())
+        control.currentIndexChanged.connect(lambda:control.setToolTip(control.currentText()))
         control.currentIndexChanged.connect(lambda: self.win.guard(lambda: callback(control.currentData())))
         self.form.addRow(label, control)
         return control
@@ -387,7 +393,7 @@ class Inspector(QWidget):
             incoming,outgoing=[x for x in links if x.target==path],[x for x in links if x.source==path]
         else:
             incoming, outgoing = references(self.win.doc.data, path)
-        self.button(tr('Find References / Buscar referencias'), lambda:self.win.find_references(path), 'find_references')
+        self.button(tr('Buscar referencias'), lambda:self.win.find_references(path), 'find_references')
         if self.win.spatial.viewport:
             def show_related():
                 self.win.center_tabs.setCurrentIndex(0)
@@ -442,7 +448,8 @@ class Inspector(QWidget):
                 from ..camera_presets import PRESETS, DEFAULT_DIALOGUE_CAMERA
                 cameras=[(tr(PRESETS[DEFAULT_DIALOGUE_CAMERA][0])+tr(' (predeterminada)'),DEFAULT_DIALOGUE_CAMERA)]+[(tr(v[0]),k) for k,v in PRESETS.items() if k!=DEFAULT_DIALOGUE_CAMERA]+[(tr('Automática del motor (experimental)'),'native')]
                 self.combo(tr('Cámara de diálogo'),cameras,conv.get('camera',DEFAULT_DIALOGUE_CAMERA),lambda v:self.set(p+('camera',),v),'conversation_camera')
-                self.combo(tr('Puesta en escena'),[(tr('Automática'),None)]+self.ids('entries'),conv.get('staging'),lambda v:self.set(p+('staging',),v,True),'conversation_staging')
+                from .director import staging_controls
+                staging_controls(self,conv,p)
             if "nodes" in conv:
                 self.combo(tr("Nodo de entrada"), [(n["id"], n["id"]) for n in conv["nodes"]], conv.get("entry", ""), lambda v: self.set(p + ("entry",), v), "conversation_entry")
                 self.note(tr("Las respuestas pueden llevar a otro nodo o terminar con un resultado. Las acciones de flags se aplican al terminar."))

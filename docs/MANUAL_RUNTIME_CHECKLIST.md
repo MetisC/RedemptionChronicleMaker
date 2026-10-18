@@ -1,23 +1,23 @@
-# Prueba manual Â· 1.0.0-rc4
+# Prueba manual · 1.0.0-rc6
 
 **MANUAL RUNTIME TEST REQUIRED.** RCM no automatiza Redemption. La historia del tutorial ya fue aceptada; esta lista comprueba el nuevo producto.
 
 1. **SETUP01/02:** descomprime el ZIP de usuario en otra carpeta. Abre el EXE, selecciona Vampire.exe y comprueba la bienvenida y tus proyectos fuera del programa.
-2. **PLAY01/TUTOR01:** abre Tutorial rÃ¡pido y pulsa F5. En Multiplayer â†’ LAN â†’ New Game elige Una carta al amanecer; completa el encargo. Si el personaje llevaba objetos RCM de antes, comprueba especialmente que LAN abre sin error.
-3. **SHOW01â€“04:** abre Showcase completo y pulsa F5. Prueba diÃ¡logo/cÃ¡maras, nota/objeto, libro/llave/diario y una zona de activaciÃ³n. Las estaciones se pueden cerrar u omitir.
-4. **SHOW02/05â€“08:** prueba la pelÃ­cula, animaciones, recorrido, rata bÃ¡sica, sonido y viaje al archivo/regreso. Anota cualquier posiciÃ³n, encuadre o colisiÃ³n incorrectos.
+2. **PLAY01/TUTOR01:** abre Tutorial rÃ¡pido y pulsa F5. En Multiplayer → LAN → New Game elige Una carta al amanecer; completa el encargo. Si el personaje llevaba objetos RCM de antes, comprueba especialmente que LAN abre sin error.
+3. **SHOW01–04:** abre Showcase completo y pulsa F5. Prueba diÃ¡logo/cÃ¡maras, nota/objeto, libro/llave/diario y una zona de activaciÃ³n. Las estaciones se pueden cerrar u omitir.
+4. **SHOW02/05–08:** prueba la pelÃ­cula, animaciones, recorrido, rata bÃ¡sica, sonido y viaje al archivo/regreso. Anota cualquier posiciÃ³n, encuadre o colisiÃ³n incorrectos.
 5. **SHOW09:** guarda/carga antes y despuÃ©s de recoger, completar y viajar. Vuelve a las escenas: sin premios, actores u objetos duplicados, y sin cÃ¡mara/UI atrapadas.
 6. **PLAY02:** cambia una frase en el editor, guarda y pulsa F5 con el juego cerrado. Comprueba la frase nueva y repite F5 sin cambios; no deberÃ­a reconstruir.
 
 Pendiente adicional: portable en un PC/VM independiente y revisiÃ³n visual a 100/125/150/200%. No se afirma esa aceptaciÃ³n por las pruebas de este equipo.
 
-## Encuentros dinÃ¡micos Â· DYN01â€“12
+## Encuentros dinÃ¡micos · DYN01–12
 
-Abre chronicles/dynamic_lab/project.yaml, guarda y pulsa F5 con el juego cerrado. En LAN â†’ New Game elige **RCM Â· Dynamic Encounter Lab**. Usa una partida nueva. Anota PASS/FAIL y conserva el trace; todos estÃ¡n pendientes de observaciÃ³n nativa.
+Abre chronicles/dynamic_lab/project.yaml, guarda y pulsa F5 con el juego cerrado. En LAN → New Game elige **RCM · Dynamic Encounter Lab**. Usa una partida nueva. Anota PASS/FAIL y conserva el trace; todos estÃ¡n pendientes de observaciÃ³n nativa.
 
 | Caso | Prueba y resultado esperado |
 |---|---|
-| DYN01 | Anezka â†’ preparar oleadas â†’ barril. Entrar en su zona crea tres ratas. Sin aceptar no empieza. |
+| DYN01 | Anezka → preparar oleadas → barril. Entrar en su zona crea tres ratas. Sin aceptar no empieza. |
 | DYN02 | Mata las tres; tras dos segundos aparecen dos. No avanza si queda una viva. |
 | DYN03 | Inicia el continuo desde Anezka: una cada cinco segundos, mÃ¡ximo tres vivas. Mata una y comprueba reposiciÃ³n. |
 | DYN04 | DetÃ©n el continuo: no aparecen mÃ¡s; las vivas permanecen. Prueba tambiÃ©n pausa/reanudaciÃ³n. |
@@ -32,9 +32,9 @@ Abre chronicles/dynamic_lab/project.yaml, guarda y pulsa F5 con el juego cerrado
 
 El laboratorio no certifica colisiÃ³n/pathfinding. Enemigos normales Rat original; sÃ³lo boss x10 vida para ver umbrales. Showcase conserva encargo principal y ofrece laboratorio desde la GuÃ­a. Tutorial rÃ¡pido no aÃ±ade encuentros.
 
-## Objetos originales y puertas Â· pendiente de prueba nativa
+## Objetos originales y puertas · pendiente de prueba nativa
 
-En una copia de una campaÃ±a, usa AÃ±adirâ€¦ â†’ Objeto original / crear pasoâ€¦; no modifiques el tutorial aceptado.
+En una copia de una campaÃ±a, usa AÃ±adir… → Objeto original / crear paso…; no modifiques el tutorial aceptado.
 
 | Caso | Prueba y resultado esperado |
 |---|---|
@@ -47,12 +47,12 @@ En una copia de una campaÃ±a, usa AÃ±adirâ€¦ â†’ Objeto original / 
 
 Estos casos permanecen pendientes; catÃ¡logo, compilaciÃ³n Codex y doubles no son observaciÃ³n del motor. La tolerancia de identidad es de ocho unidades y exige un Ãºnico prop local de la plantilla. No habilita borrar superficies fijas del NIL ni reconstruye el estado interno de Door/PivotDoor.
 
-## WTD importado Â· pendiente de prueba nativa
+## WTD importado · pendiente de prueba nativa
 
 | Caso | Prueba y resultado esperado |
 |---|---|
 | WTD01 | Sin importar, abrir tutorial y mini: mismo comportamiento; no aparecen clanes/disciplinas opcionales ni sus acciones. |
-| WTD02 | ConfiguraciÃ³n â†’ Importar NOB desde fuera del juego. SÃ³lo contenido disponible; menÃºs originales, sin crÃ³nica demo. Reiniciar editor y conservar catÃ¡logo. |
+| WTD02 | ConfiguraciÃ³n → Importar NOB desde fuera del juego. SÃ³lo contenido disponible; menÃºs originales, sin crÃ³nica demo. Reiniciar editor y conservar catÃ¡logo. |
 | WTD03 | Crear crÃ³nica sobre Penthouse y colocar entrada en suelo vÃ¡lido. Visor, entorno, suelo y puertas estÃ¡ticas; no confundir compilaciÃ³n con navegaciÃ³n nativa verificada. |
 | WTD04 | Actor con clan y disciplina elegidos; conversaciÃ³n y animaciones normales. Enemigo con AI original: comprobar la disciplina, efecto, audio y objetivo concreto. |
 | WTD05 | Evento concede disciplina al jugador y despuÃ©s cambia nivel/clan. Guardar/cargar y volver de escena sin duplicar premio ni reiniciar datos. |
@@ -64,7 +64,7 @@ Todos permanecen pendientes dentro de Redemption. La importaciÃ³n selecciona r
 ORG07 pendiente: en Tenebrae, identificar la salida real por clic derecho, ocultar/restaurar y comprobar el paso; las dos puertas fijas del fondo ofrecen transiciÃ³n, conservan su aspecto y ofrecen una interacciÃ³n por clic con etiqueta; no deben viajar al acercarse.
 
 
-CLICK01â€“08 â€” PENDING / PENDIENTE (new native brush layer):
+CLICK01–08 — PENDING / PENDIENTE (new native brush layer):
 
 | Case | Manual check |
 |---|---|
@@ -113,3 +113,25 @@ CLICK10 / ARRIVAL02 — USER CONFIRMED for the tested new-game clicks and initia
 | EMB24 | PC/VM Windows independiente, sin Python/JDK del sistema: portable EN/ES, instalación propia, abrir/construir/ejecutar ejemplo manualmente. Anota GPU/DPI físico, cámara y audio. Mover carpeta y usar offscreen no lo certifica. |
 
 Esta batería nueva queda pendiente de observación del usuario. El primer desplazamiento y los clics reparados ya fueron confirmados en su prueba anterior; no acredita cinematics nuevas, cargas, reentrada o red. EMB02 depende del recurso: no anima caras fijas del NIL.
+
+LOAD-META-01 — Tras actualizar el editor, abrir Taller del Narrador → Probar en Redemption → crear partida nueva y elegir el módulo. Debe terminar la carga y aparecer la escena inicial. Repetir entrando al laboratorio opcional y regresando. El usuario confirmó la carga inicial corregida el 18/10/2026: «Funciona bien y abre». Viaje/regreso al laboratorio y comportamientos nuevos siguen pendientes de sus casos manuales. Comprobar aparte que tutorial y mini siguen cargando.
+
+## Cierre quirúrgico: casos manuales nuevos
+
+Los casos siguientes siguen MANUAL RUNTIME TEST REQUIRED. El usuario sólo confirmó la carga inicial del Showcase el 18/10/2026.
+
+| Caso | Comprobación |
+|---|---|
+| EMB-MUSIC-01 | Música normal → pista temporal a volumen 50 → restaurar. Vuelven pista y volumen anteriores. |
+| EMB-MUSIC-02 | Ejecutar cues de música temporal/restaurar; terminar, cancelar y repetir. Una única restauración propia. Push anidado se rechaza. |
+| EMB-MUSIC-03 | Guardar/cargar durante música temporal y viajar/regresar. Al cargar se descarta propiedad sin Pop desconocido. Establecer música normal explícitamente si hace falta. No retirar música reemplazada por otro script. |
+| EMB-CONV-01 | Usar la puesta en escena anterior por Entrada RCM. Comparar posición, orientación, party y cámara antes/después. |
+| EMB-CONV-02 | Elegir Punto de conversación nativo y tres marcadores de compañeros. Verificar cuatro posiciones, giro Z, suelo/colisión e inicio del diálogo. |
+| EMB-CONV-03 | Guardar/cargar antes y después de la puesta nativa. Sin movimiento duplicado ni desplazamiento acumulado. |
+| EMB-CONV-04 | Terminar y abortar conversaciones colocadas. Regresan GUI, cursor y movimiento. |
+| EMB-CONV-05 | Viajar, regresar y repetir en SP; comparar iniciadores reales de MP aparte. Las APIs de teleport no son internamente idénticas. |
+| EMB-NCP-01 | Reproducir oldtownday/prague_3_3_bed originales en su geometría. Observar qué hace con claves repetidas. |
+| EMB-NCP-02 | Un punto propio mantiene plano fijo durante la secuencia y devuelve el control. |
+| EMB-NCP-03 | Trasladarse entre puntos distintos cambiando orientación. Comprobar extremos, giro corto y encuadre. |
+| EMB-NCP-04 | Intentar posiciones consecutivas iguales y Euler distinto: validación clara, sin archivo inválido ni giro temporizado inventado. |
+| EMB-NCP-05 | Comparar velocidades, cancelar/terminar y repetir. Registrar clipping y devolución del control; el preview no acredita el render nativo. |
