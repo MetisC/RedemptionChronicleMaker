@@ -1,4 +1,4 @@
-# Redemption Chronicle Maker 1.0.0-rc6
+# Redemption Chronicle Maker 1.0.0-rc7
 
 - Opening a chronicle now shows a wait cursor and “Opening chronicle…” before loading, including recent-project double-clicks. Repeated opens are blocked during loading; failures restore the cursor and controls. Feedback is translated into English/Spanish.
 
@@ -66,4 +66,4 @@ RCM does not distribute original Vampire: The Masquerade — Redemption assets o
 - Conversation properties now offer native party staging using one to four existing named Entry markers. RCM writes the evidenced 60-byte conversation records in generated NSD and calls the real TeleportPartyToConversation API. Existing automatic and RCM Entry staging remain supported. Named references, safe deletion, rename, undo and packaging are covered.
 - All 174 original NCP files were rechecked. Repeated-position keys also repeat their path parameter, so no timed stationary rotation is invented. Authored stationary NCP rotation remains PARTIAL; one-point fixed holds and original paths remain available.
 - Optional Showcase/refuge labs demonstrate the new music and party staging. Normal music is explicitly set when retrying or skipping the film. Compact dropdowns and full-text tooltips keep property forms usable at narrow widths.
-- New manual cases are EMB-MUSIC-01..03, EMB-CONV-01..05 and EMB-NCP-01..05, in addition to the retained EMB01–24 and DYN01–12. New native behaviour remains MANUAL RUNTIME TEST REQUIRED. Version and formats remain rc6 and 9/10.
+- New manual cases are EMB-MUSIC-01..03, EMB-CONV-01..05 and EMB-NCP-01..05, in addition to the retained EMB01–24 and DYN01–12. New native behaviour remains MANUAL RUNTIME TEST REQUIRED. Version and formats remain rc7 and 9/10.
