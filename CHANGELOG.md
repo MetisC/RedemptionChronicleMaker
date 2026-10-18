@@ -1,4 +1,4 @@
-# Changes · 1.0.0-rc6
+# Changes · 1.0.0-rc7
 
 - Opening a chronicle now shows a wait cursor and “Opening chronicle…” before loading, including recent-project double-clicks. Repeated opens are blocked during loading; failures restore the cursor and controls. Feedback is translated into English/Spanish.
 
@@ -26,6 +26,6 @@ First-run, safe saving, deployment, cache identity and language preferences rema
 
 Native click interactions: hover label plus arbitrary existing actions, including Event / Run. Self-scene travel/jump is rejected in validation and destination selectors. New click runtimes guard self travel, synchronous event recursion and repeated transition entry. The accepted tutorial runtime remains unchanged; the user confirmed hover/click and first movement in the tested chronicle; broader CLICK01–08 combinations remain manual.
 
-Cinematic Director closure: own linear NCP capture/editor/writer, timed shared Actions and dialogue line Actions, native camera effects/staging, spatial loops with Stop, entity-attached lights and demonstrated weather. Optional Showcase lab plus refuge acceptance chronicle. Native rendering/audio/save/reentry checks remain EMB01–24; existing accepted content preserved. Version remains rc6.
+Cinematic Director closure: own linear NCP capture/editor/writer, timed shared Actions and dialogue line Actions, native camera effects/staging, spatial loops with Stop, entity-attached lights and demonstrated weather. Optional Showcase lab plus refuge acceptance chronicle. Native rendering/audio/save/reentry checks remain EMB01–24; existing accepted content preserved. Version remains rc7.
 
 Final targeted closure: temporary-music/restore Actions with evidenced single-snapshot ownership; native party conversation staging through existing named Entries and bounded generated NSD; references/rename/cascade/undo and real Codex 45.3 compilation. Retained safe stationary-NCP authoring restriction after analysing all 174 original paths. Optional labs updated, narrow property controls corrected. Fresh full gate: 525 tests, 0 failures/errors/skips; subsequent widget regression: 140, 0 failures/errors/skips. New native audio/formation/save/MP cases remain manual; no version or project-format increase.
