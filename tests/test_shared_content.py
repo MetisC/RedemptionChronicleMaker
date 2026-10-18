@@ -21,7 +21,12 @@ class SharedContent(TestCase):
         self.ws=Workspace(self.root/'workspace',self.game)
         self.pack=zip_bytes({'misc/game.ncd':b'local test content'})
         self.record=dict(sha256=sha(self.pack))
-        running=patch('rcm.deployment.game_running',return_value=False);running.start();self.addCleanup(running.stop)
+        # These installations are synthetic. Patch every imported alias so a
+        # real game (or a restricted process query) cannot affect the fixture.
+        from rcm import deployment, deployment_many, packages
+        for module in (deployment,deployment_many,packages):
+            running=patch.object(module,'game_running',return_value=False)
+            running.start();self.addCleanup(running.stop)
     def publish(self):publish_shared(self.ws,self.pack,self.record)
     def build(self,ident):
         data=zip_bytes({});relative=ident+'.nob'

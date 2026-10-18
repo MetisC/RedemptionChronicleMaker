@@ -22,6 +22,10 @@ def graph(root):
             for i,v in enumerate(value):scan(v,path+(i,),source,local)
         elif isinstance(value,dict):
             for k,v in value.items():
+                if k=='staging' and isinstance(v,dict):
+                    for pi,key in enumerate(v.get('entries',[])):
+                        target=local.get(('entries',key))
+                        if target:links.append(Link(source,target,'conversation placement',path+(k,'entries',pi)))
                 if k=='travel' and isinstance(v,dict):
                     for category,name in [('scene',v.get('scene')),('arrival',str(v.get('scene'))+'.'+str(v.get('entry')))]:
                         target=index.get((category,name))

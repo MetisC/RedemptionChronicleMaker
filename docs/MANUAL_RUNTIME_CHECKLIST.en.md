@@ -1,14 +1,14 @@
-# Manual runtime checks Â· 1.0.0-rc4
+# Manual runtime checks · 1.0.0-rc6
 
 **MANUAL RUNTIME TEST REQUIRED.** RCM does not automate gameplay. Previous tutorial acceptance does not certify the new dynamic combats.
 
 First check setup in another folder, projects outside the program, Quick tutorial/F5, LAN with an existing carried RCM item, Showcase dialogue/cameras/notes/items/journal/travel and save/load/reentry. Edit a line, save/F5 with Redemption closed and verify it in a new game when required. Independent PC/VM, real GPU and physical 100/125/150/200% DPI remain pending.
 
-Open chronicles/dynamic_lab/project.yaml, save/F5 with the game closed. In LAN â†’ New Game choose **RCM Â· Dynamic Encounter Lab** and start a new game. Record PASS/FAIL and retain the trace; all twelve cases need native observation.
+Open chronicles/dynamic_lab/project.yaml, save/F5 with the game closed. In LAN → New Game choose **RCM · Dynamic Encounter Lab** and start a new game. Record PASS/FAIL and retain the trace; all twelve cases need native observation.
 
 | Case | Expected result |
 |---|---|
-| DYN01 | Anezka â†’ arm waves â†’ approach barrel. Entering its area creates three rats; no acceptance means no start. |
+| DYN01 | Anezka → arm waves → approach barrel. Entering its area creates three rats; no acceptance means no start. |
 | DYN02 | Kill three; after about two seconds, two appear. One survivor prevents advancing. |
 | DYN03 | Start continuous through Anezka: one per about five seconds, at most three living. Kill one; a replacement appears. |
 | DYN04 | Stop: no new rats; survivors remain. Also check pause/resume. |
@@ -23,9 +23,9 @@ Open chronicles/dynamic_lab/project.yaml, save/F5 with the game closed. In LAN �
 
 Intervals are quantized by the scene poll. This is not a collision/pathfinding certification. Ordinary enemies use original Rat; only the example boss has x10 health to expose thresholds. Showcase combat is optional; Quick tutorial is unchanged.
 
-## Original objects and doors Â· native testing pending
+## Original objects and doors · native testing pending
 
-In a campaign copy, use Addâ€¦ â†’ Original object / create passageâ€¦; leave the accepted tutorial unchanged.
+In a campaign copy, use Add… → Original object / create passage…; leave the accepted tutorial unchanged.
 
 | Case | Test and expected result |
 |---|---|
@@ -38,12 +38,12 @@ In a campaign copy, use Addâ€¦ â†’ Original object / create passageâ�
 
 All cases remain pending native observation. The eight-unit identity tolerance requires exactly one local prop with the selected template. This does not enable removal of baked NIL surfaces or reconstruct Door/PivotDoor script state.
 
-## Imported WTD Â· native testing pending
+## Imported WTD · native testing pending
 
 | Case | Test and expected result |
 |---|---|
 | WTD01 | Without import, tutorial/mini behave unchanged; optional clans, disciplines and actions remain hidden. |
-| WTD02 | Settings â†’ Import NOB from outside the game. Only available content; original menus and no demo chronicle. Restart and retain the catalogue. |
+| WTD02 | Settings → Import NOB from outside the game. Only available content; original menus and no demo chronicle. Restart and retain the catalogue. |
 | WTD03 | Create a Penthouse chronicle with a valid ground entry. Check scenery, environment, navigation and static doors; compilation does not verify pathfinding. |
 | WTD04 | Spawn an actor with chosen clan/discipline; check normal dialogue/animation. For an enemy using original AI, verify the chosen power, effect, sound and target. |
 | WTD05 | Event grants Player a discipline, then changes level/clan. Save/load and scene re-entry retain state without duplicate rewards or reset. |
@@ -55,7 +55,7 @@ All remain pending in Redemption. Resolved dependencies do not certify every gra
 ORG07 pending: in Tenebrae, right-click the real exit, hide/restore and check passage. The two fixed back doors offer a transition, remain visible and travel to the chosen destination only when clicked.
 
 
-CLICK01â€“08 â€” PENDING / PENDIENTE (new native brush layer):
+CLICK01–08 — PENDING / PENDIENTE (new native brush layer):
 
 | Case | Manual check |
 |---|---|
@@ -104,3 +104,26 @@ CLICK10 / ARRIVAL02 — USER CONFIRMED for the tested new-game clicks and initia
 | EMB24 | On an independent supported Windows PC/VM, open the portable EN/ES editor without system Python/JDK. Select a legitimate game installation, open the example, build and run manually. Record physical DPI/GPU, camera and audio results. A moved-folder/offscreen probe is insufficient. |
 
 The new EMB suite is pending user observation. Initial navigation and repaired original clicks were previously confirmed by the user; that does not certify new cinema, restore, re-entry or network combinations. EMB02 is resource-dependent and cannot turn fixed NIL faces into animated doors.
+# LOAD-META-01 — Mixed-map module loading
+
+After updating the editor, open Narrator's Workshop, choose Test in Redemption, start a new game and select the module. Initial loading must finish. Enter the optional Director lab and return. The user confirmed corrected initial loading on 2026-10-18: “Funciona bien y abre.” Optional-lab travel, return and the newly added behaviours remain separate manual checks. Check tutorial and mini loading separately.
+
+## Surgical closure: new manual cases
+
+All cases below remain MANUAL RUNTIME TEST REQUIRED. Initial Showcase loading alone was confirmed by the user on 2026-10-18.
+
+| Case | Check |
+|---|---|
+| EMB-MUSIC-01 | Normal music → temporary track at volume 50 → restore. Prior track and volume return. |
+| EMB-MUSIC-02 | Run temporary/restore cues in a Sequence; finish, cancel and repeat. Exactly one owned restore. Nested Push is rejected. |
+| EMB-MUSIC-03 | Save/load during temporary music, then travel/return. Ownership is discarded on load, no unknown Pop. Establish normal music explicitly if needed. A foreign replacement must not be popped. |
+| EMB-CONV-01 | Use the previous named RCM Entry staging. Compare position, orientation, party and camera before/after dialogue. |
+| EMB-CONV-02 | Select Native conversation point plus three companion markers. Check four positions, Z orientation, floor/collision and dialogue start. |
+| EMB-CONV-03 | Save/load before and after native staging. No duplicate movement or accumulated offset. |
+| EMB-CONV-04 | Finish and abort staged conversations. GUI, cursor and movement return correctly. |
+| EMB-CONV-05 | Travel, return and repeat in SP; compare real MP initiators separately. The two teleport APIs are not internally identical. |
+| EMB-NCP-01 | Play original oldtownday/prague_3_3_bed paths in their matching geometry. Record actual handling of repeated keys. |
+| EMB-NCP-02 | One authored camera point holds a fixed shot for the Sequence duration, then releases control. |
+| EMB-NCP-03 | Translate between distinct points while changing orientation. Check endpoints, shortest-angle interpolation and framing. |
+| EMB-NCP-04 | Try equal consecutive positions with different Euler: clear validation, no malformed output or fake timed stationary rotation. |
+| EMB-NCP-05 | Compare speeds, cancel/finish and repeat. Record clipping and return of controls; do not infer rendering from the preview. |

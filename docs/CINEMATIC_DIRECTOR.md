@@ -24,7 +24,7 @@ Los fundidos ofrecen **Desde negro**, **A negro** y valores personalizados. Flas
 
 Selecciona una línea y pulsa **Acciones al comenzar esta línea…**. Puedes poner un primer plano, mirada, gesto, sonido o cambio de estado sin alterar RETURN/GOTO. Otra conversación, película, nota o viaje se inicia al terminar el diálogo, evitando interfaces que compitan dentro de una línea.
 
-En la conversación, **Puesta en escena** permite elegir una entrada existente con nombre. Reubica al grupo con el mecanismo nativo y aplica la orientación antes de hablar. No crea otra colección de marcadores ni modifica geometría.
+En la conversación, **Puesta en escena** ofrece Automática, Entrada RCM y Punto de conversación nativo. Las dos últimas reutilizan entradas con nombre: créalas y muévelas en Espacio 3D. Entrada RCM conserva su comportamiento anterior. El modo nativo escribe la tabla convstart propia y llama a TeleportPartyToConversation; puedes elegir hasta tres puntos adicionales para los compañeros. No son mecanismos internamente idénticos, especialmente en multijugador. Los puntos nativos admiten giro Z, sin inclinación X/Y; comprueba formación, orientación y colisión dentro del juego.
 
 ## Sonido, luz y ambiente
 
@@ -40,3 +40,13 @@ Una luz dinámica se asocia a una entidad propia. Configura RGB, intensidad, rad
 La puerta del refugio demuestra ocultar/restaurar decorado nativo y dejar paso. No se atribuye una animación de apertura a una malla original sin frames. Las puertas compatibles con frames/pivotes conservan sus herramientas.
 
 Las extensiones son optativas en formatos 9/10. Abrir un proyecto anterior no lo convierte. Cambios estructurales de cine/audio/luz pueden necesitar partida nueva; RCM avisa al cambiar la firma de guardado. EMB01–24 separa las pruebas manuales: compilar y probar offline no confirma el resultado visual/sonoro dentro de Redemption.
+
+## Música temporal
+
+En cualquier lista de Actions elige **Audio / Música temporal**, pista y volumen. Más tarde, **Audio / Restaurar música anterior** recupera la pista y volumen previos. También funcionan en una línea o cue. Codex guarda una única pista anterior: se rechaza un segundo Push mientras RCM la tenga en propiedad. No es una pila con varios niveles.
+
+La cancelación o fin de la película devuelve la música sólo si esa película la inició y la instantánea sigue siendo suya. Salir de escena hace la misma comprobación. Cambiar música permanentemente abandona esa propiedad. Al cargar una partida, RCM descarta la propiedad transitoria y no hace Pop sobre una instantánea desconocida; usa Música normal si necesitas establecer explícitamente la música después. No se anuncia persistencia nativa del snapshot sin prueba.
+
+## Cámara sin desplazamiento
+
+Un punto permite mantener un plano fijo. Los NCP propios requieren posiciones sucesivas distintas. Los originales con XYZ repetido también repiten el parámetro y tienen coeficientes cúbicos no triviales; no demuestran un giro estacionario con duración. No se inventa un tramo mínimo. Los originales se conservan y reproducen mediante el motor. Casos nuevos: EMB-MUSIC, EMB-CONV y EMB-NCP en el checklist.

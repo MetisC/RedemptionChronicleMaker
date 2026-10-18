@@ -2460,6 +2460,36 @@
     "runtime_verified": false
   },
   {
+    "capability": "entries",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "party_left",
+    "link": "rcm://director_lab/entries/party_left",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "entries",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "party_right",
+    "link": "rcm://director_lab/entries/party_right",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "entries",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "party_back",
+    "link": "rcm://director_lab/entries/party_back",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "actors",
     "classification": "NORMAL",
     "scene": "director_lab",
@@ -2550,6 +2580,16 @@
     "runtime_verified": false
   },
   {
+    "capability": "action:push_music",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "action:look_at",
     "classification": "NORMAL",
     "scene": "director_lab",
@@ -2561,6 +2601,16 @@
   },
   {
     "capability": "action:set_dynamic_light",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:look_at",
     "classification": "NORMAL",
     "scene": "director_lab",
     "entity": "refuge_film",
@@ -2611,6 +2661,16 @@
   },
   {
     "capability": "action:camera_fade",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "refuge_film",
+    "link": "rcm://director_lab/sequences/refuge_film",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:pop_music",
     "classification": "NORMAL",
     "scene": "director_lab",
     "entity": "refuge_film",
@@ -2720,6 +2780,16 @@
     "runtime_verified": false
   },
   {
+    "capability": "action:start_music",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "arrival",
+    "link": "rcm://director_lab/events/arrival",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "action:start_quest",
     "classification": "NORMAL",
     "scene": "director_lab",
@@ -2790,6 +2860,16 @@
     "runtime_verified": false
   },
   {
+    "capability": "action:start_music",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "watch",
+    "link": "rcm://director_lab/events/watch",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
     "capability": "action:play_sequence",
     "classification": "NORMAL",
     "scene": "director_lab",
@@ -2801,6 +2881,16 @@
   },
   {
     "capability": "when:conversation_ended",
+    "classification": "NORMAL",
+    "scene": "director_lab",
+    "entity": "skip",
+    "link": "rcm://director_lab/events/skip",
+    "in_game": true,
+    "in_editor": true,
+    "runtime_verified": false
+  },
+  {
+    "capability": "action:start_music",
     "classification": "NORMAL",
     "scene": "director_lab",
     "entity": "skip",

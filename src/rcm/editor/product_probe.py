@@ -198,9 +198,18 @@ def main(argv=None):
     dialog.name.setText('Probe path');dialog.accept();director['atomic_edit']=dialog.result()==QDialog.DialogCode.Accepted and win.doc.snapshot()!=baseline
     win.undo_project();director['atomic_undo']=win.doc.snapshot()==baseline
     win.select(('conversations',0,'nodes',0,'lines',0));app.processEvents();director['line_actions']=win.properties.widget().findChild(QPushButton,'director_line_actions') is not None
+    win.select(('conversations',0));app.processEvents()
+    staging=win.properties.widget().findChild(QComboBox,'conversation_staging')
+    director['native_staging_control']=isinstance(staging.currentData(),dict) and staging.currentData().get('mode')=='native' and win.properties.widget().findChild(QComboBox,'conversation_party_3') is not None
+    win.grab().save(str(ws.output('build/probe/director_staging.png')))
     director['help_example']=any(a.objectName()=='help_director_acceptance' for a in win.help_menu.actions())
     compiled=backend.build(win.doc.snapshot());director['compiled_real_api']=compiled['status']=='compiled-unverified-in-game' and all(v=='45.3' for v in compiled['class_versions'].values())
     director['ncp_packaged']=any(name.lower().endswith('.ncp') for name in compiled['files'])
+    from ..formats import Scene
+    native=next(name for name in compiled['files'] if name.endswith('_s0.nsd'))
+    director['native_staging_records']=len(Scene.read(ws.output('build/'+compiled['chronicle']+'/runtime/'+native).read_bytes()).conversation_starts or [])==4
+    code=ws.output('build/'+compiled['chronicle']+'/generated/java/R_'+compiled['chronicle']+'_s0_Scene.java').read_text(encoding='utf8')
+    director['temporary_music_compiled']='CodexSound.PushMusic(name,volume)' in code and 'CodexSound.PopMusic()' in code
     if not all(director.values()):raise ValueError('Director widget acceptance failed: '+json.dumps(director))
     win.doc._saved=__import__('rcm.service',fromlist=['source_text']).source_text(win.doc.snapshot());win.close();app.processEvents()
     reopened=AppSettings(args.settings_directory)

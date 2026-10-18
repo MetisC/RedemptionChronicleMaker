@@ -1,6 +1,6 @@
 """Compare shipped Python code with workspace sources without executing it."""
 from pathlib import Path
-import hashlib,json,sys,types
+import argparse,hashlib,json,sys,types
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'cache/devtools'),str(ROOT/'cache/vendor'),str(ROOT/'src')]
 from PyInstaller.archive.readers import CArchiveReader
@@ -10,8 +10,9 @@ def normal(code):
     return code.replace(co_filename='<source>',co_consts=tuple(normal(v) if isinstance(v,types.CodeType) else v for v in code.co_consts))
 
 
-def main():
-    app=ROOT/'build/portable/RedemptionChronicleMaker';exe=app/'RedemptionChronicleMaker.exe'
+def main(argv=None):
+    parser=argparse.ArgumentParser();parser.add_argument('--folder',type=Path,default=ROOT/'build/portable/RedemptionChronicleMaker');args=parser.parse_args(argv)
+    app=args.folder;exe=app/'RedemptionChronicleMaker.exe'
     archive=CArchiveReader(str(exe)).open_embedded_archive('PYZ.pyz');rows=[]
     for path in sorted((ROOT/'src/rcm').rglob('*.py')):
         parts=list(path.relative_to(ROOT/'src').with_suffix('').parts)

@@ -1,5 +1,7 @@
 # Changes · 1.0.0-rc6
 
+- Fixed mixed-map Showcase metadata overflowing the native three-currency table before scene startup. One deduplicated, bounded CASH declaration is generated, and unsafe cumulative declarations fail output verification. Corrected initial loading confirmed by the user on 2026-10-18.
+
 - Right-click original scenery to identify and use the pointed object. Inline NSD brush previews, exact triangle picking and Locate in 3D expose generic props such as Tenebrae's exit. Fixed NIL surfaces support native selectable brush overlays with hover labels and ordinary click actions.
 
 - Optional Within The Darkness import from a user-supplied NOB: usable clans, disciplines, actors/models and reusable Penthouse geometry, excluding demo/menu reskin. Initial actor traits and event rewards use the real Codex API. Imported assets stay local, outside program/chronicle distribution ZIPs. Installed content now applies across managed RCM launches independently of the current workspace import: the root owns the pack and isolated native launch folders receive verified mirrors. Normal launches without RCM remain unchanged.
@@ -20,6 +22,8 @@
 
 First-run, safe saving, deployment, cache identity and language preferences remain. Native gameplay, independent-PC and real GPU/DPI checks remain manual. Not final 1.0.
 
-Native click interactions: hover label plus arbitrary existing actions, including Event / Run. Self-scene travel/jump is rejected in validation and destination selectors. New click runtimes guard self travel, synchronous event recursion and repeated transition entry. The accepted tutorial runtime remains unchanged; native CLICK01â€“08 checks are pending.
+Native click interactions: hover label plus arbitrary existing actions, including Event / Run. Self-scene travel/jump is rejected in validation and destination selectors. New click runtimes guard self travel, synchronous event recursion and repeated transition entry. The accepted tutorial runtime remains unchanged; the user confirmed hover/click and first movement in the tested chronicle; broader CLICK01–08 combinations remain manual.
 
 Cinematic Director closure: own linear NCP capture/editor/writer, timed shared Actions and dialogue line Actions, native camera effects/staging, spatial loops with Stop, entity-attached lights and demonstrated weather. Optional Showcase lab plus refuge acceptance chronicle. Native rendering/audio/save/reentry checks remain EMB01–24; existing accepted content preserved. Version remains rc6.
+
+Final targeted closure: temporary-music/restore Actions with evidenced single-snapshot ownership; native party conversation staging through existing named Entries and bounded generated NSD; references/rename/cascade/undo and real Codex 45.3 compilation. Retained safe stationary-NCP authoring restriction after analysing all 174 original paths. Optional labs updated, narrow property controls corrected. Fresh full gate: 525 tests, 0 failures/errors/skips; subsequent widget regression: 140, 0 failures/errors/skips. New native audio/formation/save/MP cases remain manual; no version or project-format increase.

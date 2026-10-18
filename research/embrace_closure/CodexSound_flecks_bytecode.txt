@@ -1,0 +1,153 @@
+Compiled from "CodexSound.java"
+public class CodexSound extends Codex {
+  public static java.lang.String aMusicName;
+
+  public static int musicVolume;
+
+  public static native boolean StartMusic(java.lang.String, int);
+
+  public static native void StopMusic();
+
+  public static void PushMusic(java.lang.String, int);
+    Code:
+       0: invokestatic  #14                 // Method GetMusicName:()Ljava/lang/String;
+       3: putstatic     #18                 // Field aMusicName:Ljava/lang/String;
+       6: invokestatic  #22                 // Method GetMusicVolume:()I
+       9: putstatic     #26                 // Field musicVolume:I
+      12: invokestatic  #30                 // Method StopMusic:()V
+      15: aload_0
+      16: iload_1
+      17: invokestatic  #34                 // Method StartMusic:(Ljava/lang/String;I)Z
+      20: pop
+      21: return
+
+  public static void PopMusic();
+    Code:
+       0: invokestatic  #30                 // Method StopMusic:()V
+       3: getstatic     #18                 // Field aMusicName:Ljava/lang/String;
+       6: getstatic     #26                 // Field musicVolume:I
+       9: invokestatic  #34                 // Method StartMusic:(Ljava/lang/String;I)Z
+      12: pop
+      13: return
+
+  public native void Stop();
+
+  public static native int GetMusicVolume();
+
+  public static native void SetAmbientVolume(int);
+
+  public static native java.lang.String GetMusicName();
+
+  public static native int GetAmbientVolume();
+
+  public CodexSound(java.lang.String, int, int, int, int);
+    Code:
+       0: aload_0
+       1: invokespecial #39                 // Method Codex."<init>":()V
+       4: aload_0
+       5: aload_0
+       6: aload_0
+       7: invokevirtual #42                 // Method Codex.GetGUID:()I
+      10: aload_1
+      11: iload_2
+      12: iload_3
+      13: iload         4
+      15: iload         5
+      17: invokespecial #46                 // Method CreateLocal:(ILjava/lang/String;IIII)I
+      20: putfield      #49                 // Field Codex.guid:I
+      23: return
+
+  private native int CreateLocal(int, java.lang.String, int, int, int, int);
+
+  public CodexSound(java.lang.String, float, float, int, int, int, int);
+    Code:
+       0: aload_0
+       1: invokespecial #39                 // Method Codex."<init>":()V
+       4: aload_0
+       5: aload_0
+       6: aload_0
+       7: invokevirtual #42                 // Method Codex.GetGUID:()I
+      10: aload_1
+      11: fload_2
+      12: fload_3
+      13: iload         4
+      15: iload         5
+      17: iload         6
+      19: iload         7
+      21: invokespecial #58                 // Method CreateAtThing:(ILjava/lang/String;FFIIII)I
+      24: putfield      #49                 // Field Codex.guid:I
+      27: return
+
+  private native int CreateAtPos(int, java.lang.String, float, float, int, int, int, float[]);
+
+  private native int CreateAtThing(int, java.lang.String, float, float, int, int, int, int);
+
+  public CodexSound(java.lang.String, float, float, int, int, int, float[]);
+    Code:
+       0: aload_0
+       1: invokespecial #39                 // Method Codex."<init>":()V
+       4: aload_0
+       5: aload_0
+       6: aload_0
+       7: invokevirtual #42                 // Method Codex.GetGUID:()I
+      10: aload_1
+      11: fload_2
+      12: fload_3
+      13: iload         4
+      15: iload         5
+      17: iload         6
+      19: aload         7
+      21: invokespecial #66                 // Method CreateAtPos:(ILjava/lang/String;FFIII[F)I
+      24: putfield      #49                 // Field Codex.guid:I
+      27: return
+
+  public CodexSound(java.lang.String, float, float, int, int, int, float, float, float);
+    Code:
+       0: aload_0
+       1: invokespecial #39                 // Method Codex."<init>":()V
+       4: iconst_3
+       5: newarray       float
+       7: astore        10
+       9: aload         10
+      11: iconst_0
+      12: fload         7
+      14: fastore
+      15: aload         10
+      17: iconst_1
+      18: fload         8
+      20: fastore
+      21: aload         10
+      23: iconst_2
+      24: fload         9
+      26: fastore
+      27: aload_0
+      28: aload_0
+      29: aload_0
+      30: invokevirtual #42                 // Method Codex.GetGUID:()I
+      33: aload_1
+      34: fload_2
+      35: fload_3
+      36: iload         4
+      38: iload         5
+      40: iload         6
+      42: aload         10
+      44: invokespecial #66                 // Method CreateAtPos:(ILjava/lang/String;FFIII[F)I
+      47: putfield      #49                 // Field Codex.guid:I
+      50: return
+
+  static {};
+    Code:
+       0: ldc           #74                 // String
+       2: putstatic     #18                 // Field aMusicName:Ljava/lang/String;
+       5: return
+
+  public static native java.lang.String GetAmbientName();
+
+  public static native float PlayVoice(int, java.lang.String, int);
+
+  public static native boolean StartAmbient(java.lang.String, int);
+
+  public static native void StopAmbient();
+
+  public static native void SetMusicVolume(int);
+}

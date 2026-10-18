@@ -11,3 +11,7 @@ Open **Help → Acceptance chronicle: the refuge**. Save your copy and press F5.
 In the editor, open Campaign → Sequences → **The keeper checks the refuge**. The timed list uses normal Actions; the camera path button opens its points. The resource is under Custom resources → Project camera paths. Line-start actions are in the selected dialogue line's Properties.
 
 This is a pending acceptance scenario. Coordinates were checked against original mesh surfaces, and output is generated and compiled. This does not certify native navigation, framing, light, audio or loading. Follow EMB01–24 in docs/MANUAL_RUNTIME_CHECKLIST.en.md. Redemption has not been launched automatically.
+
+## Native party staging and temporary music
+
+In the optional refuge scene, select Elena’s welcome conversation → Staging to see four existing named markers. Move them in 3D Space. The film temporarily replaces London_Hub with DA_Boss_1 and restores it before ending; cancellation restores only its owned snapshot. Edit these ordinary cues in Campaign → Sequence. Native formation, framing and save/load remain manual checks.

@@ -56,6 +56,11 @@ def deletion_plan(doc,path,backend):
                 if not scenes:raise ValueError('La campaña necesita una escena')
                 changed[detail]=scenes[0]['id'];continue
             if link.label=='default_entry':delete(detail);continue
+            if link.label=='staging':delete(detail);continue
+            if link.label=='conversation placement':
+                delete(detail)
+                if not list_uses(detail[:-1]):delete(detail[:-2])
+                continue
             # A single action is an independently editable reference.
             action=next((detail[:i+2] for i,k in enumerate(detail[:-1]) if k=='actions' and type(detail[i+1]) is int),None)
             if action:

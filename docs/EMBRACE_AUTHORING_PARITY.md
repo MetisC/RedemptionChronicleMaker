@@ -9,18 +9,20 @@ This report separates implemented authoring from native acceptance. It does **no
 | Original hover/click and fixed-surface interactions | Native selectable NSD overlays, normal events/actions | COVERED DIFFERENTLY | click_interactions, original NSD and user confirmation | Latest user confirmed clicks; broad save/network checks remain |
 | Door frames/pivots, hide/restore/remove | control_original / control_door | COVERED DIFFERENTLY | Original scripts and Codex methods | ORG / EMB02; not universal fixed-geometry animation |
 | Playerstarts | Named entries/default entry, native NSD records and relocation | COVERED DIFFERENTLY | Native entrance reader and user-confirmed initial navigation | Re-entry/save/network matrix remains |
-| Conversation starts | Named entry staging before conversation | COVERED DIFFERENTLY | UNIV_7_7 party staging; real entrance API | EMB04 / EMB18 |
+| Conversation starts | Existing Entry staging plus optional native groups from 1..4 named Entry markers | NATIVE TEST REQUIRED | 107 original class references; separate JNI/table, 99 original tables / 473 records | EMB-CONV-01..05; old Entry staging preserved |
 | Interest spots | Existing waypoints and patrols | COVERED DIFFERENTLY | Manual 0–9; no additional Codex interest API/use found | No unproven idle behaviour claimed |
 | Conversations, choices, flags, quests, notes, scenes, exits | Existing typed story/event system | COVERED DIFFERENTLY | Original formats, scripts and accepted tutorial | Existing acceptance remains scoped |
 | Encounters, generators and boss phases | Existing encounters plus optional format-10 generators | COVERED DIFFERENTLY | Dynamic research and tests | DYN01–12 remain independent |
 | Shots, subject/reference, camera focus | Existing presets, timelines and camera_shot Action | COVERED | CodexCamera SDK / original calls | EMB04–05 |
 | Create camera paths | Own linear NCP writer, modeless viewport point capture/edit/reorder | NATIVE TEST REQUIRED | All 174 originals round-trip; native evaluator/128-key buffer | EMB09–11 |
+| Stationary authored NCP turns / timed holds | Distinct-position restriction retained; fixed-shot holds and original paths available | PARTIAL | 22 repeated-XYZ pairs in 3 original paths, all with repeated parameter; no safe duration rule | EMB-NCP-01..05; no arbitrary span |
 | Original camera paths | Existing original PlayPath | COVERED | 71 original class references | EMB08; geometry-specific |
 | Film choreography | Timed normal Actions, existing shot/prop/actor movement | NATIVE TEST REQUIRED | Shared event compiler; lifecycle doubles and real compilation | EMB05–07 / EMB15–17 |
 | convreached choreography | Actions at line start plus existing motion/camera | NATIVE TEST REQUIRED | SDK/source example and original bytecode | EMB18 |
 | Fade/flash/filter | Normal Actions; native fade and white effects, clear | NATIVE TEST REQUIRED | SDK; original fade/white flash calls; filter API | EMB12–13; arbitrary colour packing excluded |
 | LookAt, gestures, stop/move actor | Shared Actions and actual NMS choices, existing patrols | COVERED DIFFERENTLY | CodexThing/Actor; original scripts | EMB06–07; model-specific |
 | Music and ambient | Existing start/stop Actions | COVERED | SDK and original scripts | Existing acceptance plus EMB14 |
+| Temporary music / restore | Normal Actions using actual PushMusic/PopMusic with bounded ownership | NATIVE TEST REQUIRED | 55 / 53 original class references; Codex Java single snapshot, not nested stack | EMB-MUSIC-01..03; transient ownership discarded on load |
 | Spatial sound objects/loops | Waypoint sound, named owned loop and Stop | NATIVE TEST REQUIRED | CodexSound SDK/constructors, save/recreate doubles | EMB14 / EMB19 |
 | Soundbox intent | Existing enter/leave volumes + start/stop sound | COVERED DIFFERENTLY | RCM triggers and native sound API | EMB19; no soundbox brush writer |
 | Runtime dynamic lights | Small entity-attached light Action, native style/color/radius/intensity | NATIVE TEST REQUIRED | Manual dynamic/editor-only distinction, actual JNI/API; own state/reapply | EMB20; no baked lighting claim |
@@ -33,6 +35,8 @@ This report separates implemented authoring from native acceptance. It does **no
 
 ## Scope conclusion
 
-The important authoring gaps identified by the fresh audit now have implementations or established RCM abstractions. This is **authoring coverage**, not a declaration that the newly rendered scenes, spatial sounds, light, weather, every door, save/re-entry combination or networking have been observed working in Redemption. Those rows remain explicitly **NATIVE TEST REQUIRED** until the user completes the EMB cases. No additional release candidate number is created by this work.
+The audited material authoring mechanisms are implemented through existing RCM abstractions, with one explicit partial capability: authored stationary NCP rotation has no safely demonstrated timing rule. Original stationary keys remain lossless. Music uses the original single snapshot, with no invented persistence or nesting. This is **authoring coverage**, not a declaration that the newly rendered scenes, spatial sounds, light, weather, every door, save/re-entry combination or networking have been observed working in Redemption. Those rows remain explicitly **NATIVE TEST REQUIRED** until the user completes the EMB cases. No additional release candidate number is created by this work.
 
 Geometry creation/editing, CSG, UV/texturing, lightmap generation and structural sector/portal editing remain excluded by design. Unknown legacy binary tails, arbitrary camera FOV keys, unverified colour presets and universal door animation are not presented as completed features. Generic custom Java remains the deliberate escape hatch for specialist engine behaviour.
+
+Fresh surgical evidence and decisions: research/embrace_closure/FINAL_FLECKS_AUDIT.md. The initial Showcase loading repair was confirmed by the user on 2026-10-18; this does not certify the new native staging, temporary music, cinematics, save/load or networking.

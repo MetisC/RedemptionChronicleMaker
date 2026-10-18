@@ -4,20 +4,20 @@
   "errors": [],
   "files": {
     "CHANGELOG.md": {
-      "size": 3546,
-      "sha256": "d87abb8779133227f3d3963cd3d0758b2647cd9c0afcbb5c7ac314e52ea0b67b"
+      "size": 4526,
+      "sha256": "2e27bce4e4c3195bcdc4254ebf819426508678d85417ad53ae0b075d6f7c9b3a"
     },
     "README.txt": {
       "size": 532,
       "sha256": "5f558bc0fa117158bc21e62f58825c4d10407ef89e19c651cdc287c968ab63e0"
     },
     "RedemptionChronicleMaker.exe": {
-      "size": 4421526,
-      "sha256": "0caf9fec0a97ca84d5ef27d4775a7330dca1b67f308f28d9a8793a4463b86cb4"
+      "size": 4427343,
+      "sha256": "3daad07fd086ea21431a77cfa901c61c64fced81154b7e06b30894656aee656d"
     },
     "RELEASE_NOTES.md": {
-      "size": 6805,
-      "sha256": "fd73ea0a0740a93633d9cea25ead4ba8e896fc85c0f88476fa12bc5f7c6b6038"
+      "size": 8903,
+      "sha256": "6539a865d3d19bd104c6aa4c4d6400a55c1027d3d8680f1f4d7cf2c86a5d7b27"
     },
     "VERSION": {
       "size": 10,
@@ -40,12 +40,12 @@
       "sha256": "2dfec3435b636dd62281a89dcb04681bde820c005ba699a85bf40891f3063acf"
     },
     "docs/CINEMATIC_DIRECTOR.en.md": {
-      "size": 4856,
-      "sha256": "3e01ef7c2315f7699802ccdef16b0a068dddfeb48ef77480aa80211cc1d58939"
+      "size": 6245,
+      "sha256": "e130fa227290ba876c76605cbabc878b3a62b6c65657f8ef6fa2323309defb20"
     },
     "docs/CINEMATIC_DIRECTOR.md": {
-      "size": 4798,
-      "sha256": "4647ab5c6d4c78813fce090c19b647cdba24f30b87be25d9ff1f5fa74286371b"
+      "size": 6499,
+      "sha256": "ad17a75fe4e3308d0a38b07baab5c68f530796df17d834795096c94d18f00062"
     },
     "docs/DYNAMIC_ENCOUNTERS.en.md": {
       "size": 6386,
@@ -80,12 +80,12 @@
       "sha256": "bf27b5c999824830b70c7fdbe4b2b2b27c57cd0ec359587b7680cd88c96db506"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.en.md": {
-      "size": 13855,
-      "sha256": "5b500a13738972e6027ded27cda1b69ebb531c6d6ec1473dfa3fe543ac7febf9"
+      "size": 16236,
+      "sha256": "de6a36a4b7994e8808d34563e7f9aa9b8ee891fe423fb8607aea92f174d5aab5"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.md": {
-      "size": 15052,
-      "sha256": "60b7649792baa72518d9cbec6e6c83fa7e2650f92b2b2a10893c80f11a3b6c19"
+      "size": 17514,
+      "sha256": "3e3016c7a13d988527b211fea8851bde7c6556c615dc74f359143548a0f5734c"
     },
     "docs/SHORTCUTS.en.md": {
       "size": 578,
@@ -120,16 +120,16 @@
       "sha256": "5c5d0d6c5113f943ade3f7afca71e476c787ae188807f79a722b01be82a08f38"
     },
     "examples/director_acceptance/project.yaml": {
-      "size": 29661,
-      "sha256": "941bb5c366fbb59947770bd195289b1bfb754f8afd15d1fdf1b88eceb0f7afe1"
+      "size": 30547,
+      "sha256": "081cf420bf0d827dabc4948ad993bad37ed483443e9ec27c05fefcd7732d0772"
     },
     "examples/director_acceptance/README.en.md": {
-      "size": 1394,
-      "sha256": "02758d25a2acc357fa087a44f44a1152d495ed9fc1f12e9635e75a4d3bc770a6"
+      "size": 1830,
+      "sha256": "e6e44a22e5c8dcc5b5c811f8c713371e8b0c2cef699d0bf659a85a30466f09b4"
     },
     "examples/director_acceptance/README.md": {
-      "size": 1513,
-      "sha256": "beb1e6b3f71cc2b420b8dac2d2dc1daa43080a3e12dc5404196786605ebfb206"
+      "size": 1970,
+      "sha256": "242994a7b84e4ebe3271b11ad25119847a97b109abd562904ec2d3fce5641513"
     },
     "examples/dynamic_lab/project.yaml": {
       "size": 5241,
@@ -160,16 +160,16 @@
       "sha256": "c69f3e38bb6472919a2e819926a0c066638f6a07d78a184e1d842e313c9a32a0"
     },
     "examples/showcase/project.yaml": {
-      "size": 64797,
-      "sha256": "5e544fca7ad9c00ad33c2b258b698d4c2e69a6dc795b71385726692f1f443416"
+      "size": 65683,
+      "sha256": "0eea90b8547f1e91c1cd024ed02d8b78d097f30619b8cfcdddc91970240bce45"
     },
     "examples/showcase/README.en.md": {
-      "size": 10953,
-      "sha256": "8c070d9d59245c803e991b94a8b0a2108d2c6e8e29d62c90fcba264e0ffa434f"
+      "size": 11389,
+      "sha256": "1799facb1ffaa6b13ad4f40893d6e4293591ecf25200126f5c44d70261b88f28"
     },
     "examples/showcase/README.md": {
-      "size": 11344,
-      "sha256": "191b1c3b1257ee4d4122b840dfbf7b9550ff3c6994f2d5263afa90681b641371"
+      "size": 11801,
+      "sha256": "71ba9651b78b8934b1b9fcd9496eeb2c19a5a3ff80296592a4950225635a1889"
     },
     "examples/showcase/resources/RCMShowcaseActor.java": {
       "size": 131,
@@ -645,7 +645,7 @@
     },
     "_internal/base_library.zip": {
       "size": 880490,
-      "sha256": "e76d305b4f0dc00fe4fb94253f0bd908166cde91923d99fe898776a809a7a121"
+      "sha256": "a285f493fe3a3aa9c74ae516a7a7d65e30a415830cda5635eb2a8fa6295cd0a5"
     },
     "_internal/libcrypto-1_1.dll": {
       "size": 3439512,
@@ -1448,8 +1448,8 @@
       "sha256": "64d133dc8fff64da79b3671e02c6bdda3f83944c4984e196a1a748a2497409ef"
     },
     "_internal/rcm/editor/assets/en.json": {
-      "size": 141400,
-      "sha256": "d3db639e97757b4ce546b559c83fb64c829a86071000a774a685f341966b8a78"
+      "size": 143513,
+      "sha256": "eab9a7749f3be9e065369f162294c4cd2aac5bf74dc1bf80ac4fcdc8438fd902"
     },
     "_internal/rcm/editor/assets/wtd_policy.json": {
       "size": 19452,

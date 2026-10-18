@@ -55,13 +55,15 @@ class CoreTests(unittest.TestCase):
         with self.assertRaises(ValueError): NotFile.read(b"NOT\x10")
 
     def test_original_simple_nsd_roundtrips(self):
-        passed = 0
+        passed = 0; native_conversations=set()
         for f in (ROOT / "research/original/Resource.nob/scenes").glob("*.nsd"):
             try: scene = Scene.read(f.read_bytes())
             except ValueError: continue
             self.assertEqual(scene.encode(), f.read_bytes())
-            passed += 1
+            if scene.conversation_starts:native_conversations.add(f.name)
+            else:passed += 1
         self.assertEqual(passed, 24)
+        self.assertEqual(native_conversations,{'CURI_28_4.nsd','NEWM_37_4.nsd','SMTY_7_1.nsd','SMYD_4_1.nsd'})
 
     def test_complex_scene_refused(self):
         with self.assertRaises(ValueError):

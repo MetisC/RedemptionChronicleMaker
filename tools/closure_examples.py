@@ -45,6 +45,17 @@ def scene(backend,sid,destination,entry):
     # Aborting the welcome must never strand the player behind a one-shot door.
     for eid,conversation,conditions in [('mentor_start','wait',[('director_knock',False),('director_fight',False)]),('mentor_resume','welcome',[('director_knock',True),('director_ready',False),('director_fight',False)]),('mentor_wait','waiting',[('director_ready',True),('director_fight',False)]),('mentor_after','after',[('director_fight',True)])]:
         s['events'].append(dict(id=eid,when='actor_clicked',actor='mentor',once=False,conditions=[dict(flag=k,is_set=v) for k,v in conditions],actions=[{'start_conversation':conversation}]))
+    # Reuse ordinary named markers for the proven native conversation table.
+    for key,label,position in [('party_left','Party: left',[300,-976,-512]),('party_right','Party: right',[430,-976,-512]),('party_back','Party: back',[365,-1040,-512])]:
+        s['entries'].append(dict(id=key,name=label,transform=transform(position,90)))
+    s['conversations'][0]['staging']=dict(mode='native',entries=['safe','party_left','party_right','party_back'])
+    s['events'][0]['actions'].insert(2,{'start_music':'London_Hub'})
+    for event in s['events']:
+        if event['id'] in {'watch','skip'}:event['actions'].insert(0,{'start_music':'London_Hub'})
+    music=next(r['id'] for r in backend.resources['entries'] if r['path'].lower().startswith('sounds/music/') and r['id'].casefold()=='da_boss_1')
+    s['sequences'][0]['cues'][0]['actions'].insert(0,{'push_music':dict(resource=music,volume=50)})
+    s['sequences'][0]['cues'][0]['actions'].append({'look_at':dict(actor='guard',target='mentor')})
+    s['sequences'][0]['cues'].append(dict(at=9.7,actions=[{'pop_music':True}]))
     points=[]
     for position in ([550,-1000,-300],[600,-750,-320]):
         delta=[300-position[0],-850-position[1],-440-position[2]]

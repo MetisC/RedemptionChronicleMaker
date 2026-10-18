@@ -17,6 +17,7 @@ ACTIONS = {
  'spawn_encounter': ('Encuentro / Crear grupo','encounters'), 'remove_encounter': ('Encuentro / Retirar grupo','encounters'),
  'jump': ('Viaje / Cambiar ubicación','scenes'),
  'start_music': ('Audio / Música','music'), 'stop_music': ('Audio / Detener música','none'),
+ 'push_music': ('Audio / Música temporal','temporary_music'), 'pop_music': ('Audio / Restaurar música anterior','none'),
  'start_ambient': ('Audio / Ambiente','ambient'), 'stop_ambient': ('Audio / Detener ambiente','none'),
  'play_sequence': ('Cámara / Secuencia','sequences'), 'release_camera': ('Cámara / Devolver control','none'),
  'enable_ai': ('AI / Activar','actors'), 'disable_ai': ('AI / Pausar','actors'),
@@ -129,9 +130,13 @@ def parse_campaign(source, levels, resources):
         entities={**actors,**objects}; convs=indexed(s['conversations'],label+' conversations')
         from .camera_presets import PRESETS,CINEMA_PRESETS
         for conversation in convs.values():
-            if 'staging' in conversation and (not modern or conversation['staging'] not in {p['id'] for p in s.get('entries',[])}):raise ValueError('Puesta en escena requiere una entrada existente')
+            if 'staging' in conversation:
+                stage=conversation['staging']
+                if not modern or not isinstance(stage,(str,dict)) or isinstance(stage,str) and stage not in {p['id'] for p in s.get('entries',[])}:raise ValueError('Puesta en escena requiere una entrada existente')
             if 'camera' in conversation and (not modern or conversation['camera'] not in ('native','medium',*PRESETS)):
                 raise ValueError('Cámara de conversación requiere formato 9 y preset conocido')
+        from .native_arrivals import conversation_groups
+        conversation_groups(s)
         if set(actors)&set(objects): raise ValueError(label+': IDs compartidos actor/objeto')
         groups=indexed(s.get('encounters',[]),label+' encounters'); shots=indexed(s.get('sequences',[]),label+' sequences')
         triggers=indexed(s.get('triggers',[]),label+' triggers')
@@ -211,6 +216,14 @@ def parse_campaign(source, levels, resources):
             kind=ACTIONS[k][1]
             from .cinematics import validate_action
             if validate_action(k,v,s,actors,objects,resources,modern):return
+            if k in {'push_music','pop_music'}:
+                if not modern:raise ValueError('Música temporal requiere formato de proyecto 9 o 10')
+                if k=='push_music':
+                    mapping(v,{'resource','volume'},{'resource','volume'},'Música temporal')
+                    matches=[r for r in resources['entries'] if r['id']==v['resource'] and r['path'].lower().startswith('sounds/music/') and r['extension'].lower()=='.mp3']
+                    if len(matches)!=1:raise ValueError('Música temporal ausente o ambigua')
+                    if type(v['volume']) is not int or not 0<=v['volume']<=100:raise ValueError('Volumen de música: 0..100')
+                    return
             if kind in {'wtd_clan','wtd_discipline'}:
                 if not modern:raise ValueError('Esta acción requiere formato de proyecto 9')
                 field='clan' if kind=='wtd_clan' else 'discipline'

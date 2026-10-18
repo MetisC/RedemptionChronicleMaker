@@ -3,6 +3,46 @@ import json
 from .generator import java_string as js,java_vector as jv
 
 
+def has_temporary_music(scene):
+    if isinstance(scene,list):return any(has_temporary_music(v) for v in scene)
+    if isinstance(scene,dict):return any(k in {'push_music','pop_music'} or has_temporary_music(v) for k,v in scene.items())
+    return False
+
+
+def extend_music(java,scene):
+    if not has_temporary_music(scene):return java
+    film='cinema' if ' private int cinema=' in java else '-1'
+    code='''
+ private boolean temporaryMusicOwned=false; private String temporaryPrevious="",temporaryCurrent=""; private int temporaryVolume=0,temporaryFilm=-1;
+ private boolean sameMusic(String a,String b) { return a==null ? b==null : a.equalsIgnoreCase(b); }
+ private boolean pushTemporaryMusic(String name,int volume) {
+  if(temporaryMusicOwned) { trace("MUSIC_TEMP_NESTED_REJECTED"); return false; }
+  CodexSound.PushMusic(name,volume); temporaryPrevious=CodexSound.aMusicName; temporaryVolume=CodexSound.musicVolume;
+  temporaryCurrent=CodexSound.GetMusicName(); temporaryMusicOwned=true; temporaryFilm=FILM;
+  if(temporaryCurrent==null || temporaryCurrent.length()==0) { popTemporaryMusic(); trace("MUSIC_TEMP_START_FAILED"); return false; }
+  trace("MUSIC_TEMP_PUSH "+name); return true;
+ }
+ private boolean popTemporaryMusic() {
+  if(!temporaryMusicOwned) { trace("MUSIC_TEMP_UNOWNED_REJECTED"); return false; }
+  temporaryMusicOwned=false; temporaryFilm=-1;
+  if(!sameMusic(CodexSound.aMusicName,temporaryPrevious) || CodexSound.musicVolume!=temporaryVolume || !sameMusic(CodexSound.GetMusicName(),temporaryCurrent)) { trace("MUSIC_TEMP_FOREIGN_REPLACEMENT"); return false; }
+  CodexSound.PopMusic(); trace("MUSIC_TEMP_POP"); return true;
+ }
+ private void releaseTemporaryMusic() { if(temporaryMusicOwned) popTemporaryMusic(); }
+'''.replace('FILM',film)
+    # Codex stores one global Java snapshot, not a native stack. No invented
+    # save records or replay; ownership is transient and is dropped on restore.
+    java=java.replace('public void restore(int capture) {','public void restore(int capture) { temporaryMusicOwned=false; temporaryFilm=-1;',1)
+    java=java.replace('transitioning=true;','releaseTemporaryMusic(); transitioning=true;')
+    java=java.replace('if(cinema<0) return; int client=cameraPlayer;','if(cinema<0) return; if(temporaryMusicOwned && temporaryFilm==cinema) popTemporaryMusic(); int client=cameraPlayer;',1)
+    java=java.replace('CodexSound.StartMusic(', 'temporaryMusicOwned=false; CodexSound.StartMusic(')
+    java=java.replace('CodexSound.StopMusic();', 'temporaryMusicOwned=false; CodexSound.StopMusic();')
+    marker='public void endscene(int client,int next,int capture) {'
+    if marker in java:java=java.replace(marker,marker+' if(!NetIsClient()) releaseTemporaryMusic();',1)
+    else:code+=' public void endscene(int client,int next,int capture) { if(!NetIsClient()) releaseTemporaryMusic(); }\n'
+    return java[:-2]+'\n'+code+'\n}\n'
+
+
 def loops(scene):
     found={}
     def visit(value):
@@ -35,6 +75,7 @@ def rename_loop(scene,old,new):
 
 
 def extend(java,scene,project):
+    java=extend_music(java,scene)
     sources=loops(scene)
     if not sources:return java
     # Source definitions can occur again in lowered compiler-only events.

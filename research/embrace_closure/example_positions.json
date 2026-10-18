@@ -16,6 +16,51 @@
       "triangle": 6266
     },
     {
+      "kind": "entries",
+      "id": "party_left",
+      "position": [
+        300,
+        -976,
+        -512
+      ],
+      "surface": [
+        300.0,
+        -976.0,
+        -512.0
+      ],
+      "triangle": 532
+    },
+    {
+      "kind": "entries",
+      "id": "party_right",
+      "position": [
+        430,
+        -976,
+        -512
+      ],
+      "surface": [
+        430.0,
+        -976.0,
+        -512.0
+      ],
+      "triangle": 6253
+    },
+    {
+      "kind": "entries",
+      "id": "party_back",
+      "position": [
+        365,
+        -1040,
+        -512
+      ],
+      "surface": [
+        365.0,
+        -1040.0,
+        -512.0
+      ],
+      "triangle": 6265
+    },
+    {
       "kind": "actors",
       "id": "mentor",
       "position": [

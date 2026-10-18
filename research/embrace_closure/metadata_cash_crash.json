@@ -1,0 +1,62 @@
+{
+  "executable_sha256": "62982319c28b18654585239a814a5a1002c415febe07b494735cb80272c5dd23",
+  "windows_event": {
+    "time": "2026-10-18 11:21:32 Europe/Madrid",
+    "exception": "0xc0000005",
+    "module": "Vampire.exe",
+    "offset": "0x97c16",
+    "instruction": "0x497c16: mov dword ptr [edi + edx*4 + 0x1aeb8], eax"
+  },
+  "native_cash_slots": 3,
+  "table_offset": "0x1aeb8",
+  "count_offset": "0x1aec4",
+  "per_line_tokens": 3,
+  "before": [
+    "CASH cashuk",
+    "CASH cashus",
+    "CASH GoldBag GoldCoins cashus cashuk"
+  ],
+  "after": [
+    "CASH cashuk cashus GoldBag"
+  ],
+  "game_launched": false,
+  "native_retest": "RUNTIME VERIFIED: initial module load only",
+  "other_deployed_nmf_over_capacity": [],
+  "changed_payload_files": [
+    "chronicles/R_rcm_showcase.nmf"
+  ],
+  "added_payload_files": [],
+  "removed_payload_files": [],
+  "unchanged_java_classes": true,
+  "source_head": "1d505c5ac7f382f2d686e489242c3c778cf8ca12",
+  "deployed_nob_sha256": "7049b11aaaf0a07692a0ffd320d1cb578de80a4b674213b867641bf257f98a4b",
+  "protected_sources_unchanged": true,
+  "protected_paths": [
+    "chronicles/tutorial",
+    "chronicles/mini_chronicle",
+    "chronicles/dynamic_lab",
+    "user_workspaces",
+    "tests/fixtures"
+  ],
+  "original_integrity": {
+    "checked_files": 43,
+    "hashes_match": true,
+    "mismatches": [],
+    "scope": "six NOB archives, Chronicles, JVM library, executable, bundled manuals/readmes"
+  },
+  "portable_modules_verified": 90,
+  "portable_bilingual_probes_pass": true,
+  "public_release": {
+    "version": "1.0.0-rc6",
+    "user_zip": "RedemptionChronicleMaker-1.0.0-rc6-win64.zip",
+    "sha256": "61b54e94a9bdadac74e766af569ce5978a8c4e18d501ca47e6d2ac424d7a42c5",
+    "size": 89092099,
+    "files": 366,
+    "all_hashes_verified": true,
+    "source_archive_separate": true,
+    "native_game_verified": false,
+    "clean_machine_verified": false
+  },
+  "user_confirmation": "Funciona bien y abre.",
+  "confirmed_at_utc": "2026-10-18T09:51:19.414080+00:00"
+}

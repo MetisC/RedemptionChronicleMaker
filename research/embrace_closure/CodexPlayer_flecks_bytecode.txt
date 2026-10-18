@@ -1,0 +1,61 @@
+Compiled from "CodexPlayer.java"
+public class CodexPlayer extends CodexActor {
+  public static native boolean TeleportPartyToEntrance(int, int);
+
+  public native boolean SetCurrentPlayer();
+
+  public static native int GetMPPlayer(int);
+
+  public static native boolean TeleportPartyToConversation(int, int);
+
+  public native int SetPlayerGroupLevel(java.lang.String, int);
+
+  public native boolean SetPlayerHeadModel(java.lang.String);
+
+  public static native int GetNumPartyPlayers();
+
+  public static native int GetMaxMPPlayers();
+
+  public native java.lang.String GetPlayerName();
+
+  public static native int GetCurrentPlayer();
+
+  public native boolean AwardPlayerExperience(int);
+
+  public static native void AwardPartyExperience(int);
+
+  public native int GetPlayerDisciplineReloadTime(int);
+
+  public native boolean SetPlayerDisciplineState(java.lang.String, boolean);
+
+  public native int GetPlayerGroupLevel(java.lang.String);
+
+  public static native int GetPartyPlayer(int);
+
+  public native boolean AddToParty();
+
+  public native boolean RemoveFromParty();
+
+  public CodexPlayer(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokespecial #14                 // Method CodexActor."<init>":(I)V
+       5: return
+
+  public CodexPlayer();
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: invokespecial #14                 // Method CodexActor."<init>":(I)V
+       5: aload_0
+       6: invokestatic  #22                 // Method GetCurrentPlayer:()I
+       9: putfield      #27                 // Field Codex.guid:I
+      12: return
+
+  public static native int GetNumMPPlayers();
+
+  public native boolean GetPlayerDisciplineState(java.lang.String);
+
+  public native boolean SetPlayerName(java.lang.String);
+}

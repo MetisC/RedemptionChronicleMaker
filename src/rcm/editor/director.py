@@ -6,6 +6,31 @@ from .i18n import tr,diagnostic
 from .click_actions import ClickActions
 
 
+def staging_controls(ins,conversation,path):
+    value=conversation.get('staging');entries=ins.ids('entries')
+    def update(value):
+        ins.win.history_time=0
+        ins.set(path+('staging',),copy.deepcopy(value),True)
+        ins.win.refresh()
+    choices=[(tr('Automática'),None)]+[(tr('Entrada RCM')+' · '+label,key) for label,key in entries]
+    for label,key in entries:
+        native=value if isinstance(value,dict) and value['entries'][0]==key else dict(mode='native',entries=[key])
+        choices.append((tr('Punto de conversación nativo')+' · '+label,native))
+    ins.combo(tr('Puesta en escena'),choices,value,update,'conversation_staging')
+    if isinstance(value,dict):
+        points=value['entries']
+        for index in range(1,min(4,len(points)+1)):
+            selected=points[index] if index<len(points) else None
+            def change(v,index=index):
+                result=copy.deepcopy(value)
+                if v is None:result['entries']=result['entries'][:index]
+                elif index<len(result['entries']):result['entries'][index]=v
+                else:result['entries'].append(v)
+                update(result)
+            ins.combo(tr('Compañero')+' '+str(index),[(tr('Posición compartida'),None)]+[(label,key) for label,key in entries if key==selected or key not in points],selected,change,'conversation_party_'+str(index))
+        ins.note(tr('Usa entradas nombradas para colocar al grupo. Crea y mueve esos puntos en Espacio 3D. Los puntos nativos admiten giro Z; comprueba formación y colisiones dentro del juego.'))
+
+
 def default_action(kind,scene):
     actor=next((a['id'] for a in scene['actors']),'Player')
     return {'camera_shot':dict(actor=actor,reference='Player',preset='ots_speaker_close',transition=.3),

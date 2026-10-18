@@ -42,8 +42,12 @@ def verify_output(ws, report, catalogue):
             for reference in chronicle['settings'].get('metafile',[]):
                 if not exists(reference):raise ValueError('Metafile ausente')
         elif suffix == '.nmf':
+            cash_count=0
             for _, fields in rows(data.decode('cp1252')):
                 if fields[0] in {'NOT','NLS','NVO','NTX'} and (len(fields)!=2 or not exists(fields[1])):raise ValueError('Recurso NMF ausente: '+name)
+                if fields[0].casefold()=='cash':
+                    cash_count+=min(3,len(' '.join(fields[1:]).replace(',',' ').split()))
+                    if cash_count>3:raise ValueError('NMF CASH exceeds native capacity (3): '+name)
         elif suffix == '.ntx':
             from .notes import read_notes
             read_notes(data)

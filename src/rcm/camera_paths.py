@@ -22,6 +22,7 @@ class CameraPath:
         if not 1<=count<=MAX_KEYS or len(data)!=8+104*count:raise ValueError('NCP: número de puntos o tamaño inválido')
         records=tuple(struct.unpack_from('<26f',data,8+104*i) for i in range(count))
         if not math.isfinite(total) or total<0 or any(not math.isfinite(x) for row in records for x in row):raise ValueError('NCP: valores no finitos')
+        if any(row[0]<0 or row[0]>total+.001 or row[1]<0 or i and row[0]<records[i-1][0] for i,row in enumerate(records)):raise ValueError('NCP: parámetros inválidos')
         return cls(total,records)
 
     def encode(self):

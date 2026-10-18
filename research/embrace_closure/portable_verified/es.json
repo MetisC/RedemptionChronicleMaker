@@ -2,7 +2,7 @@
   "language": "es",
   "phase": "fresh",
   "returncode": 0,
-  "elapsed_seconds": 80.42910180000763,
+  "elapsed_seconds": 78.19296729999769,
   "report": {
     "rc3": {
       "welcome": true,
@@ -36,15 +36,15 @@
       "Preparando el compilador…",
       "Preparando tus copias de los ejemplos…"
     ],
-    "setup_seconds": 17.117989100006525,
-    "total_seconds": 79.04279790000874,
+    "setup_seconds": 16.507321400000365,
+    "total_seconds": 76.86856800000533,
     "gui_authored_valid": true,
     "build_status": "compiled-unverified-in-game",
     "class_versions": {
       "R_first_adventur_s0_Scene": "45.3",
       "R_first_adventur_s0_Passive": "45.3"
     },
-    "synthetic_deployment": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\embrace_closure\\portable_delivery\\Prueba con espacios ñ\\projects\\build\\probe\\game\\RCM\\first_adventur",
+    "synthetic_deployment": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\embrace_closure\\final_verified_probe\\Prueba con espacios ñ\\projects\\build\\probe\\game\\RCM\\first_adventur",
     "setup_not_repeated": true,
     "tutorial_unmodified": true,
     "language": "es",
@@ -52,8 +52,8 @@
     "clean_machine_test": false,
     "real_opengl": false,
     "game_originals_written": false,
-    "tutorial_open_timestamp": 82481.7074548,
-    "showcase_open_timestamp": 82483.0366777,
+    "tutorial_open_timestamp": 89859.7195332,
+    "showcase_open_timestamp": 89861.0303567,
     "rc4": {
       "wizard_four_pages": true,
       "advanced_collapsed": true,
@@ -92,9 +92,12 @@
       "atomic_edit": true,
       "atomic_undo": true,
       "line_actions": true,
+      "native_staging_control": true,
       "help_example": true,
       "compiled_real_api": true,
-      "ncp_packaged": true
+      "ncp_packaged": true,
+      "native_staging_records": true,
+      "temporary_music_compiled": true
     }
   },
   "path_restricted": true,

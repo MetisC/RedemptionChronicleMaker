@@ -289,8 +289,9 @@ def build(ws: Workspace, p: Project, levels, resources, hints, compile_java=True
         scene_model.brushes[index]=brush(obj['interaction'])
     native_scene=getattr(runtime_factory,'native_arrivals',None)
     if native_scene:
-        from .native_arrivals import records
+        from .native_arrivals import records,conversation_records
         scene_model.entrances=records(ws,level,native_scene)
+        scene_model.conversation_starts=conversation_records(ws,level,native_scene) or None
     scene=scene_model.encode()
     assert Scene.read(scene).encode() == scene
     templates = []
