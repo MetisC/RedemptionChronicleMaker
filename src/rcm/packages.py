@@ -164,6 +164,12 @@ def install_plan(ws,archive,accept_custom_code=False):
         if other['id']!=m['id'] and {x.casefold() for x in m.get('templates',[])}&{x.casefold() for x in other.get('templates',[])}:raise ValueError('ID de template propio colisiona con paquete '+other['id'])
     for dep in m.get('dependencies',[]):
         if registry.get(dep['id'],{}).get('version')!=dep['version']:raise ValueError('Dependencia local ausente o versión incompatible: '+dep['id'])
+    from .wtd import shared_dependencies
+    shared=shared_dependencies(game)
+    for name,data in shared.items():
+        if name in files and files[name]!=data:raise ValueError('El paquete colisiona con contenido compartido: '+name)
+        files[name]=data;m['files'][name]=dict(size=len(data),sha256=hashlib.sha256(data).hexdigest())
+    m['shared_content_files']=list(shared)
     targets={}
     for name in sorted(set(m['files'])|set(oldfiles)):
         archive_path(name);p=safe_target(game,dest/name)
@@ -178,7 +184,7 @@ def install_package(ws,archive,accept_custom_code=False):
     # Switching user folders must not orphan our carried inventory definitions.
     # These are verified local RCM bytes, never edits to a Crypt profile.
     from .profile_compatibility import compatibility_files
-    dest=safe_target(game,game/'RCM'/m['id']);compat=compatibility_files(game,targets[safe_target(game,dest/(m['id']+'.nob'))])
+    dest=safe_target(game,game/'RCM'/m['id']);compat=compatibility_files(game,[data for path,data in targets.items() if path.suffix=='.nob'])
     prior=installed(ws).get(m['id'],{}).get('files',{})
     for name,data in compat.items():
         target=safe_target(game,dest/name)

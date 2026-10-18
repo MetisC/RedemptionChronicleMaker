@@ -9,7 +9,7 @@ def deploy_many(ws,chronicles,directory,current_sources=None,preserve_siblings=F
     game=configured_game(ws)
     if game_running():raise ValueError('Cierra Vampire antes de actualizar recursos')
     dest=safe_target(game,game/'RCM'/directory);manifest=safe_target(game,dest/'.rcm_deployment.json')
-    files={};owners={};current_sources=current_sources or {}
+    files={};owners={};shared=set();current_sources=current_sources or {}
     for ident in chronicles:
         identifier(ident,'Crónica',18);root=ws.output('build/'+ident);report=json.loads((root/'build_report.json').read_text(encoding='utf8'))
         if report.get('status')!='compiled-unverified-in-game':raise ValueError('Build compilado necesario: '+ident)
@@ -22,7 +22,7 @@ def deploy_many(ws,chronicles,directory,current_sources=None,preserve_siblings=F
         for name,data in local_dependencies(ws,report).items():
             target=safe_target(game,dest/name)
             if target in files and files[target]!=data:raise ValueError('Imported content packs conflict')
-            files[target]=data;owners[ident].append(name)
+            files[target]=data;shared.add(name)
         for relative,record in report['distribution_files'].items():
             archive_path(relative);target=safe_target(game,dest/relative);data=ws.output(root/'bundle'/relative).read_bytes()
             if hashlib.sha256(data).hexdigest()!=record['sha256']:raise ValueError('Build modificado: '+relative)
@@ -55,7 +55,7 @@ def deploy_many(ws,chronicles,directory,current_sources=None,preserve_siblings=F
         if target in files or not target.exists():continue
         if not target.is_file() or hashlib.sha256(target.read_bytes()).hexdigest()!=digest:raise ValueError('Archivo modificado: se conserva '+relative)
         obsolete.append(target)
-    ownership=dict(format=1,chronicle=chronicles[0],chronicles=list(owners),owners=owners,compatibility_files=list(compatibility),profile_refs_sha256=profile_signature(game),files={p.relative_to(dest).as_posix():hashlib.sha256(d).hexdigest() for p,d in files.items()})
+    ownership=dict(format=1,chronicle=chronicles[0],chronicles=list(owners),owners=owners,shared_content_files=sorted(shared),compatibility_files=list(compatibility),profile_refs_sha256=profile_signature(game),files={p.relative_to(dest).as_posix():hashlib.sha256(d).hexdigest() for p,d in files.items()})
     files[manifest]=json.dumps(ownership,indent=2).encode('utf8')
     from .file_transaction import replace_files
     backup=ws.output('research/runtime_test/backups/deploy_multi_'+str(time.time_ns())+'.zip');backup.parent.mkdir(parents=True,exist_ok=True)

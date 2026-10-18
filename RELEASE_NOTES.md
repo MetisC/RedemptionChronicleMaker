@@ -23,6 +23,7 @@ Corrected the initial movement after arriving in a scene, which could previously
 - Import a user-supplied `WTDarkness.nob` from the application settings. The source archive does not need to be installed in the game's root folder.
 - Make supported clans, disciplines, actor templates, models and the Penthouse level available for authoring. Only usable content is offered; the mod's demo, menus and interface replacement are excluded.
 - Keep imported resources local. They are not bundled with the public application or redistributed in chronicle distribution archives; recipients need their own local import when required.
+- Installed content is shared across RCM launches, independently of the selected chronicle or current workspace import. The root RCM folder owns the pack; isolated native launch folders receive verified mirrors automatically. Launching without RCM leaves the base game unchanged.
 - Without an import, the existing base-game workflow remains unchanged. Rabbit is not required to expose models already present in the base game.
 
 ## Safer editing and usability

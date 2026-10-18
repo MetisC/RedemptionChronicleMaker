@@ -256,17 +256,54 @@ def import_content(backend,source):
 
 
 def publish_shared(ws,data,record):
-    """Install only a hashed, owned content pack under game/RCM, never root."""
+    """Publish installation-wide content and mirror isolated native user roots.
+
+    Redemption indexes NOBs directly in its selected -user directory, without
+    inheriting parent directories. The RCM root owns the pack independently of
+    workspace imports; child launch folders receive verified runtime mirrors.
+    """
     from .deployment import safe_target,game_running
     from .file_transaction import replace_files
     if game_running():raise ValueError('Cierra Vampire antes de importar contenido a RCM')
-    game=ws.game;folder=safe_target(game,game/'RCM/_content/within_the_darkness');path=safe_target(game,folder/ARCHIVE);owner=safe_target(game,folder/'import.json')
+    if sha(data)!=record['sha256']:raise ValueError('El contenido WTD no coincide con su registro')
+    game=ws.game;folder=safe_target(game,game/'RCM');path=safe_target(game,folder/ARCHIVE);owner=safe_target(game,folder/'.rcm_content.json')
+    previous=json.loads(owner.read_text(encoding='utf8')) if owner.is_file() else {}
+    if previous and (previous.get('format')!=1 or previous.get('id')!=PACK):raise ValueError('Registro de contenido compartido no válido')
     if path.exists():
-        previous=json.loads(owner.read_text(encoding='utf8')) if owner.is_file() else {}
         if previous.get('sha256')!=sha(path.read_bytes()):raise ValueError('El paquete de contenido existente en RCM es ajeno o está modificado; se conserva')
+    files={path:data,owner:json.dumps(dict(format=1,id=PACK,sha256=record['sha256']),indent=2).encode('utf8')}
+    for entry in [*folder.glob('*/.rcm_deployment.json'),*folder.glob('*/.rcm_manifest.json')]:
+        entry=safe_target(game,entry);deployment=json.loads(entry.read_text(encoding='utf8'))
+        if deployment.get('format')!=1 or not isinstance(deployment.get('files'),dict):raise ValueError('Manifest de deploy inválido')
+        target=safe_target(game,entry.parent/ARCHIVE);old=deployment['files'].get(ARCHIVE)
+        digest=old.get('sha256') if isinstance(old,dict) else old
+        if target.exists() and sha(target.read_bytes()) not in {digest,record['sha256']}:raise ValueError('Contenido compartido ajeno o modificado; se conserva: '+str(target))
+        deployment['files'][ARCHIVE]=dict(size=len(data),sha256=record['sha256']) if entry.name=='.rcm_manifest.json' else record['sha256']
+        deployment['shared_content_files']=sorted(set(deployment.get('shared_content_files',[]))|{ARCHIVE})
+        deployment['compatibility_files']=[name for name in deployment.get('compatibility_files',[]) if name!=ARCHIVE]
+        files[target]=data;files[entry]=json.dumps(deployment,indent=2).encode('utf8')
+    # Retire only the verified, previously owned staging copy, which the native
+    # resource index cannot discover when launching with -user RCM.
+    legacy=safe_target(game,folder/'_content/within_the_darkness');obsolete=[]
+    legacy_pack=safe_target(game,legacy/ARCHIVE);legacy_owner=safe_target(game,legacy/'import.json')
+    if legacy_pack.is_file() and legacy_owner.is_file():
+        old=json.loads(legacy_owner.read_text(encoding='utf8'))
+        if old.get('format')==1 and old.get('id')==PACK and old.get('sha256')==sha(legacy_pack.read_bytes()):obsolete=[legacy_pack,legacy_owner]
     rollback=ws.output(ROOT+'/shared-import-rollback.zip')
     if rollback.exists():raise ValueError('Recupera primero la importación compartida anterior')
-    replace_files({path:data,owner:json.dumps(dict(format=1,id=PACK,sha256=record['sha256']),indent=2).encode('utf8')},[],rollback,game/'RCM',lambda p:safe_target(game,p));rollback.unlink()
+    replace_files(files,obsolete,rollback,game/'RCM',lambda p:safe_target(game,p));rollback.unlink()
+
+
+def shared_dependencies(game):
+    """Read the installed pack, independently of editor/workspace preferences."""
+    from .deployment import safe_target
+    owner=safe_target(game,game/'RCM/.rcm_content.json')
+    if not owner.is_file():return {}
+    record=json.loads(owner.read_text(encoding='utf8'))
+    if record.get('format')!=1 or record.get('id')!=PACK:raise ValueError('Registro de contenido compartido no válido')
+    path=safe_target(game,game/'RCM'/ARCHIVE)
+    if not path.is_file() or sha(data:=path.read_bytes())!=record.get('sha256'):raise ValueError('El contenido compartido de RCM falta o está modificado; vuelve a importarlo')
+    return {ARCHIVE:data}
 
 
 def overlay(ws,base):
@@ -292,7 +329,12 @@ def add_to_build(ws,report,resources):
 
 
 def local_dependencies(ws,report):
-    if not report.get('imported_content'):return {}
+    from .deployment import configured_game
+    shared=shared_dependencies(configured_game(ws)) if ws.game or ws.output('cache/game_settings.json').is_file() or getattr(ws,'app_settings',None) else {}
+    if not report.get('imported_content'):return shared
+    if shared:
+        if report['imported_content']!=[dict(id=PACK,name='Within The Darkness',sha256=sha(shared[ARCHIVE]),archive=ARCHIVE)]:raise ValueError('El contenido compartido WTD cambió; vuelve a importar y compilar la crónica')
+        return shared
     record=manifest(ws)
     if not record or report['imported_content']!=[dict(id=PACK,name=record['name'],sha256=record['sha256'],archive=ARCHIVE)]:raise ValueError('Importa el contenido necesario de Within The Darkness y vuelve a compilar antes de desplegar')
     return {ARCHIVE:ws.output(ROOT+'/'+ARCHIVE).read_bytes()}
