@@ -11,7 +11,7 @@ AI interestNum. The table is 72-byte records, independent of player/conversation
 starts and ordinary routes. Fifteen original tables demonstrate groups 0/8/9.
 Records preserve proven sector, basis, position, 128.0 and zero fields. Optional
 waypoint interest_group emits this table; active AI and matching group required.
-The old global_72_candidates.json reverse heuristics are NOT interest evidence.
+Only the validated interest_reverse_candidates.json corpus is used as interest evidence.
 
 Soundboxes/lightboxes: original manual exposes positional sound and box/sector
 attachment. global_second_table.txt and global_convstarts.txt distinguish native
@@ -35,3 +35,10 @@ editable guesses. Menus, worlds, executables and external classes are excluded;
 missing required code fails clearly. NAD is copied with a version/header check,
 not semantically re-authored. This is data-library support, not universal mod
 support or a claim about permission to redistribute third-party assets.
+
+Library management: Settings can remove a verified local copy, with current-
+chronicle and parent-library guards. Hash-pinned parent references are embedded
+as RCM metadata in local archives so saved-inventory compatibility can retain
+the complete data closure even after the workspace import is removed. Missing
+or conflicting required versions fail before native launch. No game files are
+removed by the library manager.

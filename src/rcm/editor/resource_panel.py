@@ -97,17 +97,11 @@ class ProjectResourcesPanel(QWidget):
         while any(r['id']==row['id'][:26]+'_c'+str(i) for r in rows):i+=1
         row['id']=row['id'][:26]+'_c'+str(i);rows.append(row);self.index=len(rows)-1;self.win.changed(True)
     def references(self,ident):
-        found=[]
-        def walk(v,path=()):
-            if isinstance(v,dict):
-                for k,x in v.items():
-                    if k in {'template','base','ai','script','camera_path'} and x==ident:found.append(path+(k,))
-                    elif k=='class' and path[-1:]==('native_script',) and x==ident:found.append(path+(k,))
-                    elif k=='resource' and path[-1:]==('play_camera_path',) and x==ident:found.append(path+(k,))
-                    else:walk(x,path+(k,))
-            elif isinstance(v,list):
-                for i,x in enumerate(v):walk(x,path+(i,))
-        walk(self.root());return found
+        from ..campaign_relations import graph
+        root=self.root();kind=self.kind.currentData()
+        targets={('resources',kind,i) for i,row in enumerate(root.get('resources',{}).get(kind,[])) if row['id']==ident}
+        if not targets:return []
+        return [link.detail for link in graph(root) if link.target in targets]
     def delete(self):
         if self.index<0:return
         ident=self.rows()[self.index]['id'];refs=self.references(ident)
@@ -149,7 +143,7 @@ class ProjectResourcesPanel(QWidget):
             if index<0:box.addItem(tr('Ausente: ')+str(current),current);index=box.count()-1
             box.setCurrentIndex(index);box.currentIndexChanged.connect(lambda i:(fn or (lambda value:change(key,value)))(box.itemData(i)));form.addRow(label,box);return box
         if kind=='templates':
-            combo(tr('Base original / propia'),'base',[(t['id'],t['id']) for t in self.win.backend.resources['templates'] if t['id']!=row['id']],row['base'],lambda v:(row.update(base=v),self.win.changed(True)))
+            combo(tr('Base original / propia'),'base',[(t['id'],t['id']) for t in self.win.backend.resources['templates'] if t['id']!=row['id'] and not t.get('instance_owned')],row['base'],lambda v:(row.update(base=v),self.win.changed(True)))
             combo(tr('Relación'),'mode',[(tr('Herencia real'),'inherit'),(tr('Copiar registro, preservar raw'),'copy')],row.get('mode','inherit'),lambda v:(row.update(mode=v),self.win.changed(False)))
             for label,key,ext in [(tr('Modelo'),'model','.nod'),('AI','ai','.nai'),(tr('Foley / sonidos del objeto'),'foley','.nag'),(tr('Conjunto de animaciones'),'motions','.nms'),(tr('Script · avanzado'),'script','.class')]:
                 values=sorted({e['id'] for e in self.win.backend.resources['entries'] if e['extension'].lower()==ext})
@@ -174,13 +168,15 @@ class ProjectResourcesPanel(QWidget):
             hover._rcm_pending=False;hover.textChanged.connect(lambda value:setattr(hover,'_rcm_pending',True));hover._rcm_commit=save_hover;hover.editingFinished.connect(lambda:save_hover() if hover._rcm_pending else True)
             base=next((t for t in self.win.backend.resources['templates'] if t['id']==row['base']),{})
             if base.get('kind')=='containers':
-                from ..treasure import catalogue
-                choices=[(tr('Heredar de la base'),None),(tr('Sin tesoro'),0)]+[(str(r['id'])+' · '+r['description'],r['id']) for r in catalogue(self.win.backend.ws,self.win.backend.resources)]
+                from ..treasure import catalogue,label as treasure_label
+                treasure_rows=catalogue(self.win.backend.ws,self.win.backend.resources)
+                choices=[(tr('Heredar de la base'),None),(tr('Sin tesoro'),0)]+[(treasure_label(r),r['id']) for r in treasure_rows]
                 def set_treasure(value):
                     if value is None:props.pop('treasure_class',None)
                     else:props['treasure_class']=value
                     self.win.changed(False)
-                combo(tr('Botín / clase de tesoro'),'treasure_class',choices,props.get('treasure_class'),set_treasure)
+                loot=combo(tr('Botín / clase de tesoro'),'treasure_class',choices,props.get('treasure_class'),set_treasure)
+                for r in treasure_rows:loot.setItemData(loot.findData(r['id']),'TreasureClass '+str(r['id'])+' · '+str(r['items']),Qt.ItemDataRole.ToolTipRole)
             note=QLabel(tr('Los controles modifican sólo tags contrastados. Clan/health/stats no se muestran como bytes supuestamente conocidos.'));note.setWordWrap(True);form.addRow(note)
             bits=QLineEdit(hex(props['actor_flags']) if 'actor_flags' in props else '');bits.setObjectName('resource_actor_flags');bits.setPlaceholderText(tr('Heredar; valor hexadecimal sólo en modo técnico'));form.addRow(tr('Actor flags · avanzado'),bits)
             def save_bits():

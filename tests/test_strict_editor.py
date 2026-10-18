@@ -68,3 +68,23 @@ class StrictEditor(TestCase):
         def accept(dialog):dialog.findChild(QLineEdit,'instance_hover_text').setText('Bad\ntext');return QDialog.DialogCode.Accepted
         with patch('rcm.editor.instance_overrides.QDialog.exec',accept),patch.object(QMessageBox,'warning') as warning:edit_overrides(self.w,self.w.doc.data['actors'][0],True);warning.assert_called_once()
         self.assertEqual(self.w.doc.snapshot(),before)
+    def test_instance_resources_refresh_and_dialogue_uses_the_overridden_motion_set(self):
+        from rcm.editor.browser import ResourceBrowser
+        from rcm.instance_overrides import effective_template
+        s=self.w.doc.campaign['scenes'][0];motion=self.backend.resources['motion_catalogue']['templates']['LonCiv1']
+        s['actors']=[dict(id='chris',name='Chris',template='ST_Christof_MD',transform=dict(position=[-176,-612,384],orientation=[0,0,0]),overrides=dict(motions=self.backend.resources['motion_catalogue']['templates']['ST_Christof_MD'],hover_text='One'))]
+        s['conversations']=[dict(id='talk',speaker='chris',entry='entry',nodes=[dict(id='entry',lines=[dict(text='Hello')],choices=[dict(text='Bye',result=1)])])]
+        self.w.changed(True);first=copy.deepcopy(self.backend.project_payload)
+        s['actors'][0]['overrides']['motions']=motion;self.w.changed(True);self.assertNotEqual(first,self.backend.project_payload)
+        self.w.select(('conversations',0,'nodes',0));box=self.w.properties.widget().findChild(QComboBox,'dialogue_motion');self.assertGreaterEqual(box.findData('stand'),0);self.assertEqual(box.findData('gesture10'),-1)
+        generated=effective_template(self.w.doc.campaign,s,s['actors'][0]);self.assertTrue(any(t['id']==generated for t in self.backend.resources['templates']))
+        browser=ResourceBrowser(self.backend,'actors');self.assertNotIn(generated,[browser.table.item(i,0).text() for i in range(browser.table.rowCount())]);browser.close()
+    def test_resource_references_do_not_cross_template_and_script_namespaces(self):
+        root=self.w.doc.campaign;scene=root['scenes'][0]
+        root['resources']=dict(templates=[dict(id='Shared',base='Anezka',properties={})],scripts=[dict(id='Shared',source='unused.java')])
+        scene['actors']=[dict(id='actor',name='Actor',template='Shared',transform=dict(position=[-176,-612,384],orientation=[0,0,0]))]
+        scene['objects']=[dict(id='owner',name='Owner',template='tracker_thing',transform=dict(position=[-176,-612,384],orientation=[0,0,0]),native_script={'class':'Shared','parameters':[]})]
+        panel=self.w.project_resources_panel
+        self.assertEqual(panel.references('Shared'),[('scenes',0,'actors',0,'template')])
+        panel.kind.blockSignals(True);panel.kind.setCurrentIndex(panel.kind.findData('scripts'));panel.kind.blockSignals(False)
+        self.assertEqual(panel.references('Shared'),[('scenes',0,'objects',0,'native_script','class')])

@@ -1,0 +1,8 @@
+{
+  "source_commit": "261d88a",
+  "sha256": {
+    "False": "407dfbbfb699a7680931bd06c9b182e42a46e0d33a147760bd689385bf12a640",
+    "True": "c71d8423d535896d6e35a16ea696f2791ac1d9320f7427d66d7bc663cd20d437"
+  },
+  "native_game_test": false
+}

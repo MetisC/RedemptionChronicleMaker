@@ -1,4 +1,5 @@
 import copy
+from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QDialog,QFormLayout,QComboBox,QLineEdit,QDialogButtonBox,QLabel,QMessageBox
 from .i18n import tr
 
@@ -15,9 +16,10 @@ def edit_overrides(win,entity,actor):
     text=QLineEdit(values.get('hover_text',''));text.setObjectName('instance_hover_text');text.setPlaceholderText(tr('Heredar texto de la plantilla'));form.addRow(tr('Texto al señalar'),text)
     record=next((t for t in win.backend.resources['templates'] if t['id']==entity.get('template')),{})
     if record.get('kind')=='containers':
-        from ..treasure import catalogue
+        from ..treasure import catalogue,label as treasure_label
         box=QComboBox();box.setObjectName('instance_treasure_class');box.addItem(tr('Heredar de la plantilla'),None);box.addItem(tr('Sin tesoro'),0)
-        for row in catalogue(win.backend.ws,win.backend.resources):box.addItem(str(row['id'])+' · '+row['description'],row['id'])
+        for row in catalogue(win.backend.ws,win.backend.resources):
+            box.addItem(treasure_label(row),row['id']);box.setItemData(box.count()-1,'TreasureClass '+str(row['id'])+' · '+str(row['items']),Qt.ItemDataRole.ToolTipRole)
         box.setCurrentIndex(max(0,box.findData(values.get('treasure_class'))));form.addRow(tr('Botín / clase de tesoro'),box);controls['treasure_class']=box
     note=QLabel(tr('Sólo afecta a esta instancia. Los demás personajes y objetos que usan la plantilla conservan sus propiedades. El conjunto de animaciones debe corresponder al modelo.'));note.setWordWrap(True);form.addRow(note)
     buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Ok|QDialogButtonBox.StandardButton.Cancel);buttons.accepted.connect(dialog.accept);buttons.rejected.connect(dialog.reject);form.addRow(buttons)

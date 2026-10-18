@@ -10,7 +10,7 @@ Offset 0: NOT\x10. Offset 4: uint32 versión 1. Offset 8: uint32 cantidad. Desde
 
 Global: 915; modernDay: 776; darkAges: 726; Multiplayer: 202 templates. Los cuatro se recodifican byte a byte. Multiplayer conserva 6786 bytes finales opacos, sin atribuirles significado. La regresión de lectura/escritura se ejecuta sobre los originales extraídos.
 
-Tag 0 enlaza parent; catálogo previo resuelve propiedades heredadas y comunica si la cadena está completa. Campos conocidos: 1 orientation, 2 position, 3 sector, 4 model, 6 foley, 9 motions, 11 script, 16 thing type, 56 AI, 81 Cast ID, 82 Description ID y 114 actor flags. El inspector muestra interpretación, hex original y offset de cada tag; nombres de propiedades derivan de evidencia contrastada, no de una especificación oficial completa.
+Tag 0 enlaza parent; catálogo previo resuelve propiedades heredadas y comunica si la cadena está completa. Campos conocidos: 1 orientation, 2 position, 3 sector, 4 model, 6 foley, 9 motions, 11 script, 16 thing type, 56 AI, 81 Cast ID, 82 Description ID, 92 TreasureClass uint32 y 114 actor flags. El inspector muestra interpretación, hex original y offset de cada tag; nombres de propiedades derivan de evidencia contrastada, no de una especificación oficial completa.
 
 ## Inferido / pendiente
 

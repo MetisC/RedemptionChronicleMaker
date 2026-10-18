@@ -17,6 +17,7 @@ scenes:
     source: RaveClub
     name: The refuge
     environment:
+      music: London_Hub
       music_volume: 50
       ambient_volume: 35
       fog:
@@ -90,6 +91,7 @@ scenes:
     overrides:
       hover_text: Elena, keeper of the refuge
       foley: npcGeneralFemale
+      motions: AnezkaTall.nms
   - id: guard
     name: Keeper of the refuge
     template: LonCiv2
@@ -1290,6 +1292,7 @@ scenes:
       is_set: true
     actions:
     - start_conversation: after
+  generators: []
 - id: epilogue
   level:
     source: RaveClub
@@ -1307,7 +1310,19 @@ scenes:
       - 0
       - 0
       - 90
-  actors: []
+  actors:
+  - id: scavenger
+    name: A harmless scavenger
+    template: Rat
+    transform:
+      position:
+      - 365
+      - -850
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 0
   objects: []
   conversations: []
   events:
@@ -1315,6 +1330,8 @@ scenes:
     when: scene_start
     once: true
     actions:
+    - spawn: scavenger
+    - enable_ai: scavenger
     - camera_fade:
         initial: 0
         target: 255
@@ -1322,10 +1339,11 @@ scenes:
     - show_note:
         title: Safe before dawn
         text: You reached the refuge. The journal records your arrival and the rat is behind you. This small chronicle
-          was authored in RCM, including its camera path; the original geometry has not changed. The floating cargo
-          uses the original ClassBobbing constructor, linked to an object and a named movement frame. The two supply
-          barrels compare inherited treasure with class 230. These native behaviours require manual observation;
-          this example does not certify them.
+          was authored in RCM, including its camera path; the original geometry has not changed. A harmless rat
+          searches the refuge for scraps, using its original AI and native interest group 8. The floating cargo
+          outside uses ClassBobbing with a linked object and movement frame. The two supply barrels compare inherited
+          treasure with class 230. These native behaviours require manual observation; this example does not certify
+          them.
   waypoints:
   - id: interest
     name: 'Optional native AI interest spot: group 8'
@@ -1339,6 +1357,11 @@ scenes:
       - 0
       - 0
       - 0
+  paths: []
+  sequences: []
+  encounters: []
+  triggers: []
+  generators: []
 quests:
 - id: director
   title: A place before dawn

@@ -52,5 +52,36 @@ externo obligatorio se rechaza claramente. No es un importador universal de mods
 
 El ejemplo opcional **Cargo at the refuge** muestra estas propiedades sin cambiar
 el tutorial. Los nuevos comportamientos nativos necesitan las pruebas EMB de la
-lista manual. El análisis de mapas está en research/embrace_strict_parity/MAPS.md:
-los mapas personalizados son viables, pero todavía no hay editor de mapas.
+lista manual. Los mapas personalizados son viables, pero todavía no hay editor de mapas.
+Consulta Límites avanzados y la lista de comprobaciones manuales.
+
+
+## Dificultad de combate de la crónica
+
+Selecciona la crónica en el árbol y elige Fácil, Normal, Difícil o Pesadilla en
+Propiedades. Normal conserva el comportamiento original. El ajuste es opcional;
+las crónicas antiguas siguen en Normal y no cambian de formato.
+
+| Ajuste | Vida y máximo | Fuerza | Resistencia |
+|---|---|---|---|
+| Fácil | ×0,80 | ×0,90 | ×0,90 |
+| Normal | ×1 | ×1 | ×1 |
+| Difícil | ×1,20 | ×1,10 | ×1,10 |
+| Pesadilla | ×1,50 | ×1,20 | ×1,20 |
+
+Fuerza y Resistencia modifican los atributos nativos, no multiplican directamente
+cada golpe. El motor conserva sus límites de clan y resistencias. Se aplica a
+nuevos enemigos RCM declarados enemigos, incluidos oleadas y jefes; respeta equipos
+aliados/neutrales. No altera al jugador ni a personajes de conversación normales.
+En encuentros dinámicos se aplica primero la vida personalizada y después la
+dificultad. Los umbrales porcentuales usan el máximo resultante; los absolutos no
+cambian. Los enemigos de una partida guardada conservan sus valores. Para cambiar
+la dificultad de forma uniforme, empieza una partida nueva después del build.
+
+En Ajustes > Bibliotecas importadas puedes retirar una biblioteca. Se comprueban
+las referencias de la crónica abierta y de otras bibliotecas. Sólo se eliminan
+copias locales verificadas; se conserva el mod original y lo instalado en el
+juego. Otros proyectos pueden necesitar que la importes otra vez. La
+compatibilidad de inventarios conserva bibliotecas completas y sus dependencias.
+Los actores controlados por scripts nativos conservan su inicialización original;
+la dificultad afecta a nuevas creaciones del runtime RCM, no a actores originales.

@@ -50,3 +50,33 @@ required external code fails clearly; this is not a universal mod importer.
 Cargo at the refuge is an optional example; the accepted tutorial is unchanged.
 New native behaviour requires the manual EMB checklist. Custom map images,
 locations and labels are technically feasible, but no map editor exists yet.
+
+
+## Chronicle combat difficulty
+
+Select the chronicle in the tree, then choose Easy, Normal, Hard or Nightmare in
+Properties. Missing settings default to Normal; formats9/10 are not upgraded.
+Normal preserves original behaviour and generated runtime code.
+
+| Setting | Health and maximum | Strength | Stamina |
+|---|---|---|---|
+| Easy | ×0.80 | ×0.90 | ×0.90 |
+| Normal | ×1 | ×1 | ×1 |
+| Hard | ×1.20 | ×1.10 | ×1.10 |
+| Nightmare | ×1.50 | ×1.20 | ×1.20 |
+
+These scale native base/current attributes, not damage per hit directly. Native
+clan caps and damage-specific resistances remain in control. Only newly created
+RCM enemies are affected, including waves/bosses; neutral/ally teams, players and
+ordinary conversation NPCs are excluded. Dynamic custom health is applied before
+the global factor. Boss percentage thresholds use the resulting max health;
+absolute thresholds stay absolute. Existing saved enemies retain their values.
+Start a new game after changing difficulty for consistent balance.
+
+Imported libraries can be removed through Settings > Imported libraries. Removal
+checks the open chronicle and parent-library dependencies, deletes verified local
+copies only, and preserves original mod files and installed game content. Other
+projects may require reimporting that library. Saved inventory compatibility
+retains complete verified libraries, including transitive data dependencies.
+Native-script-owned actors retain their original initialisation; global difficulty
+modifies fresh actors created by the RCM spawn runtime, not original world actors.

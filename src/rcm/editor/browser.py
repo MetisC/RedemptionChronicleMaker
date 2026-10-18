@@ -129,6 +129,7 @@ class ResourceBrowser(QWidget):
             for t in templates:
                 counts[t["id"]] = counts.get(t["id"], 0) + 1
             for item in sorted(templates, key=lambda t: t["id"].casefold()):
+                if item.get('instance_owned'):continue
                 if item['id'].startswith('_') and not self.bases.isChecked():continue
                 if item["kind"] not in ({"actors"} if kind == "actors" else {"items", "props", "weapons", "armour", "containers"}):
                     continue

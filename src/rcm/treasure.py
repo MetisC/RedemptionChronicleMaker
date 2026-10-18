@@ -25,3 +25,9 @@ def catalogue(ws,resources):
     game=default_game(ws.root)
     if game is None:raise ValueError('Selecciona Redemption para leer sus clases de tesoro')
     return parse(original_bytes(Workspace(ws.root,game),entry))
+
+
+def label(row):
+    """Keep native categories recognisable without an opaque integer-only list."""
+    names=[re.sub(r'(?<=[a-z])(?=[A-Z])',' ',item[0]).replace('_',' ') for item in row['items']]
+    return row['description']+' · '+', '.join(names[:4])+('…' if len(names)>4 else '')

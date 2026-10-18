@@ -73,7 +73,9 @@ class Backend:
     def sync_resources(self,source):
         self.refresh_import()
         from .project_resources import prepare
-        key=build_inputs_fingerprint(self.ws,{k:source.get(k) for k in ['project_format','resources','chronicle']})
+        intent={k:source.get(k) for k in ['project_format','resources','chronicle']}
+        intent['placed_resources']=[dict(scene=s.get('id'),entities=[{k:row.get(k) for k in ('id','template','overrides','native_script','native_frames')} for row in s.get('actors',[])+s.get('objects',[]) if row.get('overrides') or 'native_script' in row or 'native_frames' in row]) for s in source.get('scenes',[])]
+        key=build_inputs_fingerprint(self.ws,intent)
         if key==getattr(self,'_resources_key',None):return
         _,self.resources,self.project_payload,_=prepare(self.ws,source,self.original_resources)
         self._resources_key=key
@@ -180,6 +182,7 @@ class Backend:
         """Conservative navigation for contextual parser errors, never guessed offsets."""
         if not data:
             return ()
+        if 'chronicle.difficulty' in message or 'dificultad configurable' in message:return ('chronicle',)
         if 'misma escena' in message:
             for si,scene in enumerate(data.get('scenes',[])):
                 for ei,event in enumerate(scene.get('events',[])):
@@ -295,6 +298,14 @@ class Backend:
                 report['save_schema_sha256']=source_fingerprint(contract)
                 report['new_game_required']=bool(prior) and prior.get('save_schema_sha256')!=report['save_schema_sha256']
                 if report['new_game_required']:report['save_warning']='La estructura persistida ha cambiado o no tiene firma previa. Inicia una partida nueva; no hay migrador de saves nativos.'
+                if isinstance(p,Campaign):
+                    from .combat_difficulty import selected
+                    difficulty=selected(p.source)
+                    if difficulty!='normal':report['combat_difficulty']=difficulty
+                    if prior and prior.get('combat_difficulty','normal')!=difficulty:
+                        report['new_game_required']=True
+                        message='La dificultad ha cambiado. Los enemigos guardados conservan sus atributos; inicia una partida nueva para aplicar la dificultad de forma uniforme.'
+                        report['save_warning']='\n'.join(v for v in (report.get('save_warning'),message) if v)
                 return staged.publish(report)
             except Exception as error:
                 diagnostic='build/failed_attempts/'+validation.project.id+'_'+staged.stage.name
@@ -326,11 +337,11 @@ def build_inputs_fingerprint(ws,source):
             path=ws.output(row['source']);files[row['source']]=hashlib.sha256(path.read_bytes()).hexdigest()
     profiles={}
     level_file=ws.output('cache/levels.json');hint_file=ws.output('cache/scene_hints.json')
-    if level_file.is_file() and hint_file.is_file():
+    requested=[scene.get('level',{}) for scene in data.get('scenes',[data]) if isinstance(scene.get('level'),dict) and scene['level'].get('source')]
+    if requested and level_file.is_file() and hint_file.is_file():
         from .scene_profiles import environment
         levels=json.loads(level_file.read_text(encoding='utf8'));hints=json.loads(hint_file.read_text(encoding='utf8'))
-        for scene in data.get('scenes',[data]):
-            level=scene.get('level',{})
+        for level in requested:
             if isinstance(level,dict) and level.get('source') in levels:
                 _,record=environment(ws,levels[level['source']],hints,level.get('environment_scene'))
                 profiles[level['source']+'/'+record['id']]=record['source_sha256']

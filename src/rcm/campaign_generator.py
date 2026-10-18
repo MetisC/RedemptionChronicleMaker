@@ -96,6 +96,9 @@ def runtime(campaign,scene,p):
         for it in a.get('inventory',[]):code += [f' if(!give({entities[it]},things[i])) trace("inventory failed {it}");']
         from .wtd import actor_java
         code += actor_java(a,'things['+str(i)+']')
+        from .combat_difficulty import manual_call
+        modifier=manual_call(campaign.source,a,i)
+        if modifier:code.append(modifier)
         code += [' break;']
     code += [' } trace("spawn "+template(i)+" guid="+things[i]); }',
              ' public void beginscene(int who,int capture) { if(NetIsClient()) return; player=localPlayer(who); active=-1; starter=0; transitioning=false; if(!restoredState) { ticks=0; pendingStart=true; } restoredState=false; poll(); }',
@@ -264,7 +267,8 @@ def runtime(campaign,scene,p):
     silence=''.join(' CodexSound.Stop'+('Music' if key=='music' else 'Ambient')+'();' for key in ('music','ambient') if initial.get(key,None)=='')
     if silence:java=java.replace('public void beginscene(int who,int capture) { if(NetIsClient()) return;','public void beginscene(int who,int capture) { if(NetIsClient()) return;'+silence,1)
     from .native_scripts import adopt_runtime
-    return name,adopt_runtime(guard_events(java,scene),scene,p)
+    from .combat_difficulty import extend as extend_difficulty
+    return name,adopt_runtime(extend_difficulty(guard_events(java,scene),campaign.source),scene,p)
 
 
 def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress=None,runtime_transform=None):
