@@ -118,3 +118,4 @@ $RECYCLE.BIN/
 !.env.example
 # Private release archives and preserved deployment binaries
 /RedemptionChronicleMaker*.zip
+/backups
