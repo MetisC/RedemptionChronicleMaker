@@ -41,7 +41,9 @@ def failed_report(ws,source,error):
     previous={};artifacts=[]
     try:previous=json.loads(ws.output(path).read_text(encoding='utf8'));artifacts=previous.get('generated_artifacts',[])
     except (OSError,ValueError):pass
-    ws.write(path,json.dumps({'chronicle':ident,'status':'failed','reason':str(error),'native_engine_test':False,'generated_artifacts':artifacts,'save_schema_sha256':previous.get('save_schema_sha256')},ensure_ascii=False,indent=2))
+    record={'chronicle':ident,'status':'failed','reason':str(error),'native_engine_test':False,'generated_artifacts':artifacts,'save_schema_sha256':previous.get('save_schema_sha256')}
+    if 'combat_difficulty' in previous:record['combat_difficulty']=previous['combat_difficulty']
+    ws.write(path,json.dumps(record,ensure_ascii=False,indent=2))
 
 def clean_build(ws,chronicle):
     from .model import identifier

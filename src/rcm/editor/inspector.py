@@ -144,6 +144,9 @@ class Inspector(QWidget):
             name_control = self.line(tr("Nombre"), chron["name"], lambda v: self.set(("chronicle", "name"), v), "chronicle_name")
             name_control.setToolTip(str(self.win.doc.path))
             self.text(tr("Descripción"), chron.get("description", ""), lambda v: self.set(("chronicle", "description"), v), "chronicle_description")
+            if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
+                self.combo(tr('Dificultad de combate'),[(tr('Fácil'),'easy'),(tr('Normal'),'normal'),(tr('Difícil'),'hard'),(tr('Pesadilla'),'nightmare')],chron.get('difficulty','normal'),lambda value:self.set(('chronicle','difficulty'),value),'chronicle_difficulty')
+                self.note(tr('Sólo afecta a enemigos nuevos. Los enemigos ya guardados conservan sus atributos. Inicia una partida nueva después de cambiar la dificultad para obtener un resultado uniforme.'))
             self.note(tr("Cada escena usa un escenario original. Puedes crear varias escenas para contar tu historia. Usa F5 cuando quieras probar tus cambios."))
         elif p == ("level",):
             source = data["level"].get("source", "")
@@ -170,6 +173,8 @@ class Inspector(QWidget):
                 if data['level'].get('sky'):
                     self.note(tr('Este proyecto tiene un override de cielo en YAML. Prevalece sobre el perfil original.'))
             self.note(tr("Entorno y contenido pertenecen a la escena. La geometría sigue siendo la del level original."))
+            from .environment import open_environment
+            self.button(tr('Entorno de la escena…'),lambda:open_environment(self.win),'edit_scene_environment')
         elif p[0]=='generators' and len(p)==2:
             from .dynamic_wizard import open_dynamic
             g=data['generators'][p[1]]
@@ -248,6 +253,11 @@ class Inspector(QWidget):
             return
         self.note(tr("Plantilla: ") + (actor.get("template") or tr("Sin elegir")))
         self.button(tr("Elegir plantilla…"), lambda: self.win.choose_template(p), "choose_template")
+        if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
+            from .instance_overrides import edit_overrides
+            self.button(tr('Propiedades de esta instancia…'),lambda:edit_overrides(self.win,actor,p[0]=='actors'),'edit_instance_overrides')
+            from .native_scripts import edit_native_script
+            self.button(tr('Script nativo · avanzado…'),lambda:edit_native_script(self.win,actor),'edit_native_script')
         self.note("Level: " + self.win.doc.data["level"].get("source", tr("Sin elegir")))
         if hasattr(self.win.doc, 'campaign'):
             if p[0] == 'actors':
@@ -335,6 +345,13 @@ class Inspector(QWidget):
         for i,label in enumerate(('Pitch','Roll','Yaw')):
             self.spin(label,row['transform']['orientation'][i],lambda v,i=i:self.set(p+('transform','orientation',i),v),'orientation_'+str(i),True,-360,360)
         self.note(tr('Punto lógico de llegada tras el viaje. No modifica los portales ni la geometría original.') if p[0]=='entries' else tr('El recorrido solicita al motor desplazarse hasta estos puntos mediante su navegación existente.'))
+        if p[0]=='waypoints':
+            def interest(value):
+                if value is None:row.pop('interest_group',None)
+                else:row['interest_group']=value
+                self.win.changed(True)
+            self.combo(tr('Punto de interés de la AI'),[(tr('No usar como interés'),None)]+[(str(i),i) for i in range(10)],row.get('interest_group'),interest,'marker_interest_group')
+            self.note(tr('Opcional: añade este punto a la tabla nativa de interés. La AI debe estar activa y usar el mismo grupo interestNum. No impone un recorrido ni un orden.'))
         if self.win.spatial.viewport:
             self.button(tr('Enfocar en 3D'),self.win.spatial.viewport.focus_selection,'focus_entity')
             self.button(tr('Ajustar al suelo'),self.win.spatial.snap_selected,'snap_ground')
@@ -431,7 +448,9 @@ class Inspector(QWidget):
         available=[]
         for key in speakers:
             actor=next((a for a in self.win.doc.data['actors'] if a['id']==key),None)
-            available.append(slots(self.win.backend.resources,actor['template']) if actor else [])
+            from ..instance_overrides import effective_template
+            template=effective_template(self.win.doc.campaign,self.win.doc.campaign['scenes'][self.win.doc.active],actor) if actor else None
+            available.append(slots(self.win.backend.resources,template) if actor else [])
         options=[s for s in available[0] if all(any(o['mode']==s['mode'] for o in group) for group in available[1:])] if available else []
         default=tr('Heredar animación del nodo') if line else tr('Automática del motor (hablar / escuchar)')
         control=self.combo(tr('Animación al hablar'),[(default,None)]+[(tr(label(s)),s['mode']) for s in options],row.get('motion'),lambda v:self.set(path+('motion',),v,True),'dialogue_motion')

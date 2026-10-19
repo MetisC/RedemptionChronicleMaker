@@ -23,3 +23,65 @@ En **NPC te manda a un lugar**, la primera respuesta debe terminar con RETURN 1 
 Abre chronicles/mini_chronicle/project.yaml para ver una aventura completa de ejemplo, editable con los mismos paneles y asistentes.
 
 **Encuentros dinámicos:** Campaña → + Encuentro dinámico…, Asistentes o botón derecho sobre suelo 3D. Elige Emboscada/Oleadas/Continuo/Refuerzos/Jefe, enemigos/cantidad, puntos/cuándo y acciones finales. Advanced queda plegado. [Guía y laboratorio](DYNAMIC_ENCOUNTERS.md). El primer uso en formato 9 guarda backup y opta por formato 10; abrir el tutorial no lo convierte.
+
+
+## Propiedades avanzadas del escenario y de sus objetos
+
+En **Level base > Entorno de escena** puedes heredar o elegir audio, volumen,
+niebla, distancia visible y cielo. Las unidades son las del motor. EAX conserva
+la escena original. No se modifican geometría ni lightmaps.
+
+En un actor u objeto, **Propiedades de esta instancia** cambia AI/Foley,
+animaciones compatibles y texto al señalar sólo para ese elemento. Los
+contenedores ofrecen botín heredado, ninguno o una clase del GAME.NTT original.
+
+**Script nativo · avanzado** permite elegir una clase original, rellenar
+parámetros y seleccionar entidades por nombre. Frames nativos usa la posición
+inicial como frame 0 y waypoints como destinos. El script posee los callbacks;
+no mezcles esa misma entidad con creación dinámica, inventarios o conversaciones
+RCM. Algunos scripts requieren regiones/datos de la campaña original.
+
+Un waypoint puede ser además punto de interés nativo, grupo 0..9. La AI debe
+estar activa y tener el mismo interestNum; esto no crea un recorrido.
+
+En Ajustes, **Importar biblioteca de plantillas**, selecciona un NOT o NOB y
+las plantillas nuevas. Se importan sus padres y datos necesarios, no menús,
+crónicas ni código. Los archivos importados permanecen como dependencia local;
+los ZIP de exportación no incluyen recursos ajenos. Un recurso con código
+externo obligatorio se rechaza claramente. No es un importador universal de mods.
+
+El ejemplo opcional **Cargo at the refuge** muestra estas propiedades sin cambiar
+el tutorial. Los nuevos comportamientos nativos necesitan las pruebas EMB de la
+lista manual. Los mapas personalizados son viables, pero todavía no hay editor de mapas.
+Consulta Límites avanzados y la lista de comprobaciones manuales.
+
+
+## Dificultad de combate de la crónica
+
+Selecciona la crónica en el árbol y elige Fácil, Normal, Difícil o Pesadilla en
+Propiedades. Normal conserva el comportamiento original. El ajuste es opcional;
+las crónicas antiguas siguen en Normal y no cambian de formato.
+
+| Ajuste | Vida y máximo | Fuerza | Resistencia |
+|---|---|---|---|
+| Fácil | ×0,80 | ×0,90 | ×0,90 |
+| Normal | ×1 | ×1 | ×1 |
+| Difícil | ×1,20 | ×1,10 | ×1,10 |
+| Pesadilla | ×1,50 | ×1,20 | ×1,20 |
+
+Fuerza y Resistencia modifican los atributos nativos, no multiplican directamente
+cada golpe. El motor conserva sus límites de clan y resistencias. Se aplica a
+nuevos enemigos RCM declarados enemigos, incluidos oleadas y jefes; respeta equipos
+aliados/neutrales. No altera al jugador ni a personajes de conversación normales.
+En encuentros dinámicos se aplica primero la vida personalizada y después la
+dificultad. Los umbrales porcentuales usan el máximo resultante; los absolutos no
+cambian. Los enemigos de una partida guardada conservan sus valores. Para cambiar
+la dificultad de forma uniforme, empieza una partida nueva después del build.
+
+En Ajustes > Bibliotecas importadas puedes retirar una biblioteca. Se comprueban
+las referencias de la crónica abierta y de otras bibliotecas. Sólo se eliminan
+copias locales verificadas; se conserva el mod original y lo instalado en el
+juego. Otros proyectos pueden necesitar que la importes otra vez. La
+compatibilidad de inventarios conserva bibliotecas completas y sus dependencias.
+Los actores controlados por scripts nativos conservan su inicialización original;
+la dificultad afecta a nuevas creaciones del runtime RCM, no a actores originales.

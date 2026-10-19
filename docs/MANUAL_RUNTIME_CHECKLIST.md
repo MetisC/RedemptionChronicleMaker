@@ -135,3 +135,49 @@ Los casos siguientes siguen MANUAL RUNTIME TEST REQUIRED. El usuario sólo confi
 | EMB-NCP-03 | Trasladarse entre puntos distintos cambiando orientación. Comprobar extremos, giro corto y encuadre. |
 | EMB-NCP-04 | Intentar posiciones consecutivas iguales y Euler distinto: validación clara, sin archivo inválido ni giro temporizado inventado. |
 | EMB-NCP-05 | Comparar velocidades, cancelar/terminar y repetir. Registrar clipping y devolución del control; el preview no acredita el render nativo. |
+
+
+## Strict non-geometry authoring acceptance
+
+All cases below: **MANUAL RUNTIME TEST REQUIRED**. Use a new game in the optional
+`chronicles/strict_acceptance/project.yaml` (Cargo at the refuge). Automated
+compilation, readback and Qt tests do not certify any native result.
+
+- EMB-ENV-01: change initial music/ambient volume, silence, linear fog RGB/range,
+  ZClip and a compatible paired sky through Level > Environment. Reopen project;
+  test initial scene, re-entry and save/load. EAX is inherited, not editable.
+- EMB-TEMPLATE-01: edit Elena's instance hover/Foley; verify other instances keep
+  their template values. Undo/redo, save/reopen/export. Use model-compatible NMS.
+- EMB-TREASURE-01: break/open class-230 supply barrel and inherited comparison;
+  repeat random rolls. Save/re-enter before and after looting; no duplicate loot.
+- EMB-CODEX-01: cargo moves with original ClassBobbing. Edit scalar speeds/delay
+  and linked target/frame through Native script; no custom Java or raw YAML.
+- EMB-CODEX-02: save/reload while cargo moves; verify handles and callbacks remain
+  with the original script and there is no duplicate entity or reset loop.
+- EMB-CODEX-03: rename linked object/waypoint, inspect References and cascade
+  delete with undo; missing frame must not silently retarget native indices.
+- EMB-INTEREST-01: configure a compatible active AI with interestNum 8 and matching
+  waypoint group; observe native idle interest selection, not an imposed route.
+- EMB-LIBRARY-01: import a data-only NOT/NOB through Settings, select new templates,
+  build/deploy and use one in a scene. Export ZIP must contain references only;
+  absent/changed local dependency must fail clearly. No arbitrary mod code import.
+
+
+## DIFF — optional combat difficulty
+
+MANUAL RUNTIME TEST REQUIRED. Use a disposable new chronicle/game and compare the
+same weak enemy in Normal, Easy, Hard and Nightmare; do not overwrite your saves.
+
+- DIFF01: default/Normal retains familiar combat, NPC conversations and movement.
+- DIFF02: compare melee enemies and equipped enemies at each setting; confirm
+  Easy does not break their equipment/AI and harder modes retain relative roles.
+- DIFF03: spawn manual enemies and dynamic waves/bosses; allies and neutral NPCs
+  stay unchanged. With custom HP50, Nightmare starts at75; percent phases track
+  the scaled maximum while absolute thresholds stay absolute.
+- DIFF04: wound an enemy, save/load and re-enter; no healing, repeated scaling or
+  duplicate enemy, phase or reward. Check subsequent genuinely new spawns too.
+- DIFF05: change difficulty, rebuild and load a disposable existing save: old
+  enemies keep old values; new enemies use the new setting. Inspector/build warn
+  to start a new game for consistent balance; no save migration is promised.
+- DIFF06: if testing multiple clients, verify host-only initialisation and native
+  stat replication. Offline doubles do not certify network combat/persistence.

@@ -123,15 +123,15 @@ Todos los 291 NSD examinados comienzan por `NSD\x10`, versión DWORD 8. El subco
 | 84 / variable | Registros de entidades |
 | Final / 192 por defecto | Cuatro contadores globales (16), tablas propias opcionales de entradas/conversación, y metadatos de entorno (176) |
 
-Una entidad simple tiene `uint32 tagCount`, `tagCount × (uint32 tagID + payload32)` y **20 bytes de bloques variables vacíos**. No se atribuye un significado completo a los cinco DWORD de esos 20 bytes. Los registros complejos tienen parámetros, frames o datos geométricos y salen de este subconjunto.
+Una entidad simple tiene `uint32 tagCount`, `tagCount × (uint32 tagID + payload32)` y **20 bytes de bloques variables vacíos**. Los primeros DWORD son cuenta de frames y parámetros; siguen presencia de brush, región e iluminación. Se admiten frames24 (orientación/posición), parámetros tipados y brushes generados; regiones/luces complejas siguen fuera del subconjunto.
 
-28 de los 291 NSD originales se leen y reemiten exactamente con el subconjunto actual (research/embrace_closure/nsd_codec_subset.json). El codec rechaza `EAST_28_4.nsd` y otras escenas complejas, en vez de reinterpretarlas incorrectamente.
+64 de los 291 NSD originales se leen y reemiten exactamente (research/embrace_strict_parity/nsd_extended_roundtrips.json). Los28 del baseline anterior se comprueban por separado, sin cambiar sus hashes. El codec rechaza `EAST_28_4.nsd` y otras escenas complejas, en vez de reinterpretarlas incorrectamente.
 
 La escena mínima de referencia tiene **480 bytes**, una única entidad `ghost` con tags 0, 1, 2, 3 y 11. Los parámetros/bloques variables quedan vacíos. El script propio se indica en el tag 11; no se escribe en el encabezado NSD.
 
 El anchor del ghost se toma automáticamente de una entidad existente en una escena relacionada con el level. Para EastLondon son posición `[1184,1660,114]` y sector 19. Se conservan los últimos **176** bytes de metadatos y se anteponen los cuatro contadores globales, vacíos por defecto; las tablas propias optativas de entradas y conversación se escriben explícitamente con sus contadores. Copiar 192 bytes de una escena compleja podría arrastrar el final de un registro de entrada. No se copian sus actores, triggers, scripts o geometría de entidades.
 
-El lector nativo NSD v8 lee al final dos nombres de 32 bytes para modelo y animación del cielo, offsets -64 y -32. Los recursos se resuelven desde el juego. Se conserva el entorno original completo; EastLondon mantiene ambos nombres vacíos y el fondo gris aceptado. La semántica completa de los otros 112 bytes sigue pendiente.
+El lector nativo NSD v8 lee al final dos nombres de 32 bytes para modelo y animación del cielo, offsets -64 y -32. Los recursos se resuelven desde el juego. Se conserva el entorno original completo; EastLondon mantiene ambos nombres vacíos y el fondo gris aceptado. Los campos de audio, volumen, niebla y ZClip están contrastados en la activación nativa; SCENE_MODEL.md da sus offsets. Los DWORD64 y108 se conservan opacos; EAX se hereda por prioridad estática.
 
 `scene_entity_hints` busca secuencias de tags 0/1/2/3 en escenas complejas. Conserva offsets y marca `confidence: tag-pattern; not full scene parse`. Puede perder entidades o producir coincidencias; no sirve para editar/reemitir escenas complejas. El punto usado para Victoria se contrastó manualmente con el registro `otto`.
 
@@ -348,7 +348,7 @@ El campo opcional `interaction.source` conserva el selector original (`level`, `
 
 ## Entradas NSD propias y nombres de eventos
 
-Después de entidades y el contador de scripts globales (0), se escribe count uint32 y count×60 bytes: sector uint32, base 3×3 float32, posición XYZ float32, entrada uint32 e integrante uint32. Siguen contadores de salidas/posiciones de conversación (0) y entorno de 176 bytes. Se validan matrices, tamaños y truncado. Base identidad; orientación autoral mediante SetOrientation. Los planos NIL cacheados permiten identificar el sector sin modificar geometría. Entrada 0: punto predeterminado. Escenas sin esta función conservan sus bytes.
+Después de entidades y el contador de scripts globales (0), se escribe count uint32 y count×60 bytes: sector uint32, base 3×3 float32, posición XYZ float32, entrada uint32 e integrante uint32. Siguen la tabla de interestspots (72 bytes por registro), la de posiciones de conversación y el entorno de176 bytes; tablas vacías por defecto. Se validan matrices, tamaños y truncado. Base identidad; orientación autoral mediante SetOrientation. Los planos NIL cacheados permiten identificar el sector sin modificar geometría. Entrada 0: punto predeterminado. Escenas sin esta función conservan sus bytes.
 
 IDs de eventos: 64 caracteres y mayúsculas tras el primer carácter minúsculo. Son strings internos, no nombres fijos NOD. Así click_drippyCandle_4 conserva la plantilla exacta sin alargar el ID compacto del objeto ni su plantilla nativa. La caja temporal de superficies usa la misma región conectada de material que la interacción; cancelar no crea datos.
 
@@ -373,3 +373,17 @@ Se conserva `conversation.staging: entry_id`. La alternativa optativa es `stagin
 La escritura afecta sólo al NSD propio y exige cuatro counts vacíos de partida. Preserva los otros 176 bytes del entorno. Validación de tamaño, count máximo 64, grupos 0..15, selector cero, matriz ortonormal y floats finitos; roundtrip del subconjunto generado. Las tablas nativas son asignaciones dinámicas: 16 grupos es el límite de autoría adoptado del manual, no una afirmación de array fijo en el loader. No se escribe una tabla desconocida ni un NSD universal.
 
 Los 22 pares NCP de XYZ coincidente encontrados en tres originales también tienen parámetro coincidente; ocho cambian Euler y catorce no. Sus coeficientes no demuestran hold o giro temporizado. El escritor lineal mantiene la restricción; el lector permite parámetros repetidos originales, rechaza negativos/decrecientes, inversos negativos y valores no finitos. Los 174 originales conservan bytes.
+
+## Strict authoring evidence update
+
+Confirmed original-file/native evidence: NSD parameters are the SECOND entity
+variable block (types 1/2/3/7/8 editable), movement frames are orientation XYZ then
+position XYZ (24 bytes); 64 original files lossless. Native interest records are
+72 bytes with a separate group selected by AI interestNum. TreasureClass is tag
+92 uint32 and container-only in RCM. Optional environment patches touch proven
+176-byte tail fields only; unknown bytes remain intact. EAX static precedence
+prevents an effective dynamic override. Full evidence, safety limits and pending
+native checks: research/embrace_strict_parity/codex_linker_format.md,
+treasure_class.md, SAFETY_DECISIONS.md and docs/EMBRACE_AUTHORING_PARITY.md.
+SDK-confirmed NTT/NSC documentation is separate from these original-file proofs.
+Maps customisation remains an analysed route, not an implemented map editor.

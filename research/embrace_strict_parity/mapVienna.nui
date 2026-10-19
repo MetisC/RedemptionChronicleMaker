@@ -1,0 +1,39 @@
+; Vienna Map Pane
+name=mapVienna
+pos=0,0
+
+quad mat=mapVienna01.tga pos=0,224 size=256,256 
+quad mat=mapVienna02.tga pos=256,224 size=256,256 
+quad mat=mapVienna03.tga pos=512,224 size=128,256 
+quad mat=mapVienna04.tga pos=0,96 size=256,128 
+quad mat=mapVienna05.tga pos=256,96 size=256,128 
+quad mat=mapVienna06.tga pos=512,96 size=128,128 
+quad mat=mapVienna07.tga pos=0,32 size=256,64 
+quad mat=mapVienna08.tga pos=256,32 size=256,64 
+quad mat=mapVienna09.tga pos=512,32 size=128,64 
+quad mat=mapVienna10.tga pos=0,0 size=256,32 
+quad mat=mapVienna11.tga pos=256,0 size=256,32 
+quad mat=mapVienna12.tga pos=512,0 size=128,32 
+
+;textbox
+element textbox maxitems=1 name=mapLocations flags=0x02 textboxflags=0x03 pos=0,0 size=640,16
+
+element imagearray name=mapOrsisMansion size=16,16 flags=0x08 pos=125,391
+element imagearray name=mapWesternRingStrasse size=16,16 flags=0x08 pos=170,353
+element imagearray name=mapSmithy size=16,16 flags=0x08 pos=240,319
+element imagearray name=mapDesecratedChurchHaven size=16,16 flags=0x08 pos=305,460
+element imagearray name=mapNorthernRingStrasse size=16,16 flags=0x08 pos=356,451
+element imagearray name=mapEntranceStephansdom size=16,16 flags=0x08 pos=381,410
+element imagearray name=mapInnerStradt size=16,16 flags=0x08 pos=365,354
+element imagearray name=mapDeutschOrdensKirche size=16,16 flags=0x08 pos=376,328
+element imagearray name=mapOuterRingStrasse size=16,16 flags=0x08 pos=460,310
+element imagearray name=mapSouthernRingStrasse size=16,16 flags=0x08 pos=342,212
+element imagearray name=mapHausDeHexe size=16,16 flags=0x08 pos=153,154
+element imagearray name=mapOrderOfHermes size=16,16 flags=0x08 pos=548,381
+element imagearray name=mapEasternRingStrasse size=16,16 flags=0x08 pos=562,353
+element imagearray name=mapGreenFrogInn size=16,16 flags=0x08 pos=571,326
+
+
+;Map Close button
+
+element button name=MapCloseButton pos=300,16 size=40,34 bitmap=closeButton depressed=closeButtonDep

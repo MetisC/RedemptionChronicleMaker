@@ -1,0 +1,542 @@
+[
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "_civilians_DA",
+    "value": 87,
+    "raw": "5700000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "container_barrel1",
+    "value": 228,
+    "raw": "e400000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "container_barrel2",
+    "value": 228,
+    "raw": "e400000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "coffinContainer",
+    "value": 4,
+    "raw": "0400000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "container_chest1",
+    "value": 4,
+    "raw": "0400000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "container_chest2",
+    "value": 3,
+    "raw": "0300000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "container_fancyChest",
+    "value": 2,
+    "raw": "0200000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "container_smallChest",
+    "value": 2,
+    "raw": "0200000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "_darkTeutonicKnight",
+    "value": 141,
+    "raw": "8d00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "Cappadocian_Zombu",
+    "value": 141,
+    "raw": "8d00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "darkHunter",
+    "value": 87,
+    "raw": "5700000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "petDarkHunter",
+    "value": 255,
+    "raw": "ff00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "Ghoul1",
+    "value": 87,
+    "raw": "5700000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "Highwayman",
+    "value": 141,
+    "raw": "8d00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "lasombraGhoul_crossbow",
+    "value": 143,
+    "raw": "8f00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "Hopper",
+    "value": 141,
+    "raw": "8d00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "petHopper",
+    "value": 255,
+    "raw": "ff00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "Premysl",
+    "value": 87,
+    "raw": "5700000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "PremyslConvent",
+    "value": 255,
+    "raw": "ff00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "_Lawmen_DA",
+    "value": 131,
+    "raw": "8300000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "TeutonicKnight",
+    "value": 141,
+    "raw": "8d00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "viennaGuard",
+    "value": 141,
+    "raw": "8d00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "viennaGuard_xbow",
+    "value": 143,
+    "raw": "8f00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/darkAges.not",
+    "template": "_Vampires_DA",
+    "value": 131,
+    "raw": "8300000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Global.not",
+    "template": "Skel_Sword",
+    "value": 131,
+    "raw": "8300000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Global.not",
+    "template": "petSkel_Sword",
+    "value": 255,
+    "raw": "ff00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Global.not",
+    "template": "Skel_Bow",
+    "value": 132,
+    "raw": "8400000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Global.not",
+    "template": "Szlachta",
+    "value": 131,
+    "raw": "8300000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Global.not",
+    "template": "petSzlachta",
+    "value": 255,
+    "raw": "ff00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Global.not",
+    "template": "SzlachtaConvent",
+    "value": 255,
+    "raw": "ff00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Global.not",
+    "template": "Zombu",
+    "value": 131,
+    "raw": "8300000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Global.not",
+    "template": "petZombu",
+    "value": 255,
+    "raw": "ff00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "_civilians_MD",
+    "value": 151,
+    "raw": "9700000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "_femaleCiv_MD",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "LonCiv2",
+    "value": 151,
+    "raw": "9700000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "businessWoman",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "gothGirl1",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "gothGirl2",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "gothGirl3",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "NYciv1",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "NYciv3",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "cardboardBox",
+    "value": 42,
+    "raw": "2a00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "chestFootlocker1",
+    "value": 43,
+    "raw": "2b00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "chestFootlocker2",
+    "value": 43,
+    "raw": "2b00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "chestsuitcase1",
+    "value": 42,
+    "raw": "2a00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "chestsuitcase2",
+    "value": 42,
+    "raw": "2a00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "fleshChest_MD",
+    "value": 42,
+    "raw": "2a00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "treasureCrate1",
+    "value": 44,
+    "raw": "2c00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "treasureCrate2",
+    "value": 44,
+    "raw": "2c00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "LeoSoldier",
+    "value": 153,
+    "raw": "9900000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "LeoSoldier_incinerator",
+    "value": 151,
+    "raw": "9700000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "LeoSoldier_shotgun",
+    "value": 155,
+    "raw": "9b00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "LeoSoldier_sub",
+    "value": 156,
+    "raw": "9c00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "LeoWorker",
+    "value": 151,
+    "raw": "9700000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "LeoWorker_conv1",
+    "value": 156,
+    "raw": "9c00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "LeoWorker_pistol",
+    "value": 153,
+    "raw": "9900000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "LeoWorker_stake",
+    "value": 158,
+    "raw": "9e00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "LeoWorker_taser",
+    "value": 158,
+    "raw": "9e00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "Bobbie",
+    "value": 158,
+    "raw": "9e00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "NYPD",
+    "value": 153,
+    "raw": "9900000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "NYPD_rifle",
+    "value": 154,
+    "raw": "9a00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "NYPD_shotgun",
+    "value": 155,
+    "raw": "9b00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "_Vampires_MD",
+    "value": 237,
+    "raw": "ed00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "Giovanni_MD",
+    "value": 162,
+    "raw": "a200000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "giovanni_assaultRifle",
+    "value": 167,
+    "raw": "a700000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "giovanni_bat",
+    "value": 168,
+    "raw": "a800000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "giovanni_brassKnuckles",
+    "value": 168,
+    "raw": "a800000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "giovanni_chaingun",
+    "value": 167,
+    "raw": "a700000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "giovanni_chainsaw",
+    "value": 168,
+    "raw": "a800000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "giovanni_leadPipe",
+    "value": 168,
+    "raw": "a800000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "giovanni_rocketLaun",
+    "value": 170,
+    "raw": "aa00000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "giovanni_stakegun",
+    "value": 168,
+    "raw": "a800000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "Nosferatu_MD",
+    "value": 163,
+    "raw": "a300000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "nosferatuFled_MD",
+    "value": 166,
+    "raw": "a600000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "nosferatuNeo_MD",
+    "value": 169,
+    "raw": "a900000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "Ventrue_MD",
+    "value": 163,
+    "raw": "a300000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "ventrue_bat",
+    "value": 168,
+    "raw": "a800000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "ventrue_chaingun",
+    "value": 168,
+    "raw": "a800000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "ventrue_chainsaw",
+    "value": 168,
+    "raw": "a800000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "ventrue_flamethrower",
+    "value": 168,
+    "raw": "a800000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "ventrue_leadpipe",
+    "value": 168,
+    "raw": "a800000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "ventrue_pistol",
+    "value": 163,
+    "raw": "a300000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "ventrue_shotgun",
+    "value": 165,
+    "raw": "a500000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/modernDay.not",
+    "template": "ventrue_submachinegun",
+    "value": 166,
+    "raw": "a600000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Multiplayer.not",
+    "template": "_MP_femaleCiv_MD",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Multiplayer.not",
+    "template": "MPbusinessWoman",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Multiplayer.not",
+    "template": "MPgothGirl1",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Multiplayer.not",
+    "template": "MPgothGirl2",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Multiplayer.not",
+    "template": "MPgothGirl3",
+    "value": 161,
+    "raw": "a100000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "library": "misc/Templates/Multiplayer.not",
+    "template": "MPLonCiv2",
+    "value": 151,
+    "raw": "9700000000000000000000000000000000000000000000000000000000000000"
+  }
+]

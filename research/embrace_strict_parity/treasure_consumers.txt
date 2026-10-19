@@ -1,0 +1,959 @@
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00468bcd: nop 
+00468bce: nop 
+00468bcf: nop 
+00468bd0: mov eax, dword ptr [0x63850c]
+00468bd5: sub esp, 0x34
+00468bd8: test eax, eax
+00468bda: jne 0x468bf3
+00468bdc: push 0x17b
+00468be1: push 0x50bcbc
+00468be6: push 0x50bce8
+00468beb: call 0x4c12a0
+00468bf0: add esp, 0xc
+00468bf3: push ebx
+00468bf4: push esi
+00468bf5: push edi
+00468bf6: mov edi, dword ptr [esp + 0x44]
+00468bfa: cmp edi, 0x100
+00468c00: jb 0x468c19
+00468c02: push 0x17c
+00468c07: push 0x50bcf4
+00468c0c: push 0x50bd20
+00468c11: call 0x4c12a0
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00468bf0: add esp, 0xc
+00468bf3: push ebx
+00468bf4: push esi
+00468bf5: push edi
+00468bf6: mov edi, dword ptr [esp + 0x44]
+00468bfa: cmp edi, 0x100
+00468c00: jb 0x468c19
+00468c02: push 0x17c
+00468c07: push 0x50bcf4
+00468c0c: push 0x50bd20
+00468c11: call 0x4c12a0
+00468c16: add esp, 0xc
+00468c19: mov eax, dword ptr [0x638508]
+00468c1e: test eax, eax
+00468c20: jne 0x468c2b
+00468c22: pop edi
+00468c23: pop esi
+00468c24: xor eax, eax
+00468c26: pop ebx
+00468c27: add esp, 0x34
+00468c2a: ret 
+00468c2b: mov esi, dword ptr [edi*8 + 0x636108]
+
+(treasureClass >= 0) && (treasureClass < MAX_TREASURECLASSES)
+00468bf3: push ebx
+00468bf4: push esi
+00468bf5: push edi
+00468bf6: mov edi, dword ptr [esp + 0x44]
+00468bfa: cmp edi, 0x100
+00468c00: jb 0x468c19
+00468c02: push 0x17c
+00468c07: push 0x50bcf4
+00468c0c: push 0x50bd20
+00468c11: call 0x4c12a0
+00468c16: add esp, 0xc
+00468c19: mov eax, dword ptr [0x638508]
+00468c1e: test eax, eax
+00468c20: jne 0x468c2b
+00468c22: pop edi
+00468c23: pop esi
+00468c24: xor eax, eax
+00468c26: pop ebx
+00468c27: add esp, 0x34
+00468c2a: ret 
+00468c2b: mov esi, dword ptr [edi*8 + 0x636108]
+00468c32: test esi, esi
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00468cce: xor eax, eax
+00468cd0: pop ebx
+00468cd1: add esp, 0x34
+00468cd4: ret 
+00468cd5: mov edi, dword ptr [ebx]
+00468cd7: test edi, edi
+00468cd9: jne 0x468cf8
+00468cdb: push 0x19c
+00468ce0: push 0x50bd60
+00468ce5: push 0x50bd8c
+00468cea: call 0x4c12a0
+00468cef: mov ecx, dword ptr [0x6a4690]
+00468cf5: add esp, 0xc
+00468cf8: mov esi, dword ptr [edi + 0x24]
+00468cfb: test esi, esi
+00468cfd: jne 0x468d08
+00468cff: pop edi
+00468d00: pop esi
+00468d01: xor eax, eax
+00468d03: pop ebx
+00468d04: add esp, 0x34
+00468d07: ret 
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046922c: mov dword ptr fs:[0], ecx
+00469233: add esp, 0x14
+00469236: ret 
+00469237: xor esi, esi
+00469239: cmp esi, ebx
+0046923b: mov dword ptr [esp + 0x20], 0xffffffff
+00469243: jne 0x46925c
+00469245: push 0x1f5
+0046924a: push 0x50bda0
+0046924f: push 0x50bdcc
+00469254: call 0x4c12a0
+00469259: add esp, 0xc
+0046925c: cmp ebp, ebx
+0046925e: mov dword ptr [esi + 4], edi
+00469261: jbe 0x469515
+00469267: mov edi, 0x63730c
+0046926c: mov dword ptr [esp + 0x10], ebp
+00469270: mov eax, dword ptr [edi - 4]
+00469273: add eax, -0x10
+00469276: cmp eax, 0xde
+0046927b: ja 0x4694ff
+00469281: xor edx, edx
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046941e: jmp 0x4694ff
+00469423: push 0x34
+00469425: call 0x4dd57e
+0046942a: mov ebp, eax
+0046942c: add esp, 4
+0046942f: cmp ebp, ebx
+00469431: jne 0x46944a
+00469433: push 0x261
+00469438: push 0x50bdd8
+0046943d: push 0x50be04
+00469442: call 0x4c12a0
+00469447: add esp, 0xc
+0046944a: push 0x20
+0046944c: push edi
+0046944d: push ebp
+0046944e: call 0x4dd480
+00469453: mov ecx, dword ptr [esi + 0xb4]
+00469459: add esp, 0xc
+0046945c: mov byte ptr [ebp + 0x1f], bl
+0046945f: mov dword ptr [ebp + 0x20], 0xffffffff
+00469466: mov dword ptr [ebp + 0x24], ebx
+00469469: mov dword ptr [ebp + 0x28], ebx
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+004694ae: jmp 0x4694ff
+004694b0: push 0xc
+004694b2: call 0x4dd57e
+004694b7: mov ebp, eax
+004694b9: add esp, 4
+004694bc: cmp ebp, ebx
+004694be: jne 0x4694d7
+004694c0: push 0x2a2
+004694c5: push 0x50be10
+004694ca: push 0x50be3c
+004694cf: call 0x4c12a0
+004694d4: add esp, 0xc
+004694d7: mov eax, dword ptr [edi]
+004694d9: mov ecx, dword ptr [esi + 0xb0]
+004694df: mov dword ptr [ebp], eax
+004694e2: mov dword ptr [ebp + 4], ebx
+004694e5: mov dword ptr [ebp + 8], ecx
+004694e8: mov dword ptr [esi + 0xb0], ebp
+004694ee: jmp 0x4694ff
+004694f0: mov eax, dword ptr [esi + 0xb0]
+004694f6: cmp eax, ebx
+004694f8: je 0x4694ff
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00469b2e: nop 
+00469b2f: nop 
+00469b30: sub esp, 8
+00469b33: push esi
+00469b34: mov esi, dword ptr [esp + 0x10]
+00469b38: test esi, esi
+00469b3a: jne 0x469b53
+00469b3c: push 0x3af
+00469b41: push 0x50c134
+00469b46: push 0x50c160
+00469b4b: call 0x4c12a0
+00469b50: add esp, 0xc
+00469b53: push esi
+00469b54: call 0x45d240
+00469b59: add esp, 4
+00469b5c: test eax, eax
+00469b5e: jne 0x469b65
+00469b60: pop esi
+00469b61: add esp, 8
+00469b64: ret 
+00469b65: mov ecx, dword ptr [esi + 0x28]
+00469b68: test ecx, ecx
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046a1fc: push edi
+0046a1fd: xor edi, edi
+0046a1ff: cmp esi, edi
+0046a201: je 0x46a26d
+0046a203: push ebp
+0046a204: mov ebp, dword ptr [ecx + 0x78]
+0046a207: jne 0x46a220
+0046a209: push 0x3af
+0046a20e: push 0x50c134
+0046a213: push 0x50c160
+0046a218: call 0x4c12a0
+0046a21d: add esp, 0xc
+0046a220: push esi
+0046a221: call 0x45d240
+0046a226: add esp, 4
+0046a229: cmp eax, edi
+0046a22b: jne 0x46a231
+0046a22d: xor eax, eax
+0046a22f: jmp 0x46a263
+0046a231: mov ecx, dword ptr [esi + 0x28]
+0046a234: cmp ecx, edi
+0046a236: je 0x46a258
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00469bb0: mov eax, dword ptr [0x63850c]
+00469bb5: sub esp, 0x100
+00469bbb: push esi
+00469bbc: push edi
+00469bbd: xor edi, edi
+00469bbf: cmp eax, edi
+00469bc1: jne 0x469bda
+00469bc3: push 0x3ce
+00469bc8: push 0x50c16c
+00469bcd: push 0x50c198
+00469bd2: call 0x4c12a0
+00469bd7: add esp, 0xc
+00469bda: mov esi, dword ptr [esp + 0x10c]
+00469be1: cmp esi, edi
+00469be3: jne 0x469bfc
+00469be5: push 0x3cf
+00469bea: push 0x50c1a4
+00469bef: push 0x50c1d0
+00469bf4: call 0x4c12a0
+00469bf9: add esp, 0xc
+00469bfc: cmp dword ptr [0x638508], edi
+00469c02: je 0x469c09
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00468702: lea eax, [eax + eax*4]
+00468705: lea eax, [eax + eax*4]
+00468708: lea edx, [ecx + eax*8]
+0046870b: mov eax, 0x50bcb4
+00468710: test eax, eax
+00468712: mov dword ptr [0x6a4690], edx
+00468718: jne 0x468731
+0046871a: push 0x3cf
+0046871f: push 0x50c1a4
+00468724: push 0x50c1d0
+00468729: call 0x4c12a0
+0046872e: add esp, 0xc
+00468731: cmp dword ptr [0x638508], ebp
+00468737: je 0x46873e
+00468739: call 0x46a8c0
+0046873e: push 0x50c1d8
+00468743: push 0x40
+00468745: call 0x4ce7a0
+0046874a: add esp, 8
+0046874d: cmp eax, ebp
+0046874f: mov dword ptr [0x638510], eax
+00468754: je 0x468a9e
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00469bc8: push 0x50c16c
+00469bcd: push 0x50c198
+00469bd2: call 0x4c12a0
+00469bd7: add esp, 0xc
+00469bda: mov esi, dword ptr [esp + 0x10c]
+00469be1: cmp esi, edi
+00469be3: jne 0x469bfc
+00469be5: push 0x3cf
+00469bea: push 0x50c1a4
+00469bef: push 0x50c1d0
+00469bf4: call 0x4c12a0
+00469bf9: add esp, 0xc
+00469bfc: cmp dword ptr [0x638508], edi
+00469c02: je 0x469c09
+00469c04: call 0x46a8c0
+00469c09: push 0x50c1d8
+00469c0e: push 0x40
+00469c10: call 0x4ce7a0
+00469c15: add esp, 8
+00469c18: cmp eax, edi
+00469c1a: mov dword ptr [0x638510], eax
+00469c1f: jne 0x469c2c
+
+rpgTreasure - Groups
+0046871a: push 0x3cf
+0046871f: push 0x50c1a4
+00468724: push 0x50c1d0
+00468729: call 0x4c12a0
+0046872e: add esp, 0xc
+00468731: cmp dword ptr [0x638508], ebp
+00468737: je 0x46873e
+00468739: call 0x46a8c0
+0046873e: push 0x50c1d8
+00468743: push 0x40
+00468745: call 0x4ce7a0
+0046874a: add esp, 8
+0046874d: cmp eax, ebp
+0046874f: mov dword ptr [0x638510], eax
+00468754: je 0x468a9e
+0046875a: push 0x50c1f0
+0046875f: push 0x40
+00468761: call 0x4ce7a0
+00468766: add esp, 8
+00468769: cmp eax, ebp
+0046876b: mov dword ptr [0x638514], eax
+00468770: je 0x468a9e
+
+rpgTreasure - Groups
+00469be5: push 0x3cf
+00469bea: push 0x50c1a4
+00469bef: push 0x50c1d0
+00469bf4: call 0x4c12a0
+00469bf9: add esp, 0xc
+00469bfc: cmp dword ptr [0x638508], edi
+00469c02: je 0x469c09
+00469c04: call 0x46a8c0
+00469c09: push 0x50c1d8
+00469c0e: push 0x40
+00469c10: call 0x4ce7a0
+00469c15: add esp, 8
+00469c18: cmp eax, edi
+00469c1a: mov dword ptr [0x638510], eax
+00469c1f: jne 0x469c2c
+00469c21: pop edi
+00469c22: xor eax, eax
+00469c24: pop esi
+00469c25: add esp, 0x100
+00469c2b: ret 
+00469c2c: push 0x50c1f0
+00469c31: push 0x40
+
+rpgTreasure - Alters
+00468739: call 0x46a8c0
+0046873e: push 0x50c1d8
+00468743: push 0x40
+00468745: call 0x4ce7a0
+0046874a: add esp, 8
+0046874d: cmp eax, ebp
+0046874f: mov dword ptr [0x638510], eax
+00468754: je 0x468a9e
+0046875a: push 0x50c1f0
+0046875f: push 0x40
+00468761: call 0x4ce7a0
+00468766: add esp, 8
+00468769: cmp eax, ebp
+0046876b: mov dword ptr [0x638514], eax
+00468770: je 0x468a9e
+00468776: push 0x50c208
+0046877b: push 0x40
+0046877d: call 0x4ce7a0
+00468782: add esp, 8
+00468785: cmp eax, ebp
+00468787: mov dword ptr [0x638518], eax
+0046878c: je 0x468a9e
+
+rpgTreasure - Alters
+00469c18: cmp eax, edi
+00469c1a: mov dword ptr [0x638510], eax
+00469c1f: jne 0x469c2c
+00469c21: pop edi
+00469c22: xor eax, eax
+00469c24: pop esi
+00469c25: add esp, 0x100
+00469c2b: ret 
+00469c2c: push 0x50c1f0
+00469c31: push 0x40
+00469c33: call 0x4ce7a0
+00469c38: add esp, 8
+00469c3b: cmp eax, edi
+00469c3d: mov dword ptr [0x638514], eax
+00469c42: jne 0x469c4f
+00469c44: pop edi
+00469c45: xor eax, eax
+00469c47: pop esi
+00469c48: add esp, 0x100
+00469c4e: ret 
+00469c4f: push 0x50c208
+00469c54: push 0x40
+
+rpgTreasure - Categs
+00468754: je 0x468a9e
+0046875a: push 0x50c1f0
+0046875f: push 0x40
+00468761: call 0x4ce7a0
+00468766: add esp, 8
+00468769: cmp eax, ebp
+0046876b: mov dword ptr [0x638514], eax
+00468770: je 0x468a9e
+00468776: push 0x50c208
+0046877b: push 0x40
+0046877d: call 0x4ce7a0
+00468782: add esp, 8
+00468785: cmp eax, ebp
+00468787: mov dword ptr [0x638518], eax
+0046878c: je 0x468a9e
+00468792: cmp dword ptr [0x63850c], ebp
+00468798: jne 0x4687b1
+0046879a: push 0x650
+0046879f: push 0x50c338
+004687a4: push 0x50c364
+004687a9: call 0x4c12a0
+004687ae: add esp, 0xc
+
+rpgTreasure - Categs
+00469c3b: cmp eax, edi
+00469c3d: mov dword ptr [0x638514], eax
+00469c42: jne 0x469c4f
+00469c44: pop edi
+00469c45: xor eax, eax
+00469c47: pop esi
+00469c48: add esp, 0x100
+00469c4e: ret 
+00469c4f: push 0x50c208
+00469c54: push 0x40
+00469c56: call 0x4ce7a0
+00469c5b: add esp, 8
+00469c5e: cmp eax, edi
+00469c60: mov dword ptr [0x638518], eax
+00469c65: jne 0x469c72
+00469c67: pop edi
+00469c68: xor eax, eax
+00469c6a: pop esi
+00469c6b: add esp, 0x100
+00469c71: ret 
+00469c72: cmp dword ptr [0x63850c], edi
+00469c78: jne 0x469c91
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046a0b3: mov eax, dword ptr [0x63850c]
+0046a0b8: push esi
+0046a0b9: mov esi, ecx
+0046a0bb: push edi
+0046a0bc: test eax, eax
+0046a0be: mov dword ptr [esp + 0xc], esi
+0046a0c2: jne 0x46a0db
+0046a0c4: push 0x450
+0046a0c9: push 0x50c220
+0046a0ce: push 0x50c24c
+0046a0d3: call 0x4c12a0
+0046a0d8: add esp, 0xc
+0046a0db: mov eax, dword ptr [esi + 4]
+0046a0de: push eax
+0046a0df: call 0x4ae480
+0046a0e4: mov edi, eax
+0046a0e6: add esp, 4
+0046a0e9: test edi, edi
+0046a0eb: mov dword ptr [esp + 8], edi
+0046a0ef: jne 0x46a0f7
+0046a0f1: pop edi
+0046a0f2: pop esi
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046a710: jbe 0x46a789
+0046a712: push 0xc
+0046a714: call 0x4dd57e
+0046a719: mov ebp, eax
+0046a71b: add esp, 4
+0046a71e: test ebp, ebp
+0046a720: jne 0x46a739
+0046a722: push 0x563
+0046a727: push 0x50c258
+0046a72c: push 0x50c284
+0046a731: call 0x4c12a0
+0046a736: add esp, 0xc
+0046a739: push esi
+0046a73a: push 1
+0046a73c: push 4
+0046a73e: push ebp
+0046a73f: call 0x4cb560
+0046a744: push esi
+0046a745: push 1
+0046a747: lea edx, [ebp + 4]
+0046a74a: push 4
+0046a74c: push edx
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046a7a3: jbe 0x46a851
+0046a7a9: push 0x34
+0046a7ab: call 0x4dd57e
+0046a7b0: mov ebp, eax
+0046a7b2: add esp, 4
+0046a7b5: test ebp, ebp
+0046a7b7: jne 0x46a7d0
+0046a7b9: push 0x57c
+0046a7be: push 0x50c294
+0046a7c3: push 0x50c2c0
+0046a7c8: call 0x4c12a0
+0046a7cd: add esp, 0xc
+0046a7d0: push esi
+0046a7d1: push 0x20
+0046a7d3: push 1
+0046a7d5: push ebp
+0046a7d6: call 0x4cb560
+0046a7db: push esi
+0046a7dc: push 1
+0046a7de: lea ecx, [ebp + 0x20]
+0046a7e1: push 4
+0046a7e3: push ecx
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00468eb5: fimul dword ptr [esp + 0x1c]
+00468eb9: call 0x4ddb80
+00468ebe: mov edx, dword ptr [edi + 0x28]
+00468ec1: mov ebp, dword ptr [edx + eax*4]
+00468ec4: test ebp, ebp
+00468ec6: mov dword ptr [esp + 0x20], ebp
+00468eca: jne 0x468ee3
+00468ecc: push 0x5bc
+00468ed1: push 0x50c2cc
+00468ed6: push 0x50c2f8
+00468edb: call 0x4c12a0
+00468ee0: add esp, 0xc
+00468ee3: mov eax, dword ptr [esp + 0x50]
+00468ee7: mov esi, dword ptr [eax + 0xb4]
+00468eed: test esi, esi
+00468eef: je 0x468f0d
+00468ef1: lea edi, [ebp + 0x10]
+00468ef4: push edi
+00468ef5: push esi
+00468ef6: call 0x4de1b0
+00468efb: add esp, 8
+00468efe: test eax, eax
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00468f0b: jne 0x468ef4
+00468f0d: push 0x34
+00468f0f: call 0x4dd57e
+00468f14: mov edi, eax
+00468f16: add esp, 4
+00468f19: test edi, edi
+00468f1b: jne 0x468f34
+00468f1d: push 0x5c5
+00468f22: push 0x50c300
+00468f27: push 0x50c32c
+00468f2c: call 0x4c12a0
+00468f31: add esp, 0xc
+00468f34: lea ecx, [ebp + 0x10]
+00468f37: push 0x20
+00468f39: push ecx
+00468f3a: push edi
+00468f3b: call 0x4dd480
+00468f40: mov eax, dword ptr [esp + 0x54]
+00468f44: add esp, 0xc
+00468f47: mov byte ptr [edi + 0x1f], 0
+00468f4b: mov ebx, dword ptr [eax + 0xc]
+00468f4e: test bl, 1
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046877d: call 0x4ce7a0
+00468782: add esp, 8
+00468785: cmp eax, ebp
+00468787: mov dword ptr [0x638518], eax
+0046878c: je 0x468a9e
+00468792: cmp dword ptr [0x63850c], ebp
+00468798: jne 0x4687b1
+0046879a: push 0x650
+0046879f: push 0x50c338
+004687a4: push 0x50c364
+004687a9: call 0x4c12a0
+004687ae: add esp, 0xc
+004687b1: mov ecx, 0x50bcb4
+004687b6: test ecx, ecx
+004687b8: jne 0x4687d1
+004687ba: push 0x651
+004687bf: push 0x50c370
+004687c4: push 0x50c39c
+004687c9: call 0x4c12a0
+004687ce: add esp, 0xc
+004687d1: push 0x80
+004687d6: lea edx, [esp + 0x20]
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00469c67: pop edi
+00469c68: xor eax, eax
+00469c6a: pop esi
+00469c6b: add esp, 0x100
+00469c71: ret 
+00469c72: cmp dword ptr [0x63850c], edi
+00469c78: jne 0x469c91
+00469c7a: push 0x650
+00469c7f: push 0x50c338
+00469c84: push 0x50c364
+00469c89: call 0x4c12a0
+00469c8e: add esp, 0xc
+00469c91: cmp esi, edi
+00469c93: jne 0x469cac
+00469c95: push 0x651
+00469c9a: push 0x50c370
+00469c9f: push 0x50c39c
+00469ca4: call 0x4c12a0
+00469ca9: add esp, 0xc
+00469cac: push ebx
+00469cad: push 0x80
+00469cb2: lea eax, [esp + 0x10]
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046879f: push 0x50c338
+004687a4: push 0x50c364
+004687a9: call 0x4c12a0
+004687ae: add esp, 0xc
+004687b1: mov ecx, 0x50bcb4
+004687b6: test ecx, ecx
+004687b8: jne 0x4687d1
+004687ba: push 0x651
+004687bf: push 0x50c370
+004687c4: push 0x50c39c
+004687c9: call 0x4c12a0
+004687ce: add esp, 0xc
+004687d1: push 0x80
+004687d6: lea edx, [esp + 0x20]
+004687da: push 0x50bcb4
+004687df: push edx
+004687e0: call 0x4dd480
+004687e5: lea eax, [esp + 0x28]
+004687e9: push 0x50c3a8
+004687ee: push eax
+004687ef: mov byte ptr [esp + 0xaf], 0
+004687f7: call 0x4cbd90
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00469c7a: push 0x650
+00469c7f: push 0x50c338
+00469c84: push 0x50c364
+00469c89: call 0x4c12a0
+00469c8e: add esp, 0xc
+00469c91: cmp esi, edi
+00469c93: jne 0x469cac
+00469c95: push 0x651
+00469c9a: push 0x50c370
+00469c9f: push 0x50c39c
+00469ca4: call 0x4c12a0
+00469ca9: add esp, 0xc
+00469cac: push ebx
+00469cad: push 0x80
+00469cb2: lea eax, [esp + 0x10]
+00469cb6: push esi
+00469cb7: push eax
+00469cb8: call 0x4dd480
+00469cbd: lea ecx, [esp + 0x18]
+00469cc1: push 0x50c3a8
+00469cc6: push ecx
+00469cc7: mov byte ptr [esp + 0x9f], 0
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046884a: call 0x4cb6a0
+0046884f: add esp, 4
+00468852: test eax, eax
+00468854: jne 0x468a86
+0046885a: push esi
+0046885b: cmp dword ptr [0x63850c], ebp
+00468861: jne 0x46887a
+00468863: push 0x690
+00468868: push 0x50c3b0
+0046886d: push 0x50c3dc
+00468872: call 0x4c12a0
+00468877: add esp, 0xc
+0046887a: push edi
+0046887b: call 0x4cb6a0
+00468880: add esp, 4
+00468883: test eax, eax
+00468885: jne 0x468a74
+0046888b: push edi
+0046888c: push 0x400
+00468891: push 0x635d08
+00468896: call 0x4cb600
+0046889b: add esp, 0xc
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00469d1f: call 0x4cb6a0
+00469d24: add esp, 4
+00469d27: test eax, eax
+00469d29: jne 0x469f56
+00469d2f: mov ebp, 0x637108
+00469d34: cmp dword ptr [0x63850c], edi
+00469d3a: jne 0x469d53
+00469d3c: push 0x690
+00469d41: push 0x50c3b0
+00469d46: push 0x50c3dc
+00469d4b: call 0x4c12a0
+00469d50: add esp, 0xc
+00469d53: push ebx
+00469d54: call 0x4cb6a0
+00469d59: add esp, 4
+00469d5c: test eax, eax
+00469d5e: jne 0x469f45
+00469d64: push ebx
+00469d65: push 0x400
+00469d6a: push 0x635d08
+00469d6f: call 0x4cb600
+00469d74: add esp, 0xc
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00468941: call 0x4cb600
+00468946: add esp, 0xc
+00468949: test eax, eax
+0046894b: je 0x468a74
+00468951: jmp 0x4688a6
+00468956: cmp dword ptr [0x63850c], ebp
+0046895c: jne 0x468975
+0046895e: push 0x742
+00468963: push 0x50c41c
+00468968: push 0x50c448
+0046896d: call 0x4c12a0
+00468972: add esp, 0xc
+00468975: call 0x46a9d0
+0046897a: test eax, eax
+0046897c: je 0x468a74
+00468982: cmp dword ptr [0x638528], ebp
+00468988: je 0x468a74
+0046898e: push 0x50c454
+00468993: push 0x637108
+00468998: mov dword ptr [0x63852c], ebp
+0046899e: mov dword ptr [0x638530], 0x637108
+004689a8: call 0x4de1b0
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+00469e1a: call 0x4cb600
+00469e1f: add esp, 0xc
+00469e22: test eax, eax
+00469e24: je 0x469f45
+00469e2a: jmp 0x469d7f
+00469e2f: cmp dword ptr [0x63850c], edi
+00469e35: jne 0x469e4e
+00469e37: push 0x742
+00469e3c: push 0x50c41c
+00469e41: push 0x50c448
+00469e46: call 0x4c12a0
+00469e4b: add esp, 0xc
+00469e4e: call 0x46a9d0
+00469e53: test eax, eax
+00469e55: je 0x469f45
+00469e5b: cmp dword ptr [0x638528], edi
+00469e61: je 0x469f45
+00469e67: push 0x50c454
+00469e6c: push ebp
+00469e6d: mov dword ptr [0x63852c], edi
+00469e73: mov dword ptr [0x638530], ebp
+00469e79: call 0x4de1b0
+
+CLASS:
+00468a08: add esp, 8
+00468a0b: test eax, eax
+00468a0d: jne 0x468a1f
+00468a0f: cmp dword ptr [0x638528], 3
+00468a16: jb 0x468a74
+00468a18: call 0x46ae80
+00468a1d: jmp 0x468a74
+00468a1f: mov eax, dword ptr [0x638530]
+00468a24: push 0x50c46c
+00468a29: push eax
+00468a2a: call 0x4de1b0
+00468a2f: add esp, 8
+00468a32: test eax, eax
+00468a34: jne 0x468a46
+00468a36: cmp dword ptr [0x638528], 2
+00468a3d: jne 0x468a74
+00468a3f: call 0x46afc0
+00468a44: jmp 0x468a74
+00468a46: mov ecx, dword ptr [0x638530]
+00468a4c: push 0x50c474
+00468a51: push ecx
+00468a52: call 0x4de1b0
+
+CLASS:
+00469ed8: add esp, 8
+00469edb: test eax, eax
+00469edd: jne 0x469eef
+00469edf: cmp dword ptr [0x638528], 3
+00469ee6: jb 0x469f45
+00469ee8: call 0x46ae80
+00469eed: jmp 0x469f45
+00469eef: mov ecx, dword ptr [0x638530]
+00469ef5: push 0x50c46c
+00469efa: push ecx
+00469efb: call 0x4de1b0
+00469f00: add esp, 8
+00469f03: test eax, eax
+00469f05: jne 0x469f17
+00469f07: cmp dword ptr [0x638528], 2
+00469f0e: jne 0x469f45
+00469f10: call 0x46afc0
+00469f15: jmp 0x469f45
+00469f17: mov edx, dword ptr [0x638530]
+00469f1d: push 0x50c474
+00469f22: push edx
+00469f23: call 0x4de1b0
+
+CITEM:
+00468a2f: add esp, 8
+00468a32: test eax, eax
+00468a34: jne 0x468a46
+00468a36: cmp dword ptr [0x638528], 2
+00468a3d: jne 0x468a74
+00468a3f: call 0x46afc0
+00468a44: jmp 0x468a74
+00468a46: mov ecx, dword ptr [0x638530]
+00468a4c: push 0x50c474
+00468a51: push ecx
+00468a52: call 0x4de1b0
+00468a57: add esp, 8
+00468a5a: test eax, eax
+00468a5c: jne 0x468a74
+00468a5e: cmp dword ptr [0x638528], 9
+00468a65: jne 0x468a74
+00468a67: cmp dword ptr [0x638538], ebp
+00468a6d: je 0x468a74
+00468a6f: call 0x46b0d0
+00468a74: push edi
+00468a75: call 0x4cb6a0
+00468a7a: add esp, 4
+
+CITEM:
+00469f00: add esp, 8
+00469f03: test eax, eax
+00469f05: jne 0x469f17
+00469f07: cmp dword ptr [0x638528], 2
+00469f0e: jne 0x469f45
+00469f10: call 0x46afc0
+00469f15: jmp 0x469f45
+00469f17: mov edx, dword ptr [0x638530]
+00469f1d: push 0x50c474
+00469f22: push edx
+00469f23: call 0x4de1b0
+00469f28: add esp, 8
+00469f2b: test eax, eax
+00469f2d: jne 0x469f45
+00469f2f: cmp dword ptr [0x638528], 9
+00469f36: jne 0x469f45
+00469f38: cmp dword ptr [0x638538], edi
+00469f3e: je 0x469f45
+00469f40: call 0x46b0d0
+00469f45: push ebx
+00469f46: call 0x4cb6a0
+00469f4b: add esp, 4
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046aac0: push esi
+0046aac1: push 0x2c
+0046aac3: call 0x4dd57e
+0046aac8: mov esi, eax
+0046aaca: add esp, 4
+0046aacd: test esi, esi
+0046aacf: jne 0x46aae8
+0046aad1: push 0x79a
+0046aad6: push 0x50c47c
+0046aadb: push 0x50c4a8
+0046aae0: call 0x4c12a0
+0046aae5: add esp, 0xc
+0046aae8: push ebp
+0046aae9: push edi
+0046aaea: mov ecx, 0xb
+0046aaef: xor eax, eax
+0046aaf1: mov edi, esi
+0046aaf3: rep stosd dword ptr es:[edi], eax
+0046aaf5: mov eax, dword ptr [0x63852c]
+0046aafa: mov ecx, dword ptr [0x638528]
+0046ab00: inc eax
+0046ab01: cmp eax, ecx
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046ac00: push esi
+0046ac01: push 0x44
+0046ac03: call 0x4dd57e
+0046ac08: mov esi, eax
+0046ac0a: add esp, 4
+0046ac0d: test esi, esi
+0046ac0f: jne 0x46ac28
+0046ac11: push 0x7ca
+0046ac16: push 0x50c4b4
+0046ac1b: push 0x50c4e0
+0046ac20: call 0x4c12a0
+0046ac25: add esp, 0xc
+0046ac28: push edi
+0046ac29: mov ecx, 0x11
+0046ac2e: xor eax, eax
+0046ac30: mov edi, esi
+0046ac32: rep stosd dword ptr es:[edi], eax
+0046ac34: mov eax, dword ptr [0x63852c]
+0046ac39: mov ecx, dword ptr [0x638528]
+0046ac3f: inc eax
+0046ac40: cmp eax, ecx
+0046ac42: mov dword ptr [0x63852c], eax
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046ae80: push esi
+0046ae81: push 0x2c
+0046ae83: call 0x4dd57e
+0046ae88: mov esi, eax
+0046ae8a: add esp, 4
+0046ae8d: test esi, esi
+0046ae8f: jne 0x46aea8
+0046ae91: push 0x814
+0046ae96: push 0x50c4ec
+0046ae9b: push 0x50c518
+0046aea0: call 0x4c12a0
+0046aea5: add esp, 0xc
+0046aea8: push ebp
+0046aea9: push edi
+0046aeaa: mov ecx, 0xb
+0046aeaf: xor eax, eax
+0046aeb1: mov edi, esi
+0046aeb3: rep stosd dword ptr es:[edi], eax
+0046aeb5: mov eax, dword ptr [0x63852c]
+0046aeba: mov ecx, dword ptr [0x638528]
+0046aec0: inc eax
+0046aec1: cmp eax, ecx
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046b2a0: push ebx
+0046b2a1: mov ebx, dword ptr [esp + 0x10]
+0046b2a5: push ebp
+0046b2a6: push esi
+0046b2a7: cmp ebx, 0x80
+0046b2ad: push edi
+0046b2ae: jbe 0x46b2c7
+0046b2b0: push 0x8a9
+0046b2b5: push 0x50c524
+0046b2ba: push 0x50c550
+0046b2bf: call 0x4c12a0
+0046b2c4: add esp, 0xc
+0046b2c7: mov esi, dword ptr [esp + 0x18]
+0046b2cb: cmp esi, 0x80
+0046b2d1: jbe 0x46b2ea
+0046b2d3: push 0x8aa
+0046b2d8: push 0x50c574
+0046b2dd: push 0x50c5a0
+0046b2e2: call 0x4c12a0
+0046b2e7: add esp, 0xc
+0046b2ea: test esi, esi
+0046b2ec: mov dword ptr [esp + 0x1c], 0
+
+C:\vampire\code\Game\RPG\rpgTreasure.cpp
+0046b2b5: push 0x50c524
+0046b2ba: push 0x50c550
+0046b2bf: call 0x4c12a0
+0046b2c4: add esp, 0xc
+0046b2c7: mov esi, dword ptr [esp + 0x18]
+0046b2cb: cmp esi, 0x80
+0046b2d1: jbe 0x46b2ea
+0046b2d3: push 0x8aa
+0046b2d8: push 0x50c574
+0046b2dd: push 0x50c5a0
+0046b2e2: call 0x4c12a0
+0046b2e7: add esp, 0xc
+0046b2ea: test esi, esi
+0046b2ec: mov dword ptr [esp + 0x1c], 0
+0046b2f4: jbe 0x46b38f
+0046b2fa: mov ebp, dword ptr [esp + 0x14]
+0046b2fe: mov edx, dword ptr [ebp]
+0046b301: test edx, edx
+0046b303: jne 0x46b32a
+0046b305: lea eax, [ebp + 4]
+0046b308: push eax
+0046b309: call 0x4dd270

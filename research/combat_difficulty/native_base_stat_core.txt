@@ -1,0 +1,184 @@
+004955a0: push esi
+004955a1: push edi
+004955a2: mov edi, dword ptr [esp + 0xc]
+004955a6: mov esi, ecx
+004955a8: cmp edi, 0x13
+004955ab: jb 0x4955d8
+004955ad: push 0x583
+004955b2: push 0x516374
+004955b7: push 0x5163a0
+004955bc: call 0x4c12a0
+004955c1: push 0x29b
+004955c6: push 0x4f536c
+004955cb: push 0x4f5350
+004955d0: call 0x4c12a0
+004955d5: add esp, 0x18
+004955d8: fld dword ptr [esi + edi*4 + 0x240]
+004955df: mov eax, dword ptr [esi + 4]
+004955e2: mov edx, esi
+004955e4: fstp dword ptr [esp + 0xc]
+004955e8: cmp eax, 7
+004955eb: je 0x4955f1
+004955ed: mov edx, dword ptr [esp + 0x10]
+004955f1: cmp eax, 7
+004955f4: jne 0x495635
+004955f6: fld dword ptr [edx + edi*4 + 0x3fc]
+004955fd: fcomp dword ptr [esp + 0x10]
+00495601: fnstsw ax
+00495603: test ah, 0x41
+00495606: je 0x49562c
+00495608: fld dword ptr [edx + edi*4 + 0x448]
+0049560f: fcomp dword ptr [esp + 0x10]
+00495613: fnstsw ax
+00495615: test ah, 1
+00495618: jne 0x495623
+0049561a: fld dword ptr [esp + 0x10]
+0049561e: jmp 0x4956ab
+00495623: fld dword ptr [edx + edi*4 + 0x448]
+0049562a: jmp 0x4956ab
+0049562c: fld dword ptr [edx + edi*4 + 0x3fc]
+00495633: jmp 0x4956ab
+00495635: mov ecx, dword ptr [esi + 0x208]
+0049563b: test ecx, ecx
+0049563d: je 0x495675
+0049563f: cmp dword ptr [ecx + edi*4 + 0x38], 0xbf800000
+00495647: je 0x495675
+00495649: fld dword ptr [esp + 0x10]
+0049564d: fcomp dword ptr [0x4eb424]
+00495653: fnstsw ax
+00495655: test ah, 1
+00495658: jne 0x4956a5
+0049565a: fld dword ptr [ecx + edi*4 + 0x38]
+0049565e: fcomp dword ptr [esp + 0x10]
+00495662: fnstsw ax
+00495664: test ah, 1
+00495667: jne 0x49566f
+00495669: fld dword ptr [esp + 0x10]
+0049566d: jmp 0x4956ab
+0049566f: fld dword ptr [ecx + edi*4 + 0x38]
+00495673: jmp 0x4956ab
+00495675: fld dword ptr [esp + 0x10]
+00495679: fcomp dword ptr [0x4eb424]
+0049567f: fnstsw ax
+00495681: test ah, 1
+00495684: jne 0x4956a5
+00495686: fld dword ptr [esp + 0x10]
+0049568a: fcomp dword ptr [0x4eb75c]
+00495690: fnstsw ax
+00495692: test ah, 0x41
+00495695: je 0x49569d
+00495697: fld dword ptr [esp + 0x10]
+0049569b: jmp 0x4956ab
+0049569d: fld dword ptr [0x4eb75c]
+004956a3: jmp 0x4956ab
+004956a5: fld dword ptr [0x4eb424]
+004956ab: fstp dword ptr [esi + edi*4 + 0x240]
+004956b2: cmp edi, 6
+004956b5: je 0x495711
+004956b7: cmp edi, 0x11
+004956ba: jne 0x49576d
+004956c0: cmp dword ptr [esi + 4], 7
+004956c4: jne 0x4956fe
+004956c6: fld dword ptr [edx + 0x440]
+004956cc: fcomp dword ptr [esp + 0x10]
+004956d0: fnstsw ax
+004956d2: test ah, 0x41
+004956d5: je 0x4956f6
+004956d7: fld dword ptr [esi + 0x2d4]
+004956dd: fcomp dword ptr [esp + 0x10]
+004956e1: fnstsw ax
+004956e3: test ah, 1
+004956e6: jne 0x4956ee
+004956e8: fld dword ptr [esp + 0x10]
+004956ec: jmp 0x495766
+004956ee: fld dword ptr [esi + 0x2d4]
+004956f4: jmp 0x495766
+004956f6: fld dword ptr [edx + 0x440]
+004956fc: jmp 0x495766
+004956fe: fld dword ptr [esp + 0x10]
+00495702: fcomp dword ptr [0x4eb424]
+00495708: fnstsw ax
+0049570a: test ah, 1
+0049570d: jne 0x495760
+0049570f: jmp 0x4956d7
+00495711: cmp dword ptr [esi + 4], 7
+00495715: jne 0x495730
+00495717: fld dword ptr [edx + 0x414]
+0049571d: fcomp dword ptr [esp + 0x10]
+00495721: fnstsw ax
+00495723: test ah, 0x41
+00495726: jne 0x495741
+00495728: fld dword ptr [edx + 0x414]
+0049572e: jmp 0x495766
+00495730: fld dword ptr [esp + 0x10]
+00495734: fcomp dword ptr [0x4eb424]
+0049573a: fnstsw ax
+0049573c: test ah, 1
+0049573f: jne 0x495760
+00495741: fld dword ptr [esi + 0x2cc]
+00495747: fcomp dword ptr [esp + 0x10]
+0049574b: fnstsw ax
+0049574d: test ah, 1
+00495750: jne 0x495758
+00495752: fld dword ptr [esp + 0x10]
+00495756: jmp 0x495766
+00495758: fld dword ptr [esi + 0x2cc]
+0049575e: jmp 0x495766
+00495760: fld dword ptr [0x4eb424]
+00495766: fstp dword ptr [esi + edi*4 + 0x240]
+0049576d: push edi
+0049576e: push esi
+0049576f: call 0x404000
+00495774: mov eax, dword ptr [esp + 0x1c]
+00495778: add esp, 8
+0049577b: test eax, eax
+0049577d: jne 0x4957a5
+0049577f: mov eax, dword ptr [0x638bb0]
+00495784: cmp dword ptr [eax], 2
+00495787: jne 0x4957a5
+00495789: fld dword ptr [esi + edi*4 + 0x240]
+00495790: fcomp dword ptr [esp + 0xc]
+00495794: fnstsw ax
+00495796: test ah, 0x40
+00495799: jne 0x4957a5
+0049579b: or dword ptr [esi + 0x1f8], 0x10000000
+004957a5: pop edi
+004957a6: pop esi
+004957a7: ret 0xc
+004957aa: nop 
+004957ab: nop 
+004957ac: nop 
+004957ad: nop 
+004957ae: nop 
+004957af: nop 
+004957b0: push esi
+004957b1: push edi
+004957b2: mov edi, dword ptr [esp + 0xc]
+004957b6: mov esi, ecx
+004957b8: cmp edi, 0xa
+004957bb: jb 0x4957d4
+004957bd: push 0x5b6
+004957c2: push 0x5163bc
+004957c7: push 0x5163e8
+004957cc: call 0x4c12a0
+004957d1: add esp, 0xc
+004957d4: fld dword ptr [esp + 0x10]
+004957d8: mov ecx, esi
+004957da: fstp dword ptr [esi + edi*4 + 0x300]
+004957e1: call 0x43ce40
+004957e6: test eax, eax
+004957e8: je 0x4957f4
+004957ea: push edi
+004957eb: push esi
+004957ec: call 0x403e10
+004957f1: add esp, 8
+004957f4: pop edi
+004957f5: pop esi
+004957f6: ret 8
+004957f9: nop 
+004957fa: nop 
+004957fb: nop 
+004957fc: nop 
+004957fd: nop 
+004957fe: nop 
+004957ff: nop 

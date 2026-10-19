@@ -41,7 +41,7 @@ def compatibility_files(game,current_nob):
     archives=[current_nob] if isinstance(current_nob,bytes) else current_nob
     current={}
     for data in archives:current.update(read_templates(data,boot_only=True))
-    known={};classes={};imported_packs={};imported_templates={}
+    known={};classes={};imported_packs={};imported_templates={};pack_dependencies={};pack_conflicts=set()
     manifests=[*(game/'RCM').glob('*/.rcm_deployment.json'),*(game/'RCM').glob('*/.rcm_manifest.json')]
     for path in manifests:
         safe_target(game,path)
@@ -58,9 +58,20 @@ def compatibility_files(game,current_nob):
             if name.endswith('.nob'):
                 try:
                     found=read_templates(data);known.update(found)
-                    if name=='rcm_wtd_content.nob':
+                    if name=='rcm_wtd_content.nob' or re.fullmatch(r'rcm_lib_[0-9a-f]{12}\.nob',name):
+                        if name in imported_packs and imported_packs[name]!=data:pack_conflicts.add(name)
                         imported_packs[name]=data;imported_templates.update({key:name for key in found})
                 except (ValueError,zipfile.BadZipFile):continue
+                if re.fullmatch(r'rcm_lib_[0-9a-f]{12}\.nob',name):
+                    from .content_libraries import DEPENDENCIES
+                    with zipfile.ZipFile(io.BytesIO(data)) as archive:
+                        if DEPENDENCIES in archive.namelist():
+                            if archive.getinfo(DEPENDENCIES).file_size>131072:raise ValueError('Local library dependency metadata is excessive')
+                            refs=json.loads(archive.read(DEPENDENCIES))
+                            if not isinstance(refs,dict) or refs.get('format')!=1 or not isinstance(refs.get('libraries'),list):raise ValueError('Invalid local library dependency metadata')
+                            for ref in refs['libraries']:
+                                if not isinstance(ref,dict) or not re.fullmatch(r'rcm_lib_[0-9a-f]{12}\.nob',str(ref.get('archive',''))) or not re.fullmatch(r'[0-9a-f]{64}',str(ref.get('sha256',''))):raise ValueError('Invalid local library dependency reference')
+                            pack_dependencies[name]=refs['libraries']
             elif re.fullmatch(r'codex/[A-Za-z_][A-Za-z0-9_$]*\.class',name):classes[name]=data
     unavailable=required-current.keys()-known.keys()
     owned=[name for name in unavailable if name.startswith(('r_rcm_','t_rcm_','rcm_'))]
@@ -77,6 +88,14 @@ def compatibility_files(game,current_nob):
         if 0 in values:collect(cstring(values[0]).casefold())
         if 11 in values:scripts.add(cstring(values[11]))
     for name in sorted(missing):collect(name)
+    pending=list(needed_packs)
+    while pending:
+        name=pending.pop()
+        if name in pack_conflicts:raise ValueError('Conflicting saved-inventory library versions: '+name)
+        for ref in pack_dependencies.get(name,[]):
+            parent=ref['archive'];data=imported_packs.get(parent)
+            if data is None or hashlib.sha256(data).hexdigest()!=ref['sha256']:raise ValueError('Missing or changed saved-inventory library dependency: '+parent)
+            if parent not in needed_packs:needed_packs.add(parent);pending.append(parent)
     from .generator import zip_bytes
     files={'rcm_compat.nob':zip_bytes({'misc/Templates/_rcm_compat.not':NotFile(list(keep.values())).encode()})}
     files.update({name:imported_packs[name] for name in needed_packs})

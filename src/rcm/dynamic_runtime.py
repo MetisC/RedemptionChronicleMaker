@@ -97,6 +97,11 @@ def extend_dynamic(java,campaign,scene,project):
                        f' if(dPhasePending[g][{pi}]) {{ trace("GENERATOR_THRESHOLD generator="+dName[g]+" role="+{js(boss.get("role",boss.get("actor")))}+" threshold={phase.get("percent",phase.get("value"))}"); if(event{ei}()) {{ dPhasePending[g][{pi}]=false; dPhaseDone[g][{pi}]={str(phase.get("once",True)).lower()}; }} if(transitioning) return; }}']
         phases+=[' dBossPrevious[g]=hp; }']
     code=fields+'\n'.join(config+points+pointnames+pointcounts+phases)+COMMON
+    from .combat_difficulty import active
+    if active(campaign.source):
+        hook='if(dTeam[g][e]>=0) actor.SetActorTeam(dTeam[g][e]);'
+        if code.count(hook)!=1:raise ValueError('Difficulty dynamic creation hook missing')
+        code=code.replace(hook,hook+' difficultyEnemy(who);')
     code=code.replace('+dName[g]', '+dName[g]+" scene="+dScene')
     replace('ticks++;','ticks++; dynamicPoll(); if(transitioning) return;')
     replace('public void save(int capture) {','public void save(int capture) { dynamicSave();')

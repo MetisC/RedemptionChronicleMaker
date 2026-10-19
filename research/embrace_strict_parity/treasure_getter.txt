@@ -1,0 +1,46 @@
+004290b0: push esi
+004290b1: mov esi, dword ptr [esp + 8]
+004290b5: test esi, esi
+004290b7: jne 0x4290d0
+004290b9: push 0x128
+004290be: push 0x500adc
+004290c3: push 0x500b04
+004290c8: call 0x4c12a0
+004290cd: add esp, 0xc
+004290d0: push esi
+004290d1: push 1
+004290d3: lea eax, [esp + 0x14]
+004290d7: push 4
+004290d9: push eax
+004290da: call 0x4cb5c0
+004290df: add esp, 0x10
+004290e2: cmp eax, 1
+004290e5: pop esi
+004290e6: je 0x4290ff
+004290e8: push 0x12b
+004290ed: push 0x500b0c
+004290f2: push 0x500b34
+004290f7: call 0x4c12a0
+004290fc: add esp, 0xc
+004290ff: ret 
+00429100: push esi
+00429101: mov esi, dword ptr [esp + 8]
+00429105: test esi, esi
+00429107: jne 0x429120
+00429109: push 0x13c
+0042910e: push 0x500b40
+00429113: push 0x500b68
+00429118: call 0x4c12a0
+0042911d: add esp, 0xc
+00429120: push esi
+00429121: push 1
+00429123: lea eax, [esp + 0x10]
+00429127: push 4
+00429129: push eax
+0042912a: call 0x4cb560
+0042912f: mov ecx, dword ptr [esp + 0x18]
+00429133: mov eax, dword ptr [esp + 0x1c]
+00429137: add esp, 0x10
+0042913a: cmp ecx, eax
+0042913c: pop esi
+0042913d: je 0x429156

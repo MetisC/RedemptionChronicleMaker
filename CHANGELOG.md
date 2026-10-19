@@ -29,3 +29,42 @@ Native click interactions: hover label plus arbitrary existing actions, includin
 Cinematic Director closure: own linear NCP capture/editor/writer, timed shared Actions and dialogue line Actions, native camera effects/staging, spatial loops with Stop, entity-attached lights and demonstrated weather. Optional Showcase lab plus refuge acceptance chronicle. Native rendering/audio/save/reentry checks remain EMB01–24; existing accepted content preserved. Version remains rc7.
 
 Final targeted closure: temporary-music/restore Actions with evidenced single-snapshot ownership; native party conversation staging through existing named Entries and bounded generated NSD; references/rename/cascade/undo and real Codex 45.3 compilation. Retained safe stationary-NCP authoring restriction after analysing all 174 original paths. Optional labs updated, narrow property controls corrected. Fresh full gate: 525 tests, 0 failures/errors/skips; subsequent widget regression: 140, 0 failures/errors/skips. New native audio/formation/save/MP cases remain manual; no version or project-format increase.
+
+
+## Strict original authoring audit
+
+- Scene environment controls for initial audio/volume, fog, view distance and
+  compatible paired sky; original EAX retained because static-scene activation
+  takes precedence. No geometry/lightmap edits.
+- Template and local instance Foley, AI, motion sets, hover text and native
+  container treasure classes, selected from actual original data.
+- Advanced typed stock constructor binding with real metadata, entity links and
+  native movement frames; native scripts retain callback/save ownership.
+- Optional native interest group on waypoints, distinct from patrol routes.
+- Selected data-only NOT/NOB library import with local dependency ownership;
+  no menus, chronicles or external binary code, no assets inside public ZIPs.
+- Separate Cargo at the refuge acceptance example; accepted tutorial unchanged.
+- Replaced permissive parity claims with an eight-column strict audit. EAX,
+  native regional context, sound/light boxes and stationary timed camera keys
+  remain explicit limits. New native cases require user observation in game.
+- Investigated original map illustrations/points/names/visibility: custom maps
+  are feasible without Embrace or NIL editing; no map editor is advertised yet.
+
+
+## Optional chronicle combat difficulty
+
+Chronicle properties now offer Easy, Normal, Hard and Nightmare in English and
+Spanish. Normal is unchanged. Fresh RCM enemy health/maximum and native
+Strength/Stamina use conservative factors (Easy .8/.9/.9, Hard1.2/1.1/1.1,
+Nightmare1.5/1.2/1.2). Dynamic HP overrides are applied first. Enemy team/neutral
+checks exclude allies, players and ordinary conversation NPCs. Existing GUIDs
+and save/re-entry do not rescale; no new native save record is added. Changing
+difficulty recommends a new game for uniform results. Native balance, equipment,
+save/load and multiplayer observation remain DIFF manual checks.
+
+Imported-library management now checks project and parent dependencies before
+removing local copies. Shared deployments and saved inventories retain complete
+verified data libraries, including transitive resources. Custom-script builds
+verify actual Codex inheritance as well as constructor signatures. Instance
+animation selectors refresh after motion-set changes; internal generated
+inheritance records are hidden from ordinary browsing.
