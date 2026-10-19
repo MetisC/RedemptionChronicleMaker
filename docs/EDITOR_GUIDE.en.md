@@ -8,6 +8,12 @@
 
 **Campaign / Overview:** create scenes, travel, paths, quests, encounters and cinematic sequences. Assistants create ordinary editable, undoable relationships. Reopening an assistant reads current entity values.
 
+**Find things quickly:** Ctrl+F filters the project tree by name or ID in the active scene. Ctrl+Shift+F searches the whole chronicle, including other scenes and dialogue text. Press Enter to open the selected result (or the first result). Clear a search with its × button. Opening another project clears these searches; filtering never hides content in the game. Collapsed project groups stay collapsed when you refresh.
+
+**Choose resources:** search and press Enter to move to the results, then Enter again to choose. The confirmation button is available only for a valid selection. If nothing matches, **Reset filters** clears search, family, origin and favourites filters while retaining the resource type and any inventory restrictions. Selection stays on the same resource when it still matches after a refresh.
+
+An invalid property stays visible when you try to select something else. Correct it before continuing; navigating does not discard the pending value. Recent projects on the welcome screen also open with Enter.
+
 **Graph:** shows conversation branches or an event's action order. Select a card to edit it. Fit view frames the graph.
 
 **Delete:** select an element and press Delete or the Delete button. Its basic spawn actions are removed together. For cross-references, the dialog shows where it is used and what would be removed: go directly to a use, cancel, or choose “Delete and remove references”. Empty events are removed too; unrelated uses and alternative spawn points remain. Undo restores the entire deletion in one operation.

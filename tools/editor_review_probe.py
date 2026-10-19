@@ -110,6 +110,15 @@ def main():
         win.center_tabs.setCurrentWidget(win.graph_panel);win.select(('conversations',0));app.processEvents();win.graph_panel.key=None;win.graph_panel.refresh();win.graph_panel.fit()
         app.processEvents()
         win.grab().save(str(evidence.output(directory/(args.language+'_graph.png'))))
+        win.resize(1100,720);win.campaign_panel.focus_search();win.campaign_panel.search.clear();app.processEvents()
+        win.grab().save(str(evidence.output(directory/(args.language+'_campaign_minimum.png'))))
+        win.focus_project_search();win.nav_search.setText(win.doc.data['actors'][0]['id']);app.processEvents()
+        win.grab().save(str(evidence.output(directory/(args.language+'_project_search.png'))));win.nav_search.clear()
+        from rcm.editor.browser import ResourceDialog
+        chooser=ResourceDialog(backend,'items',win);chooser.show();chooser.browser.search.setText('no_possible_resource_xyz');app.processEvents()
+        chooser.grab().save(str(evidence.output(directory/(args.language+'_resource_empty.png'))))
+        chooser.browser.reset_filters();app.processEvents();assert chooser.browser.table.rowCount()>0
+        chooser.grab().save(str(evidence.output(directory/(args.language+'_resource_reset.png'))));chooser.reject();chooser.deleteLater()
         report=dict(language=args.language,tabs=[win.center_tabs.tabText(i) for i in range(win.center_tabs.count())],menus=[a.text() for a in win.menuBar().actions()],labels=labels,forms_inspected=inspected,untranslated_known_labels=sorted(set(untranslated)),project_unchanged=win.doc.snapshot()==before,preference_persisted=True,mode='Qt offscreen; no OpenGL or game',successful=True)
         evidence.write(directory/(args.language+'_probe.json'),json.dumps(report,ensure_ascii=False,indent=2))
         win.doc=None;win.close();app.processEvents();print(json.dumps({k:v for k,v in report.items() if k!='labels'},ensure_ascii=False))

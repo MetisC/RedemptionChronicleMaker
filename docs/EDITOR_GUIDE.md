@@ -8,6 +8,12 @@
 
 **Campaña / Vista global:** crea escenas, viajes, recorridos, quests, encuentros y secuencias. Asistente… crea relaciones normales, editables y deshacibles. Editar asistente lee los valores actuales al reabrirlo.
 
+**Encontrar elementos:** Ctrl+F filtra el árbol del proyecto por nombre o ID en la escena activa. Ctrl+Shift+F busca en toda la crónica, incluidas otras escenas y los textos de conversación. Intro abre el resultado seleccionado o el primero. La × borra la búsqueda. Al abrir otro proyecto se limpian estas búsquedas; los filtros nunca ocultan contenido dentro del juego. Los grupos del árbol que hayas plegado siguen plegados al actualizar.
+
+**Elegir recursos:** escribe y pulsa Intro para ir a los resultados; pulsa Intro de nuevo para elegir. Sólo puedes confirmar una selección válida. Si no aparece nada, **Restablecer filtros** limpia búsqueda, familia, procedencia y favoritos, conservando el tipo de recurso y las restricciones del inventario. La selección se conserva al actualizar si el recurso sigue coincidiendo.
+
+Una propiedad incorrecta permanece visible si intentas seleccionar otro elemento. Corrígela antes de continuar; la navegación no descarta el valor pendiente. Los proyectos recientes de la bienvenida también se abren con Intro.
+
 **Gráfico:** muestra ramas y enlaces de conversación o el orden de un evento. Selecciona una tarjeta para editarla. Ajustar vista encuadra el gráfico.
 
 **Eliminar:** selecciona el elemento y pulsa Supr o Eliminar. Sus acciones básicas de aparición se retiran juntas. Si hay referencias cruzadas, el diálogo muestra dónde se usa y qué se borraría: puedes ir directamente al uso, cancelar o elegir «Eliminar y quitar referencias». Los eventos vacíos también se retiran; los usos independientes y puntos alternativos se conservan. Todo el borrado se deshace en una sola operación.

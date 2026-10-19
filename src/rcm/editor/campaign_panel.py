@@ -30,14 +30,15 @@ class CampaignPanel(QWidget):
         from .dynamic_wizard import open_dynamic
         from .original_objects import use_selected
         original=more.addAction(tr('Objeto original / crear paso…'));original.setObjectName('use_original_object');original.triggered.connect(lambda:win.guard(lambda:use_selected(win)))
-        dynamic=QPushButton(tr('+ Encuentro dinámico…'));dynamic.setObjectName('add_dynamic');dynamic.clicked.connect(lambda:win.guard(lambda:open_dynamic(win)));spatial.addWidget(dynamic)
+        dynamic=QPushButton(tr('Dinámico…'));dynamic.setToolTip(tr('+ Encuentro dinámico…'));dynamic.setObjectName('add_dynamic');dynamic.clicked.connect(lambda:win.guard(lambda:open_dynamic(win)));spatial.addWidget(dynamic)
         from .recipe_wizard import open_wizard
         guided=QPushButton(tr('Asistente…'));guided.setObjectName('open_recipe');guided.clicked.connect(lambda:win.guard(lambda:open_wizard(win)));spatial.addWidget(guided)
         extra=QPushButton(tr('Añadir…'));extra.setMenu(more);extra.setObjectName('campaign_add_more');spatial.addWidget(extra)
         layout.addLayout(top);layout.addLayout(spatial);layout.addLayout(story);self.dashboard=QLabel();self.dashboard.setWordWrap(True);layout.addWidget(self.dashboard)
-        self.search=QLineEdit();self.search.setObjectName('global_search');self.search.setPlaceholderText(tr('Buscar en toda la crónica · Ctrl+Shift+F'));self.search.textChanged.connect(self.refresh_rows);layout.addWidget(self.search)
+        self.search=QLineEdit();self.search.setObjectName('global_search');self.search.setPlaceholderText(tr('Buscar en toda la crónica · Ctrl+Shift+F'));self.search.setClearButtonEnabled(True);self.search.textChanged.connect(self.refresh_rows);self.search.returnPressed.connect(self.open_search_result);layout.addWidget(self.search)
+        self.search_status=QLabel();self.search_status.setObjectName('campaign_search_status');self.search_status.setWordWrap(True);layout.addWidget(self.search_status)
         self.panes=QSplitter(Qt.Orientation.Vertical);self.panes.setObjectName('campaign_panes');layout.addWidget(self.panes,1)
-        self.tree=QTreeWidget();self.tree.setHeaderLabels([tr('Elemento'),tr('Detalle')]);self.tree.setColumnWidth(0,260);self.tree.setObjectName('campaign_tree');self.tree.itemClicked.connect(self.selected);self.panes.addWidget(self.tree)
+        self.tree=QTreeWidget();self.tree.setHeaderLabels([tr('Elemento'),tr('Detalle')]);self.tree.setColumnWidth(0,260);self.tree.setObjectName('campaign_tree');self.tree.itemClicked.connect(self.selected);self.tree.itemActivated.connect(self.selected);self.panes.addWidget(self.tree)
         self.scroll=QScrollArea();self.scroll.setWidgetResizable(True);self.scroll.setMinimumHeight(190);self.panes.addWidget(self.scroll)
         self.panes.setStretchFactor(0,1);self.panes.setStretchFactor(1,3);self.panes.setSizes([150,400]);self.panes.setChildrenCollapsible(False)
         bottom=QHBoxLayout()
@@ -48,6 +49,10 @@ class CampaignPanel(QWidget):
     def focus_search(self):
         self.win.center_tabs.setCurrentWidget(self)
         self.search.setFocus()
+        self.search.selectAll()
+    def open_search_result(self):
+        item=self.tree.currentItem() or self.tree.topLevelItem(0)
+        if item:self.selected(item,0)
     def convert(self):
         if not self.win.doc:raise ValueError(tr('Crea primero una crónica y elige su mapa'))
         if not self.win.commit_properties():return False
@@ -71,18 +76,23 @@ class CampaignPanel(QWidget):
         self.render()
     def refresh_rows(self):
         root=self.source();self.tree.clear()
-        if not root:return
-        query=self.search.text().casefold()
+        if not root:self.search_status.clear();return
+        query=self.search.text().strip().casefold()
         def add(path,row,detail=''):
-            if query and query not in str(row).casefold():return
+            text=' '.join(str(row.get(key,'')) for key in ('id','title','name','comment','template','description','text'))+' '+detail
+            if not (path[0]=='scenes' and len(path)==2):text+=' '+str(row)
+            if query and query not in text.casefold():return
             item=QTreeWidgetItem([row.get('title',row.get('name',row.get('id',''))),detail]);item.setData(0,ROLE,path);self.tree.addTopLevelItem(item)
             item.setToolTip(0,item.text(0)+('\n'+row['comment'] if row.get('comment') else ''));item.setToolTip(1,detail)
+            if tuple(path)==self.path:self.tree.setCurrentItem(item)
+        kinds={'actors':tr('Actores'),'objects':tr('Objetos'),'conversations':tr('Conversaciones'),'events':tr('Eventos'),'triggers':tr('Zonas de activación'),'encounters':tr('Encuentros'),'sequences':tr('Cámaras'),'entries':tr('Entradas'),'waypoints':tr('Puntos de recorrido'),'paths':tr('Recorridos'),'generators':tr('Encuentros dinámicos')}
         for qi,q in enumerate(root.get('quests',[])):add(('quests',qi),q,tr('Misión · ')+str(len(q['steps']))+tr(' pasos'))
         for si,s in enumerate(root['scenes']):
             add(('scenes',si),s,tr('Escena · ')+s['level']['source'])
             for k in ['actors','objects','conversations','events','triggers','encounters','sequences','entries','waypoints','paths','generators']:
-                for i,row in enumerate(s.get(k,[])):add(('scenes',si,k,i),row,s['id']+' / '+k)
+                for i,row in enumerate(s.get(k,[])):add(('scenes',si,k,i),row,s['id']+' / '+kinds[k])
         for alias,index in root.get('state',{}).get('flags',{}).items():add(('state','flags',alias),{'id':alias},'Flag '+str(index))
+        self.search_status.setText(tr('{0} elementos · Pulsa Intro para abrir el resultado seleccionado.').format(self.tree.topLevelItemCount()) if self.tree.topLevelItemCount() else tr('Sin coincidencias. Borra la búsqueda para ver toda la crónica.'))
     def switch_scene(self,index):
         if self.source() and index>=0 and index!=self.win.doc.active:
             if not self.win.commit_properties():
@@ -92,7 +102,9 @@ class CampaignPanel(QWidget):
     def navigate(self,path):
         root=self.source()
         if not root:return
-        if self.path!=tuple(path) and not self.win.commit_properties():return
+        if self.path!=tuple(path) and not self.win.commit_properties():
+            self.tree.setCurrentItem(next((self.tree.topLevelItem(i) for i in range(self.tree.topLevelItemCount()) if self.tree.topLevelItem(i).data(0,ROLE)==self.path),None))
+            return
         self.path=tuple(path)
         if path[0]=='scenes':
             self.win.doc.active=path[1]
@@ -100,6 +112,8 @@ class CampaignPanel(QWidget):
             self.win.refresh()
             if len(path)>2 and path[2] not in ['encounters','sequences','paths','generators']:
                 self.win.select(tuple(path[2:]));self.win.center_tabs.setCurrentIndex(1);return
+        elif path[0]=='state':
+            self.win.select(tuple(path));self.win.center_tabs.setCurrentIndex(1);return
         self.win.center_tabs.setCurrentWidget(self);self.render()
     def selected(self,item,column):self.navigate(item.data(0,ROLE))
     def mutate(self,callback,rebuild=False):
@@ -186,7 +200,15 @@ class CampaignPanel(QWidget):
     def render(self):
         old=self.scroll.takeWidget();panel=QWidget();layout=QVBoxLayout(panel);form=QFormLayout();layout.addLayout(form);self.scroll.setWidget(panel)
         if old:old.deleteLater()
-        if not self.path:return
+        editable=bool(self.path and self.path[0] in {'scenes','quests'})
+        for name in ('duplicate_campaign','delete_campaign'):
+            self.findChild(QPushButton,name).setEnabled(editable)
+        self.findChild(QPushButton,'campaign_references').setEnabled(bool(self.path))
+        if not self.path:
+            label=QLabel(tr('Selecciona un elemento de la lista para editarlo. También puedes buscar por nombre, ID o escena.'));label.setWordWrap(True);form.addRow(label);return
+        if self.path[0]=='state' or (self.path[0]=='scenes' and len(self.path)>2 and self.path[2] not in {'encounters','sequences','paths','generators'}):
+            label=QLabel(tr('Edita este elemento en el panel de propiedades.'));label.setWordWrap(True);form.addRow(label)
+            button=QPushButton(tr('Editar propiedades'));button.clicked.connect(lambda:self.win.guard(lambda:self.navigate(self.path)));form.addRow(button);return
         row=self.value();root=self.source()
         def line(label,key,name,rename=False):
             w=QLineEdit(str(row.get(key,'')));w.setObjectName(name)

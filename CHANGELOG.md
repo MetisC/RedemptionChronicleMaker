@@ -1,5 +1,7 @@
 # Changes · 1.0.0-rc7
 
+- Editor usability: project-tree search (Ctrl+F), keyboard search/resource/recent-project navigation, recoverable empty lists, safe resource selection refresh, persistent collapsed groups, invalid-edit navigation guards and repaired global flag/ordinary-entity forms. Runtime and tutorial unchanged. See docs/USABILITY_REVIEW.md.
+
 - Opening a chronicle now shows a wait cursor and “Opening chronicle…” before loading, including recent-project double-clicks. Repeated opens are blocked during loading; failures restore the cursor and controls. Feedback is translated into English/Spanish.
 
 - Fixed mixed-map Showcase metadata overflowing the native three-currency table before scene startup. One deduplicated, bounded CASH declaration is generated, and unsafe cumulative declarations fail output verification. Corrected initial loading confirmed by the user on 2026-10-18.

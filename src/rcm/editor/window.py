@@ -159,7 +159,7 @@ class MainWindow(QMainWindow):
         self.graph_panel=GraphPanel(self);self.center_tabs.addTab(self.graph_panel,tr('Gráfico de historia'))
         from .guide_panel import GuidePanel
         self.guide_panel=GuidePanel(self);self.center_tabs.addTab(self.guide_panel,tr('Tutorial / Ayuda'))
-        for widget, callback in [(self.nav, self.delete_selected), (self.content, self.delete_selected),
+        for widget, callback in [(self.nav, lambda: self.delete_selected() if self.nav.currentItem() and not self.nav.currentItem().isHidden() else None), (self.content, self.delete_selected),
                                  (self.graph_panel.view, self.delete_selected),
                                  (self.campaign_panel.tree, self.campaign_panel.delete)]:
             self.register_delete_shortcut(widget, callback)
@@ -205,6 +205,7 @@ class MainWindow(QMainWindow):
             file_menu.addAction(self.actions[key])
         edit_menu = self.menuBar().addMenu(tr("Editar"))
         self.edit_menu=edit_menu
+        edit_menu.addAction(tr('Buscar en el proyecto'), self.focus_project_search, 'Ctrl+F')
         for key, label, shortcut, callback in [('undo',tr('Deshacer'),'Ctrl+Z',self.undo_project),('redo',tr('Rehacer'),'Ctrl+Y',self.redo_project)]:
             action = QAction(label,self)
             action.setShortcut(shortcut)
@@ -264,7 +265,22 @@ class MainWindow(QMainWindow):
         self.nav.setHeaderLabel(tr("PROYECTO"))
         self.nav.setObjectName("project_tree")
         self.nav.setMinimumWidth(200)
-        self.splitter.addWidget(self.nav)
+        navigation = QWidget()
+        navigation_layout = QVBoxLayout(navigation)
+        navigation_layout.setContentsMargins(0, 0, 0, 0)
+        self.nav_search = QLineEdit()
+        self.nav_search.setObjectName('project_search')
+        self.nav_search.setPlaceholderText(tr('Buscar en el proyecto · Ctrl+F'))
+        self.nav_search.setClearButtonEnabled(True)
+        self.nav_search.textChanged.connect(self.filter_project_tree)
+        self.nav_search.returnPressed.connect(self.activate_project_result)
+        navigation_layout.addWidget(self.nav_search)
+        navigation_layout.addWidget(self.nav, 1)
+        self.nav_empty = QLabel(tr('Sin coincidencias. Borra la búsqueda para ver el proyecto.'))
+        self.nav_empty.setWordWrap(True)
+        self.nav_empty.hide()
+        navigation_layout.addWidget(self.nav_empty)
+        self.splitter.addWidget(navigation)
         center = QWidget()
         center_layout = QVBoxLayout(center)
         self.heading = QLabel("Redemption Chronicle Maker")
@@ -468,11 +484,20 @@ class MainWindow(QMainWindow):
             except (ValueError,OSError,KeyError,TypeError):self.backend.resources=self.backend.original_resources;self.backend.project_payload={};self.backend._resources_key=None
         else:self.backend.resources=self.backend.original_resources;self.backend.project_payload={};self.backend._resources_key=None
         if self.doc is not self.history_document:
+            self.nav_search.blockSignals(True)
+            self.nav_search.clear()
+            self.nav_search.blockSignals(False)
+            self._nav_filtering = False
+            self.campaign_panel.search.blockSignals(True)
+            self.campaign_panel.search.clear()
+            self.campaign_panel.search.blockSignals(False)
+            self.campaign_panel.path = None
             self.history_document = self.doc
             self.history = [self.doc.snapshot()] if self.doc else []
             self.redo_history = []
         self.update_history_actions()
         self.mode_changed(self.center_tabs.currentIndex())
+        expanded = getattr(self, '_nav_expanded', {}) if self.nav_search.text().strip() else {path: item.isExpanded() for path, item in getattr(self, 'nav_items', {}).items()}
         self.nav.blockSignals(True)
         self.nav.clear()
         self.nav_items = {}
@@ -506,9 +531,13 @@ class MainWindow(QMainWindow):
                 add(alias, ("state", "flags", alias), parent)
         parent.setExpanded(True)
         add(tr("Recursos originales"), ("resources",))
+        for path, item in self.nav_items.items():
+            if path in expanded:item.setExpanded(expanded[path])
         nav_path = self.selection[:2] if self.selection[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints", "original", "generators"} else self.selection
         self.nav.setCurrentItem(self.nav_items.get(nav_path, self.nav_items[("chronicle",)]))
         self.nav.blockSignals(False)
+        self.filter_project_tree()
+        self.nav_search.setEnabled(self.doc is not None)
         for key in ["save", "save_as", "validate", "build"]:
             self.actions[key].setEnabled(self.doc is not None and not self.busy)
         self.convert_campaign_action.setVisible(bool(self.doc) and not hasattr(self.doc,'campaign'))
@@ -569,6 +598,47 @@ class MainWindow(QMainWindow):
             self.refresh()
             self.validate_project()
 
+    def focus_project_search(self):
+        if not self.doc:return
+        self.nav_search.setFocus()
+        self.nav_search.selectAll()
+
+    def filter_project_tree(self):
+        if not hasattr(self, 'nav_items'):return
+        query = self.nav_search.text().strip().casefold()
+        if query and not getattr(self, '_nav_filtering', False):
+            self._nav_expanded = {path: item.isExpanded() for path, item in self.nav_items.items()}
+        self.nav.blockSignals(True)
+        def visit(item, parent_matches=False):
+            path = item.data(0, ROLE)
+            text = item.toolTip(0)
+            if self.doc and path and len(path) == 2 and path[0] in {'actors','objects','entries','waypoints','triggers','conversations','events','generators'}:
+                text += ' ' + str(self.at(path).get('id', ''))
+            matches = not query or parent_matches or query in text.casefold()
+            child_matches = [visit(item.child(i), matches) for i in range(item.childCount())]
+            visible = matches or any(child_matches)
+            item.setHidden(not visible)
+            if query and any(child_matches):item.setExpanded(True)
+            elif not query and getattr(self, '_nav_filtering', False):item.setExpanded(getattr(self, '_nav_expanded', {}).get(path, item.isExpanded()))
+            return visible
+        visible = [visit(self.nav.topLevelItem(i)) for i in range(self.nav.topLevelItemCount())]
+        current = self.nav.currentItem()
+        if current and current.isHidden():self.nav.setCurrentItem(None)
+        elif not query and current is None:
+            self.nav.setCurrentItem(self.nav_items.get(self.selection, self.nav_items.get(self.selection[:2])))
+        self.nav.blockSignals(False)
+        self._nav_filtering = bool(query)
+        self.nav_empty.setVisible(not any(visible))
+
+    def activate_project_result(self):
+        for item in self.nav_items.values():
+            if not item.isHidden() and not item.childCount():
+                self.nav.setCurrentItem(item)
+                self.nav_selected()
+                self.nav.scrollToItem(item)
+                self.nav.setFocus()
+                return
+
     def nav_selected(self):
         item = self.nav.currentItem()
         if item:
@@ -596,6 +666,12 @@ class MainWindow(QMainWindow):
         self.statusBar().showMessage(tr('Inicio del jugador: ')+scene['entries'][ei]['name']+tr(' · edita XYZ/orientación o arrastra el marcador en 3D.'),10000)
 
     def select(self, path, render=True):
+        if self.pending_properties() and not self.commit_properties():
+            for tree, items in ((self.nav, self.nav_items), (self.content, self.content_items)):
+                tree.blockSignals(True)
+                tree.setCurrentItem(items.get(self.selection, items.get(self.selection[:2])))
+                tree.blockSignals(False)
+            return False
         self.selection = tuple(path)
         nav_path = self.selection[:2] if self.selection[0] in {'actors','objects','triggers','entries','waypoints','events','conversations','generators','original'} else self.selection
         item = self.nav_items.get(nav_path)

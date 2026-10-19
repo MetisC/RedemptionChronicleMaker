@@ -1,11 +1,12 @@
 from .i18n import tr
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import Qt, Signal, QEvent
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QComboBox,
     QTableWidget, QTableWidgetItem, QHeaderView, QLabel, QPushButton, QDialog, QDialogButtonBox,QCheckBox)
 
 
 class ResourceBrowser(QWidget):
     chosen = Signal(str, str)
+    selection_valid = Signal(bool)
 
     def __init__(self, backend, category=None, parent=None):
         super().__init__(parent)
@@ -16,6 +17,8 @@ class ResourceBrowser(QWidget):
         self.search = QLineEdit()
         self.search.setObjectName("resource_search")
         self.search.setPlaceholderText(tr("Buscar por nombre o identificador…"))
+        self.search.setClearButtonEnabled(True)
+        self.search.installEventFilter(self)
         self.category = QComboBox()
         backend.refresh_import()
         self.category.setObjectName("resource_category")
@@ -55,6 +58,15 @@ class ResourceBrowser(QWidget):
         self.table.setColumnWidth(2, 210)
         self.table.setColumnWidth(3, 165)
         layout.addWidget(self.table, 1)
+        summary = QHBoxLayout()
+        self.result_count = QLabel()
+        self.result_count.setObjectName('resource_result_count')
+        summary.addWidget(self.result_count, 1)
+        self.reset_button = QPushButton(tr('Restablecer filtros'))
+        self.reset_button.setObjectName('resource_reset_filters')
+        self.reset_button.clicked.connect(self.reset_filters)
+        summary.addWidget(self.reset_button)
+        layout.addLayout(summary)
         self.details = QLabel(tr("Selecciona un recurso para consultar su identificador exacto."))
         self.details.setWordWrap(True)
         layout.addWidget(self.details)
@@ -77,7 +89,7 @@ class ResourceBrowser(QWidget):
         self.search.textChanged.connect(self.refresh)
         self.category.currentIndexChanged.connect(self.refresh)
         self.table.itemSelectionChanged.connect(self.show_details)
-        self.table.cellDoubleClicked.connect(self.choose)
+        self.table.itemActivated.connect(self.choose)
         if category:
             self.category.setCurrentIndex(self.category.findData(category))
             self.category.setEnabled(False)
@@ -94,9 +106,13 @@ class ResourceBrowser(QWidget):
             self.bases.setChecked(bool(saved.get('bases',False)))
             recent=QComboBox();recent.addItem(tr('Todos'),'all');recent.addItem(tr('Recientes'),'recent');recent.addItem(tr('Favoritos'),'favorites');recent.setObjectName('resource_collection');filters.addWidget(recent);self.collection=recent;recent.currentIndexChanged.connect(self.refresh)
             favorite=QPushButton(tr('Marcar / quitar favorito'));favorite.setObjectName('resource_favorite');favorite.clicked.connect(self.favorite);actions.addWidget(favorite)
+            self.favorite_button=favorite
+        self.show_details()
 
     def refresh(self):
         if not hasattr(self,'table'): return
+        previous = self.selected()
+        previous_kind = getattr(self, '_rows_kind', None)
         active=bool(self.backend.resources.get('wtd'))
         self.category.blockSignals(True)
         for text,key in [(tr('Clanes disponibles'),'clans'),(tr('Disciplinas disponibles'),'disciplines')]:
@@ -156,6 +172,9 @@ class ResourceBrowser(QWidget):
             key='resource_recent' if self.collection.currentData()=='recent' else 'resource_favorites'
             chosen={r['id'] for r in prefs.data.get(key,[]) if r['kind']==kind}
             rows=[r for r in rows if r[4] in chosen]
+        self.table.blockSignals(True)
+        self.table.clearSelection()
+        self.table.setCurrentCell(-1, -1)
         self.table.setRowCount(len(rows))
         for i, row in enumerate(rows):
             for j, value in enumerate(row[:4]):
@@ -167,10 +186,42 @@ class ResourceBrowser(QWidget):
                 if not row[6]:
                     cell.setForeground(Qt.GlobalColor.gray)
                 self.table.setItem(i, j, cell)
-        self.details.setText((f'{len(rows)}' + tr(' recursos. Selecciona uno para consultar sus detalles.')))
-        self.use_button.setEnabled(False)
+        self._rows_kind = kind
+        if previous and previous_kind == kind:
+            index = next((i for i, row in enumerate(rows) if row[4] == previous[0]), None)
+            if index is not None:self.table.selectRow(index)
+        self.table.blockSignals(False)
+        self.result_count.setText(tr('{0} recursos').format(len(rows)))
+        self.reset_button.setEnabled(bool(query or self.family.currentIndex() or self.origin.currentIndex() or self.available.currentIndex() or self.enemies.currentIndex() or self.bases.isChecked() or (hasattr(self,'collection') and self.collection.currentIndex())))
+        self.show_details()
+
+    def reset_filters(self):
+        controls = [self.search, self.family, self.origin, self.available, self.enemies, self.bases]
+        if hasattr(self, 'collection'):controls.append(self.collection)
+        for control in controls:control.blockSignals(True)
+        self.search.clear()
+        for control in (self.family, self.origin, self.available, self.enemies):control.setCurrentIndex(0)
+        self.bases.setChecked(False)
+        if hasattr(self, 'collection'):self.collection.setCurrentIndex(0)
+        for control in controls:control.blockSignals(False)
+        self.refresh()
+        self.search.setFocus()
+
+    def focus_results(self):
+        if not self.table.rowCount():return
+        if not self.selected():self.table.selectRow(0)
+        self.table.setFocus()
+
+    def eventFilter(self, obj, event):
+        # A search Enter moves to results; it must not also activate a dialog's
+        # default acceptance button after the focus change.
+        if obj is self.search and event.type() == QEvent.Type.KeyPress and event.key() in (Qt.Key.Key_Return, Qt.Key.Key_Enter):
+            self.focus_results()
+            return True
+        return super().eventFilter(obj, event)
 
     def selected(self):
+        if not self.table.selectionModel().hasSelection():return None
         row = self.table.currentRow()
         item = self.table.item(row, 0) if row >= 0 else None
         return item.data(Qt.ItemDataRole.UserRole) if item else None
@@ -208,7 +259,12 @@ class ResourceBrowser(QWidget):
         self.clone_button.setEnabled(bool(selected and self.category.currentData() in {'actors','items'} and not owned))
         if selected:
             self.details.setText(selected[1])
+        else:
+            self.details.setText(tr('Selecciona un recurso para consultar su identificador exacto.') if self.table.rowCount() else tr('Sin coincidencias. Cambia la búsqueda o restablece los filtros.'))
+        self.inspect_button.setEnabled(bool(selected and self.category.currentData() in {'actors','items','.nai'}))
+        if hasattr(self,'favorite_button'):self.favorite_button.setEnabled(bool(selected))
         self.use_button.setEnabled(bool(selected and selected[2] and self.category.currentData() in {'levels','actors','items'}))
+        self.selection_valid.emit(bool(selected and selected[2]))
 
     def choose(self, *unused):
         selected = self.selected()
@@ -242,10 +298,14 @@ class ResourceDialog(QDialog):
         self.buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
         self.buttons.button(QDialogButtonBox.StandardButton.Ok).setText(tr("Usar selección"))
         self.buttons.button(QDialogButtonBox.StandardButton.Cancel).setText(tr("Cancelar"))
+        for button in self.buttons.buttons():button.setAutoDefault(False)
+        self.buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled(False)
         layout.addWidget(self.buttons)
         self.browser.chosen.connect(self.selected)
+        self.browser.selection_valid.connect(self.buttons.button(QDialogButtonBox.StandardButton.Ok).setEnabled)
         self.buttons.accepted.connect(self.accept_selection)
         self.buttons.rejected.connect(self.reject)
+        self.browser.search.setFocus()
 
     def selected(self, kind, ident):
         self.selection = ident

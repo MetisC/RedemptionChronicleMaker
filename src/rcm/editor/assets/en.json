@@ -2114,5 +2114,20 @@
   "Elige un clan disponible": "Choose an available clan",
   "Objeto en inventario de actor": "Item in actor inventory",
   "Laboratorio de autoría": "Authoring laboratory",
-  "Selecciona una región de la escena": "Select a region in this scene"
+  "Selecciona una región de la escena": "Select a region in this scene",
+  "Buscar en el proyecto": "Search project",
+  "Buscar en el proyecto · Ctrl+F": "Search project · Ctrl+F",
+  "Sin coincidencias. Borra la búsqueda para ver el proyecto.": "No matches. Clear the search to see the project.",
+  "Restablecer filtros": "Reset filters",
+  "{0} recursos": "{0} resources",
+  "Sin coincidencias. Cambia la búsqueda o restablece los filtros.": "No matches. Change the search or reset filters.",
+  "{0} elementos · Pulsa Intro para abrir el resultado seleccionado.": "{0} elements · Press Enter to open the selected result.",
+  "Sin coincidencias. Borra la búsqueda para ver toda la crónica.": "No matches. Clear the search to see the whole chronicle.",
+  "Encuentros": "Encounters",
+  "Cámaras": "Cameras",
+  "Recorridos": "Paths",
+  "Dinámico…": "Dynamic…",
+  "Selecciona un elemento de la lista para editarlo. También puedes buscar por nombre, ID o escena.": "Select an element in the list to edit it. You can also search by name, ID or scene.",
+  "Edita este elemento en el panel de propiedades.": "Edit this element in the properties panel.",
+  "Editar propiedades": "Edit properties"
 }

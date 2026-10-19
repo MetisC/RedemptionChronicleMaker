@@ -61,7 +61,7 @@ class Welcome(QWidget):
             if name=='welcome_new':b.setStyleSheet('font-weight:600;padding:10px');layout.addSpacing(10)
             elif name=='welcome_install':b.setFlat(True);layout.addSpacing(10)
             layout.addWidget(b)
-        layout.addWidget(QLabel(tr('Proyectos recientes')));self.recents=QListWidget();self.recents.setObjectName('recent_projects');self.recents.itemDoubleClicked.connect(self.open_recent);self.recents.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu);self.recents.customContextMenuRequested.connect(self.context);layout.addWidget(self.recents,1)
+        layout.addWidget(QLabel(tr('Proyectos recientes')));self.recents=QListWidget();self.recents.setObjectName('recent_projects');self.recents.itemActivated.connect(self.open_recent);self.recents.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu);self.recents.customContextMenuRequested.connect(self.context);layout.addWidget(self.recents,1)
         self.status=QLabel();self.status.setWordWrap(True);layout.addWidget(self.status);self.refresh()
     def refresh(self):
         self.recents.clear();prefs=getattr(self.win.backend.ws,'app_settings',None)

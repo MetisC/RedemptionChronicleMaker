@@ -32,6 +32,9 @@ Corrected the initial movement after arriving in a scene, which could previously
 
 ## Safer editing and usability
 
+- Search the active project tree with **Ctrl+F**, or the entire chronicle with **Ctrl+Shift+F**. Clear searches easily, open results with Enter, and keep collapsed groups when refreshing. Searches reset when opening another project.
+- Resource lists explain empty results and offer **Reset filters** without removing inventory restrictions. Valid selections survive refreshes; stale selections cannot be confirmed. Enter moves from search to results before choosing. Recent projects also open with Enter.
+- Invalid pending properties remain available for correction when navigating. Fixed global flag navigation and removed the incompatible duplicate ID editor for ordinary entities in Campaign / Overview. Compact controls and empty-state guidance improve smaller windows. These changes affect the editor; the game runtime and accepted tutorial are unchanged.
 - Unified **safe delete** across the editor, 3D viewport and campaign tools. Preview incoming references, navigate to them and choose validated cascade removal where supported. Associated technical data and empty events are removed when appropriate, unrelated content is preserved, and deletion remains undoable.
 - Improved viewport navigation with UE4-style mouse shortcuts, corrected horizontal movement and smoother vertical camera rotation.
 - Improved story graph and table contrast, stable tab placement, more compact controls, scrollable forms and full-text tooltips.

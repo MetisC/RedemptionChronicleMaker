@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-19T19:51:52.262057+02:00",
+  "version": "1.0.0-rc7",
+  "base_commit": "aa99b82598f0a33546fa3bf10eae81e9ded5f5b8",
+  "scope": "Editor usability; existing runtime and authored examples preserved",
+  "source_sha256": {
+    "src/rcm/editor/window.py": "a1fe2a95769b7877095856e3c00baabba3d3a70f04b818695f2b537b9ae315d0",
+    "src/rcm/editor/browser.py": "5b1119600266e2d8e8b57409b2631cf7f05c13da4f5ddaf3e6657ddf639a672c",
+    "src/rcm/editor/campaign_panel.py": "84a99c4fb85bc851825cf260bab590fb50bdae015654d42c5afa33961904f5a6",
+    "src/rcm/editor/product_ui.py": "647dc7ca4f09a758987d833889178696221b5087c538f6ce2f73a02f31eee5ac",
+    "src/rcm/editor/assets/en.json": "fc91d79674d004da7a2112fad367b47ccd1e74521d6eb9129a08f73651f27453",
+    "tests/test_usability.py": "b8e2f9fe00a3205f0459106fa0ec4395af2616d732373f893e240045e3d88c73",
+    "tools/editor_review_probe.py": "8b8cfd30a81cd15428a0a15e784b4dd25a1b58c2d46c145bd75c0f147f122968"
+  },
+  "quality": {
+    "tests": 599,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 697.3717339
+  },
+  "quality_checks": [
+    {
+      "command": [
+        "tools/prepare_native_sectors.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "tools",
+        "tests"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "-m",
+        "mypy",
+        "--follow-imports=skip",
+        "--check-untyped-defs",
+        "--cache-dir",
+        "build/tests/mypy_cache",
+        "src/rcm/paths.py",
+        "src/rcm/input_limits.py",
+        "src/rcm/file_transaction.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "command": [
+        "tools/test.py"
+      ],
+      "returncode": 0
+    }
+  ],
+  "new_regressions": 11,
+  "source_ui_checks": {
+    "en": {
+      "successful": true,
+      "forms_inspected": 83,
+      "project_unchanged": true,
+      "untranslated_known_labels": []
+    },
+    "es": {
+      "successful": true,
+      "forms_inspected": 83,
+      "project_unchanged": true,
+      "untranslated_known_labels": []
+    }
+  },
+  "frozen": {
+    "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+    "sha256": "b96ef8f9ca19a21365eafeba9b3f2f7eb6356b636df7078720535ea8311ab258",
+    "matching_modules": 111,
+    "translations_match": true,
+    "root_shortcut_target": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe"
+  },
+  "portable_checks": [
+    {
+      "language": "en",
+      "returncode": 0,
+      "elapsed_seconds": 79.56459889999996,
+      "native_game_test": false,
+      "real_opengl": false
+    },
+    {
+      "language": "es",
+      "returncode": 0,
+      "elapsed_seconds": 79.63186159999987,
+      "native_game_test": false,
+      "real_opengl": false
+    }
+  ],
+  "example_sources_sha256": {
+    "tutorial": "3980af804d2d1399fc589c1032db51579e1c79217f8691c6c0a4e4277954b562",
+    "mini_chronicle": "602c7c94c00619cd31cae135627ea1f114ec74b0ac9efa599981fedc24083bfc"
+  },
+  "native_game_test": false,
+  "game_installation_written": false,
+  "physical_gpu_dpi_session_test": false,
+  "temporary_probe_copies_removed": true
+}
