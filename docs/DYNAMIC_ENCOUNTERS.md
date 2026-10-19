@@ -50,7 +50,7 @@ Máximo vivos 1..64; máximo 256 simultáneos por escena y 32 generadores; 1..32
 
 El intento fallido rota puntos, deja traza y reintenta de forma limitada. No crea un timer por enemigo. La vida personalizada o multiplicador se aplica al actor generado; la plantilla queda intacta. El override de equipo usa valores nativos; no altera automáticamente flags de AI o invulnerabilidad.
 
-Esta revisión soporta transición de oleada **al limpiar**, no solapamiento/avance manual de una lista de oleadas. Para solapar grupos, utiliza generadores independientes y eventos. No hay posición aleatoria arbitraria en volúmenes, preview nuevo de modelos, cambio universal de puertas ni cámaras que acepten directamente roles dinámicos: una fase puede lanzar las secuencias existentes con sus targets habituales.
+Esta revisión soporta transición de oleada **al limpiar**, no solapamiento/avance manual de una lista de oleadas. Para solapar grupos, utiliza generadores independientes y eventos. No hay posición aleatoria arbitraria en volúmenes, preview nuevo de modelos ni cambio universal de puertas. Las cámaras y controles de actor aceptan roles dinámicos del roster existente; véase AUTHORING_COMPLETION.md. Una fase usa las mismas Actions.
 
 Los roles generados sirven para vida y contadores. Las acciones de animación, AI, inventario o cámara dirigidas a un actor siguen usando actores authored; para controlar al jefe de esa forma, elige un actor existente como jefe. Las activaciones externas se editan en sus eventos normales; editar un generador conserva esos eventos y sólo añade una activación si la solicitas. Retardos/caps/estado AI por entrada no tienen controles propios en esta revisión. El límite de activos no implica limpieza automática de cadáveres del motor.
 

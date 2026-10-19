@@ -77,7 +77,7 @@ def prepare(ws,source,catalogue):
     for p in sequence(root.get('playtests',[]),'playtests'):
         mapping(p,{'id','name','instructions'},{'id','name','instructions'},'playtest');identifier(p['id'],'playtest')
         if not all(isinstance(p[k],str) for k in ('name','instructions')):raise ValueError('Playtest requiere textos')
-    owned=mapping(root.get('resources',{}),{'templates','ai_profiles','scripts','textures','camera_paths'},label='resources')
+    owned=mapping(root.get('resources',{}),{'templates','ai_profiles','scripts','textures','camera_paths','maps'},label='resources')
     ts=indexed(owned.get('templates',[]),'templates');ais=indexed(owned.get('ai_profiles',[]),'ai_profiles');scripts=indexed(owned.get('scripts',[]),'scripts');textures=indexed(owned.get('textures',[]),'textures')
     originals={}
     for t in catalogue['templates']:originals.setdefault(t['id'].casefold(),[]).append(t)
@@ -92,6 +92,7 @@ def prepare(ws,source,catalogue):
         data=validate_resource(row,root['scenes'] and {s['level']['source'] for s in root['scenes']},root['scenes']).encode()
         path='paths/'+name+'.ncp';payload[path]=data
         entries.append(dict(id=name,path=path,archive='PROJECT',extension='.ncp',size=len(data),project_owned=True,creation_scene=row['scene'],creation_level=row['level']))
+        if row.get('timed'):entries[-1].update(timed=True)
     for name,row in ais.items():
         mapping(row,{'id','base','properties'},{'id','base'},'AI '+name)
         if any(e['extension'].lower()=='.nai' and e['id'].casefold()==name.casefold() for e in entries):raise ValueError('AI propia colisiona con original')
@@ -174,11 +175,14 @@ def prepare(ws,source,catalogue):
     if ts:
         payload[not_path]=NotFile([x[0] for x in resolved.values()]).encode();templates += [x[1] for x in resolved.values()]
     for k in EXTENSIONS:root.pop(k,None)
-    merged={**catalogue,'entries':entries,'templates':templates}
-    if any('native_script' in row or 'native_frames' in row for s in root.get('scenes',[]) for row in s.get('actors',[])+s.get('objects',[])):
+    from .chronicle_maps import prepare as prepare_maps
+    map_payload,authored_maps,map_names=prepare_maps(ws,source)
+    payload.update(map_payload)
+    merged={**catalogue,'entries':entries,'templates':templates,'authored_maps':authored_maps}
+    if any('native_script' in row or 'native_frames' in row or row.get('native_region') for s in root.get('scenes',[]) for row in s.get('actors',[])+s.get('objects',[])+s.get('triggers',[])):
         from .native_scripts import available
         merged['native_scripts']=available(ws,catalogue,source)
-    return root,merged,payload,{'templates':list(ts),'descriptions':{name:row.get('hover_text',name) for name,row in ts.items() if 'hover_text' in row},'ai_profiles':list(ais),'scripts':scripts,'textures':list(textures),'metadata':metadata,'debug':options.get('debug',True),'not_path':not_path}
+    return root,merged,payload,{'templates':list(ts),'descriptions':{name:row.get('hover_text',name) for name,row in ts.items() if 'hover_text' in row},'map_names':map_names,'ai_profiles':list(ais),'scripts':scripts,'textures':list(textures),'metadata':metadata,'debug':options.get('debug',True),'not_path':not_path}
 
 def add_to_build(ws,report,payload,info,compile_java=True):
     from .generator import zip_bytes
@@ -225,6 +229,7 @@ def add_to_build(ws,report,payload,info,compile_java=True):
         key='chronicles/'+prefix+'.nmf';runtime[key]=('NOT '+Path(info['not_path']).name+'\r\n').encode('cp1252')+runtime[key]
     nls=[]
     for name in info['templates']:nls.append(name+' '+info.get('descriptions',{}).get(name,name))
+    for key,value in info.get('map_names',{}).items():nls.append(key+' '+value)
     if nls:
         key='strings/'+prefix+'_custom.nls';runtime[key]=('\r\n'.join(nls)+'\r\n').encode('cp1252');runtime['chronicles/'+prefix+'.nmf']+=('NLS '+prefix+'_custom.nls\r\n').encode('cp1252')
     for k,v in runtime.items():ws.write(root/'runtime'/k,v)

@@ -1,0 +1,67 @@
+0040916a or al, 0x83
+0040916c clc 
+0040916d add dword ptr [ebx + eax + 0x33], esi
+00409171 rol bl, 0x8b
+00409174 push esp
+00409175 and al, 4
+00409177 mov ecx, dword ptr [0x659c88]
+0040917d push edx
+0040917e call 0x49e400
+00409183 mov eax, 1
+00409188 ret 
+00409189 nop 
+0040918a nop 
+0040918b nop 
+0040918c nop 
+0040918d nop 
+0040918e nop 
+0040918f nop 
+00409190 .byte 0x8b
+00409191 inc esp
+
+0042c70a sal byte ptr [ecx + ecx - 0x75], 0x80
+0042c70f nop 
+0042c710 add byte ptr [eax], al
+0042c712 add byte ptr [eax - 0x15], dl
+0042c715 add ch, byte ptr [edx]
+0042c718 mov ecx, dword ptr [0x659c88]
+0042c71e call 0x49e400
+0042c723 mov esi, dword ptr [0x614168]
+0042c729 xor ebx, ebx
+0042c72b cmp esi, ebx
+0042c72d je 0x42c745
+0042c72f mov ecx, esi
+0042c731 .byte 0xe8
+
+0049e400 mov edx, dword ptr [ecx + 0x1830]
+0049e406 test edx, edx
+0049e408 je 0x49e424
+0049e40a mov eax, dword ptr [esp + 4]
+0049e40e cmp eax, 0x1a
+0049e411 jae 0x49e424
+0049e413 mov dword ptr [ecx + 0xf70], eax
+0049e419 push eax
+0049e41a mov eax, dword ptr [edx + 4]
+0049e41d push eax
+0049e41e call dword ptr [0x4eb348]
+0049e424 ret 4
+0049e427 nop 
+0049e428 nop 
+0049e429 nop 
+0049e42a nop 
+0049e42b nop 
+0049e42c nop 
+0049e42d nop 
+0049e42e nop 
+0049e42f nop 
+0049e430 push esi
+0049e431 push edi
+0049e432 mov edi, ecx
+0049e434 mov eax, dword ptr [edi + 0x1830]
+0049e43a test eax, eax
+0049e43c je 0x49e458
+0049e43e mov esi, dword ptr [esp + 0xc]
+0049e442 cmp esi, 4
+0049e445 jge 0x49e458
+0049e447 mov eax, dword ptr [eax + 4]
+0049e44a push esi

@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 import math,struct
 
-WRITABLE={1,2,3,7,8}
+WRITABLE={1,2,3,5,7,8,10}
 
 
 @dataclass(frozen=True)

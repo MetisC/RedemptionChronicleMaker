@@ -1,10 +1,10 @@
 # Strict remaining gaps — no speculative binary authoring
 
-EAX: the field at tail+76 and activation are proven, but 42c6f9 gives the static
-original scene precedence over the authored scene. An editable dynamic-tail
-field would be ineffective. No real Codex EAX setter was found. RCM therefore
-preserves it, does not expose a misleading override, and records PARTIAL.
-Changing static original NSD is not authorised as an innocent environment fix.
+EAX: the static tail still takes precedence. The original console command
+roomtype now provides a proven runtime route after scene activation. See
+research/authoring_completion/EVIDENCE.md and eax_console_registration.txt.
+It requires a compatible 3D audio provider; Execute success alone is not sound
+acceptance. The static original NSD remains unchanged.
 
 Native interest: interest_table_consumers.txt 47bfb0..c026 selects by the actor
 AI interestNum. The table is 72-byte records, independent of player/conversation
@@ -13,21 +13,20 @@ Records preserve proven sector, basis, position, 128.0 and zero fields. Optional
 waypoint interest_group emits this table; active AI and matching group required.
 Only the validated interest_reverse_candidates.json corpus is used as interest evidence.
 
-Soundboxes/lightboxes: original manual exposes positional sound and box/sector
-attachment. global_second_table.txt and global_convstarts.txt distinguish native
-44/64-byte sound forms from other global tables, but exact region ownership and
-all box payloads are not safely writable. Positioned Codex sounds/lights and RCM
-volumes are useful but are not strict native-box parity. Status UNSAFE /
-INSUFFICIENT EVIDENCE; not dismissed as geometry without proof. Baked lighting
-and structural sectors remain geometry-only exclusions.
+Native regions: own yaw-only boxes are now linked to real NIL sectors with the
+existing trigger model. Region/item parameters use proven kinds5/10. Original
+callbacks retain native ownership. The Player constructor binding and private
+campaign dependencies are still unknown, not proven impossible.
 
-Stationary camera keys: original NCP evaluator and builder analysed in
-research/embrace_closure/native_ncp.txt. At 43116d..43119a the builder measures
-position distance and jumps to 431522 for zero distance, bypassing coefficient
-calculation. Twenty-two same-position pairs in three originals repeat the path
-parameter. No positive timed stationary rotation rule is demonstrated. Keep
-lossless original paths, fixed-shot holds and safe moving keys; do not invent a
-positive span or declare full stationary-key authoring parity.
+Soundboxes/lightboxes: normal Trigger controls now offer sound/light activation
+zones using existing volume() and owned Codex handles. This is explicitly an
+alternative, not literal native sector clipping or baked lighting. Opaque box
+payloads remain unproven for general writing. See the current coverage matrix.
+
+Stationary camera keys: the old restriction applies to the distance builder.
+The raw reader consumes independent temporal polynomials directly, so own timed
+paths can turn or hold at constant XYZ without calling that builder. Evidence
+430350/430479..43069a; no original NCP changes. Native visual checks remain COMP01.
 
 External libraries: selected NOT inheritance and data dependencies can be
 imported via normal Settings UI. Unknown NOT tags are retained, not exposed as

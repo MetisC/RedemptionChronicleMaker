@@ -56,6 +56,12 @@ def loops(scene):
             else:
                 for child in value.values():visit(child)
     visit({k:v for k,v in scene.items() if not k.startswith('_')})
+    from .scene_zones import sound_id
+    for trigger in scene.get('triggers',[]):
+        if 'sound_zone' in trigger:
+            name=sound_id(trigger)
+            if name in found:raise ValueError('Reserved sound zone ID collision')
+            found[name]=dict(trigger['sound_zone'],id=name,loop=True,_position=trigger['transform']['position'])
     if len(found)>32:raise ValueError('Máximo 32 sonidos situados en bucle por escena')
     return dict(sorted(found.items(),key=lambda item:str(item[0])))
 
@@ -78,15 +84,34 @@ def extend(java,scene,project):
     java=extend_music(java,scene)
     sources=loops(scene)
     if not sources:return java
+    from .dynamic_targets import indices
+    targets=indices(scene,project)
+    def actor_guid(value):return 'player' if value['actor']=='Player' else 'things['+str(targets[value['actor']])+']'
     # Source definitions can occur again in lowered compiler-only events.
     code=[f' private CodexSound[] sceneSounds=new CodexSound[{len(sources)}]; private boolean[] soundActive=new boolean[{len(sources)}];',
           ' private void stopSceneSound(int i) { soundActive[i]=false; if(sceneSounds[i]!=null) { sceneSounds[i].Stop(); sceneSounds[i]=null; } }',
           ' private boolean startSceneSound(int i) { if(sceneSounds[i]!=null) return true; if(player==0) return false; switch(i) {']
     for i,(name,value) in enumerate(sources.items()):
-        point=next(p for p in scene['waypoints'] if p['id']==value['waypoint'])
-        code.append(f' case {i}: sceneSounds[i]=new CodexSound({js(value["resource"]+".wav")},{float(value["min_distance"])}f,{float(value["max_distance"])}f,{value["volume"]},0,SOUND_FLAG_LOOP,{jv(point["transform"]["position"])}); soundActive[i]=true; trace("SOUND_LOOP_START {name}"); return true;')
+        if 'actor' in value:position=actor_guid(value)
+        else:position=jv(value['_position'] if '_position' in value else next(p for p in scene['waypoints'] if p['id']==value['waypoint'])['transform']['position'])
+        guard=f' if(!local({position})) return false; soundActorGuid[i]={position};' if 'actor' in value else ''
+        code.append(f' case {i}:{guard} sceneSounds[i]=new CodexSound({js(value["resource"]+".wav")},{float(value["min_distance"])}f,{float(value["max_distance"])}f,{value["volume"]},0,SOUND_FLAG_LOOP,{position}); soundActive[i]=true; trace("SOUND_LOOP_START {name}"); return true;')
     code += [' } return false; }',' private void pollSceneSounds() { if(player!=0) for(int i=0;i<sceneSounds.length;i++) if(soundActive[i] && sceneSounds[i]==null) startSceneSound(i); }',
              ' private void stopSceneSounds() { for(int i=0;i<sceneSounds.length;i++) stopSceneSound(i); }']
+    from .scene_zones import sound_id
+    zones=[(ti,list(sources).index(sound_id(t))) for ti,t in enumerate(scene.get('triggers',[])) if 'sound_zone' in t]
+    if zones:
+        for i,line in enumerate(code):
+            if 'private void pollSceneSounds()' in line:
+                pre=''.join(f' if(volume({ti})) {{ if(sceneSounds[{si}]==null) startSceneSound({si}); }} else stopSceneSound({si});' for ti,si in zones)
+                excluded=' && '.join(f'i!={si}' for _,si in zones)
+                code[i]=line.replace('if(player!=0) for',f'if(player==0) return; {pre} for').replace('if(soundActive[i]',f'if({excluded} && soundActive[i]')
+    attached=[(i,row) for i,row in enumerate(sources.values()) if 'actor' in row]
+    if attached:
+        code.append(f' private int[] soundActorGuid=new int[{len(sources)}];')
+        pre=''.join(f' if(soundActive[{i}] && soundActorGuid[{i}]!={actor_guid(row)}) {{ if(sceneSounds[{i}]!=null) sceneSounds[{i}].Stop(); sceneSounds[{i}]=null; soundActorGuid[{i}]=0; }}' for i,row in attached)
+        for i,line in enumerate(code):
+            if 'private void pollSceneSounds()' in line:code[i]=line.replace('private void pollSceneSounds() {','private void pollSceneSounds() {'+pre)
     java=java.replace('ticks++;','pollSceneSounds(); ticks++;',1)
     java=java.replace('public void save(int capture) {','public void save(int capture) { for(int i=0;i<soundActive.length;i++) CodexSequence.SaveBoolean(soundActive[i]);',1)
     java=java.replace('public void restore(int capture) {','public void restore(int capture) { for(int i=0;i<soundActive.length;i++) { if(sceneSounds[i]!=null) sceneSounds[i].Stop(); sceneSounds[i]=null; soundActive[i]=CodexSequence.RestoreBoolean(); }',1)

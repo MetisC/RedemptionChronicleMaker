@@ -49,13 +49,15 @@ def render_action(ins,kind,value,path,scene):
     from ..cinematics import DIRECTOR_ACTIONS
     if kind not in DIRECTOR_ACTIONS:return False
     from ..camera_presets import CINEMA_PRESETS
-    actors=[(tr('Jugador'),'Player')]+ins.ids('actors')
+    from ..dynamic_targets import choices
+    actor_choices=ins.ids('actors')+choices(scene)
+    actors=[(tr('Jugador'),'Player')]+actor_choices
     def set_key(key,v):ins.set(path+(kind,key),v)
     def actor(key,label):ins.combo(label,actors,value.get(key,'Player'),lambda v:set_key(key,v),'director_'+key)
-    if kind=='clear_dynamic_light':ins.combo(tr('Entidad'),ins.ids('actors')+ins.ids('objects'),value,lambda v:ins.set(path+(kind,),v),'director_light_entity')
+    if kind=='clear_dynamic_light':ins.combo(tr('Entidad'),actor_choices+ins.ids('objects'),value,lambda v:ins.set(path+(kind,),v),'director_light_entity')
     elif kind=='set_dynamic_light':
         from ..world_effects import STYLES
-        ins.combo(tr('Entidad'),ins.ids('actors')+ins.ids('objects'),value['entity'],lambda v:set_key('entity',v),'director_light_entity')
+        ins.combo(tr('Entidad'),actor_choices+ins.ids('objects'),value['entity'],lambda v:set_key('entity',v),'director_light_entity')
         for axis,label in enumerate([tr('Rojo'),tr('Verde'),tr('Azul')]):ins.spin(label,value['color'][axis],lambda v,axis=axis:ins.set(path+(kind,'color',axis),v),'director_light_'+str(axis),True,0,1)
         ins.spin(tr('Intensidad'),value['intensity'],lambda v:set_key('intensity',v),'director_light_intensity',True,0,1000)
         ins.spin(tr('Radio'),value['radius'],lambda v:set_key('radius',v),'director_light_radius',True,.01,100000)
@@ -63,8 +65,12 @@ def render_action(ins,kind,value,path,scene):
         ins.note(tr('Luz runtime asociada a esta entidad. No modifica la iluminación horneada del escenario. Requiere prueba dentro del juego.'))
     elif kind=='play_camera_path':
         choices=[((tr('Del proyecto') if e.get('project_owned') else tr('Original'))+' · '+e['id'],e['id']) for e in ins.win.backend.resources['entries'] if e['extension']=='.ncp']
-        ins.combo(tr('Travelling'),choices,value['resource'],lambda v:set_key('resource',v),'director_camera_path')
-        ins.spin(tr('Velocidad del travelling'),value['speed'],lambda v:set_key('speed',v),'director_path_speed',True,.01,100)
+        def choose_path(v):
+            value['resource']=v
+            if any(e.get('timed') and e['id']==v for e in ins.win.backend.resources['entries']):value['speed']=1
+            ins.win.changed(True)
+        ins.combo(tr('Travelling'),choices,value['resource'],choose_path,'director_camera_path')
+        ins.spin(tr('Velocidad del travelling'),value['speed'],lambda v:set_key('speed',v),'director_path_speed',True,.01,100).setEnabled(not any(e.get('timed') and e['id']==value['resource'] for e in ins.win.backend.resources['entries']))
     elif kind=='set_weather':ins.combo(tr('Clima'),[(tr(label),v) for label,v in [('Llovizna','drizzle'),('Lluvia ligera','lightRain'),('Lluvia intensa','heavyRain'),('Nieve','snow')]],value,lambda v:ins.set(path+(kind,),v),'director_weather')
     elif kind=='stop_actor':ins.combo(tr('Actor'),actors,value,lambda v:ins.set(path+(kind,),v),'director_actor')
     elif kind in {'look_at','look_at_point'}:
@@ -74,12 +80,16 @@ def render_action(ins,kind,value,path,scene):
     elif kind=='play_motion':
         def change_actor(v):
             value['actor']=v;value['motion']='stand';ins.win.changed(True)
-        ins.combo(tr('Actor'),ins.ids('actors'),value['actor'],change_actor,'director_actor')
+        ins.combo(tr('Actor'),actor_choices,value['actor'],change_actor,'director_actor')
         from ..motions import slots,label
         from ..instance_overrides import effective_template
         row=next((a for a in scene['actors'] if a['id']==value['actor']),None)
-        template=effective_template(ins.win.doc.campaign,ins.win.doc.campaign['scenes'][ins.win.doc.active],row) if row else None
+        if row is None:
+            from ..dynamic_targets import candidates
+            row=candidates(scene).get(value['actor'])
+        template=(row['template'] if str(value['actor']).startswith('dynamic/') else effective_template(ins.win.doc.campaign,ins.win.doc.campaign['scenes'][ins.win.doc.active],row)) if row else None
         choices=[(label(slot),slot['mode']) for slot in slots(ins.win.backend.resources,template)]
+        if row and row.get('templates'):choices=[(label_,mode) for label_,mode in choices if all(mode in {s['mode'] for s in slots(ins.win.backend.resources,t)} for t in row['templates'])]
         ins.combo(tr('Gesto'),choices,value['motion'],lambda v:set_key('motion',v),'director_motion')
     elif kind=='camera_shot':
         actor('actor',tr('Sujeto'));actor('reference',tr('Referencia'))
@@ -169,6 +179,14 @@ class CameraPathDialog(QDialog):
         layout=QVBoxLayout(self);form=QFormLayout();self.name=QLineEdit(self.row.get('name',self.row['id']));self.name.setObjectName('camera_path_name');form.addRow(tr('Nombre'),self.name);layout.addLayout(form)
         self.speed=QDoubleSpinBox();self.speed.setRange(.01,100);self.speed.setValue(sequence.get('path_speed',30));self.speed.setObjectName('camera_path_speed')
         if self.main_binding:form.addRow(tr('Velocidad del travelling'),self.speed)
+        self.timed=QCheckBox(tr('Tiempo por tramo (permite giros y esperas sin desplazamiento)'));self.timed.setObjectName('camera_path_timed');self.timed.setChecked(self.row.get('timed',False));form.addRow(self.timed)
+        def timing(value):
+            if value:self.row['timed']=True;self.speed.setValue(1)
+            else:
+                self.row.pop('timed',None)
+                for point in self.row['points']:point.pop('duration',None)
+            self.speed.setEnabled(not value);self.select(self.list.currentRow())
+        self.timed.toggled.connect(timing);self.speed.setEnabled(not self.timed.isChecked())
         self.start=QCheckBox(tr('Iniciar al entrar en la escena'));self.start.setObjectName('camera_path_start');self.start.setVisible(bool(sequence_path) and not any(a.get('play_sequence')==sequence.get('id') for e in scene['events'] for a in e['actions']));layout.addWidget(self.start)
         note=QLabel(tr('Navega en el espacio 3D y añade puntos desde esa vista. Trayectoria lineal; sin previsualización de colisión del motor.'));note.setWordWrap(True);layout.addWidget(note)
         self.list=QListWidget();self.list.setObjectName('camera_path_points');layout.addWidget(self.list,1);self.list.currentRowChanged.connect(self.select)
@@ -196,6 +214,8 @@ class CameraPathDialog(QDialog):
         while self.axes_form.rowCount():self.axes_form.removeRow(0)
         if index<0:return
         point=self.row['points'][index]
+        if self.row.get('timed') and index<len(self.row['points'])-1:
+            duration=QDoubleSpinBox();duration.setRange(.15,120);duration.setDecimals(2);duration.setSuffix(' s');duration.setValue(point.get('duration',1));duration.setObjectName('camera_point_duration');duration.valueChanged.connect(lambda v:point.update(duration=v));self.axes_form.addRow(tr('Tiempo hasta el siguiente punto'),duration)
         for key,labels in [('position',['X','Y','Z']),('orientation',[tr('Inclinación vertical'),tr('Inclinación lateral'),tr('Orientación')])]:
             for axis,label in enumerate(labels):
                 value=QDoubleSpinBox();value.setDecimals(3);value.setRange(-1e6,1e6);value.setValue(point[key][axis]);value.setObjectName('camera_point_'+key+'_'+str(axis));value.valueChanged.connect(lambda v,key=key,axis=axis:self.change_point(key,axis,v));self.axes_form.addRow(label,value)
@@ -206,7 +226,10 @@ class CameraPathDialog(QDialog):
         i=max(0,self.list.currentRow()+1);self.row['points'].insert(i,self.capture());self.refresh(i)
     def update_point(self):
         i=self.list.currentRow()
-        if i>=0:self.row['points'][i]=self.capture();self.refresh(i)
+        if i>=0:
+            duration=self.row['points'][i].get('duration');self.row['points'][i]=self.capture()
+            if duration is not None:self.row['points'][i]['duration']=duration
+            self.refresh(i)
     def duplicate(self):
         i=self.list.currentRow()
         if i>=0:self.row['points'].insert(i+1,copy.deepcopy(self.row['points'][i]));self.refresh(i+1)
@@ -220,8 +243,9 @@ class CameraPathDialog(QDialog):
         try:
             if self.win.doc.snapshot()!=self.initial:raise ValueError(tr('El proyecto cambió mientras editabas el travelling. Cierra esta ventana y vuelve a abrirlo.'))
             from ..camera_paths import authored
-            authored(self.row['points']);self.row['name']=self.name.text()
+            path=authored(self.row['points'],self.row.get('timed',False));self.row['name']=self.name.text()
             if self.main_binding:self.sequence['path_speed']=self.speed.value()
+            if self.main_binding and self.row.get('timed'):self.sequence['duration']=max(self.sequence['duration'],path.total)
             if self.start.isChecked():
                 scene=self.root['scenes'][self.win.doc.active];number=1
                 while any(e['id']=='camera_start'+str(number) for e in scene['events']):number+=1

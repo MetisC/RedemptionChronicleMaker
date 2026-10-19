@@ -8,7 +8,7 @@ En **NPC te manda a un lugar**, la primera respuesta debe terminar con RETURN 1 
 
 **Trigger con acciones** permite varias acciones frecuentes, ordenadas como se muestran, condiciones y once. Para lógica compuesta o acciones avanzadas usa Eventos / Propiedades. El wizard conserva condiciones complejas cuando no cambias el selector sencillo. Las condiciones se comprueban al entrar, no continuamente mientras permaneces dentro.
 
-**Cámara:** la conversación usa hombro por defecto. Las secuencias preguntan Plano / Secuencia de planos / Travelling original. Player se permite como sujeto de una secuencia de planos. Una referencia NPC orienta su línea de acción; evita referencias demasiado cercanas o lejanas. Los presets usan constantes reales. Ajusta tiempos, transición y ángulos en la ficha. Cambiar tipo avisa y permite deshacer. NCP reutiliza recursos originales; no hay writer.
+**Cámara:** la conversación usa hombro por defecto. Las secuencias preguntan Plano / Secuencia de planos / Travelling original. Player se permite como sujeto de una secuencia de planos. Una referencia NPC orienta su línea de acción; evita referencias demasiado cercanas o lejanas. Los presets usan constantes reales. Ajusta tiempos, transición y ángulos en la ficha. Cambiar tipo avisa y permite deshacer. NCP reproduce originales y genera rutas lineales o temporizadas propias desde el Director.
 
 **Quest:** un título, descripción, pasos y XP. Eventos Iniciar / Avanzar / Completar controlan su journal. Completar exige todos los pasos. **Encuentro:** el asistente crea una Rat básica y un grupo; modifica sus enemigos y su evento de aparición con los paneles normales. Se entrega el premio cuando todos están muertos. Para retrasar el spawn, cambia su evento a Objeto en inventario o Flag con condición.
 
@@ -29,7 +29,7 @@ Abre chronicles/mini_chronicle/project.yaml para ver una aventura completa de ej
 
 En **Level base > Entorno de escena** puedes heredar o elegir audio, volumen,
 niebla, distancia visible y cielo. Las unidades son las del motor. EAX conserva
-la escena original. No se modifican geometría ni lightmaps.
+la escena original salvo override room_type mediante el comando nativo roomtype. No se modifican geometría ni lightmaps.
 
 En un actor u objeto, **Propiedades de esta instancia** cambia AI/Foley,
 animaciones compatibles y texto al señalar sólo para ese elemento. Los
@@ -52,7 +52,7 @@ externo obligatorio se rechaza claramente. No es un importador universal de mods
 
 El ejemplo opcional **Cargo at the refuge** muestra estas propiedades sin cambiar
 el tutorial. Los nuevos comportamientos nativos necesitan las pruebas EMB de la
-lista manual. Los mapas personalizados son viables, pero todavía no hay editor de mapas.
+lista manual. Mapas y localizaciones está disponible en las propiedades de la crónica y Campaña → Añadir…. Véase AUTHORING_COMPLETION.md.
 Consulta Límites avanzados y la lista de comprobaciones manuales.
 
 

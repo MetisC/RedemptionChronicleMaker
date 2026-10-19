@@ -5,6 +5,8 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QLabel,QPushButton,QComboBox,QLineEdit,QTreeWidget,QTreeWidgetItem,QScrollArea,QFormLayout,QSpinBox,QDoubleSpinBox,QListWidget,QListWidgetItem,QMessageBox,QDialog,QSplitter,QDialogButtonBox,QInputDialog,QMenu,QLayout
 from .browser import ResourceDialog
 from ..campaign import ACTIONS,WHEN
+from ..actor_traits import catalogue as trait_catalogue
+from ..dynamic_targets import choices as dynamic_choices
 from ..campaign_document import CampaignDocument
 
 ROLE=Qt.ItemDataRole.UserRole
@@ -17,6 +19,8 @@ class CampaignPanel(QWidget):
         top.addWidget(QLabel(tr('Escena activa')));top.addWidget(self.scene,1)
         spatial=QHBoxLayout();story=QHBoxLayout()
         more=QMenu(self)
+        from .maps import open_maps
+        maps=more.addAction(tr('Mapas y localizaciones…'));maps.setObjectName('edit_maps');maps.triggered.connect(lambda:win.guard(lambda:open_maps(win)))
         for i,(label,name,cb) in enumerate([(tr('Crear campaña'),'convert_campaign',self.convert),(tr('+ Escena'),'add_scene',self.add_scene),(tr('+ Entrada'),'add_entry',lambda:self.add_marker('entries')),(tr('+ Punto de recorrido'),'add_waypoint',lambda:self.add_marker('waypoints')),(tr('+ Recorrido'),'add_path',self.add_path),(tr('+ Misión'),'add_quest',self.add_quest),(tr('+ Encuentro'),'add_encounter',self.add_encounter),(tr('+ Cámara'),'add_sequence',self.add_sequence)]):
             if i in (0,1,2,4):
                 button=QPushButton(label);button.setObjectName(name);button.clicked.connect(lambda checked=False,cb=cb:win.guard(cb));spatial.addWidget(button)
@@ -219,7 +223,9 @@ class CampaignPanel(QWidget):
                     if value is None:
                         row.pop(key,None)
                         if key=='move_path':row.pop('move_at',None)
-                    else:row[key]=value
+                    else:
+                        row[key]=value
+                        if key=='camera_path' and any(e.get('timed') and e['id']==value for e in self.win.backend.resources['entries']):row['path_speed']=1
                 self.mutate(change,True if key=='move_path' else False)
             w.setCurrentIndex(max(0,w.findData(row.get(key))));w.currentIndexChanged.connect(update);form.addRow(label,w)
         line('ID','id','campaign_id',True)
@@ -269,8 +275,8 @@ class CampaignPanel(QWidget):
                     if selected=='ncp':row['camera_path']=''
                 self.mutate(change,True)
             mode.currentIndexChanged.connect(change_mode)
-            combo(tr('Actor enfocado'),'actor',[(tr('Jugador'),'Player')]+[(a['name'],a['id']) for a in s['actors']],'sequence_actor')
-            combo(tr('Referencia de cámara'),'reference',[(tr('Automática'),None)]+([] if row['actor']=='Player' else [(tr('Jugador'),'Player')])+[(a['name'],a['id']) for a in s['actors'] if a['id']!=row['actor']],'sequence_reference')
+            combo(tr('Actor enfocado'),'actor',[(tr('Jugador'),'Player')]+[(a['name'],a['id']) for a in s['actors']]+dynamic_choices(s),'sequence_actor')
+            combo(tr('Referencia de cámara'),'reference',[(tr('Automática'),None)]+([] if row['actor']=='Player' else [(tr('Jugador'),'Player')])+[(a['name'],a['id']) for a in s['actors'] if a['id']!=row['actor']]+dynamic_choices(s),'sequence_reference')
             combo(tr('Plano'),'shot',[(tr('Medio'),'medium'),(tr('Cercano'),'close'),(tr('Amplio'),'wide')],'sequence_shot');combo(tr('Ángulo'),'angle',[(tr('Bajo'),'low'),(tr('Medio'),'medium'),(tr('Alto'),'high')],'sequence_angle')
             if root.get('project_format') in (9,10):
                 from ..camera_presets import CINEMA_PRESETS as PRESETS
@@ -299,7 +305,7 @@ class CampaignPanel(QWidget):
                     form.addRow(tr('Desplazamiento'),axes)
                 if not row.get('steps'):
                     combo(tr('Travelling'),'camera_path',[(tr('Sin recorrido de cámara'),None)]+[(tr('Del proyecto')+' · '+e['id'] if e.get('project_owned') else tr('Original')+' · '+e['id'],e['id']) for e in self.win.backend.resources['entries'] if e['extension'].lower()=='.ncp'],'sequence_camera_path')
-                    speed=QDoubleSpinBox();speed.setObjectName('sequence_path_speed');speed.setRange(.01,100);speed.setValue(row.get('path_speed',30));speed.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('path_speed',v)));form.addRow(tr('Velocidad del travelling'),speed)
+                    speed=QDoubleSpinBox();speed.setObjectName('sequence_path_speed');speed.setRange(.01,100);speed.setValue(row.get('path_speed',30));speed.setEnabled(not any(e.get('timed') and e['id']==row.get('camera_path') for e in self.win.backend.resources['entries']));speed.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('path_speed',v)));form.addRow(tr('Velocidad del travelling'),speed)
                 if current_mode!='ncp':
                     def add_shot():
                         def change():
@@ -313,6 +319,7 @@ class CampaignPanel(QWidget):
                         actor=QComboBox()
                         actor.addItem(tr('Jugador'),'Player')
                         for a in s['actors']:actor.addItem(a['name'],a['id'])
+                        for label,key in dynamic_choices(s):actor.addItem(label,key)
                         actor.setCurrentIndex(actor.findData(step['actor']));actor.currentIndexChanged.connect(lambda _,c=actor,st=step:self.mutate(lambda:st.__setitem__('actor',c.currentData())));bar.addWidget(actor)
                         focus=QComboBox();focus.addItem(tr('Enfocar actor'),None)
                         for obj in s.get('objects',[]):focus.addItem(obj['name'],obj['id'])
@@ -329,6 +336,7 @@ class CampaignPanel(QWidget):
                         if step['actor']!='Player':reference.addItem(tr('Jugador'),'Player')
                         for a in s['actors']:
                             if a['id']!=step['actor']:reference.addItem(a['name'],a['id'])
+                        for label,key in dynamic_choices(s):reference.addItem(label,key)
                         reference.setCurrentIndex(max(0,reference.findData(step.get('reference'))))
                         reference.currentIndexChanged.connect(lambda _,c=reference,st=step:self.mutate(lambda:st.__setitem__('reference',c.currentData()) if c.currentData() else st.pop('reference',None)))
                         form.addRow(tr('Referencia de cámara'),reference)
@@ -353,7 +361,7 @@ class CampaignPanel(QWidget):
                 if name=='sequence_camera_path':form.setRowVisible(control,current_mode=='ncp')
         elif self.path[2]=='paths':
             line(tr('Nombre'),'name','path_name');s=root['scenes'][self.path[1]]
-            combo(tr('Actor'),'actor',[(a['name'],a['id']) for a in s['actors']],'path_actor')
+            combo(tr('Actor'),'actor',[(a['name'],a['id']) for a in s['actors']]+dynamic_choices(s),'path_actor')
             combo(tr('Repetir'),'loop',[(tr('Una vez'),False),(tr('Bucle'),True)],'path_loop')
             # Ordered list supports repeated waypoints and explicit reordering.
             route=QListWidget();route.setObjectName('path_points');route.setMinimumHeight(100)
@@ -408,26 +416,47 @@ def event_properties(ins):
         a=w.at(p);kind=next(iter(a),'spawn')
         def change(v):
             from ..cinematics import DIRECTOR_ACTIONS
+            if v=='set_room_type':a.clear();a[v]=0;w.changed(True);return
+            if v in ('move_actor','actor_inventory','actor_behavior'):
+                a.clear();a[v]=dict(actor='Player',**(dict(waypoint='',speed=90) if v=='move_actor' else dict(item='',operation='give') if v=='actor_inventory' else dict(team=12,paused=False)));w.changed(True);return
+            if v=='set_location_flags':a.clear();a[v]=dict(scene=s['id'],visible=True,haven=False);w.changed(True);return
             if v=='push_music':
                 a.clear();a[v]=dict(resource=next((r['id'] for r in w.backend.resources['entries'] if r['path'].lower().startswith('sounds/music/') and r['extension'].lower()=='.mp3'),''),volume=50);w.changed(True);return
             if v in DIRECTOR_ACTIONS:
                 from .director import default_action
                 a.clear();a[v]=default_action(v,s);w.changed(True);return
-            a.clear();a[v]={'actor':'Player','clan':w.backend.resources['wtd']['clans'][0]['id']} if v=='set_actor_clan' else {'actor':'Player','discipline':w.backend.resources['wtd']['disciplines'][0]['id'],'level':1} if v=='set_discipline' else {'level':s['level']['source'],'template':'','operation':'hide'} if v=='control_original' else {'title':tr('Nota'),'text':tr('Escribe aquí lo que leerá el jugador.')} if v=='show_note' else {'resource':'','waypoint':'','volume':100,'min_distance':128,'max_distance':512} if v=='play_sound' else {'cast_id':'','mode':'frames','frame':1,'parameter':150,'open':True} if v=='control_door' else {'scene':'','entry':''} if v=='travel' else True if ACTIONS[v][1]=='none' else 100 if ACTIONS[v][1]=='number' else '';w.changed(True)
-        advanced={'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','control_original','play_sound','push_music','pop_music'}
+            a.clear();a[v]={'actor':'Player','clan':trait_catalogue(w.backend.resources)['clans'][0]['id']} if v=='set_actor_clan' else {'actor':'Player','discipline':trait_catalogue(w.backend.resources)['disciplines'][0]['id'],'level':1} if v=='set_discipline' else {'level':s['level']['source'],'template':'','operation':'hide'} if v=='control_original' else {'title':tr('Nota'),'text':tr('Escribe aquí lo que leerá el jugador.')} if v=='show_note' else {'resource':'','waypoint':'','volume':100,'min_distance':128,'max_distance':512} if v=='play_sound' else {'cast_id':'','mode':'frames','frame':1,'parameter':150,'open':True} if v=='control_door' else {'scene':'','entry':''} if v=='travel' else True if ACTIONS[v][1]=='none' else 100 if ACTIONS[v][1]=='number' else '';w.changed(True)
+        advanced={'show_note','travel','start_patrol','stop_patrol','open_exit','close_exit','control_door','control_original','play_sound','push_music','pop_music','set_location_flags','set_room_type','move_actor','actor_inventory','actor_behavior'}
         advanced|={'set_actor_clan','set_discipline'}
         from ..cinematics import DIRECTOR_ACTIONS
         advanced|=DIRECTOR_ACTIONS
-        ins.combo(tr('Acción'),[(tr(label),key) for key,(label,_) in ACTIONS.items() if (w.backend.resources.get('wtd') or key not in {'set_actor_clan','set_discipline'}) and (w.doc.campaign.get('project_format')==10 or not key.endswith('_generator')) and (w.doc.campaign.get('project_format') in (9,10) or key not in advanced)],kind,change,'action_kind');category=ACTIONS.get(kind,('','none'))[1]
+        ins.combo(tr('Acción'),[(tr(label),key) for key,(label,_) in ACTIONS.items() if (trait_catalogue(w.backend.resources) or key not in {'set_actor_clan','set_discipline'}) and (w.doc.campaign.get('project_format')==10 or not key.endswith('_generator')) and (w.doc.campaign.get('project_format') in (9,10) or key not in advanced)],kind,change,'action_kind');category=ACTIONS.get(kind,('','none'))[1]
         from .director import render_action
         if render_action(ins,kind,a[kind],p,s):pass
+        elif category=='room_type':ins.combo(tr('Reverberación EAX'),[(tr('Preset original')+' '+str(i),i) for i in range(26)],a[kind],lambda v:ins.set(p+(kind,),v),'action_room_type')
+        elif category in ('actor_move','actor_inventory','actor_behavior'):
+            from ..dynamic_targets import choices
+            value=a[kind];ins.combo(tr('Actor'),[(tr('Jugador'),'Player')]+ins.ids('actors')+choices(s),value['actor'],lambda v:ins.set(p+(kind,'actor'),v),'control_actor')
+            ins.note(tr('Un rol dinámico se resuelve entre los enemigos vivos del encuentro. Si falta, la acción se detiene sin crear sustitutos.'))
+            if category=='actor_move':
+                ins.combo(tr('Punto'),ins.ids('waypoints'),value['waypoint'],lambda v:ins.set(p+(kind,'waypoint'),v),'control_waypoint');ins.spin(tr('Velocidad'),value['speed'],lambda v:ins.set(p+(kind,'speed'),v),'control_speed',True,1,1000)
+            elif category=='actor_inventory':
+                templates={r['id']:r['kind'] for r in w.backend.resources['templates']}
+                items=[(r['name'],r['id']) for r in s.get('objects',[]) if templates.get(r['template']) in ('items','weapons','armour')]
+                ins.combo(tr('Objeto'),items,value['item'],lambda v:ins.set(p+(kind,'item'),v),'control_item');ins.combo(tr('Acción'),[(tr('Dar'),'give'),(tr('Quitar'),'take')],value['operation'],lambda v:ins.set(p+(kind,'operation'),v),'control_inventory')
+            else:
+                ins.combo(tr('Equipo'),[(tr('Equipo')+' '+str(i),i) for i in range(20)],value['team'],lambda v:ins.set(p+(kind,'team'),v),'control_team');ins.combo(tr('AI pausada'),[(tr('Sí'),True),(tr('No'),False)],value['paused'],lambda v:ins.set(p+(kind,'paused'),v),'control_paused')
+        elif category=='map_flags':
+            value=a[kind]
+            ins.combo(tr('Escena'),[(r['id'],r['id']) for r in w.doc.campaign['scenes']],value['scene'],lambda v:ins.set(p+(kind,'scene'),v),'map_flags_scene')
+            for key,label in [('visible','Visible en el mapa'),('haven','Refugio')]:ins.combo(tr(label),[(tr('Sí'),True),(tr('No'),False)],value[key],lambda v,k=key:ins.set(p+(kind,k),v),'map_flags_'+key)
         elif category=='temporary_music':
             ins.combo(tr('Música'),[(r['id'],r['id']) for r in w.backend.resources['entries'] if r['path'].lower().startswith('sounds/music/') and r['extension'].lower()=='.mp3'],a[kind]['resource'],lambda v:ins.set(p+(kind,'resource'),v),'temporary_music_resource')
             ins.spin(tr('Volumen'),a[kind]['volume'],lambda v:ins.set(p+(kind,'volume'),v),'temporary_music_volume',maximum=100)
             ins.note(tr('Restaura la música anterior antes de iniciar otra música temporal. Después de cargar una partida, usa Música normal para elegir la pista. Restaurar no altera una música cambiada por otro evento o script.'))
         elif category in {'wtd_clan','wtd_discipline'}:
-            value=a[kind];data=w.backend.resources.get('wtd',{});field='clan' if category=='wtd_clan' else 'discipline'
-            ins.combo(tr('Actor'),[(tr('Jugador'),'Player')]+ins.ids('actors'),value['actor'],lambda v:ins.set(p+(kind,'actor'),v),'trait_actor')
+            value=a[kind];data=trait_catalogue(w.backend.resources);field='clan' if category=='wtd_clan' else 'discipline'
+            ins.combo(tr('Actor'),[(tr('Jugador'),'Player')]+ins.ids('actors')+dynamic_choices(s),value['actor'],lambda v:ins.set(p+(kind,'actor'),v),'trait_actor')
             ins.combo(tr('Clan' if field=='clan' else 'Disciplina'),[(r['id'],r['id']) for r in data.get('clans' if field=='clan' else 'disciplines',[])],value[field],lambda v:ins.set(p+(kind,field),v),'trait_value')
             if field=='discipline':ins.spin(tr('Nivel'),value['level'],lambda v:ins.set(p+(kind,'level'),v),'trait_level',maximum=5)
         elif category=='original':
@@ -450,7 +479,11 @@ def event_properties(ins):
             from collections import Counter
             sounds=[r['id'] for r in w.backend.resources['entries'] if r['extension'].lower()=='.wav'];counts=Counter(sounds)
             ins.combo(tr('Sonido'),[(tr('Elige…'),'')]+[(key,key) for key in sorted(counts) if counts[key]==1],value['resource'],lambda v:ins.set(p+(kind,'resource'),v),'sound_resource')
-            ins.combo(tr('Posición'),[(tr('Elige…'),'')]+[(r['name'],r['id']) for r in s.get('waypoints',[])],value['waypoint'],lambda v:ins.set(p+(kind,'waypoint'),v),'sound_waypoint')
+            def sound_source(field):
+                value.pop('actor',None);value.pop('waypoint',None);value[field]='Player' if field=='actor' else '';w.changed(True)
+            ins.combo(tr('Origen'),[(tr('Punto'),'waypoint'),(tr('Actor'),'actor')],'actor' if 'actor' in value else 'waypoint',sound_source,'sound_source_kind')
+            if 'actor' in value:ins.combo(tr('Actor'),[(tr('Jugador'),'Player')]+ins.ids('actors')+dynamic_choices(s),value['actor'],lambda v:ins.set(p+(kind,'actor'),v),'sound_actor')
+            else:ins.combo(tr('Posición'),[(tr('Elige…'),'')]+[(r['name'],r['id']) for r in s.get('waypoints',[])],value.get('waypoint',''),lambda v:ins.set(p+(kind,'waypoint'),v),'sound_waypoint')
             for label,key,hi in [(tr('Volumen'),'volume',100),(tr('Radio interior'),'min_distance',100000),(tr('Radio exterior'),'max_distance',100000)]:
                 ins.spin(label,value[key],lambda v,k=key:ins.set(p+(kind,k),v),'sound_'+key,key!='volume',0,hi)
             def loop(v):
@@ -488,6 +521,8 @@ def event_properties(ins):
             elif category in {'music','ambient'}:choices=[(r['id'],r['id']) for r in w.backend.resources['entries'] if r['path'].lower().startswith('sounds/'+('stereoambient' if category=='ambient' else category)+'/')]
             elif category in {'quests','scenes'}:choices=[(r.get('title',r['id']),r['id']) for r in w.doc.campaign.get(category,[]) if category!='scenes' or r['id']!=s['id']]
             else:choices=[(r.get('name',r['id']),r['id']) for r in s.get(category,[])]
+            if category=='actors':
+                choices+=dynamic_choices(s)
             ins.combo(tr('Objetivo'),[(tr('Elige…'),'')]+choices,a.get(kind,''),lambda v:ins.set(p+(kind,),v),'action_target')
     elif p[-2]=='conditions':render_condition(ins,w.at(p),p)
 
@@ -502,11 +537,12 @@ def render_condition(ins,c,path,depth=0):
         elif v=='flag':c.update(flag=firstflag,is_set=True)
         elif v in ('quest_state','quest_step'):c.update(quest='',**({'state':'active'} if v=='quest_state' else {'step':0}))
         elif v=='actor_health':c[v]={'actor':'','comparison':'<=','percent':50}
+        elif v=='actor_owns_item':c[v]=dict(actor='Player',item='')
         elif v=='generator_count':c[v]={'generator':'','counter':'alive','comparison':'<=','value':1}
         elif v=='generator_state':c[v]={'generator':'','state':'complete'}
         else:c[v]=''
         w.changed(True)
-    suffix='_'.join(map(str,path[2:]));options=[(x,x) for x in ['flag','quest_state','quest_step','actor_alive','entity_exists','owns_item','all','any','not']]
+    suffix='_'.join(map(str,path[2:]));options=[(x,x) for x in ['flag','quest_state','quest_step','actor_alive','entity_exists','owns_item','all','any','not']]+[(tr('Localización descubierta'),'location_visible'),(tr('Objeto en inventario de actor'),'actor_owns_item')]
     if w.doc.campaign.get('project_format')==10:options += [(tr('Vida del actor'),'actor_health'),(tr('Enemigos vivos / muertos'),'generator_count'),(tr('Estado del encuentro dinámico'),'generator_state')]
     ins.combo(tr('SI') if depth==0 else '  '*depth+tr('Condición'),options,kind,change,'condition_type_'+suffix)
     if kind=='flag':
@@ -517,6 +553,11 @@ def render_condition(ins,c,path,depth=0):
         else:ins.spin(tr('Paso activo (desde 0)'),c.get('step',0),lambda v:ins.set(path+('step',),v),'condition_quest_step',maximum=31)
     elif kind in {'actor_health','generator_state','generator_count'}:
         render_dynamic_condition(ins,c,path)
+    elif kind=='location_visible':ins.combo(tr('Escena'),[(s['id'],s['id']) for s in w.doc.campaign['scenes']],c[kind],lambda v:ins.set(path+(kind,),v),'condition_location')
+    elif kind=='actor_owns_item':
+        value=c[kind];scene=w.doc.campaign['scenes'][w.doc.active];templates={t['id']:t['kind'] for t in w.backend.resources['templates']}
+        ins.combo(tr('Actor'),[(tr('Jugador'),'Player')]+ins.ids('actors')+dynamic_choices(scene),value['actor'],lambda v:ins.set(path+(kind,'actor'),v),'condition_inventory_actor')
+        ins.combo(tr('Objeto'),[(r['name'],r['id']) for r in scene.get('objects',[]) if templates.get(r['template']) in ('items','weapons','armour')],value['item'],lambda v:ins.set(path+(kind,'item'),v),'condition_inventory_item')
     elif kind in ('all','any','not'):
         children=[c['not']] if kind=='not' else c[kind]
         for i,child in enumerate(children):render_condition(ins,child,path+(kind,) if kind=='not' else path+(kind,i),depth+1)
@@ -525,6 +566,7 @@ def render_condition(ins,c,path,depth=0):
             if len(children)>1:ins.button(tr('Quitar última condición'),lambda:(c[kind].pop(),w.changed(True)),'condition_remove_'+suffix)
     else:
         choices=ins.ids('actors') if kind=='actor_alive' else ins.ids('objects') if kind=='owns_item' else ins.ids('actors')+ins.ids('objects')
+        if kind in ('actor_alive','entity_exists'):choices+=dynamic_choices(w.doc.campaign['scenes'][w.doc.active])
         if kind=='owns_item':
             templates={t['id']:t['kind'] for t in w.backend.resources['templates']}
             choices += [(sc['id']+' / '+o['name'],sc['id']+'.'+o['id']) for sc in w.doc.campaign['scenes'] for o in sc.get('objects',[]) if templates.get(o['template']) in {'items','weapons','armour'}]

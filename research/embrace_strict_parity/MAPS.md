@@ -8,11 +8,9 @@ CONFIRMADO EN EJECUTABLE: 0x410d89..0x410dc0 busca los controles de cierre/texto
 
 VIABILIDAD: podemos generar NUI propios con nombre separado, teselas TGA a partir de una imagen del autor y puntos con claves NLS propias. Se referenciarían desde el NSC generado; habría que ofrecer asignación escena/punto y visibilidad/refugio en UI, con rename/references/undo y empaquetado de la imagen propia. No hace falta Embrace ni cambiar un NIL. Las imágenes originales se reutilizan por referencia, no se redistribuyen. Un mapa personalizado no se obtiene al editar el level: es una ilustración 2D independiente.
 
-ESTADO ACTUAL: RCM hereda map_ui/map_label del level original y no tiene todavía un editor normal de mapas/localizaciones. El análisis demuestra una ruta de implementación; no se presenta como función ya implementada o probada dentro del juego. El texto del adjunto principal se audita aparte. Un eventual viaje desde el mapa sería comportamiento adicional y no se promete por conservar el mapa original.
-
-API CONFIRMADA: CodexSequence.GetLocationFlags(String), SetLocationFlags(String,int)
-y ClearLocationFlags(String,int) permiten cambiar descubrimiento/visibilidad
-(flags SHOWINMAP=8/HAVEN=16) en ejecución. API_SIGNATURES.txt contiene sus firmas.
-El generador actual elimina SHOWINMAP del NSC generado: conservar una imagen no
-equivale a ofrecer edición de puntos o descubrimiento. Esta función sigue siendo
-una propuesta demostrada técnicamente, no una interfaz implementada.
+ESTADO ACTUAL: implementado en chronicle_maps.py y editor/maps.py: importación
+transaccional de imagen propia, puntos arrastrables, nombres/visible/refugio,
+asignación de escenas, undo/referencias y empaquetado. Genera NUI/TGA/NLS/NSC.
+La visibilidad usa las APIs Get/Set/ClearLocationFlags. No se ofrece viaje por
+clic en el mapa. Las pruebas offline de formato/UI/paquete no certifican el
+render nativo; COMP04 permanece pendiente del usuario.

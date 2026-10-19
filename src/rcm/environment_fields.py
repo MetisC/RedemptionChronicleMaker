@@ -28,7 +28,8 @@ def audio_file(resources,kind,ident):
 
 
 def validate(value,resources):
-    mapping(value,{'music','ambient','music_volume','ambient_volume','fog','zclip'},label='Entorno de escena')
+    mapping(value,{'music','ambient','music_volume','ambient_volume','fog','zclip','room_type'},label='Entorno de escena')
+    if 'room_type' in value and (type(value['room_type']) is not int or not 0<=value['room_type']<=25):raise ValueError('Native room type: integer 0..25')
     for kind in ('music','ambient'):
         if kind in value:audio_file(resources,kind,value[kind])
         volume=kind+'_volume'

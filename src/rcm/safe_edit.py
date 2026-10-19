@@ -59,6 +59,7 @@ def deletion_plan(doc,path,backend):
                 if not scenes:raise ValueError('La campaña necesita una escena')
                 changed[detail]=scenes[0]['id'];continue
             if link.label=='default_entry':delete(detail);continue
+            if link.label=='map_location':delete(detail);continue
             if link.label=='staging':delete(detail);continue
             if link.label=='conversation placement':
                 delete(detail)

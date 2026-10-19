@@ -11,10 +11,13 @@
   "thresholds": 10,
   "callbacks": 40,
   "slots": 85,
-  "build_seconds": 2.1084856999950716,
+  "build_seconds": 2.6669170999957714,
   "class_metrics": {
     "R_dyn_stress_s0_Passive.class": {
       "version": "45.3",
+      "class": "R_dyn_stress_s0_Passive",
+      "superclass": "Codex",
+      "access_flags": 33,
       "constant_pool_entries": 12,
       "constant_pool_limit": 65534,
       "largest_method_bytes": 5,
@@ -23,12 +26,16 @@
         {
           "name": "<init>",
           "descriptor": "()V",
-          "code_bytes": 5
+          "code_bytes": 5,
+          "access_flags": 1
         }
       ]
     },
     "R_dyn_stress_s0_Scene.class": {
       "version": "45.3",
+      "class": "R_dyn_stress_s0_Scene",
+      "superclass": "Codex",
+      "access_flags": 33,
       "constant_pool_entries": 1721,
       "constant_pool_limit": 65534,
       "largest_method_bytes": 1659,
@@ -37,817 +44,980 @@
         {
           "name": "<init>",
           "descriptor": "()V",
-          "code_bytes": 658
+          "code_bytes": 658,
+          "access_flags": 1
         },
         {
           "name": "trace",
           "descriptor": "(Ljava/lang/String;)V",
-          "code_bytes": 201
+          "code_bytes": 201,
+          "access_flags": 2
         },
         {
           "name": "local",
           "descriptor": "(I)Z",
-          "code_bytes": 67
+          "code_bytes": 67,
+          "access_flags": 2
         },
         {
           "name": "localPlayer",
           "descriptor": "(I)I",
-          "code_bytes": 77
+          "code_bytes": 77,
+          "access_flags": 2
         },
         {
           "name": "alive",
           "descriptor": "(I)Z",
-          "code_bytes": 50
+          "code_bytes": 50,
+          "access_flags": 2
         },
         {
           "name": "inventory",
           "descriptor": "(ILjava/lang/String;)I",
-          "code_bytes": 76
+          "code_bytes": 76,
+          "access_flags": 2
         },
         {
           "name": "owns",
           "descriptor": "(ILjava/lang/String;)Z",
-          "code_bytes": 13
+          "code_bytes": 13,
+          "access_flags": 2
         },
         {
           "name": "give",
           "descriptor": "(II)Z",
-          "code_bytes": 244
+          "code_bytes": 244,
+          "access_flags": 2
         },
         {
           "name": "template",
           "descriptor": "(I)Ljava/lang/String;",
-          "code_bytes": 28
+          "code_bytes": 28,
+          "access_flags": 2
         },
         {
           "name": "spawn",
           "descriptor": "(I)V",
-          "code_bytes": 384
+          "code_bytes": 384,
+          "access_flags": 2
         },
         {
           "name": "beginscene",
           "descriptor": "(II)V",
-          "code_bytes": 73
+          "code_bytes": 73,
+          "access_flags": 1
         },
         {
           "name": "timer",
           "descriptor": "(IFFFF)V",
-          "code_bytes": 25
+          "code_bytes": 25,
+          "access_flags": 1
         },
         {
           "name": "poll",
           "descriptor": "()V",
-          "code_bytes": 39
+          "code_bytes": 39,
+          "access_flags": 2
         },
         {
           "name": "pollImpl",
           "descriptor": "()V",
-          "code_bytes": 1401
+          "code_bytes": 1401,
+          "access_flags": 2
         },
         {
           "name": "volume",
           "descriptor": "(I)Z",
-          "code_bytes": 66
+          "code_bytes": 66,
+          "access_flags": 2
         },
         {
           "name": "dispatch",
           "descriptor": "(Ljava/lang/String;Ljava/lang/String;I)V",
-          "code_bytes": 1659
+          "code_bytes": 1659,
+          "access_flags": 2
         },
         {
           "name": "event0",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event1",
           "descriptor": "()Z",
-          "code_bytes": 122
+          "code_bytes": 122,
+          "access_flags": 2
         },
         {
           "name": "event2",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event3",
           "descriptor": "()Z",
-          "code_bytes": 122
+          "code_bytes": 122,
+          "access_flags": 2
         },
         {
           "name": "event4",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event5",
           "descriptor": "()Z",
-          "code_bytes": 122
+          "code_bytes": 122,
+          "access_flags": 2
         },
         {
           "name": "event6",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event7",
           "descriptor": "()Z",
-          "code_bytes": 122
+          "code_bytes": 122,
+          "access_flags": 2
         },
         {
           "name": "event8",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event9",
           "descriptor": "()Z",
-          "code_bytes": 122
+          "code_bytes": 122,
+          "access_flags": 2
         },
         {
           "name": "event10",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event11",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event12",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event13",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event14",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event15",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event16",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event17",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event18",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event19",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event20",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event21",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event22",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event23",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event24",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event25",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event26",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event27",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event28",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event29",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event30",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event31",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event32",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event33",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event34",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event35",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event36",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event37",
           "descriptor": "()Z",
-          "code_bytes": 123
+          "code_bytes": 123,
+          "access_flags": 2
         },
         {
           "name": "event38",
           "descriptor": "()Z",
-          "code_bytes": 95
+          "code_bytes": 95,
+          "access_flags": 2
         },
         {
           "name": "event39",
           "descriptor": "()Z",
-          "code_bytes": 122
+          "code_bytes": 122,
+          "access_flags": 2
         },
         {
           "name": "event40",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event41",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event42",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event43",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event44",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event45",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event46",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event47",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event48",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "event49",
           "descriptor": "()Z",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "releaseCamera",
           "descriptor": "()V",
-          "code_bytes": 25
+          "code_bytes": 25,
+          "access_flags": 2
         },
         {
           "name": "conversation",
           "descriptor": "(I)Z",
-          "code_bytes": 151
+          "code_bytes": 151,
+          "access_flags": 2
         },
         {
           "name": "clicked",
           "descriptor": "(III)V",
-          "code_bytes": 72
+          "code_bytes": 72,
+          "access_flags": 1
         },
         {
           "name": "convreached",
           "descriptor": "(IIIII)V",
-          "code_bytes": 148
+          "code_bytes": 148,
+          "access_flags": 1
         },
         {
           "name": "convended",
           "descriptor": "(IZI)V",
-          "code_bytes": 115
+          "code_bytes": 115,
+          "access_flags": 1
         },
         {
           "name": "finishDialogue",
           "descriptor": "()V",
-          "code_bytes": 102
+          "code_bytes": 102,
+          "access_flags": 2
         },
         {
           "name": "completeEntry",
           "descriptor": "(Ljava/lang/String;)Z",
-          "code_bytes": 24
+          "code_bytes": 24,
+          "access_flags": 2
         },
         {
           "name": "quest",
           "descriptor": "(Ljava/lang/String;I)Z",
-          "code_bytes": 2
+          "code_bytes": 2,
+          "access_flags": 2
         },
         {
           "name": "save",
           "descriptor": "(I)V",
-          "code_bytes": 145
+          "code_bytes": 145,
+          "access_flags": 1
         },
         {
           "name": "restore",
           "descriptor": "(I)V",
-          "code_bytes": 152
+          "code_bytes": 152,
+          "access_flags": 1
         },
         {
           "name": "restored",
           "descriptor": "(I)V",
-          "code_bytes": 143
+          "code_bytes": 143,
+          "access_flags": 1
         },
         {
           "name": "createAt",
           "descriptor": "(I[F[F)I",
-          "code_bytes": 248
+          "code_bytes": 248,
+          "access_flags": 2
         },
         {
           "name": "positionText",
           "descriptor": "(I)Ljava/lang/String;",
-          "code_bytes": 63
+          "code_bytes": 63,
+          "access_flags": 2
         },
         {
           "name": "travel",
           "descriptor": "(Ljava/lang/String;Ljava/lang/String;)Z",
-          "code_bytes": 145
+          "code_bytes": 145,
+          "access_flags": 2
         },
         {
           "name": "arrive",
           "descriptor": "()Z",
-          "code_bytes": 324
+          "code_bytes": 324,
+          "access_flags": 2
         },
         {
           "name": "patrolActor",
           "descriptor": "(I)I",
-          "code_bytes": 4
+          "code_bytes": 4,
+          "access_flags": 2
         },
         {
           "name": "patrolTarget",
           "descriptor": "(I)[F",
-          "code_bytes": 4
+          "code_bytes": 4,
+          "access_flags": 2
         },
         {
           "name": "patrolSpeed",
           "descriptor": "(I)F",
-          "code_bytes": 6
+          "code_bytes": 6,
+          "access_flags": 2
         },
         {
           "name": "commandPatrol",
           "descriptor": "(I)Z",
-          "code_bytes": 207
+          "code_bytes": 207,
+          "access_flags": 2
         },
         {
           "name": "startPatrol",
           "descriptor": "(I)Z",
-          "code_bytes": 43
+          "code_bytes": 43,
+          "access_flags": 2
         },
         {
           "name": "stopPatrol",
           "descriptor": "(I)V",
-          "code_bytes": 66
+          "code_bytes": 66,
+          "access_flags": 2
         },
         {
           "name": "holdPatrols",
           "descriptor": "()V",
-          "code_bytes": 81
+          "code_bytes": 81,
+          "access_flags": 2
         },
         {
           "name": "resumePatrols",
           "descriptor": "()V",
-          "code_bytes": 41
+          "code_bytes": 41,
+          "access_flags": 2
         },
         {
           "name": "pollPatrols",
           "descriptor": "()V",
-          "code_bytes": 321
+          "code_bytes": 321,
+          "access_flags": 2
         },
         {
           "name": "conversationID",
           "descriptor": "(I)Ljava/lang/String;",
-          "code_bytes": 6
+          "code_bytes": 6,
+          "access_flags": 2
         },
         {
           "name": "resumeEvents",
           "descriptor": "()V",
-          "code_bytes": 1451
+          "code_bytes": 1451,
+          "access_flags": 2
         },
         {
           "name": "dialogueCamera",
           "descriptor": "(II)V",
-          "code_bytes": 6
+          "code_bytes": 6,
+          "access_flags": 2
         },
         {
           "name": "dialoguePartner",
           "descriptor": "(I)I",
-          "code_bytes": 4
+          "code_bytes": 4,
+          "access_flags": 2
         },
         {
           "name": "faceDialogue",
           "descriptor": "(II)V",
-          "code_bytes": 49
+          "code_bytes": 49,
+          "access_flags": 2
         },
         {
           "name": "prepareDialogue",
           "descriptor": "(II)V",
-          "code_bytes": 72
+          "code_bytes": 72,
+          "access_flags": 2
         },
         {
           "name": "schedulePoll",
           "descriptor": "()V",
-          "code_bytes": 20
+          "code_bytes": 20,
+          "access_flags": 2
         },
         {
           "name": "dialogueMotion",
           "descriptor": "(III)V",
-          "code_bytes": 6
+          "code_bytes": 6,
+          "access_flags": 2
         },
         {
           "name": "resetArrivalMotion",
           "descriptor": "()V",
-          "code_bytes": 47
+          "code_bytes": 47,
+          "access_flags": 2
         },
         {
           "name": "finitePose",
           "descriptor": "([F)Z",
-          "code_bytes": 47
+          "code_bytes": 47,
+          "access_flags": 2
         },
         {
           "name": "savePlayerPose",
           "descriptor": "()V",
-          "code_bytes": 200
+          "code_bytes": 200,
+          "access_flags": 2
         },
         {
           "name": "readPlayerPose",
           "descriptor": "()V",
-          "code_bytes": 121
+          "code_bytes": 121,
+          "access_flags": 2
         },
         {
           "name": "restorePlayerPose",
           "descriptor": "()Z",
-          "code_bytes": 260
+          "code_bytes": 260,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfigure",
           "descriptor": "()V",
-          "code_bytes": 114
+          "code_bytes": 114,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig0",
           "descriptor": "()V",
-          "code_bytes": 1176
+          "code_bytes": 1176,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig1",
           "descriptor": "()V",
-          "code_bytes": 1176
+          "code_bytes": 1176,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig2",
           "descriptor": "()V",
-          "code_bytes": 1176
+          "code_bytes": 1176,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig3",
           "descriptor": "()V",
-          "code_bytes": 1176
+          "code_bytes": 1176,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig4",
           "descriptor": "()V",
-          "code_bytes": 1176
+          "code_bytes": 1176,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig5",
           "descriptor": "()V",
-          "code_bytes": 1176
+          "code_bytes": 1176,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig6",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig7",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig8",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig9",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig10",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig11",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig12",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig13",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig14",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig15",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig16",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig17",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig18",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig19",
           "descriptor": "()V",
-          "code_bytes": 1177
+          "code_bytes": 1177,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig20",
           "descriptor": "()V",
-          "code_bytes": 314
+          "code_bytes": 314,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig21",
           "descriptor": "()V",
-          "code_bytes": 314
+          "code_bytes": 314,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig22",
           "descriptor": "()V",
-          "code_bytes": 314
+          "code_bytes": 314,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig23",
           "descriptor": "()V",
-          "code_bytes": 314
+          "code_bytes": 314,
+          "access_flags": 2
         },
         {
           "name": "dynamicConfig24",
           "descriptor": "()V",
-          "code_bytes": 314
+          "code_bytes": 314,
+          "access_flags": 2
         },
         {
           "name": "dynamicPosition",
           "descriptor": "(IIIZ)[F",
-          "code_bytes": 47
+          "code_bytes": 47,
+          "access_flags": 2
         },
         {
           "name": "dynamicPositionPage0",
           "descriptor": "(IIZ)[F",
-          "code_bytes": 29
+          "code_bytes": 29,
+          "access_flags": 2
         },
         {
           "name": "dynamicCoordinates0",
           "descriptor": "(IZ)[F",
-          "code_bytes": 118
+          "code_bytes": 118,
+          "access_flags": 2
         },
         {
           "name": "dynamicPointName",
           "descriptor": "(III)Ljava/lang/String;",
-          "code_bytes": 47
+          "code_bytes": 47,
+          "access_flags": 2
         },
         {
           "name": "dynamicNamePage0",
           "descriptor": "(II)Ljava/lang/String;",
-          "code_bytes": 30
+          "code_bytes": 30,
+          "access_flags": 2
         },
         {
           "name": "dynamicPointLabel0",
           "descriptor": "(I)Ljava/lang/String;",
-          "code_bytes": 36
+          "code_bytes": 36,
+          "access_flags": 2
         },
         {
           "name": "dynamicPoints",
           "descriptor": "(II)I",
-          "code_bytes": 9
+          "code_bytes": 9,
+          "access_flags": 2
         },
         {
           "name": "dynamicPhases",
           "descriptor": "(I)V",
-          "code_bytes": 74
+          "code_bytes": 74,
+          "access_flags": 2
         },
         {
           "name": "dynamicPhase20",
           "descriptor": "(I)V",
-          "code_bytes": 456
+          "code_bytes": 456,
+          "access_flags": 2
         },
         {
           "name": "dynamicPhase21",
           "descriptor": "(I)V",
-          "code_bytes": 456
+          "code_bytes": 456,
+          "access_flags": 2
         },
         {
           "name": "dynamicPhase22",
           "descriptor": "(I)V",
-          "code_bytes": 456
+          "code_bytes": 456,
+          "access_flags": 2
         },
         {
           "name": "dynamicPhase23",
           "descriptor": "(I)V",
-          "code_bytes": 456
+          "code_bytes": 456,
+          "access_flags": 2
         },
         {
           "name": "dynamicPhase24",
           "descriptor": "(I)V",
-          "code_bytes": 456
+          "code_bytes": 456,
+          "access_flags": 2
         },
         {
           "name": "dynamicNotify",
           "descriptor": "(Ljava/lang/String;II)V",
-          "code_bytes": 69
+          "code_bytes": 69,
+          "access_flags": 2
         },
         {
           "name": "dynamicHealth",
           "descriptor": "(IZFLjava/lang/String;)Z",
-          "code_bytes": 153
+          "code_bytes": 153,
+          "access_flags": 2
         },
         {
           "name": "dynamicRoleGuid",
           "descriptor": "(II)I",
-          "code_bytes": 97
+          "code_bytes": 97,
+          "access_flags": 2
         },
         {
           "name": "dynamicCount",
           "descriptor": "(ILjava/lang/String;I)I",
-          "code_bytes": 166
+          "code_bytes": 166,
+          "access_flags": 2
         },
         {
           "name": "dynamicOwned",
           "descriptor": "(II)Z",
-          "code_bytes": 60
+          "code_bytes": 60,
+          "access_flags": 2
         },
         {
           "name": "dynamicKilled",
           "descriptor": "(II)V",
-          "code_bytes": 168
+          "code_bytes": 168,
+          "access_flags": 2
         },
         {
           "name": "killed",
           "descriptor": "(III)V",
-          "code_bytes": 103
+          "code_bytes": 103,
+          "access_flags": 1
         },
         {
           "name": "dynamicRetire",
           "descriptor": "(I)Z",
-          "code_bytes": 83
+          "code_bytes": 83,
+          "access_flags": 2
         },
         {
           "name": "dynamicError",
           "descriptor": "(ILjava/lang/String;)V",
-          "code_bytes": 94
+          "code_bytes": 94,
+          "access_flags": 2
         },
         {
           "name": "dynamicReset",
           "descriptor": "(IZ)Z",
-          "code_bytes": 245
+          "code_bytes": 245,
+          "access_flags": 2
         },
         {
           "name": "dynamicBegin",
           "descriptor": "(Z)V",
-          "code_bytes": 140
+          "code_bytes": 140,
+          "access_flags": 2
         },
         {
           "name": "dynamicCommand",
           "descriptor": "(II)Z",
-          "code_bytes": 499
+          "code_bytes": 499,
+          "access_flags": 2
         },
         {
           "name": "dynamicEntry",
           "descriptor": "(I)I",
-          "code_bytes": 244
+          "code_bytes": 244,
+          "access_flags": 2
         },
         {
           "name": "dynamicSpawn",
           "descriptor": "(II)Z",
-          "code_bytes": 1110
+          "code_bytes": 1110,
+          "access_flags": 2
         },
         {
           "name": "dynamicComplete",
           "descriptor": "(I)V",
-          "code_bytes": 89
+          "code_bytes": 89,
+          "access_flags": 2
         },
         {
           "name": "dynamicPoll",
           "descriptor": "()V",
-          "code_bytes": 1077
+          "code_bytes": 1077,
+          "access_flags": 2
         },
         {
           "name": "dynamicSave",
           "descriptor": "()V",
-          "code_bytes": 327
+          "code_bytes": 327,
+          "access_flags": 2
         },
         {
           "name": "dynamicRestore",
           "descriptor": "()V",
-          "code_bytes": 614
+          "code_bytes": 614,
+          "access_flags": 2
         },
         {
           "name": "debugPosition",
           "descriptor": "(I)Ljava/lang/String;",
-          "code_bytes": 71
+          "code_bytes": 71,
+          "access_flags": 2
         },
         {
           "name": "traceState",
           "descriptor": "()V",
-          "code_bytes": 218
+          "code_bytes": 218,
+          "access_flags": 2
         },
         {
           "name": "traceStack",
           "descriptor": "(Ljava/lang/Throwable;)V",
-          "code_bytes": 45
+          "code_bytes": 45,
+          "access_flags": 2
         }
       ]
     }

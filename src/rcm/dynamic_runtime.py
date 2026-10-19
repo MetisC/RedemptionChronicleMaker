@@ -19,7 +19,9 @@ def condition_java(c,scene,entities):
     return f'dynamicHealth({target},{str("percent" in value).lower()},{float(value.get("percent",value.get("value")))}f,{js(value["comparison"])})'
 
 def extend_dynamic(java,campaign,scene,project):
-    rows=scene.get('generators',[]);n=len(rows);entities={e.id:i for i,e in enumerate(project.entities)}
+    rows=scene.get('generators',[]);n=len(rows)
+    from .dynamic_targets import indices
+    entities=indices(scene,project)
     def replace(old,new):
         nonlocal java
         if java.count(old)!=1:raise ValueError('Dynamic runtime integration ambiguous: '+old[:80])

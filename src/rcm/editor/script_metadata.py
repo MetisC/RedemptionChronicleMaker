@@ -11,7 +11,7 @@ def edit_metadata(win,row):
     def add(value=None):
         if table.rowCount()>=16:return
         value=value or dict(type='integer',label='Parameter '+str(table.rowCount()+1));i=table.rowCount();table.insertRow(i);combo=QComboBox()
-        for kind in ('integer','float','string','thing','actor'):combo.addItem(kind,kind)
+        for kind in ('integer','float','string','thing','actor','region','item'):combo.addItem(kind,kind)
         combo.setCurrentIndex(max(0,combo.findData(value['type'])));table.setCellWidget(i,0,combo);table.setItem(i,1,QTableWidgetItem(value['label']))
     for value in row.get('parameters',[]):add(value)
     bar=QHBoxLayout();layout.addLayout(bar);button=QPushButton(tr('Añadir parámetro'));button.clicked.connect(lambda:add());bar.addWidget(button);remove=QPushButton(tr('Quitar selección'));remove.clicked.connect(lambda:table.removeRow(table.currentRow()) if table.currentRow()>=0 else None);bar.addWidget(remove)

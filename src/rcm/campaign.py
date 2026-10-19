@@ -54,6 +54,9 @@ from .dynamic_encounters import GENERATOR_ACTIONS,GENERATOR_EVENTS
 ACTIONS.update({key:(label,'generators') for key,label in zip(GENERATOR_ACTIONS,('Encuentro dinámico / Iniciar','Encuentro dinámico / Detener','Encuentro dinámico / Pausar','Encuentro dinámico / Reanudar','Encuentro dinámico / Reiniciar (avanzado)'))})
 WHEN.update({key:label for key,label in zip(GENERATOR_EVENTS,('Empieza encuentro dinámico','Empieza oleada','Termina oleada','Termina encuentro dinámico','Se detiene encuentro dinámico'))})
 WHEN['generator_threshold']='Cruza umbral de vida del jefe'
+ACTIONS['set_location_flags']=('Mapa / Visibilidad y refugio','map_flags')
+ACTIONS['set_room_type']=('Audio / Reverberación EAX','room_type')
+ACTIONS.update({'move_actor':('Actor / Ir a un punto','actor_move'),'actor_inventory':('Inventario / Objeto de un actor','actor_inventory'),'actor_behavior':('Actor / Equipo y actividad','actor_behavior')})
 
 @dataclass(frozen=True)
 class Campaign:
@@ -122,7 +125,11 @@ def parse_campaign(source, levels, resources):
     global_items={s['id']+'.'+o['id']:o for s in scenes.values() for o in s.get('objects',[]) if templates.get(o.get('template'),{}).get('kind') in {'items','weapons','armour'}}
     for si,s in enumerate(scenes.values()):
         label='Escena '+s['id']
-        mapping(s,{'id','level','actors','objects','conversations','events','triggers','encounters','sequences','entries','default_entry','waypoints','paths','generators'}, {'id','level','actors','conversations','events'},label)
+        mapping(s,{'id','level','actors','objects','conversations','events','triggers','encounters','sequences','entries','default_entry','waypoints','paths','generators','map_location'}, {'id','level','actors','conversations','events'},label)
+        if 'map_location' in s:
+            if not modern:raise ValueError('Maps require project format 9 or 10')
+            from .chronicle_maps import resolve
+            resolve(s['map_location'],resources.get('authored_maps',{}))
         dynamic=root.get('runtime_profile')=='phase10'
         if 'generators' in s and not dynamic:raise ValueError('Encuentros dinámicos requieren formato de proyecto 10')
         if any(k in s for k in ('entries','default_entry','waypoints','paths')) and not modern: raise ValueError('Entradas y recorridos requieren formato de proyecto 9')
@@ -130,9 +137,16 @@ def parse_campaign(source, levels, resources):
         from .dynamic_encounters import validate_generators,lower_phases,validate_dynamic_condition
         generators=validate_generators(s,resources['templates'],actors) if dynamic else {}
         if dynamic:lower_phases(s)
+        from .dynamic_targets import candidates
+        control_actors={**actors,**(candidates(s) if dynamic else {})}
+        for row in objects.values():
+            if templates.get(row.get('template'),{}).get('kind') in ('items','weapons','armour'):row['_native_item']=True
         entities={**actors,**objects}; convs=indexed(s['conversations'],label+' conversations')
+        from .scene_zones import validate as validate_zones
+        if not modern and any('sound_zone' in t or 'light_zone' in t for t in s.get('triggers',[])):raise ValueError('Zones require project format 9 or 10')
+        validate_zones(s,control_actors,objects,resources)
         from .native_scripts import placement as native_placement
-        native=native_placement(s,resources.get('native_scripts',{}))
+        native=native_placement(s,resources.get('native_scripts',{}),{k:v.get('kind') for k,v in templates.items()})
         if native and not modern:raise ValueError('Script nativo requiere formato 9 o 10')
         if native:s['_native_entities']=sorted(native)
         from .camera_presets import PRESETS,CINEMA_PRESETS
@@ -148,7 +162,7 @@ def parse_campaign(source, levels, resources):
         groups=indexed(s.get('encounters',[]),label+' encounters'); shots=indexed(s.get('sequences',[]),label+' sequences')
         triggers=indexed(s.get('triggers',[]),label+' triggers')
         from .authoring9 import validate_markers
-        paths=validate_markers(s,actors) if modern else {}
+        paths=validate_markers(s,control_actors) if modern else {}
         def ref(value,ids,what):
             if not isinstance(value,str) or value not in ids: raise ValueError(label+': referencia '+what+' ausente: '+str(value))
         def item(value):
@@ -184,13 +198,13 @@ def parse_campaign(source, levels, resources):
             text(seq['name'],'sequence.name')
             if seq['actor']=='Player':
                 if not modern or not any(k in seq for k in ('steps','camera_path','cues')):raise ValueError('Player requiere formato 9 y secuencia de planos')
-            else:ref(seq['actor'],actors,'actor de cámara')
-            if 'reference' in seq and seq['reference']!='Player':ref(seq['reference'],actors,'referencia de cámara')
+            else:ref(seq['actor'],control_actors,'actor de cámara')
+            if 'reference' in seq and seq['reference']!='Player':ref(seq['reference'],control_actors,'referencia de cámara')
             if type(seq['duration']) not in (float,int) or not math.isfinite(seq['duration']) or not .1<=seq['duration']<=120: raise ValueError('Duración de cámara 0.1..120 s')
             if seq['shot'] not in ('medium','close','wide') or seq['angle'] not in ('low','medium','high'): raise ValueError('Plano/ángulo de cámara inválido')
             if 'preset' in seq and (not modern or seq['preset'] not in CINEMA_PRESETS):raise ValueError('Preset de cámara requiere formato 9 y valor conocido')
             from .cinematics import validate_sequence
-            validate_sequence(seq,actors,paths,resources,modern,objects)
+            validate_sequence(seq,control_actors,paths,resources,modern,objects)
         def condition(c,depth=0):
             if depth>12: raise ValueError('Condiciones demasiado anidadas')
             if not isinstance(c,dict): raise ValueError('Condición debe ser un objeto')
@@ -208,12 +222,17 @@ def parse_campaign(source, levels, resources):
             elif set(c)=={'quest','step'}:
                 ref(c['quest'],quests,'quest')
                 if type(c['step']) is not int or not 0<=c['step']<len(quests[c['quest']]['steps']): raise ValueError('Paso de quest fuera de rango')
+            elif set(c)=={'location_visible'}:ref(c['location_visible'],scenes,'map location')
+            elif set(c)=={'actor_owns_item'}:
+                value=mapping(c['actor_owns_item'],{'actor','item'},{'actor','item'},'Actor inventory condition')
+                if value['actor']!='Player':ref(value['actor'],control_actors,'actor')
+                item(value['item'])
             elif set(c) in ({'actor_alive'},{'entity_exists'},{'owns_item'}):
                 k=next(iter(c))
                 if k=='owns_item':global_item(c[k])
-                else:ref(c[k],actors if k=='actor_alive' else entities,'entidad')
+                else:ref(c[k],control_actors if k=='actor_alive' else {**entities,**control_actors},'entidad')
             elif dynamic and len(c)==1 and next(iter(c)) in {'actor_health','generator_state','generator_count'}:
-                validate_dynamic_condition(c,actors,generators)
+                validate_dynamic_condition(c,control_actors,generators)
             else: raise ValueError('Condición desconocida: '+str(c))
         spawn_owners={}
         def action(a):
@@ -221,8 +240,29 @@ def parse_campaign(source, levels, resources):
             k,v=next(iter(a.items()))
             if k not in ACTIONS: raise ValueError('Acción no soportada: '+k)
             kind=ACTIONS[k][1]
+            if kind=='room_type':
+                if not modern or type(v) is not int or not 0<=v<=25:raise ValueError('Native room type: integer 0..25 in format 9 or 10')
+                return
+            if kind in ('actor_move','actor_inventory','actor_behavior'):
+                fields={'actor_move':{'actor','waypoint','speed'},'actor_inventory':{'actor','item','operation'},'actor_behavior':{'actor','team','paused'}}[kind]
+                mapping(v,fields,fields,kind)
+                if not modern:raise ValueError('Actor control requires format 9 or 10')
+                if v['actor']!='Player':ref(v['actor'],control_actors,'actor')
+                if kind=='actor_move':
+                    ref(v['waypoint'],{p['id'] for p in s.get('waypoints',[])},'waypoint')
+                    from .cinematics import number
+                    number(v['speed'],1,1000,'Actor movement speed')
+                elif kind=='actor_inventory':
+                    item(v['item'])
+                    if v['operation'] not in ('give','take'):raise ValueError('Inventory operation: give/take')
+                elif type(v['team']) is not int or not 0<=v['team']<=19 or type(v['paused']) is not bool:raise ValueError('Actor team 0..19 and paused boolean required')
+                return
+            if kind=='map_flags':
+                mapping(v,{'scene','visible','haven'},{'scene','visible','haven'},'Map flags');ref(v['scene'],scenes,'map location')
+                if not modern or any(type(v[x]) is not bool for x in ('visible','haven')):raise ValueError('Map flags require booleans in format 9 or 10')
+                return
             from .cinematics import validate_action
-            if validate_action(k,v,s,actors,objects,resources,modern):return
+            if validate_action(k,v,s,control_actors,objects,resources,modern):return
             if k in {'push_music','pop_music'}:
                 if not modern:raise ValueError('Música temporal requiere formato de proyecto 9 o 10')
                 if k=='push_music':
@@ -235,7 +275,7 @@ def parse_campaign(source, levels, resources):
                 if not modern:raise ValueError('Esta acción requiere formato de proyecto 9')
                 field='clan' if kind=='wtd_clan' else 'discipline'
                 mapping(v,{'actor',field,'level'} if field=='discipline' else {'actor',field},{'actor',field,'level'} if field=='discipline' else {'actor',field},k)
-                if v['actor']!='Player':ref(v['actor'],actors,'actor')
+                if v['actor']!='Player':ref(v['actor'],control_actors,'actor')
                 from .wtd import validate_traits
                 validate_traits({'traits':{'clan':v['clan']} if field=='clan' else {'disciplines':{v['discipline']:v['level']}}},resources);return
             if kind=='generators':
@@ -261,14 +301,16 @@ def parse_campaign(source, levels, resources):
                 if v['mode'] not in ('frames','pivot') or type(v['frame']) is not int or not 0<=v['frame']<=255 or type(v['open']) is not bool:raise ValueError('Modo/frame/estado de puerta inválido')
                 if type(v['parameter']) not in (int,float) or not math.isfinite(v['parameter']) or not 0<v['parameter']<=1000:raise ValueError('Parámetro de movimiento de puerta: 0..1000')
             elif kind=='spatial_sound':
-                mapping(v,{'resource','waypoint','volume','min_distance','max_distance','id','loop'},{'resource','waypoint','volume','min_distance','max_distance'},'play_sound')
+                mapping(v,{'resource','waypoint','actor','volume','min_distance','max_distance','id','loop'},{'resource','volume','min_distance','max_distance'},'play_sound')
+                if ('actor' in v)==('waypoint' in v):raise ValueError('Sound needs one actor or waypoint source')
                 if 'loop' in v and type(v['loop']) is not bool:raise ValueError('Sonido en bucle requiere booleano')
                 if v.get('loop'):
                     identifier(v.get('id'),'ID de sonido en bucle')
                 elif 'id' in v:raise ValueError('Un sonido con ID requiere bucle')
                 matches=[r for r in resources['entries'] if r['extension'].lower()=='.wav' and r['id']==v['resource']]
                 if len(matches)!=1:raise ValueError('Sonido ausente o ambiguo')
-                ref(v['waypoint'],{r['id'] for r in s.get('waypoints',[])},'waypoint de sonido')
+                if 'waypoint' in v:ref(v['waypoint'],{r['id'] for r in s.get('waypoints',[])},'waypoint de sonido')
+                elif v['actor']!='Player':ref(v['actor'],control_actors,'sound actor')
                 if type(v['volume']) is not int or not 0<=v['volume']<=100:raise ValueError('Volumen de sonido: 0..100')
                 lo,hi=v['min_distance'],v['max_distance']
                 if any(type(n) not in (int,float) or not math.isfinite(n) for n in (lo,hi)) or not 0<=lo<hi<=100000:raise ValueError('Radios de sonido inválidos')
@@ -286,7 +328,7 @@ def parse_campaign(source, levels, resources):
                 if not modern:raise ValueError('Ejecutar evento requiere formato 9/10')
                 ref(v,events,'evento')
             else:
-                ref(v,{'entity':entities,'actors':actors,'conversations':convs,'flags':flags,'quests':quests,'encounters':groups,'sequences':shots,'scenes':scenes,'music':audio['music'],'ambient':audio['ambient']}[kind],kind)
+                ref(v,{'entity':entities,'actors':control_actors,'conversations':convs,'flags':flags,'quests':quests,'encounters':groups,'sequences':shots,'scenes':scenes,'music':audio['music'],'ambient':audio['ambient']}[kind],kind)
                 if k=='jump' and v==s['id']:raise ValueError(label+': Evento '+e['id']+': No se permite un enlace hacia la misma escena. Elige otra escena de destino.')
             if k in {'spawn','spawn_encounter'}:
                 for eid in [v] if k=='spawn' else groups[v]['actors']: spawn_owners[eid]=spawn_owners.get(eid,0)+1
@@ -367,8 +409,8 @@ def parse_campaign(source, levels, resources):
         from .cinematics import conversation_source
         legacy={'schema':1,'chronicle':{**{k:v for k,v in chron.items() if k!='difficulty'},'id':chron['id']+'_s'+str(si)},'state':{'flags':flags},'level':s['level'],
                 'actors':[{k:v for k,v in a.items() if k not in {'behavior','inventory','traits','native_script','native_frames'}} for a in actors.values()],
-                'objects':[{k:v for k,v in a.items() if k not in {'quest_item','interaction','native_script','native_frames'}} for a in objects.values()],
-                'conversations':[conversation_source(c) for c in s['conversations']],'triggers':s.get('triggers',[]),
+                'objects':[{k:v for k,v in a.items() if k not in {'quest_item','interaction','native_script','native_frames','_native_item'}} for a in objects.values()],
+                'conversations':[conversation_source(c) for c in s['conversations']],'triggers':[{k:v for k,v in t.items() if k not in ('native_script','native_region','sound_zone','light_zone')} for t in s.get('triggers',[])],
                 'events':[{'when':'scene_start','actions':[{'spawn':eid} for eid in entities]}] if entities else []}
         parsed.append((s,parse_project(yaml.safe_dump(legacy,sort_keys=False),levels,resources,allow_empty=True,allow_motions=modern)))
     if modern:
@@ -411,6 +453,8 @@ def integrity(campaign,resources=None):
         for gi,message in dynamic_integrity(s):findings.append(Problem('WARNING',message,('scenes',si,'generators',gi)))
         local_actions=list(actions(s))
         spawned={a.get('spawn') for a in local_actions}
+        spawned|={a['actor_inventory']['item'] for a in local_actions if 'actor_inventory' in a and a['actor_inventory']['operation']=='give'}
+        spawned|=set(s.get('_native_entities',[]))
         spawned|={m for g in s.get('encounters',[]) for m in g['actors'] if any(a.get('spawn_encounter')==g['id'] for a in local_actions)}
         inventory={it for a in s['actors'] for it in a.get('inventory',[])}
         for k in ['actors','objects']:
@@ -431,5 +475,6 @@ def integrity(campaign,resources=None):
         for gi,message in dynamic_integrity(s):findings.append(Problem('WARNING',message,('scenes',si,'generators',gi)))
         for key in ['conversations','triggers','encounters','sequences']:
             for i,row in enumerate(s.get(key,[])):
+                if key=='triggers' and any(row.get(k) for k in ('native_script','sound_zone','light_zone')):continue
                 if not any(x.target==('scenes',si,key,i) for x in links):findings.append(Problem('WARNING',row.get('name',row['id'])+': sin referencias',('scenes',si,key,i)))
     return findings

@@ -155,18 +155,37 @@ La nueva exploración del Codex original reconfirma 55 clases con referencias Pu
 
 Entrada y conversación usan tablas NSD separadas y wrappers nativos distintos. Se validaron 99 tablas originales de conversación / 473 registros de 60 bytes; posición, matriz de orientación, sector, grupo y selector. El escritor sólo añade esta tabla demostrada a escenas propias. Los grupos 0..15 son el límite adoptado de autoría Embrace, no un array nativo fijo. Se reutilizan entradas nombradas existentes (una a cuatro por grupo); el runtime llama a TeleportPartyToConversation. Formación, colisión y diferencias en MP permanecen pendientes de observación.
 
-Los 22 pares NCP de posición repetida también repiten parámetro; ocho cambian Euler. No demuestran una regla temporal segura para giros estacionarios. Se conserva la restricción de autoría y el roundtrip sin pérdidas de los 174 originales. Evidencia, decisiones y límites: research/embrace_closure/FINAL_FLECKS_AUDIT.md. Gate: 525 pruebas, 0/0/0; regresión posterior de widgets: 140, 0/0/0. Compilación real 45.3; audio/puesta en escena nuevos siguen MANUAL RUNTIME TEST REQUIRED.
+Los 22 pares NCP de posición repetida también repiten parámetro; ocho cambian Euler. El modo anterior por distancia conserva su restricción. El evaluador nativo sí consume polinomios temporales propios: el nuevo modo escribe tramos positivos en segundos, con XYZ constante y Euler variable, sin ejecutar el builder por distancia. Roundtrip de los174originales intacto. Evidencia, decisiones y límites: research/embrace_closure/FINAL_FLECKS_AUDIT.md. Gate: 525 pruebas, 0/0/0; regresión posterior de widgets: 140, 0/0/0. Compilación real 45.3; audio/puesta en escena nuevos siguen MANUAL RUNTIME TEST REQUIRED.
 
 ## Strict authoring evidence update
 
 Confirmed original-file/native evidence: NSD parameters are the SECOND entity
-variable block (types 1/2/3/7/8 editable), movement frames are orientation XYZ then
+variable block (types 1/2/3/5/7/8/10 editable), movement frames are orientation XYZ then
 position XYZ (24 bytes); 64 original files lossless. Native interest records are
 72 bytes with a separate group selected by AI interestNum. TreasureClass is tag
 92 uint32 and container-only in RCM. Optional environment patches touch proven
-176-byte tail fields only; unknown bytes remain intact. EAX static precedence
-prevents an effective dynamic override. Full evidence, safety limits and pending
+176-byte tail fields only; unknown bytes remain intact. EAX static precedence prevents a dynamic-tail override; the separately proven runtime roomtype command now provides an optional override after activation. Full evidence, safety limits and pending
 native checks: research/embrace_strict_parity/codex_linker_format.md,
 treasure_class.md, SAFETY_DECISIONS.md and docs/EMBRACE_AUTHORING_PARITY.md.
 SDK-confirmed NTT/NSC documentation is separate from these original-file proofs.
-Maps customisation remains an analysed route, not an implemented map editor.
+Own maps are implemented through editor/maps.py and chronicle_maps.py. See AUTHORING_COMPLETION.md and research/authoring_completion/EVIDENCE.md.
+
+
+## Cierre de autoría: mecanismos adicionales
+
+CONFIRMADO EN ARCHIVOS ORIGINALES: región type3, malla local y tabla u32 count +
+índices de sectores entre planos de colisión e iluminación.51regiones originales
+inventariadas; parámetros type5=CodexRegion/type10=CodexItem contrastados con sus
+constructores. El escritor genera cajas yaw-only y conserva la geometría NIL.
+Catálogo de constructores unívocos440; Player-constructor sigue sin binding seguro.
+
+CONFIRMADO EN EJECUTABLE/API: roomtype→409150→49e400→AIL_set_3D_room_type,
+rango0..25 y requisito de proveedor3D. CodexConsole.Execute(String) está presente.
+NCP430350/430479..43069a evalúa parámetro temporal y polinomios XYZ/Euler
+independientes; no llama al builder de distancias para reconstruir coeficientes.
+
+IMPLEMENTADO/PRUEBA OFFLINE: mapas NUI/TGA/NLS/NSC, flags8/16; regiones enlazadas;
+NCP temporal; objetivos dinámicos transitorios sobre dGuid, sin nuevos GUID ni
+registros alias; zonas sobre volume() y handles existentes; audio asociado a GUID;
+catálogo base NCD/NDD. Detalles/límites: AUTHORING_COMPLETION.md y matriz vigente.
+Observación dentro del juego PENDIENTE: COMP01–06; no la certifica la compilación.

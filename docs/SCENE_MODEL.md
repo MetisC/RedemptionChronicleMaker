@@ -37,7 +37,7 @@ El lector original del ejecutable original Vampire.exe, direcciones `0x4a81c7..0
 La activación nativa y rlDirect.dll confirman esos campos, además de los
 nombres descritos por el manual. EnvironmentDialog ofrece modo0/1/2, RGB/rango,
 audio/volumen, ZClip y cielo compatible. Se conservan todos los bytes no
-seleccionados. EAX no se ofrece como override: el motor prioriza el NSD estático.
+seleccionados. EAX del tail conserva prioridad estática. El selector room_type usa por separado el comando runtime roomtype después de activar la escena.
 Evidencia exacta: research/embrace_strict_parity/scene_environment_activation.txt
 y renderer_fog_complete.txt. Preservar un perfil no equivale a editarlo.
 
@@ -45,7 +45,7 @@ NIL conserva luz global, iluminación ambiente, sectores, superficies y lightmap
 
 NSL es una lista de autoría de Embrace y no la consume el juego. NSS es la selección de escenas del Narrador y requiere lógica `advance` en Java; no enlaza automáticamente ubicaciones con NSD. NSD es contenido runtime. Nuestra escena de campaña reúne geometría referenciada, entorno, entidades, eventos y narrativa; una secuencia de cámara sólo cambia el plano durante su ejecución.
 
-El writer NSD admite entidades simples, overlays de brush propios y entradas nativas acotadas; no es un escritor universal. La reutilización del tail de un original complejo no supone que se pueda leer/escribir toda esa escena. Las entradas propias cubren playerstarts; la puesta en escena de conversación usa esas entradas mediante la API. Hay codecs acotados de convstarts, interestspots, parámetros y frames; lightboxes, soundboxes y regiones complejas aún no tienen escritura segura general. Las abstracciones runtime no se presentan como paridad nativa de cajas/regiones. La escena estática original puede aportar objetos base al motor. La acción optativa `control_original` identifica props de esa escena para ocultar/restaurar/retirar o mover puertas con frames; no hay borrado universal de geometría fija. Véase EDITOR_GUIDE.md y ORG01–06 en MANUAL_RUNTIME_CHECKLIST.md.
+El writer NSD admite entidades simples, overlays de brush propios y entradas nativas acotadas; no es un escritor universal. La reutilización del tail de un original complejo no supone que se pueda leer/escribir toda esa escena. Las entradas propias cubren playerstarts; la puesta en escena de conversación usa esas entradas mediante la API. Hay codecs acotados de convstarts, interestspots, parámetros y frames; regiones caja ahora tienen brush/sectores nativos y parámetros region/item. Lightboxes/soundboxes literales completos aún no tienen escritura segura general; hay zonas activadoras como alternativa funcional. Las abstracciones runtime no se presentan como paridad nativa de cajas/regiones. La escena estática original puede aportar objetos base al motor. La acción optativa `control_original` identifica props de esa escena para ocultar/restaurar/retirar o mover puertas con frames; no hay borrado universal de geometría fija. Véase EDITOR_GUIDE.md y ORG01–06 en MANUAL_RUNTIME_CHECKLIST.md.
 
 ## Coreografía optativa sobre la escena
 
@@ -54,13 +54,12 @@ Los travellings propios recuerdan escena/level de creación y avisan si se usan 
 ## Strict authoring evidence update
 
 Confirmed original-file/native evidence: NSD parameters are the SECOND entity
-variable block (types 1/2/3/7/8 editable), movement frames are orientation XYZ then
+variable block (types 1/2/3/5/7/8/10 editable), movement frames are orientation XYZ then
 position XYZ (24 bytes); 64 original files lossless. Native interest records are
 72 bytes with a separate group selected by AI interestNum. TreasureClass is tag
 92 uint32 and container-only in RCM. Optional environment patches touch proven
-176-byte tail fields only; unknown bytes remain intact. EAX static precedence
-prevents an effective dynamic override. Full evidence, safety limits and pending
+176-byte tail fields only; unknown bytes remain intact. EAX static precedence prevents a dynamic-tail override; the separately proven runtime roomtype command now provides an optional override after activation. Full evidence, safety limits and pending
 native checks: research/embrace_strict_parity/codex_linker_format.md,
 treasure_class.md, SAFETY_DECISIONS.md and docs/EMBRACE_AUTHORING_PARITY.md.
 SDK-confirmed NTT/NSC documentation is separate from these original-file proofs.
-Maps customisation remains an analysed route, not an implemented map editor.
+Own maps are implemented through editor/maps.py and chronicle_maps.py. See AUTHORING_COMPLETION.md and research/authoring_completion/EVIDENCE.md.

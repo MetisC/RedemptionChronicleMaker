@@ -8,7 +8,7 @@ The first answer of **NPC sends you somewhere** must end with RETURN 1 to arm th
 
 **Trigger actions** supports multiple common actions, conditions and once. Use Events / Properties for composite logic and advanced actions. Complex conditions are preserved unless you change the simple condition selector. Conditions are checked on entry, not continuously while inside.
 
-**Camera:** conversations default to shoulder framing. The sequence form asks Shot / Shot sequence / Original travelling. Player is a valid subject for shot sequences. An NPC reference aligns the line of action; avoid references too close or far away. Presets use real constants. Edit time, transitions and angles normally. Changing type warns and is undoable. NCP playback reuses original resources; no writer exists.
+**Camera:** conversations default to shoulder framing. The sequence form asks Shot / Shot sequence / Original travelling. Player is a valid subject for shot sequences. An NPC reference aligns the line of action; avoid references too close or far away. Presets use real constants. Edit time, transitions and angles normally. Changing type warns and is undoable. Original NCP playback and own linear/timed NCP authoring are available in the Director.
 
 **Quest:** title, description, steps and XP. Start / Advance / Complete quest events control the journal; completion requires every step. **Encounter:** the assistant starts with a basic Rat and a group. Edit members and its spawn event normally. Reward arrives when all are dead. Change the spawn event to Item in inventory or a flag condition to delay it.
 
@@ -28,7 +28,7 @@ Open chronicles/mini_chronicle/project.yaml for a complete example adventure, ed
 ## Advanced scene and instance properties
 
 Level > Scene environment offers inherited or explicit audio, volume, fog,
-view distance and paired sky. EAX remains inherited from the static original.
+view distance and paired sky. EAX can be inherited or overridden after scene load through the original roomtype command, subject to the installed 3D audio provider.
 No geometry or lightmaps are changed.
 
 Actor/Object > Instance properties changes AI, Foley, compatible motion set and
@@ -48,8 +48,7 @@ Imported assets remain local dependencies, outside exported ZIPs. Missing
 required external code fails clearly; this is not a universal mod importer.
 
 Cargo at the refuge is an optional example; the accepted tutorial is unchanged.
-New native behaviour requires the manual EMB checklist. Custom map images,
-locations and labels are technically feasible, but no map editor exists yet.
+New native behaviour requires the manual EMB checklist. Own map images, points and scene bindings are editable through Chronicle > Maps and locations or Campaign > Add…. See AUTHORING_COMPLETION.md.
 
 
 ## Chronicle combat difficulty

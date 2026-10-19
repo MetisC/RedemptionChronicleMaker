@@ -23,9 +23,9 @@
 
 ## WRITER DECISION
 
-Write a conservative **linear polynomial subset**: position/Euler bases and deltas, zero quadratic/cubic coefficients, cumulative position distance as parameter and reciprocal segment distance. The last key has zero coefficients and reciprocal span. This follows the demonstrated evaluator rather than copying uninitialised coefficients from originals. Consecutive coincident positions in a moving path are rejected; a static path is one key. Rotation takes the shortest angular delta. This interpolation differs deliberately from the original debug tool's cubic smoothing and is described as linear in the editor.
+Write a conservative **linear polynomial subset**: position/Euler bases and deltas, zero quadratic/cubic coefficients, cumulative position distance as parameter and reciprocal segment distance. The last key has zero coefficients and reciprocal span. This follows the demonstrated evaluator rather than copying uninitialised coefficients from originals. Distance-mode coincident positions remain rejected. Optional timed mode uses positive seconds per segment, native rate1 and independent angle deltas; constant XYZ is valid for turns/holds. The raw evaluator does not rebuild distance coefficients. A one-key path remains a fixed shot. Rotation takes the shortest angular delta. This interpolation differs deliberately from the original debug tool's cubic smoothing and is described as linear in the editor.
 
-The reader preserves every raw float for exact original roundtrip, including unused single-key data. New authored data rejects non-finite values, excessive coordinates/counts, zero-length segments and inconsistent parameter progression. No original file is modified.
+The reader preserves every raw float for exact original roundtrip, including unused single-key data. New authored data rejects non-finite values, excessive coordinates/counts, zero parameter spans and inconsistent parameter progression (zero XYZ is allowed only in explicit timed mode). No original file is modified.
 
 ## REQUIRES NATIVE TEST
 

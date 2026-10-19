@@ -1,0 +1,93 @@
+[
+  {
+    "example": "tutorial",
+    "id": "rcm_tutor",
+    "successful": true,
+    "classes": 5,
+    "class_versions": [
+      "45.3"
+    ],
+    "source_sha256": "3980af804d2d1399fc589c1032db51579e1c79217f8691c6c0a4e4277954b562",
+    "nob_sha256": "9ffa45c2463e08191f1c743406165fd4c0462b186608c884aa4fdf797e912f86",
+    "geometry_included": false,
+    "native_game_test": false
+  },
+  {
+    "example": "mini_chronicle",
+    "id": "rcm_mini",
+    "successful": true,
+    "classes": 7,
+    "class_versions": [
+      "45.3"
+    ],
+    "source_sha256": "602c7c94c00619cd31cae135627ea1f114ec74b0ac9efa599981fedc24083bfc",
+    "nob_sha256": "db0cb98e6a09312c1d174900d8d0adb39817f07287b959e9a16bc0a21e0bf817",
+    "geometry_included": false,
+    "native_game_test": false
+  },
+  {
+    "example": "showcase",
+    "id": "rcm_showcase",
+    "successful": true,
+    "classes": 9,
+    "class_versions": [
+      "45.3"
+    ],
+    "source_sha256": "0eea90b8547f1e91c1cd024ed02d8b78d097f30619b8cfcdddc91970240bce45",
+    "nob_sha256": "c5551e2fd3a1230ab0f5df4cfe735879148f207f6b9529892f19bcbb31c802bd",
+    "geometry_included": false,
+    "native_game_test": false
+  },
+  {
+    "example": "dynamic_lab",
+    "id": "rcm_dynamic",
+    "successful": true,
+    "classes": 2,
+    "class_versions": [
+      "45.3"
+    ],
+    "source_sha256": "271bddf5a1a96174e210ac10cc380aab72db99414cd4b3a2b468fbf8327b3e98",
+    "nob_sha256": "426dec546c6706242d8e84fbe711517ca35005037bc38113e8c51103b2df4807",
+    "geometry_included": false,
+    "native_game_test": false
+  },
+  {
+    "example": "director_acceptance",
+    "id": "rcm_director",
+    "successful": true,
+    "classes": 4,
+    "class_versions": [
+      "45.3"
+    ],
+    "source_sha256": "081cf420bf0d827dabc4948ad993bad37ed483443e9ec27c05fefcd7732d0772",
+    "nob_sha256": "38b4986ac6bc9713bea9f1d7a3d1e74b344838661c430c41ffa294e3128f07ee",
+    "geometry_included": false,
+    "native_game_test": false
+  },
+  {
+    "example": "strict_acceptance",
+    "id": "rcm_strict",
+    "successful": true,
+    "classes": 4,
+    "class_versions": [
+      "45.3"
+    ],
+    "source_sha256": "b1def60564779ed816aa3c9e6c6f553ecfdcfc250cfca3e276d7ccfe9d83a2be",
+    "nob_sha256": "9a38845aa52e60fe630b98bc63380c42828259b17bfc03e07c81c9998d87a194",
+    "geometry_included": false,
+    "native_game_test": false
+  },
+  {
+    "example": "completion_lab",
+    "id": "rcm_complete",
+    "successful": true,
+    "classes": 4,
+    "class_versions": [
+      "45.3"
+    ],
+    "source_sha256": "45a56d4799e719eadbeb103b296b2845a6ad416e3559108ae60a7f46b8c9b2c2",
+    "nob_sha256": "3abf7fe638d274e32de61bb1dfd0782984cbd6a1cbf66e0bd6c91a371b6cd0aa",
+    "geometry_included": false,
+    "native_game_test": false
+  }
+]

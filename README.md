@@ -22,6 +22,8 @@ The original installation remains read-only except its managed **RCM** directory
 - **Dynamic Encounter Lab**: independent format-10 combat acceptance example.
 - **Arrival at the refuge**: a short Director acceptance chronicle. Original door click, named native party staging, dialogue, a travelling, temporary music, spatial sound, a weak rat, quest progress and travel. New native behaviour remains subject to the manual checklist.
 
+**Help → Authoring laboratory** opens the separate optional example for own maps, timed camera turns, native box scripts, dynamic role control and environment zones. See [Authoring completion](docs/AUTHORING_COMPLETION.en.md).
+
 Help opens editable example copies. Existing personal copies are not overwritten when bundled examples change. User projects and resources belong in their workspace, outside the replaceable program directory.
 
 ## Authoring
@@ -32,10 +34,10 @@ Help opens editable example copies. Existing personal copies are not overwritten
 - Compatible original door/prop control without geometry changes. Fixed surfaces do not acquire invented frame animations.
 - Existing encounters plus optional format-10 generators, waves, reinforcements and boss phases.
 - Cinematic cues reuse normal Actions: shots, original or authored paths, gestures, LookAt, movement, sound, effects and events.
-- Own linear NCP paths captured in the 3D viewport, up to 128 points. Original cubic files round-trip without modification. Timed stationary rotation is not safely authored; use a fixed shot for a hold.
+- Own linear NCP paths captured in the 3D viewport, up to 128 points. Original cubic files round-trip without modification. Optional Time per segment allows stationary turns and holds, with explicit durations.
 - Conversation staging is automatic, an existing RCM Entry, or a native conversation group using one to four existing named markers. No raw convstart indices or new marker editor.
 - Normal music/ambient start and stop, plus temporary music/restore. Codex has **one previous-track snapshot**, not a nested stack. RCM guards ownership; it does not invent persistent music-stack state.
-- Positioned sounds/owned loops, entity-attached dynamic lights and demonstrated weather choices. These do not edit baked lighting.
+- Positioned or actor-attached sounds/owned loops, entity-attached dynamic lights, trigger activation sound/light zones and demonstrated weather choices. Optional runtime roomtype reverb needs compatible3D audio. These do not edit baked lighting.
 - References, safe deletion with a validated cascade preview, undo/redo, validation, project export/import, packages and bounded traces.
 - Optional selective Within The Darkness import from a user-supplied NOB. Usable resources and Penthouse are exposed; demo/interface replacements are excluded. Verified shared content belongs to managed RCM launches rather than one chronicle. Mod assets are not shipped in public releases.
 

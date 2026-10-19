@@ -52,7 +52,7 @@ def copy_example(ws, name, clean=False):
     from .input_limits import parse_source
     from .service import source_text
     project=target/'project.yaml';data=parse_source(project.read_text(encoding='utf8'))
-    for kind in ('scripts','textures'):
+    for kind in ('scripts','textures','maps'):
         for resource in data.get('resources',{}).get(kind,[]):
             original=Path(resource['source']);parts=list(original.parts)
             if len(parts)>=3 and parts[:2]==['chronicles',name]:

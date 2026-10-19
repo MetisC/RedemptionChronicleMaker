@@ -35,7 +35,8 @@ class TraitsDialog(QDialog):
     def __init__(self,win,actor):
         super().__init__(win);self.win=win;self.actor_id=actor['id'];self.setWindowTitle(tr('Clan y disciplinas'));self.resize(680,470)
         self.setObjectName('actor_traits_dialog');layout=QVBoxLayout(self);layout.addWidget(QLabel(tr('Sin cambios conserva la configuración de la plantilla.')))
-        data=win.backend.resources['wtd'];current=actor.get('traits',{})
+        from ..actor_traits import catalogue
+        data=catalogue(win.backend.resources);current=actor.get('traits',{})
         self.clan=QComboBox();self.clan.setObjectName('actor_clan');self.clan.addItem(tr('Heredar de la plantilla'),None)
         for r in data['clans']:self.clan.addItem(r['id']+(' · WTD' if r['imported'] else ''),r['id'])
         self.clan.setCurrentIndex(max(0,self.clan.findData(current.get('clan'))));layout.addWidget(self.clan)

@@ -4,6 +4,7 @@ import copy
 from .model import mapping, sequence
 from .camera_presets import CINEMA_PRESETS as PRESETS, shot_arguments
 from .generator import java_string as js, java_vector as jv
+from .dynamic_targets import indices as target_indices
 
 DIRECTOR_ACTIONS={'camera_shot','play_camera_path','camera_fade','camera_flash','camera_filter','clear_camera_effects','look_at','look_at_point','play_motion','stop_actor','set_weather','set_dynamic_light','clear_dynamic_light'}
 WEATHER=('drizzle','lightRain','heavyRain','snow')  # Actual original script arguments.
@@ -44,11 +45,12 @@ def validate_action(kind,value,scene,actors,objects,resources,modern):
         mapping(value,{'actor','motion'},{'actor','motion'},kind)
         if value['actor'] not in actors:raise ValueError('Elige un NPC con motionset conocido')
         from .motions import validate_motion
-        validate_motion(value['motion'],actors[value['actor']]['template'],resources)
+        for template in actors[value['actor']].get('templates',[actors[value['actor']]['template']]):validate_motion(value['motion'],template,resources)
     elif kind=='play_camera_path':
         mapping(value,{'resource','speed'},{'resource','speed'},kind)
         if len([e for e in resources['entries'] if e['extension']=='.ncp' and e['id']==value['resource']])!=1:raise ValueError('Travelling desconocido o ambiguo')
         number(value['speed'],.01,100,'Velocidad del travelling')
+        if any(e.get('timed') and e['id']==value['resource'] for e in resources['entries']) and value['speed']!=1:raise ValueError('Timed camera paths play at speed 1 (seconds)')
     elif kind=='camera_shot':
         mapping(value,{'actor','reference','preset','angle','transition'},{'actor','preset'},kind);actor(value['actor'])
         if value.get('reference'):actor(value['reference'])
@@ -66,7 +68,8 @@ def validate_action(kind,value,scene,actors,objects,resources,modern):
 
 def action_java(kind,value,scene,project):
     if kind not in DIRECTOR_ACTIONS:return None
-    indices={e.id:i for i,e in enumerate(project.entities)}
+    from .dynamic_targets import indices as target_indices
+    indices=target_indices(scene,project)
     def guid(name):return 'player' if name=='Player' else f'things[{indices[name]}]'
     if kind=='set_weather':
         from .world_effects import configurations
@@ -172,6 +175,7 @@ def validate_sequence(row,actors,paths,resources,modern,objects=None):
         matches=[e for e in resources['entries'] if e['extension'].lower()=='.ncp' and e['id']==row['camera_path']]
         if len(matches)!=1:raise ValueError('Recorrido de cámara original desconocido o ambiguo')
         if 'steps' in row:raise ValueError('Elige timeline de planos o recorrido NCP')
+        if matches[0].get('timed') and row.get('path_speed',1)!=1:raise ValueError('Timed camera paths play at speed 1 (seconds)')
     if 'path_speed' in row:
         value=row['path_speed']
         if 'camera_path' not in row or type(value) not in (int,float) or not math.isfinite(value) or not .01<=value<=100:raise ValueError('Velocidad NCP 0.01..100 requiere recorrido de cámara')
@@ -197,7 +201,8 @@ def extend_runtime(java,scene,project):
     java=extend_staging(java,scene,project)
     rows=scene.get('sequences',[])
     if not any(any(k in r for k in ('steps','move_path','camera_path','prop_motion','cues')) for r in rows):return java
-    entities={e.id:i for i,e in enumerate(project.entities)}
+    from .dynamic_targets import indices as target_indices
+    entities=target_indices(scene,project)
     routes=scene.get('paths',[])
     code=[' private int cinema=-1, cinemaAge=0, cinemaStep=-1, cinemaActor=-1; private boolean cinemaMoving=false, cinemaRestored=false;',
           ' private boolean beginCinema(int index) { if(active!=-1 || player==0) return false; releaseCamera(); BeginCutscene(player,0); AIOff(); cinema=index; cinemaAge=0; cinemaStep=-1; cameraPlayer=player; cameraTicks=0; switch(index) {']
@@ -223,6 +228,8 @@ def extend_runtime(java,scene,project):
            ' private void pollCinema() { if(cinema<0) return; switch(cinema) {']
     for i,row in enumerate(rows):
         code.append(f' case {i}:')
+        if str(row['actor']).startswith('dynamic/'):
+            code.append(f' if(!alive({entities[row["actor"]]})) {{ trace("CINEMA_DYNAMIC_TARGET_MISSING"); releaseCamera(); return; }}')
         if 'prop_motion' in row:
             motion=row['prop_motion'];index=entities[motion['object']]
             code.append(f' if(cinemaAge>={math.ceil(motion["at"]/.15)}) {{ if(!local(things[{index}])) {{ trace("CUTSCENE_PROP_MISSING"); releaseCamera(); return; }} float fraction=Math.min(1.0f,Math.max(0.0f,(cinemaAge*0.15f-{float(motion["at"])}f)/{float(motion["duration"])}f)); float[] position={jv(project.entities[index].transform.position)}, delta={jv(motion["translation"])}; for(int axis=0;axis<3;axis++) position[axis]+=delta[axis]*fraction; if(!new CodexThing(things[{index}]).SetPosition(position)) {{ trace("CUTSCENE_PROP_REJECTED"); releaseCamera(); return; }} }}')
@@ -306,7 +313,7 @@ def extend_staging(java,scene,project):
     code=[]
     if any('play_camera_path' in a for a in actions):code.append(' public void pathended(int capture) { trace("CINEMA_PATH_END"); if(active<0 && cameraTicks==0) releaseCamera(); }')
     if motions or scene.get('_director_cues'):
-        count=len(project.entities)
+        count=len(target_indices(scene,project))
         code += [f' private int[] stageGuids=new int[{count}], stageUntil=new int[{count}];',
                  ' private boolean stageMotion(int i,int mode) { if(!alive(i)) { trace("CINEMA_ACTOR_MISSING"); return false; } int guid=things[i]; CodexThing actor=new CodexThing(guid); actor.PlayMotionSetMode(MOTION_STAND,true,30.0f); int duration=actor.PlayMotionSetMode(mode,false,30.0f); if(duration<0) { actor.PlayMotionSetMode(MOTION_STAND,false,30.0f); return false; } stageGuids[i]=guid; stageUntil[i]=ticks+Math.max(1,(duration+149)/150); return true; }',
                  ' private void restStage(int i) { int guid=stageGuids[i]; stageGuids[i]=0; if(local(guid)&&IsActorGuid(guid)&&new CodexActor(guid).GetActorHealth()>0.0f) { new CodexThing(guid).PlayMotionSetMode(MOTION_STAND,true,30.0f); new CodexThing(guid).PlayMotionSetMode(MOTION_STAND,false,30.0f); } }',

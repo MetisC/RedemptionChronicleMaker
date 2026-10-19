@@ -7,7 +7,7 @@ Trabaja en **Campaña → seleccionar secuencia**. No hay otra pestaña principa
 1. Abre Espacio 3D y encuadra la primera vista.
 2. Selecciona una secuencia y pulsa **Crear / editar travelling propio…**. Puedes navegar por el mapa con esa ventana abierta.
 3. Mueve la cámara del visor y pulsa **Punto desde esta vista**. Repite para los demás puntos.
-4. Selecciona un punto para editar posición y orientación. Puedes insertar, actualizar, duplicar, borrar y reordenar. Tras duplicar, mueve el punto: dos posiciones consecutivas no pueden coincidir.
+4. Selecciona un punto para editar posición y orientación. Puedes insertar, actualizar, duplicar, borrar y reordenar. En modo por distancia mueve el punto duplicado; activa Tiempo por tramo si quieres girar o esperar en el mismo sitio.
 5. Acepta. Toda la edición se puede deshacer de una vez. Elige Travelling como tipo de cámara si hace falta y ajusta la velocidad. F5 genera el NCP nativo.
 
 Un plano fijo usa un punto. Un travelling usa interpolación lineal y hasta 128 puntos, el límite real del búfer original. El visor dibuja trayectoria y direcciones; no simula la colisión ni garantiza el encuadre del motor. No se inventa un campo FOV. El recurso recuerda escena y escenario de creación, y se avisa si se usa en otro contexto.
@@ -49,4 +49,7 @@ La cancelación o fin de la película devuelve la música sólo si esa película
 
 ## Cámara sin desplazamiento
 
-Un punto permite mantener un plano fijo. Los NCP propios requieren posiciones sucesivas distintas. Los originales con XYZ repetido también repiten el parámetro y tienen coeficientes cúbicos no triviales; no demuestran un giro estacionario con duración. No se inventa un tramo mínimo. Los originales se conservan y reproducen mediante el motor. Casos nuevos: EMB-MUSIC, EMB-CONV y EMB-NCP en el checklist.
+Activa Tiempo por tramo para giros y esperas estacionarios: duplica el punto, cambia orientación o conserva ambas para esperar, y elige los segundos hasta el siguiente punto. Usa velocidad1 y un máximo total120s. Se escriben polinomios independientes con parámetro temporal, consumidos directamente por el evaluador original. El modo por distancia conserva su restricción. NCP originales intactos. Véase AUTHORING_COMPLETION.md y COMP01.
+
+
+Dynamic actor subjects, attached sounds, activation zones and optional EAX reverb are described in AUTHORING_COMPLETION.md. Role targets resolve the current living GUID; absent/replaced film targets release control. No additional actor manager is created.

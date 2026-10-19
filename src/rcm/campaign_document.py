@@ -1,5 +1,6 @@
 """A scene view holds references into ONE campaign source, never another file."""
 import copy
+import math
 from .document import Document,draft_shape
 from .service import source_text
 from .model import identifier
@@ -47,14 +48,18 @@ class CampaignDocument(Document):
         validate_authoring(data)
         if not isinstance(data.get('resources',{}),dict):raise ValueError('Recursos: requiere objeto')
         for key,rows in data.get('resources',{}).items():
-            if key not in {'templates','ai_profiles','textures','scripts','camera_paths'} or not isinstance(rows,list):raise ValueError('Categoría de recursos inválida')
+            if key not in {'templates','ai_profiles','textures','scripts','camera_paths','maps'} or not isinstance(rows,list):raise ValueError('Categoría de recursos inválida')
             for row in rows:
                 if not isinstance(row,dict) or not isinstance(row.get('id'),str):raise ValueError('Recurso: requiere registro e ID')
                 if key in {'scripts','textures'} and not isinstance(row.get('source'),str):raise ValueError('Recurso: requiere source')
                 if key in {'templates','ai_profiles'} and (not isinstance(row.get('base'),str) or not isinstance(row.get('properties',{}),dict)):raise ValueError('Template/AI: requiere base y propiedades')
                 if key=='camera_paths':
                     from .camera_paths import authored
-                    authored(row.get('points'))
+                    authored(row.get('points'),row.get('timed',False))
+                if key=='maps':
+                    if not isinstance(row.get('name'),str) or not isinstance(row.get('source'),str) or not isinstance(row.get('points'),list) or len(row['points'])>128:raise ValueError('Map: invalid editable structure')
+                    for point in row['points']:
+                        if not isinstance(point,dict) or any(not isinstance(point.get(k),str) for k in ('id','name')) or not isinstance(point.get('position'),list) or len(point['position'])!=2 or any(type(v) not in (int,float) or not math.isfinite(v) for v in point['position']):raise ValueError('Map point: invalid editable structure')
         if not isinstance(data.get('scenes'),list) or not data['scenes']:raise ValueError('Campaña sin escenas')
         def records(value,label):
             if not isinstance(value,list) or any(not isinstance(v,dict) for v in value):raise ValueError(label+': requiere registros')
@@ -75,6 +80,23 @@ class CampaignDocument(Document):
             # Extended conditions are checked by the campaign validator, not the old flag-only shape check.
             view['events']=[]
             draft_shape(view)
+            for record in s.get('actors',[])+s.get('objects',[])+s.get('triggers',[]):
+                script=record.get('native_script')
+                if script is not None:
+                    if not isinstance(script,dict) or not isinstance(script.get('class'),str) or not isinstance(script.get('parameters'),list):raise ValueError('Native script: invalid editable structure')
+                    for parameter in script['parameters']:
+                        if not isinstance(parameter,dict) or parameter.get('type') not in ('integer','float','string','thing','actor','region','item') or 'value' not in parameter:raise ValueError('Native parameter: invalid editable structure')
+                        kind=parameter['type'];value=parameter['value']
+                        if kind=='integer' and type(value) is not int or kind=='float' and (type(value) not in (int,float) or not math.isfinite(value)) or kind not in ('integer','float') and not isinstance(value,(str,type(None))):raise ValueError('Native parameter: invalid value shape')
+                if 'native_region' in record and type(record['native_region']) is not bool:raise ValueError('Native region requires boolean')
+                for kind in ('sound_zone','light_zone'):
+                    if kind in record and not isinstance(record[kind],dict):raise ValueError('Zone: invalid editable structure')
+                    zone=record.get(kind,{})
+                    for key in ('resource','entity','style'):
+                        if key in zone and not isinstance(zone[key],str):raise ValueError('Zone: invalid editable text')
+                    for key in ('volume','min_distance','max_distance','intensity','radius'):
+                        if key in zone and (type(zone[key]) not in (int,float) or not math.isfinite(zone[key])):raise ValueError('Zone: invalid editable number')
+                    if 'color' in zone and (not isinstance(zone['color'],list) or len(zone['color'])!=3 or any(type(v) not in (int,float) or not math.isfinite(v) for v in zone['color'])):raise ValueError('Zone: invalid editable color')
             for conversation in s['conversations']:
                 staging=conversation.get('staging')
                 if staging is not None and not isinstance(staging,(str,dict)):raise ValueError('Puesta en escena: requiere entrada o grupo nativo')
@@ -156,10 +178,13 @@ class CampaignDocument(Document):
         keys={'actors':{'speaker','actor','reference','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol','stop_actor','target'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus','visual'},'conversations':{'default','then','start_conversation','conversation'},'generators':{'generator','start_generator','stop_generator','pause_generator','resume_generator','reset_generator'},'events':{'run_event'},'triggers':{'trigger'},'entries':{'default_entry','staging'},'waypoints':{'waypoint'}}[collection]
         if collection in {'actors','objects'}:keys=keys|{'entity'}
         self._replace(self.campaign['scenes'][self.active],keys,old,new)
-        if collection in {'actors','objects'}:
-            for row in self.data['actors']+self.data['objects']:
+        if collection=='generators':
+            from .dynamic_targets import rename
+            rename(self.campaign['scenes'][self.active],old,new)
+        if collection in {'actors','objects','triggers'}:
+            for row in self.data['actors']+self.data['objects']+self.data['triggers']:
                 for arg in row.get('native_script',{}).get('parameters',[]):
-                    if arg.get('type') in ('actor','thing') and arg.get('value')==old:arg['value']=new
+                    if arg.get('type') in ('actor','thing','region','item') and arg.get('value')==old:arg['value']=new
         if collection=='entries':
             sid=self.campaign['scenes'][self.active]['id']
             for conversation in self.data['conversations']:
@@ -171,7 +196,7 @@ class CampaignDocument(Document):
                         if isinstance(a.get('travel'),dict) and a['travel']['scene']==sid and a['travel']['entry']==old:a['travel']['entry']=new
         if collection=='waypoints':
             scene=self.campaign['scenes'][self.active]
-            for row in self.data['actors']+self.data['objects']:
+            for row in self.data['actors']+self.data['objects']+self.data['triggers']:
                 if 'native_frames' in row:row['native_frames']=[new if p==old else p for p in row['native_frames']]
             for route in scene.get('paths',[]):route['points']=[new if p==old else p for p in route['points']]
             for generator in scene.get('generators',[]):
@@ -188,7 +213,7 @@ class CampaignDocument(Document):
         rows[index]['id']=new
         from .recipes import rename_references
         rename_references(self.campaign,collection,old,new)
-        keys={'quests':{'quest','start_quest','advance_quest','complete_quest'},'scenes':{'jump','scene'}}[collection]
+        keys={'quests':{'quest','start_quest','advance_quest','complete_quest'},'scenes':{'jump','scene','location_visible'}}[collection]
         if collection=='scenes' and self.campaign['entry']==old:self.campaign['entry']=new
         self._replace(self.campaign,keys,old,new)
         if collection=='scenes':

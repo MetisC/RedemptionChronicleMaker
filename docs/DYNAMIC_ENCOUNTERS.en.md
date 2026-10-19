@@ -50,7 +50,7 @@ Living cap 1..64; 256 dynamic actors per scene, 32 generators, 1..32 waves and b
 
 Failures rotate points, trace and retry a bounded number of times. There is no timer per enemy. Health overrides affect instances, not templates; native team overrides do not automatically change AI/invulnerability flags.
 
-This revision supports **clear-before-next-wave**, not overlapping or manually advancing one wave list. Independent generators and events can overlap groups. No arbitrary random-volume placement, new model preview, universal doors, or direct dynamic-role camera targets: phases can launch existing sequences with their ordinary targets.
+This revision supports **clear-before-next-wave**, not overlapping or manually advancing one wave list. Independent generators and events can overlap groups. No arbitrary random-volume placement, new model preview or universal doors. Cameras and actor controls accept dynamic-role targets from the existing roster; phases reuse the same Actions. See AUTHORING_COMPLETION.md.
 
 ## Examples
 

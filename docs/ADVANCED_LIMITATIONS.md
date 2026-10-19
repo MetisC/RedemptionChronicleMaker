@@ -14,9 +14,10 @@ Objetos originales: hay selector y acciones de ocultar/restaurar/retirar props i
 
 CLICK01–08: quedan pendientes en el juego el texto y resaltado, selección/colisión, alcance, diálogo/notas, guardado, reentrada y multijugador de la capa nueva. Se bloquean los enlaces a la propia escena; no se convierten en silencio los triggers de proximidad anteriores.
 
-Strict parity correction: the current eight-column matrix in
-EMBRACE_AUTHORING_PARITY.md supersedes earlier broad coverage claims. EAX,
-general native regions, sound/light boxes, stationary timed camera keys and
-arbitrary code-bearing library import remain explicit limits. Optional new
-controls are implemented with offline evidence, not native acceptance. No 100%
-non-geometry parity or final 1.0 declaration is made.
+Current coverage: EMBRACE_AUTHORING_PARITY.md and AUTHORING_COMPLETION.md.
+Own maps, native box regions/typed links, optional runtime EAX, timed stationary
+camera paths, dynamic-role control and activation sound/light zones are now
+implemented. Literal native box clipping and campaign-specific Player constructor
+binding remain unknown, not proven impossible. Unknown code-bearing mod import
+is intentionally rejected. Offline evidence is not native acceptance; no100% or
+final1.0 claim. COMP01–06 are the short current manual checks.

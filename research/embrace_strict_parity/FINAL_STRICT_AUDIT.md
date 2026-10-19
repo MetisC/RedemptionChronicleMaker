@@ -1,74 +1,14 @@
-# Final strict authoring audit — rc7
+# Auditoría vigente de autoría
 
-Baseline 51982be45c9931495c4655d02239178b053e189a. Current work is isolated on
-codex/strict-authoring-and-difficulty. No original authoring tool or game UI was
-run. This report corrects the earlier generous parity conclusion; it does not
-announce 100% parity or final 1.0. The accepted tutorial remains format 9.
+Matriz completa: docs/EMBRACE_AUTHORING_PARITY.md.
+Evidencia original y límites de escritura: codex_linker_format.md,
+SAFETY_DECISIONS.md, MAPS.md y research/authoring_completion/EVIDENCE.md.
 
-1. **Every material Thing override? Partly.** Foley, motions, AI, hover text,
-   native treasure, inheritance and script removal have normal controls.
-   Parameterised script assignment has typed controls; region-dependent script
-   context is not universally authorable. Generic unknown tags stay readonly.
-2. **Every scene environment property? No.** Music/ambient, volumes, fog
-   mode/RGB/distances, ZClip and paired sky are editable. EAX remains inherited
-   because native activation prioritises the original static scene.
-3. **Reuse a parameterised original script without custom Java? Yes, bounded.**
-   Public real constructors, scalar/entity parameters and native movement frames
-   are available through the inspector. ClassBobbing cargo is the acceptance
-   example. Context-dependent scripts are not guaranteed on arbitrary objects.
-4. **Native treasure? Implemented, native observation pending.** Container-only
-   tag 92 with actual GAME.NTT catalogue, inherit/none and real class choices.
-   No replacement loot implementation. Random rolls require repeated testing.
-5. **Interest spots distinct? Yes.** Native 72-byte group table, selected by AI
-   interestNum, now authored as an optional waypoint role; not ordinary patrols.
-6. **Soundboxes distinct? Yes.** A trigger plus a sound is not strict proof of
-   box/sector semantics. The exact writer remains unsafe/insufficient evidence.
-7. **Lightboxes relevant outside baking? Not conclusively resolved.** Dynamic
-   light Actions work through real APIs, but native box ownership is unproven.
-   This remains an explicit gap rather than a geometry-only dismissal.
-8. **External NOT libraries without Embrace? Yes for selected data.** Normal
-   Settings import selects templates, resolves parents/data and retains local
-   ownership. Settings also removes verified local copies with project/library dependency guards. Unsupported required code fails clearly. No universal mod claim.
-9. **Useful authoring still requiring YAML?** Newly implemented intentions have
-   controls and undo. Missing native box/region capabilities cannot be made safe
-   simply by typing YAML. Manual format edits are not advertised as parity.
-10. **Useful authoring still requiring custom Java? Yes.** Specialised native
-    callback semantics and entirely new gameplay remain advanced scripts.
-    The new typed stock constructor route itself does not require custom Java.
-11. **Must authors launch Embrace?** Not for implemented workflows. We cannot
-    honestly prove the stronger statement that every material native workflow
-    has a safe RCM equivalent. Unsupported native boxes/context remain gaps.
-12. **All unresolved items geometry/build only? No.** EAX, stationary NCP timing,
-    native boxes and regional callback contexts are material uncertainties.
+El cierre actual implementa mapas visuales, regiones caja/links tipados,
+objetivos dinámicos, temporización NCP y la vía nativa roomtype. Zonas sobre
+triggers son una alternativa a soundboxes/lightboxes, no recorte idéntico.
 
-Evidence: inventory and matrix (8 explicit columns), treasure_class.md,
-codex_linker_format.md, SAFETY_DECISIONS.md, environment/interest corpus JSON and
-original disassembly beside them. New code is optional; unconfigured projects
-retain existing generation. Strict acceptance is a separate short quest, not a
-rewrite of tutorial/mini. No third-party assets are redistributed.
-
-Automated results: see build/tests/quality_report.json and test_report.json for
-the most recent complete gate, with native_engine_test=false. Focused tests cover
-291 environments, 64 NSD lossless round-trips, constructor metadata, typed bounds,
-real Codex 45.3 compilation, interface transactions and local library ownership.
-Only the user's in-game observations can close new EMB manual cases.
-
-Maps: eight original NUI map layouts and NSC/NLS point mapping are understood.
-Own illustration/locations/labels and native visibility flags are feasible
-without NIL edits. A normal map editor is not implemented. MAPS.md separates
-that conclusion from existing authored scene/map inheritance.
-
-Post-audit regressions: custom Java must actually inherit Codex and match its
-public constructor; explicit script removal clears inherited custom dispatch.
-Instance resource changes invalidate cached metadata, and animation selectors
-use the effective instance motion set. Synthetic instance templates are hidden
-from normal browsing/base selection. Resource-only refreshes no longer reload
-unrelated level catalogues; full build/deploy fingerprints still verify them.
-Difficulty was then implemented separately; research/combat_difficulty/EVIDENCE.md
-records factors, real APIs and native acceptance limits.
-
-Final delivery: 567 tests passed, zero failures/errors/skips; Ruff and configured
-mypy passed. All six examples compiled against real Codex, JVM45.3. Portable
-source verification matched104 modules; moved fresh EN/ES offscreen probes
-passed. The public ZIP passed its368-file hash audit. delivery.json records
-exact artifacts, source commit and limits. No game process was launched.
+CodexPlayer constructor y payloads completos de cajas siguen incógnitas,
+no imposibilidades demostradas. No hay100% ni aceptación nativa automática.
+El recibo actual es research/authoring_completion/delivery.json; pruebas
+manuales COMP01–06 en docs/AUTHORING_COMPLETION.md. Tutorial y mini intactos.

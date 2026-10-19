@@ -1,0 +1,44 @@
+00406550 sub al, 0x31
+00406552 add byte ptr [eax], al
+00406554 push 0x4090c0
+00406559 push 0x4f67b4
+0040655e call 0x409680
+00406563 push 0x409150
+00406568 push 0x4f67bc
+0040656d call 0x409680
+00406572 push 0x4092e0
+00406577 push 0x4f67c8
+0040657c call 0x409680
+00409150 mov eax, dword ptr [esp + 4]
+00409154 test eax, eax
+00409156 je 0x409183
+00409158 lea ecx, [esp + 4]
+0040915c push ecx
+0040915d push 0x4f63b4
+00409162 push eax
+00409163 call 0x4ddcf7
+00409168 add esp, 0xc
+0040916b cmp eax, 1
+0040916e je 0x409173
+00409170 xor eax, eax
+00409172 ret 
+00409173 mov edx, dword ptr [esp + 4]
+00409177 mov ecx, dword ptr [0x659c88]
+0040917d push edx
+0040917e call 0x49e400
+00409183 mov eax, 1
+00409188 ret 
+0049e400 mov edx, dword ptr [ecx + 0x1830]
+0049e406 test edx, edx
+0049e408 je 0x49e424
+0049e40a mov eax, dword ptr [esp + 4]
+0049e40e cmp eax, 0x1a
+0049e411 jae 0x49e424
+0049e413 mov dword ptr [ecx + 0xf70], eax
+0049e419 push eax
+0049e41a mov eax, dword ptr [edx + 4]
+0049e41d push eax
+0049e41e call dword ptr [0x4eb348]
+0049e424 ret 4
+0x4f67bc b'roomtype'
+0x4f63b4 b'%d'

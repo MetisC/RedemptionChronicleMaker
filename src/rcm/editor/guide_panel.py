@@ -37,6 +37,9 @@ class GuidePanel(QWidget):
         if scene=='wizard':
             from .recipe_wizard import open_wizard
             open_wizard(self.win,kind,ident if ident!='new' else None);return
+        if scene=='resources' and kind=='maps':
+            from .maps import open_maps
+            rows=self.win.doc.campaign.get('resources',{}).get('maps',[]);open_maps(self.win,next((i for i,r in enumerate(rows) if r['id']==ident),0));return
         if scene=='resources' and kind in ('templates','ai_profiles','textures','scripts','camera_paths'):
             panel=self.win.project_resources_panel;index=panel.kind.findData(kind)
             if index>=0:

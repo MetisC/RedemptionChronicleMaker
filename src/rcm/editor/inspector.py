@@ -147,6 +147,8 @@ class Inspector(QWidget):
             if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
                 self.combo(tr('Dificultad de combate'),[(tr('Fácil'),'easy'),(tr('Normal'),'normal'),(tr('Difícil'),'hard'),(tr('Pesadilla'),'nightmare')],chron.get('difficulty','normal'),lambda value:self.set(('chronicle','difficulty'),value),'chronicle_difficulty')
                 self.note(tr('Sólo afecta a enemigos nuevos. Los enemigos ya guardados conservan sus atributos. Inicia una partida nueva después de cambiar la dificultad para obtener un resultado uniforme.'))
+                from .maps import open_maps
+                self.button(tr('Mapas y localizaciones…'),lambda:open_maps(self.win),'chronicle_maps')
             self.note(tr("Cada escena usa un escenario original. Puedes crear varias escenas para contar tu historia. Usa F5 cuando quieras probar tus cambios."))
         elif p == ("level",):
             source = data["level"].get("source", "")
@@ -266,7 +268,7 @@ class Inspector(QWidget):
                     from .campaign_panel import inventory_dialog
                     inventory_dialog(self.win, actor)
                 self.button(tr('Editar inventario inicial…'), inventory, 'actor_inventory')
-                if self.win.backend.resources.get('wtd') and self.win.doc.campaign.get('project_format') in (9,10):
+                if (self.win.backend.resources.get('wtd') or self.win.backend.resources.get('base_traits')) and self.win.doc.campaign.get('project_format') in (9,10):
                     from .wtd import TraitsDialog
                     self.button(tr('Clan y disciplinas…'),lambda:TraitsDialog(self.win,actor).exec(),'actor_traits')
             else:
@@ -379,8 +381,18 @@ class Inspector(QWidget):
         else:
             self.spin(tr('Radio'), t['radius'], lambda v: self.set(p+('radius',), v), 'trigger_radius', True, 1, 1e7)
         self.combo(tr('Activación'), [(tr('Una vez'), True), (tr('Cada entrada'), False)], t.get('once', True), lambda v: self.set(p+('once',), v), 'trigger_once')
+        if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
+            self.combo(tr('Región nativa para scripts'),[(tr('No'),None),(tr('Sí'),True)],True if t.get('native_script') else t.get('native_region'),lambda v:self.set(p+('native_region',),v,True),'trigger_native_region').setEnabled(not bool(t.get('native_script')))
         self.note(tr('CUANDO un jugador entra en el volumen. Configura condiciones y acciones en sus eventos de entrada. La posición indica el centro del volumen.'))
         self.button(tr('Añadir evento de entrada'), self.add_trigger_event, 'trigger_event')
+        if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
+            from .zones import edit_zone
+            self.button(tr('Zona sonora…'),lambda:edit_zone(self.win,t,'sound'),'trigger_sound_zone')
+            self.button(tr('Zona de luz dinámica…'),lambda:edit_zone(self.win,t,'light'),'trigger_light_zone')
+        if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
+            from .native_scripts import edit_native_script
+            self.button(tr('Script nativo de región…'),lambda:edit_native_script(self.win,t),'trigger_native_script')
+            if t.get('native_script'):self.note(tr('Esta caja pertenece al script nativo. Sus callbacks sustituyen los eventos de entrada y salida de RCM.'))
         self.button(tr('Ajustar al suelo'), self.win.spatial.snap_selected, 'snap_ground')
 
     def add_trigger_event(self):

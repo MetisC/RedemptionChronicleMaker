@@ -1,0 +1,2579 @@
+[
+  {
+    "class_": "ActorAIOff_TriggerOn",
+    "constructors": [
+      "(LCodexActor;F)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered"
+    ]
+  },
+  {
+    "class_": "ANZK_14_1",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ANZK_8_4",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ARC1_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexRegion;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ARC2_Prison",
+    "constructors": [
+      "(FLCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ARC3_Erik",
+    "constructors": [
+      "(LCodexPlayer;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ARC3_Gargoyle",
+    "constructors": [
+      "(LCodexThing;)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "ARC4_Main",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "BatFlying",
+    "constructors": [
+      "(FF)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "BROT_29_1_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "BROT_31_1_Guard",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "CARG_32_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexActor;LCodexRegion;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached",
+      "pathended"
+    ]
+  },
+  {
+    "class_": "ClassBobbing",
+    "constructors": [
+      "(LCodexThing;FFF)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "ClassBreakable",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;FFFFFF)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "triggered"
+    ]
+  },
+  {
+    "class_": "ClassDAMagicShop",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "ClassDAWeapShop",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "ClassMDMagicShop",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "ClassMDWeapShop",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "ClassNosferatu",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "ClassWander",
+    "constructors": [
+      "(FFFFFF)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "ClickExit",
+    "constructors": [
+      "(I)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "ClickExitArdan",
+    "constructors": [
+      "(I)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "CNVT_3_1",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexActor;LCodexItem;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached",
+      "pathended"
+    ]
+  },
+  {
+    "class_": "CNVT_3_3",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "CNVT_4_1_Anezka",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "CNVT_7_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ConveyerBelt",
+    "constructors": [
+      "(Ljava/lang/String;II)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "ConveyerHold",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "CTDY_6_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "CTD_BarKeep",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "CTD_ChamberSkulls",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "CTD_Derelict",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "CTD_HavenDoor",
+    "constructors": [
+      "(IF)V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "CTD_Labyrinth",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "CTD_LeComte",
+    "constructors": [
+      "(LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "CTD_Oubliette_Main",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "CTD_SorvenaShop",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "CTD_Temesvar_Main",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexActor;LCodexActor;LCodexActor;LCodexRegion;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "CURI_Sumner",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "DEVN_33_2",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "DEVN_36_1",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "DEVN_Exit",
+    "constructors": [
+      "(LCodexThing;IF)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "DOCK_33_1_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexRegion;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexPlayer;LCodexRegion;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "Door",
+    "constructors": [
+      "(F)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "DoorElevator",
+    "constructors": [
+      "(FLCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "DoorPivotSwitchPivot",
+    "constructors": [
+      "(FFLCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "DoorRegion",
+    "constructors": [
+      "(FFILCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered"
+    ]
+  },
+  {
+    "class_": "DoorSwitch",
+    "constructors": [
+      "(FFLCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "DoorSwitchPivot",
+    "constructors": [
+      "(FFLCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "DoubleDoor",
+    "constructors": [
+      "(FLCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "DoubleDoorPivotSwitchPivot",
+    "constructors": [
+      "(FLCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "DoublePivotDoor",
+    "constructors": [
+      "(IFLCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "EAST_28_4_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexRegion;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "EAST_30_1_Main",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered"
+    ]
+  },
+  {
+    "class_": "EAST_32_1_Main",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "EAST_Otto",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "EGAT_Knights",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "EGAT_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "pathended"
+    ]
+  },
+  {
+    "class_": "EGNT_25_1",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "ExitMessageRemove",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "FAC4_Main",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "FAC4_WindowBreak",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "triggered"
+    ]
+  },
+  {
+    "class_": "FAC4_WindowGib",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;FFFFFF)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "triggered"
+    ]
+  },
+  {
+    "class_": "FeederRat",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "FeederRatClassWander",
+    "constructors": [
+      "(FFFFFFI)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "FLS1_Main",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "FLS2_Libussa",
+    "constructors": [
+      "(LCodexThing;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "FLS2_MeetVuk",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "FLS3_LibussaHelp",
+    "constructors": [
+      "(LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "FLS3_WallOfMemory",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "FlyRegion",
+    "constructors": [
+      "(Ljava/lang/String;F)V"
+    ],
+    "callbacks": [
+      "entered",
+      "pathended"
+    ]
+  },
+  {
+    "class_": "FredVarneyCigar",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "FROG_20_3",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached",
+      "pathended"
+    ]
+  },
+  {
+    "class_": "FROG_Bartender",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "funcBreakable",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;FFF)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "triggered"
+    ]
+  },
+  {
+    "class_": "Generator",
+    "constructors": [
+      "(Ljava/lang/String;FFII)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "GOLDD_4_1",
+    "constructors": [
+      "(LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "GOLD_JosefTunnelsDoor",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "GUNH_Hank",
+    "constructors": [
+      "(LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "HavenRest",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "HavenSave",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "HavenVault",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "HAVN_11_1",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "HAVN_7_4",
+    "constructors": [
+      "(LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "HHX1_23_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "HHX1_Etrius",
+    "constructors": [
+      "(LCodexActor;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "HHX2_23_1",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexThing;LCodexThing;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "HHX3_23_1",
+    "constructors": [
+      "(LCodexThing;LCodexRegion;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "HHX4_23_1",
+    "constructors": [
+      "(LCodexThing;LCodexRegion;LCodexActor;LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "HILL_13_1",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexPlayer;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "HILL_Main",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "HILL_Main2",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "IN4D_Bartender",
+    "constructors": [
+      "(LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ItemGangrelEye",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "ItemNodFragment",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ItemShem",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ItemUtilityFlashlight",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "ItemUtilityTorch",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "JOS1_15_1_Derelict",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "JOS2_GoldenLaneExit",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "JOS3_15_1",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexItem;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "JOS3_15_1_Door",
+    "constructors": [
+      "(F)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "JOS3_15_1_Labyrinth",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "JUDB_7_8",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "Lawmen",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "Lightning",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "LOBY_37_4",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "LOT_FAC4_6_1",
+    "constructors": [
+      "(LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "LOT_GUNH_Hank",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "LOT_LOBY_12_1",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "LOT_LOBY_1_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "LOT_LOBY_2_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "LOT_LOBY_3_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "LOT_LOBY_5_1",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "LOT_LOBY_SlidingDoor",
+    "constructors": [
+      "(LCodexThing;LCodexThing;F)V"
+    ],
+    "callbacks": [
+      "entered",
+      "exited"
+    ]
+  },
+  {
+    "class_": "LOT_NEWM_Emelia",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "LOT_SkinPact",
+    "constructors": [
+      "(LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "LOT_SLUM_7_1",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "LOT_Smashface",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "LOT_SUIT_Main",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "LOT_UTWN_9_1",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "LOT_UTWN_Advance",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "MagicCurtain",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "MON1_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexRegion;LCodexRegion;LCodexRegion;LCodexRegion;LCodexActor;LCodexActor;LCodexRegion;LCodexActor;LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "MON2_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "MON3_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexThing;LCodexItem;LCodexItem;LCodexThing;LCodexRegion;LCodexActor;LCodexItem;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "MON3_MercurioJournal",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "convreached"
+    ]
+  },
+  {
+    "class_": "MultiDoor",
+    "constructors": [
+      "(FILCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "MultiPivotDoor",
+    "constructors": [
+      "(IFIILCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "triggered"
+    ]
+  },
+  {
+    "class_": "MysticSpawner",
+    "constructors": [
+      "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "NEWM_Emelia",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "NQTR_11_1",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexActor;LCodexRegion;LCodexThing;LCodexActor;LCodexRegion;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "NQTR_14_3",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "NRTH_23_1",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "OLDT_11_1",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "OLDT_18_1",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "OLDT_25_1",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "OLDT_7_1",
+    "constructors": [
+      "(LCodexRegion;LCodexRegion;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "OLDT_7_4",
+    "constructors": [
+      "(LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered"
+    ]
+  },
+  {
+    "class_": "OLDT_7_7",
+    "constructors": [
+      "(LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "OLDT_EastGateClickExit",
+    "constructors": [
+      "(I)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "OLDT_Libussa",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ORDR_Orvus",
+    "constructors": [
+      "(LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "ORSI_20_5_MeetOrsi",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached",
+      "pathended"
+    ]
+  },
+  {
+    "class_": "ORSI_37_4",
+    "constructors": [
+      "(LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "OTDY_4_1",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "OTDY_6_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "OUTR_Main",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "ParticleMover",
+    "constructors": [
+      "(LCodexThing;F)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "Pedestrian",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "PivotDoor",
+    "constructors": [
+      "(IF)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "player_christof",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "player_pink",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "convreached"
+    ]
+  },
+  {
+    "class_": "PointSound",
+    "constructors": [
+      "(Ljava/lang/String;FFIII)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "PRIN_14_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "PRIN_16_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "RegionAnyDamage",
+    "constructors": [
+      "(Ljava/lang/String;F)V"
+    ],
+    "callbacks": [
+      "entered",
+      "exited"
+    ]
+  },
+  {
+    "class_": "RegionExit",
+    "constructors": [
+      "(I)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "RegionProjectileAtThing",
+    "constructors": [
+      "(LCodexThing;LCodexThing;Ljava/lang/String;IIFIF)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "RegionTrigger",
+    "constructors": [
+      "(LCodexThing;)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "RegionTriggerRotate",
+    "constructors": [
+      "(LCodexThing;IF)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "RegionTriggerSound",
+    "constructors": [
+      "(Ljava/lang/String;FFIIII)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "RotateAlways",
+    "constructors": [
+      "(IFI)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "RpgConversation",
+    "constructors": [
+      "(Ljava/lang/String;Ljava/lang/String;I)V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "SecretDoorSwitch",
+    "constructors": [
+      "(FLCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "SET1_29_2_Worship",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SET2_29_2_Setites",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SET4_29_2_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SET4_31_1_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SEW1_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexThing;LCodexThing;LCodexThing;LCodexActor;LCodexActor;LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SEW1_Subway",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "SEW2_ElectricPlate",
+    "constructors": [
+      "(LCodexThing;FLCodexThing;F)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "triggered"
+    ]
+  },
+  {
+    "class_": "SEW2_ElectricVertical",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;F)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "SEW2_Main",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexRegion;LCodexRegion;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "exited",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SEW3_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexThing;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SEW4_Main",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SIM1_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexRegion;LCodexActor;LCodexRegion;LCodexActor;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SIM1_SIM2Blockade",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "SIM2_AltExitToSIM1",
+    "constructors": [
+      "(I)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "SIM2_Main",
+    "constructors": [
+      "(LCodexThing;)V"
+    ],
+    "callbacks": [
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SIM3_WaterWheel",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "SIM4_Main",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexRegion;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SMTY_JiriShop",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SMYD_4_1",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "SOC1_DataPrintout1",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "SOC1_DataPrintout2",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "SOC1_DataPrintout3",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "SOC1_Father",
+    "constructors": [
+      "(LCodexRegion;LCodexThing;LCodexThing;LCodexThing;LCodexThing;F)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SOC3_Awaken",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "SOC3_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexRegion;LCodexRegion;LCodexActor;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SOC3_WorkerJournal1",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "SOC3_WorkerJournal2",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "SOC_FirstGun",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SOUT_20_1_HausGate",
+    "constructors": [
+      "(LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SOUT_20_1_HausLook",
+    "constructors": [
+      "(LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "pathended"
+    ]
+  },
+  {
+    "class_": "STE1_21_1",
+    "constructors": [
+      "(LCodexThing;IF)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "STE1_Door3Levers",
+    "constructors": [
+      "(FLCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "STE1_Pendulum",
+    "constructors": [
+      "(LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "exited"
+    ]
+  },
+  {
+    "class_": "STE1_SerenaBurn",
+    "constructors": [
+      "(LCodexThing;)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "STE2_FiveLevers",
+    "constructors": [
+      "(FLCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "STE3_21_1",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexThing;LCodexRegion;LCodexRegion;LCodexRegion;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "exited",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "STE3_LutherGlass",
+    "constructors": [
+      "(FLCodexThing;LCodexThing;LCodexThing;LCodexActor;LCodexRegion;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "triggered",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "STHM_4_1",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "STHM_6_1",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "StingerSound",
+    "constructors": [
+      "(Ljava/lang/String;FFIIIFF)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "StingerSoundMultiWav",
+    "constructors": [
+      "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;FFIFF)V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "STOR_38_1_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "SwitchDoubleDoor",
+    "constructors": [
+      "(FLCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "Teleporter",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "TeleportPartyToEntrance",
+    "constructors": [
+      "(I)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "entered"
+    ]
+  },
+  {
+    "class_": "TEN1_28_1_MeetPink",
+    "constructors": [
+      "(LCodexPlayer;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "TEN1_Bartender",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "TEU1_22_1_Door",
+    "constructors": [
+      "(FFLCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "TEU2_22_1_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexRegion;LCodexItem;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "TEU3_22_1_Door",
+    "constructors": [
+      "(F)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "TEU4_22_1_Door",
+    "constructors": [
+      "(FLCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked"
+    ]
+  },
+  {
+    "class_": "TEU4_22_1_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "TOL1_30_1_Main",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "TOL1_guillotine",
+    "constructors": [
+      "(LCodexThing;F)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "TOL4_30_1_Main",
+    "constructors": [
+      "(LCodexItem;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "TorchBearer",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "TrapCloseRoom",
+    "constructors": [
+      "(LCodexThing;LCodexThing;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered"
+    ]
+  },
+  {
+    "class_": "TrapCloseRoom2",
+    "constructors": [
+      "(LCodexThing;LCodexThing;IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;LCodexThing;LCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered"
+    ]
+  },
+  {
+    "class_": "TrapFloorPlateZap",
+    "constructors": [
+      "(LCodexThing;ILCodexThing;Ljava/lang/String;III)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered"
+    ]
+  },
+  {
+    "class_": "TrapRegionProjectile",
+    "constructors": [
+      "(LCodexThing;Ljava/lang/String;IFIF)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "TrapRegionProjectile2",
+    "constructors": [
+      "(LCodexThing;Ljava/lang/String;Ljava/lang/String;IFF)V"
+    ],
+    "callbacks": [
+      "entered"
+    ]
+  },
+  {
+    "class_": "triggerMult",
+    "constructors": [
+      "(ILCodexThing;LCodexThing;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "triggered"
+    ]
+  },
+  {
+    "class_": "UNIV_14_1",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexActor;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "UNIV_14_3",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "UNIV_18_1",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "UNIV_25_1",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "UNIV_7_7",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexPlayer;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "UNIV_8_1",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "UNIV_9_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "UNOR_UnornaShop",
+    "constructors": [
+      "(LCodexThing;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "UTWN_38_1_Main",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "UTWN_40_1_OutsideCathedral",
+    "constructors": [
+      "(LCodexThing;LCodexThing;LCodexThing;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered"
+    ]
+  },
+  {
+    "class_": "ViennaChronicle",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "VYC1_25_1",
+    "constructors": [
+      "(LCodexActor;LCodexActor;LCodexActor;LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "VYC3_25_1",
+    "constructors": [
+      "(LCodexActor;LCodexThing;IF)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "pathended"
+    ]
+  },
+  {
+    "class_": "VYC4_25_1",
+    "constructors": [
+      "(LCodexRegion;LCodexActor;LCodexActor;LCodexThing;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "VYSM_Mob",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "WalkCycle",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "WalkCycleLawmen",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "WAR1_Main",
+    "constructors": [
+      "(LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "WAR1_Thorne",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;LCodexActor;LCodexActor;LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "WAR3_Main",
+    "constructors": [
+      "(LCodexRegion;LCodexPlayer;LCodexThing;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "WEAP_Friedrich",
+    "constructors": [
+      "(LCodexActor;)V"
+    ],
+    "callbacks": [
+      "clicked",
+      "beginscene",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "Weather",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene"
+    ]
+  },
+  {
+    "class_": "WEST_20_5_EnterParty",
+    "constructors": [
+      "(LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "WEST_28_1_Main",
+    "constructors": [
+      "(LCodexActor;LCodexRegion;)V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "entered",
+      "convreached"
+    ]
+  },
+  {
+    "class_": "WEST_28_4_Main",
+    "constructors": [
+      "()V"
+    ],
+    "callbacks": [
+      "beginscene",
+      "convreached"
+    ]
+  }
+]

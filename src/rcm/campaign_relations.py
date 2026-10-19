@@ -7,6 +7,9 @@ def graph(root):
     for qi,q in enumerate(root.get('quests',[])):index[('quest',q['id'])]=('quests',qi)
     for i,t in enumerate(root.get('resources',{}).get('templates',[])):index[('templates',t['id'])]=('resources','templates',i)
     for i,t in enumerate(root.get('resources',{}).get('camera_paths',[])):index[('camera_paths',t['id'])]=('resources','camera_paths',i)
+    for mi,row in enumerate(root.get('resources',{}).get('maps',[])):
+        index[('maps',row['id'])]=('resources','maps',mi)
+        for pi,point in enumerate(row['points']):index[('map_point',row['id']+'/'+point['id'])]=('resources','maps',mi,'points',pi)
     for kind in ('ai_profiles','scripts','textures'):
         for i,t in enumerate(root.get('resources',{}).get(kind,[])):index[(kind,t['id'])]=('resources',kind,i)
     for alias in root.get('state',{}).get('flags',{}):index[('flag',alias)]=('state','flags',alias)
@@ -24,11 +27,14 @@ def graph(root):
             for i,v in enumerate(value):scan(v,path+(i,),source,local)
         elif isinstance(value,dict):
             for k,v in value.items():
+                if k=='map_location' and isinstance(v,dict):
+                    target=index.get(('map_point',v.get('map','')+'/'+v.get('point','')))
+                    if target:links.append(Link(source,target,'map_location',path+(k,)))
                 if k=='native_script' and isinstance(v,dict):
                     target=index.get(('scripts',v.get('class')))
                     if target:links.append(Link(source,target,'native script class',path+(k,'class')))
                     for pi,arg in enumerate(v.get('parameters',[])):
-                        if isinstance(arg,dict) and arg.get('type') in ('actor','thing'):
+                        if isinstance(arg,dict) and arg.get('type') in ('actor','thing','region','item'):
                             target=local.get(('entity',arg.get('value')))
                             if target:links.append(Link(source,target,'native script parameter',path+(k,'parameters',pi,'value')))
                 if k=='native_frames' and isinstance(v,list):
@@ -43,7 +49,7 @@ def graph(root):
                     for category,name in [('scene',v.get('scene')),('arrival',str(v.get('scene'))+'.'+str(v.get('entry')))]:
                         target=index.get((category,name))
                         if target:links.append(Link(source,target,'travel',path+(k,)))
-                category={'reference':'actors','sequence':'sequences','move_path':'paths','focus':'objects','object':'objects','speaker':'actors','actor':'actors','actor_alive':'actors','entity_exists':'entity','item':'objects','item_global':'objects','owns_item':'objects','conversation':'conversations','default':'conversations','then':'conversations','trigger':'triggers','encounter':'encounters','quest':'quest','flag':'flag','when_flag':'flag','generator':'generators','visual':'objects','template':'templates'}.get(k)
+                category={'reference':'actors','sequence':'sequences','move_path':'paths','focus':'objects','object':'objects','speaker':'actors','actor':'actors','actor_alive':'actors','entity_exists':'entity','item':'objects','item_global':'objects','owns_item':'objects','conversation':'conversations','default':'conversations','then':'conversations','trigger':'triggers','encounter':'encounters','quest':'quest','flag':'flag','when_flag':'flag','generator':'generators','visual':'objects','template':'templates','location_visible':'scene','scene':'scene'}.get(k)
                 category={'camera_path':'camera_paths','staging':'entries','target':'actors','waypoint':'waypoints','stop_actor':'actors','entity':'entity'}.get(k,category)
                 if k=='ai':category='ai_profiles'
                 if k=='script':category='scripts'
@@ -68,7 +74,7 @@ def graph(root):
         for k in ('actors','objects','triggers','conversations','events','encounters','sequences','entries','waypoints','paths','generators'):
             for i,row in enumerate(s.get(k,[])):
                 local[(k,row['id'])]=('scenes',si,k,i)
-                if k in ('actors','objects'):local[('entity',row['id'])]=('scenes',si,k,i)
+                if k in ('actors','objects') or k=='triggers' and (row.get('native_region') or row.get('native_script')):local[('entity',row['id'])]=('scenes',si,k,i)
         def sound_definitions(value,path):
             if isinstance(value,list):
                 for i,child in enumerate(value):sound_definitions(child,path+(i,))
@@ -77,6 +83,12 @@ def graph(root):
                 if isinstance(sound,dict) and sound.get('loop') is True:local.setdefault(('sound_loop',sound.get('id')),[]).append(path)
                 for key,child in value.items():sound_definitions(child,path+(key,))
         sound_definitions(s,('scenes',si))
+        from .dynamic_targets import candidates
+        for key,row in candidates(s).items():
+            target=local.get(('generators',s['generators'][row['generator']]['id']))
+            if target:
+                for category in ('actors','entity'):local[(category,key)]=target
+        if s.get('map_location'):scan({'map_location':s['map_location']},('scenes',si),('scenes',si),local)
         for k in ('actors','objects','triggers','conversations','events','encounters','sequences','entries','waypoints','paths','generators'):
             for i,row in enumerate(s.get(k,[])):
                 source=('scenes',si,k,i);scan(row,source,source,local)

@@ -27,6 +27,8 @@ class NativeScriptDialog(QDialog):
         def discard():
             if self.frame_list.currentRow()>=0:self.frames.pop(self.frame_list.currentRow());refresh()
         add.clicked.connect(append);remove.clicked.connect(discard);refresh()
+        if entity in win.doc.data.get('triggers',[]):
+            self.frame_list.setVisible(False);self.point.setEnabled(False);add.setEnabled(False);remove.setEnabled(False)
         buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Ok|QDialogButtonBox.StandardButton.Cancel);buttons.accepted.connect(self.apply);buttons.rejected.connect(self.reject);layout.addWidget(buttons)
     def populate(self):
         while self.form.rowCount():self.form.removeRow(0)
@@ -35,9 +37,11 @@ class NativeScriptDialog(QDialog):
         record=self.scripts[name];values=self.current.get('parameters',[]) if self.current.get('class')==name else []
         for i,parameter in enumerate(record['parameters']):
             kind=parameter['type'];value=values[i]['value'] if i<len(values) else parameter.get('default',0 if kind in ('integer','float') else '')
-            if kind in ('actor','thing'):
+            if kind in ('actor','thing','region','item'):
                 control=QComboBox();control.addItem(tr('Selecciona una entidad…'),None)
-                rows=self.win.doc.data['actors']+([] if kind=='actor' else self.win.doc.data['objects'])
+                scene=self.win.doc.campaign['scenes'][self.win.doc.active]
+                kinds={r['id']:r['kind'] for r in self.win.backend.resources['templates']}
+                rows=(scene.get('triggers',[]) if kind=='region' else [r for r in scene['objects'] if kinds.get(r['template']) in ('items','weapons','armour')] if kind=='item' else scene['actors']+([] if kind=='actor' else scene['objects']+[r for r in scene.get('triggers',[]) if r.get('native_region') or r.get('native_script')]))
                 for row in rows:control.addItem(row['name']+' · '+row['id'],row['id'])
                 control.setCurrentIndex(max(0,control.findData(value)));control.setToolTip(control.currentText());control.currentTextChanged.connect(control.setToolTip)
             elif kind=='integer':control=QSpinBox();control.setRange(-2147483648,2147483647);control.setValue(value)
@@ -47,27 +51,29 @@ class NativeScriptDialog(QDialog):
         self.form.addRow(QLabel(record['descriptor']))
     def apply(self):
         try:
-            root=self.win.doc.snapshot();scene=root['scenes'][self.win.doc.active];row=next(r for r in scene['actors']+scene.get('objects',[]) if r['id']==self.entity['id']);name=self.choose.currentData()
+            root=self.win.doc.snapshot();scene=root['scenes'][self.win.doc.active];row=next(r for r in scene['actors']+scene.get('objects',[])+scene.get('triggers',[]) if r['id']==self.entity['id']);name=self.choose.currentData()
             if self.choose.currentText()!=self.choose.itemText(self.choose.currentIndex()):raise ValueError(tr('Selecciona un script de la lista'))
             if self.frames:row['native_frames']=list(self.frames)
             else:row.pop('native_frames',None)
             if name is None:row.pop('native_script',None)
             else:
-                args=[dict(type=kind,value=control.currentData() if kind in ('thing','actor') else control.text() if kind=='string' else control.value()) for kind,control in self.controls]
+                args=[dict(type=kind,value=control.currentData() if kind in ('thing','actor','region','item') else control.text() if kind=='string' else control.value()) for kind,control in self.controls]
                 row['native_script']=dict(class_=name,parameters=args);row['native_script']['class']=row['native_script'].pop('class_')
-                native={row['id']}|{arg['value'] for arg in args if arg['type'] in ('thing','actor')}
+                for arg in args:
+                    if arg['type']=='region':next(t for t in scene['triggers'] if t['id']==arg['value'])['native_region']=True
+                native={row['id']}|{arg['value'] for arg in args if arg['type'] in ('thing','actor','region','item')}
                 for event in scene['events']:
                     if event['when']=='scene_start' and not event.get('conditions'):event['actions']=[a for a in event['actions'] if a.get('spawn') not in native]
                 scene['events'][:]=[e for e in scene['events'] if e['actions']]
                 from ..native_scripts import placement
-                placement(scene,self.scripts)
+                placement(scene,self.scripts,{r['id']:r['kind'] for r in self.win.backend.resources['templates']})
             if name is None:
                 if self.frames:
                     for event in scene['events']:
                         if event['when']=='scene_start' and not event.get('conditions'):event['actions']=[a for a in event['actions'] if a.get('spawn')!=row['id']]
                     scene['events'][:]=[e for e in scene['events'] if e['actions']]
                 from ..native_scripts import placement
-                placement(scene,self.scripts)
+                placement(scene,self.scripts,{r['id']:r['kind'] for r in self.win.backend.resources['templates']})
             self.win.doc.data=copy.deepcopy(root);self.win.changed(True);self.accept()
         except (ValueError,TypeError,KeyError) as error:QMessageBox.warning(self,tr('Revisa el script'),diagnostic(error))
 

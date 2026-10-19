@@ -133,7 +133,7 @@ Los casos siguientes siguen MANUAL RUNTIME TEST REQUIRED. El usuario sólo confi
 | EMB-NCP-01 | Reproducir oldtownday/prague_3_3_bed originales en su geometría. Observar qué hace con claves repetidas. |
 | EMB-NCP-02 | Un punto propio mantiene plano fijo durante la secuencia y devuelve el control. |
 | EMB-NCP-03 | Trasladarse entre puntos distintos cambiando orientación. Comprobar extremos, giro corto y encuadre. |
-| EMB-NCP-04 | Intentar posiciones consecutivas iguales y Euler distinto: validación clara, sin archivo inválido ni giro temporizado inventado. |
+| EMB-NCP-04 | En modo por distancia, posiciones consecutivas iguales se rechazan; en Tiempo por tramo probar giro y espera estacionarios con duración explícita (COMP01). |
 | EMB-NCP-05 | Comparar velocidades, cancelar/terminar y repetir. Registrar clipping y devolución del control; el preview no acredita el render nativo. |
 
 
@@ -145,7 +145,7 @@ compilation, readback and Qt tests do not certify any native result.
 
 - EMB-ENV-01: change initial music/ambient volume, silence, linear fog RGB/range,
   ZClip and a compatible paired sky through Level > Environment. Reopen project;
-  test initial scene, re-entry and save/load. EAX is inherited, not editable.
+  test initial scene, re-entry and save/load. EAX inherits unless an optional roomtype override is selected; see COMP03 and compatible provider requirement.
 - EMB-TEMPLATE-01: edit Elena's instance hover/Foley; verify other instances keep
   their template values. Undo/redo, save/reopen/export. Use model-compatible NMS.
 - EMB-TREASURE-01: break/open class-230 supply barrel and inherited comparison;
@@ -181,3 +181,10 @@ same weak enemy in Normal, Easy, Hard and Nightmare; do not overwrite your saves
   to start a new game for consistent balance; no save migration is promised.
 - DIFF06: if testing multiple clients, verify host-only initialisation and native
   stat replication. Offline doubles do not certify network combat/persistence.
+
+
+## Prioridad actual: laboratorio de autoría
+
+COMP01–06 en AUTHORING_COMPLETION.md son las seis comprobaciones cortas nuevas.
+Siguen pendientes hasta observación del usuario. No sustituyen los casos DYN/EMB
+ni acreditan red, restore nativo o GPU/DPI a partir de Qt/doubles/compilación.

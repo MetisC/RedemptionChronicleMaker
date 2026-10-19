@@ -1009,6 +1009,9 @@ class MainWindow(QMainWindow):
 
     def navigate_reference(self, path):
         if path:
+            if tuple(path[:2])==('resources','maps'):
+                from .maps import open_maps
+                open_maps(self,path[2] if len(path)>2 else 0,path[4] if len(path)>4 and path[3]=='points' else 0);return
             if path[0]=='authoring':
                 self.show_recipe(recipe_id=self.doc.campaign['authoring']['recipes'][path[2]]['id']);return
             from .deletion import editable_reference

@@ -347,11 +347,13 @@ def validate_traits(actor,resources):
     if 'traits' not in actor:return
     from .model import mapping
     value=mapping(actor['traits'],{'clan','disciplines'},label='actor.traits')
-    if not resources.get('wtd'):raise ValueError('Importa Within The Darkness en Configuración para editar clanes y disciplinas')
-    if 'clan' in value and value['clan'] not in {r['id'] for r in resources['wtd']['clans']}:raise ValueError('Elige un clan del contenido importado')
+    from .actor_traits import catalogue
+    data=catalogue(resources)
+    if not data:raise ValueError('No hay definiciones de clanes y disciplinas disponibles')
+    if 'clan' in value and value['clan'] not in {r['id'] for r in data['clans']}:raise ValueError('Elige un clan disponible')
     powers=value.get('disciplines',{})
     if not isinstance(powers,dict) or len(powers)>64:raise ValueError('Las disciplinas del actor admiten un máximo de 64 entradas')
-    known={r['id'] for r in resources['wtd']['disciplines']}
+    known={r['id'] for r in data['disciplines']}
     for name,level in powers.items():
         if name not in known or type(level) is not int or not 0<=level<=5:raise ValueError('Elige una disciplina importada y un nivel de 0 a 5')
 

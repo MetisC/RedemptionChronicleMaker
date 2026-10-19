@@ -140,6 +140,7 @@ class Scene:
     parameters: dict[int,list] | None = None
     frames: dict[int,list[bytes]] | None = None
     interest_spots: list[bytes] | None = None
+    regions: dict[int,list[int]] | None = None
 
     @classmethod
     def read(cls, data: bytes):
@@ -149,7 +150,7 @@ class Scene:
         if n > 100000:
             raise ValueError("Número excesivo de entidades")
         if u32(data,76):raise ValueError('NSD: header string table outside supported subset')
-        entities, p, brushes, parameters, frames = [], 84, {}, {}, {}
+        entities, p, brushes, parameters, frames, regions = [], 84, {}, {}, {}, {}
         for _ in range(n):
             tags, p = read_tags(data, p)
             if p + 12 > len(data):raise ValueError('NSD entity truncated')
@@ -171,8 +172,14 @@ class Scene:
                 expected=box_planes([*body.bounds[0],*body.bounds[1]])
                 if data[p:p+len(expected)]!=expected:raise ValueError('NSD: collision planes outside generated subset')
                 p+=len(expected);brushes[len(entities)]=data[start:p]
-            if data[p:p+8]!=bytes(8):raise ValueError('NSD: region/lighting blocks outside generated subset')
-            p+=8
+            count=u32(data,p);p+=4
+            if count:
+                if count>10000 or p+count*4>len(data):raise ValueError('NSD: invalid region sector count')
+                sectors=list(struct.unpack_from('<'+str(count)+'I',data,p));p+=count*4
+                if len(set(sectors))!=len(sectors) or any(s>=100000 for s in sectors):raise ValueError('NSD: invalid region sector links')
+                regions[len(entities)]=sectors
+            if u32(data,p):raise ValueError('NSD: lighting blocks outside generated subset')
+            p+=4
             entities.append(tags)
         entrances=[]
         if len(data)-p>=192 and data[p:p+4]==bytes(4):
@@ -202,7 +209,7 @@ class Scene:
                 data=data[:p+12]+bytes(4)+data[p+16+count*60:]
         if len(data) - p != 192:
             raise ValueError("NSD con bloques variables: fuera del subconjunto Fase 1")
-        return cls(cstring(data[8:40]), cstring(data[40:72]), entities, data[p:], data[:84],brushes or None,entrances or None,conversations or None,parameters or None,frames or None,interests or None)
+        return cls(cstring(data[8:40]), cstring(data[40:72]), entities, data[p:], data[:84],brushes or None,entrances or None,conversations or None,parameters or None,frames or None,interests or None,regions or None)
 
     def encode(self):
         if len(self.environment) != 192:
@@ -221,6 +228,8 @@ class Scene:
         chunks=[]
         parameters=self.parameters or {}
         frames=self.frames or {}
+        regions=self.regions or {}
+        if any(type(i) is not int or not 0<=i<len(self.entities) or not sectors or len(sectors)>10000 or len(set(sectors))!=len(sectors) or any(type(s) is not int or not 0<=s<100000 for s in sectors) for i,sectors in regions.items()):raise ValueError('NSD: invalid region sector links')
         if any(type(i) is not int or not 0<=i<len(self.entities) or not 1<=len(rows)<=4096 or any(len(r)!=24 for r in rows) for i,rows in frames.items()):raise ValueError('NSD: invalid movement frame count or width')
         if any(type(i) is not int or not 0<=i<len(self.entities) or not 1<=len(rows)<=16 for i,rows in parameters.items()):raise ValueError('NSD: invalid parameter entity or count')
         for i,tags in enumerate(self.entities):
@@ -233,7 +242,8 @@ class Scene:
             args=parameters.get(i,[])
             motion=frames.get(i,[])
             prefix=struct.pack('<I',len(motion))+b''.join(motion)+struct.pack('<I',len(args))+b''.join(row.encode() for row in args)
-            chunks.append(encode_tags(tags)+prefix+(struct.pack('<I',1)+body+bytes(8) if body is not None else bytes(12)))
+            sectors=regions.get(i,[]);links=struct.pack('<I',len(sectors))+b''.join(struct.pack('<I',s) for s in sectors)+bytes(4)
+            chunks.append(encode_tags(tags)+prefix+(struct.pack('<I',1)+body if body is not None else bytes(4))+links)
         environment=self.environment
         if self.conversation_starts:
             from .native_arrivals import validate_record

@@ -3,7 +3,7 @@ import re
 import struct
 from .classfile_limits import inspect_class
 
-TYPES={'I':('integer',1),'F':('float',2),'Ljava/lang/String;':('string',7),'LCodexThing;':('thing',3),'LCodexActor;':('actor',8)}
+TYPES={'I':('integer',1),'F':('float',2),'Ljava/lang/String;':('string',7),'LCodexThing;':('thing',3),'LCodexActor;':('actor',8),'LCodexRegion;':('region',5),'LCodexItem;':('item',10)}
 _catalogues={}
 
 
@@ -76,7 +76,7 @@ def constructors(data):
             label=labels[i] if len(labels)==len(tokens) else 'Parameter '+str(i+1)
             title,separator,default=label.partition(';')
             parameter=dict(type=TYPES[t][0],native_type=TYPES[t][1],label=title)
-            if separator and parameter['type'] not in ('actor','thing'):
+            if separator and parameter['type'] not in ('actor','thing','region','item'):
                 try:
                     value=int(default) if t=='I' else float(default) if t=='F' else default
                     from .script_parameters import authored
@@ -109,10 +109,20 @@ def catalogue(ws,resources):
     return result
 
 
-def placement(scene,scripts):
+def placement(scene,scripts,kinds=None):
     """Validate all native targets before the generator can write entity indices."""
-    rows=scene.get('actors',[])+scene.get('objects',[]);index={r['id']:r for r in rows};native=set()
+    from .native_regions import active as regions,validate as validate_regions
+    validate_regions(scene)
+    rows=scene.get('actors',[])+scene.get('objects',[])+regions(scene);index={r['id']:r for r in rows};native={r['id'] for r in regions(scene)}
     points={w['id']:w for w in scene.get('waypoints',[])}
+    def actions(value):
+        if isinstance(value,list):
+            for child in value:yield from actions(child)
+        elif isinstance(value,dict):
+            if 'actions' in value:yield from value['actions']
+            for key,child in value.items():
+                if key!='actions':yield from actions(child)
+    all_actions=list(actions(scene))
     for row in rows:
         if 'native_frames' not in row:continue
         frames=row['native_frames']
@@ -132,11 +142,13 @@ def placement(scene,scripts):
             mapping(argument,{'type','value'},{'type','value'},'Parámetro nativo')
             if argument['type']!=param['type']:raise ValueError('Script nativo: tipo distinto al constructor original')
             arg=argument['value']
-            if param['type'] in ('actor','thing'):
+            if param['type'] in ('actor','thing','region','item'):
                 # Although -1 is a proven native null, stock constructors often
                 # dereference it immediately. Normal authoring requires a link.
                 if not isinstance(arg,str) or arg not in index:raise ValueError('Script nativo: referencia local ausente')
                 if param['type']=='actor' and arg not in {a['id'] for a in scene.get('actors',[])}:raise ValueError('Script nativo requiere un actor')
+                if param['type']=='region' and arg not in {r['id'] for r in regions(scene)}:raise ValueError('Native script requires a native region')
+                if param['type']=='item' and arg not in {r['id'] for r in scene.get('objects',[]) if r.get('_native_item') or (kinds or {}).get(r.get('template')) in ('items','weapons','armour')}:raise ValueError('Native script requires an item template')
                 native.add(arg)
             from .script_parameters import authored
             authored(param['native_type'],arg,{name:i for i,name in enumerate(index)})
@@ -151,8 +163,7 @@ def placement(scene,scripts):
         if row.get('conversation') or row.get('inventory') or row.get('quest_item') or row.get('interaction'):raise ValueError('Script nativo: usa una entidad sin conversación, inventario ni interacción RCM')
         if any(name in a.get('inventory',[]) for a in scene.get('actors',[])):raise ValueError('Script nativo: un objeto de inventario no se coloca en la escena')
         if any(name in g.get('actors',[]) for g in scene.get('encounters',[])) or any(name==g.get('boss',{}).get('actor') for g in scene.get('generators',[])):raise ValueError('Script nativo: no puede pertenecer a un encuentro')
-        for event in scene.get('events',[]):
-            if event.get('actor')==name or event.get('object')==name or any(a.get('spawn')==name or a.get('give_item')==name for a in event.get('actions',[])):raise ValueError('Script nativo: se crea al cargar; retira su acción de creación o interacción RCM')
+        if any(event.get('actor')==name or event.get('object')==name for event in scene.get('events',[])) or any(a.get('spawn')==name or a.get('give_item')==name or isinstance(a.get('actor_inventory'),dict) and a['actor_inventory'].get('item')==name for a in all_actions):raise ValueError('Script nativo: se crea al cargar; retira su acción de creación o interacción RCM')
     return native
 
 
@@ -168,9 +179,11 @@ def scene_records(ws,level,scene,project,model,metadata):
         if entity.id not in native:continue
         index[entity.id]=len(model.entities);name=project.prefix+'_'+entity.id
         model.entities.append([Tag.text(0,name),Tag.vector(1,entity.transform.orientation),Tag.vector(2,entity.transform.position),Tag.integer(3,sector_at(sectors,entity.transform.position)),Tag.text(81,name)])
+    from .native_regions import append as append_regions,active as regions
+    append_regions(model,scene,project,sectors,index)
     parameters={}
     frames={};points={r['id']:r for r in scene.get('waypoints',[])}
-    for row in scene['actors']+scene.get('objects',[]):
+    for row in scene['actors']+scene.get('objects',[])+regions(scene):
         if row.get('native_frames'):
             transforms=[row['transform']]+[points[name]['transform'] for name in row['native_frames']]
             frames[index[row['id']]]=[struct.pack('<6f',*t['orientation'],*t['position']) for t in transforms]

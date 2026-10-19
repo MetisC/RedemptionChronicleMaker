@@ -18,6 +18,7 @@ class EnvironmentDialog(QDialog):
             if index<0:c.addItem(str(value),value);index=c.count()-1
             c.setCurrentIndex(index);c.setToolTip(c.currentText());c.currentTextChanged.connect(c.setToolTip);self.form.addRow(label,c);self.fields[key]=c;return c
         self.combo=combo
+        combo('room_type',tr('Reverberación EAX'),[(tr('Heredar del perfil'),None)]+[(tr('Preset original')+' '+str(i),i) for i in range(26)],current.get('room_type'))
         for kind,label,extensions in [('music',tr('Música inicial'),{'.mp3','.wav'}),('ambient',tr('Ambiente inicial'),{'.wav'})]:
             entries=win.backend.resources['entries'];counts={}
             for e in entries:
@@ -43,11 +44,13 @@ class EnvironmentDialog(QDialog):
         for key,label,ext in [('model',tr('Modelo de cielo'),'.nod'),('animation',tr('Animación de cielo'),'.nad')]:
             values=sorted({e['id'] for e in win.backend.resources['entries'] if e['extension'].lower()==ext})
             combo('sky_'+key,label,[(tr('Sin cielo'),'')]+[(v,v) for v in values],self.level.get('sky',{}).get(key,''))
-        note=QLabel(tr('Las distancias usan unidades del motor. El entorno no modifica geometría ni lightmaps. EAX se hereda: el motor da prioridad a la escena estática original.'));note.setWordWrap(True);self.form.addRow(note)
+        note=QLabel(tr('Las distancias usan unidades del motor. EAX se aplica mediante roomtype después de cargar la escena y requiere un proveedor de audio 3D compatible. No modifica geometría ni lightmaps.'));note.setWordWrap(True);self.form.addRow(note)
         buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Ok|QDialogButtonBox.StandardButton.Cancel);buttons.accepted.connect(self.apply);buttons.rejected.connect(self.reject);layout.addWidget(buttons)
     def apply(self):
         try:
             values={}
+            room=self.fields['room_type'].currentData()
+            if room is not None:values['room_type']=room
             for key in ('music','ambient'):
                 value=self.fields[key].currentData()
                 if value is not None:values[key]=value

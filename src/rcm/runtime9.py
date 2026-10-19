@@ -10,7 +10,8 @@ def extend(java,campaign,scene,project):
         nonlocal java
         if java.count(old)!=1:raise ValueError('Runtime 9: punto de integración ambiguo: '+old[:55])
         java=java.replace(old,new)
-    entities={e.id:i for i,e in enumerate(project.entities)}
+    from .dynamic_targets import indices as target_indices
+    entities=target_indices(scene,project)
     # AddToActorInventory may report success while consuming type-7 quest
     # tokens. Only a physical inventory member satisfies our give contract.
     java=java.replace('new CodexThing(item).ClearThingFlags(THING_FLAG_SAVENEVER|THING_FLAG_SAVESUSPEND); new CodexThing(item).SetThingFlags(THING_FLAG_SAVEALWAYS); things[i]=item;',

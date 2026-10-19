@@ -137,7 +137,7 @@ compilation, readback and Qt tests do not certify any native result.
 
 - EMB-ENV-01: change initial music/ambient volume, silence, linear fog RGB/range,
   ZClip and a compatible paired sky through Level > Environment. Reopen project;
-  test initial scene, re-entry and save/load. EAX is inherited, not editable.
+  test initial scene, re-entry and save/load. EAX is inherited unless roomtype override is chosen; audible effect needs a compatible3D provider (COMP03).
 - EMB-TEMPLATE-01: edit Elena's instance hover/Foley; verify other instances keep
   their template values. Undo/redo, save/reopen/export. Use model-compatible NMS.
 - EMB-TREASURE-01: break/open class-230 supply barrel and inherited comparison;
@@ -173,3 +173,10 @@ same weak enemy in Normal, Easy, Hard and Nightmare; do not overwrite your saves
   to start a new game for consistent balance; no save migration is promised.
 - DIFF06: if testing multiple clients, verify host-only initialisation and native
   stat replication. Offline doubles do not certify network combat/persistence.
+
+
+## Current priority: authoring laboratory
+
+COMP01–06 in AUTHORING_COMPLETION.en.md are the six short new checks. All remain
+pending user observation; existing DYN/EMB, native save/reentry, networking and
+independent GPU/DPI checks are not replaced by offline compilation or doubles.

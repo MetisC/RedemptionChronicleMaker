@@ -76,7 +76,11 @@ class StrictAuthoring(TestCase):
     def test_native_constructor_metadata_comes_from_literal_classfiles(self):
         from rcm.native_scripts import catalogue
         rows=catalogue(self.ws,self.backend.resources)
-        self.assertEqual(len(rows),380);self.assertEqual(sum(r['literal_metadata'] for r in rows.values()),376)
+        original=json.loads((ROOT/'research/embrace_strict_parity/script_parameter_catalogue.json').read_text())
+        self.assertEqual(len(original),380);self.assertEqual(sum(r['literal_metadata'] for r in original.values()),376)
+        for name,record in original.items():self.assertEqual(rows[name],record)
+        added=set(rows)-set(original);self.assertEqual(len(added),60)
+        self.assertTrue(all(any(p['type'] in ('region','item') for p in rows[name]['parameters']) for name in added))
         self.assertEqual(rows['ClassBobbing']['parameters'][1],dict(type='float',native_type=2,label='Min speed',default=8.0))
         self.assertEqual(rows['ActorAIOff_TriggerOn']['parameters'][0]['type'],'actor')
     def test_explicit_script_removal_does_not_inherit_custom_dispatch(self):

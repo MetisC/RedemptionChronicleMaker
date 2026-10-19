@@ -31,7 +31,8 @@ def merge_metadata(lines):
 def runtime(campaign,scene,p):
     from .cinematics import compile_scene
     scene=compile_scene(scene)
-    name=p.prefix+'_Scene'; entities={e.id:i for i,e in enumerate(p.entities)}; convs={c.id:i for i,c in enumerate(p.conversations)}
+    from .dynamic_targets import indices as target_indices
+    name=p.prefix+'_Scene'; entities=target_indices(scene,p); convs={c.id:i for i,c in enumerate(p.conversations)}
     quests={q['id']:q for q in campaign.source.get('quests',[])};groups={g['id']:g for g in scene.get('encounters',[])}
     actors={a['id']:a for a in scene['actors']}
     reserved=campaign.reserved; flags=p.flags
@@ -45,6 +46,10 @@ def runtime(campaign,scene,p):
         if 'all' in c:return '('+' && '.join(cond(x) for x in c['all'])+')'
         if 'any' in c:return '('+' || '.join(cond(x) for x in c['any'])+')'
         if 'not' in c:return '!('+cond(c['not'])+')'
+        if 'location_visible' in c:return '(CodexSequence.GetLocationFlags('+js(c['location_visible'])+') & 8)!=0'
+        if 'actor_owns_item' in c:
+            value=c['actor_owns_item'];who='player' if value['actor']=='Player' else f'things[{entities[value["actor"]]}]'
+            return f'(local({who}) && owns({who},{js(p.prefix+"_"+value["item"])}))'
         if next(iter(c)) in {'actor_health','generator_state','generator_count'}:
             from .dynamic_runtime import condition_java
             return condition_java(c,scene,entities)
@@ -67,7 +72,7 @@ def runtime(campaign,scene,p):
         # recognises separatorChar. Forward slashes yield null on Windows.
         trace_path+=".replace('/',java.io.File.separatorChar)"
     code=[f'public class {name} extends Codex {{',
-          f' private int[] things=new int[{len(entities)}];',f' private boolean[] enabled=new boolean[{len(entities)}];',f' private boolean[] createdOnce=new boolean[{len(entities)}];',
+          f' private int[] things=new int[{len(p.entities)}];',f' private boolean[] enabled=new boolean[{len(p.entities)}];',f' private boolean[] createdOnce=new boolean[{len(p.entities)}];',
           f' private boolean[] inside=new boolean[{len(p.triggers)}];',f' private boolean[] previous=new boolean[{len(scene["events"])}];',
           ' private int active=-1, starter=0, ticks=0, player=0; private boolean restoredState=false, transitioning=false; private int cameraTicks=0, cameraPlayer=0; private boolean pendingStart=false;',
           f' private void trace(String s) {{ CodexConsole.Print(0,0,"RCM: "+s); try {{ java.io.File current=new java.io.File({trace_path}); new java.io.File(current.getParent()).mkdirs(); if(current.length()>1048576L) {{ java.io.File old=new java.io.File(current.getPath()+".1"); if(old.exists()&&!old.delete()) return; if(!current.renameTo(old)) return; }} java.io.PrintStream log=new java.io.PrintStream(new java.io.FileOutputStream(current.getPath(),true)); log.println(s); log.close(); }} catch(Exception error) {{ CodexConsole.PrintError("RCM trace: "+error); }} }}',
@@ -78,7 +83,7 @@ def runtime(campaign,scene,p):
           ' private boolean owns(int owner,String template) { return inventory(owner,template)!=0; }',
           ' private boolean give(int i,int owner) { if(!IsActorGuid(owner)) return false; if(owns(owner,template(i))) return true; int item=things[i]; if(!IsItemGuid(item)&&!IsWeaponGuid(item)&&!IsArmorGuid(item)) item=new CodexThing(owner).SpawnThingNear(template(i),0.0f,0); if(item==0) return false; if(!new CodexActor(owner).AddToActorInventory(item)) { new CodexThing(item).Remove(); return false; } new CodexThing(item).ClearThingFlags(THING_FLAG_SAVENEVER|THING_FLAG_SAVESUSPEND); new CodexThing(item).SetThingFlags(THING_FLAG_SAVEALWAYS); things[i]=item; createdOnce[i]=true; return true; }',
           ' private String template(int i) { switch(i) {']
-    for eid,i in entities.items():code.append(f' case {i}: return {js(p.prefix+"_"+eid)};')
+    for eid,i in {e.id:i for i,e in enumerate(p.entities)}.items():code.append(f' case {i}: return {js(p.prefix+"_"+eid)};')
     code+=[' } return ""; }',' private void spawn(int i) { if(local(things[i]) || createdOnce[i]) return; things[i]=CodexThing.GuidFromCastID(template(i)); boolean fresh=!local(things[i]); if(fresh) { switch(i) {']
     for e in p.entities:
         i=entities[e.id]
@@ -105,6 +110,7 @@ def runtime(campaign,scene,p):
              ' public void timer(int id,float a,float b,float c,float d) { if(id==9400&&!NetIsClient()&&!transitioning) poll(); }',
              ' private void poll() { try { pollImpl(); } catch(Throwable error) { trace("runtime exception: "+error); SetTimer(0.15f,9400); } } private void pollImpl() { player=localPlayer(player); if(pendingStart && player!=0) { pendingStart=false; dispatch("scene_start","",0); } if(transitioning) return; ticks++; if(cameraTicks>0 && --cameraTicks==0) releaseCamera(); for(int i=0;i<enabled.length;i++) if(enabled[i]) spawn(i); if(player!=0 && active==-1 && !transitioning) {']
     for ti,t in enumerate(p.triggers):
+        if scene.get('triggers',[])[ti].get('native_script'):continue
         code += [f' boolean now{ti}=volume({ti}); if(now{ti}&&!inside[{ti}]) dispatch("trigger_enter",{js(t.id)},0); if(!now{ti}&&inside[{ti}]) dispatch("trigger_leave",{js(t.id)},0); inside[{ti}]=now{ti};']
     for ei,e in enumerate(scene['events']):
         w=e['when']; test=None
@@ -149,6 +155,22 @@ def runtime(campaign,scene,p):
             from .cinematics import action_java
             director_statement=action_java(k,v,scene,p)
             if director_statement is not None:statement=director_statement
+            elif k=='set_room_type':
+                from .world_effects import room_types
+                statement=f'if(!sceneRoomType({room_types(scene).index(v)})) return false;'
+            elif k in ('move_actor','actor_inventory','actor_behavior'):
+                guid='player' if v['actor']=='Player' else f'things[{entities[v["actor"]]}]'
+                statement=f'if(!local({guid}) || !(IsActorGuid({guid})||IsPlayerGuid({guid}))) {{ trace("ACTOR_TARGET_MISSING"); return false; }} '
+                if k=='move_actor':
+                    point=next(point for point in scene['waypoints'] if point['id']==v['waypoint'])
+                    statement+=f'new CodexActor({guid}).ClearActorFlags(THING_AF_AIPAUSED); if(!new CodexActor({guid}).SendActorToPos({jv(point["transform"]["position"])},{float(v["speed"])}f)) return false;'
+                elif k=='actor_inventory':
+                    if v['operation']=='give':statement+=f'if(!give({entities[v["item"]]},{guid})) return false;'
+                    else:statement+=f'{{ int item=inventory({guid},{js(p.prefix+"_"+v["item"])}); if(item!=0) {{ new CodexItem(item).RemoveItemFromInventory(); new CodexThing(item).Remove(); }} }}'
+                else:statement+=f'new CodexActor({guid}).SetActorTeam({v["team"]}); new CodexActor({guid}).'+('SetActorFlags' if v['paused'] else 'ClearActorFlags')+'(THING_AF_AIPAUSED);'
+            elif k=='set_location_flags':
+                bits=(8 if v['visible'] else 0)|(16 if v['haven'] else 0)
+                statement=f'CodexSequence.ClearLocationFlags({js(v["scene"])},24); CodexSequence.SetLocationFlags({js(v["scene"])},{bits});'
             elif k=='spawn':
                 statement=f'enabled[{entities[v]}]=true; spawn({entities[v]});'
                 if campaign.source.get('runtime_profile') in ('phase9','phase10'):statement+=f' if(!createdOnce[{entities[v]}]) return false;'
@@ -182,8 +204,10 @@ def runtime(campaign,scene,p):
                 call='SetActorClan('+js(v['clan'])+')' if k=='set_actor_clan' else 'SetActorDisciplineLevel('+js(v['discipline'])+','+str(v['level'])+')'
                 statement=f'if(!local({guid}) || !(IsActorGuid({guid})||IsPlayerGuid({guid})) || !new CodexActor({guid}).{call}) {{ trace("ACTOR_TRAIT_FAILED"); return false; }}'
             elif k=='play_sound':
-                point=next(r for r in scene['waypoints'] if r['id']==v['waypoint'])
-                statement=f'new CodexSound({js(v["resource"]+".wav")},{float(v["min_distance"])}f,{float(v["max_distance"])}f,{v["volume"]},0,0,{jv(point["transform"]["position"])});'
+                source_guid=None
+                if 'actor' in v:source_guid='player' if v['actor']=='Player' else f'things[{entities[v["actor"]]}]'
+                point=jv(next(r for r in scene['waypoints'] if r['id']==v['waypoint'])['transform']['position']) if source_guid is None else source_guid
+                statement=(f'if(!local({source_guid})) return false; ' if source_guid else '')+f'new CodexSound({js(v["resource"]+".wav")},{float(v["min_distance"])}f,{float(v["max_distance"])}f,{v["volume"]},0,0,{point});'
                 if v.get('loop'):
                     from .audio import loops
                     statement=f'if(!startSceneSound({list(loops(scene)).index(v["id"])})) return false;'
@@ -224,7 +248,7 @@ def runtime(campaign,scene,p):
         code+=[f' case {convs[c.id]}: if(alive({entities[c.speaker]})) ok=ExecuteConversation(conversationPlayer,0,{js(cid)},{js(cid+".nco")},CONV_XFLAG_WANTFEEDBACK|CONV_XFLAG_ALLOWABORT); break;']
     code+=[' } } catch(Throwable error) { trace("conversation failed: "+error); } if(!ok && active==index && starter==conversationPlayer) { active=-1; starter=0; CodexCamera.Release(conversationPlayer); cameraPlayer=0; cameraTicks=0; trace("conversation failed to start"); } return ok; }',
              ' public void clicked(int target,int clicker,int capture) { if(NetIsClient()||active!=-1||transitioning||!IsPlayerGuid(clicker)||!local(clicker)) return; player=clicker;']
-    for eid,i in entities.items():
+    for eid,i in {e.id:i for i,e in enumerate(p.entities)}.items():
         kind='object_clicked' if eid not in actors and campaign.source.get('runtime_profile') in ('phase9','phase10') else 'actor_clicked'
         code+=[f' if(target==things[{i}]) {{ dispatch({js(kind)},{js(eid)},0);']
         e=next(e for e in p.entities if e.id==eid)
@@ -268,7 +292,8 @@ def runtime(campaign,scene,p):
     if silence:java=java.replace('public void beginscene(int who,int capture) { if(NetIsClient()) return;','public void beginscene(int who,int capture) { if(NetIsClient()) return;'+silence,1)
     from .native_scripts import adopt_runtime
     from .combat_difficulty import extend as extend_difficulty
-    return name,adopt_runtime(extend_difficulty(guard_events(java,scene),campaign.source),scene,p)
+    from .dynamic_targets import extend as extend_targets
+    return name,extend_targets(adopt_runtime(extend_difficulty(guard_events(java,scene),campaign.source),scene,p),scene,p)
 
 
 def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress=None,runtime_transform=None):
@@ -316,7 +341,9 @@ def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress
             if path.endswith('.nmf'): meta+=payload[path].decode('cp1252').splitlines()
         versions.update(report['class_versions'])
         ref=levels[p.level]['references'][0]
-        locations.append(f"location {scene['id']} {levels[p.level]['nil']} {p.prefix}.nsd {ref['map_ui']} {ref['map_label']} {hex(0x20 | (int(ref['flags'],0)&0x40))}")
+        from .chronicle_maps import location as map_location
+        map_ui,map_label,map_flags=map_location(scene,resources,ref)
+        locations.append(f"location {scene['id']} {levels[p.level]['nil']} {p.prefix}.nsd {map_ui} {map_label} {hex(0x20 | (int(ref['flags'],0)&0x40) | map_flags)}")
         java=ws.output(subroot/'generated/java'/(p.prefix+'_Scene.java')).read_text(encoding='utf8')
         ws.write(root/'generated/java'/(p.prefix+'_Scene.java'),java)
         ws.write(root/'generated/java'/(p.prefix+'_Passive.java'),ws.output(subroot/'generated/java'/(p.prefix+'_Passive.java')).read_bytes())

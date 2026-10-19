@@ -1,0 +1,590 @@
+schema: 2
+project_format: 10
+chronicle:
+  id: rcm_complete
+  name: RCM · Authoring laboratory
+  description: 'Optional focused acceptance site: native regions, timed camera rotation, generated actors and an
+    informational map.'
+entry: refuge
+state:
+  flags:
+    guest_ready: 0
+scenes:
+- id: refuge
+  level:
+    source: RaveClub
+    name: The refuge
+    environment:
+      music: London_Hub
+      music_volume: 50
+      ambient_volume: 35
+      fog:
+        mode: linear
+        color:
+        - 65
+        - 70
+        - 78
+        start: 650
+        end: 2600
+      zclip: 4000
+      room_type: 5
+  default_entry: safe
+  entries:
+  - id: safe
+    name: Arrival outside the refuge
+    transform:
+      position:
+      - 365
+      - -976
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 90
+  - id: party_left
+    name: 'Party: left'
+    transform:
+      position:
+      - 300
+      - -976
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 90
+  - id: party_right
+    name: 'Party: right'
+    transform:
+      position:
+      - 430
+      - -976
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 90
+  - id: party_back
+    name: 'Party: back'
+    transform:
+      position:
+      - 365
+      - -1040
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 90
+  actors:
+  - id: mentor
+    name: Anezka · authoring guide
+    template: Anezka
+    transform:
+      position:
+      - 300
+      - -850
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 180
+    overrides:
+      hover_text: Elena, keeper of the refuge
+      foley: npcGeneralFemale
+      motions: AnezkaTall.nms
+    conversation:
+      default: lab
+  - id: guard
+    name: Keeper of the refuge
+    template: LonCiv2
+    transform:
+      position:
+      - 430
+      - -900
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 180
+  objects:
+  - id: guest_item
+    name: Guest inventory test item
+    template: Dagger
+    transform:
+      position:
+      - 365
+      - -976
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 90
+  triggers:
+  - id: native_bell
+    name: Native bell region beside the guard
+    shape: box
+    size:
+    - 96
+    - 96
+    - 120
+    once: false
+    transform:
+      position:
+      - 430
+      - -900
+      - -464
+      orientation:
+      - 0
+      - 0
+      - 0
+    native_script:
+      class: RegionTriggerSound
+      parameters:
+      - type: string
+        value: bell_toll_01_lp.wav
+      - type: float
+        value: 64
+      - type: float
+        value: 300
+      - type: integer
+        value: 40
+      - type: integer
+        value: 0
+      - type: integer
+        value: 0
+      - type: integer
+        value: 0
+  - id: sound_light
+    name: RCM sound and light activation zone
+    shape: box
+    size:
+    - 120
+    - 120
+    - 120
+    once: false
+    transform:
+      position:
+      - 580
+      - -820
+      - -464
+      orientation:
+      - 0
+      - 0
+      - 0
+    sound_zone:
+      resource: bell_toll_01_lp
+      volume: 20
+      min_distance: 64
+      max_distance: 300
+    light_zone:
+      entity: guard
+      color:
+      - 0.4
+      - 0.7
+      - 1
+      intensity: 1
+      radius: 300
+      style: constant
+  encounters: []
+  waypoints:
+  - id: boss_spot
+    name: Weak rat boss
+    transform:
+      position:
+      - 600
+      - -750
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 0
+  - id: guest_spot
+    name: Generated guest
+    transform:
+      position:
+      - 410
+      - -1010
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 0
+  paths: []
+  conversations:
+  - id: lab
+    speaker: mentor
+    camera: ots_speaker_close
+    entry: hello
+    nodes:
+    - id: hello
+      lines:
+      - text: Welcome. This is a separate test site, so your tutorial is safe. Pick one exercise. You can come back
+          to me between tests; the rat is deliberately weak.
+      choices:
+      - text: Show me the stationary camera turn.
+        result: 1
+      - text: Create the weak rat boss.
+        result: 2
+      - text: Follow the generated boss with the camera.
+        result: 3
+      - text: Generated guest and inventory…
+        goto: guest
+      - text: Show the second location on our map.
+        result: 6
+      - text: Explain the two sound zones.
+        result: 7
+      - text: Go to the second layout.
+        result: 8
+      - text: Nothing for now.
+        result: 9
+    - id: guest
+      lines:
+      - text: Create the guest first, wait a moment, then ask me to check their inventory. Creating the guest also
+          stops our test rat.
+      choices:
+      - text: Create the neutral guest and give them an item.
+        result: 4
+      - text: Check the guest inventory.
+        result: 5
+      - text: Back to the other exercises.
+        goto: hello
+  sequences:
+  - id: turn
+    name: 'Stationary camera: turn, then hold'
+    actor: Player
+    duration: 6
+    shot: wide
+    angle: high
+    camera_path: complete_pan
+    path_speed: 1
+  - id: boss_view
+    name: Follow the current generated boss
+    actor: dynamic/lab_boss/boss/0
+    duration: 4
+    shot: wide
+    angle: high
+    steps:
+    - at: 0
+      actor: dynamic/lab_boss/boss/0
+      reference: Player
+      preset: full
+      angle: high
+      transition: 0.3
+    - at: 2
+      actor: dynamic/lab_boss/boss/0
+      reference: Player
+      preset: ots_speaker_close
+      transition: 0.4
+  events:
+  - id: arrival
+    when: scene_start
+    actions:
+    - spawn: mentor
+    - spawn: guard
+    - show_note:
+        title: Authoring laboratory
+        text: Speak to Anezka just ahead. Try the stationary camera first, then the generated guest or weak rat.
+          The map exercise reveals a second layout. This site is for manual acceptance; it does not replace your
+          tutorial.
+    once: true
+  - id: exercise_1
+    when: conversation_ended
+    actions:
+    - play_sequence: turn
+    conversation: lab
+    result: 1
+  - id: exercise_2
+    when: conversation_ended
+    actions:
+    - start_generator: lab_boss
+    conversation: lab
+    result: 2
+  - id: exercise_3
+    when: conversation_ended
+    actions:
+    - play_sequence: boss_view
+    conversation: lab
+    result: 3
+    conditions:
+    - actor_alive: dynamic/lab_boss/boss/0
+  - id: boss_missing
+    when: conversation_ended
+    actions:
+    - show_note:
+        title: Create the rat first
+        text: Choose Create the weak rat boss, wait a moment, then ask me to follow it.
+    conversation: lab
+    result: 3
+    conditions:
+    - not:
+        actor_alive: dynamic/lab_boss/boss/0
+  - id: exercise_4
+    when: conversation_ended
+    actions:
+    - stop_generator: lab_boss
+    - start_generator: lab_guest
+    conversation: lab
+    result: 4
+  - id: guest_inventory
+    when: state_changed
+    actions:
+    - actor_behavior:
+        actor: dynamic/lab_guest/guest/0
+        team: 10
+        paused: true
+    - actor_inventory:
+        actor: dynamic/lab_guest/guest/0
+        item: guest_item
+        operation: give
+    - set_flag: guest_ready
+    once: true
+    conditions:
+    - actor_alive: dynamic/lab_guest/guest/0
+    - flag: guest_ready
+      is_set: false
+  - id: exercise_5
+    when: conversation_ended
+    actions:
+    - show_note:
+        title: The guest has the item
+        text: This message uses a real inventory condition on the generated guest. Its GUID comes from the existing
+          encounter slots.
+    conversation: lab
+    result: 5
+    conditions:
+    - actor_owns_item:
+        actor: dynamic/lab_guest/guest/0
+        item: guest_item
+  - id: guest_missing
+    when: conversation_ended
+    actions:
+    - show_note:
+        title: Create the guest first
+        text: Choose Create the neutral guest, wait a moment, then check again. If this still appears, retain the
+          runtime trace for the inventory check.
+    conversation: lab
+    result: 5
+    conditions:
+    - not:
+        actor_owns_item:
+          actor: dynamic/lab_guest/guest/0
+          item: guest_item
+  - id: exercise_6
+    when: conversation_ended
+    actions:
+    - set_location_flags:
+        scene: epilogue
+        visible: true
+        haven: false
+    - show_note:
+        title: Open the map
+        text: The second layout should now appear. In RCM, select the chronicle and open Maps and locations to edit
+          the image, drag points and assign scenes. This map only provides information; clicking a point does not
+          travel.
+    conversation: lab
+    result: 6
+  - id: exercise_7
+    when: conversation_ended
+    actions:
+    - show_note:
+        title: Two different mechanisms
+        text: 'Walk close to the guard for the original RegionTriggerSound bell. Then move towards the rat spawn
+          corner: the larger RCM zone activates a loop and a blue point light on the guard. Move out again to stop
+          them. Their boxes are visible in the editor. EAX needs a compatible 3D audio provider.'
+    conversation: lab
+    result: 7
+  - id: exercise_8
+    when: conversation_ended
+    actions:
+    - travel:
+        scene: epilogue
+        entry: safe
+    conversation: lab
+    result: 8
+  - id: turn_done
+    when: sequence_ended
+    actions:
+    - show_note:
+        title: Camera control returned
+        text: The camera should have turned for three seconds without changing position, held for two and a half
+          seconds, then returned control. Its NCP uses timed polynomial segments; no original path was changed.
+    sequence: turn
+  generators:
+  - id: lab_boss
+    name: Weak generated rat
+    mode: boss
+    spawn_points:
+    - boss_spot
+    max_alive: 1
+    persistence: resume
+    remove_on_stop: true
+    waves:
+    - groups:
+      - role: boss
+        template: Rat
+        count: 1
+        health: 40
+    boss:
+      role: boss
+    phases:
+    - id: half
+      percent: 50
+      actions:
+      - play_motion:
+          actor: dynamic/lab_boss/boss/0
+          motion: stand
+      - set_room_type: 8
+  - id: lab_guest
+    name: Generated neutral guest
+    mode: ambush
+    spawn_points:
+    - guest_spot
+    max_alive: 1
+    persistence: resume
+    waves:
+    - groups:
+      - role: guest
+        template: LonCiv2
+        count: 1
+        team: 10
+  map_location:
+    map: laboratory
+    point: lab
+- id: epilogue
+  level:
+    source: RaveClub
+    name: Shelter before dawn
+  default_entry: safe
+  entries:
+  - id: safe
+    name: Inside the refuge
+    transform:
+      position:
+      - 365
+      - -976
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 90
+  actors:
+  - id: guide_back
+    name: Anezka · return to laboratory
+    template: Anezka
+    transform:
+      position:
+      - 300
+      - -850
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 0
+    conversation:
+      default: return
+  objects: []
+  conversations:
+  - id: return
+    speaker: guide_back
+    camera: ots_speaker_close
+    entry: hello
+    nodes:
+    - id: hello
+      lines:
+      - text: Same geometry, another authored layout. Ready to return to the laboratory?
+      choices:
+      - text: Take me back.
+        result: 1
+      - text: I will stay a moment.
+        result: 2
+  events:
+  - id: arrive
+    when: scene_start
+    actions:
+    - spawn: guide_back
+  - id: return
+    when: conversation_ended
+    conversation: return
+    result: 1
+    actions:
+    - travel:
+        scene: refuge
+        entry: safe
+  waypoints:
+  - id: interest
+    name: 'Optional native AI interest spot: group 8'
+    interest_group: 8
+    transform:
+      position:
+      - 430
+      - -900
+      - -512
+      orientation:
+      - 0
+      - 0
+      - 0
+  paths: []
+  sequences: []
+  encounters: []
+  triggers: []
+  generators: []
+  map_location:
+    map: laboratory
+    point: second
+quests: []
+resources:
+  camera_paths:
+  - id: complete_pan
+    name: Turn and hold in place
+    scene: refuge
+    level: RaveClub
+    timed: true
+    points:
+    - position:
+      - 550
+      - -1000
+      - -300
+      orientation:
+      - -25
+      - 0
+      - 59
+      duration: 3
+    - position:
+      - 550
+      - -1000
+      - -300
+      orientation:
+      - -25
+      - 0
+      - 149
+      duration: 2.5
+    - position:
+      - 550
+      - -1000
+      - -300
+      orientation:
+      - -25
+      - 0
+      - 149
+  maps:
+  - id: laboratory
+    name: Laboratory map
+    source: chronicles/completion_lab/assets/laboratory_map.png
+    points:
+    - id: lab
+      name: Authoring laboratory
+      position:
+      - 155
+      - 220
+      visible: true
+      haven: false
+    - id: second
+      name: Second authored layout
+      position:
+      - 465
+      - 220
+      visible: false
+      haven: false
+metadata:
+  version: 1.0.0
+build_options:
+  debug: true

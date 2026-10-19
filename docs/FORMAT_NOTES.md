@@ -123,7 +123,7 @@ Todos los 291 NSD examinados comienzan por `NSD\x10`, versión DWORD 8. El subco
 | 84 / variable | Registros de entidades |
 | Final / 192 por defecto | Cuatro contadores globales (16), tablas propias opcionales de entradas/conversación, y metadatos de entorno (176) |
 
-Una entidad simple tiene `uint32 tagCount`, `tagCount × (uint32 tagID + payload32)` y **20 bytes de bloques variables vacíos**. Los primeros DWORD son cuenta de frames y parámetros; siguen presencia de brush, región e iluminación. Se admiten frames24 (orientación/posición), parámetros tipados y brushes generados; regiones/luces complejas siguen fuera del subconjunto.
+Una entidad simple tiene `uint32 tagCount`, `tagCount × (uint32 tagID + payload32)` y **20 bytes de bloques variables vacíos**. Los primeros DWORD son cuenta de frames y parámetros; siguen presencia de brush, región e iluminación. Se admiten frames24 (orientación/posición), parámetros tipados y brushes generados; regiones caja con sectores explícitos están soportadas; luces complejas siguen fuera del subconjunto.
 
 64 de los 291 NSD originales se leen y reemiten exactamente (research/embrace_strict_parity/nsd_extended_roundtrips.json). Los28 del baseline anterior se comprueban por separado, sin cambiar sus hashes. El codec rechaza `EAST_28_4.nsd` y otras escenas complejas, en vez de reinterpretarlas incorrectamente.
 
@@ -131,7 +131,7 @@ La escena mínima de referencia tiene **480 bytes**, una única entidad `ghost` 
 
 El anchor del ghost se toma automáticamente de una entidad existente en una escena relacionada con el level. Para EastLondon son posición `[1184,1660,114]` y sector 19. Se conservan los últimos **176** bytes de metadatos y se anteponen los cuatro contadores globales, vacíos por defecto; las tablas propias optativas de entradas y conversación se escriben explícitamente con sus contadores. Copiar 192 bytes de una escena compleja podría arrastrar el final de un registro de entrada. No se copian sus actores, triggers, scripts o geometría de entidades.
 
-El lector nativo NSD v8 lee al final dos nombres de 32 bytes para modelo y animación del cielo, offsets -64 y -32. Los recursos se resuelven desde el juego. Se conserva el entorno original completo; EastLondon mantiene ambos nombres vacíos y el fondo gris aceptado. Los campos de audio, volumen, niebla y ZClip están contrastados en la activación nativa; SCENE_MODEL.md da sus offsets. Los DWORD64 y108 se conservan opacos; EAX se hereda por prioridad estática.
+El lector nativo NSD v8 lee al final dos nombres de 32 bytes para modelo y animación del cielo, offsets -64 y -32. Los recursos se resuelven desde el juego. Se conserva el entorno original completo; EastLondon mantiene ambos nombres vacíos y el fondo gris aceptado. Los campos de audio, volumen, niebla y ZClip están contrastados en la activación nativa; SCENE_MODEL.md da sus offsets. Los DWORD64 y108 se conservan opacos; EAX del tail se hereda por prioridad estática; room_type usa la vía runtime roomtype después de cargar.
 
 `scene_entity_hints` busca secuencias de tags 0/1/2/3 en escenas complejas. Conserva offsets y marca `confidence: tag-pattern; not full scene parse`. Puede perder entidades o producir coincidencias; no sirve para editar/reemitir escenas complejas. El punto usado para Victoria se contrastó manualmente con el registro `otto`.
 
@@ -143,7 +143,7 @@ No existe escritor NIL ni modificación/copia de NIL en los paquetes. `Levels.no
 
 `.nod` y `.nad` son binarios: **no llevan necesariamente magic ASCII NOD/NAD**. Los ejemplos `.nod` comienzan por DWORD 7 seguido de valores variables; los `.nad` por DWORD 3 seguido de valores variables. Esos primeros valores no se denominan formalmente versión sin más evidencia. Se inventarían modelos, animaciones y recursos asociados, pero no se generan ni se editan mallas.
 
-El lector resuelve las superficies/sectores NIL, la malla estática NOD y texturas NAM/TGA; siguen pendientes NIL global, NSD complejo, todos los tags NOT, cola no indexada, NAD, materiales avanzados, semántica temporal de NCP estacionarios y otros auxiliares. Que sean binarios no obliga a usar herramientas antiguas: se ampliarán nuestros codecs cuando una función concreta lo requiera.
+El lector resuelve las superficies/sectores NIL, la malla estática NOD y texturas NAM/TGA; siguen pendientes NIL global, NSD complejo, todos los tags NOT, cola no indexada, NAD, materiales avanzados, payloads completos de soundboxes/lightboxes y otros auxiliares. Que sean binarios no obliga a usar herramientas antiguas: se ampliarán nuestros codecs cuando una función concreta lo requiera.
 
 ## Java, WAV y reproducibilidad
 
@@ -257,7 +257,7 @@ events:
 
 Fragmento, no proyecto completo: requiere actor guard, flags y demás campos. `size` y `radius` son exclusivos, positivos y finitos. No se permiten IDs/referencias inexistentes, transforms relativos de triggers ni spawn duplicado de una entidad entre inicio y trigger.
 
-Volúmenes se traducen a Java, sin codec de región antigua ni cambios al NIL. Intervalo 0,15 s, servidor, entrada agregada de jugadores locales y condiciones AND. Guards/estado se prueban con doubles y compilan contra API original; ejecución nativa aún pendiente. Los contratos actuales se comprueban en tests/test_spatial.py y los harness Java.
+Volúmenes RCM se traducen a Java; optativamente una caja puede exportarse como región nativa con malla/sectores propios, sin cambios al NIL. Intervalo 0,15 s, servidor, entrada agregada de jugadores locales y condiciones AND. Guards/estado se prueban con doubles y compilan contra API original; ejecución nativa aún pendiente. Los contratos actuales se comprueban en tests/test_spatial.py y los harness Java.
 
 ## Campañas y journal
 
@@ -324,7 +324,7 @@ La generación añade Java y siete Chronicle Flags internos por identidad, dedup
 
 `content_packs/within_the_darkness/import.json` registra hashes de fuente/paquete, catálogo resuelto y geometría/NSD de Penthouse. `rcm_wtd_content.nob` contiene sólo la selección local: política de nombres suministrada por el usuario, excepción expresa NIL/NSD de Penthouse y NLS propio de su label. NCD/NDD/NDG se regeneran desde filas verificadas conservando las definiciones originales; sólo se añaden nombres sin colisión con Java/dependencias presentes. Se comprueba que cada implementación de disciplina hereda realmente de `Discipline` leyendo su classfile, sin ejecutarlo. NOT nuevas contienen únicamente registros seleccionados y herencia resuelta; no copian las colas no referenciadas del archivo fuente. Los NMS que colisionaban con originales se renombran y sólo las plantillas importadas apuntan a ellos.
 
-En formato 9/10, `actors[].traits` admite `clan` por nombre NCD y `disciplines` como mapa nombre NDD → nivel 0..5. Usa SetActorClan y SetActorDisciplineLevel al crear un actor nuevo; no reinicializa un actor restaurado. Las acciones `set_actor_clan: {actor: Player, clan: salubri}` y `set_discipline: {actor: Player, discipline: Panacea, level: 1}` admiten Player o ID local. Requieren una importación válida, con validación y navegación de referencias normal.
+En formato 9/10, `actors[].traits` admite `clan` por nombre NCD y `disciplines` como mapa nombre NDD → nivel 0..5. Usa SetActorClan y SetActorDisciplineLevel al crear un actor nuevo; no reinicializa un actor restaurado. Las acciones `set_actor_clan: {actor: Player, clan: salubri}` y `set_discipline: {actor: Player, discipline: Panacea, level: 1}` admiten Player o ID local. El catálogo base procede de NCD/NDD originales; los valores WTD requieren importación local válida. Validación y navegación de referencias normales.
 
 `build_inputs_sha256` y contrato de saves incluyen la dependencia importada. El informe `imported_content` conserva ID/hash, sin meter el paquete en el ZIP de distribución; Deploy comprueba el hash y lo copia sólo a RCM. La compatibilidad de inventarios conserva el paquete completo cuando una plantilla de perfil lo necesita, evitando duplicar sus definiciones en `rcm_compat`. Sin importación/traits/acciones nuevas, el Java aceptado se genera idéntico.
 
@@ -372,18 +372,37 @@ Se conserva `conversation.staging: entry_id`. La alternativa optativa es `stagin
 
 La escritura afecta sólo al NSD propio y exige cuatro counts vacíos de partida. Preserva los otros 176 bytes del entorno. Validación de tamaño, count máximo 64, grupos 0..15, selector cero, matriz ortonormal y floats finitos; roundtrip del subconjunto generado. Las tablas nativas son asignaciones dinámicas: 16 grupos es el límite de autoría adoptado del manual, no una afirmación de array fijo en el loader. No se escribe una tabla desconocida ni un NSD universal.
 
-Los 22 pares NCP de XYZ coincidente encontrados en tres originales también tienen parámetro coincidente; ocho cambian Euler y catorce no. Sus coeficientes no demuestran hold o giro temporizado. El escritor lineal mantiene la restricción; el lector permite parámetros repetidos originales, rechaza negativos/decrecientes, inversos negativos y valores no finitos. Los 174 originales conservan bytes.
+Los 22 pares NCP de XYZ coincidente encontrados en tres originales también tienen parámetro coincidente; ocho cambian Euler y catorce no. Sus coeficientes no demuestran hold o giro temporizado. El modo lineal por distancia mantiene la restricción; el modo temporal usa tramos positivos en segundos independientes de XYZ; el lector permite parámetros repetidos originales, rechaza negativos/decrecientes, inversos negativos y valores no finitos. Los 174 originales conservan bytes.
 
 ## Strict authoring evidence update
 
 Confirmed original-file/native evidence: NSD parameters are the SECOND entity
-variable block (types 1/2/3/7/8 editable), movement frames are orientation XYZ then
+variable block (types 1/2/3/5/7/8/10 editable), movement frames are orientation XYZ then
 position XYZ (24 bytes); 64 original files lossless. Native interest records are
 72 bytes with a separate group selected by AI interestNum. TreasureClass is tag
 92 uint32 and container-only in RCM. Optional environment patches touch proven
-176-byte tail fields only; unknown bytes remain intact. EAX static precedence
-prevents an effective dynamic override. Full evidence, safety limits and pending
+176-byte tail fields only; unknown bytes remain intact. EAX static precedence prevents a dynamic-tail override; the separately proven runtime roomtype command now provides an optional override after activation. Full evidence, safety limits and pending
 native checks: research/embrace_strict_parity/codex_linker_format.md,
 treasure_class.md, SAFETY_DECISIONS.md and docs/EMBRACE_AUTHORING_PARITY.md.
 SDK-confirmed NTT/NSC documentation is separate from these original-file proofs.
-Maps customisation remains an analysed route, not an implemented map editor.
+Own maps are implemented through editor/maps.py and chronicle_maps.py. See AUTHORING_COMPLETION.md and research/authoring_completion/EVIDENCE.md.
+
+
+## Cierre de autoría: mecanismos adicionales
+
+CONFIRMADO EN ARCHIVOS ORIGINALES: región type3, malla local y tabla u32 count +
+índices de sectores entre planos de colisión e iluminación.51regiones originales
+inventariadas; parámetros type5=CodexRegion/type10=CodexItem contrastados con sus
+constructores. El escritor genera cajas yaw-only y conserva la geometría NIL.
+Catálogo de constructores unívocos440; Player-constructor sigue sin binding seguro.
+
+CONFIRMADO EN EJECUTABLE/API: roomtype→409150→49e400→AIL_set_3D_room_type,
+rango0..25 y requisito de proveedor3D. CodexConsole.Execute(String) está presente.
+NCP430350/430479..43069a evalúa parámetro temporal y polinomios XYZ/Euler
+independientes; no llama al builder de distancias para reconstruir coeficientes.
+
+IMPLEMENTADO/PRUEBA OFFLINE: mapas NUI/TGA/NLS/NSC, flags8/16; regiones enlazadas;
+NCP temporal; objetivos dinámicos transitorios sobre dGuid, sin nuevos GUID ni
+registros alias; zonas sobre volume() y handles existentes; audio asociado a GUID;
+catálogo base NCD/NDD. Detalles/límites: AUTHORING_COMPLETION.md y matriz vigente.
+Observación dentro del juego PENDIENTE: COMP01–06; no la certifica la compilación.

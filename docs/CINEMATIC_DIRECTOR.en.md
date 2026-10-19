@@ -30,7 +30,7 @@ Conversation **Staging** offers Automatic, RCM entry and Native conversation poi
 
 Positioned sound supports one-shot playback or a named loop while the scene is active. The loop uses an existing waypoint, volume and full/audible radii. Use **Stop positioned sound** with its name. Up to 32 named loops is an RCM ownership/polling budget, not a claimed engine limit. Save/load records active ownership and recreates each handle once; leaving the scene stops owned sounds.
 
-Dynamic light attaches to one of your entities. Set RGB components, intensity, radius and an original light style; use Remove dynamic light to clear it. Light configuration and supported weather choices participate in the new save contract. Weather choices are limited to names actually used by original scripts. Baked lighting, fog/lightmap editing and geometry remain outside scope.
+Dynamic light attaches to one of your entities. Set RGB components, intensity, radius and an original light style; use Remove dynamic light to clear it. Light configuration and supported weather choices participate in the new save contract. Weather choices are limited to names actually used by original scripts. Baked lighting, lightmap editing and geometry remain outside scope.
 
 ## Try the examples
 
@@ -49,4 +49,7 @@ Film cancellation/end restores only a still-owned snapshot started by that film.
 
 ## A camera without translation
 
-One point holds a fixed shot. Authored NCPs require distinct consecutive positions. Repeated XYZ in original paths also repeats the parameter and can have nontrivial cubic coefficients; it is not proof of a timed stationary turn. No arbitrary minimum span is invented. Originals remain lossless and play through the engine. New manual cases: EMB-MUSIC, EMB-CONV and EMB-NCP.
+Enable Time per segment for stationary turns and holds. Duplicate a point, rotate it or keep both position and rotation for a hold, then set seconds to the next point. Timed paths use native speed1 and at most120seconds. Independent temporal position/Euler polynomials are written directly for the original evaluator; distance-based paths keep their distinct-position rule. Original NCPs stay lossless. See AUTHORING_COMPLETION.md, COMP01.
+
+
+Dynamic actor subjects, attached sounds, activation zones and optional EAX reverb are described in AUTHORING_COMPLETION.md. Role targets resolve the current living GUID; absent/replaced film targets release control. No additional actor manager is created.

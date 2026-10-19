@@ -1,0 +1,1670 @@
+[
+  {
+    "scene": "ARC3_17_1.nsd",
+    "entity": 8,
+    "tags": {
+      "0": "trigger_region",
+      "11": "ARC3_Gargoyle"
+    },
+    "position": [
+      -544.0,
+      1696.0,
+      64.0
+    ],
+    "bounds": [
+      [
+        -96.0,
+        -672.0,
+        -72.0
+      ],
+      [
+        96.0,
+        672.0,
+        72.0
+      ]
+    ],
+    "materials": [
+      "Prague\\TCarches1_2_p"
+    ],
+    "sectors": [
+      15,
+      14
+    ],
+    "light": 0
+  },
+  {
+    "scene": "ARC3_17_1.nsd",
+    "entity": 9,
+    "tags": {
+      "0": "trigger_region",
+      "11": "ARC3_Erik"
+    },
+    "position": [
+      -968.0,
+      1344.0,
+      64.0
+    ],
+    "bounds": [
+      [
+        -264.0,
+        -192.0,
+        -72.0
+      ],
+      [
+        264.0,
+        192.0,
+        72.0
+      ]
+    ],
+    "materials": [
+      "Prague\\TCarches1_2_p"
+    ],
+    "sectors": [
+      16,
+      15,
+      14
+    ],
+    "light": 0
+  },
+  {
+    "scene": "ARC4_17_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "position": [
+      -2688.0,
+      1892.0,
+      -60.0
+    ],
+    "bounds": [
+      [
+        -144.0,
+        -132.0,
+        -76.0
+      ],
+      [
+        144.0,
+        132.0,
+        76.0
+      ]
+    ],
+    "materials": [
+      "Prague\\TCarches1_2_p"
+    ],
+    "sectors": [
+      8,
+      7,
+      4
+    ],
+    "light": 0
+  },
+  {
+    "scene": "ARC4_17_1.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -1984.0,
+      864.0,
+      -168.0
+    ],
+    "bounds": [
+      [
+        -320.0,
+        -32.0,
+        -104.0
+      ],
+      [
+        320.0,
+        32.0,
+        104.0
+      ]
+    ],
+    "materials": [
+      "Prague\\TCarches1_2_p"
+    ],
+    "sectors": [
+      1
+    ],
+    "light": 0
+  },
+  {
+    "scene": "BROT_29_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      570.0,
+      642.0,
+      57.0
+    ],
+    "bounds": [
+      [
+        -202.0,
+        -144.0,
+        -57.0
+      ],
+      [
+        202.0,
+        144.0,
+        57.0
+      ]
+    ],
+    "materials": [
+      "Prague\\pl2_P"
+    ],
+    "sectors": [
+      111,
+      60,
+      59
+    ],
+    "light": 0
+  },
+  {
+    "scene": "BROT_29_1.nsd",
+    "entity": 14,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      932.0,
+      680.0,
+      44.0
+    ],
+    "bounds": [
+      [
+        -52.0,
+        -168.0,
+        -44.0
+      ],
+      [
+        52.0,
+        168.0,
+        44.0
+      ]
+    ],
+    "materials": [
+      "London\\SBIfloor2_L"
+    ],
+    "sectors": [
+      60,
+      59
+    ],
+    "light": 0
+  },
+  {
+    "scene": "BROT_31_1.nsd",
+    "entity": 6,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      1244.0,
+      -486.0,
+      -94.0
+    ],
+    "bounds": [
+      [
+        -236.0,
+        -74.0,
+        -58.0
+      ],
+      [
+        236.0,
+        74.0,
+        58.0
+      ]
+    ],
+    "materials": [
+      "Vienna\\ORfloor1_1_v"
+    ],
+    "sectors": [
+      66
+    ],
+    "light": 0
+  },
+  {
+    "scene": "CARG_32_1.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -1024.0,
+      320.0,
+      -40.0
+    ],
+    "bounds": [
+      [
+        -192.0,
+        -192.0,
+        -32.0
+      ],
+      [
+        192.0,
+        192.0,
+        32.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      1
+    ],
+    "light": 0
+  },
+  {
+    "scene": "DOCK_33_1.nsd",
+    "entity": 5,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -2144.0,
+      -1120.0,
+      24.0
+    ],
+    "bounds": [
+      [
+        -32.0,
+        -352.0,
+        -40.0
+      ],
+      [
+        32.0,
+        352.0,
+        40.0
+      ]
+    ],
+    "materials": [
+      "New_York\\wall04_2_NY"
+    ],
+    "sectors": [
+      41
+    ],
+    "light": 0
+  },
+  {
+    "scene": "DOCK_33_1.nsd",
+    "entity": 10,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -944.0,
+      -1548.0,
+      24.0
+    ],
+    "bounds": [
+      [
+        -496.0,
+        -140.0,
+        -40.0
+      ],
+      [
+        496.0,
+        140.0,
+        40.0
+      ]
+    ],
+    "materials": [
+      "New_York\\wall04_2_NY"
+    ],
+    "sectors": [
+      39,
+      38
+    ],
+    "light": 0
+  },
+  {
+    "scene": "DOCK_33_1.nsd",
+    "entity": 13,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -3400.0,
+      628.0,
+      248.0
+    ],
+    "bounds": [
+      [
+        -336.0,
+        -140.0,
+        -72.0
+      ],
+      [
+        336.0,
+        140.0,
+        72.0
+      ]
+    ],
+    "materials": [
+      "New_York\\wall04_2_NY"
+    ],
+    "sectors": [
+      44,
+      43
+    ],
+    "light": 0
+  },
+  {
+    "scene": "EAST_28_4.nsd",
+    "entity": 8,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -1760.0,
+      -640.0,
+      440.0
+    ],
+    "bounds": [
+      [
+        -32.0,
+        -128.0,
+        -72.0
+      ],
+      [
+        32.0,
+        128.0,
+        72.0
+      ]
+    ],
+    "materials": [
+      "London\\Ibeam2_L"
+    ],
+    "sectors": [
+      85,
+      81
+    ],
+    "light": 0
+  },
+  {
+    "scene": "EAST_28_4.nsd",
+    "entity": 9,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -4800.0,
+      -560.0,
+      568.0
+    ],
+    "bounds": [
+      [
+        -128.0,
+        -80.0,
+        -72.0
+      ],
+      [
+        128.0,
+        80.0,
+        72.0
+      ]
+    ],
+    "materials": [
+      "London\\Ibeam2_L"
+    ],
+    "sectors": [
+      66
+    ],
+    "light": 0
+  },
+  {
+    "scene": "EAST_28_4.nsd",
+    "entity": 10,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      928.0,
+      -64.0,
+      56.0
+    ],
+    "bounds": [
+      [
+        -288.0,
+        -320.0,
+        -72.0
+      ],
+      [
+        288.0,
+        320.0,
+        72.0
+      ]
+    ],
+    "materials": [
+      "London\\Ibeam2_L"
+    ],
+    "sectors": [
+      127,
+      126,
+      123,
+      115,
+      109,
+      108,
+      107,
+      106
+    ],
+    "light": 0
+  },
+  {
+    "scene": "EAST_32_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "trigger_region",
+      "11": "EAST_30_1_Main"
+    },
+    "position": [
+      1200.0,
+      2092.0,
+      20.0
+    ],
+    "bounds": [
+      [
+        -368.0,
+        -44.0,
+        -36.0
+      ],
+      [
+        368.0,
+        44.0,
+        36.0
+      ]
+    ],
+    "materials": [
+      "New_York\\UTtrim4_6_NY"
+    ],
+    "sectors": [
+      18
+    ],
+    "light": 0
+  },
+  {
+    "scene": "EAST_32_1.nsd",
+    "entity": 18,
+    "tags": {
+      "0": "trigger_region",
+      "11": "EAST_32_1_Main"
+    },
+    "position": [
+      -4832.0,
+      -544.0,
+      560.0
+    ],
+    "bounds": [
+      [
+        -224.0,
+        -96.0,
+        -72.0
+      ],
+      [
+        224.0,
+        96.0,
+        72.0
+      ]
+    ],
+    "materials": [
+      "General\\londonWater"
+    ],
+    "sectors": [
+      66
+    ],
+    "light": 0
+  },
+  {
+    "scene": "EGAT_5_1.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      1216.0,
+      1476.0,
+      24.0
+    ],
+    "bounds": [
+      [
+        -64.0,
+        -380.0,
+        -32.0
+      ],
+      [
+        64.0,
+        380.0,
+        32.0
+      ]
+    ],
+    "materials": [
+      "Prague\\BLACK"
+    ],
+    "sectors": [
+      18,
+      17,
+      10
+    ],
+    "light": 0
+  },
+  {
+    "scene": "EGAT_5_1.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -1368.0,
+      1744.0,
+      40.0
+    ],
+    "bounds": [
+      [
+        -88.0,
+        -248.0,
+        -48.0
+      ],
+      [
+        88.0,
+        248.0,
+        48.0
+      ]
+    ],
+    "materials": [
+      "Prague\\BLACK"
+    ],
+    "sectors": [
+      15
+    ],
+    "light": 0
+  },
+  {
+    "scene": "EGAT_5_1.nsd",
+    "entity": 6,
+    "tags": {
+      "0": "trigger_region",
+      "11": "EGAT_Knights"
+    },
+    "position": [
+      -1336.0,
+      1600.0,
+      24.0
+    ],
+    "bounds": [
+      [
+        -264.0,
+        -448.0,
+        -32.0
+      ],
+      [
+        264.0,
+        448.0,
+        32.0
+      ]
+    ],
+    "materials": [
+      "Prague\\BLACK"
+    ],
+    "sectors": [
+      23,
+      22,
+      15,
+      14
+    ],
+    "light": 0
+  },
+  {
+    "scene": "FAC4_37_4.nsd",
+    "entity": 41,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -576.0,
+      1088.0,
+      24.0
+    ],
+    "bounds": [
+      [
+        -320.0,
+        -64.0,
+        -40.0
+      ],
+      [
+        320.0,
+        64.0,
+        40.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      9,
+      6
+    ],
+    "light": 0
+  },
+  {
+    "scene": "FLS1_40_1.nsd",
+    "entity": 40,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -644.0,
+      580.0,
+      64.0
+    ],
+    "bounds": [
+      [
+        -1284.0,
+        -644.0,
+        -72.0
+      ],
+      [
+        1284.0,
+        644.0,
+        72.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      43,
+      29,
+      28,
+      27,
+      23,
+      18,
+      17,
+      16,
+      15
+    ],
+    "light": 0
+  },
+  {
+    "scene": "FLS2_40_1.nsd",
+    "entity": 24,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -556.0,
+      -2764.0,
+      -88.0
+    ],
+    "bounds": [
+      [
+        -60.0,
+        -444.0,
+        -40.0
+      ],
+      [
+        60.0,
+        444.0,
+        40.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      32,
+      28
+    ],
+    "light": 0
+  },
+  {
+    "scene": "FLS2_40_1.nsd",
+    "entity": 28,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -1615.0,
+      2420.0,
+      -100.0
+    ],
+    "bounds": [
+      [
+        -145.0001220703125,
+        -180.0,
+        -36.0
+      ],
+      [
+        143.000244140625,
+        180.0,
+        36.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      24,
+      7,
+      6
+    ],
+    "light": 0
+  },
+  {
+    "scene": "FLS3_40_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      2688.0,
+      68.0,
+      -40.0
+    ],
+    "bounds": [
+      [
+        -264.0,
+        -60.0,
+        -32.0
+      ],
+      [
+        264.0,
+        60.0,
+        32.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      17
+    ],
+    "light": 0
+  },
+  {
+    "scene": "GOLDD_4_1.nsd",
+    "entity": 7,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -59.0,
+      -1257.0,
+      44.0
+    ],
+    "bounds": [
+      [
+        -159.2496795654297,
+        -162.4273681640625,
+        -44.0
+      ],
+      [
+        158.31800842285156,
+        160.727783203125,
+        44.0
+      ]
+    ],
+    "materials": [
+      "Prague\\CTwall1_mid"
+    ],
+    "sectors": [
+      71,
+      68,
+      64
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HAVN_7_7.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region",
+      "11": "HILL_Main2"
+    },
+    "position": [
+      -260.0,
+      -88.0,
+      -352.0
+    ],
+    "bounds": [
+      [
+        -388.0,
+        -232.0,
+        -40.0
+      ],
+      [
+        388.0,
+        232.0,
+        40.0
+      ]
+    ],
+    "materials": [
+      "PRAGUE\\black"
+    ],
+    "sectors": [
+      3,
+      2,
+      1,
+      0
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX1_23_1.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -96.0,
+      -592.0,
+      528.0
+    ],
+    "bounds": [
+      [
+        -160.0,
+        -256.0,
+        -40.0
+      ],
+      [
+        160.0,
+        256.0,
+        40.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      2
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX2_23_1.nsd",
+    "entity": 21,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -4284.0,
+      32.0,
+      -420.0
+    ],
+    "bounds": [
+      [
+        -68.0,
+        -72.0,
+        -28.0
+      ],
+      [
+        68.0,
+        72.0,
+        28.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      5
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX2_23_1.nsd",
+    "entity": 23,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -3216.0,
+      28.0,
+      -412.0
+    ],
+    "bounds": [
+      [
+        -48.0,
+        -428.0,
+        -44.0
+      ],
+      [
+        48.0,
+        428.0,
+        44.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      5
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX3_23_1.nsd",
+    "entity": 30,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      160.0,
+      328.0,
+      -352.0
+    ],
+    "bounds": [
+      [
+        -128.0,
+        -152.0,
+        -40.0
+      ],
+      [
+        128.0,
+        152.0,
+        40.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      31,
+      30
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX3_23_1.nsd",
+    "entity": 41,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      3032.0,
+      1760.0,
+      -168.0
+    ],
+    "bounds": [
+      [
+        -72.0,
+        -72.0,
+        -32.0
+      ],
+      [
+        72.0,
+        72.0,
+        32.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      9
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX3_23_1.nsd",
+    "entity": 43,
+    "tags": {
+      "0": "trigger_region",
+      "11": "TrapRegionProjectile"
+    },
+    "position": [
+      160.0,
+      -640.0,
+      -432.0
+    ],
+    "bounds": [
+      [
+        -104.0,
+        -136.0,
+        -24.0
+      ],
+      [
+        104.0,
+        136.0,
+        24.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      35
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX3_23_1.nsd",
+    "entity": 44,
+    "tags": {
+      "0": "trigger_region",
+      "11": "TrapRegionProjectile"
+    },
+    "position": [
+      1408.0,
+      2944.0,
+      -424.0
+    ],
+    "bounds": [
+      [
+        -128.0,
+        -136.0,
+        -32.0
+      ],
+      [
+        128.0,
+        136.0,
+        32.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      46
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX3_23_1.nsd",
+    "entity": 47,
+    "tags": {
+      "0": "trigger_region",
+      "11": "TrapRegionProjectile"
+    },
+    "position": [
+      -928.0,
+      1216.0,
+      -296.0
+    ],
+    "bounds": [
+      [
+        -104.0,
+        -136.0,
+        -32.0
+      ],
+      [
+        104.0,
+        136.0,
+        32.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      29,
+      28,
+      27
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX3_23_1.nsd",
+    "entity": 49,
+    "tags": {
+      "0": "trigger_region",
+      "11": "TrapRegionProjectile"
+    },
+    "position": [
+      1408.0,
+      -896.0,
+      -232.0
+    ],
+    "bounds": [
+      [
+        -136.0,
+        -128.0,
+        -32.0
+      ],
+      [
+        136.0,
+        128.0,
+        32.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      34,
+      32
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX4_23_1.nsd",
+    "entity": 29,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -988.0,
+      1256.0,
+      24.0
+    ],
+    "bounds": [
+      [
+        -444.0,
+        -168.0,
+        -32.0
+      ],
+      [
+        444.0,
+        168.0,
+        32.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      44,
+      43
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HHX4_23_1.nsd",
+    "entity": 47,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      -476.0,
+      3736.0,
+      -1200.0
+    ],
+    "bounds": [
+      [
+        -68.0,
+        -72.0,
+        -24.0
+      ],
+      [
+        68.0,
+        72.0,
+        24.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      0
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HILL_13_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      180.0,
+      -548.0,
+      68.0
+    ],
+    "bounds": [
+      [
+        -188.0,
+        -252.0,
+        -84.0
+      ],
+      [
+        188.0,
+        252.0,
+        84.0
+      ]
+    ],
+    "materials": [
+      "Prague\\CTshingle1_mid2"
+    ],
+    "sectors": [
+      178,
+      172,
+      171,
+      100,
+      50,
+      49,
+      46,
+      33
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HILL_8_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region",
+      "11": "HILL_Main2"
+    },
+    "position": [
+      1218.0,
+      280.0,
+      64.0
+    ],
+    "bounds": [
+      [
+        -144.0,
+        -216.0,
+        -72.0
+      ],
+      [
+        144.0,
+        216.0,
+        72.0
+      ]
+    ],
+    "materials": [
+      "Prague\\CTshingle1_mid2"
+    ],
+    "sectors": [
+      91,
+      90,
+      89,
+      88,
+      87,
+      86,
+      85,
+      84
+    ],
+    "light": 0
+  },
+  {
+    "scene": "HILL_8_1.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "trigger_region",
+      "11": "HILL_Main"
+    },
+    "position": [
+      235.0,
+      -734.0,
+      79.0
+    ],
+    "bounds": [
+      [
+        -145.0,
+        -36.0,
+        -93.0
+      ],
+      [
+        145.0,
+        36.0,
+        93.0
+      ]
+    ],
+    "materials": [
+      "Prague\\CTshingle1_mid2"
+    ],
+    "sectors": [
+      178,
+      171,
+      46
+    ],
+    "light": 0
+  },
+  {
+    "scene": "JOS2_15_1.nsd",
+    "entity": 56,
+    "tags": {
+      "0": "trigger_region",
+      "11": "JOS2_GoldenLaneExit"
+    },
+    "position": [
+      260.0,
+      3784.0,
+      156.0
+    ],
+    "bounds": [
+      [
+        -204.0,
+        -72.0,
+        -36.0
+      ],
+      [
+        204.0,
+        72.0,
+        36.0
+      ]
+    ],
+    "materials": [
+      "Prague\\floor1_P"
+    ],
+    "sectors": [
+      14,
+      13
+    ],
+    "light": 0
+  },
+  {
+    "scene": "JOS3_15_1.nsd",
+    "entity": 16,
+    "tags": {
+      "0": "trigger_region",
+      "11": "TrapRegionProjectile"
+    },
+    "position": [
+      62.0,
+      -322.0,
+      31.0
+    ],
+    "bounds": [
+      [
+        -30.0,
+        -38.0,
+        -29.0
+      ],
+      [
+        30.0,
+        38.0,
+        29.0
+      ]
+    ],
+    "materials": [
+      "Prague\\JLfloor3_2_p"
+    ],
+    "sectors": [
+      71
+    ],
+    "light": 0
+  },
+  {
+    "scene": "JOS3_15_1.nsd",
+    "entity": 19,
+    "tags": {
+      "0": "trigger_region",
+      "11": "TrapRegionProjectile"
+    },
+    "position": [
+      62.0,
+      -836.0,
+      32.0
+    ],
+    "bounds": [
+      [
+        -30.0,
+        -40.0,
+        -28.0
+      ],
+      [
+        30.0,
+        40.0,
+        28.0
+      ]
+    ],
+    "materials": [
+      "Prague\\JLfloor3_2_p"
+    ],
+    "sectors": [
+      72
+    ],
+    "light": 0
+  },
+  {
+    "scene": "JOS3_15_1.nsd",
+    "entity": 36,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      416.0,
+      -1472.0,
+      936.0
+    ],
+    "bounds": [
+      [
+        -16.0,
+        -192.0,
+        -176.0
+      ],
+      [
+        16.0,
+        192.0,
+        176.0
+      ]
+    ],
+    "materials": [
+      "Prague\\JLwall11_p"
+    ],
+    "sectors": [
+      43,
+      42,
+      39,
+      38,
+      37,
+      36
+    ],
+    "light": 0
+  },
+  {
+    "scene": "JUDB_7_8.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      376.0,
+      684.0,
+      0.0
+    ],
+    "bounds": [
+      [
+        -288.0,
+        -60.0,
+        -72.0
+      ],
+      [
+        288.0,
+        60.0,
+        72.0
+      ]
+    ],
+    "materials": [
+      "Prague\\JBfloor1_2_p"
+    ],
+    "sectors": [
+      81,
+      80
+    ],
+    "light": 0
+  },
+  {
+    "scene": "JUDB_7_8.nsd",
+    "entity": 4,
+    "tags": {
+      "0": "trigger_region"
+    },
+    "position": [
+      376.0,
+      -904.0,
+      88.0
+    ],
+    "bounds": [
+      [
+        -248.0,
+        -56.0,
+        -88.0
+      ],
+      [
+        248.0,
+        56.0,
+        88.0
+      ]
+    ],
+    "materials": [
+      "Prague\\JBfloor1_2_p"
+    ],
+    "sectors": [
+      40,
+      34
+    ],
+    "light": 0
+  },
+  {
+    "scene": "L1_CURI.nsd",
+    "entity": 39,
+    "tags": {
+      "0": "cameraclip_region"
+    },
+    "position": [
+      -832.0,
+      -372.0,
+      240.0
+    ],
+    "bounds": [
+      [
+        -384.0,
+        -76.0,
+        -176.0
+      ],
+      [
+        384.0,
+        76.0,
+        176.0
+      ]
+    ],
+    "materials": [
+      "Prague\\black"
+    ],
+    "sectors": [
+      0
+    ],
+    "light": 0
+  },
+  {
+    "scene": "l1_east.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "position": [
+      -2496.0,
+      0.0,
+      440.0
+    ],
+    "bounds": [
+      [
+        -96.0,
+        -128.0,
+        -56.0
+      ],
+      [
+        96.0,
+        128.0,
+        56.0
+      ]
+    ],
+    "materials": [
+      "London\\wall01_9_L"
+    ],
+    "sectors": [
+      70,
+      62
+    ],
+    "light": 0
+  },
+  {
+    "scene": "l1_east.nsd",
+    "entity": 15,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "position": [
+      -3520.0,
+      -1548.0,
+      355.0
+    ],
+    "bounds": [
+      [
+        -96.0,
+        -76.0,
+        -139.0
+      ],
+      [
+        96.0,
+        76.0,
+        141.0
+      ]
+    ],
+    "materials": [
+      "London\\wall01_9_L",
+      "London\\wall01_6_L"
+    ],
+    "sectors": [
+      63,
+      39
+    ],
+    "light": 0
+  },
+  {
+    "scene": "l1_havn.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "position": [
+      128.0,
+      -320.0,
+      119.0
+    ],
+    "bounds": [
+      [
+        -64.0,
+        -128.0,
+        -135.00022888183594
+      ],
+      [
+        64.0,
+        128.0,
+        137.0
+      ]
+    ],
+    "materials": [
+      "London\\asphalt_L"
+    ],
+    "sectors": [
+      2
+    ],
+    "light": 0
+  },
+  {
+    "scene": "l1_tol1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "cameraclip_region"
+    },
+    "position": [
+      848.0,
+      -1920.0,
+      256.0
+    ],
+    "bounds": [
+      [
+        -208.0,
+        -64.0001220703125,
+        -128.0
+      ],
+      [
+        208.0,
+        64.0001220703125,
+        128.0
+      ]
+    ],
+    "materials": [
+      "London\\TLfloor2_L"
+    ],
+    "sectors": [
+      28
+    ],
+    "light": 0
+  }
+]

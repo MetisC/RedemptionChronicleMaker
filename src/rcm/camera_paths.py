@@ -47,25 +47,29 @@ def vector(value,label):
     return list(map(float,value))
 
 
-def authored(points):
+def authored(points,timed=False):
     if not isinstance(points,list) or not 1<=len(points)<=MAX_KEYS:raise ValueError('Travelling: requiere 1..128 puntos de cámara')
+    if type(timed) is not bool:raise ValueError('Timed camera path requires boolean')
     values=[]
     for point in points:
-        mapping(point,{'position','orientation'},{'position','orientation'},'Punto de cámara')
+        mapping(point,{'position','orientation','duration'} if timed else {'position','orientation'},{'position','orientation'},'Punto de cámara')
+        if timed and (type(point.get('duration',1)) not in (int,float) or not math.isfinite(point.get('duration',1)) or not .15<=point.get('duration',1)<=120):raise ValueError('Camera segment duration: 0.15..120 seconds')
         values.append((vector(point['position'],'Posición'),vector(point['orientation'],'Orientación')))
     records=[];distance=0.0
     for i,(position,orientation) in enumerate(values):
         row=[0.0]*26;row[0]=distance;row[2:5]=position;row[14:17]=orientation
         if i+1<len(values):
             other,angles=values[i+1];delta=[b-a for a,b in zip(position,other)];length=math.sqrt(sum(x*x for x in delta))
-            if length<.001:raise ValueError('Mueve el punto de cámara: dos puntos consecutivos no pueden coincidir')
+            if timed:length=float(points[i].get('duration',1))
+            elif length<.001:raise ValueError('Mueve el punto de cámara: dos puntos consecutivos no pueden coincidir')
             row[1]=1/length;row[5:8]=delta;row[17:20]=[(b-a+180)%360-180 for a,b in zip(orientation,angles)];distance+=length
         records.append(tuple(row))
+    if timed and distance>120:raise ValueError('Timed camera path: maximum 120 seconds')
     return CameraPath.read(CameraPath(distance,tuple(records)).encode())
 
 
 def validate_resource(row,levels,scenes):
-    mapping(row,{'id','name','scene','level','points'},{'id','scene','level','points'},'Travelling propio')
+    mapping(row,{'id','name','scene','level','points','timed'},{'id','scene','level','points'},'Travelling propio')
     if row['level'] not in levels:raise ValueError('Level de travelling desconocido')
     if row['scene'] not in {s['id'] for s in scenes}:raise ValueError('Escena de creación del travelling ausente')
-    return authored(row['points'])
+    return authored(row['points'],row.get('timed',False))

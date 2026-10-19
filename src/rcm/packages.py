@@ -68,7 +68,7 @@ def validate_metadata(m):
 
 def export_project(ws,source,destination):
     root=copy.deepcopy(source);files={};owned=root.get('resources',{})
-    for kind in ['scripts','textures']:
+    for kind in ['scripts','textures','maps']:
         for row in owned.get(kind,[]):
             path=ws.output(row['source']);name='assets/'+kind+'/'+row['id']+path.suffix;archive_path(name)
             if name in files:raise ValueError('Recurso exportado duplicado')
@@ -90,7 +90,7 @@ def import_project(ws,archive,directory):
     if 'project.yaml' not in files:raise ValueError('Proyecto sin fuente YAML')
     root=parse_source(files['project.yaml'].decode('utf8'))
     if root['chronicle']['id']!=m['id']:raise ValueError('ID de fuente y manifest distintos')
-    for kind in ['scripts','textures']:
+    for kind in ['scripts','textures','maps']:
         for row in root.get('resources',{}).get(kind,[]):
             name=row['source'];archive_path(name)
             if not name.startswith('assets/'+kind+'/') or name not in files:raise ValueError('Recurso propio ausente del proyecto')

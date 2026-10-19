@@ -47,6 +47,8 @@ class Backend:
         self.levels = json.loads(workspace.output("cache/levels.json").read_text(encoding="utf8"))
         self.base_levels=dict(self.levels)
         self.base_resources = json.loads(workspace.output("cache/resources.json").read_text(encoding="utf8"))
+        from .actor_traits import base_catalogue
+        self.base_resources['base_traits']=base_catalogue(workspace,self.base_resources)
         from .wtd import overlay
         self.resources = overlay(workspace,self.base_resources)
         from .content_libraries import overlay as libraries_overlay
@@ -288,6 +290,11 @@ class Backend:
                     from .world_effects import configurations
                     world_scenes=[dict(scene=s['id'],configurations=configurations(s)) for s,project in p.scenes if any(configurations(s))]
                     if world_scenes:contract['world_effects_v1']=world_scenes
+                    from .world_effects import room_types
+                    rooms=[dict(scene=s['id'],presets=room_types(s),initial=s.get('level',{}).get('environment',{}).get('room_type')) for s,project in p.scenes if room_types(s)]
+                    if rooms:contract['room_type_record_v1']=rooms
+                    regions=[dict(scene=s['id'],regions=[r for r in s.get('triggers',[]) if r.get('native_script') or r.get('native_region')]) for s,project in p.scenes if any(r.get('native_script') or r.get('native_region') for r in s.get('triggers',[]))]
+                    if regions:contract['native_region_v1']=regions
                 if isinstance(p,Campaign) and p.source.get('runtime_profile')=='phase10':
                     contract['dynamic_records_v1']=[{'scene':s['id'],'generators':s.get('generators',[])} for s,project in p.scenes]
                 if isinstance(p,Campaign) and any(a.get('traits') for s,project in p.scenes for a in s['actors']):
@@ -332,7 +339,7 @@ def source_fingerprint(source):
 def build_inputs_fingerprint(ws,source):
     data=parse_source(source)
     files={}
-    for kind in ['scripts','textures']:
+    for kind in ['scripts','textures','maps']:
         for row in (data.get('resources') or {}).get(kind,[]):
             path=ws.output(row['source']);files[row['source']]=hashlib.sha256(path.read_bytes()).hexdigest()
     profiles={}

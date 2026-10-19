@@ -9,29 +9,33 @@ y rc7; no se declara 1.0 final ni paridad Embrace del 100 %.
 
 El editor conserva escenas, actores/objetos, interacciones al pulsar, diálogos,
 notas, quests, flags, inventarios, encuentros dinámicos y Director cinematográfico.
-Los cambios nuevos son optativos:
+Los cambios nuevos son optativos, accesibles desde los paneles existentes:
 
-- Entorno inicial: música/ambiente y volúmenes, niebla, distancia de visión y
-  pareja de cielo compatible. Se modifica el NSD generado; EAX original se hereda.
-- Plantillas e instancias: AI, Foley, motions y texto al señalar. Los contenedores
-  ofrecen heredar, desactivar o seleccionar TreasureClass de GAME.NTT.
-- Scripts nativos: constructor real, parámetros tipados, enlaces a entidades y
-  frames de movimiento. El script conserva sus callbacks y estado. No todos los
-  contextos regionales de scripts originales son seguros en una entidad genérica.
-- Interestspots: función opcional de waypoint con grupo nativo; no se equipara a
-  un recorrido de patrulla.
-- Bibliotecas NOT/NOB locales: importación de datos seleccionados y dependencias,
-  con gestión de retirada y protección de referencias. No se importa código
-  binario externo arbitrario ni interfaces/crónicas del mod. Los recursos ajenos
-  no se redistribuyen dentro del programa ni del ZIP público de una crónica.
-- Dificultad por crónica, descrita a continuación.
+- Mapas visuales propios: imagen, puntos arrastrables, nombres, visibilidad,
+  refugios y enlace de escenas, con NUI/TGA/NLS/NSC generados directamente.
+- Regiones nativas caja con malla/sectores enlazados; scripts y parámetros
+  region/item, además de escalares/actor/thing/frames anteriores. 440 constructores
+  unívocos catalogados; propiedad y callbacks nativos separados de eventos RCM.
+- Objetivos dinámicos por generador/rol/ordinal para cámara, gesto, movimiento,
+  recorrido, inventario, comportamiento y audio/luz. Son vistas transitorias del
+  roster GUID existente, sin otra instancia ni gestor ni registros alias de save.
+- Giros y esperas estacionarios temporizados mediante NCP propios; modo anterior
+  por distancias y174 originales conservados.
+- Zonas activadoras de sonido y luz sobre los triggers/handles existentes,
+  alternativa funcional explícita al recorte literal de cajas por sectores.
+- EAX optativo mediante comando original roomtype después de cargar; requiere
+  proveedor 3D compatible para efecto audible. Tail estático original intacto.
+- Clanes y disciplinas base accesibles sin mod; WTD continúa siendo optativo.
+- Entorno, propiedades por instancia, TreasureClass, interestspots, bibliotecas
+  locales y dificultad anteriores conservados.
 
-La matriz estricta vigente es EMBRACE_AUTHORING_PARITY.md. EAX editable, regiones
-nativas generales, soundboxes/lightboxes y duración de giros NCP estacionarios
-siguen siendo límites concretos, con evidencia en
-research/embrace_strict_parity/SAFETY_DECISIONS.md. No se ocultan bajo la exclusión
-de geometría. La compilación y las pruebas offline no certifican su comportamiento
-en Redemption.
+Uso, archivos y seis comprobaciones breves: AUTHORING_COMPLETION.md.
+Cobertura completa y estados: EMBRACE_AUTHORING_PARITY.md. Evidencia:
+research/authoring_completion/EVIDENCE.md. No se declara el 100 %: siguen desconocidos
+el binding seguro de constructores CodexPlayer de campaña y el payload/recorte
+literal soundbox/lightbox. No se presentan como imposibles. Hay rutas normales
+Player Actions y zonas activadoras para los usos habituales. El NCP no contiene
+FOV por keyframe; las bibliotecas de datos no importan código binario desconocido.
 
 ## Dificultad de combate
 
@@ -59,11 +63,10 @@ La evidencia y pruebas están en research/combat_difficulty/EVIDENCE.md.
 
 ## Mapas y localizaciones
 
-Los ocho mapas NUI originales, sus teselas TGA y las referencias NSC/NLS permiten
-crear ilustraciones, puntos, nombres y visibilidad propios sin editar NIL.
-El mapa original muestra información al señalar; no implica viaje al pulsar.
-Actualmente RCM hereda metadatos del mapa y no ofrece un editor de mapas.
-research/embrace_strict_parity/MAPS.md distingue viabilidad de implementación.
+El editor permite imágenes y localizaciones propias mediante Mapas y localizaciones.
+Los mapas son informativos como en el juego original: nombres al señalar,
+visibilidad/descubrimiento y refugios; no se atribuye viaje al pulsar. La imagen
+original sólo se referencia; una imagen nueva pertenece al autor del proyecto.
 
 ## Contenido preservado y ejemplos
 
@@ -78,25 +81,24 @@ grupos de interés sin reescribir el tutorial. Su observación nativa queda pend
 
 ## Evidencia y verificación
 
-La batería completa pasó 567 pruebas, sin fallos, errores ni omisiones. Ruff y
-el alcance configurado de mypy también pasaron. Los resultados vigentes están
-en build/tests/quality_report.json y test_report.json. El recibo de esta entrega está en
-research/embrace_strict_parity/delivery.json. Distingue suite completa, Ruff/mypy,
-compilación real Codex JVM 45.3, doubles, transacciones Qt y ejecutable portable.
-La suite no se presenta como gameplay real ni como cobertura total de código.
+Los resultados vigentes de la batería completa se guardan en
+build/tests/quality_report.json y test_report.json; el recibo de esta entrega es
+research/authoring_completion/delivery.json. Se separan suite completa, Ruff/mypy,
+compilación real Codex JVM 45.3, doubles y transacciones Qt. El recibo recoge el
+resultado real al terminar; la investigación no acredita gameplay nativo.
 
-El portable se comprueba en inglés y castellano desde carpetas movidas,
-espacios/unicode, configuración nueva y PATH restringido. Son probes offscreen
-en este equipo; no equivalen a PC independiente, render OpenGL real, GPU ni DPI
-físico. El ZIP público se audita y todos sus archivos se verifican por hash.
-El programa no incorpora los archivos originales del juego ni de mods importados.
+Las ventanas nuevas se han inspeccionado offscreen en inglés y castellano con
+fuentes reales; cancelar conserva el proyecto. El portable se reconstruye sin
+cambiar versión ni publicar release. Movimiento de carpeta, idioma y PATH
+restringido son probes en este equipo, no PC independiente, GPU/DPI físico ni
+observación del juego. No se incluyen assets originales de juego o mods.
 
 El usuario confirmó anteriormente el tutorial, la reparación del clic/primer
 desplazamiento y la carga inicial corregida del Taller («Funciona bien y abre»,
 18/10/2026). Esto no certifica nuevos mecanismos, save/load, reentrada o red.
 Los casos EMB01–24, DYN01–12, EMB-MUSIC/CONV/NCP, nuevos EMB-ENV/TEMPLATE/
 TREASURE/CODEX/INTEREST/LIBRARY y DIFF01–06 siguen en MANUAL_RUNTIME_CHECKLIST.md.
-El usuario realiza esas pruebas; no se automatiza Redemption.
+COMP01–06 cubre las adiciones actuales. El usuario realiza esas pruebas; no se automatiza Redemption.
 
 ## Alcance
 
