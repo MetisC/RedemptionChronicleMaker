@@ -62,3 +62,6 @@ Speak to Anezka in the new laboratory. Each exercise is independent.
 These observations remain pending until the user performs them. Real Codex 45.3
 compilation, binary readback, doubles and Qt offscreen are distinct evidence;
 they do not certify gameplay, physical GPU/DPI, a separate PC or networking.
+
+
+Converting a shared camera path to time per segment updates its sequence and action playback rates to1 in the same undo transaction.

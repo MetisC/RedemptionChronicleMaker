@@ -72,7 +72,8 @@ def extend(java,scene,project):
             kind,value=next(iter(action.items()));entity=value['entity'] if kind=='set_dynamic_light' else value
             code.append(f' case {ci}: slot={targets.index(entity)}; guid=things[{indices[entity]}]; break;')
         code += [' } if(slot<0 || !local(guid)) { trace("LIGHT_TARGET_MISSING"); return false; } CodexThing thing=new CodexThing(guid); thing.ClearDynamicLight(); boolean ok=true; switch(command) {']
-        if any(str(target).startswith('dynamic/') for target in targets):code[-1]=code[-1].replace('CodexThing thing=', 'if(sceneLightGuid[slot]!=guid && local(sceneLightGuid[slot])) new CodexThing(sceneLightGuid[slot]).ClearDynamicLight(); CodexThing thing=')
+        dynamic=any(str(target).startswith('dynamic/') for target in targets)
+        if dynamic:code[-1]=code[-1].replace('CodexThing thing=', 'if(sceneLightGuid[slot]!=guid && ownsSceneLight(slot,sceneLightGuid[slot])) new CodexThing(sceneLightGuid[slot]).ClearDynamicLight(); CodexThing thing=')
         for ci,action in enumerate(lights):
             if 'set_dynamic_light' not in action:continue
             value=action['set_dynamic_light']
@@ -81,9 +82,16 @@ def extend(java,scene,project):
                  ' private void pollSceneLights() {']
         for i,target in enumerate(targets):
             if str(target).startswith('dynamic/'):
-                code.append(f' if(!local(things[{indices[target]}]) && sceneLightGuid[{i}]!=0) {{ if(local(sceneLightGuid[{i}])) new CodexThing(sceneLightGuid[{i}]).ClearDynamicLight(); sceneLightGuid[{i}]=0; }}')
+                code.append(f' if(!local(things[{indices[target]}]) && sceneLightGuid[{i}]!=0) {{ if(ownsSceneLight({i},sceneLightGuid[{i}])) new CodexThing(sceneLightGuid[{i}]).ClearDynamicLight(); sceneLightGuid[{i}]=0; }}')
             code.append(f' if(sceneLightState[{i}]>=0 && local(things[{indices[target]}]) && sceneLightGuid[{i}]!=things[{indices[target]}]) sceneLight(sceneLightState[{i}]);')
         code.append(' }')
+        if dynamic:
+            from .dynamic_targets import candidates
+            roles=candidates(scene);code.append(' private boolean ownsSceneLight(int slot,int guid) { switch(slot) {')
+            for i,target in enumerate(targets):
+                if target in roles:
+                    role=roles[target];code.append(f' case {i}: return dynamicRoleOwns({role["generator"]},{role["role"]},guid);')
+            code.append(' default: return local(guid); } }')
         from .scene_zones import lights as zone_lights
         zones=zone_lights(scene)
         if zones:

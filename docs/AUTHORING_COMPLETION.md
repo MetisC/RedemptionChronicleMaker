@@ -80,3 +80,6 @@ paridad literal de payload/recorte soundbox/lightbox. No se han probado imposibl
 Las alternativas normales Player Actions y zonas activadoras están disponibles.
 El NCP no almacena FOV por punto; la importación genérica de código binario
 desconocido se rechaza explícitamente. Geometría/bake queda fuera del encargo.
+
+
+Al convertir un travelling compartido a tiempo por tramo, se actualiza la velocidad a1 en sus secuencias y acciones de reproducción dentro de la misma operación de deshacer.

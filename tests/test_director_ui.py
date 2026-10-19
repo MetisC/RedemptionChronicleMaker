@@ -64,3 +64,16 @@ class DirectorUI(TestCase):
         self.assertGreater(panel.scroll.verticalScrollBar().maximum(),0)
         self.assertLess(duration.geometry().bottom(),button.geometry().top())
         self.assertLess(button.geometry().bottom(),cues.geometry().top());self.assertGreaterEqual(cues.height(),130)
+
+    def test_converting_shared_path_to_seconds_retimes_sequence_cues_and_events(self):
+        root=self.win.doc.snapshot();scene=root['scenes'][0];sequence=scene['sequences'][0]
+        sequence.pop('steps',None);sequence['camera_path']='own_path';sequence['path_speed']=30
+        sequence['cues'].append(dict(at=5.5,actions=[dict(play_camera_path=dict(resource='own_path',speed=50))]))
+        scene['events'].append(dict(id='shared_path',when='manual',actions=[dict(play_camera_path=dict(resource='own_path',speed=25))]))
+        root['resources']['camera_paths']=[dict(id='own_path',scene=scene['id'],level=scene['level']['source'],points=[dict(position=[0,0,100],orientation=[0,0,0]),dict(position=[100,0,100],orientation=[0,0,20])])]
+        self.win.doc.data=root;self.win.changed(True);before=self.win.doc.snapshot()
+        dialog=CameraPathDialog(self.win,None,'own_path');dialog.timed.setChecked(True);dialog.accept();self.assertEqual(dialog.result(),dialog.DialogCode.Accepted,dialog.error.text())
+        result=self.win.doc.snapshot();sequence=result['scenes'][0]['sequences'][0]
+        self.assertEqual(sequence['path_speed'],1);self.assertEqual(sequence['cues'][-1]['actions'][0]['play_camera_path']['speed'],1);self.assertEqual(result['scenes'][0]['events'][-1]['actions'][0]['play_camera_path']['speed'],1)
+        valid=self.backend.validate(result);self.assertTrue(valid.valid,[p.message for p in valid.problems])
+        self.win.undo_project();self.assertEqual(self.win.doc.snapshot(),before)

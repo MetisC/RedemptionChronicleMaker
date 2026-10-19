@@ -1,0 +1,75 @@
+{
+  "callback_classes_audited": 252,
+  "player_constructor_contexts": [
+    {
+      "class_": "ARC3_Erik",
+      "constructors": [
+        "(LCodexPlayer;LCodexActor;LCodexThing;)V"
+      ],
+      "callbacks": [
+        "beginscene",
+        "entered",
+        "convreached"
+      ]
+    },
+    {
+      "class_": "DOCK_33_1_Main",
+      "constructors": [
+        "(LCodexRegion;LCodexRegion;LCodexActor;LCodexActor;LCodexActor;LCodexActor;LCodexPlayer;LCodexRegion;LCodexActor;LCodexThing;)V"
+      ],
+      "callbacks": [
+        "clicked",
+        "beginscene",
+        "entered",
+        "convreached"
+      ]
+    },
+    {
+      "class_": "HILL_13_1",
+      "constructors": [
+        "(LCodexRegion;LCodexActor;LCodexPlayer;)V"
+      ],
+      "callbacks": [
+        "clicked",
+        "beginscene",
+        "entered",
+        "convreached"
+      ]
+    },
+    {
+      "class_": "TEN1_28_1_MeetPink",
+      "constructors": [
+        "(LCodexPlayer;)V"
+      ],
+      "callbacks": [
+        "clicked",
+        "beginscene",
+        "convreached"
+      ]
+    },
+    {
+      "class_": "UNIV_7_7",
+      "constructors": [
+        "(LCodexActor;LCodexActor;LCodexPlayer;)V"
+      ],
+      "callbacks": [
+        "clicked",
+        "beginscene",
+        "convreached"
+      ]
+    },
+    {
+      "class_": "WAR3_Main",
+      "constructors": [
+        "(LCodexRegion;LCodexPlayer;LCodexThing;)V"
+      ],
+      "callbacks": [
+        "beginscene",
+        "entered",
+        "convreached"
+      ]
+    }
+  ],
+  "native_game_test": false,
+  "classification": "Unknown safe MP runtime binding; ordinary Player actions available; not a proof of impossibility"
+}

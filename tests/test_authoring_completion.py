@@ -140,6 +140,24 @@ class Completion(TestCase):
             dialog=EnvironmentDialog(win);field=dialog.fields['room_type'];self.assertEqual(field.count(),27);field.setCurrentIndex(field.findData(4));dialog.apply();self.assertEqual(win.doc.campaign['scenes'][0]['level']['environment']['room_type'],4)
             win.campaign_panel.add_sequence();field=win.campaign_panel.findChild(QComboBox,'sequence_actor');self.assertIsNotNone(field);self.assertGreaterEqual(field.findData('dynamic/boss/boss/0'),0)
         finally:win.doc=None;win.close();self.app.processEvents()
+
+    def test_native_region_link_requires_selection_and_commits_with_undo(self):
+        from unittest.mock import patch
+        from rcm.editor.window import MainWindow
+        from rcm.editor.native_scripts import NativeScriptDialog
+        from PySide6.QtWidgets import QMessageBox
+        root=fixture();s=root['scenes'][0];t=copy.deepcopy(s['entries'][0]['transform'])
+        s['objects']=[dict(id='binder',name='Controller',template='tracker_thing',transform=t)]
+        s['triggers']=[dict(id='region',name='Box',shape='box',size=[64,64,64],transform=copy.deepcopy(t))]
+        win=MainWindow(self.backend);win.doc=CampaignDocument(self.backend.ws,root);win.refresh();before=win.doc.snapshot()
+        try:
+            dialog=NativeScriptDialog(win,win.doc.data['objects'][0]);dialog.choose.setCurrentIndex(dialog.choose.findData('GOLDD_4_1'))
+            with patch.object(QMessageBox,'warning') as warning:dialog.apply();self.assertEqual(warning.call_count,1)
+            self.assertEqual(win.doc.snapshot(),before);self.assertEqual(dialog.result(),QDialog.DialogCode.Rejected)
+            field=dialog.controls[0][1];field.setCurrentIndex(field.findData('region'));dialog.apply()
+            self.assertEqual(dialog.result(),QDialog.DialogCode.Accepted);self.assertTrue(win.doc.data['triggers'][0]['native_region']);self.valid(win.doc.snapshot())
+            win.undo_project();self.assertEqual(win.doc.snapshot(),before)
+        finally:win.doc=None;win.close();self.app.processEvents()
     def test_original_traits_available_without_mod_and_unknown_content_rejected(self):
         from rcm.actor_traits import catalogue
         data=catalogue(self.backend.resources);self.assertTrue(data['clans']);self.assertTrue(data['disciplines'])
@@ -220,7 +238,7 @@ class Completion(TestCase):
             text=text.replace('static void Print(int a,int b,String s){}','static void Print(int a,int b,String s){if(s.indexOf("LIGHT_TARGET_MISSING")>=0)CE.missingLight++;}')
             text=text.replace('class Codex {','class Codex {static final int LIGHTSTYLE_CONSTANT=0;')
             return text.replace('class CodexThing extends Codex {','class CodexThing extends Codex {boolean AllocateDynamicLight(){CE.lights.add(Integer.valueOf(guid));return true;}boolean ClearDynamicLight(){CE.lights.remove(Integer.valueOf(guid));return true;}boolean SetDynamicLightColor(float[] v){return true;}boolean SetDynamicLightIntensity(float v){return true;}boolean SetDynamicLightRadius(float v){return true;}boolean SetDynamicLightStyle(int v){return true;}')
-        for dynamic in (False,True):
+        for dynamic,foreign in ((False,False),(True,False),(True,True)):
             root=fixture(dynamic);s=root['scenes'][0];light=dict(entity='dynamic/boss/boss/0' if dynamic else 'mentor',color=[1,1,1],intensity=1,radius=200,style='constant')
             if dynamic:s['events'].append(dict(id='light',when='manual',actions=[dict(set_dynamic_light=light)]))
             else:
@@ -228,6 +246,7 @@ class Completion(TestCase):
                 s['triggers']=[dict(id='zone',name='Zone',shape='box',size=[100,100,100],transform=copy.deepcopy(s['entries'][0]['transform']),light_zone=light)]
             campaign=self.valid(root);self.backend.build(root);name=runtime(campaign,*campaign.scenes[0])[0]
             check='java.lang.reflect.Method method=SCENE.class.getDeclaredMethod("sceneLight",Integer.TYPE);method.setAccessible(true);if(!((Boolean)method.invoke(scene,Integer.valueOf(0))).booleanValue())throw new AssertionError("light not applied");int guid=CE.lights.iterator().next().intValue();CE.world.get(guid).health=0;scene.timer(9400,0,0,0,0);if(CE.lights.contains(Integer.valueOf(guid)))throw new AssertionError("dead target still lit");' if dynamic else 'if(CE.missingLight!=0)throw new AssertionError("missing actor trace loop");'
+            if foreign:check=check.replace('CE.world.get(guid).health=0;','CE.world.get(guid).template="foreign";').replace('if(CE.lights.contains(Integer.valueOf(guid)))','if(!CE.lights.contains(Integer.valueOf(guid)))').replace('dead target still lit','foreign light was cleared')
             harness=('public class StabilityHarness {public static void main(String[] args)throws Exception {CE.Thing p=new CE.Thing();p.template="player";CE.world.put(1,p);SCENE scene=new SCENE();scene.beginscene(1,0);for(int i=0;i<20;i++)scene.timer(9400,0,0,0,0);'+check+'System.out.println("PASS");}}').replace('SCENE',name)
             with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as tmp:
                 compile_scenario(Path(tmp),campaign,harness,doubles);run=subprocess.run(['java','-cp',tmp,'StabilityHarness'],capture_output=True,text=True,timeout=30);self.assertEqual(run.returncode,0,run.stdout+run.stderr)

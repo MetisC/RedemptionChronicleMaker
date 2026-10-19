@@ -245,6 +245,20 @@ class CameraPathDialog(QDialog):
             from ..camera_paths import authored
             path=authored(self.row['points'],self.row.get('timed',False));self.row['name']=self.name.text()
             if self.main_binding:self.sequence['path_speed']=self.speed.value()
+            if self.row.get('timed'):
+                # A shared resource changes units for every playback reference.
+                # Update the same source snapshot, including line/phase/cue actions.
+                def retime(value):
+                    if isinstance(value,list):
+                        for child in value:retime(child)
+                    elif isinstance(value,dict):
+                        action=value.get('play_camera_path')
+                        if isinstance(action,dict) and action.get('resource')==self.row['id']:action['speed']=1
+                        for child in value.values():retime(child)
+                for scene in self.root['scenes']:
+                    for sequence in scene.get('sequences',[]):
+                        if sequence.get('camera_path')==self.row['id']:sequence['path_speed']=1
+                    retime(scene)
             if self.main_binding and self.row.get('timed'):self.sequence['duration']=max(self.sequence['duration'],path.total)
             if self.start.isChecked():
                 scene=self.root['scenes'][self.win.doc.active];number=1

@@ -1,0 +1,40 @@
+{
+  "successful": true,
+  "checks": [
+    {
+      "successful": true,
+      "language": "en",
+      "screens": [
+        "maps",
+        "environment",
+        "native_region",
+        "timed_camera",
+        "sound_zone",
+        "light_zone",
+        "dynamic_camera"
+      ],
+      "project_unchanged": true,
+      "offscreen": true,
+      "native_engine_test": false,
+      "physical_gpu_dpi_test": false
+    },
+    {
+      "successful": true,
+      "language": "es",
+      "screens": [
+        "maps",
+        "environment",
+        "native_region",
+        "timed_camera",
+        "sound_zone",
+        "light_zone",
+        "dynamic_camera"
+      ],
+      "project_unchanged": true,
+      "offscreen": true,
+      "native_engine_test": false,
+      "physical_gpu_dpi_test": false
+    }
+  ],
+  "native_engine_test": false
+}

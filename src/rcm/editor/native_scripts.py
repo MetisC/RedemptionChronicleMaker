@@ -60,7 +60,10 @@ class NativeScriptDialog(QDialog):
                 args=[dict(type=kind,value=control.currentData() if kind in ('thing','actor','region','item') else control.text() if kind=='string' else control.value()) for kind,control in self.controls]
                 row['native_script']=dict(class_=name,parameters=args);row['native_script']['class']=row['native_script'].pop('class_')
                 for arg in args:
-                    if arg['type']=='region':next(t for t in scene['triggers'] if t['id']==arg['value'])['native_region']=True
+                    if arg['type']=='region':
+                        target=next((t for t in scene['triggers'] if t['id']==arg['value']),None)
+                        if target is None:raise ValueError(tr('Selecciona una región de la escena'))
+                        target['native_region']=True
                 native={row['id']}|{arg['value'] for arg in args if arg['type'] in ('thing','actor','region','item')}
                 for event in scene['events']:
                     if event['when']=='scene_start' and not event.get('conditions'):event['actions']=[a for a in event['actions'] if a.get('spawn') not in native]

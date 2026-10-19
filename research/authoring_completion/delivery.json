@@ -1,0 +1,272 @@
+{
+  "date": "2026-10-19T19:21:16.863653+02:00",
+  "version": "1.0.0-rc7",
+  "branch": "main",
+  "base_commit": "780eba9255cbbef04aa01338e18754c656c52b3c",
+  "tested_source_sha256": "10212a5f51962b918b7d700e25c86ff5329c72910039f313971f167ada84c290",
+  "quality": {
+    "tests": 588,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "elapsed_seconds": 692.7240030999999,
+    "successful": true,
+    "checks": [
+      {
+        "command": [
+          "tools/prepare_native_sectors.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "command": [
+          "-m",
+          "ruff",
+          "check",
+          "src",
+          "tools",
+          "tests"
+        ],
+        "returncode": 0
+      },
+      {
+        "command": [
+          "-m",
+          "mypy",
+          "--follow-imports=skip",
+          "--check-untyped-defs",
+          "--cache-dir",
+          "build/tests/mypy_cache",
+          "src/rcm/paths.py",
+          "src/rcm/input_limits.py",
+          "src/rcm/file_transaction.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "command": [
+          "tools/test.py"
+        ],
+        "returncode": 0
+      }
+    ]
+  },
+  "real_codex_builds": [
+    {
+      "example": "tutorial",
+      "id": "rcm_tutor",
+      "successful": true,
+      "classes": 5,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "3980af804d2d1399fc589c1032db51579e1c79217f8691c6c0a4e4277954b562",
+      "nob_sha256": "9ffa45c2463e08191f1c743406165fd4c0462b186608c884aa4fdf797e912f86",
+      "geometry_included": false,
+      "native_game_test": false,
+      "class_sha256": {
+        "bundle/codex/RCMTutorActor.class": "fceef6e538122cf70d269ed2761584ea97bc786fe9d9ea8a47818f397f2696bb",
+        "bundle/codex/R_rcm_tutor_s0_Passive.class": "f5915d7c0752710a963c97bccd9a1cb4e07d80dcb3457860660f5df741948133",
+        "bundle/codex/R_rcm_tutor_s0_Scene.class": "a0c115345705ee28c6b5b70ab2c34a56ca1a08a0b093408ff5b99b0fb086eef5",
+        "bundle/codex/R_rcm_tutor_s1_Passive.class": "ddfb7a917f8e68a7991c2bde0b2417ddbf47fd562fd2ad85c2283cdac4fa523b",
+        "bundle/codex/R_rcm_tutor_s1_Scene.class": "8ed19c012f4a0d192db339a29d89266f4ef521872f28b1355070e71b3d3c7ac0",
+        "custom_classes/RCMTutorActor.class": "fceef6e538122cf70d269ed2761584ea97bc786fe9d9ea8a47818f397f2696bb",
+        "runtime/codex/R_rcm_tutor_s0_Passive.class": "f5915d7c0752710a963c97bccd9a1cb4e07d80dcb3457860660f5df741948133",
+        "runtime/codex/R_rcm_tutor_s0_Scene.class": "a0c115345705ee28c6b5b70ab2c34a56ca1a08a0b093408ff5b99b0fb086eef5",
+        "runtime/codex/R_rcm_tutor_s1_Passive.class": "ddfb7a917f8e68a7991c2bde0b2417ddbf47fd562fd2ad85c2283cdac4fa523b",
+        "runtime/codex/R_rcm_tutor_s1_Scene.class": "8ed19c012f4a0d192db339a29d89266f4ef521872f28b1355070e71b3d3c7ac0"
+      }
+    },
+    {
+      "example": "mini_chronicle",
+      "id": "rcm_mini",
+      "successful": true,
+      "classes": 7,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "602c7c94c00619cd31cae135627ea1f114ec74b0ac9efa599981fedc24083bfc",
+      "nob_sha256": "db0cb98e6a09312c1d174900d8d0adb39817f07287b959e9a16bc0a21e0bf817",
+      "geometry_included": false,
+      "native_game_test": false,
+      "class_sha256": {
+        "bundle/codex/RCMMiniActor.class": "f577ee7adb5d6cbcf7630f65d0a6c5f315588dd3d45868a956568c6e1fcba681",
+        "bundle/codex/R_rcm_mini_s0_Passive.class": "5aa788aac82242d2993807b8b8c2bb4d88fe3d9a26b1df838731564962668876",
+        "bundle/codex/R_rcm_mini_s0_Scene.class": "731e731095c4f544e9c02f564821bbc17d865c89b4354e99c5fd4aa18d20a739",
+        "bundle/codex/R_rcm_mini_s1_Passive.class": "cb0a4f7eb2f4ef18a46f456b4e25d7803a50172f31e1f7f27e075ebc07cf8898",
+        "bundle/codex/R_rcm_mini_s1_Scene.class": "22fd3b59a4a95c751147b828dce4281ee38bd6296754a197cebf93955939f753",
+        "bundle/codex/R_rcm_mini_s2_Passive.class": "f4478b3379f2bde4455b079f8ca9adb7399aa328131b535f11d9204f08c45823",
+        "bundle/codex/R_rcm_mini_s2_Scene.class": "41d5d80f8bdd409125cf9c878bb9db230865ef31ee4082adb45abf8f2504e424",
+        "custom_classes/RCMMiniActor.class": "f577ee7adb5d6cbcf7630f65d0a6c5f315588dd3d45868a956568c6e1fcba681",
+        "runtime/codex/R_rcm_mini_s0_Passive.class": "5aa788aac82242d2993807b8b8c2bb4d88fe3d9a26b1df838731564962668876",
+        "runtime/codex/R_rcm_mini_s0_Scene.class": "731e731095c4f544e9c02f564821bbc17d865c89b4354e99c5fd4aa18d20a739",
+        "runtime/codex/R_rcm_mini_s1_Passive.class": "cb0a4f7eb2f4ef18a46f456b4e25d7803a50172f31e1f7f27e075ebc07cf8898",
+        "runtime/codex/R_rcm_mini_s1_Scene.class": "22fd3b59a4a95c751147b828dce4281ee38bd6296754a197cebf93955939f753",
+        "runtime/codex/R_rcm_mini_s2_Passive.class": "f4478b3379f2bde4455b079f8ca9adb7399aa328131b535f11d9204f08c45823",
+        "runtime/codex/R_rcm_mini_s2_Scene.class": "41d5d80f8bdd409125cf9c878bb9db230865ef31ee4082adb45abf8f2504e424"
+      }
+    },
+    {
+      "example": "showcase",
+      "id": "rcm_showcase",
+      "successful": true,
+      "classes": 9,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "0eea90b8547f1e91c1cd024ed02d8b78d097f30619b8cfcdddc91970240bce45",
+      "nob_sha256": "c5551e2fd3a1230ab0f5df4cfe735879148f207f6b9529892f19bcbb31c802bd",
+      "geometry_included": false,
+      "native_game_test": false,
+      "class_sha256": {
+        "bundle/codex/RCMShowcaseActor.class": "622f9cfca8940e3f4751638ba6a1935cbc8c3b9025edd69870f73e1fb06169d6",
+        "bundle/codex/R_rcm_showcase_s0_Passive.class": "2a50f5a85b67eeb73573c7fc2c513cad6653970e8c43c5399eb5bd85d5803f86",
+        "bundle/codex/R_rcm_showcase_s0_Scene.class": "0860c0e54cc10b4c1da7604ac4959fd483e9573f857e0d05a1f4941fe60db130",
+        "bundle/codex/R_rcm_showcase_s1_Passive.class": "a354bd381e90801df8498b05e52bc4e5432744cae991ca1d3e828443f81d7ab4",
+        "bundle/codex/R_rcm_showcase_s1_Scene.class": "69bb27c05580776942a1783eabd40acea317971ef3fae6009940377d505115c7",
+        "bundle/codex/R_rcm_showcase_s2_Passive.class": "96d39d729ef5e572ee5b392703b2ab00ada991dd3c7651fd63443d3ecd918e5c",
+        "bundle/codex/R_rcm_showcase_s2_Scene.class": "1f16196893d6c3a0c1f1c7d5b641bab726dcd3022804a11f363326d377fa8bd6",
+        "bundle/codex/R_rcm_showcase_s3_Passive.class": "610cdc8684e6d8925f84404cba5ba6293339f1af8767aeb9d1df5cf8ae5b13c9",
+        "bundle/codex/R_rcm_showcase_s3_Scene.class": "aa8dffa7e56b507cffc3e8a8dba4f40e40b6d0acd1533360e67f21789e965531",
+        "custom_classes/RCMShowcaseActor.class": "622f9cfca8940e3f4751638ba6a1935cbc8c3b9025edd69870f73e1fb06169d6",
+        "runtime/codex/R_rcm_showcase_s0_Passive.class": "2a50f5a85b67eeb73573c7fc2c513cad6653970e8c43c5399eb5bd85d5803f86",
+        "runtime/codex/R_rcm_showcase_s0_Scene.class": "0860c0e54cc10b4c1da7604ac4959fd483e9573f857e0d05a1f4941fe60db130",
+        "runtime/codex/R_rcm_showcase_s1_Passive.class": "a354bd381e90801df8498b05e52bc4e5432744cae991ca1d3e828443f81d7ab4",
+        "runtime/codex/R_rcm_showcase_s1_Scene.class": "69bb27c05580776942a1783eabd40acea317971ef3fae6009940377d505115c7",
+        "runtime/codex/R_rcm_showcase_s2_Passive.class": "96d39d729ef5e572ee5b392703b2ab00ada991dd3c7651fd63443d3ecd918e5c",
+        "runtime/codex/R_rcm_showcase_s2_Scene.class": "1f16196893d6c3a0c1f1c7d5b641bab726dcd3022804a11f363326d377fa8bd6",
+        "runtime/codex/R_rcm_showcase_s3_Passive.class": "610cdc8684e6d8925f84404cba5ba6293339f1af8767aeb9d1df5cf8ae5b13c9",
+        "runtime/codex/R_rcm_showcase_s3_Scene.class": "aa8dffa7e56b507cffc3e8a8dba4f40e40b6d0acd1533360e67f21789e965531"
+      }
+    },
+    {
+      "example": "dynamic_lab",
+      "id": "rcm_dynamic",
+      "successful": true,
+      "classes": 2,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "271bddf5a1a96174e210ac10cc380aab72db99414cd4b3a2b468fbf8327b3e98",
+      "nob_sha256": "426dec546c6706242d8e84fbe711517ca35005037bc38113e8c51103b2df4807",
+      "geometry_included": false,
+      "native_game_test": false,
+      "class_sha256": {
+        "bundle/codex/R_rcm_dynamic_s0_Passive.class": "0371c6ab0fe09f4774e45dcf16b163616bcc92cf333e95ea4504dff899efac7e",
+        "bundle/codex/R_rcm_dynamic_s0_Scene.class": "2455cee9beef7a3bce7a6d7581faa8b0d6a4f7015197744cea1476fb0407c370",
+        "runtime/codex/R_rcm_dynamic_s0_Passive.class": "0371c6ab0fe09f4774e45dcf16b163616bcc92cf333e95ea4504dff899efac7e",
+        "runtime/codex/R_rcm_dynamic_s0_Scene.class": "2455cee9beef7a3bce7a6d7581faa8b0d6a4f7015197744cea1476fb0407c370"
+      }
+    },
+    {
+      "example": "director_acceptance",
+      "id": "rcm_director",
+      "successful": true,
+      "classes": 4,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "081cf420bf0d827dabc4948ad993bad37ed483443e9ec27c05fefcd7732d0772",
+      "nob_sha256": "38b4986ac6bc9713bea9f1d7a3d1e74b344838661c430c41ffa294e3128f07ee",
+      "geometry_included": false,
+      "native_game_test": false,
+      "class_sha256": {
+        "bundle/codex/R_rcm_director_s0_Passive.class": "4549e4dbc51f1c8d5edbb0a3c23a5861a69627e7ce32772bd7c9a6af643cdd03",
+        "bundle/codex/R_rcm_director_s0_Scene.class": "ef205a6f51744bebf282ad94c2947ade6b8462ef5fa60997faf8742e999b6798",
+        "bundle/codex/R_rcm_director_s1_Passive.class": "e243f046e1f83946de96518454f26551aaeadbb2d5bad31f535ccc0c86de958a",
+        "bundle/codex/R_rcm_director_s1_Scene.class": "16bbabae006ccfc0f3364216fd5a6b9bc3849bfc81d39ad53a5b16b42f1f3ce7",
+        "runtime/codex/R_rcm_director_s0_Passive.class": "4549e4dbc51f1c8d5edbb0a3c23a5861a69627e7ce32772bd7c9a6af643cdd03",
+        "runtime/codex/R_rcm_director_s0_Scene.class": "ef205a6f51744bebf282ad94c2947ade6b8462ef5fa60997faf8742e999b6798",
+        "runtime/codex/R_rcm_director_s1_Passive.class": "e243f046e1f83946de96518454f26551aaeadbb2d5bad31f535ccc0c86de958a",
+        "runtime/codex/R_rcm_director_s1_Scene.class": "16bbabae006ccfc0f3364216fd5a6b9bc3849bfc81d39ad53a5b16b42f1f3ce7"
+      }
+    },
+    {
+      "example": "strict_acceptance",
+      "id": "rcm_strict",
+      "successful": true,
+      "classes": 4,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "b1def60564779ed816aa3c9e6c6f553ecfdcfc250cfca3e276d7ccfe9d83a2be",
+      "nob_sha256": "9a38845aa52e60fe630b98bc63380c42828259b17bfc03e07c81c9998d87a194",
+      "geometry_included": false,
+      "native_game_test": false,
+      "class_sha256": {
+        "bundle/codex/R_rcm_strict_s0_Passive.class": "2484a908c4fdf2134ee502d067050f85eb75b179b8333e5e534560c88b4e3ee2",
+        "bundle/codex/R_rcm_strict_s0_Scene.class": "a90f417f6a0f11995020f7237edbceec7add56a4d10f2a1ec34a2048f3da69e5",
+        "bundle/codex/R_rcm_strict_s1_Passive.class": "1a6dc42f23967b19a5f5b14dd0f88adf724cb8ddd0eed7185f4ba2f482ecb417",
+        "bundle/codex/R_rcm_strict_s1_Scene.class": "4b8f8bc7826b7c34d66449d19aa51594c8f0daab623577fcf9d34b1dde1d3644",
+        "runtime/codex/R_rcm_strict_s0_Passive.class": "2484a908c4fdf2134ee502d067050f85eb75b179b8333e5e534560c88b4e3ee2",
+        "runtime/codex/R_rcm_strict_s0_Scene.class": "a90f417f6a0f11995020f7237edbceec7add56a4d10f2a1ec34a2048f3da69e5",
+        "runtime/codex/R_rcm_strict_s1_Passive.class": "1a6dc42f23967b19a5f5b14dd0f88adf724cb8ddd0eed7185f4ba2f482ecb417",
+        "runtime/codex/R_rcm_strict_s1_Scene.class": "4b8f8bc7826b7c34d66449d19aa51594c8f0daab623577fcf9d34b1dde1d3644"
+      }
+    },
+    {
+      "example": "completion_lab",
+      "id": "rcm_complete",
+      "successful": true,
+      "classes": 4,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "45a56d4799e719eadbeb103b296b2845a6ad416e3559108ae60a7f46b8c9b2c2",
+      "nob_sha256": "3abf7fe638d274e32de61bb1dfd0782984cbd6a1cbf66e0bd6c91a371b6cd0aa",
+      "geometry_included": false,
+      "native_game_test": false,
+      "class_sha256": {
+        "bundle/codex/R_rcm_complete_s0_Passive.class": "6721e9cea6c05427d3c2ee9d323ba882c1477e5b6c94986e3f5086cb1fd0172a",
+        "bundle/codex/R_rcm_complete_s0_Scene.class": "96666a68137092875def03e2a299ae891f99d4f79b7d5bb30e9ba1e65a7d4d9f",
+        "bundle/codex/R_rcm_complete_s1_Passive.class": "a2897f5c0a59120dd025d7e3fd380a77087ceb414a14421414f6cfbbfe2f939b",
+        "bundle/codex/R_rcm_complete_s1_Scene.class": "e2e66d5a3fb847c4e614d33f5288356b4345756db50905441087bc7aa1e933e2",
+        "runtime/codex/R_rcm_complete_s0_Passive.class": "6721e9cea6c05427d3c2ee9d323ba882c1477e5b6c94986e3f5086cb1fd0172a",
+        "runtime/codex/R_rcm_complete_s0_Scene.class": "96666a68137092875def03e2a299ae891f99d4f79b7d5bb30e9ba1e65a7d4d9f",
+        "runtime/codex/R_rcm_complete_s1_Passive.class": "a2897f5c0a59120dd025d7e3fd380a77087ceb414a14421414f6cfbbfe2f939b",
+        "runtime/codex/R_rcm_complete_s1_Scene.class": "e2e66d5a3fb847c4e614d33f5288356b4345756db50905441087bc7aa1e933e2"
+      }
+    }
+  ],
+  "portable": {
+    "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
+    "sha256": "5bc3333c2e5cbfe0b7920a3a5eed816a0d2fca79d1a221b2a15b4b934756441b",
+    "source_modules": 111,
+    "source_matches": true,
+    "bilingual_moved_path": true
+  },
+  "gui_checks": "gui_checks.json",
+  "portable_checks": "portable_checks.json",
+  "cleanup": "cleanup.json",
+  "preserved_source_sha256": {
+    "tutorial": "3980af804d2d1399fc589c1032db51579e1c79217f8691c6c0a4e4277954b562",
+    "mini_chronicle": "602c7c94c00619cd31cae135627ea1f114ec74b0ac9efa599981fedc24083bfc"
+  },
+  "matrix": {
+    "IMPLEMENTADA": 35,
+    "IMPLEMENTADA MEDIANTE ALTERNATIVA": 19,
+    "LIMITACIÓN DEMOSTRADA": 2,
+    "PENDIENTE": 2
+  },
+  "native_game_test": false,
+  "physical_gpu_dpi_test": false,
+  "independent_machine_test": false,
+  "multiplayer_acceptance": false,
+  "original_authoring_tools_used": false,
+  "original_geometry_modified": false,
+  "original_installation_modified": false,
+  "user_projects_modified": false,
+  "pending_native_cases": [
+    "COMP01",
+    "COMP02",
+    "COMP03",
+    "COMP04",
+    "COMP05",
+    "COMP06"
+  ],
+  "unresolved": [
+    "Campaign-specific CodexPlayer constructor binding for MP",
+    "Literal native soundbox/lightbox payload and sector clipping"
+  ],
+  "coverage_claim": "Implemented features and explicit alternatives, not 100% native acceptance"
+}

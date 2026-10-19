@@ -82,6 +82,9 @@ configurado, reconciliado, local, actor vivo y plantilla compatible. Cámara fij
 el GUID seguido y cancela si cambia. La ordinalidad es sobre vivos actuales,
 no identidad persistente de un individuo. Las pruebas no atribuyen al contrato
 de propiedad existente una detección universal de GUID extranjero de igual tipo.
+La limpieza de luz dinámica vuelve a comprobar ese mismo roster/rol/propiedad
+antes de retirar una luz anterior: si la identidad deja de ser fiable, conserva
+el recurso ajeno. El doble incluye sustitución por otra plantilla.
 
 Movimiento, animación, team/pause, inventario, cámara, sonido vinculado a GUID y
 luces usan las mismas APIs reales del runtime anterior; no hay otro gestor de
@@ -117,7 +120,11 @@ Qt offscreen no acredita GPU/DPI físico, PC independiente ni multijugador.
 
 Binding de constructor CodexPlayer y dependencias privadas de scripts concretos
 de campaña: no hay un enlace NSD de jugador suficientemente establecido para
-ofrecerlo con seguridad. Es una incógnita, no una imposibilidad. Las acciones
+ofrecerlo con seguridad en una crónica local MP. Existe type9 en UNIV_7_7.nsd
+para CodexPlayer: conocer ese número no resuelve qué entidad/identidad de jugador
+ligar antes de la creación del PJ en MP. player_contexts.json identifica seis
+constructores de campaña afectados entre252 clases con callbacks. Es una
+incógnita de binding/ciclo de vida, no una imposibilidad. Las acciones
 habituales Player ya tienen ruta visual. Igual clasificación para payloads
 completos/clipping literal de soundboxes/lightboxes; las alternativas están hechas.
 
@@ -128,7 +135,7 @@ Esto no es un dictamen sobre derechos de terceros ni licencia de redistribución
 
 ## VERIFICACIÓN AUTOMATIZADA
 
-tests/test_authoring_completion.py cubre 19 casos, además de las suites vigentes:
+tests/test_authoring_completion.py cubre 20 casos, además de las suites vigentes:
 formatos, límites, aliases/propiedad/restore con doubles, Codex real45.3,
 mapas/paquetes/fingerprint, región typed links, UI/undo/cancel y no cambios en
 fuentes tutorial/mini. El gate completo y el EXE se recogen en delivery.json

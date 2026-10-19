@@ -55,7 +55,8 @@ def extend(java,scene,project):
     # records retain their original length; aliases are never captured/created.
     java=java.replace(f'private int[] things=new int[{base}];',f'private int[] things=new int[{base+len(targets)}];')
     java=java.replace('i<things.length',f'i<{base}')
-    lines=[' private int dynamicTarget(int g,int role,int ordinal) { if(!dConfigured || dRestoring || g<0 || g>=dGuid.length || dUnsafe[g]) return 0; for(int s=0;s<dGuid[g].length;s++) { int guid=dGuid[g][s],entry=dSlotEntry[g][s]; if(entry<0 || entry>=dRole[g].length || dRole[g][entry]!=role || !dynamicOwned(g,s) || !local(guid) || !IsActorGuid(guid) || new CodexActor(guid).GetActorHealth()<=0.0f) continue; if(ordinal--==0) return guid; } return 0; }',
+    lines=[' private boolean dynamicRoleOwns(int g,int role,int guid) { if(!dConfigured || dRestoring || g<0 || g>=dGuid.length || dUnsafe[g] || guid==0) return false; for(int s=0;s<dGuid[g].length;s++) { int entry=dSlotEntry[g][s]; if(dGuid[g][s]==guid && entry>=0 && entry<dRole[g].length && dRole[g][entry]==role && dynamicOwned(g,s)) return true; } return false; }',
+           ' private int dynamicTarget(int g,int role,int ordinal) { if(!dConfigured || dRestoring || g<0 || g>=dGuid.length || dUnsafe[g]) return 0; for(int s=0;s<dGuid[g].length;s++) { int guid=dGuid[g][s],entry=dSlotEntry[g][s]; if(entry<0 || entry>=dRole[g].length || dRole[g][entry]!=role || !dynamicOwned(g,s) || !local(guid) || !IsActorGuid(guid) || new CodexActor(guid).GetActorHealth()<=0.0f) continue; if(ordinal--==0) return guid; } return 0; }',
            ' private void refreshDynamicTargets() {']
     for i,(_,row) in enumerate(targets.items()):lines.append(f' things[{base+i}]=dynamicTarget({row["generator"]},{row["role"]},{row["ordinal"]});')
     camera_aliases={str(base+i) for i in range(len(targets))}

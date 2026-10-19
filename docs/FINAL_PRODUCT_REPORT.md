@@ -81,6 +81,8 @@ grupos de interés sin reescribir el tutorial. Su observación nativa queda pend
 
 ## Evidencia y verificación
 
+La batería completa de esta entrega pasó 588 pruebas, sin fallos, errores ni omisiones. Ruff y el alcance configurado de mypy pasaron. Los siete ejemplos se compilaron contra Codex real (JVM45.3).
+
 Los resultados vigentes de la batería completa se guardan en
 build/tests/quality_report.json y test_report.json; el recibo de esta entrega es
 research/authoring_completion/delivery.json. Se separan suite completa, Ruff/mypy,
