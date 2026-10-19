@@ -49,9 +49,13 @@ class Backend:
         self.base_resources = json.loads(workspace.output("cache/resources.json").read_text(encoding="utf8"))
         from .wtd import overlay
         self.resources = overlay(workspace,self.base_resources)
+        from .content_libraries import overlay as libraries_overlay
+        self.resources=libraries_overlay(workspace,self.resources)
         from .motions import ensure_catalogue
         self.resources['motion_catalogue']=ensure_catalogue(workspace,self.resources)
         self.original_resources=self.resources
+        from .content_libraries import manifests as libraries
+        self._imports_signature=(self.resources.get('wtd_import',{}).get('sha256'),tuple(r['sha256'] for r in libraries(workspace)))
         self.project_payload={}
         self.hints = json.loads(workspace.output("cache/scene_hints.json").read_text(encoding="utf8"))
         self.base_hints=dict(self.hints)
@@ -69,16 +73,20 @@ class Backend:
     def sync_resources(self,source):
         self.refresh_import()
         from .project_resources import prepare
-        key=build_inputs_fingerprint(self.ws,{k:source.get(k) for k in ['project_format','resources','chronicle']})
+        intent={k:source.get(k) for k in ['project_format','resources','chronicle']}
+        intent['placed_resources']=[dict(scene=s.get('id'),entities=[{k:row.get(k) for k in ('id','template','overrides','native_script','native_frames')} for row in s.get('actors',[])+s.get('objects',[]) if row.get('overrides') or 'native_script' in row or 'native_frames' in row]) for s in source.get('scenes',[])]
+        key=build_inputs_fingerprint(self.ws,intent)
         if key==getattr(self,'_resources_key',None):return
         _,self.resources,self.project_payload,_=prepare(self.ws,source,self.original_resources)
         self._resources_key=key
 
     def refresh_import(self):
         from .wtd import manifest,overlay
+        from .content_libraries import manifests as libraries,overlay as libraries_overlay
         record=manifest(self.ws);signature=record['sha256'] if record else None
-        if signature==self.original_resources.get('wtd_import',{}).get('sha256'):return
-        self.original_resources=overlay(self.ws,self.base_resources)
+        signature=(signature,tuple(r['sha256'] for r in libraries(self.ws)))
+        if signature==getattr(self,'_imports_signature',None):return
+        self.original_resources=libraries_overlay(self.ws,overlay(self.ws,self.base_resources));self._imports_signature=signature
         self.levels={**self.base_levels,**(record.get('levels',{}) if record else {})};self.hints={**self.base_hints,**(record.get('scene_hints',{}) if record else {})}
         from .motions import ensure_catalogue
         self.original_resources['motion_catalogue']=ensure_catalogue(self.ws,self.original_resources)
@@ -174,6 +182,7 @@ class Backend:
         """Conservative navigation for contextual parser errors, never guessed offsets."""
         if not data:
             return ()
+        if 'chronicle.difficulty' in message or 'dificultad configurable' in message:return ('chronicle',)
         if 'misma escena' in message:
             for si,scene in enumerate(data.get('scenes',[])):
                 for ei,event in enumerate(scene.get('events',[])):
@@ -251,6 +260,8 @@ class Backend:
                 if info:report=add_to_build(staged,report,payload,info,compile_java)
                 from .wtd import add_to_build as add_import
                 report=add_import(staged,report,resources)
+                from .content_libraries import add_to_build as add_libraries
+                report=add_libraries(staged,report,resources)
                 from .output_validation import verify_output
                 report['format_validation']=verify_output(staged,report,resources)
                 report['authoring_source_sha256']=source_fingerprint(source)
@@ -282,9 +293,19 @@ class Backend:
                 if isinstance(p,Campaign) and any(a.get('traits') for s,project in p.scenes for a in s['actors']):
                     contract['actor_traits']=[{'scene':s['id'],'actors':{a['id']:a['traits'] for a in s['actors'] if a.get('traits')}} for s,project in p.scenes]
                 if report.get('imported_content'):contract['imported_content']=report['imported_content']
+                if report.get('local_libraries'):contract['local_libraries']=report['local_libraries']
+                if isinstance(p,Campaign) and any(s.get('_native_entities') for s,project in p.scenes):contract['native_scripts_v1']=[dict(scene=s['id'],bindings={r['id']:r.get('native_script') for r in s['actors']+s.get('objects',[]) if 'native_script' in r},frames={r['id']:[r['transform']]+[next(w['transform'] for w in s['waypoints'] if w['id']==name) for name in r['native_frames']] for r in s['actors']+s.get('objects',[]) if 'native_frames' in r},placed=s.get('_native_entities',[])) for s,project in p.scenes]
                 report['save_schema_sha256']=source_fingerprint(contract)
                 report['new_game_required']=bool(prior) and prior.get('save_schema_sha256')!=report['save_schema_sha256']
                 if report['new_game_required']:report['save_warning']='La estructura persistida ha cambiado o no tiene firma previa. Inicia una partida nueva; no hay migrador de saves nativos.'
+                if isinstance(p,Campaign):
+                    from .combat_difficulty import selected
+                    difficulty=selected(p.source)
+                    if difficulty!='normal':report['combat_difficulty']=difficulty
+                    if prior and prior.get('combat_difficulty','normal')!=difficulty:
+                        report['new_game_required']=True
+                        message='La dificultad ha cambiado. Los enemigos guardados conservan sus atributos; inicia una partida nueva para aplicar la dificultad de forma uniforme.'
+                        report['save_warning']='\n'.join(v for v in (report.get('save_warning'),message) if v)
                 return staged.publish(report)
             except Exception as error:
                 diagnostic='build/failed_attempts/'+validation.project.id+'_'+staged.stage.name
@@ -316,11 +337,11 @@ def build_inputs_fingerprint(ws,source):
             path=ws.output(row['source']);files[row['source']]=hashlib.sha256(path.read_bytes()).hexdigest()
     profiles={}
     level_file=ws.output('cache/levels.json');hint_file=ws.output('cache/scene_hints.json')
-    if level_file.is_file() and hint_file.is_file():
+    requested=[scene.get('level',{}) for scene in data.get('scenes',[data]) if isinstance(scene.get('level'),dict) and scene['level'].get('source')]
+    if requested and level_file.is_file() and hint_file.is_file():
         from .scene_profiles import environment
         levels=json.loads(level_file.read_text(encoding='utf8'));hints=json.loads(hint_file.read_text(encoding='utf8'))
-        for scene in data.get('scenes',[data]):
-            level=scene.get('level',{})
+        for level in requested:
             if isinstance(level,dict) and level.get('source') in levels:
                 _,record=environment(ws,levels[level['source']],hints,level.get('environment_scene'))
                 profiles[level['source']+'/'+record['id']]=record['source_sha256']
@@ -328,6 +349,9 @@ def build_inputs_fingerprint(ws,source):
     from .wtd import manifest
     imported=manifest(ws)
     if imported:inputs['imported_wtd']=imported['sha256']
+    from .content_libraries import manifests as libraries
+    imported_libraries=libraries(ws)
+    if imported_libraries:inputs['local_libraries']=[dict(id=r['id'],sha256=r['sha256']) for r in imported_libraries]
     return source_fingerprint(inputs)
 
 
@@ -341,6 +365,8 @@ def project_source(p: Project):
         level["name"] = p.level_name
     if p.sky:
         level["sky"] = {"model": p.sky[0], "animation": p.sky[1]}
+    if p.environment_overrides:
+        level['environment']=p.environment_overrides
     if p.environment_scene:
         level['environment_scene'] = p.environment_scene
     data = {"schema": 1, "chronicle": chron, "level": level, "state": {"flags": dict(p.flags)},

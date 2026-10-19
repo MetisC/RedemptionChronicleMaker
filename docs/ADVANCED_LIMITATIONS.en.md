@@ -13,3 +13,10 @@ Human checks remain for camera framing/collision, loaded position, dialogue abor
 Original objects: a picker and actions can hide/restore/remove identified props, operate framed/pivot doors and create native hover/click interactions with travel or other event actions. This cannot remove NIL faces or synchronize Door/PivotDoor private state. ORG01–06 remain pending; the engine may reject a missing candidate or a door without the required frames.
 
 CLICK01–08: hover, selection/collision, click range, dialogue/notes, native saves, reentry and multiplayer remain manual checks for the new brush layer. Self-scene links are blocked before building; old user proximity triggers are not silently migrated.
+
+Strict parity correction: the current eight-column matrix in
+EMBRACE_AUTHORING_PARITY.md supersedes earlier broad coverage claims. EAX,
+general native regions, sound/light boxes, stationary timed camera keys and
+arbitrary code-bearing library import remain explicit limits. Optional new
+controls are implemented with offline evidence, not native acceptance. No 100%
+non-geometry parity or final 1.0 declaration is made.

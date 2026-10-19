@@ -1,0 +1,178 @@
+004a81c7: push esi
+004a81c8: lea edi, [ebp + 0xa0]
+004a81ce: push 0x20
+004a81d0: push 1
+004a81d2: push edi
+004a81d3: call 0x4cb560
+004a81d8: push edi
+004a81d9: call 0x4cbeb0
+004a81de: push esi
+004a81df: lea edi, [ebp + 0xc4]
+004a81e5: push 0x20
+004a81e7: push 1
+004a81e9: push edi
+004a81ea: call 0x4cb560
+004a81ef: push edi
+004a81f0: call 0x4cbeb0
+004a81f5: push esi
+004a81f6: push 1
+004a81f8: lea ecx, [ebp + 0x9c]
+004a81fe: push 4
+004a8200: push ecx
+004a8201: call 0x4cb560
+004a8206: push esi
+004a8207: push 1
+004a8209: lea edx, [ebp + 0xc0]
+004a820f: push 4
+004a8211: push edx
+004a8212: call 0x4cb560
+004a8217: add esp, 0x48
+004a821a: lea eax, [ebp + 0xe4]
+004a8220: push esi
+004a8221: push 1
+004a8223: push 4
+004a8225: push eax
+004a8226: call 0x4cb560
+004a822b: push esi
+004a822c: push 1
+004a822e: lea ecx, [ebp + 0x90]
+004a8234: push 4
+004a8236: push ecx
+004a8237: call 0x4cb560
+004a823c: push esi
+004a823d: push 1
+004a823f: lea edx, [ebp + 0x70]
+004a8242: push 4
+004a8244: push edx
+004a8245: call 0x4cb560
+004a824a: push esi
+004a824b: push 1
+004a824d: lea eax, [ebp + 0x74]
+004a8250: push 0xc
+004a8252: push eax
+004a8253: call 0x4cb560
+004a8258: add esp, 0x40
+004a825b: lea ecx, [ebp + 0x80]
+004a8261: push esi
+004a8262: push 1
+004a8264: push 4
+004a8266: push ecx
+004a8267: call 0x4cb560
+004a826c: push esi
+004a826d: push 1
+004a826f: lea edx, [ebp + 0x84]
+004a8275: push 4
+004a8277: push edx
+004a8278: call 0x4cb560
+004a827d: push esi
+004a827e: push 1
+004a8280: lea eax, [ebp + 0x88]
+004a8286: push 4
+004a8288: push eax
+004a8289: call 0x4cb560
+004a828e: push esi
+004a828f: push 1
+004a8291: lea ecx, [ebp + 0x8c]
+004a8297: push 4
+004a8299: push ecx
+004a829a: call 0x4cb560
+004a829f: add esp, 0x40
+004a82a2: push esi
+004a82a3: push 0x20
+004a82a5: lea edx, [esp + 0x2c]
+004a82a9: push 1
+004a82ab: push edx
+004a82ac: call 0x4cb560
+004a82b1: mov al, byte ptr [esp + 0x34]
+004a82b5: add esp, 0x10
+004a82b8: test al, al
+004a82ba: je 0x4a82d1
+004a82bc: lea eax, [esp + 0x24]
+004a82c0: push eax
+004a82c1: call 0x4c4f50
+004a82c6: add esp, 4
+004a82c9: mov dword ptr [ebp + 0x94], eax
+004a82cf: jmp 0x4a82db
+004a82d1: mov dword ptr [ebp + 0x94], 0
+004a82db: push esi
+004a82dc: push 0x20
+004a82de: lea ecx, [esp + 0x2c]
+004a82e2: push 1
+004a82e4: push ecx
+004a82e5: call 0x4cb560
+004a82ea: mov edi, dword ptr [ebp + 0x94]
+004a82f0: add esp, 0x10
+004a82f3: test edi, edi
+004a82f5: je 0x4a8335
+004a82f7: mov edx, dword ptr [edi + 0x14]
+004a82fa: push 0
+004a82fc: or edx, 2
+004a82ff: mov ecx, edi
+004a8301: mov dword ptr [edi + 0x14], edx
+004a8304: call 0x4c8d30
+004a8309: lea edx, [esp + 0x24]
+004a830d: push 0
+004a830f: push edx
+004a8310: call 0x4c7cf0
+004a8315: add esp, 8
+004a8318: mov dword ptr [ebp + 0x98], eax
+004a831e: test eax, eax
+004a8320: je 0x4a8335
+004a8322: mov ecx, dword ptr [edi + 0x13c]
+004a8328: push 0
+004a832a: push 0x41f00000
+004a832f: push eax
+004a8330: call 0x4c84b0
+004a8335: push esi
+004a8336: call 0x4cb450
+004a833b: add esp, 4
+004a833e: mov ecx, ebp
+004a8340: call 0x4a8f10
+004a8345: pop edi
+004a8346: mov eax, ebp
+004a8348: pop esi
+004a8349: pop ebp
+004a834a: pop ebx
+004a834b: add esp, 0x54
+004a834e: ret 
+004a834f: nop 
+004a8350: push edi
+004a8351: mov edi, ecx
+004a8353: test edi, edi
+004a8355: jne 0x4a836e
+004a8357: push 0x16d
+004a835c: push 0x51b294
+004a8361: push 0x51b2c0
+004a8366: call 0x4c12a0
+004a836b: add esp, 0xc
+004a836e: mov eax, dword ptr [edi]
+004a8370: push ebx
+004a8371: push ebp
+004a8372: push esi
+004a8373: test eax, eax
+004a8375: jbe 0x4a83a0
+004a8377: mov ebx, dword ptr [edi + 0x11c]
+004a837d: mov ebp, eax
+004a837f: mov esi, dword ptr [ebx]
+004a8381: test esi, esi
+004a8383: je 0x4a839a
+004a8385: push 1
+004a8387: mov ecx, esi
+004a8389: call 0x4af680
+004a838e: mov eax, dword ptr [esi]
+004a8390: mov ecx, esi
+004a8392: call dword ptr [eax]
+004a8394: mov dword ptr [ebx], 0
+004a839a: add ebx, 4
+004a839d: dec ebp
+004a839e: jne 0x4a837f
+004a83a0: mov eax, dword ptr [edi + 0xf8]
+004a83a6: test eax, eax
+004a83a8: jbe 0x4a83c7
+004a83aa: lea esi, [edi + 0xfc]
+004a83b0: mov ebx, eax
+004a83b2: mov eax, dword ptr [esi]
+004a83b4: test eax, eax
+004a83b6: je 0x4a83c1
+004a83b8: push eax
+004a83b9: call 0x4dd1d0

@@ -39,6 +39,8 @@ class CampaignDocument(Document):
     @classmethod
     def load_data(cls,ws,data,path):
         from .input_limits import check_data
+        from .combat_difficulty import selected
+        selected(data)
         check_project_format(data)
         check_data(data)
         from .recipes import validate_authoring
@@ -154,6 +156,10 @@ class CampaignDocument(Document):
         keys={'actors':{'speaker','actor','reference','spawn','remove','actor_alive','entity_exists','enable_ai','disable_ai','stop_patrol','stop_actor','target'},'objects':{'spawn','remove','item','owns_item','give_item','take_item','entity_exists','object','focus','visual'},'conversations':{'default','then','start_conversation','conversation'},'generators':{'generator','start_generator','stop_generator','pause_generator','resume_generator','reset_generator'},'events':{'run_event'},'triggers':{'trigger'},'entries':{'default_entry','staging'},'waypoints':{'waypoint'}}[collection]
         if collection in {'actors','objects'}:keys=keys|{'entity'}
         self._replace(self.campaign['scenes'][self.active],keys,old,new)
+        if collection in {'actors','objects'}:
+            for row in self.data['actors']+self.data['objects']:
+                for arg in row.get('native_script',{}).get('parameters',[]):
+                    if arg.get('type') in ('actor','thing') and arg.get('value')==old:arg['value']=new
         if collection=='entries':
             sid=self.campaign['scenes'][self.active]['id']
             for conversation in self.data['conversations']:
@@ -165,6 +171,8 @@ class CampaignDocument(Document):
                         if isinstance(a.get('travel'),dict) and a['travel']['scene']==sid and a['travel']['entry']==old:a['travel']['entry']=new
         if collection=='waypoints':
             scene=self.campaign['scenes'][self.active]
+            for row in self.data['actors']+self.data['objects']:
+                if 'native_frames' in row:row['native_frames']=[new if p==old else p for p in row['native_frames']]
             for route in scene.get('paths',[]):route['points']=[new if p==old else p for p in route['points']]
             for generator in scene.get('generators',[]):
                 for row in [generator]+[e for wave in generator['waves'] for e in wave['groups']]:

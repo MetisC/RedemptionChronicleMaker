@@ -1,10 +1,10 @@
 {
   "successful": true,
-  "executable_sha256": "c63c2f1d2359bc9454f223075452012d77627e57f96d0369d8d9f4fad945a71e",
+  "executable_sha256": "348b4a8e93dd397c760287d1bea3cdd253f9e07656e24116c789890fb7c25dbb",
   "modules": [
     {
       "module": "rcm",
-      "source_sha256": "2ced5063c09eab0ba50f9a72d468896377b34f20c14ec50626a9b490cbbe40f5",
+      "source_sha256": "c9a1e69803f8370e6cac12a589e2dfd431cdc3a0f5e977fc8951893d5dbc6b28",
       "matches": true
     },
     {
@@ -19,12 +19,12 @@
     },
     {
       "module": "rcm.authoring9",
-      "source_sha256": "7294f489b229287ee6a00a3d5521a2b87beedc6eaab5bcb48ca7a441d88ccd56",
+      "source_sha256": "f6091b9ff9894bd22cc618bca3b7f7a3306afda8a06b52730e1add3ec281d944",
       "matches": true
     },
     {
       "module": "rcm.build_transaction",
-      "source_sha256": "230740266f73db6733df38053ead5ce1b781dd0e7d925d55ca08fc1348e714a1",
+      "source_sha256": "8395f5622d83ee9121bb4f7c2728088c7287f5f1a4b3dfce4635b40a27d5425c",
       "matches": true
     },
     {
@@ -39,22 +39,22 @@
     },
     {
       "module": "rcm.campaign",
-      "source_sha256": "dcb9d6e1df9e42a67b323dbefe8f498dd2aca32c0da4305b6798f4f959562638",
+      "source_sha256": "001bb9a34eeaa932f2c76433f92735d71e07efac4db5b15f0bdac0a49220deda",
       "matches": true
     },
     {
       "module": "rcm.campaign_document",
-      "source_sha256": "0b92044f2b8915511a0e38db98ebef28e5b0f1d0a3e3548dbb7cd1bcecaa3566",
+      "source_sha256": "d2e12f18445c0c32eb54006d1ff6e0c7c13af73840f00e7986572abd69a37863",
       "matches": true
     },
     {
       "module": "rcm.campaign_generator",
-      "source_sha256": "80ab4ce7eb8469535d17a2a49069cfd342c78544033c2852953559615cfb5730",
+      "source_sha256": "ef69a07322e88ea2a45fddf03011363141c681d2a183fcba21a2d90587ce922e",
       "matches": true
     },
     {
       "module": "rcm.campaign_relations",
-      "source_sha256": "9fbb236242247f6eacc05b30a30e16348a98fc06668b03306d73232f55554f6c",
+      "source_sha256": "eb3e7b0614aa84d2be1ea14ae4d29e368dfef9f9c65a6ac101e2592ee3b95d7f",
       "matches": true
     },
     {
@@ -69,7 +69,7 @@
     },
     {
       "module": "rcm.classfile_limits",
-      "source_sha256": "9803d0063bfc29426369cb86cb5f149c4fe78418f0b03a5ac0fffa19836acc2f",
+      "source_sha256": "f7e4686bb3b69fc77ba93d0de49006db8f1052fd10e85a6af215bce843d87b0f",
       "matches": true
     },
     {
@@ -83,18 +83,28 @@
       "matches": true
     },
     {
+      "module": "rcm.combat_difficulty",
+      "source_sha256": "e5e27710f8de551d50d09ceb25e3bdc01ce18fd9ec20a0f2e5141cd931b700fc",
+      "matches": true
+    },
+    {
+      "module": "rcm.content_libraries",
+      "source_sha256": "10f573eb53e7bd779dbd2da69c793ccb6b8691b43d89ca781973c22ffc58089b",
+      "matches": true
+    },
+    {
       "module": "rcm.debugging",
       "source_sha256": "3e7617df19473b1cffcdafbc61058881340238078f167ae93ba7490824e86206",
       "matches": true
     },
     {
       "module": "rcm.deployment",
-      "source_sha256": "a7510d60387c026f401834f74ec64326b0ec0345b7f6e88dd2614d2e04fbbbb5",
+      "source_sha256": "2dc605418e0beffcae09200b62d7baac7599b15d9a137d233022235fd3f12a39",
       "matches": true
     },
     {
       "module": "rcm.deployment_many",
-      "source_sha256": "650a3c159f7bc9b12e1bfc4a28b3c4dcca8d3601c979cd1d06757d5dd9cde420",
+      "source_sha256": "41487dbd864529f296d24980feecfa3a7883b63aacc59213116c1c51646f5a68",
       "matches": true
     },
     {
@@ -114,7 +124,7 @@
     },
     {
       "module": "rcm.dynamic_runtime",
-      "source_sha256": "b4e58bda2879b32e4d04e1415e4015449e8234f38fc67415e2afa8c197562717",
+      "source_sha256": "6a8fd0abdbc7563e6680e1e73ca556e0f51d53f104adee012217d42a7f5ff42a",
       "matches": true
     },
     {
@@ -129,7 +139,12 @@
     },
     {
       "module": "rcm.editor.browser",
-      "source_sha256": "9e56827e782690f3c8dcd6663294e34b492473d2371f8834c0ebc563d9f1bfa5",
+      "source_sha256": "1e40454f420e76552bd7b67d82a4b9d14ec293a7b911a50307aac65f9c3d7714",
+      "matches": true
+    },
+    {
+      "module": "rcm.editor.busy",
+      "source_sha256": "b9ef09b936d85f974f64e56d18591e799797b00cfad31ae6ce39e67c203223cf",
       "matches": true
     },
     {
@@ -140,6 +155,11 @@
     {
       "module": "rcm.editor.click_actions",
       "source_sha256": "97a2c10e5e877559e367ebecd8618bf746ff130f1dd67e88b3581d4e46caf8c3",
+      "matches": true
+    },
+    {
+      "module": "rcm.editor.content_libraries",
+      "source_sha256": "fea2aa687f06c6fa45f4f158703a4fdf92dd674edfeab04bde76c49700b070bd",
       "matches": true
     },
     {
@@ -154,12 +174,17 @@
     },
     {
       "module": "rcm.editor.director",
-      "source_sha256": "d495855d9c8861d2c65e69890081a33809235d2c70148a6c776dc0326c718727",
+      "source_sha256": "c585445e96514e09c5b8cd8316f1ee8a63e24fcb952644188bb864c0b2e4cc77",
       "matches": true
     },
     {
       "module": "rcm.editor.dynamic_wizard",
       "source_sha256": "eed9ff8f1ebcb0569c576e6e6b51f67c6ff5766a939317e9881c69f1df7f219c",
+      "matches": true
+    },
+    {
+      "module": "rcm.editor.environment",
+      "source_sha256": "475144b261c5b3176b7717314db0fe81f5f4e1070ae31fc48a188b6ae32968d6",
       "matches": true
     },
     {
@@ -184,7 +209,17 @@
     },
     {
       "module": "rcm.editor.inspector",
-      "source_sha256": "411cdcc6f2e4d32209432c6c52cf2a1456ffcd174a7380baa01ed678a6e261fe",
+      "source_sha256": "d93522d57482880499f87ce7615f3d1b96bd933bca2197875ae8ffa58ca3dbb1",
+      "matches": true
+    },
+    {
+      "module": "rcm.editor.instance_overrides",
+      "source_sha256": "6958ef3b4f796699712ed091c44722e41d7e90b733ee18b05008a1e1d6bbf7b8",
+      "matches": true
+    },
+    {
+      "module": "rcm.editor.native_scripts",
+      "source_sha256": "80062c3e75004f3020314f1935cc37c2a54e6c2493a8be667923db85a0acf7ef",
       "matches": true
     },
     {
@@ -204,7 +239,7 @@
     },
     {
       "module": "rcm.editor.product_ui",
-      "source_sha256": "37129ff141e92abc59f5904efed793efe0e846d7a3c0cf2c4771c4f326817d4b",
+      "source_sha256": "77d44f2cf34436ee9e033b89a6d859c4fb9d60e08386ef39636290c9938077ee",
       "matches": true
     },
     {
@@ -214,7 +249,12 @@
     },
     {
       "module": "rcm.editor.resource_panel",
-      "source_sha256": "11111ee23fff83fec9c763a7350ff9ad4478dfae351abaf3382541b8835c7979",
+      "source_sha256": "952bfe55bd4dc298fff72c737bf21008f6f70949110d48bf74cd25fbcb8f0c49",
+      "matches": true
+    },
+    {
+      "module": "rcm.editor.script_metadata",
+      "source_sha256": "908328cde8c704b299a33b7554acfc175ee2aa7e24b9f8c3748a5c977315930a",
       "matches": true
     },
     {
@@ -248,23 +288,38 @@
       "matches": true
     },
     {
+      "module": "rcm.environment_fields",
+      "source_sha256": "ec5717401ae23072d72cae341c6bb25f99e9a95cd10876a783fa4827ceae0724",
+      "matches": true
+    },
+    {
       "module": "rcm.file_transaction",
       "source_sha256": "c91cf23f31a048e7e7353978fa6eb995e6efcaa3628e1fd0239e8f79e8a81bba",
       "matches": true
     },
     {
       "module": "rcm.formats",
-      "source_sha256": "ba08d7ab2afca02ba01328aa59d053aa55278ae9cc79d0d7f17b152094557712",
+      "source_sha256": "990c5fd39955da1394bb570d61f5c4e1b6eb077aa7de0c52178bfa982a6a47b9",
       "matches": true
     },
     {
       "module": "rcm.generator",
-      "source_sha256": "868aae6f8616a481b52dd15be33248ce5673c91b145f28de875ec465b350094f",
+      "source_sha256": "c805c24c40285fa71abd2df6fe1bc482065b45a2c5eacd94bb8d1a3e82956094",
       "matches": true
     },
     {
       "module": "rcm.input_limits",
       "source_sha256": "1a3fd2c3b2fcd7d0d2e27454cf830349fcd2628e055c435fce901611fa27e5a1",
+      "matches": true
+    },
+    {
+      "module": "rcm.instance_overrides",
+      "source_sha256": "2aa854d6d5714f55a69e9716e74d24654624e83d715d78e2e262b20540d534af",
+      "matches": true
+    },
+    {
+      "module": "rcm.interest_spots",
+      "source_sha256": "bd07728fdddad2f4e7005dea5d7a151817adcd984a685bd041916520d9f60166",
       "matches": true
     },
     {
@@ -274,7 +329,7 @@
     },
     {
       "module": "rcm.model",
-      "source_sha256": "eff4d2fc9a14d46ca9e05da544cb75d11e93025972461acd457c7d0daece4b90",
+      "source_sha256": "bd60de344437819844d02229baa5ea722edab7177c4f42d0559279d8bd931e40",
       "matches": true
     },
     {
@@ -288,13 +343,18 @@
       "matches": true
     },
     {
+      "module": "rcm.native_scripts",
+      "source_sha256": "f71b78296ae58499aef9f21866325e5c26c37bfa94d150561a93e493091fed06",
+      "matches": true
+    },
+    {
       "module": "rcm.not_inspector",
-      "source_sha256": "7f6c61748cacc5eb7cc862b74f87555a166f1eff9c99b02e78c23bd059a334c1",
+      "source_sha256": "fd2a23fdb5137e3e5440c57e12838c3a2e9b1c0acdc36f6ccc6b9ca03bc842b1",
       "matches": true
     },
     {
       "module": "rcm.not_library",
-      "source_sha256": "fd2145ddffbcf0ba0036f979b16b1858ec62dcd946239a2ffb665a78379ff7de",
+      "source_sha256": "fa018c1be01efd9ceab284502f2a9d576e1aa23a4af61e66b5063e018297f458",
       "matches": true
     },
     {
@@ -324,7 +384,7 @@
     },
     {
       "module": "rcm.packages",
-      "source_sha256": "3030ad708f8e9c0fec30287dcb57c215e31f70dd76bd2421a40113dfcfb8c722",
+      "source_sha256": "b04dfe5e6ab932210d04209e07c8d05f13d696fd0962b494ac512bdd398b4260",
       "matches": true
     },
     {
@@ -334,7 +394,7 @@
     },
     {
       "module": "rcm.playtest",
-      "source_sha256": "e70b75dc0ca6847d225c3e622ecb6843f0f33c0cd0a21f0d814c8c199b8900c4",
+      "source_sha256": "10ab469e0f5ef07be0d0b245611f536d0525d47d125e444d8953d8e0608290a7",
       "matches": true
     },
     {
@@ -349,12 +409,12 @@
     },
     {
       "module": "rcm.profile_compatibility",
-      "source_sha256": "d14ced85f97d5fd4d69dd9e63cbaa44332bf7441b89f6736ede83e19f73151a3",
+      "source_sha256": "7b62752cd2aba17d6f474abed1f222975950aa254701d3f05f166ee178b21c19",
       "matches": true
     },
     {
       "module": "rcm.project_resources",
-      "source_sha256": "00e553e480be7998e66aa8708eb7e2791102a2553388193a3f00a6500ad948ea",
+      "source_sha256": "a3e09e28073b54ff319324a31982864fb08074521f38c98fe64034044eccb209",
       "matches": true
     },
     {
@@ -374,7 +434,7 @@
     },
     {
       "module": "rcm.safe_edit",
-      "source_sha256": "a2b6355f7ff9e365b10cc63903ce961a68e5e885897b4781e82dfc34443ad500",
+      "source_sha256": "4930807277a4908f4142f6aeff062e31e68daeb690cb49ca9c7718e5efdeb0c5",
       "matches": true
     },
     {
@@ -383,8 +443,13 @@
       "matches": true
     },
     {
+      "module": "rcm.script_parameters",
+      "source_sha256": "60948b6e3d94dc45cf23741ca99113f42b3428c657d84c91c215dcde02949af2",
+      "matches": true
+    },
+    {
       "module": "rcm.service",
-      "source_sha256": "e9ecb01441e1fe46dd4502efd4246770fd1bc393c531054c6e56097ddf538f7f",
+      "source_sha256": "1cb244448853876359f13921a5d8fefa358647abd97cdd30eec85b1e7dca037e",
       "matches": true
     },
     {
@@ -438,6 +503,11 @@
       "matches": true
     },
     {
+      "module": "rcm.treasure",
+      "source_sha256": "45a3c7755b034692d399d74ed08a23f31f6dc507dddf449f3d9f7bef79a9bd0d",
+      "matches": true
+    },
+    {
       "module": "rcm.versioning",
       "source_sha256": "485d7139fedecb40598e1fbe2ec63d2851958f486525e7da7f0375014b0473fe",
       "matches": true
@@ -449,10 +519,10 @@
     },
     {
       "module": "rcm.wtd",
-      "source_sha256": "1cb981e27c27bdc2d27ed34099984d1e4af9fc227270e88c22405c53827f166c",
+      "source_sha256": "eed9c80b7fa9ab04b37b3a250583b35562576cbd04135a9ba314a7c60a7f5b83",
       "matches": true
     }
   ],
-  "translations_sha256": "20b14a1fe1161abbad26884f1fa035e1295bdab688c9b54884b6c2fef193ce52",
+  "translations_sha256": "0be2dc5d14ee149c35adc46c5cf3d303804c18388f07b37255e3da60676d3bc8",
   "native_engine_test": false
 }

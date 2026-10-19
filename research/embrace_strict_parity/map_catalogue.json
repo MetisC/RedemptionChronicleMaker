@@ -1,0 +1,477 @@
+[
+  {
+    "path": "ui/mapLondonEast.nui",
+    "sha256": "0b9383eef00405dcb698491ba5a23bab8af853fa83ab13dfd17b8e84740b50d8",
+    "points": [
+      {
+        "name": "mapLondonEastMain",
+        "x": 219,
+        "y": 313
+      },
+      {
+        "name": "mapSetiteBrothel",
+        "x": 234,
+        "y": 406
+      },
+      {
+        "name": "mapStMagdalena",
+        "x": 84,
+        "y": 299
+      },
+      {
+        "name": "mapBridgeHaven",
+        "x": 194,
+        "y": 165
+      },
+      {
+        "name": "mapTowerOfLondon",
+        "x": 297,
+        "y": 192
+      }
+    ],
+    "tiles": [
+      "mapLondonEast01.tga",
+      "mapLondonEast02.tga",
+      "mapLondonEast03.tga",
+      "mapLondonEast04.tga",
+      "mapLondonEast05.tga",
+      "mapLondonEast06.tga",
+      "mapLondonEast07.tga",
+      "mapLondonEast08.tga",
+      "mapLondonEast09.tga",
+      "mapLondonEast10.tga",
+      "mapLondonEast11.tga",
+      "mapLondonEast12.tga"
+    ]
+  },
+  {
+    "path": "ui/mapLondonWest.nui",
+    "sha256": "fd7bdf7083d13b8cc7f6a381550856345a05a4f541c90603464a93a698f214bf",
+    "points": [
+      {
+        "name": "mapLondonWestMain",
+        "x": 494,
+        "y": 253
+      },
+      {
+        "name": "mapCurioShop",
+        "x": 453,
+        "y": 438
+      },
+      {
+        "name": "mapSocietyOfLeopold",
+        "x": 608,
+        "y": 333
+      },
+      {
+        "name": "mapClubTenebrae",
+        "x": 373,
+        "y": 293
+      }
+    ],
+    "tiles": [
+      "mapLondonWest01.tga",
+      "mapLondonWest02.tga",
+      "mapLondonWest03.tga",
+      "mapLondonWest04.tga",
+      "mapLondonWest05.tga",
+      "mapLondonWest06.tga",
+      "mapLondonWest07.tga",
+      "mapLondonWest08.tga",
+      "mapLondonWest09.tga",
+      "mapLondonWest10.tga",
+      "mapLondonWest11.tga",
+      "mapLondonWest12.tga"
+    ]
+  },
+  {
+    "path": "ui/mapNYCdocks.nui",
+    "sha256": "5d426c757e2997dc7437bcf4e82f04e615dfbda0cd0ee86a9c04e9ca799fa0da",
+    "points": [
+      {
+        "name": "mapNYDocksMain",
+        "x": 473,
+        "y": 250
+      },
+      {
+        "name": "mapGiovanniWarehouse",
+        "x": 473,
+        "y": 250
+      },
+      {
+        "name": "mapSewers",
+        "x": 513,
+        "y": 232
+      },
+      {
+        "name": "mapDevNulls",
+        "x": 521,
+        "y": 195
+      },
+      {
+        "name": "mapGunHaven",
+        "x": 586,
+        "y": 204
+      }
+    ],
+    "tiles": [
+      "mapNYCdocks01.tga",
+      "mapNYCdocks02.tga",
+      "mapNYCdocks03.tga",
+      "mapNYCdocks04.tga",
+      "mapNYCdocks05.tga",
+      "mapNYCdocks06.tga",
+      "mapNYCdocks07.tga",
+      "mapNYCdocks08.tga",
+      "mapNYCdocks09.tga",
+      "mapNYCdocks10.tga",
+      "mapNYCdocks11.tga",
+      "mapNYCdocks12.tga"
+    ]
+  },
+  {
+    "path": "ui/mapNYCmidtown.nui",
+    "sha256": "07420660f7141af115e7fc7c423aab40068a43c64c2fc1079056f194b2bea932",
+    "points": [
+      {
+        "name": "mapNYMidtownMain",
+        "x": 509,
+        "y": 134
+      },
+      {
+        "name": "mapCathedralOfFlesh",
+        "x": 419,
+        "y": 415
+      },
+      {
+        "name": "mapOrsisFactory",
+        "x": 557,
+        "y": 337
+      },
+      {
+        "name": "mapBarclaySouth",
+        "x": 444,
+        "y": 180
+      },
+      {
+        "name": "mapSewers",
+        "x": 300,
+        "y": 168
+      },
+      {
+        "name": "mapNewMoon",
+        "x": 324,
+        "y": 108
+      }
+    ],
+    "tiles": [
+      "mapNYCmidtown01.tga",
+      "mapNYCmidtown02.tga",
+      "mapNYCmidtown03.tga",
+      "mapNYCmidtown04.tga",
+      "mapNYCmidtown05.tga",
+      "mapNYCmidtown06.tga",
+      "mapNYCmidtown07.tga",
+      "mapNYCmidtown08.tga",
+      "mapNYCmidtown09.tga",
+      "mapNYCmidtown10.tga",
+      "mapNYCmidtown11.tga",
+      "mapNYCmidtown12.tga"
+    ]
+  },
+  {
+    "path": "ui/mapPragueNQ.nui",
+    "sha256": "acf56adcb0ca5ea4b1b8f25a674ec96158c63d8c994d6d7e8d84dcc2baf63dea",
+    "points": [
+      {
+        "name": "mapNorthQuarterMain",
+        "x": 387,
+        "y": 275
+      },
+      {
+        "name": "mapRabbisHouse",
+        "x": 233,
+        "y": 363
+      },
+      {
+        "name": "mapJosefsTunnels",
+        "x": 513,
+        "y": 450
+      },
+      {
+        "name": "mapNorthQuarterGate",
+        "x": 114,
+        "y": 24
+      }
+    ],
+    "tiles": [
+      "mapPragueNQ01.tga",
+      "mapPragueNQ02.tga",
+      "mapPragueNQ03.tga",
+      "mapPragueNQ04.tga",
+      "mapPragueNQ05.tga",
+      "mapPragueNQ06.tga",
+      "mapPragueNQ07.tga",
+      "mapPragueNQ08.tga",
+      "mapPragueNQ09.tga",
+      "mapPragueNQ10.tga",
+      "mapPragueNQ11.tga",
+      "mapPragueNQ12.tga"
+    ]
+  },
+  {
+    "path": "ui/mapPragueOT.nui",
+    "sha256": "ea46b105325f1935ab78d61f721874fcdca5b6ccd86d5e41156fbbab24fa68d3",
+    "points": [
+      {
+        "name": "mapOldTownCenter",
+        "x": 364,
+        "y": 216
+      },
+      {
+        "name": "mapPrinceRudolfsChambers",
+        "x": 89,
+        "y": 412
+      },
+      {
+        "name": "mapPragueCastle",
+        "x": 103,
+        "y": 374
+      },
+      {
+        "name": "mappharmacy",
+        "x": 237,
+        "y": 400
+      },
+      {
+        "name": "mapGoldenLane",
+        "x": 220,
+        "y": 351
+      },
+      {
+        "name": "mapUnornas",
+        "x": 274,
+        "y": 367
+      },
+      {
+        "name": "mapPetrinHillMonastery",
+        "x": 86,
+        "y": 321
+      },
+      {
+        "name": "mapJudithBridge",
+        "x": 220,
+        "y": 289
+      },
+      {
+        "name": "mapNorthGate",
+        "x": 403,
+        "y": 280
+      },
+      {
+        "name": "mapNorthQuarter",
+        "x": 452,
+        "y": 330
+      },
+      {
+        "name": "mapSmithy",
+        "x": 279,
+        "y": 227
+      },
+      {
+        "name": "mapFourStagsInn",
+        "x": 331,
+        "y": 222
+      },
+      {
+        "name": "mapUniversityHaven",
+        "x": 453,
+        "y": 216
+      },
+      {
+        "name": "mapUniversity",
+        "x": 491,
+        "y": 206
+      },
+      {
+        "name": "mapConvent",
+        "x": 268,
+        "y": 125
+      },
+      {
+        "name": "mapSaintThomasCathedral",
+        "x": 302,
+        "y": 107
+      },
+      {
+        "name": "mapEastGate",
+        "x": 507,
+        "y": 133
+      },
+      {
+        "name": "mapBonnSilvermines",
+        "x": 595,
+        "y": 169
+      },
+      {
+        "name": "mapSouthGate",
+        "x": 170,
+        "y": 96
+      },
+      {
+        "name": "mapVysehradCastle",
+        "x": 245,
+        "y": 33
+      }
+    ],
+    "tiles": [
+      "mapPragueOT01.tga",
+      "mapPragueOT02.tga",
+      "mapPragueOT03.tga",
+      "mapPragueOT04.tga",
+      "mapPragueOT05.tga",
+      "mapPragueOT06.tga",
+      "mapPragueOT07.tga",
+      "mapPragueOT08.tga",
+      "mapPragueOT09.tga",
+      "mapPragueOT10.tga",
+      "mapPragueOT11.tga",
+      "mapPragueOT12.tga"
+    ]
+  },
+  {
+    "path": "ui/mapTemesvar.nui",
+    "sha256": "5704250eeb9c2bd0f41f1745f121835282b34f252219f1bb61ced1b440fcbaae",
+    "points": [
+      {
+        "name": "mapCatacombs",
+        "x": 165,
+        "y": 415
+      },
+      {
+        "name": "mapSorvenasCottage",
+        "x": 93,
+        "y": 242
+      },
+      {
+        "name": "mapOubliette",
+        "x": 353,
+        "y": 354
+      },
+      {
+        "name": "mapMossyHearthInn",
+        "x": 394,
+        "y": 188
+      },
+      {
+        "name": "mapTemesvar",
+        "x": 466,
+        "y": 121
+      }
+    ],
+    "tiles": [
+      "mapTemesvar01.tga",
+      "mapTemesvar02.tga",
+      "mapTemesvar03.tga",
+      "mapTemesvar04.tga",
+      "mapTemesvar05.tga",
+      "mapTemesvar06.tga",
+      "mapTemesvar07.tga",
+      "mapTemesvar08.tga",
+      "mapTemesvar09.tga",
+      "mapTemesvar10.tga",
+      "mapTemesvar11.tga",
+      "mapTemesvar12.tga"
+    ]
+  },
+  {
+    "path": "ui/mapVienna.nui",
+    "sha256": "0e13d1a264e21166a1041febed10bc58812c796c1d6231ee6bca5d6cba0dfa53",
+    "points": [
+      {
+        "name": "mapOrsisMansion",
+        "x": 125,
+        "y": 391
+      },
+      {
+        "name": "mapWesternRingStrasse",
+        "x": 170,
+        "y": 353
+      },
+      {
+        "name": "mapSmithy",
+        "x": 240,
+        "y": 319
+      },
+      {
+        "name": "mapDesecratedChurchHaven",
+        "x": 305,
+        "y": 460
+      },
+      {
+        "name": "mapNorthernRingStrasse",
+        "x": 356,
+        "y": 451
+      },
+      {
+        "name": "mapEntranceStephansdom",
+        "x": 381,
+        "y": 410
+      },
+      {
+        "name": "mapInnerStradt",
+        "x": 365,
+        "y": 354
+      },
+      {
+        "name": "mapDeutschOrdensKirche",
+        "x": 376,
+        "y": 328
+      },
+      {
+        "name": "mapOuterRingStrasse",
+        "x": 460,
+        "y": 310
+      },
+      {
+        "name": "mapSouthernRingStrasse",
+        "x": 342,
+        "y": 212
+      },
+      {
+        "name": "mapHausDeHexe",
+        "x": 153,
+        "y": 154
+      },
+      {
+        "name": "mapOrderOfHermes",
+        "x": 548,
+        "y": 381
+      },
+      {
+        "name": "mapEasternRingStrasse",
+        "x": 562,
+        "y": 353
+      },
+      {
+        "name": "mapGreenFrogInn",
+        "x": 571,
+        "y": 326
+      }
+    ],
+    "tiles": [
+      "mapVienna01.tga",
+      "mapVienna02.tga",
+      "mapVienna03.tga",
+      "mapVienna04.tga",
+      "mapVienna05.tga",
+      "mapVienna06.tga",
+      "mapVienna07.tga",
+      "mapVienna08.tga",
+      "mapVienna09.tga",
+      "mapVienna10.tga",
+      "mapVienna11.tga",
+      "mapVienna12.tga"
+    ]
+  }
+]

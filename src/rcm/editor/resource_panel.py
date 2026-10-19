@@ -97,22 +97,17 @@ class ProjectResourcesPanel(QWidget):
         while any(r['id']==row['id'][:26]+'_c'+str(i) for r in rows):i+=1
         row['id']=row['id'][:26]+'_c'+str(i);rows.append(row);self.index=len(rows)-1;self.win.changed(True)
     def references(self,ident):
-        found=[]
-        def walk(v,path=()):
-            if isinstance(v,dict):
-                for k,x in v.items():
-                    if k in {'template','base','ai','script','camera_path'} and x==ident:found.append(path+(k,))
-                    elif k=='resource' and path[-1:]==('play_camera_path',) and x==ident:found.append(path+(k,))
-                    else:walk(x,path+(k,))
-            elif isinstance(v,list):
-                for i,x in enumerate(v):walk(x,path+(i,))
-        walk(self.root());return found
+        from ..campaign_relations import graph
+        root=self.root();kind=self.kind.currentData()
+        targets={('resources',kind,i) for i,row in enumerate(root.get('resources',{}).get(kind,[])) if row['id']==ident}
+        if not targets:return []
+        return [link.detail for link in graph(root) if link.target in targets]
     def delete(self):
         if self.index<0:return
         ident=self.rows()[self.index]['id'];refs=self.references(ident)
-        if self.kind.currentData()=='camera_paths':
+        if self.kind.currentData()=='camera_paths' or hasattr(self.win.doc,'campaign') and self.root().get('project_format') in (9,10):
             from .deletion import confirm_delete
-            candidate=confirm_delete(self.win,('resources','camera_paths',self.index))
+            candidate=confirm_delete(self.win,('resources',self.kind.currentData(),self.index))
             if candidate is not None:self.win.doc.data=candidate;self.win.history_time=0;self.win.changed(True)
             return
         if refs:raise ValueError(tr('No se borra ')+ident+tr(': ')+str(len(refs))+tr(' referencias. Reasigna las entidades/recursos primero'))
@@ -148,10 +143,40 @@ class ProjectResourcesPanel(QWidget):
             if index<0:box.addItem(tr('Ausente: ')+str(current),current);index=box.count()-1
             box.setCurrentIndex(index);box.currentIndexChanged.connect(lambda i:(fn or (lambda value:change(key,value)))(box.itemData(i)));form.addRow(label,box);return box
         if kind=='templates':
-            combo(tr('Base original / propia'),'base',[(t['id'],t['id']) for t in self.win.backend.resources['templates'] if t['id']!=row['id']],row['base'],lambda v:(row.update(base=v),self.win.changed(True)))
+            combo(tr('Base original / propia'),'base',[(t['id'],t['id']) for t in self.win.backend.resources['templates'] if t['id']!=row['id'] and not t.get('instance_owned')],row['base'],lambda v:(row.update(base=v),self.win.changed(True)))
             combo(tr('Relación'),'mode',[(tr('Herencia real'),'inherit'),(tr('Copiar registro, preservar raw'),'copy')],row.get('mode','inherit'),lambda v:(row.update(mode=v),self.win.changed(False)))
-            for label,key,ext in [(tr('Modelo'),'model','.nod'),('AI','ai','.nai'),(tr('Script · avanzado'),'script','.class')]:
-                values=sorted({e['id'] for e in self.win.backend.resources['entries'] if e['extension'].lower()==ext});combo(label,key,[(tr('Heredar de la base'),'')]+[(x,x) for x in values],props.get(key,''))
+            for label,key,ext in [(tr('Modelo'),'model','.nod'),('AI','ai','.nai'),(tr('Foley / sonidos del objeto'),'foley','.nag'),(tr('Conjunto de animaciones'),'motions','.nms'),(tr('Script · avanzado'),'script','.class')]:
+                values=sorted({e['id'] for e in self.win.backend.resources['entries'] if e['extension'].lower()==ext})
+                if key=='script':
+                    from ..native_scripts import available
+                    scripts=available(self.win.backend.ws,self.win.backend.original_resources,root)
+                    values=[name for name in values if name in scripts and not scripts[name]['parameters']]
+                    def set_script(value):
+                        if value is None:props.pop('script',None)
+                        else:props['script']=value
+                        self.win.changed(True)
+                    combo(label,key,[(tr('Heredar de la base'),None),(tr('Sin script'), '')]+[(x,x) for x in values],props.get(key),set_script)
+                else:combo(label,key,[(tr('Heredar de la base'),'')]+[(x,x) for x in values],props.get(key,''))
+            hover=QLineEdit(row.get('hover_text',''));hover.setObjectName('resource_hover_text');hover.setPlaceholderText(tr('Heredar texto de la plantilla'));form.addRow(tr('Texto al señalar'),hover)
+            def save_hover():
+                def update():
+                    value=hover.text()
+                    if value.strip():row['hover_text']=value
+                    else:row.pop('hover_text',None)
+                    hover._rcm_pending=False;self.win.changed(False);return True
+                return self.win.guard(update)
+            hover._rcm_pending=False;hover.textChanged.connect(lambda value:setattr(hover,'_rcm_pending',True));hover._rcm_commit=save_hover;hover.editingFinished.connect(lambda:save_hover() if hover._rcm_pending else True)
+            base=next((t for t in self.win.backend.resources['templates'] if t['id']==row['base']),{})
+            if base.get('kind')=='containers':
+                from ..treasure import catalogue,label as treasure_label
+                treasure_rows=catalogue(self.win.backend.ws,self.win.backend.resources)
+                choices=[(tr('Heredar de la base'),None),(tr('Sin tesoro'),0)]+[(treasure_label(r),r['id']) for r in treasure_rows]
+                def set_treasure(value):
+                    if value is None:props.pop('treasure_class',None)
+                    else:props['treasure_class']=value
+                    self.win.changed(False)
+                loot=combo(tr('Botín / clase de tesoro'),'treasure_class',choices,props.get('treasure_class'),set_treasure)
+                for r in treasure_rows:loot.setItemData(loot.findData(r['id']),'TreasureClass '+str(r['id'])+' · '+str(r['items']),Qt.ItemDataRole.ToolTipRole)
             note=QLabel(tr('Los controles modifican sólo tags contrastados. Clan/health/stats no se muestran como bytes supuestamente conocidos.'));note.setWordWrap(True);form.addRow(note)
             bits=QLineEdit(hex(props['actor_flags']) if 'actor_flags' in props else '');bits.setObjectName('resource_actor_flags');bits.setPlaceholderText(tr('Heredar; valor hexadecimal sólo en modo técnico'));form.addRow(tr('Actor flags · avanzado'),bits)
             def save_bits():
@@ -173,12 +198,12 @@ class ProjectResourcesPanel(QWidget):
                     if re.search(r'^\s*'+key+r'\s+',text,re.M):props[key]=value
                 self.win.changed(True);self.render()
             button=QPushButton(tr('Aplicar ajuste'));button.setObjectName('apply_ai_preset');button.clicked.connect(apply_preset);form.addRow(tr('Ajuste de AI original'),presets);form.addRow(button)
-            labels={'attackRate':tr('Intervalo de ataque'),'attackAlt':tr('Ataque alternativo'),'moveDist':tr('Distancia de movimiento'),'moveRate':tr('Intervalo de movimiento'),'chaseDist':tr('Distancia de persecución'),'chaseRate':tr('Intervalo de persecución'),'searchDist':tr('Distancia de búsqueda'),'searchRate':tr('Intervalo de búsqueda'),'wanderRadius':tr('Radio de paseo'),'wakeupDelay':tr('Demora de activación')}
+            labels={'attackRate':tr('Intervalo de ataque'),'attackAlt':tr('Ataque alternativo'),'moveDist':tr('Distancia de movimiento'),'moveRate':tr('Intervalo de movimiento'),'chaseDist':tr('Distancia de persecución'),'chaseRate':tr('Intervalo de persecución'),'searchDist':tr('Distancia de búsqueda'),'searchRate':tr('Intervalo de búsqueda'),'wanderRadius':tr('Radio de paseo'),'wakeupDelay':tr('Demora de activación'),'interestNum':tr('Grupo de interés · -1 desactiva')}
             for key,(low,high) in AI_FIELDS.items():
                 import re
-                match=re.search(r'^\s*'+key+r'\s+([0-9.]+)',text,re.M)
+                match=re.search(r'^[ \t]*'+key+r'[ \t]+(-?[0-9.]+)',text,re.M)
                 if not match:continue
-                spin=QDoubleSpinBox();spin.setObjectName('ai_'+key);spin.setRange(low,high);spin.setDecimals(3);spin.setValue(props.get(key,float(match[1])));spin.valueChanged.connect(lambda v,k=key:change(k,v));form.addRow(labels[key],spin)
+                spin=QDoubleSpinBox();spin.setObjectName('ai_'+key);spin.setRange(low,high);spin.setDecimals(0 if key=='interestNum' else 3);spin.setValue(props.get(key,float(match[1])));spin.valueChanged.connect(lambda v,k=key:change(k,int(v) if k=='interestNum' else v));form.addRow(labels[key],spin)
             note=QLabel(tr('Son ajustes de campos del perfil base, no un árbol de comportamiento. La afinidad y pausa del actor se controlan aparte; verifica su resultado en partida.'));note.setWordWrap(True);form.addRow(note)
             raw=QPlainTextEdit(text);raw.setReadOnly(True);form.addRow(tr('Base original; líneas desconocidas preservadas'),raw)
         elif kind=='camera_paths':
@@ -187,6 +212,8 @@ class ProjectResourcesPanel(QWidget):
             from .director import open_camera_path
             button=QPushButton(tr('Editar puntos de cámara…'));button.clicked.connect(lambda:open_camera_path(self.win,sequence,row['id']));form.addRow(button)
         elif kind=='scripts':
+            from .script_metadata import edit_metadata
+            metadata=QPushButton(tr('Parámetros del constructor…'));metadata.setObjectName('custom_script_parameters');metadata.clicked.connect(lambda:edit_metadata(self.win,row));form.addRow(metadata)
             path=self.win.backend.ws.output(row['source']);editor=QPlainTextEdit(path.read_text(encoding='utf8'));editor.setObjectName('custom_java');form.addRow(tr('Java propio, no generado por Build'),editor)
             editor._rcm_pending=False
             def mark_java():editor._rcm_pending=True;self.win._title()

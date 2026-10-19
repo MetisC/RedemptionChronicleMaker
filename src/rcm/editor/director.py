@@ -76,7 +76,9 @@ def render_action(ins,kind,value,path,scene):
             value['actor']=v;value['motion']='stand';ins.win.changed(True)
         ins.combo(tr('Actor'),ins.ids('actors'),value['actor'],change_actor,'director_actor')
         from ..motions import slots,label
-        template=next((a['template'] for a in scene['actors'] if a['id']==value['actor']),None)
+        from ..instance_overrides import effective_template
+        row=next((a for a in scene['actors'] if a['id']==value['actor']),None)
+        template=effective_template(ins.win.doc.campaign,ins.win.doc.campaign['scenes'][ins.win.doc.active],row) if row else None
         choices=[(label(slot),slot['mode']) for slot in slots(ins.win.backend.resources,template)]
         ins.combo(tr('Gesto'),choices,value['motion'],lambda v:set_key('motion',v),'director_motion')
     elif kind=='camera_shot':

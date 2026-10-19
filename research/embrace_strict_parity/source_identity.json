@@ -1,0 +1,15 @@
+{
+  "head": "51982be45c9931495c4655d02239178b053e189a",
+  "vampire_sha256": "62982319c28b18654585239a814a5a1002c415febe07b494735cb80272c5dd23",
+  "original_scenes": 291,
+  "treasure_references": 90,
+  "treasure_classes": 160,
+  "interest_ai_values": {
+    "0": 128,
+    "9": 1,
+    "8": 2
+  },
+  "maps": 8,
+  "foley_files": [],
+  "native_game_test": false
+}

@@ -7,6 +7,7 @@ EDITABLE={name:(tag,kind) for tag,(name,kind) in KNOWN.items() if tag not in {3,
 
 def encode_property(name,value):
     if name not in EDITABLE:raise ValueError('Propiedad NOT no soportada: '+name)
+    if name=='treasure_class' and (type(value) is not int or not 0<=value<=255):raise ValueError('TreasureClass: entero 0..255')
     tag,kind=EDITABLE[name]
     if kind=='text':
         if not isinstance(value,str):raise ValueError(name+': requiere texto')

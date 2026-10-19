@@ -1,0 +1,1026 @@
+[
+  {
+    "id": 0,
+    "name": "basedon",
+    "metadata": [
+      0,
+      0
+    ]
+  },
+  {
+    "id": 1,
+    "name": "orientation",
+    "metadata": [
+      0,
+      4
+    ]
+  },
+  {
+    "id": 2,
+    "name": "position",
+    "metadata": [
+      0,
+      4
+    ]
+  },
+  {
+    "id": 3,
+    "name": "sector",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 4,
+    "name": "model",
+    "metadata": [
+      0,
+      0
+    ]
+  },
+  {
+    "id": 5,
+    "name": "editorcategory",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 6,
+    "name": "foley",
+    "metadata": [
+      0,
+      0
+    ]
+  },
+  {
+    "id": 7,
+    "name": "thingflags",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 8,
+    "name": "renderflags",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 9,
+    "name": "motionset",
+    "metadata": [
+      0,
+      0
+    ]
+  },
+  {
+    "id": 10,
+    "name": "modelflags",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 11,
+    "name": "script",
+    "metadata": [
+      2,
+      0
+    ]
+  },
+  {
+    "id": 12,
+    "name": "collide",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 13,
+    "name": "radius",
+    "metadata": [
+      0,
+      2
+    ]
+  },
+  {
+    "id": 14,
+    "name": "height",
+    "metadata": [
+      0,
+      2
+    ]
+  },
+  {
+    "id": 15,
+    "name": "movespeed",
+    "metadata": [
+      0,
+      2
+    ]
+  },
+  {
+    "id": 16,
+    "name": "type",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 17,
+    "name": "iconsize",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 18,
+    "name": "icontype",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 19,
+    "name": "icon",
+    "metadata": [
+      1,
+      0
+    ]
+  },
+  {
+    "id": 20,
+    "name": "item_type",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 21,
+    "name": "item_flags",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 22,
+    "name": "item_amount",
+    "metadata": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 23,
+    "name": "ITEM_MINPERCEPTION",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 24,
+    "name": "ITEM_ID",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 25,
+    "name": "ITEM_TAG",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 26,
+    "name": "ACTOR_CLAN",
+    "metadata": [
+      4,
+      0
+    ]
+  },
+  {
+    "id": 27,
+    "name": "ACTOR_AURA",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 28,
+    "name": "ITEM_SCROLLDISC",
+    "metadata": [
+      1,
+      0
+    ]
+  },
+  {
+    "id": 29,
+    "name": "ITEM_SCROLLLEVEL",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 30,
+    "name": "ITEM_TEXT",
+    "metadata": [
+      1,
+      0
+    ]
+  },
+  {
+    "id": 31,
+    "name": "STAT_MANA",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 32,
+    "name": "STAT_MANAPOOL",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 33,
+    "name": "ITEM_IDENTIFIEDDESC",
+    "metadata": [
+      1,
+      0
+    ]
+  },
+  {
+    "id": 34,
+    "name": "ITEM_SPECIALDESC",
+    "metadata": [
+      1,
+      0
+    ]
+  },
+  {
+    "id": 35,
+    "name": "editorsizemins",
+    "metadata": [
+      0,
+      4
+    ]
+  },
+  {
+    "id": 36,
+    "name": "editorsizemaxs",
+    "metadata": [
+      0,
+      4
+    ]
+  },
+  {
+    "id": 37,
+    "name": "editorcolor",
+    "metadata": [
+      0,
+      4
+    ]
+  },
+  {
+    "id": 38,
+    "name": "codexclass",
+    "metadata": [
+      2,
+      0
+    ]
+  },
+  {
+    "id": 39,
+    "name": "WEAPON_FLAGS",
+    "metadata": [
+      3,
+      3
+    ]
+  },
+  {
+    "id": 40,
+    "name": "WEAPON_TYPE1",
+    "metadata": [
+      3,
+      3
+    ]
+  },
+  {
+    "id": 41,
+    "name": "WEAPON_TYPE2",
+    "metadata": [
+      3,
+      3
+    ]
+  },
+  {
+    "id": 42,
+    "name": "WEAPON_DEFENSETYPE",
+    "metadata": [
+      3,
+      3
+    ]
+  },
+  {
+    "id": 43,
+    "name": "WEAPON_DAMAGE1",
+    "metadata": [
+      3,
+      3
+    ]
+  },
+  {
+    "id": 44,
+    "name": "WEAPON_DAMAGE2",
+    "metadata": [
+      3,
+      3
+    ]
+  },
+  {
+    "id": 45,
+    "name": "WEAPON_STRIKETIME1",
+    "metadata": [
+      3,
+      2
+    ]
+  },
+  {
+    "id": 46,
+    "name": "WEAPON_STRIKETIME2",
+    "metadata": [
+      3,
+      2
+    ]
+  },
+  {
+    "id": 47,
+    "name": "WEAPON_RELOADTIME",
+    "metadata": [
+      3,
+      2
+    ]
+  },
+  {
+    "id": 48,
+    "name": "WEAPON_MINDISTANCE",
+    "metadata": [
+      3,
+      2
+    ]
+  },
+  {
+    "id": 49,
+    "name": "WEAPON_MAXDISTANCE",
+    "metadata": [
+      3,
+      2
+    ]
+  },
+  {
+    "id": 50,
+    "name": "WEAPON_PROJECTILE",
+    "metadata": [
+      3,
+      0
+    ]
+  },
+  {
+    "id": 51,
+    "name": "WEAPON_MODEL",
+    "metadata": [
+      3,
+      0
+    ]
+  },
+  {
+    "id": 52,
+    "name": "ACTOR_HEALTH",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 53,
+    "name": "ACTOR_XP",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 54,
+    "name": "ACTOR_WALKSPEED",
+    "metadata": [
+      4,
+      2
+    ]
+  },
+  {
+    "id": 55,
+    "name": "ACTOR_RUNSPEED",
+    "metadata": [
+      4,
+      2
+    ]
+  },
+  {
+    "id": 56,
+    "name": "ACTOR_AI",
+    "metadata": [
+      4,
+      0
+    ]
+  },
+  {
+    "id": 57,
+    "name": "PLAYER_HEADMODEL",
+    "metadata": [
+      10,
+      0
+    ]
+  },
+  {
+    "id": 58,
+    "name": "PLAYER_HEADMOTION",
+    "metadata": [
+      10,
+      0
+    ]
+  },
+  {
+    "id": 59,
+    "name": "PLAYER_RPGSTATS",
+    "metadata": [
+      10,
+      0
+    ]
+  },
+  {
+    "id": 60,
+    "name": "ACTOR_MAXHEALTH",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 61,
+    "name": "TEMPLATE_PARTICLE_TYPE",
+    "metadata": [
+      5,
+      3
+    ]
+  },
+  {
+    "id": 62,
+    "name": "TEMPLATE_PARTICLE_BITMAP",
+    "metadata": [
+      5,
+      0
+    ]
+  },
+  {
+    "id": 63,
+    "name": "TEMPLATE_PARTICLE_LIFESPAN",
+    "metadata": [
+      5,
+      3
+    ]
+  },
+  {
+    "id": 64,
+    "name": "TEMPLATE_PARTICLE_RATE",
+    "metadata": [
+      5,
+      3
+    ]
+  },
+  {
+    "id": 65,
+    "name": "TEMPLATE_PARTICLE_SIZE",
+    "metadata": [
+      5,
+      2
+    ]
+  },
+  {
+    "id": 66,
+    "name": "TEMPLATE_PARTICLE_MINDIST",
+    "metadata": [
+      5,
+      2
+    ]
+  },
+  {
+    "id": 67,
+    "name": "TEMPLATE_PARTICLE_MAXDIST",
+    "metadata": [
+      5,
+      2
+    ]
+  },
+  {
+    "id": 68,
+    "name": "TEMPLATE_PARTICLE_VECA",
+    "metadata": [
+      5,
+      4
+    ]
+  },
+  {
+    "id": 69,
+    "name": "TEMPLATE_PARTICLE_VECB",
+    "metadata": [
+      5,
+      4
+    ]
+  },
+  {
+    "id": 70,
+    "name": "TEMPLATE_PARTICLE_FLOATA",
+    "metadata": [
+      5,
+      2
+    ]
+  },
+  {
+    "id": 71,
+    "name": "TEMPLATE_PARTICLE_FLOATB",
+    "metadata": [
+      5,
+      2
+    ]
+  },
+  {
+    "id": 72,
+    "name": "TEMPLATE_PARTICLE_FLOATC",
+    "metadata": [
+      5,
+      2
+    ]
+  },
+  {
+    "id": 73,
+    "name": "TEMPLATE_PARTICLE_FLOATD",
+    "metadata": [
+      5,
+      2
+    ]
+  },
+  {
+    "id": 74,
+    "name": "TEMPLATE_PARTICLE_INTA",
+    "metadata": [
+      5,
+      3
+    ]
+  },
+  {
+    "id": 75,
+    "name": "TEMPLATE_PARTICLE_INTB",
+    "metadata": [
+      5,
+      3
+    ]
+  },
+  {
+    "id": 76,
+    "name": "TEMPLATE_PARTICLE_INTC",
+    "metadata": [
+      5,
+      3
+    ]
+  },
+  {
+    "id": 77,
+    "name": "TEMPLATE_PARTICLE_INTD",
+    "metadata": [
+      5,
+      3
+    ]
+  },
+  {
+    "id": 78,
+    "name": "TEMPLATE_MOVETYPE",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 79,
+    "name": "ARMOR_MODEL",
+    "metadata": [
+      6,
+      0
+    ]
+  },
+  {
+    "id": 80,
+    "name": "ARMOR_TYPE",
+    "metadata": [
+      6,
+      3
+    ]
+  },
+  {
+    "id": 81,
+    "name": "CASTID",
+    "metadata": [
+      7,
+      0
+    ]
+  },
+  {
+    "id": 82,
+    "name": "DESCRIPTIONID",
+    "metadata": [
+      0,
+      0
+    ]
+  },
+  {
+    "id": 83,
+    "name": "TIMER",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 84,
+    "name": "PROJECT_FLAGS",
+    "metadata": [
+      9,
+      3
+    ]
+  },
+  {
+    "id": 85,
+    "name": "PROJECT_DAMAGE",
+    "metadata": [
+      9,
+      3
+    ]
+  },
+  {
+    "id": 86,
+    "name": "PROJECT_DAMAGETYPE",
+    "metadata": [
+      9,
+      3
+    ]
+  },
+  {
+    "id": 87,
+    "name": "PHYSICS_FLAGS",
+    "metadata": [
+      8,
+      3
+    ]
+  },
+  {
+    "id": 88,
+    "name": "PHYSICS_VELOCITY",
+    "metadata": [
+      8,
+      4
+    ]
+  },
+  {
+    "id": 89,
+    "name": "PHYSICS_ROTVEL",
+    "metadata": [
+      8,
+      4
+    ]
+  },
+  {
+    "id": 90,
+    "name": "ITEM_BASECOST",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 91,
+    "name": "REGION_FLAGS",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 92,
+    "name": "TREASURECLASS",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 93,
+    "name": "ACTOR_WEAPON",
+    "metadata": [
+      4,
+      0
+    ]
+  },
+  {
+    "id": 94,
+    "name": "ACTOR_FIREPOS",
+    "metadata": [
+      4,
+      4
+    ]
+  },
+  {
+    "id": 95,
+    "name": "ITEM_FIREPOS",
+    "metadata": [
+      3,
+      4
+    ]
+  },
+  {
+    "id": 96,
+    "name": "HALO_MATERIAL",
+    "metadata": [
+      0,
+      0
+    ]
+  },
+  {
+    "id": 97,
+    "name": "HALO_SIZE",
+    "metadata": [
+      0,
+      2
+    ]
+  },
+  {
+    "id": 98,
+    "name": "HALO_COLOR",
+    "metadata": [
+      0,
+      4
+    ]
+  },
+  {
+    "id": 99,
+    "name": "STAT_STRENGTH",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 100,
+    "name": "STAT_DEXTERITY",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 101,
+    "name": "STAT_STAMINA",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 102,
+    "name": "STAT_PERCEPTION",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 103,
+    "name": "STAT_INTELLIGENCE",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 104,
+    "name": "STAT_WITS",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 105,
+    "name": "STAT_BLOOD",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 106,
+    "name": "STAT_HUMANITY",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 107,
+    "name": "STAT_FRENZY",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 108,
+    "name": "STAT_GENERATION",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 109,
+    "name": "STAT_FAITH",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 110,
+    "name": "SOUND_TYPE",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 111,
+    "name": "ITEM_MODDUR1",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 112,
+    "name": "ITEM_MODDUR2",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 113,
+    "name": "ITEM_MODDUR3",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 114,
+    "name": "ACTOR_FLAGS",
+    "metadata": [
+      4,
+      3
+    ]
+  },
+  {
+    "id": 115,
+    "name": "DROPITEM",
+    "metadata": [
+      0,
+      0
+    ]
+  },
+  {
+    "id": 116,
+    "name": "CONTAINERHEALTH",
+    "metadata": [
+      11,
+      0
+    ]
+  },
+  {
+    "id": 117,
+    "name": "DESTROYTEMPLATE",
+    "metadata": [
+      0,
+      0
+    ]
+  },
+  {
+    "id": 118,
+    "name": "SKELETON_ID",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 119,
+    "name": "PARTICLENAME",
+    "metadata": [
+      0,
+      119
+    ]
+  },
+  {
+    "id": 120,
+    "name": "ITEM_SELLFLAGS",
+    "metadata": [
+      1,
+      3
+    ]
+  },
+  {
+    "id": 121,
+    "name": "DYNA_INTENSITY",
+    "metadata": [
+      0,
+      2
+    ]
+  },
+  {
+    "id": 122,
+    "name": "DYNA_MATERIAL",
+    "metadata": [
+      0,
+      0
+    ]
+  },
+  {
+    "id": 123,
+    "name": "DYNA_COLOR",
+    "metadata": [
+      0,
+      4
+    ]
+  },
+  {
+    "id": 124,
+    "name": "DYNA_BONE",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 125,
+    "name": "DYNA_FLAGS",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 126,
+    "name": "DYNA_STYLE",
+    "metadata": [
+      0,
+      3
+    ]
+  },
+  {
+    "id": 127,
+    "name": "DYNA_RADIUS",
+    "metadata": [
+      0,
+      2
+    ]
+  }
+]

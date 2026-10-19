@@ -60,6 +60,7 @@ class CoreTests(unittest.TestCase):
             try: scene = Scene.read(f.read_bytes())
             except ValueError: continue
             self.assertEqual(scene.encode(), f.read_bytes())
+            if scene.parameters or scene.frames:continue # Dedicated extended corpus tested separately.
             if scene.conversation_starts:native_conversations.add(f.name)
             else:passed += 1
         self.assertEqual(passed, 24)

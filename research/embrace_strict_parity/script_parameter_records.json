@@ -1,0 +1,3652 @@
+[
+  {
+    "scene": "ANZK_14_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "ANZK_14_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "ANZK_8_4.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "ANZK_8_4"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "ARC4_17_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message_short",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "ARC4_17_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "DEVN_33_2.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "ghost",
+      "11": "DEVN_33_2"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "05000000"
+      }
+    ]
+  },
+  {
+    "scene": "DEVN_36_1.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "ghost",
+      "11": "DEVN_36_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "05000000"
+      }
+    ]
+  },
+  {
+    "scene": "DOCK_LOT_1_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "06000000"
+      }
+    ]
+  },
+  {
+    "scene": "EAST_32_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "trigger_region",
+      "11": "EAST_30_1_Main"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "00000000"
+      },
+      {
+        "type": 3,
+        "hex": "02000000"
+      },
+      {
+        "type": 3,
+        "hex": "1a000000"
+      },
+      {
+        "type": 3,
+        "hex": "1b000000"
+      }
+    ]
+  },
+  {
+    "scene": "FAC4_LOT_5_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "LOT_FAC4_6_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "01000000"
+      },
+      {
+        "type": 3,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "FLS2_40_1.nsd",
+    "entity": 21,
+    "tags": {
+      "0": "ghost",
+      "11": "StingerSound"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "776574466c6573685f30312e57415600"
+      },
+      {
+        "type": 2,
+        "hex": "00009643"
+      },
+      {
+        "type": 2,
+        "hex": "00001644"
+      },
+      {
+        "type": 1,
+        "hex": "32000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 2,
+        "hex": "00002041"
+      },
+      {
+        "type": 2,
+        "hex": "0000f041"
+      }
+    ]
+  },
+  {
+    "scene": "FLS2_40_1.nsd",
+    "entity": 23,
+    "tags": {
+      "0": "ghost",
+      "11": "FLS2_MeetVuk"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "19000000"
+      },
+      {
+        "type": 5,
+        "hex": "18000000"
+      },
+      {
+        "type": 8,
+        "hex": "16000000"
+      },
+      {
+        "type": 3,
+        "hex": "03000000"
+      }
+    ]
+  },
+  {
+    "scene": "FROG_20_1.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "ghost",
+      "11": "FROG_20_3"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "00000000"
+      },
+      {
+        "type": 8,
+        "hex": "06000000"
+      },
+      {
+        "type": 8,
+        "hex": "05000000"
+      },
+      {
+        "type": 8,
+        "hex": "04000000"
+      },
+      {
+        "type": 3,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "GOLDD_4_1.nsd",
+    "entity": 6,
+    "tags": {
+      "0": "ghost",
+      "11": "GOLDD_4_1"
+    },
+    "params": [
+      {
+        "type": 5,
+        "hex": "07000000"
+      }
+    ]
+  },
+  {
+    "scene": "IN4D_4_1.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "barkeep_prague",
+      "11": "IN4D_Bartender"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "INN4_7_1.nsd",
+    "entity": 5,
+    "tags": {
+      "0": "barkeep_prague",
+      "11": "IN4D_Bartender"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "04000000"
+      }
+    ]
+  },
+  {
+    "scene": "INN4_7_7.nsd",
+    "entity": 4,
+    "tags": {
+      "0": "barkeep_prague",
+      "11": "IN4D_Bartender"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "03000000"
+      }
+    ]
+  },
+  {
+    "scene": "JOS2_15_1.nsd",
+    "entity": 28,
+    "tags": {
+      "0": "stonelight_on_stone_s",
+      "11": "PivotDoor"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      },
+      {
+        "type": 2,
+        "hex": "00004040"
+      }
+    ]
+  },
+  {
+    "scene": "JOS2_CTD_3_1.nsd",
+    "entity": 5,
+    "tags": {
+      "0": "ghost",
+      "11": "CTD_ChamberSkulls"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "10000000"
+      },
+      {
+        "type": 3,
+        "hex": "0c000000"
+      },
+      {
+        "type": 3,
+        "hex": "11000000"
+      }
+    ]
+  },
+  {
+    "scene": "JOS3_15_1.nsd",
+    "entity": 16,
+    "tags": {
+      "0": "trigger_region",
+      "11": "TrapRegionProjectile"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "0f000000"
+      },
+      {
+        "type": 7,
+        "hex": "70726f6a5f6669726562616c6c00"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      },
+      {
+        "type": 2,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 2,
+        "hex": "00002042"
+      }
+    ]
+  },
+  {
+    "scene": "JOS3_CTD_3_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "ghost",
+      "11": "CTD_Labyrinth"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "09000000"
+      },
+      {
+        "type": 3,
+        "hex": "07000000"
+      },
+      {
+        "type": 3,
+        "hex": "08000000"
+      },
+      {
+        "type": 3,
+        "hex": "06000000"
+      },
+      {
+        "type": 3,
+        "hex": "0a000000"
+      }
+    ]
+  },
+  {
+    "scene": "L1_BROT.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "wood_swing_small2",
+      "11": "DoublePivotDoor"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      },
+      {
+        "type": 2,
+        "hex": "00004040"
+      },
+      {
+        "type": 3,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "L1_CARG.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "ghost",
+      "11": "StingerSoundMultiWav"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "02000000"
+      },
+      {
+        "type": 7,
+        "hex": "686172626f725f686f726e5f30312e57415600"
+      },
+      {
+        "type": 7,
+        "hex": "686172626f725f686f726e5f30322e57415600"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 2,
+        "hex": "0000c843"
+      },
+      {
+        "type": 2,
+        "hex": "00004844"
+      },
+      {
+        "type": 1,
+        "hex": "28000000"
+      },
+      {
+        "type": 2,
+        "hex": "0000f041"
+      },
+      {
+        "type": 2,
+        "hex": "00007042"
+      }
+    ]
+  },
+  {
+    "scene": "L1_CARG.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "L1_CURI.nsd",
+    "entity": 36,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "l1_east.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "l1_havn.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "L1_SET1.nsd",
+    "entity": 5,
+    "tags": {
+      "0": "door_raise1_nhl",
+      "11": "DoorSwitchPivot"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "00002042"
+      },
+      {
+        "type": 2,
+        "hex": "00000040"
+      },
+      {
+        "type": 3,
+        "hex": "06000000"
+      }
+    ]
+  },
+  {
+    "scene": "L1_SET3.nsd",
+    "entity": 5,
+    "tags": {
+      "0": "stoneheavy_on_stone",
+      "11": "DoorSwitchPivot"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "00001643"
+      },
+      {
+        "type": 2,
+        "hex": "00004040"
+      },
+      {
+        "type": 3,
+        "hex": "06000000"
+      }
+    ]
+  },
+  {
+    "scene": "l1_tol3.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "l1_tol3.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "metalheavy_on_metal2",
+      "11": "PivotDoor"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      },
+      {
+        "type": 2,
+        "hex": "00004040"
+      }
+    ]
+  },
+  {
+    "scene": "l1_west.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message_short",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "LOBY_37_4.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "DoorElevator"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "00004842"
+      },
+      {
+        "type": 3,
+        "hex": "04000000"
+      },
+      {
+        "type": 3,
+        "hex": "05000000"
+      }
+    ]
+  },
+  {
+    "scene": "MON2_8_2.nsd",
+    "entity": 6,
+    "tags": {
+      "0": "trigger_region",
+      "11": "ActorAIOff_TriggerOn"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "31000000"
+      },
+      {
+        "type": 2,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_DEVN.nsd",
+    "entity": 9,
+    "tags": {
+      "0": "ghost",
+      "11": "DEVN_Exit"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "0a000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 2,
+        "hex": "0000f041"
+      }
+    ]
+  },
+  {
+    "scene": "n1_fac1.nsd",
+    "entity": 19,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "n1_fac2.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "tracker_thing_nohilite",
+      "11": "RotateAlways"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      },
+      {
+        "type": 2,
+        "hex": "0000803f"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "n1_fac3.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "ghost_tracker",
+      "11": "ConveyerBelt"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "736b656c65746f6e7269626361676500"
+      },
+      {
+        "type": 1,
+        "hex": "03000000"
+      },
+      {
+        "type": 1,
+        "hex": "80000000"
+      }
+    ]
+  },
+  {
+    "scene": "n1_fac3.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "ghost_tracker",
+      "11": "ConveyerBelt"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "736b656c65746f6e7269626361676500"
+      },
+      {
+        "type": 1,
+        "hex": "03000000"
+      },
+      {
+        "type": 1,
+        "hex": "80000000"
+      }
+    ]
+  },
+  {
+    "scene": "n1_fac3.nsd",
+    "entity": 22,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "n1_fac4.nsd",
+    "entity": 13,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "06000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_FLS1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_FLS2.nsd",
+    "entity": 10,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_FLS3.nsd",
+    "entity": 9,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_GUNH.nsd",
+    "entity": 8,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_LOBY.nsd",
+    "entity": 11,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_NEWM.nsd",
+    "entity": 22,
+    "tags": {
+      "0": "ghost",
+      "11": "StingerSound"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "636172486f6e6b5f30332e57415600"
+      },
+      {
+        "type": 2,
+        "hex": "0000c842"
+      },
+      {
+        "type": 2,
+        "hex": "00009643"
+      },
+      {
+        "type": 1,
+        "hex": "23000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      },
+      {
+        "type": 2,
+        "hex": "0000b442"
+      }
+    ]
+  },
+  {
+    "scene": "N1_NEWM.nsd",
+    "entity": 23,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_ORSI.nsd",
+    "entity": 4,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "DoorElevator"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "00004842"
+      },
+      {
+        "type": 3,
+        "hex": "06000000"
+      },
+      {
+        "type": 3,
+        "hex": "07000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_SEW1.nsd",
+    "entity": 27,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "Door"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000c842"
+      }
+    ]
+  },
+  {
+    "scene": "N1_SEW2.nsd",
+    "entity": 41,
+    "tags": {
+      "0": "trigger_region",
+      "11": "RegionTriggerSound"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "7375627761795f6661725f30312e57415600"
+      },
+      {
+        "type": 2,
+        "hex": "00009643"
+      },
+      {
+        "type": 2,
+        "hex": "00001644"
+      },
+      {
+        "type": 1,
+        "hex": "32000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_SEW3.nsd",
+    "entity": 4,
+    "tags": {
+      "0": "ghost_tracker",
+      "11": "ClassBobbing"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "12000000"
+      },
+      {
+        "type": 2,
+        "hex": "00000041"
+      },
+      {
+        "type": 2,
+        "hex": "00007041"
+      },
+      {
+        "type": 2,
+        "hex": "0000803f"
+      }
+    ]
+  },
+  {
+    "scene": "N1_SEW3.nsd",
+    "entity": 5,
+    "tags": {
+      "0": "ghost_tracker",
+      "11": "ClassBobbing"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "13000000"
+      },
+      {
+        "type": 2,
+        "hex": "00000041"
+      },
+      {
+        "type": 2,
+        "hex": "00004041"
+      },
+      {
+        "type": 2,
+        "hex": "0000003f"
+      }
+    ]
+  },
+  {
+    "scene": "N1_SEW3.nsd",
+    "entity": 6,
+    "tags": {
+      "0": "ghost_tracker",
+      "11": "ClassBobbing"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "14000000"
+      },
+      {
+        "type": 2,
+        "hex": "00000041"
+      },
+      {
+        "type": 2,
+        "hex": "00004041"
+      },
+      {
+        "type": 2,
+        "hex": "0000003f"
+      }
+    ]
+  },
+  {
+    "scene": "N1_SEW3.nsd",
+    "entity": 75,
+    "tags": {
+      "0": "ghost",
+      "11": "StingerSound"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "647269705f7765745f30312e57415600"
+      },
+      {
+        "type": 2,
+        "hex": "00009643"
+      },
+      {
+        "type": 2,
+        "hex": "00001644"
+      },
+      {
+        "type": 1,
+        "hex": "32000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "00002041"
+      }
+    ]
+  },
+  {
+    "scene": "N1_SEW3.nsd",
+    "entity": 157,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_SEW4.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "n1_stor.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_SUIT.nsd",
+    "entity": 5,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "n1_utwn.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "05000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_WAR3.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "exit_message",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_WAR3.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "exit_message",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "N1_WAR3.nsd",
+    "entity": 12,
+    "tags": {
+      "0": "metal_swing_gate",
+      "11": "PivotDoor"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      },
+      {
+        "type": 2,
+        "hex": "00004040"
+      }
+    ]
+  },
+  {
+    "scene": "NQTR_11_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region",
+      "11": "RegionTriggerSound"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "507261677565315f31315f315f3138303100"
+      },
+      {
+        "type": 2,
+        "hex": "00001644"
+      },
+      {
+        "type": 2,
+        "hex": "00008044"
+      },
+      {
+        "type": 1,
+        "hex": "50000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "OLDT_7_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "trigger_region",
+      "11": "ActorAIOff_TriggerOn"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "02000000"
+      },
+      {
+        "type": 2,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "OLDT_7_4.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "OLDT_7_4"
+    },
+    "params": [
+      {
+        "type": 5,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "OLDT_7_7.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region",
+      "11": "OLDT_7_7"
+    },
+    "params": [
+      {
+        "type": 5,
+        "hex": "10000000"
+      }
+    ]
+  },
+  {
+    "scene": "ORDR_20_1.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "orvus",
+      "11": "ORDR_Orvus"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "ORSI_37_4.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "ORSI_37_4"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "OTDY_4_1.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "ghost",
+      "11": "OTDY_4_1"
+    },
+    "params": [
+      {
+        "type": 5,
+        "hex": "04000000"
+      },
+      {
+        "type": 8,
+        "hex": "02000000"
+      },
+      {
+        "type": 8,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "OTDY_6_1.nsd",
+    "entity": 4,
+    "tags": {
+      "0": "ghost",
+      "11": "OTDY_6_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "01000000"
+      },
+      {
+        "type": 8,
+        "hex": "00000000"
+      },
+      {
+        "type": 8,
+        "hex": "02000000"
+      },
+      {
+        "type": 8,
+        "hex": "03000000"
+      }
+    ]
+  },
+  {
+    "scene": "OUBL_CTD_2_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "ghost",
+      "11": "CTD_Oubliette_Main"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "04000000"
+      },
+      {
+        "type": 8,
+        "hex": "03000000"
+      },
+      {
+        "type": 8,
+        "hex": "02000000"
+      },
+      {
+        "type": 3,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "p1_arc1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message_short",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "p1_arc2.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message_short",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "p1_arc3.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "p1_arc3.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_CAST.nsd",
+    "entity": 5,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_EGAT.nsd",
+    "entity": 4,
+    "tags": {
+      "0": "ghost",
+      "11": "StingerSound"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "646f675f736d616c6c5f6261726b5f30312e57415600"
+      },
+      {
+        "type": 2,
+        "hex": "00009643"
+      },
+      {
+        "type": 2,
+        "hex": "00004844"
+      },
+      {
+        "type": 1,
+        "hex": "23000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 2,
+        "hex": "0000c841"
+      },
+      {
+        "type": 2,
+        "hex": "00007042"
+      }
+    ]
+  },
+  {
+    "scene": "P1_EGAT.nsd",
+    "entity": 12,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_EGNT.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "StingerSound"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "646f675f686f776c5f30322e57415600"
+      },
+      {
+        "type": 2,
+        "hex": "00009643"
+      },
+      {
+        "type": 2,
+        "hex": "0080bb44"
+      },
+      {
+        "type": 1,
+        "hex": "32000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      },
+      {
+        "type": 2,
+        "hex": "00007042"
+      }
+    ]
+  },
+  {
+    "scene": "P1_EGNT.nsd",
+    "entity": 29,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_GOLDD.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExitArdan"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_HAVN.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_HILLD.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_IN4D.nsd",
+    "entity": 13,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_INN4.nsd",
+    "entity": 7,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "p1_jos1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "p1_jos2.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "p1_jos2.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "exit_message",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "p1_jos2.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "00007041"
+      }
+    ]
+  },
+  {
+    "scene": "p1_jos3.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "stonelight_on_stone_s",
+      "11": "DoorSwitch"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "00001643"
+      },
+      {
+        "type": 2,
+        "hex": "00004842"
+      },
+      {
+        "type": 3,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_JUDBD.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "03000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_JUDBD.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_OLDT.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_OTDY.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "0b000000"
+      }
+    ]
+  },
+  {
+    "scene": "p1_oubl.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_PRIN.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "p1_rabi.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_UNIV.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_UNOR.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "P1_UNORD.nsd",
+    "entity": 7,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "P2_OLDT.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "05000000"
+      }
+    ]
+  },
+  {
+    "scene": "P2_VYC1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "P2_VYC3.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "P2_VYC4.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "P2_VYSM.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "PRIN_14_1.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "ghost",
+      "11": "PRIN_14_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "06000000"
+      },
+      {
+        "type": 8,
+        "hex": "05000000"
+      },
+      {
+        "type": 8,
+        "hex": "04000000"
+      }
+    ]
+  },
+  {
+    "scene": "PRIN_16_1.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "ghost",
+      "11": "PRIN_16_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "05000000"
+      },
+      {
+        "type": 8,
+        "hex": "04000000"
+      }
+    ]
+  },
+  {
+    "scene": "SET2_29_2.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "tracker_thing_big",
+      "11": "DoorSwitchPivot"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "00001643"
+      },
+      {
+        "type": 2,
+        "hex": "00004040"
+      },
+      {
+        "type": 3,
+        "hex": "0c000000"
+      }
+    ]
+  },
+  {
+    "scene": "SET3_29_2.nsd",
+    "entity": 6,
+    "tags": {
+      "0": "trigger_region",
+      "11": "ActorAIOff_TriggerOn"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "2b000000"
+      },
+      {
+        "type": 2,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "SET4_29_2.nsd",
+    "entity": 4,
+    "tags": {
+      "0": "trigger_region",
+      "11": "ActorAIOff_TriggerOn"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "03000000"
+      },
+      {
+        "type": 2,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW2_35_1.nsd",
+    "entity": 19,
+    "tags": {
+      "0": "ghost",
+      "11": "SEW2_ElectricVertical"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "41000000"
+      },
+      {
+        "type": 3,
+        "hex": "42000000"
+      },
+      {
+        "type": 3,
+        "hex": "43000000"
+      },
+      {
+        "type": 3,
+        "hex": "44000000"
+      },
+      {
+        "type": 2,
+        "hex": "0000c842"
+      }
+    ]
+  },
+  {
+    "scene": "SEW2_LOT_12_1.nsd",
+    "entity": 38,
+    "tags": {
+      "0": "trigger_region",
+      "11": "TrapRegionProjectile"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "25000000"
+      },
+      {
+        "type": 7,
+        "hex": "70726f6a5f6669726562616c6c00"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      },
+      {
+        "type": 2,
+        "hex": "00000000"
+      },
+      {
+        "type": 1,
+        "hex": "00000000"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      }
+    ]
+  },
+  {
+    "scene": "SEW3_35_1.nsd",
+    "entity": 19,
+    "tags": {
+      "0": "ghost",
+      "11": "SEW3_Main"
+    },
+    "params": [
+      {
+        "type": 5,
+        "hex": "14000000"
+      },
+      {
+        "type": 3,
+        "hex": "47000000"
+      },
+      {
+        "type": 8,
+        "hex": "07000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW3_LOT_12_1.nsd",
+    "entity": 68,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW4_35_1.nsd",
+    "entity": 8,
+    "tags": {
+      "0": "ghost",
+      "11": "SEW4_Main"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "07000000"
+      },
+      {
+        "type": 5,
+        "hex": "0b000000"
+      },
+      {
+        "type": 3,
+        "hex": "0a000000"
+      },
+      {
+        "type": 3,
+        "hex": "09000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW4_LOT_12_1.nsd",
+    "entity": 5,
+    "tags": {
+      "0": "ghost",
+      "11": "Generator"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "72617441647600"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 1,
+        "hex": "02000000"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW4_LOT_12_1.nsd",
+    "entity": 6,
+    "tags": {
+      "0": "ghost",
+      "11": "Generator"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "72617441647600"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 1,
+        "hex": "02000000"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW4_LOT_12_1.nsd",
+    "entity": 7,
+    "tags": {
+      "0": "ghost",
+      "11": "Generator"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "72617441647600"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 1,
+        "hex": "02000000"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW4_LOT_12_1.nsd",
+    "entity": 8,
+    "tags": {
+      "0": "ghost",
+      "11": "Generator"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "72617441647600"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 1,
+        "hex": "02000000"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW4_LOT_12_1.nsd",
+    "entity": 9,
+    "tags": {
+      "0": "ghost",
+      "11": "Generator"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "72617441647600"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 1,
+        "hex": "02000000"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW4_LOT_12_1.nsd",
+    "entity": 10,
+    "tags": {
+      "0": "ghost",
+      "11": "Generator"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "72617441647600"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 1,
+        "hex": "02000000"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW4_LOT_12_1.nsd",
+    "entity": 11,
+    "tags": {
+      "0": "ghost",
+      "11": "Generator"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "72617441647600"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 1,
+        "hex": "02000000"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "SEW4_LOT_12_1.nsd",
+    "entity": 12,
+    "tags": {
+      "0": "ghost",
+      "11": "Generator"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "72617441647600"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 1,
+        "hex": "02000000"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "SIM2_5_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region",
+      "11": "ActorAIOff_TriggerOn"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "24000000"
+      },
+      {
+        "type": 2,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 3,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 4,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 5,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 6,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 7,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 8,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 9,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 10,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 11,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 12,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 13,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 14,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 15,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 16,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 17,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 18,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 19,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 20,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 21,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 22,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 23,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 24,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 25,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SIMN_7_1.nsd",
+    "entity": 26,
+    "tags": {
+      "0": "bat_flying"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "SLUM_LOT_7_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "LOT_SLUM_7_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "SOUT_20_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "SOUT_20_1_HausLook"
+    },
+    "params": [
+      {
+        "type": 5,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "STE1_21_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "stoneheavy_on_stone",
+      "11": "STE1_Door3Levers"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "00000041"
+      },
+      {
+        "type": 3,
+        "hex": "22000000"
+      },
+      {
+        "type": 3,
+        "hex": "23000000"
+      },
+      {
+        "type": 3,
+        "hex": "21000000"
+      }
+    ]
+  },
+  {
+    "scene": "STE2_21_1.nsd",
+    "entity": 28,
+    "tags": {
+      "0": "ghost",
+      "11": "STE2_FiveLevers"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "00009642"
+      },
+      {
+        "type": 3,
+        "hex": "1e000000"
+      },
+      {
+        "type": 3,
+        "hex": "21000000"
+      },
+      {
+        "type": 3,
+        "hex": "1d000000"
+      },
+      {
+        "type": 3,
+        "hex": "1f000000"
+      },
+      {
+        "type": 3,
+        "hex": "20000000"
+      },
+      {
+        "type": 3,
+        "hex": "23000000"
+      },
+      {
+        "type": 3,
+        "hex": "22000000"
+      }
+    ]
+  },
+  {
+    "scene": "STHM_4_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "STHM_4_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "STHM_6_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "STHM_6_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "STOR_38_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "wood_swing_small2",
+      "11": "PivotDoor"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      },
+      {
+        "type": 2,
+        "hex": "00004040"
+      }
+    ]
+  },
+  {
+    "scene": "TEU3_22_1.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "proxtrigger128",
+      "11": "MysticSpawner"
+    },
+    "params": [
+      {
+        "type": 7,
+        "hex": "626c6f6f6473746f6e6500"
+      },
+      {
+        "type": 7,
+        "hex": "626c6f6f64706561726c00"
+      },
+      {
+        "type": 7,
+        "hex": "656c656d656e74616c00"
+      },
+      {
+        "type": 7,
+        "hex": "656c656d656e74616c00"
+      }
+    ]
+  },
+  {
+    "scene": "TEU3_22_1.nsd",
+    "entity": 8,
+    "tags": {
+      "0": "metallight_on_stone",
+      "11": "TEU3_22_1_Door"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a041"
+      }
+    ]
+  },
+  {
+    "scene": "TOL4_30_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "ghost",
+      "11": "TOL4_30_1_Main"
+    },
+    "params": [
+      {
+        "type": 10,
+        "hex": "02000000"
+      },
+      {
+        "type": 8,
+        "hex": "05000000"
+      },
+      {
+        "type": 8,
+        "hex": "04000000"
+      },
+      {
+        "type": 8,
+        "hex": "00000000"
+      },
+      {
+        "type": 8,
+        "hex": "06000000"
+      },
+      {
+        "type": 8,
+        "hex": "07000000"
+      }
+    ]
+  },
+  {
+    "scene": "UNIV_25_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "UNIV_25_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "UNIV_7_7.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "ghost",
+      "11": "UNIV_7_7"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "03000000"
+      },
+      {
+        "type": 8,
+        "hex": "02000000"
+      },
+      {
+        "type": 9,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "UNIV_8_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "ghost",
+      "11": "UNIV_8_1"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "UNORD_4_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "unorna",
+      "11": "UNOR_UnornaShop"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "02000000"
+      }
+    ]
+  },
+  {
+    "scene": "UNOR_7_1.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "unorna",
+      "11": "UNOR_UnornaShop"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "UTWN_LOT_9_1.nsd",
+    "entity": 13,
+    "tags": {
+      "0": "ghost",
+      "11": "LOT_UTWN_9_1"
+    },
+    "params": [
+      {
+        "type": 5,
+        "hex": "0e000000"
+      },
+      {
+        "type": 8,
+        "hex": "0a000000"
+      },
+      {
+        "type": 8,
+        "hex": "0c000000"
+      },
+      {
+        "type": 8,
+        "hex": "0b000000"
+      },
+      {
+        "type": 8,
+        "hex": "0f000000"
+      }
+    ]
+  },
+  {
+    "scene": "V1_HAVN.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "wood_swing_heavy1_nhl",
+      "11": "DoorPivotSwitchPivot"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "0000a040"
+      },
+      {
+        "type": 2,
+        "hex": "00004040"
+      },
+      {
+        "type": 3,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "V1_HHX2.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "wood_swing_heavy1",
+      "11": "PivotDoor"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      },
+      {
+        "type": 2,
+        "hex": "00008040"
+      }
+    ]
+  },
+  {
+    "scene": "V1_HHX3.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "ghost",
+      "11": "StingerSoundMultiWav"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "05000000"
+      },
+      {
+        "type": 7,
+        "hex": "4c756372657469615f4653637265616d5f362e77617600"
+      },
+      {
+        "type": 7,
+        "hex": "53637265616d735f416e657a6b615f746b31302e77617600"
+      },
+      {
+        "type": 7,
+        "hex": "53637265616d735f416e657a6b615f746b382e77617600"
+      },
+      {
+        "type": 7,
+        "hex": "507261677565315f5053637265616d5f312e77617600"
+      },
+      {
+        "type": 7,
+        "hex": "4c656f5f53637265616d5f342e77617600"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 7,
+        "hex": "00"
+      },
+      {
+        "type": 2,
+        "hex": "00009643"
+      },
+      {
+        "type": 2,
+        "hex": "00007a44"
+      },
+      {
+        "type": 1,
+        "hex": "32000000"
+      },
+      {
+        "type": 2,
+        "hex": "0000f041"
+      },
+      {
+        "type": 2,
+        "hex": "00007042"
+      }
+    ]
+  },
+  {
+    "scene": "V1_HHX3.nsd",
+    "entity": 67,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "V1_HHX4.nsd",
+    "entity": 25,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "V1_INNR.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "tracker_thing_big",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "04000000"
+      }
+    ]
+  },
+  {
+    "scene": "V1_ORSI.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "V1_ROOF.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "metalheavy_on_metal2",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "V1_SOUT.nsd",
+    "entity": 6,
+    "tags": {
+      "0": "tracker_thing_big",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "V1_STE3.nsd",
+    "entity": 4,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "v1_teu2.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message_short",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "v1_teu2.nsd",
+    "entity": 1,
+    "tags": {
+      "0": "exit_message",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "v1_teu2.nsd",
+    "entity": 10,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "v1_teu3.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "exit_message_short",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "v1_teu3.nsd",
+    "entity": 9,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "v1_teu4.nsd",
+    "entity": 14,
+    "tags": {
+      "0": "trigger_region_exit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "V1_WEST.nsd",
+    "entity": 4,
+    "tags": {
+      "0": "tracker_thing",
+      "11": "ClickExit"
+    },
+    "params": [
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "VYC3_25_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region",
+      "11": "RegionTrigger"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "VYC4_25_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region",
+      "11": "RegionTrigger"
+    },
+    "params": [
+      {
+        "type": 3,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "VYSM_25_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "trigger_region",
+      "11": "VYSM_Mob"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "WAR2_36_1.nsd",
+    "entity": 0,
+    "tags": {
+      "0": "rat_small",
+      "11": "FeederRatClassWander"
+    },
+    "params": [
+      {
+        "type": 2,
+        "hex": "00008042"
+      },
+      {
+        "type": 2,
+        "hex": "0000a043"
+      },
+      {
+        "type": 2,
+        "hex": "00000040"
+      },
+      {
+        "type": 2,
+        "hex": "00002041"
+      },
+      {
+        "type": 2,
+        "hex": "00005243"
+      },
+      {
+        "type": 2,
+        "hex": "00008041"
+      },
+      {
+        "type": 1,
+        "hex": "01000000"
+      }
+    ]
+  },
+  {
+    "scene": "WEAP_20_2.nsd",
+    "entity": 2,
+    "tags": {
+      "0": "viennasmithy",
+      "11": "WEAP_Friedrich"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "00000000"
+      }
+    ]
+  },
+  {
+    "scene": "WEST_28_1.nsd",
+    "entity": 9,
+    "tags": {
+      "0": "ghost",
+      "11": "WEST_28_1_Main"
+    },
+    "params": [
+      {
+        "type": 8,
+        "hex": "0b000000"
+      },
+      {
+        "type": 5,
+        "hex": "0a000000"
+      }
+    ]
+  }
+]

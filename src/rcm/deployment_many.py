@@ -19,7 +19,9 @@ def deploy_many(ws,chronicles,directory,current_sources=None,preserve_siblings=F
             if report.get('authoring_source_sha256')!=source_fingerprint(source) or report.get('build_inputs_sha256')!=build_inputs_fingerprint(ws,source):raise ValueError('Proyecto cambiado desde build: '+ident)
         owners[ident]=list(report['distribution_files'])
         from .wtd import local_dependencies
-        for name,data in local_dependencies(ws,report).items():
+        from .content_libraries import local_dependencies as library_dependencies
+        dependencies=local_dependencies(ws,report);dependencies.update(library_dependencies(ws,report))
+        for name,data in dependencies.items():
             target=safe_target(game,dest/name)
             if target in files and files[target]!=data:raise ValueError('Imported content packs conflict')
             files[target]=data;shared.add(name)
@@ -31,14 +33,24 @@ def deploy_many(ws,chronicles,directory,current_sources=None,preserve_siblings=F
     previous=json.loads(manifest.read_text(encoding='utf8')) if manifest.is_file() else dict(format=1,files={})
     if previous.get('format')!=1 or not isinstance(previous.get('files'),dict):raise ValueError('Manifest inválido')
     if preserve_siblings:
+        retained=False
         for ident,names in previous.get('owners',{}).items():
             if ident in chronicles:continue
+            retained=True
             owners[ident]=names
             for relative in names:
                 archive_path(relative);target=safe_target(game,dest/relative);data=target.read_bytes()
                 if hashlib.sha256(data).hexdigest()!=previous['files'].get(relative):raise ValueError('Crónica conservada modificada: '+relative)
                 if target in files and files[target]!=data:raise ValueError('Cambiaría un recurso de otra crónica: '+relative)
                 files[target]=data
+        if retained:
+            # Retained chronicles may need a library that is not imported in
+            # the current editor workspace. Preserve its verified ownership.
+            for relative in previous.get('shared_content_files',[]):
+                archive_path(relative);target=safe_target(game,dest/relative);data=target.read_bytes()
+                if hashlib.sha256(data).hexdigest()!=previous['files'].get(relative):raise ValueError('Contenido compartido conservado modificado: '+relative)
+                if target in files and files[target]!=data:raise ValueError('Imported content packs conflict')
+                files[target]=data;shared.add(relative)
     from .profile_compatibility import compatibility_files,profile_signature
     compatibility=compatibility_files(game,[data for p,data in files.items() if p.suffix=='.nob'])
     for name,data in compatibility.items():

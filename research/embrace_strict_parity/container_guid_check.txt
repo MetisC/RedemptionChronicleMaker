@@ -1,0 +1,73 @@
+0046ebd0: mov eax, dword ptr [esp + 0xc]
+0046ebd4: push eax
+0046ebd5: call 0x4ae420
+0046ebda: add esp, 4
+0046ebdd: test eax, eax
+0046ebdf: je 0x46ebec
+0046ebe1: cmp dword ptr [eax + 4], 2
+0046ebe5: jne 0x46ebec
+0046ebe7: mov al, 1
+0046ebe9: ret 0xc
+0046ebec: xor al, al
+0046ebee: ret 0xc
+0046ebf1: nop 
+0046ebf2: nop 
+0046ebf3: nop 
+0046ebf4: nop 
+0046ebf5: nop 
+0046ebf6: nop 
+0046ebf7: nop 
+0046ebf8: nop 
+0046ebf9: nop 
+0046ebfa: nop 
+0046ebfb: nop 
+0046ebfc: nop 
+0046ebfd: nop 
+0046ebfe: nop 
+0046ebff: nop 
+0046ec00: mov eax, dword ptr [esp + 0xc]
+0046ec04: push eax
+0046ec05: call 0x4b4780
+0046ec0a: add esp, 4
+0046ec0d: test eax, eax
+0046ec0f: jne 0x46ec16
+0046ec11: xor al, al
+0046ec13: ret 0x24
+0046ec16: mov ecx, dword ptr [esp + 0x24]
+0046ec1a: mov edx, dword ptr [0x6f2064]
+0046ec20: push ecx
+0046ec21: mov ecx, dword ptr [esp + 0x24]
+0046ec25: push ecx
+0046ec26: mov ecx, dword ptr [esp + 0x24]
+0046ec2a: push ecx
+0046ec2b: mov ecx, dword ptr [esp + 0x24]
+0046ec2f: push ecx
+0046ec30: mov ecx, dword ptr [esp + 0x20]
+0046ec34: add edx, ecx
+0046ec36: mov ecx, eax
+0046ec38: push edx
+0046ec39: mov edx, dword ptr [esp + 0x28]
+0046ec3d: push edx
+0046ec3e: call 0x4b58a0
+0046ec43: ret 0x24
+0046ec46: nop 
+0046ec47: nop 
+0046ec48: nop 
+0046ec49: nop 
+0046ec4a: nop 
+0046ec4b: nop 
+0046ec4c: nop 
+0046ec4d: nop 
+0046ec4e: nop 
+0046ec4f: nop 
+0046ec50: mov eax, dword ptr [esp + 0xc]
+0046ec54: push eax
+0046ec55: call 0x4b4780
+0046ec5a: add esp, 4
+0046ec5d: test eax, eax
+0046ec5f: jne 0x46ec66
+0046ec61: xor al, al
+0046ec63: ret 0x10
+0046ec66: mov ecx, dword ptr [esp + 0x10]
+0046ec6a: push ecx
+0046ec6b: mov ecx, eax

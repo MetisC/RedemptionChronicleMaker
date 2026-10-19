@@ -271,9 +271,20 @@ def build(ws: Workspace, p: Project, levels, resources, hints, compile_java=True
     source = origin["source"]
     from .scene_profiles import environment as scene_environment
     environment, environment_record = scene_environment(ws, level, hints, p.environment_scene)
+    if p.environment_overrides:
+        from .environment_fields import patch
+        environment=environment[:-176]+patch(environment[-176:],p.environment_overrides,resources)
     if p.sky:
         environment = environment[:-64] + fixed(p.sky[0]) + fixed(p.sky[1])
+    if p.environment_overrides or p.sky:
+        environment_record=dict(environment_record,overrides=p.environment_overrides or {},sky=list(p.sky) if p.sky else None,effective_tail_sha256=hashlib.sha256(environment[-176:]).hexdigest())
     controller, java = (runtime_factory or runtime_java)(p)
+    template_kinds={t['id']:t.get('kind') for t in resources['templates']}
+    if any(template_kinds.get(e.template)=='containers' for e in p.entities):
+        # IsPropGuid checks ONLY native type 2 (46ebd0), while containers are
+        # type 8. No IsContainerGuid JNI exists; GetThingType is the real API.
+        java=java.replace('IsWeaponGuid(g)||IsArmorGuid(g))','IsWeaponGuid(g)||IsArmorGuid(g)||new CodexThing(g).GetThingType()==THING_TYPE_CONTAINER)')
+        java=java.replace('IsWeaponGuid(guid) || IsArmorGuid(guid);','IsWeaponGuid(guid) || IsArmorGuid(guid) || new CodexThing(guid).GetThingType() == THING_TYPE_CONTAINER;')
     scene_model=Scene(prefix + "S", prefix + "L", [[Tag.text(0, "ghost"), Tag.vector(1, anchor["orientation"]), Tag.vector(2, anchor["position"]), Tag.integer(3, anchor["sector"]), Tag.text(11, controller)]], environment)
     # Campaign-only selectable brush layer, supplied explicitly by the runtime
     # factory. The accepted single-scene/tutorial path remains byte-identical.
@@ -292,13 +303,22 @@ def build(ws: Workspace, p: Project, levels, resources, hints, compile_java=True
         from .native_arrivals import records,conversation_records
         scene_model.entrances=records(ws,level,native_scene)
         scene_model.conversation_starts=conversation_records(ws,level,native_scene) or None
+    script_scene=getattr(runtime_factory,'native_scripts',None)
+    if script_scene:
+        from .native_scripts import scene_records
+        scene_records(ws,level,script_scene,p,scene_model,resources['native_scripts'])
+    interest_scene=getattr(runtime_factory,'interest_scene',None)
+    if interest_scene:
+        from .interest_spots import records as interest_records
+        scene_model.interest_spots=interest_records(ws,level,interest_scene)
     scene=scene_model.encode()
     assert Scene.read(scene).encode() == scene
     templates = []
     custom_scripts={t['id']:t.get('custom_script') for t in resources['templates'] if t.get('custom_script')}
+    descriptions={t['id']:t['description_override'] for t in resources['templates'] if t.get('description_override')}
     for e in p.entities:
         template_name = prefix + "_" + e.id
-        templates.append(Template(template_name, [Tag.text(0, e.template), Tag.text(11, custom_scripts.get(e.template) or prefix + "_Passive"), Tag.text(81, template_name), Tag.text(82, template_name)], b"RCM generated layer\0"))
+        templates.append(Template(template_name, [Tag.text(0, e.template), Tag.text(11, custom_scripts.get(e.template) or prefix + "_Passive"), Tag.text(81, template_name), Tag.text(82, descriptions.get(e.template,template_name))], b"RCM generated layer\0"))
     not_file = NotFile(templates).encode()
     assert NotFile.read(not_file).encode() == not_file
     ref = level["references"][0]

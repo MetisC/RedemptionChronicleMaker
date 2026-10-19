@@ -29,10 +29,11 @@ class ResourceBrowser(QWidget):
         layout.addLayout(row)
         filters = QHBoxLayout()
         self.family = QComboBox(); self.family.setObjectName('resource_family')
-        for label, value in [(tr('Todos los recursos'),''),(tr('Objetos'),'items'),('Props','props'),(tr('Armas'),'weapons'),(tr('Armaduras'),'armour'),(tr('Actores'),'actors')]: self.family.addItem(label,value)
+        for label, value in [(tr('Todos los recursos'),''),(tr('Objetos'),'items'),('Props','props'),(tr('Contenedores'),'containers'),(tr('Armas'),'weapons'),(tr('Armaduras'),'armour'),(tr('Actores'),'actors')]: self.family.addItem(label,value)
         self.origin = QComboBox(); self.origin.setObjectName('resource_origin')
         for label,value in [(tr('Toda procedencia'),''),('Original','Original /'),(tr('Proyecto'),'Proyecto /')]: self.origin.addItem(label,value)
         if backend.resources.get('wtd'):self.origin.addItem('Within The Darkness','WTD /')
+        if backend.resources.get('local_libraries'):self.origin.addItem(tr('Bibliotecas importadas'),'Library /')
         self.available = QComboBox(); self.available.setObjectName('resource_available')
         self.available.addItem(tr('Todos'),False); self.available.addItem(tr('Sólo seleccionables'),True)
         self.enemies=QComboBox();self.enemies.setObjectName('resource_enemies')
@@ -103,6 +104,7 @@ class ResourceBrowser(QWidget):
             if active and index<0:self.category.addItem(text,key)
             elif not active and index>=0:self.category.removeItem(index)
         if active and self.origin.findData('WTD /')<0:self.origin.addItem('Within The Darkness','WTD /')
+        if self.backend.resources.get('local_libraries') and self.origin.findData('Library /')<0:self.origin.addItem(tr('Bibliotecas importadas'),'Library /')
         self.category.blockSignals(False)
         kind = self.category.currentData()
         query = self.search.text().strip().casefold()
@@ -127,12 +129,13 @@ class ResourceBrowser(QWidget):
             for t in templates:
                 counts[t["id"]] = counts.get(t["id"], 0) + 1
             for item in sorted(templates, key=lambda t: t["id"].casefold()):
+                if item.get('instance_owned'):continue
                 if item['id'].startswith('_') and not self.bases.isChecked():continue
-                if item["kind"] not in ({"actors"} if kind == "actors" else {"items", "props", "weapons", "armour"}):
+                if item["kind"] not in ({"actors"} if kind == "actors" else {"items", "props", "weapons", "armour", "containers"}):
                     continue
                 if kind=='actors' and self.enemies.currentData() and (not enemies.get(item['id'],{}).get('enemy') or item.get('project_owned')):continue
                 if hasattr(self,'allowed_families') and item['kind'] not in self.allowed_families:continue
-                origin_text = ('Proyecto / ' if item.get('project_owned') else 'WTD / ' if item.get('imported_pack') else 'Original / ')+item["archive"] + " / " + item["path"]
+                origin_text = ('Proyecto / ' if item.get('project_owned') else 'Library / ' if str(item.get('imported_pack','')).startswith('library:') else 'WTD / ' if item.get('imported_pack') else 'Original / ')+item["archive"] + " / " + item["path"]
                 usable = counts[item["id"]] == 1
                 display_origin=self.display_origin(origin_text)
                 info = ((tr('ID exacto: ') + f"{item['id']}" + tr('\nFamilia: ') + f"{item['kind']}" + tr('\nProcedencia: ') + display_origin + tr('\nHereda de: ') + f"{item.get('parent') or tr('Sin padre')}" + tr('\nModelo: ') + f"{item.get('model') or tr('No declarado directamente')}" + '\nAI: ' + f"{item.get('ai') or tr('No declarada directamente')}"))
@@ -175,6 +178,7 @@ class ResourceBrowser(QWidget):
     @staticmethod
     def display_origin(value):
         if value.startswith('Proyecto / '):return tr('Proyecto / ')+value[len('Proyecto / '):]
+        if value.startswith('Library / '):return tr('Bibliotecas importadas')+' / '+value[len('Library / '):]
         return value
 
     def inspect_resource(self):

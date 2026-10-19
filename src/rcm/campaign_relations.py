@@ -7,6 +7,8 @@ def graph(root):
     for qi,q in enumerate(root.get('quests',[])):index[('quest',q['id'])]=('quests',qi)
     for i,t in enumerate(root.get('resources',{}).get('templates',[])):index[('templates',t['id'])]=('resources','templates',i)
     for i,t in enumerate(root.get('resources',{}).get('camera_paths',[])):index[('camera_paths',t['id'])]=('resources','camera_paths',i)
+    for kind in ('ai_profiles','scripts','textures'):
+        for i,t in enumerate(root.get('resources',{}).get(kind,[])):index[(kind,t['id'])]=('resources',kind,i)
     for alias in root.get('state',{}).get('flags',{}):index[('flag',alias)]=('state','flags',alias)
     for si,s in enumerate(root['scenes']):
         index[('scene',s['id'])]=('scenes',si)
@@ -22,6 +24,17 @@ def graph(root):
             for i,v in enumerate(value):scan(v,path+(i,),source,local)
         elif isinstance(value,dict):
             for k,v in value.items():
+                if k=='native_script' and isinstance(v,dict):
+                    target=index.get(('scripts',v.get('class')))
+                    if target:links.append(Link(source,target,'native script class',path+(k,'class')))
+                    for pi,arg in enumerate(v.get('parameters',[])):
+                        if isinstance(arg,dict) and arg.get('type') in ('actor','thing'):
+                            target=local.get(('entity',arg.get('value')))
+                            if target:links.append(Link(source,target,'native script parameter',path+(k,'parameters',pi,'value')))
+                if k=='native_frames' and isinstance(v,list):
+                    for pi,key in enumerate(v):
+                        target=local.get(('waypoints',key))
+                        if target:links.append(Link(source,target,'native movement frames',path+(k,pi)))
                 if k=='staging' and isinstance(v,dict):
                     for pi,key in enumerate(v.get('entries',[])):
                         target=local.get(('entries',key))
@@ -32,6 +45,9 @@ def graph(root):
                         if target:links.append(Link(source,target,'travel',path+(k,)))
                 category={'reference':'actors','sequence':'sequences','move_path':'paths','focus':'objects','object':'objects','speaker':'actors','actor':'actors','actor_alive':'actors','entity_exists':'entity','item':'objects','item_global':'objects','owns_item':'objects','conversation':'conversations','default':'conversations','then':'conversations','trigger':'triggers','encounter':'encounters','quest':'quest','flag':'flag','when_flag':'flag','generator':'generators','visual':'objects','template':'templates'}.get(k)
                 category={'camera_path':'camera_paths','staging':'entries','target':'actors','waypoint':'waypoints','stop_actor':'actors','entity':'entity'}.get(k,category)
+                if k=='ai':category='ai_profiles'
+                if k=='script':category='scripts'
+                if k=='base' and path[:1]==('resources',) and len(path)>1 and path[1] in ('templates','ai_profiles'):category=path[1]
                 if k=='resource' and path[-1:]==('play_camera_path',):category='camera_paths'
                 if k=='stop_sound' and isinstance(v,str):
                     for target in local.get(('sound_loop',v),[]):links.append(Link(source,target,'stop_sound',path+(k,)))
@@ -44,6 +60,9 @@ def graph(root):
                         target=local.get(('waypoints',key))
                         if target:links.append(Link(source,target,'spawn_points',path+(k,pi)))
                 if isinstance(v,(dict,list)):scan(v,path+(k,),source,local)
+    for kind,records in root.get('resources',{}).items():
+        for i,row in enumerate(records):
+            source=('resources',kind,i);scan(row,source,source,{})
     for si,s in enumerate(root['scenes']):
         local={}
         for k in ('actors','objects','triggers','conversations','events','encounters','sequences','entries','waypoints','paths','generators'):

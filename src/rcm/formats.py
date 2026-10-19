@@ -1,7 +1,7 @@
 """Independent binary codecs derived from installation bytes.
 
 Unknown NOT tags and trailing data survive a roundtrip. NSD supports simple
-entities and our bounded click brushes, without frames or script parameters.
+entities, native frames/constructor arguments and our bounded click brushes.
 See FORMAT_NOTES.md.
 """
 from dataclasses import dataclass
@@ -137,6 +137,9 @@ class Scene:
     brushes: dict[int, bytes] | None = None
     entrances: list[bytes] | None = None
     conversation_starts: list[bytes] | None = None
+    parameters: dict[int,list] | None = None
+    frames: dict[int,list[bytes]] | None = None
+    interest_spots: list[bytes] | None = None
 
     @classmethod
     def read(cls, data: bytes):
@@ -145,12 +148,21 @@ class Scene:
         n = u32(data, 80)
         if n > 100000:
             raise ValueError("Número excesivo de entidades")
-        entities, p, brushes = [], 84, {}
+        if u32(data,76):raise ValueError('NSD: header string table outside supported subset')
+        entities, p, brushes, parameters, frames = [], 84, {}, {}, {}
         for _ in range(n):
             tags, p = read_tags(data, p)
-            if p + 12 > len(data) or data[p:p+8] != bytes(8):
-                raise ValueError("NSD con parámetros/meshes/frames: fuera del subconjunto Fase 1")
-            mesh=u32(data,p+8);p+=12
+            if p + 12 > len(data):raise ValueError('NSD entity truncated')
+            count=u32(data,p)
+            if count:
+                if count>4096 or p+4+24*count>len(data):raise ValueError('NSD movement frames truncated or excessive')
+                frames[len(entities)]=[data[p+4+i*24:p+4+(i+1)*24] for i in range(count)]
+                p+=24*count
+            count=u32(data,p+4);p+=8
+            if count:
+                from .script_parameters import read
+                rows,p=read(data,p,count);parameters[len(entities)]=rows
+            mesh=u32(data,p);p+=4
             if mesh:
                 if mesh!=1:raise ValueError('NSD: unsupported mesh count')
                 from .spatial.scene_mesh import read_brush
@@ -171,6 +183,15 @@ class Scene:
                 entrances=[validate_record(data[p+8+i*60:p+8+(i+1)*60]) for i in range(count)]
                 data=data[:p+4]+bytes(4)+data[p+8+count*60:]
         conversations=[]
+        interests=[]
+        if len(data)-p>=192 and data[p:p+8]==bytes(8):
+            count=u32(data,p+8)
+            if count>4096:raise ValueError('NSD: excessive interest spots')
+            if count:
+                if p+12+72*count>len(data):raise ValueError('NSD: truncated interest spots')
+                from .interest_spots import validate_record
+                interests=[validate_record(data[p+12+i*72:p+12+(i+1)*72]) for i in range(count)]
+                data=data[:p+8]+bytes(4)+data[p+12+count*72:]
         if len(data)-p>=192 and data[p:p+12]==bytes(12):
             count=u32(data,p+12)
             if count>64:raise ValueError('NSD: excessive generated conversation starts')
@@ -181,7 +202,7 @@ class Scene:
                 data=data[:p+12]+bytes(4)+data[p+16+count*60:]
         if len(data) - p != 192:
             raise ValueError("NSD con bloques variables: fuera del subconjunto Fase 1")
-        return cls(cstring(data[8:40]), cstring(data[40:72]), entities, data[p:], data[:84],brushes or None,entrances or None,conversations or None)
+        return cls(cstring(data[8:40]), cstring(data[40:72]), entities, data[p:], data[:84],brushes or None,entrances or None,conversations or None,parameters or None,frames or None,interests or None)
 
     def encode(self):
         if len(self.environment) != 192:
@@ -198,6 +219,10 @@ class Scene:
         brushes=self.brushes or {}
         if any(type(i) is not int or not 0<=i<len(self.entities) for i in brushes):raise ValueError('NSD: invalid brush entity')
         chunks=[]
+        parameters=self.parameters or {}
+        frames=self.frames or {}
+        if any(type(i) is not int or not 0<=i<len(self.entities) or not 1<=len(rows)<=4096 or any(len(r)!=24 for r in rows) for i,rows in frames.items()):raise ValueError('NSD: invalid movement frame count or width')
+        if any(type(i) is not int or not 0<=i<len(self.entities) or not 1<=len(rows)<=16 for i,rows in parameters.items()):raise ValueError('NSD: invalid parameter entity or count')
         for i,tags in enumerate(self.entities):
             body=brushes.get(i)
             if body is not None:
@@ -205,7 +230,10 @@ class Scene:
                 from .click_interactions import box_planes
                 mesh=read_brush(body,0);end=mesh.source_end;expected=box_planes([*mesh.bounds[0],*mesh.bounds[1]])
                 if body[end:]!=expected:raise ValueError('NSD: brush requires six bounded collision planes')
-            chunks.append(encode_tags(tags)+(bytes(8)+struct.pack('<I',1)+body+bytes(8) if body is not None else bytes(20)))
+            args=parameters.get(i,[])
+            motion=frames.get(i,[])
+            prefix=struct.pack('<I',len(motion))+b''.join(motion)+struct.pack('<I',len(args))+b''.join(row.encode() for row in args)
+            chunks.append(encode_tags(tags)+prefix+(struct.pack('<I',1)+body+bytes(8) if body is not None else bytes(12)))
         environment=self.environment
         if self.conversation_starts:
             from .native_arrivals import validate_record
@@ -215,6 +243,11 @@ class Scene:
                 validate_record(record)
                 if u32(record,52)>15 or u32(record,56)!=0:raise ValueError('NSD: invalid generated conversation group')
             environment=environment[:12]+struct.pack('<I',len(records))+b''.join(records)+environment[16:]
+        if self.interest_spots:
+            from .interest_spots import validate_record
+            if self.environment[:16]!=bytes(16) or len(self.interest_spots)>4096:raise ValueError('NSD: invalid interest records')
+            for record in self.interest_spots:validate_record(record)
+            environment=environment[:8]+struct.pack('<I',len(self.interest_spots))+b''.join(self.interest_spots)+environment[12:]
         if self.entrances:
             from .native_arrivals import validate_record
             if self.environment[:16]!=bytes(16) or len(self.entrances)>4096:raise ValueError('NSD: entrance table requires an empty generated global section')

@@ -1,0 +1,30 @@
+004a86e8: push ebx
+004a86e9: lea edi, [esi + 0x1cc]
+004a86ef: push 1
+004a86f1: push 4
+004a86f3: push edi
+004a86f4: call 0x4cb560
+004a86f9: add esp, 0x10
+004a86fc: cmp eax, 1
+004a86ff: jne 0x4a8992
+004a8705: mov edi, dword ptr [edi]
+004a8707: test edi, edi
+004a8709: je 0x4a873d
+004a870b: lea ecx, [edi + edi*2]
+004a870e: shl ecx, 3
+004a8711: push ecx
+004a8712: call 0x4dd57e
+004a8717: add esp, 4
+004a871a: mov dword ptr [esi + 0x1d0], eax
+004a8720: test eax, eax
+004a8722: je 0x4a8992
+004a8728: push ebx
+004a8729: push edi
+004a872a: push 0x18
+004a872c: push eax
+004a872d: call 0x4cb560
+004a8732: add esp, 0x10
+004a8735: cmp eax, edi
+004a8737: jne 0x4a8992
+004a873d: push ebx
+004a873e: push 1
