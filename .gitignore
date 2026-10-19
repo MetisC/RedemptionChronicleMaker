@@ -119,3 +119,4 @@ $RECYCLE.BIN/
 # Private release archives and preserved deployment binaries
 /RedemptionChronicleMaker*.zip
 /backups
+/research/package_backups
