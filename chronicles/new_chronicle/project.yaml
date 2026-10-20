@@ -12442,8 +12442,30 @@ scenes:
   paths: []
   generators: []
   default_entry: entry1
+  map_location:
+    map: map1
+    point: place1
 quests: []
-resources: {}
+resources:
+  maps:
+  - id: map1
+    name: Vienna
+    original: mapVienna.nui
+    points:
+    - id: place1
+      name: RaveClub
+      position:
+      - 312
+      - 232
+      visible: true
+      haven: false
+    - id: place2
+      name: Localización 2
+      position:
+      - 312
+      - 232
+      visible: true
+      haven: false
 metadata:
   version: 0.1.0
 build_options:
