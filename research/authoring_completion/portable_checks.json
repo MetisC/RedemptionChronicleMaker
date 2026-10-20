@@ -1,11 +1,12 @@
 {
-  "executable_sha256": "5bc3333c2e5cbfe0b7920a3a5eed816a0d2fca79d1a221b2a15b4b934756441b",
   "successful": true,
+  "executable_sha256": "fdc23abedfa557e02e1b8edd137b69d9488621b5a6663dbab86d28a97b2a64c9",
   "checks": [
     {
       "language": "en",
       "phase": "fresh",
       "returncode": 0,
+      "elapsed_seconds": 82.01984830000004,
       "path_restricted": true,
       "gui_authored_valid": true,
       "fresh_settings": true,
@@ -53,12 +54,14 @@
         "wtd_actor_traits_valid": true,
         "wtd_traits_compile_real_api": true,
         "wtd_traits_single_undo": true
-      }
+      },
+      "native_engine_test": false
     },
     {
       "language": "es",
       "phase": "fresh",
       "returncode": 0,
+      "elapsed_seconds": 78.68257459999995,
       "path_restricted": true,
       "gui_authored_valid": true,
       "fresh_settings": true,
@@ -106,10 +109,10 @@
         "wtd_actor_traits_valid": true,
         "wtd_traits_compile_real_api": true,
         "wtd_traits_single_undo": true
-      }
+      },
+      "native_engine_test": false
     }
   ],
   "native_game_test": false,
-  "independent_machine": false,
-  "physical_gpu_dpi_test": false
+  "independent_machine": false
 }

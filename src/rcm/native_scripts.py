@@ -159,6 +159,7 @@ def placement(scene,scripts,kinds=None):
             if not 0<low<=high or delay<0:raise ValueError('ClassBobbing: velocidad positiva, máximo >= mínimo y retardo >= 0')
     for name in native:
         row=index[name]
+        if any(t.get('light_zone',{}).get('entity')==name for t in scene.get('triggers',[])):raise ValueError('A native-owned entity cannot also own an RCM light zone')
         if row.get('transform',{}).get('placement','absolute')!='absolute':raise ValueError('Script nativo requiere coordenadas de escena')
         if row.get('conversation') or row.get('inventory') or row.get('quest_item') or row.get('interaction'):raise ValueError('Script nativo: usa una entidad sin conversación, inventario ni interacción RCM')
         if any(name in a.get('inventory',[]) for a in scene.get('actors',[])):raise ValueError('Script nativo: un objeto de inventario no se coloca en la escena')

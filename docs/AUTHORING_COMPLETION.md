@@ -31,6 +31,11 @@ abre **Ayuda → Laboratorio de autoría**. Solicita una copia nueva si ya tení
    radio/estilo. El volumen activa/desactiva un sonido situado o luz puntual;
    no equivale al recorte de las cajas originales por sectores. El bucle usa los
    handles y guardado existentes. No mezclar propiedad con un script nativo.
+   Activación por flag permite apagar o reactivar ambas zonas mediante los eventos
+   normales. La condición se combina con estar dentro del volumen; también puede
+   exigir el flag desactivado. Las luces admiten objetivos dinámicos por rol.
+   Una acción posterior de luz prevalece mientras sigas dentro; salir sólo retira
+   la configuración que aún pertenece a la zona. Se reevalúa al cargar/reentrar.
 5. **Reverberación:** Level → Entorno → Reverberación EAX ofrece heredar o preset
    original 0..25. La acción Entorno / Reverberación cambia después el preset.
    Se usa roomtype, comando original probado por desensamblado y compilación;
@@ -45,6 +50,12 @@ abre **Ayuda → Laboratorio de autoría**. Solicita una copia nueva si ya tení
 7. **Clanes/disciplinas:** Actor → Clan y disciplinas ofrece también los recursos
    originales sin importar un mod. WTD añade sólo lo importado y disponible.
    Los setters se aplican al actor nuevo; no reinicializan su estado restaurado.
+8. **Recursos de datos independientes:** Ajustes → Importar biblioteca NOT/NOB.
+   Elige «Sólo recursos de datos», busca y marca los archivos necesarios (incluidos
+   NCP). No hace falta una plantilla NOT. Se validan las rutas y dependencias;
+   un NCP debe tener estructura y valores válidos. La biblioteca queda local, con
+   hash, y no se incluye en el ZIP para distribuir. No se importa código externo.
+   No puedes retirarla mientras el proyecto abierto o una biblioteca hija la use.
 
 ## Archivos principales
 
@@ -64,7 +75,7 @@ separado. El tutorial aceptado y la mini crónica siguen disponibles.
 |---|---|
 | COMP01 | Giro en el sitio y espera: encuadre, giro corto, final y cancelación recuperan GUI/ratón; guardar/cargar cancela las películas con cues o sujeto NPC; Player sin cues conserva la reanudación anterior desde el inicio, sin duplicar recompensas. |
 | COMP02 | Acercarse a la caja nativa junto al guardia: campana al entrar, callbacks correctos, sin caja sólida visible ni duplicados tras guardar/cargar/reentrar. |
-| COMP03 | Zona sonora/luz: entrar/salir, un bucle, radio/color y apagado. Cambiar reverb con proveedor 3D; comparar oído, no sólo traza. Guardar/cargar activo. |
+| COMP03 | Zona sonora/luz: entrar/salir, un bucle, radio/color y apagado. En una copia, vincular un flag, apagar/reactivar y aplicar otra luz desde un evento. Guardar/cargar activo y reentrar sin duplicados. Cambiar reverb con proveedor 3D; comparar oído, no sólo traza. |
 | COMP04 | Abrir mapa normal: imagen/puntos/nombres y refugio. Revelar segundo layout, comprobar visibilidad, viajar por diálogo y volver. Guardar/cargar mantiene flags. |
 | COMP05 | Generar rata débil, seguirla con cámara, terminar/cancelar y matarla. Generar invitado neutral, comprobar movimiento/pausa y entrega/retirada de Dagger. Guardar/cargar/reentrar sin reemplazar GUID ni duplicar objetos. |
 | COMP06 | Copia del ejemplo: cambiar clan y disciplina original desde la interfaz sin WTD; comparar actor creado y restaurado. Tutorial/mini siguen cargando como antes. |
@@ -72,14 +83,27 @@ separado. El tutorial aceptado y la mini crónica siguen disponibles.
 Son pruebas pendientes de observación del usuario. Compilar contra Codex, releer
 binarios, doubles y Qt offscreen no son gameplay, GPU/DPI físico ni prueba de red.
 
-## Lo que no se declara cerrado
+## Cierre del desarrollo y límites
 
-La matriz EMBRACE_AUTHORING_PARITY.md distingue las funciones implementadas de
-dos incógnitas: binding seguro de constructores de campaña con CodexPlayer y
-paridad literal de payload/recorte soundbox/lightbox. No se han probado imposibles.
-Las alternativas normales Player Actions y zonas activadoras están disponibles.
-El NCP no almacena FOV por punto; la importación genérica de código binario
-desconocido se rechaza explícitamente. Geometría/bake queda fuera del encargo.
+El alcance funcional acordado queda cubierto por las rutas visuales y alternativas
+de EMBRACE_AUTHORING_PARITY.md. La aceptación dentro de Redemption sigue pendiente
+en los casos indicados: no se declara una versión 1.0 final ni paridad binaria.
+
+Los seis constructores CodexPlayer estudiados enlazan compañeros originales,
+no el PJ de LAN. Todos dependen además del controlador privado de su campaña.
+Por ello se excluyen del selector; las acciones Player, diálogos, quests, flags,
+movimientos y cámaras cubren la autoría narrativa normal. Esto no trasplanta el
+reclutamiento ni los estados privados de la campaña original. La evidencia está
+en final_original_evidence.json y EVIDENCE.md.
+
+Las zonas cubren la ambientación interactiva; no recortan por sectores ni
+recalculan lightmaps. El bloque de iluminación examinado contiene datos ligados
+a vértices de malla; no se escribe como si fuera una caja RGB/radio. No se afirma
+haber descifrado todas las tablas opacas de los NSD originales.
+
+La API de CodexCamera demostrada no ofrece FOV por punto: SetShot termina en un
+tiempo de transición, no en una lente. Se conservan planos, presets y travelling.
+Código binario arbitrario y geometría/bake quedan fuera del alcance pedido.
 
 
 Al convertir un travelling compartido a tiempo por tramo, se actualiza la velocidad a1 en sus secuencias y acciones de reproducción dentro de la misma operación de deshacer.

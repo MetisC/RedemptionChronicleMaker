@@ -1,0 +1,325 @@
+{
+  "executable_sha256": "62982319c28b18654585239a814a5a1002c415febe07b494735cb80272c5dd23",
+  "player_classes": [
+    {
+      "class_": "ARC3_Erik",
+      "sha256": "c12cbb118471f9e0a4309980cc73de58f34fb633e5fa86f71b14f8993a1d8d17",
+      "constructor": "(CodexPlayer, CodexActor, CodexThing);",
+      "chronicle_casts": [
+        "PragueChronicle"
+      ],
+      "player_fields": [
+        "_Erik"
+      ],
+      "captures_constructor_argument": false,
+      "save_override": false,
+      "restore_override": false,
+      "hardcoded_strings": [
+        "17_1_Erik",
+        "17_1_Erik.nco",
+        "ARC3ErikFreedom.ncp",
+        "Ardan",
+        "Christof",
+        "Erik",
+        "Magic Door"
+      ]
+    },
+    {
+      "class_": "DOCK_33_1_Main",
+      "sha256": "59da3052edfc13ce37231ba34101fc902badc986bd54f3c801c64f9c719781bf",
+      "constructor": "(CodexRegion, CodexRegion, CodexActor, CodexActor, CodexActor, CodexActor, CodexPlayer, CodexRegion, CodexActor, CodexThing);",
+      "chronicle_casts": [
+        "NewYorkChronicle"
+      ],
+      "player_fields": [
+        "_samuel"
+      ],
+      "captures_constructor_argument": true,
+      "save_override": true,
+      "restore_override": true,
+      "hardcoded_strings": [
+        "33_1_GeorgeReturn",
+        "33_1_GeorgeReturn.nco",
+        "33_1_Homeless",
+        "33_1_Homeless.nco",
+        "33_1_Homeless1",
+        "33_1_Homeless1.nco",
+        "33_1_Homeless2",
+        "33_1_Homeless2.nco",
+        "33_1_Homeless3",
+        "33_1_Homeless3.nco",
+        "33_1_Homeless4",
+        "33_1_Homeless4.nco",
+        "33_1_MeetGeorge",
+        "33_1_MeetGeorge.nco",
+        "33_2_SabbatAttack",
+        "33_2_SabbatAttack.nco",
+        "33_2_SaveSamuel",
+        "33_2_SaveSamuel.nco",
+        "Christof",
+        "DevNullApartment",
+        "George Region",
+        "George Thorne",
+        "Homeless region",
+        "Homless Lady",
+        "Lily",
+        "MD_Conversation_1.mp3",
+        "MD_Conversation_2.mp3",
+        "N1_GetAccessCodes.nqd",
+        "NewYorkDocks",
+        "Pink",
+        "Sabbat1",
+        "Sabbat2",
+        "Sabbat3",
+        "Samuel",
+        "Samuel Region",
+        "SaveSamuelCloseUp.ncp",
+        "SaveSamuelOTS.ncp",
+        "Warehouse",
+        "weapGoggles"
+      ]
+    },
+    {
+      "class_": "HILL_13_1",
+      "sha256": "5089fbb07f728e280e5809daea4824af9fe0cf49409d777fbb72bd7639eb3c67",
+      "constructor": "(CodexRegion, CodexActor, CodexPlayer);",
+      "chronicle_casts": [
+        "PragueChronicle"
+      ],
+      "player_fields": [
+        "_Serena"
+      ],
+      "captures_constructor_argument": true,
+      "save_override": false,
+      "restore_override": false,
+      "hardcoded_strings": [
+        "11_1_GarinolReturn",
+        "11_1_GarinolReturn.nco",
+        "15_1_Serena",
+        "15_1_Serena.nco",
+        "Christof",
+        "DA_Conversation_1.mp3",
+        "Garinol",
+        "Garinol region",
+        "P1_RestToAdvance",
+        "P1_Shem",
+        "Serena",
+        "Wilhem"
+      ]
+    },
+    {
+      "class_": "TEN1_28_1_MeetPink",
+      "sha256": "8dc24673d3c332a014e20f42b3219e0cf291b9ec55cbb160a78b745338907fdc",
+      "constructor": "(CodexPlayer);",
+      "chronicle_casts": [
+        "LondonChronicle"
+      ],
+      "player_fields": [
+        "_Pink"
+      ],
+      "captures_constructor_argument": true,
+      "save_override": false,
+      "restore_override": false,
+      "hardcoded_strings": [
+        "28_1_MeetPink1",
+        "28_1_MeetPink1.nco",
+        "Brothel",
+        "Christof",
+        "EAST_28_4.nsd",
+        "EastLondon",
+        "L1_InfiltrateSetite",
+        "MD_Conversation_1.mp3",
+        "Pink",
+        "WEST_28_4.nsd",
+        "WestLondon",
+        "lightRain",
+        "weapMug"
+      ]
+    },
+    {
+      "class_": "UNIV_7_7",
+      "sha256": "ae590ee3f63f1476d86c3ceb287d8c7e323f1707c18af0863a7e04612b53db9a",
+      "constructor": "(CodexActor, CodexActor, CodexPlayer);",
+      "chronicle_casts": [
+        "PragueChronicle"
+      ],
+      "player_fields": [
+        "_Wilhem"
+      ],
+      "captures_constructor_argument": true,
+      "save_override": false,
+      "restore_override": false,
+      "hardcoded_strings": [
+        "7_7_CosmasReturn",
+        "7_7_CosmasReturn.nco",
+        "7_7_Fealty",
+        "7_7_Fealty.nco",
+        "7_7_Fealty2",
+        "7_7_Fealty2.nco",
+        "8_1_EcatReturn1",
+        "8_1_EcatReturn1.nco",
+        "Christof",
+        "Cosmas",
+        "DA_Conversation_1.mp3",
+        "Ecaterina",
+        "Fealty.ncp",
+        "HAVN_7_7.nsd",
+        "HILL_8_1.nsd",
+        "Haven",
+        "Monastery",
+        "OLDT_7_7.nsd",
+        "OldTown",
+        "P1_NodFragment",
+        "PetrinHill",
+        "UnivBalcony.ncp",
+        "Wilhem"
+      ]
+    },
+    {
+      "class_": "WAR3_Main",
+      "sha256": "f829e9ad0448f53ea6aa342cf1da576cd27398eb3ef3d86207b0879fc4f59ad3",
+      "constructor": "(CodexRegion, CodexPlayer, CodexThing);",
+      "chronicle_casts": [
+        "NewYorkChronicle"
+      ],
+      "player_fields": [
+        "_Wilhem"
+      ],
+      "captures_constructor_argument": true,
+      "save_override": false,
+      "restore_override": false,
+      "hardcoded_strings": [
+        "36_1_AfterAlAttack",
+        "36_1_AfterAlAttack.nco",
+        "36_1_AlSneak",
+        "36_1_AlSneak.nco",
+        "36_1_AlSquat",
+        "36_1_AlSquat.nco",
+        "36_1_BigAl",
+        "36_1_BigAl.nco",
+        "36_1_PinkExposed",
+        "36_1_PinkExposed.nco",
+        "Al",
+        "AlChair",
+        "BarclayLobby",
+        "Big Al Region",
+        "Christof",
+        "CloakOfShadows",
+        "LOBY_37_4.nsd",
+        "Lily",
+        "MD_Boss_1.mp3",
+        "N1_UseAccessCodes",
+        "NewYorkUptown",
+        "Pink",
+        "PinkAttack.ncp",
+        "Punch",
+        "Samuel",
+        "ShamblingHordes",
+        "UTWN_38_1.nsd",
+        "WAR3AlPOV.ncp",
+        "WAR3AlPartyAngB.ncp",
+        "Wilhem",
+        "blueMagic",
+        "woodenDoorMedium_close_02.WAV"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "scene": "scenes/ARC3_17_1.nsd",
+      "class_": "ARC3_Erik",
+      "declared_entities": 23,
+      "recognised_tag_sets": 23,
+      "player_links": [
+        {
+          "kind": 9,
+          "index": 10,
+          "target_template": "erik"
+        }
+      ],
+      "evidence": "bounded tag-set scan; target name only when count matches; not a production full NSD reader"
+    },
+    {
+      "scene": "scenes/DOCK_33_1.nsd",
+      "class_": "DOCK_33_1_Main",
+      "declared_entities": 15,
+      "recognised_tag_sets": 15,
+      "player_links": [
+        {
+          "kind": 9,
+          "index": 8,
+          "target_template": "samuel"
+        }
+      ],
+      "evidence": "bounded tag-set scan; target name only when count matches; not a production full NSD reader"
+    },
+    {
+      "scene": "scenes/HILL_13_1.nsd",
+      "class_": "HILL_13_1",
+      "declared_entities": 4,
+      "recognised_tag_sets": 4,
+      "player_links": [
+        {
+          "kind": 9,
+          "index": 2,
+          "target_template": "serena"
+        }
+      ],
+      "evidence": "bounded tag-set scan; target name only when count matches; not a production full NSD reader"
+    },
+    {
+      "scene": "scenes/TEN1_28_1.nsd",
+      "class_": "TEN1_28_1_MeetPink",
+      "declared_entities": 15,
+      "recognised_tag_sets": 15,
+      "player_links": [
+        {
+          "kind": 9,
+          "index": 4,
+          "target_template": "pink"
+        }
+      ],
+      "evidence": "bounded tag-set scan; target name only when count matches; not a production full NSD reader"
+    },
+    {
+      "scene": "scenes/UNIV_7_7.nsd",
+      "class_": "UNIV_7_7",
+      "declared_entities": 4,
+      "recognised_tag_sets": 4,
+      "player_links": [
+        {
+          "kind": 9,
+          "index": 0,
+          "target_template": "wilhem"
+        }
+      ],
+      "evidence": "bounded tag-set scan; target name only when count matches; not a production full NSD reader"
+    },
+    {
+      "scene": "scenes/WAR3_36_1.nsd",
+      "class_": "WAR3_Main",
+      "declared_entities": 19,
+      "recognised_tag_sets": 19,
+      "player_links": [
+        {
+          "kind": 9,
+          "index": 15,
+          "target_template": "wilhemmod"
+        }
+      ],
+      "evidence": "bounded tag-set scan; target name only when count matches; not a production full NSD reader"
+    }
+  ],
+  "entity_reference_switch": {
+    "3": 4936519,
+    "5": 4936519,
+    "8": 4936519,
+    "9": 4936519,
+    "10": 4936519
+  },
+  "camera_lens_string_candidates": [
+    "lensflare_object"
+  ],
+  "native_game_test": false,
+  "game_originals_written": false
+}

@@ -2129,5 +2129,14 @@
   "Dinámico…": "Dynamic…",
   "Selecciona un elemento de la lista para editarlo. También puedes buscar por nombre, ID o escena.": "Select an element in the list to edit it. You can also search by name, ID or scene.",
   "Edita este elemento en el panel de propiedades.": "Edit this element in the properties panel.",
-  "Editar propiedades": "Edit properties"
+  "Editar propiedades": "Edit properties",
+  "Buscar plantillas y recursos…": "Search templates and resources…",
+  "El archivo no contiene plantillas ni recursos de datos compatibles": "The file contains no supported templates or data resources",
+  "Sólo recursos de datos": "Data resources only",
+  "Plantilla / recurso": "Template / resource",
+  "Recursos de datos": "Data resources",
+  "Contenido importado: {0} plantillas y {1} recursos.": "Imported content: {0} templates and {1} resources.",
+  "Siempre activa": "Always active",
+  "Activación por flag": "Flag activation",
+  "Cuando el flag está activado": "When the flag is set"
 }

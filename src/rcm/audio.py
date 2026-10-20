@@ -98,12 +98,12 @@ def extend(java,scene,project):
         code.append(f' case {i}:{guard} sceneSounds[i]=new CodexSound({js(value["resource"]+".wav")},{float(value["min_distance"])}f,{float(value["max_distance"])}f,{value["volume"]},0,SOUND_FLAG_LOOP,{position}); soundActive[i]=true; trace("SOUND_LOOP_START {name}"); return true;')
     code += [' } return false; }',' private void pollSceneSounds() { if(player!=0) for(int i=0;i<sceneSounds.length;i++) if(soundActive[i] && sceneSounds[i]==null) startSceneSound(i); }',
              ' private void stopSceneSounds() { for(int i=0;i<sceneSounds.length;i++) stopSceneSound(i); }']
-    from .scene_zones import sound_id
+    from .scene_zones import sound_id,guard as zone_guard
     zones=[(ti,list(sources).index(sound_id(t))) for ti,t in enumerate(scene.get('triggers',[])) if 'sound_zone' in t]
     if zones:
         for i,line in enumerate(code):
             if 'private void pollSceneSounds()' in line:
-                pre=''.join(f' if(volume({ti})) {{ if(sceneSounds[{si}]==null) startSceneSound({si}); }} else stopSceneSound({si});' for ti,si in zones)
+                pre=''.join(f' if({zone_guard(scene,ti,project.flags)}) {{ if(sceneSounds[{si}]==null) startSceneSound({si}); }} else stopSceneSound({si});' for ti,si in zones)
                 excluded=' && '.join(f'i!={si}' for _,si in zones)
                 code[i]=line.replace('if(player!=0) for',f'if(player==0) return; {pre} for').replace('if(soundActive[i]',f'if({excluded} && soundActive[i]')
     attached=[(i,row) for i,row in enumerate(sources.values()) if 'actor' in row]

@@ -13,6 +13,12 @@ is CODEXPVALUE: u32 type, then variable payload. Reader 4b5060; relocation 4b526
 maps entity indices to actual GUIDs after placement. Types 1 int32, 2 float32,
 3 thing index, 5 region index, 7 length+NUL string, 8 actor index and10 item index are authorable. Original 6 has
 no payload; other original types retain their exact bytes but are not editable.
+Kind9 is a placed-player entity index: the same relocation branch4b5347 used
+by kinds3/5/8/10. All six audited campaign examples point to original companion
+templates, not the current human LAN player. Every affected script also casts
+GetChronicleScript(0) to its private campaign controller. Full evidence:
+research/authoring_completion/final_original_evidence.json and final_native.txt.
+It is deliberately not exposed as a generic human-player constructor argument.
 Null -1 is native, but not offered as a safe default for dereferencing scripts.
 
 IMPLEMENTED: Actor/Object > Native script exposes stock/custom constructors and
@@ -34,6 +40,8 @@ LIMITS: this is not a complete NSD reader for all original mesh/region layouts.
 All stock constructors being catalogued does NOT mean all work on arbitrary
 objects: region/quest/campaign-specific context may be required. Normal RCM volumes sample players; opt-in native regions now write box meshes
 and sector links, leaving callbacks to original scripts. Arbitrary region
-topology and CodexPlayer constructor binding are not silently inferred. Arbitrary external binary Java is not imported
-by the data library tool. These remain PARTIAL authoring coverage, not 100%.
+topology and private campaign companion lifecycle are not silently inferred.
+Ordinary Player/actor Actions cover narrative authoring under the agreed scope;
+they do not transplant private recruitment/state. Arbitrary external binary Java
+is outside the requested data-library scope and is not imported.
 Native script save/re-entry and movement are MANUAL RUNTIME TEST REQUIRED.

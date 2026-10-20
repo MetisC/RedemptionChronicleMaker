@@ -15,13 +15,18 @@ Only the validated interest_reverse_candidates.json corpus is used as interest e
 
 Native regions: own yaw-only boxes are now linked to real NIL sectors with the
 existing trigger model. Region/item parameters use proven kinds5/10. Original
-callbacks retain native ownership. The Player constructor binding and private
-campaign dependencies are still unknown, not proven impossible.
+callbacks retain native ownership. All six audited Player links are placed
+companions and all six scripts depend on private campaign controllers. These
+are excluded rather than rebound to a human LAN player. Ordinary Player/actor
+Actions cover narrative use; no private recruitment lifecycle is claimed.
 
 Soundboxes/lightboxes: normal Trigger controls now offer sound/light activation
 zones using existing volume() and owned Codex handles. This is explicitly an
 alternative, not literal native sector clipping or baked lighting. Opaque box
 payloads remain unproven for general writing. See the current coverage matrix.
+The examined light block is mesh-vertex-associated data (4c44c0), not an RGB/radius
+box. Zones now have saved flag gates, edge-driven light control, event overrides
+and ownership-checked cleanup, without another persistence subsystem.
 
 Stationary camera keys: the old restriction applies to the distance builder.
 The raw reader consumes independent temporal polynomials directly, so own timed
@@ -34,6 +39,8 @@ editable guesses. Menus, worlds, executables and external classes are excluded;
 missing required code fails clearly. NAD is copied with a version/header check,
 not semantically re-authored. This is data-library support, not universal mod
 support or a claim about permission to redistribute third-party assets.
+Independent selected data resources, including validated NCP, also work without
+a NOT. Unknown compiled code is explicitly outside the requested import scope.
 
 Library management: Settings can remove a verified local copy, with current-
 chronicle and parent-library guards. Hash-pinned parent references are embedded

@@ -3,7 +3,8 @@
 RCM crea crónicas sobre geometría original inmutable mediante autoría visual,
 formatos propios y originales generados directamente, y Java compilado contra
 Codex. No ejecuta herramientas originales de autoría. Se mantienen formatos 9/10
-y rc7; no se declara 1.0 final ni paridad Embrace del 100 %.
+y rc7. El desarrollo del alcance funcional acordado está cerrado; su aceptación
+nativa sigue separada y no se publica una versión 1.0 final ni paridad binaria.
 
 ## Autoría y límites actuales
 
@@ -31,11 +32,14 @@ Los cambios nuevos son optativos, accesibles desde los paneles existentes:
 
 Uso, archivos y seis comprobaciones breves: AUTHORING_COMPLETION.md.
 Cobertura completa y estados: EMBRACE_AUTHORING_PARITY.md. Evidencia:
-research/authoring_completion/EVIDENCE.md. No se declara el 100 %: siguen desconocidos
-el binding seguro de constructores CodexPlayer de campaña y el payload/recorte
-literal soundbox/lightbox. No se presentan como imposibles. Hay rutas normales
-Player Actions y zonas activadoras para los usos habituales. El NCP no contiene
-FOV por keyframe; las bibliotecas de datos no importan código binario desconocido.
+research/authoring_completion/EVIDENCE.md. Los seis enlaces originales CodexPlayer
+son compañeros de campaña, con dependencias privadas que impiden trasladar sus
+scripts al controlador RCM. La autoría narrativa dispone de acciones Player y de
+actores. Las zonas interactivas tienen activación por flag, entrada/salida,
+propiedad y limpieza; no replican el recorte por sectores ni el bake de luz.
+Se importan también recursos de datos independientes, incluido NCP validado,
+sin exigir una NOT. El código binario desconocido queda excluido por alcance.
+La limitación de FOV por keyframe sigue confirmada para la API demostrada.
 
 ## Dificultad de combate
 
@@ -81,7 +85,7 @@ grupos de interés sin reescribir el tutorial. Su observación nativa queda pend
 
 ## Evidencia y verificación
 
-La batería completa vigente pasó 599 pruebas, sin fallos, errores ni omisiones. Ruff y el alcance configurado de mypy pasaron. Los siete ejemplos se compilaron contra Codex real (JVM45.3). La revisión de usabilidad añade 11 regresiones de navegación, filtros y selección; cambios y evidencia en USABILITY_REVIEW.md y research/usability/verification.json.
+La batería completa vigente pasó 611 pruebas, sin fallos, errores ni omisiones. Ruff y el alcance configurado de mypy pasaron. Los siete ejemplos se compilaron contra Codex real (JVM45.3). El cierre añade 12 regresiones de integración sobre las 599 anteriores: zonas/flags/propiedad, roles dinámicos, Qt, importación NCP independiente y compilación. La revisión de navegación y selección se conserva en USABILITY_REVIEW.md.
 
 Los resultados vigentes de la batería completa se guardan en
 build/tests/quality_report.json y test_report.json; el recibo de esta entrega es

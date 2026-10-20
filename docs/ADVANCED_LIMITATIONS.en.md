@@ -15,9 +15,11 @@ Original objects: a picker and actions can hide/restore/remove identified props,
 CLICK01–08: hover, selection/collision, click range, dialogue/notes, native saves, reentry and multiplayer remain manual checks for the new brush layer. Self-scene links are blocked before building; old user proximity triggers are not silently migrated.
 
 Current coverage: EMBRACE_AUTHORING_PARITY.md and AUTHORING_COMPLETION.md.
-Own maps, native box regions/typed links, optional runtime EAX, timed stationary
-camera paths, dynamic-role control and activation sound/light zones are now
-implemented. Literal native box clipping and campaign-specific Player constructor
-binding remain unknown, not proven impossible. Unknown code-bearing mod import
-is intentionally rejected. Offline evidence is not native acceptance; no100% or
-final1.0 claim. COMP01–06 are the short current manual checks.
+The agreed development scope is covered by direct and alternative routes; native
+acceptance remains separate. The six original CodexPlayer links are placed
+companions with private campaign dependencies, not the human LAN player. Normal
+narrative Actions are available; private campaign state is not transplanted.
+Zones support flag gates and owned cleanup without literal sector clipping or
+bake. Independent data, including NCP, can be imported without a NOT; arbitrary
+compiled code is excluded. Per-key FOV remains outside the demonstrated API.
+No final1.0 release is published. COMP01–06 retains the native manual checks.

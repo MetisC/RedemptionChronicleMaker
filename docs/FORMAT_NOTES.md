@@ -145,6 +145,12 @@ No existe escritor NIL ni modificación/copia de NIL en los paquetes. `Levels.no
 
 El lector resuelve las superficies/sectores NIL, la malla estática NOD y texturas NAM/TGA; siguen pendientes NIL global, NSD complejo, todos los tags NOT, cola no indexada, NAD, materiales avanzados, payloads completos de soundboxes/lightboxes y otros auxiliares. Que sean binarios no obliga a usar herramientas antiguas: se ampliarán nuestros codecs cuando una función concreta lo requiera.
 
+Estas lagunas del lector universal no son funciones narrativas pendientes:
+las zonas de activación ofrecen sonido/luz con entrada/salida, flag y propiedad.
+El bloque de iluminación examinado en4c44c0 reparte dwords entre grupos de
+vértices; no se escribe como una caja puntual. Véase la evidencia vigente en
+research/authoring_completion/EVIDENCE.md. No se genera geometría ni lightmaps.
+
 ## Java, WAV y reproducibilidad
 
 ECJ 3.26.0 se ejecuta con `-1.3 -proc:none`, bootclasspath `cache/toolchain/classes.zip` y classpath de clases originales extraídas. El resultado se comprueba byte a byte en su cabecera: `CA FE BA BE 00 03 00 2D` = 45.3. No se rebajan clases Java modernas parcheando su número de versión.

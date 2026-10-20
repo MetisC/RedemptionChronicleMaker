@@ -10,7 +10,7 @@ from .formats import NotFile,cstring,u32
 
 ROOT='content_packs/libraries'
 DEPENDENCIES='rcm/library_dependencies.json'
-ALLOWED={'.nod','.nad','.nms','.nai','.nag','.nam','.tga','.wav','.mp3'}
+ALLOWED={'.nod','.nad','.nms','.nai','.nag','.nam','.tga','.wav','.mp3','.ncp'}
 
 
 def sha(data):return hashlib.sha256(data).hexdigest()
@@ -54,12 +54,23 @@ def preview(source):
     return {name:[t.name for t in NotFile.read(data).templates] for name,data in files.items() if name.lower().endswith('.not')}
 
 
-def prepare_import(ws,source,library,selected,base):
+def asset_preview(source):
+    return sorted(name for name in inspect_source(source) if PurePosixPath(name).suffix.lower() in ALLOWED)
+
+
+def import_identity(source,library,selected,assets=()):
+    selection=[library,sorted(selected)]
+    if assets:selection.append(sorted(assets))
+    return 'lib_'+sha(Path(source).read_bytes()+json.dumps(selection).encode())[:12]
+
+
+def prepare_import(ws,source,library,selected,base,assets=()):
     from .project_resources import original_bytes
     from .catalogue import KINDS
     files=inspect_source(source)
-    if library not in files or not library.lower().endswith('.not'):raise ValueError('Select a NOT library in the archive')
-    if not isinstance(selected,list) or not selected or len(selected)>1000 or any(not isinstance(n,str) for n in selected):raise ValueError('Select at least one template (maximum 1000)')
+    if library is not None and (library not in files or not library.lower().endswith('.not')):raise ValueError('Select a NOT library in the archive')
+    if not isinstance(selected,list) or len(selected)>1000 or any(not isinstance(n,str) for n in selected) or (not selected and not assets):raise ValueError('Select at least one template or data resource (maximum 1000)')
+    if not isinstance(assets,(tuple,list)) or len(assets)>1000 or any(not isinstance(n,str) or n not in files or PurePosixPath(n).suffix.lower() not in ALLOWED for n in assets):raise ValueError('Select supported data resources from this archive')
     original={};templates={};origins={};dependencies=set()
     template_owners={t['id'].casefold():str(t.get('imported_pack','')) for t in base['templates']}
     for entry in base['entries']:
@@ -71,7 +82,7 @@ def prepare_import(ws,source,library,selected,base):
             key=row.name.casefold()
             if key in templates:raise ValueError('Ambiguous template in external library: '+row.name)
             templates[key]=row;origins[key]=name
-    allowed={n.casefold() for n in preview(source)[library]}
+    allowed={n.casefold() for n in preview(source)[library]} if library is not None else set()
     if any(n.casefold() not in allowed for n in selected):raise ValueError('Template outside selected NOT library')
     used={};resolved={};visiting=set()
     def template(name):
@@ -130,6 +141,9 @@ def prepare_import(ws,source,library,selected,base):
                     if PurePosixPath(token).suffix.lower() in ALLOWED|{'.class'}:resource(token)
         elif ext=='.nad':
             if len(data)<20 or u32(data)!=3:raise ValueError('Unsupported external NAD version: '+name)
+        elif ext=='.ncp':
+            from .camera_paths import CameraPath
+            CameraPath.read(data)
         elif ext=='.tga':
             from PIL import Image
             with Image.open(io.BytesIO(data)) as image:
@@ -139,6 +153,7 @@ def prepare_import(ws,source,library,selected,base):
             import wave
             with wave.open(io.BytesIO(data)) as sound:
                 if sound.getnchannels() not in (1,2) or sound.getsampwidth() not in (1,2):raise ValueError('Unsupported library WAV encoding')
+    for name in assets:resource(name)
     for key in list(used):
         values=resolved[key]
         for tag,value in values.items():
@@ -148,8 +163,9 @@ def prepare_import(ws,source,library,selected,base):
             value=raw.decode('ascii')
             if re.fullmatch(r'[A-Za-z0-9_./\\ -]+\.[A-Za-z0-9]{2,5}',value):resource(value)
             elif tag==11 and value:resource(value+'.class')
-    identity=sha(Path(source).read_bytes()+json.dumps([library,sorted(selected)]).encode())[:12];ident='lib_'+identity;archive='rcm_'+ident+'.nob';not_path='misc/templates/_L_'+identity+'.not'
-    payload[not_path]=NotFile(list(used.values())).encode()
+    ident=import_identity(source,library,selected,assets);identity=ident[4:];archive='rcm_'+ident+'.nob';not_path='misc/templates/_L_'+identity+'.not'
+    if used:payload[not_path]=NotFile(list(used.values())).encode()
+    else:not_path=None
     # Retain only string keys directly used by selected definitions.
     required={cstring(resolved[k][82]) for k in used if 82 in resolved[k]};strings={}
     from .catalogue import rows
@@ -192,7 +208,7 @@ def remove_content(backend,ident,current_source=None):
     def used(value):
         if isinstance(value,list):return any(used(v) for v in value)
         if not isinstance(value,dict):return False
-        return any((k in {'template','base'} and isinstance(v,str) and v.casefold() in names) or (k in {'model','ai','foley','motions'} and isinstance(v,str) and PurePosixPath(v.replace('\\','/')).stem.casefold() in assets) or used(v) for k,v in value.items())
+        return any((k in {'template','base'} and isinstance(v,str) and v.casefold() in names) or (k in {'model','ai','foley','motions','resource','camera_path','music','ambient','play_sound','start_music','start_ambient'} and isinstance(v,str) and PurePosixPath(v.replace('\\','/')).stem.casefold() in assets) or used(v) for k,v in value.items())
     if current_source and used(current_source):raise ValueError('The open chronicle uses this library. Replace its template/resource references first.')
     ws=backend.ws;folder=ROOT+'/'+record['id'];paths=[ws.output(folder+'/'+record['archive']),ws.output(folder+'/import.json')]
     from .file_transaction import replace_files
@@ -201,11 +217,11 @@ def remove_content(backend,ident,current_source=None):
     replace_files({},paths,rollback,ws.root,ws.output);rollback.unlink();backend.refresh_import()
 
 
-def import_content(backend,source,library,selected):
-    ident='lib_'+sha(Path(source).read_bytes()+json.dumps([library,sorted(selected)]).encode())[:12]
+def import_content(backend,source,library,selected,assets=()):
+    ident=import_identity(source,library,selected,assets)
     existing=next((r for r in manifests(backend.ws) if r['id']==ident),None)
     if existing:return existing
-    data,record=prepare_import(backend.ws,source,library,selected,backend.original_resources)
+    data,record=prepare_import(backend.ws,source,library,selected,backend.original_resources,assets)
     ws=backend.ws;folder=ROOT+'/'+record['id']
     from .file_transaction import replace_files
     replace_files({ws.output(folder+'/'+record['archive']):data,ws.output(folder+'/import.json'):json.dumps(record,indent=2).encode()},[],ws.output('research/package_backups/library_'+record['id']+'.zip'),ws.root,ws.output)
@@ -243,7 +259,7 @@ def add_to_build(ws,report,resources):
     key='chronicles/R_'+report['chronicle']+'.nmf'
     lines=[]
     for record in records:
-        lines.append('NOT '+PurePosixPath(record['not_path']).name)
+        if record['not_path']:lines.append('NOT '+PurePosixPath(record['not_path']).name)
         if record['nls_path']:lines.append('NLS '+PurePosixPath(record['nls_path']).name)
     payload[key]=('\r\n'.join(lines)+'\r\n').encode('cp1252')+payload[key]
     for n,v in payload.items():ws.write(root+'/runtime/'+n,v)

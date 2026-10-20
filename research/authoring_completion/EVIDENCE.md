@@ -1,6 +1,7 @@
 # Evidencia vigente del cierre de autoría
 
-Base de trabajo: main, commit76cf263. Instalación examinada sólo en lectura.
+Base de trabajo: main; commit y hashes del cierre en delivery.json.
+Instalación examinada sólo en lectura.
 SHA256 Vampire.exe:62982319c28b18654585239a814a5a1002c415febe07b494735cb80272c5dd23.
 Las direcciones siguientes son VA de ese binario; no son offsets de otros builds.
 Ninguna herramienta original de autoría ni el videojuego se ejecutó para estas pruebas.
@@ -91,6 +92,49 @@ luces usan las mismas APIs reales del runtime anterior; no hay otro gestor de
 combate/actores. Clanes y disciplinas base proceden de misc/game.ncd y game.ndd;
 sólo se ofrece una disciplina con su clase real disponible. WTD sigue optativo.
 
+### Los seis constructores CodexPlayer
+
+`final_probe.py` reproduce la lectura de clases, parámetros NSD y el resolver;
+`final_original_evidence.json` recoge hashes y referencias. En Resource.nob:
+
+| Script/escena | Índice nativo kind9 | Plantilla enlazada |
+|---|---:|---|
+| ARC3_Erik / ARC3_17_1 | 10 | erik |
+| DOCK_33_1_Main / DOCK_33_1 | 8 | samuel |
+| HILL_13_1 / HILL_13_1 | 2 | serena |
+| TEN1_28_1_MeetPink / TEN1_28_1 | 4 | pink |
+| UNIV_7_7 / UNIV_7_7 | 0 | wilhem |
+| WAR3_Main / WAR3_36_1 | 15 | wilhemmod |
+
+Son plantillas kind7 players, derivadas de _player_DA/_player_MD, no actores
+ordinarios kind0. El resolver4b5260 usa la tabla de colocación, GUID+20; el switch
+4b5608 lleva kinds3/5/8/9/10 a4b5347. Su ruta de restauración puede recibir GUID
+ya resueltos. No existe aquí un token «jugador humano actual». CodexPlayer(int)
+envuelve ese GUID; CodexPlayer() consulta GetCurrentPlayer, no crea un jugador.
+
+Además, los seis constructores hacen GetChronicleScript(0) y cast a
+PragueChronicle/LondonChronicle/NewYorkChronicle. También presuponen CastIDs,
+quests, diálogos y recursos de su campaña; algunos reclutan/capturan compañeros.
+Ligar el PJ humano no resuelve estas dependencias y no es equivalente a los
+compañeros originales. No tienen override save/restore propio: eso NO prueba
+semántica completa de reenganche. Se conserva la propiedad nativa de los scripts
+reutilizables soportados. Los seis privados no se ofrecen como portables.
+
+### Payload de iluminación y lente
+
+Loader4a88d1..4a895a: u32count acotado10000 y llamada4c44c0 para objeto de render.
+El lector4c44c0 reserva count×4, lee dwords y reparte el array entre grupos de
+malla (registros28bytes, número de vértices en+0x12). Véase
+light_payload_reader.txt. Es información vinculada a vértices de malla, no una
+estructura demostrada de caja RGB/radio. No se atribuye semántica completa a
+las demás tablas opacas ni al clipping original.
+
+El wrapper46e238..46e254 pasa 0x42a00000 (80.0f) como lente separada del NCP.
+Las firmas reales CodexCamera no tienen setter de lente; el último float de
+SetShot es lerpTime según SDK. final_native.txt conserva la evidencia. Se limita
+el FOV por keyframe a la API soportada, sin afirmar imposibilidad de cualquier
+manipulación hipotética del ejecutable.
+
 ## CONFIRMADO EN SDK / DOCUMENTACIÓN
 
 NSC.htm documenta mapa, label y flags8/16 por localización. El manual de Embrace
@@ -98,6 +142,9 @@ describe regiones, soundboxes/lightboxes, interés, frames y controles de cámar
 cutscene.htm y las firmas Codex corroboran PlayPath/SetShot/SetupCutscene,
 sonidos, luces y flags. El manual no prueba por sí solo offsets ni efectos
 audibles. La UI usa estos mecanismos sin abrir los editores originales.
+El manual distingue luces Editor Only para lightmaps, luces dinámicas y radios
+interior/exterior/volumen de soundboxes. CodexCamera documenta el tiempo de
+transición de SetShot; no lo confunde con FOV.
 
 ## INFERIDO / DECISIONES DE IMPLEMENTACIÓN
 
@@ -109,6 +156,13 @@ audibles. La UI usa estos mecanismos sin abrir los editores originales.
   existente y handles propios. No son copias del payload/recorte original por
   sectores. La luz es puntual; el sonido tiene radios. Guardar sonido conserva
   activo y recrea un handle; ocupación de zona se vuelve a evaluar al cargar.
+- Las zonas combinan ocupación con un ChronicleFlag existente, sin nuevos
+  registros de save. La luz se aplica por cambio de ocupación/flag; respeta una
+  acción posterior. La salida retira sólo su configuración vigente y el fin de
+  escena sólo GUID todavía propios. Roles dinámicos usan el gestor existente.
+- Importar datos independientes reutiliza la misma biblioteca local y cierre
+  de dependencias. NCP se valida con el lector real; no se crea una NOT vacía.
+  El backend detecta referencias de cámara/audio al retirar contenido.
 - Mapas640×480: imagen convertida y teselada por potencia de dos. Los marcadores
   editados se convierten al ejeY ascendente original y se exportan con enteros.
 
@@ -118,15 +172,11 @@ COMP01–06 requieren observación del usuario en Redemption, incluyendo presenc
 visual de regiones, render de cámara, audio/proveedorEAX y guardado/reentrada.
 Qt offscreen no acredita GPU/DPI físico, PC independiente ni multijugador.
 
-Binding de constructor CodexPlayer y dependencias privadas de scripts concretos
-de campaña: no hay un enlace NSD de jugador suficientemente establecido para
-ofrecerlo con seguridad en una crónica local MP. Existe type9 en UNIV_7_7.nsd
-para CodexPlayer: conocer ese número no resuelve qué entidad/identidad de jugador
-ligar antes de la creación del PJ en MP. player_contexts.json identifica seis
-constructores de campaña afectados entre252 clases con callbacks. Es una
-incógnita de binding/ciclo de vida, no una imposibilidad. Las acciones
-habituales Player ya tienen ruta visual. Igual clasificación para payloads
-completos/clipping literal de soundboxes/lightboxes; las alternativas están hechas.
+La semántica nativa completa de restauración de compañeros privados y todas las
+tablas originales de luz/sonido no se presentan como descifradas. Trasplantarlas
+literalmente no es requisito del cierre funcional acordado. Los usos narrativos
+normales se configuran mediante acciones existentes y zonas; no se promete
+reclutamiento/estados privados idénticos ni recorte/bake de iluminación.
 
 La importación de código binario externo desconocido no se transforma en una
 biblioteca segura de datos: sus dependencias ejecutables no están validadas por
@@ -135,8 +185,11 @@ Esto no es un dictamen sobre derechos de terceros ni licencia de redistribución
 
 ## VERIFICACIÓN AUTOMATIZADA
 
-tests/test_authoring_completion.py cubre 20 casos, además de las suites vigentes:
+tests/test_authoring_completion.py cubre 20 casos, además de las suites vigentes;
+tests/test_final_closure.py añade 12 regresiones cruzadas:
 formatos, límites, aliases/propiedad/restore con doubles, Codex real45.3,
 mapas/paquetes/fingerprint, región typed links, UI/undo/cancel y no cambios en
 fuentes tutorial/mini. El gate completo y el EXE se recogen en delivery.json
 cuando concluyen; un resultado focalizado no sustituye ese gate.
+final_routes.json enlaza las58 capacidades con archivos y tests que realmente
+pasaron en el gate, sin convertir compilación o doubles en aceptación nativa.

@@ -71,7 +71,7 @@ def extend(java,scene,project):
         for ci,action in enumerate(lights):
             kind,value=next(iter(action.items()));entity=value['entity'] if kind=='set_dynamic_light' else value
             code.append(f' case {ci}: slot={targets.index(entity)}; guid=things[{indices[entity]}]; break;')
-        code += [' } if(slot<0 || !local(guid)) { trace("LIGHT_TARGET_MISSING"); return false; } CodexThing thing=new CodexThing(guid); thing.ClearDynamicLight(); boolean ok=true; switch(command) {']
+        code += [' } if(slot<0 || !local(guid) || !ownsSceneLight(slot,guid)) { trace("LIGHT_TARGET_MISSING"); return false; } CodexThing thing=new CodexThing(guid); thing.ClearDynamicLight(); boolean ok=true; switch(command) {']
         dynamic=any(str(target).startswith('dynamic/') for target in targets)
         if dynamic:code[-1]=code[-1].replace('CodexThing thing=', 'if(sceneLightGuid[slot]!=guid && ownsSceneLight(slot,sceneLightGuid[slot])) new CodexThing(sceneLightGuid[slot]).ClearDynamicLight(); CodexThing thing=')
         for ci,action in enumerate(lights):
@@ -85,24 +85,32 @@ def extend(java,scene,project):
                 code.append(f' if(!local(things[{indices[target]}]) && sceneLightGuid[{i}]!=0) {{ if(ownsSceneLight({i},sceneLightGuid[{i}])) new CodexThing(sceneLightGuid[{i}]).ClearDynamicLight(); sceneLightGuid[{i}]=0; }}')
             code.append(f' if(sceneLightState[{i}]>=0 && local(things[{indices[target]}]) && sceneLightGuid[{i}]!=things[{indices[target]}]) sceneLight(sceneLightState[{i}]);')
         code.append(' }')
-        if dynamic:
-            from .dynamic_targets import candidates
-            roles=candidates(scene);code.append(' private boolean ownsSceneLight(int slot,int guid) { switch(slot) {')
-            for i,target in enumerate(targets):
-                if target in roles:
-                    role=roles[target];code.append(f' case {i}: return dynamicRoleOwns({role["generator"]},{role["role"]},guid);')
-            code.append(' default: return local(guid); } }')
-        from .scene_zones import lights as zone_lights
+        from .dynamic_targets import candidates
+        roles=candidates(scene);code.append(' private boolean ownsSceneLight(int slot,int guid) { if(guid==0) return false; switch(slot) {')
+        for i,target in enumerate(targets):
+            if target in roles:
+                role=roles[target];code.append(f' case {i}: return dynamicRoleOwns({role["generator"]},{role["role"]},guid);')
+            else:code.append(f' case {i}: return local(guid) && guid==things[{indices[target]}] && template({indices[target]}).equalsIgnoreCase(new CodexThing(guid).GetTemplateName());')
+        code.append(' default: return false; } }')
+        from .scene_zones import lights as zone_lights,guard as zone_guard
         zones=zone_lights(scene)
         if zones:
-            code += [f' private int[] lightZoneState=new int[{len(zones)}]; private void pollLightZones() {{ if(player==0) return;']
+            code += [f' private int[] lightZoneState=new int[{len(zones)}]; private boolean lightZoneRestore=false; private void pollLightZones() {{ if(player==0) return;']
             for zi,(ti,light) in enumerate(zones):
-                on=lights.index({'set_dynamic_light':light});off=lights.index({'clear_dynamic_light':light['entity']});slot=targets.index(light['entity'])
-                code.append(f' if(local(things[{indices[light["entity"]]}])) {{ int desired=volume({ti})?1:2; if(lightZoneState[{zi}]!=desired || sceneLightState[{slot}]!=(desired==1?{on}:{off})) {{ if(sceneLight(desired==1?{on}:{off})) lightZoneState[{zi}]=desired; }} }}')
-            code.append(' }');java=java.replace('ticks++;','pollLightZones(); ticks++;',1)
+                on=lights.index({'set_dynamic_light':light});slot=targets.index(light['entity'])
+                code.append(f' {{ int desired={zone_guard(scene,ti,project.flags)}?1:2; if(lightZoneRestore && sceneLightState[{slot}]!={on} && sceneLightState[{slot}]>=0) lightZoneState[{zi}]=desired; if(lightZoneState[{zi}]!=desired) {{ if(desired==1) {{ if(local(things[{indices[light["entity"]]}]) && sceneLight({on})) lightZoneState[{zi}]=1; }} else {{ if(sceneLightState[{slot}]=={on}) {{ if(ownsSceneLight({slot},sceneLightGuid[{slot}])) new CodexThing(sceneLightGuid[{slot}]).ClearDynamicLight(); sceneLightState[{slot}]=-1; sceneLightGuid[{slot}]=0; }} lightZoneState[{zi}]=2; }} }} }}')
+            code.append(' lightZoneRestore=false; }');java=java.replace('ticks++;','pollLightZones(); ticks++;',1)
+            java=java.replace('public void beginscene(int who,int capture) {','public void beginscene(int who,int capture) { for(int z=0;z<lightZoneState.length;z++) lightZoneState[z]=0;',1)
+            java=java.replace('public void restore(int capture) {','public void restore(int capture) { lightZoneRestore=true; for(int z=0;z<lightZoneState.length;z++) lightZoneState[z]=0;',1)
         java=java.replace('ticks++;','pollSceneLights(); ticks++;',1)
         java=java.replace('public void save(int capture) {','public void save(int capture) { for(int i=0;i<sceneLightState.length;i++) CodexSequence.SaveInt(sceneLightState[i]);',1)
         java=java.replace('public void restore(int capture) {','public void restore(int capture) { for(int i=0;i<sceneLightState.length;i++) { sceneLightState[i]=CodexSequence.RestoreInt(); if(sceneLightState[i]<-1 || sceneLightState[i]>='+str(len(lights))+') sceneLightState[i]=-1; sceneLightGuid[i]=0; }',1)
+        lit=' || '.join('sceneLightState[i]=='+str(i) for i,a in enumerate(lights) if 'set_dynamic_light' in a) or 'false'
+        code.append(' private void releaseSceneLights() { for(int i=0;i<sceneLightGuid.length;i++) { if(('+lit+') && ownsSceneLight(i,sceneLightGuid[i])) new CodexThing(sceneLightGuid[i]).ClearDynamicLight(); sceneLightGuid[i]=0; } }')
+        java=java.replace('transitioning=true;','releaseSceneLights(); transitioning=true;')
+        marker='public void endscene(int client,int next,int capture) {'
+        if marker in java:java=java.replace(marker,marker+' if(!NetIsClient()) releaseSceneLights();',1)
+        else:code.append(' public void endscene(int client,int next,int capture) { if(!NetIsClient()) releaseSceneLights(); }')
     if weather:
         code += [' private int sceneWeather=-1; private boolean sceneWeatherRestore=false;',
                  ' private void applySceneWeather(int index) { switch(index) {']

@@ -48,6 +48,12 @@ def main():
         for kind in ('sound','light'):
             def cancel(dialog,kind=kind):capture(dialog,kind+'_zone');return QDialog.DialogCode.Rejected
             with patch('rcm.editor.zones.QDialog.exec',cancel):edit_zone(win,scene['triggers'][1],kind)
+        from rcm.editor.content_libraries import open_import
+        from rcm.generator import zip_bytes
+        from rcm.camera_paths import authored
+        source=Path(temporary)/'camera_library.nob';source.write_bytes(zip_bytes({'camera/QuietTurn.ncp':authored([dict(position=[0,0,100],orientation=[0,0,0],duration=2),dict(position=[0,0,100],orientation=[0,0,90])],True).encode()}))
+        def cancel_import(dialog):capture(dialog,'data_library');return QDialog.DialogCode.Rejected
+        with patch('rcm.editor.content_libraries.QFileDialog.getOpenFileName',return_value=(str(source),'')),patch('rcm.editor.content_libraries.QDialog.exec',cancel_import):open_import(win)
         win.campaign_panel.navigate(('scenes',0,'sequences',1));capture(win,'dynamic_camera')
         assert not untranslated,sorted(set(untranslated))
         assert win.doc.snapshot()==before

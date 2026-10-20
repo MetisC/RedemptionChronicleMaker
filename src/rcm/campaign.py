@@ -144,7 +144,7 @@ def parse_campaign(source, levels, resources):
         entities={**actors,**objects}; convs=indexed(s['conversations'],label+' conversations')
         from .scene_zones import validate as validate_zones
         if not modern and any('sound_zone' in t or 'light_zone' in t for t in s.get('triggers',[])):raise ValueError('Zones require project format 9 or 10')
-        validate_zones(s,control_actors,objects,resources)
+        validate_zones(s,control_actors,objects,resources,flags)
         from .native_scripts import placement as native_placement
         native=native_placement(s,resources.get('native_scripts',{}),{k:v.get('kind') for k,v in templates.items()})
         if native and not modern:raise ValueError('Script nativo requiere formato 9 o 10')
@@ -410,7 +410,7 @@ def parse_campaign(source, levels, resources):
         legacy={'schema':1,'chronicle':{**{k:v for k,v in chron.items() if k!='difficulty'},'id':chron['id']+'_s'+str(si)},'state':{'flags':flags},'level':s['level'],
                 'actors':[{k:v for k,v in a.items() if k not in {'behavior','inventory','traits','native_script','native_frames'}} for a in actors.values()],
                 'objects':[{k:v for k,v in a.items() if k not in {'quest_item','interaction','native_script','native_frames','_native_item'}} for a in objects.values()],
-                'conversations':[conversation_source(c) for c in s['conversations']],'triggers':[{k:v for k,v in t.items() if k not in ('native_script','native_region','sound_zone','light_zone')} for t in s.get('triggers',[])],
+                'conversations':[conversation_source(c) for c in s['conversations']],'triggers':[{k:v for k,v in t.items() if k not in ('native_script','native_region','sound_zone','light_zone','zone_flag')} for t in s.get('triggers',[])],
                 'events':[{'when':'scene_start','actions':[{'spawn':eid} for eid in entities]}] if entities else []}
         parsed.append((s,parse_project(yaml.safe_dump(legacy,sort_keys=False),levels,resources,allow_empty=True,allow_motions=modern)))
     if modern:

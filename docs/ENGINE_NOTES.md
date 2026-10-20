@@ -177,7 +177,10 @@ CONFIRMADO EN ARCHIVOS ORIGINALES: región type3, malla local y tabla u32 count 
 índices de sectores entre planos de colisión e iluminación.51regiones originales
 inventariadas; parámetros type5=CodexRegion/type10=CodexItem contrastados con sus
 constructores. El escritor genera cajas yaw-only y conserva la geometría NIL.
-Catálogo de constructores unívocos440; Player-constructor sigue sin binding seguro.
+Catálogo de constructores unívocos440. Los seis enlaces Player estudiados usan
+kind9 para compañeros colocados; todos sus scripts requieren el controlador
+privado de campaña. No son un enlace genérico al PJ de LAN. Evidencia completa:
+research/authoring_completion/final_original_evidence.json y EVIDENCE.md.
 
 CONFIRMADO EN EJECUTABLE/API: roomtype→409150→49e400→AIL_set_3D_room_type,
 rango0..25 y requisito de proveedor3D. CodexConsole.Execute(String) está presente.
@@ -189,3 +192,8 @@ NCP temporal; objetivos dinámicos transitorios sobre dGuid, sin nuevos GUID ni
 registros alias; zonas sobre volume() y handles existentes; audio asociado a GUID;
 catálogo base NCD/NDD. Detalles/límites: AUTHORING_COMPLETION.md y matriz vigente.
 Observación dentro del juego PENDIENTE: COMP01–06; no la certifica la compilación.
+
+CONFIRMADO EN EJECUTABLE/SDK: bloque de luz4c44c0 ligado a vértices/grupos de
+malla; no es una caja RGB/radio demostrada. SetShot recibe tiempo de transición
+y el wrapper NCP fija la lente80f por separado; no hay setter Codex demostrado
+de FOV por keyframe. Alternativas: zonas interactivas por flag y planos/recorridos.

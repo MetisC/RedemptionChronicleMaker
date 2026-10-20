@@ -14,10 +14,12 @@ Objetos originales: hay selector y acciones de ocultar/restaurar/retirar props i
 
 CLICK01–08: quedan pendientes en el juego el texto y resaltado, selección/colisión, alcance, diálogo/notas, guardado, reentrada y multijugador de la capa nueva. Se bloquean los enlaces a la propia escena; no se convierten en silencio los triggers de proximidad anteriores.
 
-Current coverage: EMBRACE_AUTHORING_PARITY.md and AUTHORING_COMPLETION.md.
-Own maps, native box regions/typed links, optional runtime EAX, timed stationary
-camera paths, dynamic-role control and activation sound/light zones are now
-implemented. Literal native box clipping and campaign-specific Player constructor
-binding remain unknown, not proven impossible. Unknown code-bearing mod import
-is intentionally rejected. Offline evidence is not native acceptance; no100% or
-final1.0 claim. COMP01–06 are the short current manual checks.
+Cobertura vigente: EMBRACE_AUTHORING_PARITY.md y AUTHORING_COMPLETION.md.
+El alcance de desarrollo queda cubierto por funciones directas y alternativas;
+la aceptación nativa sigue pendiente. Los seis enlaces CodexPlayer originales
+son compañeros de campaña con dependencias privadas, no el PJ de LAN. Se usan
+acciones narrativas normales; no se trasplanta el estado privado de la campaña.
+Las zonas tienen activación por flag y limpieza propia, sin recorte literal por
+sectores ni bake. Los recursos independientes, incluidos NCP, se importan sin
+NOT; se excluye código arbitrario. FOV por keyframe sigue fuera de la API
+demostrada. No se publica 1.0 final. COMP01–06 conserva las pruebas manuales.

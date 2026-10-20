@@ -11,6 +11,7 @@
         "timed_camera",
         "sound_zone",
         "light_zone",
+        "data_library",
         "dynamic_camera"
       ],
       "project_unchanged": true,
@@ -28,12 +29,69 @@
         "timed_camera",
         "sound_zone",
         "light_zone",
+        "data_library",
         "dynamic_camera"
       ],
       "project_unchanged": true,
       "offscreen": true,
       "native_engine_test": false,
       "physical_gpu_dpi_test": false
+    }
+  ],
+  "general_editor": [
+    {
+      "language": "en",
+      "tabs": [
+        "3D space",
+        "Story / Resources",
+        "Campaign / Overview",
+        "Custom resources",
+        "Playtest / Debug",
+        "Story graph",
+        "Tutorial / Help"
+      ],
+      "menus": [
+        "File",
+        "Edit",
+        "View",
+        "Chronicle",
+        "Build",
+        "Tools",
+        "Help"
+      ],
+      "forms_inspected": 83,
+      "untranslated_known_labels": [],
+      "project_unchanged": true,
+      "preference_persisted": true,
+      "mode": "Qt offscreen; no OpenGL or game",
+      "successful": true
+    },
+    {
+      "language": "es",
+      "tabs": [
+        "Espacio 3D",
+        "Historia / Recursos",
+        "Campaña / Vista global",
+        "Recursos propios",
+        "Prueba / Depuración",
+        "Gráfico de historia",
+        "Tutorial / Ayuda"
+      ],
+      "menus": [
+        "Archivo",
+        "Editar",
+        "Ver",
+        "Crónica",
+        "Construir",
+        "Herramientas",
+        "Ayuda"
+      ],
+      "forms_inspected": 83,
+      "untranslated_known_labels": [],
+      "project_unchanged": true,
+      "preference_persisted": true,
+      "mode": "Qt offscreen; no OpenGL or game",
+      "successful": true
     }
   ],
   "native_engine_test": false

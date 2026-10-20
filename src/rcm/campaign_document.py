@@ -89,6 +89,9 @@ class CampaignDocument(Document):
                         kind=parameter['type'];value=parameter['value']
                         if kind=='integer' and type(value) is not int or kind=='float' and (type(value) not in (int,float) or not math.isfinite(value)) or kind not in ('integer','float') and not isinstance(value,(str,type(None))):raise ValueError('Native parameter: invalid value shape')
                 if 'native_region' in record and type(record['native_region']) is not bool:raise ValueError('Native region requires boolean')
+                if 'zone_flag' in record:
+                    gate=record['zone_flag']
+                    if not isinstance(gate,dict) or set(gate)!={'flag','is_set'} or not isinstance(gate['flag'],str) or type(gate['is_set']) is not bool:raise ValueError('Zone flag: invalid editable structure')
                 for kind in ('sound_zone','light_zone'):
                     if kind in record and not isinstance(record[kind],dict):raise ValueError('Zone: invalid editable structure')
                     zone=record.get(kind,{})
@@ -164,6 +167,14 @@ class CampaignDocument(Document):
         return target
     def autosave(self):
         if self.modified and self.recovery_path:self._atomic_write(self.recovery_path,source_text(self.campaign))
+    def rename_flag(self,old,new):
+        # Flags are chronicle-wide, including zones and inactive scenes. The
+        # legacy scene view must not limit reference rewrites to the active map.
+        identifier(new,'Alias del flag')
+        flags=self.campaign.setdefault('state',{}).setdefault('flags',{})
+        if new!=old and new in flags:raise ValueError('Ese alias ya existe.')
+        value=flags.pop(old);flags[new]=value
+        self._replace(self.campaign,{'flag','set_flag','clear_flag','when_flag'},old,new)
     def recover(self):
         if not self.recovery_path or not self.recovery_path.exists(): return False
         recovered=Document.load(self.ws,self.recovery_path)
