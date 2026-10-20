@@ -1,12 +1,12 @@
 {
   "successful": true,
-  "executable_sha256": "818510b29e6d04a9569386e9f18e4034a12f8ad79245f11ba70cce503516ce7d",
+  "executable_sha256": "29c38dd9d4c756758006dc965ab5a36f3d655ec927c40d73c2fa1f47a45cf694",
   "checks": [
     {
       "language": "en",
       "phase": "fresh",
       "returncode": 0,
-      "elapsed_seconds": 79.36015029999908,
+      "elapsed_seconds": 82.5283801000005,
       "path_restricted": true,
       "gui_authored_valid": true,
       "fresh_settings": true,
@@ -75,7 +75,7 @@
       "language": "es",
       "phase": "fresh",
       "returncode": 0,
-      "elapsed_seconds": 82.29134669999985,
+      "elapsed_seconds": 79.65220019999833,
       "path_restricted": true,
       "gui_authored_valid": true,
       "fresh_settings": true,

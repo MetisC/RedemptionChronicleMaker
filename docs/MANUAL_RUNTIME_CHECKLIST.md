@@ -1,4 +1,4 @@
-# Prueba manual · 1.0.0-rc7
+# Prueba manual · 1.0.0-rc8
 
 **MANUAL RUNTIME TEST REQUIRED.** RCM no automatiza Redemption. La historia del tutorial ya fue aceptada; esta lista comprueba el nuevo producto.
 

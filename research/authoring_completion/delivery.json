@@ -1,11 +1,11 @@
 {
   "date": "2026-10-20T16:06:50.385695+00:00",
-  "version": "1.0.0-rc7",
+  "version": "1.0.0-rc8",
   "branch": "main",
   "base_commit": "77fae480a1025615471be8f645908bfe3e79ce9e",
   "development_scope": "Closed under FINAL_REQUIREMENTS.md: direct authoring and sufficient functional alternatives; native acceptance remains separate.",
   "source_sha256": {
-    "src/rcm/__init__.py": "c9a1e69803f8370e6cac12a589e2dfd431cdc3a0f5e977fc8951893d5dbc6b28",
+    "src/rcm/__init__.py": "ec4a0b839e002a2c781047b67597afeb3cd267670f8becb6ce5b9849995335f7",
     "src/rcm/actor_traits.py": "9e801cc165766a185d0adbbd17f5b31c9113520465b18843148f8eac54afbd6e",
     "src/rcm/app_settings.py": "f718536bf61f77816de2bb32d7e9820c45b52d4bfded032114907449bcff3901",
     "src/rcm/audio.py": "c7b900858b806a2b14d0939b1972328cdf1c996e2b258b80ae27d3605c22d109",
@@ -284,12 +284,12 @@
   "routes": "final_routes.json",
   "portable": {
     "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
-    "sha256": "818510b29e6d04a9569386e9f18e4034a12f8ad79245f11ba70cce503516ce7d",
+    "sha256": "29c38dd9d4c756758006dc965ab5a36f3d655ec927c40d73c2fa1f47a45cf694",
     "matching_modules": 112,
     "translations_match": true,
     "bilingual_moved_path": true,
     "root_shortcut": "Redemption Chronicle Maker.lnk",
-    "bilingual_moved_path_executable_sha256": "818510b29e6d04a9569386e9f18e4034a12f8ad79245f11ba70cce503516ce7d"
+    "bilingual_moved_path_executable_sha256": "29c38dd9d4c756758006dc965ab5a36f3d655ec927c40d73c2fa1f47a45cf694"
   },
   "gui_checks": "gui_checks.json",
   "portable_checks": "portable_checks.json",
@@ -320,7 +320,10 @@
   "coverage_claim": "634 automated tests, seven refreshed canonical Codex builds and new_chronicle real Codex45.3 compilation. No native gameplay acceptance inferred.",
   "original_maps": "original_maps.json",
   "map_picker_fix": "map_picker_fix.json",
-  "current_verification_scope": "Complete634-test gate after test-backup isolation; Ruff/mypy; seven fresh real Codex builds byte-identical; new_chronicle valid and compiled; current112-module EXE and fresh bilingual moved/PATH-restricted probes. Original1868 personal files and16 untracked temporaries preserved by exact hashes.",
+  "current_verification_scope": "Audited main f15eaa1: full634 tests under rc7. RC8 changes version/packaging only; fast28-test gate, three focused version/isolation tests,112 frozen-module matches, verified373-file archive and fresh bilingual moved/PATH-restricted probes. Native acceptance remains separate.",
   "project_deletion": "project_deletion.json",
-  "main_audit": "main_audit.json"
+  "main_audit": "main_audit.json",
+  "rc8_release": "rc8_release.json",
+  "full_suite_tested_commit": "f15eaa1755b7769455b963b5901fb4fb552ff73a",
+  "full_suite_tested_version": "1.0.0-rc7"
 }

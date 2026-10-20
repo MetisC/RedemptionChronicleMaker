@@ -1,4 +1,4 @@
-# Manual runtime checks · 1.0.0-rc7
+# Manual runtime checks · 1.0.0-rc8
 
 **MANUAL RUNTIME TEST REQUIRED.** RCM does not automate gameplay. Previous tutorial acceptance does not certify the new dynamic combats.
 

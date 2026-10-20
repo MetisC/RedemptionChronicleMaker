@@ -1,9 +1,9 @@
-# Producto vigente · 1.0.0-rc7
+# Producto vigente · 1.0.0-rc8
 
 RCM crea crónicas sobre geometría original inmutable mediante autoría visual,
 formatos propios y originales generados directamente, y Java compilado contra
 Codex. No ejecuta herramientas originales de autoría. Se mantienen formatos 9/10
-y rc7. El desarrollo del alcance funcional acordado está cerrado; su aceptación
+y rc8. El desarrollo del alcance funcional acordado está cerrado; su aceptación
 nativa sigue separada y no se publica una versión 1.0 final ni paridad binaria.
 
 ## Autoría y límites actuales
@@ -87,7 +87,7 @@ grupos de interés sin reescribir el tutorial. Su observación nativa queda pend
 
 ## Evidencia y verificación
 
-La batería completa vigente de main pasó 634 pruebas el 20/10/2026, sin fallos, errores ni omisiones. Ruff y el alcance configurado de mypy pasaron. Se corrigió el aislamiento de las copias rotativas de pruebas, con dos regresiones nuevas: las fixtures compartidas usan un temporal dentro de build/tests y conservan las copias locales. Los siete ejemplos se recompilaron contra Codex real (JVM45.3), conservando sus fuentes y paquetes; new_chronicle también se validó y compiló sin modificar su YAML. La revisión de navegación y selección se conserva en USABILITY_REVIEW.md. Recibo y reproducción de esta auditoría: research/authoring_completion/MAIN_AUDIT.md y main_audit.json.
+La batería completa auditada de main, previa al empaquetado rc8, pasó 634 pruebas el 20/10/2026, sin fallos, errores ni omisiones. Ruff y el alcance configurado de mypy pasaron. Se corrigió el aislamiento de las copias rotativas de pruebas, con dos regresiones nuevas: las fixtures compartidas usan un temporal dentro de build/tests y conservan las copias locales. Los siete ejemplos se recompilaron contra Codex real (JVM45.3), conservando sus fuentes y paquetes; new_chronicle también se validó y compiló sin modificar su YAML. La revisión de navegación y selección se conserva en USABILITY_REVIEW.md. Recibo y reproducción de esta auditoría: research/authoring_completion/MAIN_AUDIT.md y main_audit.json.
 
 Los resultados vigentes de la batería completa se guardan en
 build/tests/quality_report.json y test_report.json; el recibo de esta entrega es

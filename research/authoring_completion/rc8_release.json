@@ -1,0 +1,72 @@
+{
+  "version": "1.0.0-rc8",
+  "tag": "v1.0.0-rc8",
+  "date": "2026-10-20T16:18:41.937657+00:00",
+  "baseline_main_commit": "f15eaa1755b7769455b963b5901fb4fb552ff73a",
+  "baseline_full_suite": {
+    "tests": 634,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "version": "1.0.0-rc7",
+    "receipt": "research/authoring_completion/main_audit.json"
+  },
+  "rc8_fast_gate": {
+    "tests": 28,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 1.6924370999986422,
+    "category": "synthetic-unit-package",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "rc8_version_and_isolation_tests": {
+    "version": "1.0.0-rc8",
+    "tests": 3,
+    "successful": true,
+    "failures": 0,
+    "errors": 0,
+    "windows_version": [
+      1,
+      0,
+      0,
+      8
+    ],
+    "native_engine_test": false
+  },
+  "local_archive": {
+    "version": "1.0.0-rc8",
+    "user_zip": "RedemptionChronicleMaker-1.0.0-rc8-win64.zip",
+    "sha256": "f6c1fe46e2f9cb1a4449b1b7639675e99e8f64a901a1cf9edaab3551183ad5b4",
+    "size": 89241998,
+    "files": 373,
+    "all_hashes_verified": true,
+    "source_archive_separate": true,
+    "native_game_verified": false,
+    "clean_machine_verified": false
+  },
+  "local_product_audit": "research/product_close/user_release_audit.json",
+  "frozen_modules": 112,
+  "frozen_sources_match": true,
+  "executable_sha256": "29c38dd9d4c756758006dc965ab5a36f3d655ec927c40d73c2fa1f47a45cf694",
+  "windows_file_version": [
+    1,
+    0,
+    0,
+    8
+  ],
+  "portable_checks": "research/authoring_completion/portable_checks.json",
+  "release_notes_sha256": "6baf3e75ca3f09f29ec5d2e844692710e0845a0cb17a193f70cbf7383ee612bc",
+  "publication": {
+    "status": "ready-for-tag-publication",
+    "release_url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/tag/v1.0.0-rc8",
+    "publisher": "existing tag-triggered GitHub Actions release workflow",
+    "local_and_github_archive_hashes_are_separate": true
+  },
+  "preserved_personal_files": 1868,
+  "native_engine_test": false,
+  "independent_machine_test": false,
+  "physical_gpu_dpi_test": false
+}

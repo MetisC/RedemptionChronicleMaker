@@ -1,67 +1,75 @@
 {
-  "version": "1.0.0-rc7",
+  "version": "1.0.0-rc8",
   "successful": true,
   "errors": [],
   "files": {
     "CHANGELOG.md": {
-      "size": 7165,
-      "sha256": "cc91de76bb3d3cab5d0ab85599337ad8b657f3cf713c19f55ead08d7e1dc0a65"
+      "size": 1318,
+      "sha256": "91fc78b00b87abee7ada630eb758410fb0da4554cb93a0d2a72d50460c3f096f"
     },
     "README.txt": {
       "size": 532,
-      "sha256": "b1129aa93bfaff8deda55da3cdd2408ae1949ee7ba7a6cb9fcc2d1c89f4e6c7d"
+      "sha256": "4d24356e5475eab143c22ac9cd2abbcbc71ffa34ef595c6b557cf0619cc8ebe2"
     },
     "RedemptionChronicleMaker.exe": {
-      "size": 4479516,
-      "sha256": "348b4a8e93dd397c760287d1bea3cdd253f9e07656e24116c789890fb7c25dbb"
+      "size": 4526844,
+      "sha256": "29c38dd9d4c756758006dc965ab5a36f3d655ec927c40d73c2fa1f47a45cf694"
     },
     "RELEASE_NOTES.md": {
-      "size": 11542,
-      "sha256": "7d1a860821ebfe39d855ba9e347fabc84bbf386b569fbf1817f73c66d0532384"
+      "size": 3586,
+      "sha256": "6baf3e75ca3f09f29ec5d2e844692710e0845a0cb17a193f70cbf7383ee612bc"
     },
     "VERSION": {
       "size": 10,
-      "sha256": "35de8f478db2071e8142d3a33610ed7e077b26d80d5f0ffba2ed55a5b0df3c3f"
+      "sha256": "6b22ff7b6ae97cf35eb4cc2919c2d34463c0fa12c6e977ea907e9b689278c52f"
     },
     "docs/ADVANCED_LIMITATIONS.en.md": {
-      "size": 2628,
-      "sha256": "b2f1e63e6bdf1f8c1fd6f8a1445af147020494d543c2eae60231cd1d1855e8ca"
+      "size": 2914,
+      "sha256": "a3ddcc0989b24e6984834a27971a1d73bcc24dd745c2bf687c51be29ad3ae2ce"
     },
     "docs/ADVANCED_LIMITATIONS.md": {
-      "size": 2941,
-      "sha256": "d99a084a954fec23c3de16ded3f0b152aeb15d2d44dacb85f6dd70a7cc8fbf99"
+      "size": 3231,
+      "sha256": "c0f525d4530e61dd9d2985d7eddea7202da43c0907487012a98c4db042f4fd38"
+    },
+    "docs/AUTHORING_COMPLETION.en.md": {
+      "size": 6872,
+      "sha256": "cadc2119efd5c60e5bcc3beee83b38482f75d3109bb90c8441e951b56050cb08"
+    },
+    "docs/AUTHORING_COMPLETION.md": {
+      "size": 8747,
+      "sha256": "6c7e2001a546df8e99e95781143b301b66b4c6931f40bcaa51f089fe6cfa146c"
     },
     "docs/AUTHORING_GUIDE.en.md": {
-      "size": 6732,
-      "sha256": "b42d1cdae3da36574fb0b3058d121d5bfca98d6d5dc784733a0de2fd6bf9d949"
+      "size": 6897,
+      "sha256": "aeead882df6d15a570996a5f996ac2b1ca596ab7cba3c164549491fb6adfde55"
     },
     "docs/AUTHORING_GUIDE.md": {
-      "size": 7610,
-      "sha256": "3d626d73e32def6abb80f357f7dc8264255a60effbc1aacfdc48a9075fcfd4ef"
+      "size": 7769,
+      "sha256": "4ef4d26e0200b29c90420d9eeb75d9e27b86dd940ed1b79db56c7ea2ed5cdf8d"
     },
     "docs/CINEMATIC_DIRECTOR.en.md": {
-      "size": 6245,
-      "sha256": "e130fa227290ba876c76605cbabc878b3a62b6c65657f8ef6fa2323309defb20"
+      "size": 6567,
+      "sha256": "670c6a9da89d5b3dfe98bba59c6d0d58b45998a933d234befd7a5c18764d9d4d"
     },
     "docs/CINEMATIC_DIRECTOR.md": {
-      "size": 6499,
-      "sha256": "ad17a75fe4e3308d0a38b07baab5c68f530796df17d834795096c94d18f00062"
+      "size": 6831,
+      "sha256": "ad4b25209a95af11f6b913ff3086684e881a9d2245357a3b357d6ec1ed7ad44a"
     },
     "docs/DYNAMIC_ENCOUNTERS.en.md": {
-      "size": 6386,
-      "sha256": "1bec8259ce632b3bc6db5b4975d26bdcbb82803844a3612ef00ef5cdba390724"
+      "size": 6424,
+      "sha256": "0974ce3a33f339e2076163e35993c4eb8871969947db6800eae4b6298c82f6f6"
     },
     "docs/DYNAMIC_ENCOUNTERS.md": {
-      "size": 7443,
-      "sha256": "65279c58f47144158153ceb82a871f2e84dee6a5b715a18ecb54300bd19af66c"
+      "size": 7461,
+      "sha256": "8dc4883b24821630e1bd03cb5466a71ccaf48be17a9850bb097fbb78fe0e35aa"
     },
     "docs/EDITOR_GUIDE.en.md": {
-      "size": 6487,
-      "sha256": "68f971333b78501d6ae933ca9c768eceec9cfa2a66c20c13e76f13badf07084b"
+      "size": 8025,
+      "sha256": "835f0c7feeb0726ef74444efcd99c4acd36d9fcecfe0ba79de6183120e943085"
     },
     "docs/EDITOR_GUIDE.md": {
-      "size": 7519,
-      "sha256": "4ffa27340b1c87602f19d8054004b2406eb57fc81a64bed89ebf5c17c9d557f0"
+      "size": 9164,
+      "sha256": "93478e8c72081dd6406d4a23a125b9150c368548c034fe35aa4e922f176d7bb5"
     },
     "docs/FIRST_RUN.en.md": {
       "size": 848,
@@ -80,20 +88,20 @@
       "sha256": "bf27b5c999824830b70c7fdbe4b2b2b27c57cd0ec359587b7680cd88c96db506"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.en.md": {
-      "size": 19237,
-      "sha256": "6c1ea94de4a1cdc0c45c57eb591ef1e8882a18837313a6ebee5e7fa367a77602"
+      "size": 19607,
+      "sha256": "6efdb3dd87ba368ec89756db10acf035b842bf82f5f347e46e7f62da564658b8"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.md": {
-      "size": 20515,
-      "sha256": "95864ada5885b5cdfff9db547faa458c58be755874470018e6291b3e3f986613"
+      "size": 20920,
+      "sha256": "52c9a729f128fa4a2f53abd8b3fffc99b187a2ceb7109f72e9b050d9822a0e5f"
     },
     "docs/SHORTCUTS.en.md": {
-      "size": 578,
-      "sha256": "2d4b76c826d7b2f86f8d1f874fc519f3583c837f20d331eb021fae39ce83036c"
+      "size": 845,
+      "sha256": "8c0475605675ab4141b90e97427172c104cc7753e007454db692d0fc2e77f74e"
     },
     "docs/SHORTCUTS.md": {
-      "size": 647,
-      "sha256": "e3ca576093eb51978147bbf30f1415876577ea434ab415a7b0c0dc5b4835d6ff"
+      "size": 994,
+      "sha256": "bcc0781098017895b5a6a71ab84c904591627103ae3e512dc35e7dc1ca5ce509"
     },
     "docs/SHOWCASE.en.md": {
       "size": 1259,
@@ -118,6 +126,18 @@
     "docs/TUTORIAL.md": {
       "size": 2329,
       "sha256": "5c5d0d6c5113f943ade3f7afca71e476c787ae188807f79a722b01be82a08f38"
+    },
+    "examples/completion_lab/project.yaml": {
+      "size": 13227,
+      "sha256": "45a56d4799e719eadbeb103b296b2845a6ad416e3559108ae60a7f46b8c9b2c2"
+    },
+    "examples/completion_lab/README.md": {
+      "size": 1429,
+      "sha256": "3cbee65a1238ed48d604d06f3f1ad0e9637baa2ef313d4373b4fcad9a7dbce61"
+    },
+    "examples/completion_lab/assets/laboratory_map.png": {
+      "size": 12834,
+      "sha256": "cb5834867ecac5eea68eeb983885e60ae05d6a06be3b8829b466c9d0795d18d4"
     },
     "examples/director_acceptance/project.yaml": {
       "size": 30547,
@@ -653,7 +673,7 @@
     },
     "_internal/base_library.zip": {
       "size": 880490,
-      "sha256": "e3fd237cb6b2c90cee4d4431f20226d5bc0bdabe7590f1267a5c587068cac892"
+      "sha256": "e5780d55a0d3f492b0e33910fac7e7b1df8d55ce7fe00fafe5075757e448e155"
     },
     "_internal/libcrypto-1_1.dll": {
       "size": 3439512,
@@ -1456,8 +1476,8 @@
       "sha256": "64d133dc8fff64da79b3671e02c6bdda3f83944c4984e196a1a748a2497409ef"
     },
     "_internal/rcm/editor/assets/en.json": {
-      "size": 155574,
-      "sha256": "0be2dc5d14ee149c35adc46c5cf3d303804c18388f07b37255e3da60676d3bc8"
+      "size": 163509,
+      "sha256": "2707be7dc8b9367fd8aa7f222e314964da364234ed225d4c7dc30f70d461260f"
     },
     "_internal/rcm/editor/assets/wtd_policy.json": {
       "size": 19452,
