@@ -1,0 +1,983 @@
+{
+  "date": "2026-10-20T16:06:50.385695+00:00",
+  "tested_main_commit": "77fae480a1025615471be8f645908bfe3e79ce9e",
+  "branch": "main",
+  "version": "1.0.0-rc7",
+  "command": "python tools/quality.py --no-coverage",
+  "initial_full_suite": {
+    "tests": 632,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 781.3515621000006,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "final_full_suite": {
+    "tests": 634,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 748.4262420000014,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "quality_checks": [
+    {
+      "command": [
+        "tools/prepare_native_sectors.py"
+      ],
+      "returncode": 0,
+      "output_sha256": "1d7629b840035745119cce99459c441d4c23d56c7bdf480dfb9f64e68887632e"
+    },
+    {
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "tools",
+        "tests"
+      ],
+      "returncode": 0,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "command": [
+        "-m",
+        "mypy",
+        "--follow-imports=skip",
+        "--check-untyped-defs",
+        "--cache-dir",
+        "build/tests/mypy_cache",
+        "src/rcm/paths.py",
+        "src/rcm/input_limits.py",
+        "src/rcm/file_transaction.py"
+      ],
+      "returncode": 0,
+      "output_sha256": "8228fcc5ce46d42d01caf3cd941f4e9c5f2bcc372bb5b147a2f0572d2dd675a8"
+    },
+    {
+      "command": [
+        "tools/test.py"
+      ],
+      "returncode": 0,
+      "output_sha256": "3927d43a364bcb62e19eac9658fdb0ef9a23daf802fd90ef41be8e4db3725f83"
+    }
+  ],
+  "coverage_instrumented": false,
+  "regression_fixed": {
+    "area": "shared-fixture test backup isolation",
+    "implementation": [
+      "tools/test.py",
+      "tools/test_workspace.py"
+    ],
+    "regressions": [
+      "test_runner_isolation.RunnerIsolationTests.test_real_retention_prunes_only_test_backups_and_keeps_existing_recovery",
+      "test_runner_isolation.RunnerIsolationTests.test_other_workspaces_and_normal_files_keep_real_paths_and_checks"
+    ],
+    "original_backups_restored": {
+      "restored": [
+        "backups/c4_test/1792382265524249800.yaml",
+        "backups/c4_test/1792382265618217900.yaml",
+        "backups/east_demo/1792429823322017100.yaml",
+        "backups/east_demo/1792429823366077800.yaml",
+        "backups/east_demo/1792431738838261600.yaml",
+        "backups/east_demo/1792431738920865800.yaml",
+        "backups/east_demo/1792431739372872700.yaml",
+        "backups/east_demo/1792431739442407000.yaml"
+      ],
+      "exact_hash_match": true
+    }
+  },
+  "index_cleanup": {
+    "files": [
+      "backups/new_chronicle/1792235450419558700.yaml",
+      "backups/new_chronicle/1792268354998864500.yaml",
+      "backups/new_chronicle/1792291255455064300.yaml",
+      "backups/new_chronicle/1792291506276220400.yaml",
+      "backups/new_chronicle/1792291745817956900.yaml",
+      "backups/new_chronicle/1792293246676001300.yaml",
+      "backups/new_chronicle/1792295372351478300.yaml",
+      "chronicles/new_chronicle/project.yaml.backup",
+      "tests/fixtures/chronicles/phase4_demo/project.yaml.backup",
+      "tests/fixtures/chronicles/phase5_demo/project.yaml.backup",
+      "tests/fixtures/chronicles/phase5_demo/resources/RCM5Actor.java.backup",
+      "tests/fixtures/chronicles/system_test/resources/RCM6Actor.java.backup",
+      "user_workspaces/legacy_portable/chronicles/tutorial/project.yaml.backup",
+      "user_workspaces/recovered_projects/circuit/project.yaml.autosave",
+      "user_workspaces/recovered_projects/system_test/project.yaml.autosave",
+      "RCM/dyn_lab/runtime_trace.log.1"
+    ],
+    "count": 16,
+    "all_local_files_preserved": true,
+    "local_sha256": {
+      "backups/new_chronicle/1792235450419558700.yaml": "6711c5d585672ee50f5cace14a105e7fe4c5c479e9fb868d03ea8102c8dbbc0c",
+      "backups/new_chronicle/1792268354998864500.yaml": "2ccbb26c8a65df1fcb8877b1e890aaefebfeed364e279e7d9393f58a4cf47609",
+      "backups/new_chronicle/1792291255455064300.yaml": "0620ca7141b5b1c2cb7af1b78a59e2ccc5af1ed493ec8a0283c44a8ab07a536f",
+      "backups/new_chronicle/1792291506276220400.yaml": "626c25d902705734da5cca88648176f2bec11514feb6e7861e1ba795a74e0fdd",
+      "backups/new_chronicle/1792291745817956900.yaml": "e7ba105d6fb5b5656efb7680f33c67a906a53ed3de217dfef369055d8f2606dc",
+      "backups/new_chronicle/1792293246676001300.yaml": "8c4678d93d4f7ebdb0c9c6e903bc12799d768222b42771d1b18248c1590f7fce",
+      "backups/new_chronicle/1792295372351478300.yaml": "8cba4bf31342b428febc1b44c9139fec83630109b64cbb5bb8a274e8033a5ed5",
+      "chronicles/new_chronicle/project.yaml.backup": "7ecd602d0ce473328c09c9ce4aae9f1ef6722c59929ff40f618f49cc0fee8df5",
+      "tests/fixtures/chronicles/phase4_demo/project.yaml.backup": "50cb31b280b8067b386a283bc9a44d21edfb36c028ce4addcc4fb7131b8c8156",
+      "tests/fixtures/chronicles/phase5_demo/project.yaml.backup": "fd36887f43fbee144a8cbdc8fb553dc8237ea837cdb030e4ddaa0274a3b81ea1",
+      "tests/fixtures/chronicles/phase5_demo/resources/RCM5Actor.java.backup": "affaae0ec7342ff9a27242f3793ffe4798f93ad429a74fe16ba2b7d398ea8257",
+      "tests/fixtures/chronicles/system_test/resources/RCM6Actor.java.backup": "db332dbaeb93ad70fa803d9fe20d97437bc3eb1c5aa42d8b2be3e5a422ab0c85",
+      "user_workspaces/legacy_portable/chronicles/tutorial/project.yaml.backup": "faf74f134c43dead3ffd724664d110593d262ec9e2de907c8a8362d3fef24a8d",
+      "user_workspaces/recovered_projects/circuit/project.yaml.autosave": "b6030b35987e0eb862c19fe91abba0988a303781df0d2af345e625e8a1d4df5b",
+      "user_workspaces/recovered_projects/system_test/project.yaml.autosave": "19bee8e84c2c418e2bc102102b5bfdd290a124100eb52c14915005bf6bcbf322",
+      "RCM/dyn_lab/runtime_trace.log.1": "e197dd60594a628e0a9d6af089064de52f2c7ec5d2fd0de2e14453358bef591d"
+    },
+    "ignore_checks": {
+      "successful": true,
+      "ignored": [
+        "RCM/example/runtime_trace.log.1",
+        "backups/personal/123.yaml",
+        "cache/temp.tmp.123",
+        "chronicles/example/.rcm_project.lock",
+        "chronicles/example/project.yaml.123.tmp",
+        "chronicles/example/project.yaml.autosave",
+        "chronicles/example/project.yaml.autosave.123",
+        "user_workspaces/personal/project.yaml.autosave"
+      ],
+      "project_sources_not_ignored": [
+        "user_workspaces/personal/project.yaml",
+        "chronicles/new_chronicle/project.yaml"
+      ]
+    }
+  },
+  "preservation": {
+    "checked_files": 1868,
+    "missing": [],
+    "changed": [],
+    "manifest_sha256": "8891f4e86630c069c14cc450b19b0d80481626763ea965d3829e7cb4fb369081",
+    "production_source_changed": false,
+    "version_changed": false,
+    "releases_changed": false,
+    "game_modified": false
+  },
+  "new_chronicle": {
+    "source": "chronicles/new_chronicle/project.yaml",
+    "source_sha256": "d198ee2e2e34bd52b20d13f8a397de091821f756077ec2b8e2b6170851ecc37f",
+    "valid": true,
+    "problems": [],
+    "native_engine_test": false,
+    "successful": true,
+    "status": "compiled-unverified-in-game",
+    "class_versions": {
+      "R_new_chronicle_s0_Scene": "45.3",
+      "R_new_chronicle_s0_Passive": "45.3"
+    },
+    "elapsed_seconds": 6.428698199999417,
+    "build_report": "build/new_chronicle/build_report.json",
+    "files": {
+      "chronicles/R_new_chronicle.nmf": {
+        "size": 218,
+        "sha256": "ece40e0a443d1eefb673203543f4497f2821309a3eb6b5686caf49f38fdffa5a"
+      },
+      "chronicles/R_new_chronicle_s0.nmf": {
+        "size": 142,
+        "sha256": "5dbe65a1a448638bb11bde8d3ea66afd6abd441e68a217e81c34325230b82abf"
+      },
+      "chronicles/new_chronicle.nsc": {
+        "size": 175,
+        "sha256": "0d1e68a0c2e7d896902078dd04ad13d4fd2c3397740990e2562496a406a73663"
+      },
+      "misc/templates/_R_new_chronicle_s0.not": {
+        "size": 844,
+        "sha256": "1e2a76c364157c5d175aa0ab7ea568f52699bd89d2ca469c67398f05a8aaef3e"
+      },
+      "scenes/R_new_chronicle_s0.nsd": {
+        "size": 99220,
+        "sha256": "c0dc3274e7ad29b11e9eb7c811748656569ca3979f5c70e2bed00bbc4b1c4e6b"
+      },
+      "sounds/voice/R_new_chronicle_s0_silence.wav": {
+        "size": 176444,
+        "sha256": "9954b1ec94cd58bd7debcf5e3a34585c545100427917cee822de476787090e3c"
+      },
+      "strings/R_new_chronicle.ntx": {
+        "size": 208,
+        "sha256": "cd7859027085c3061f82db833f5da5c45f06476f389a373ce15bc7b85c3b003a"
+      },
+      "strings/R_new_chronicle_s0.nvo": {
+        "size": 2,
+        "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+      },
+      "strings/_R_new_chronicle.nls": {
+        "size": 32,
+        "sha256": "8e856ceed1d8d8aace74880b9382024b7e692bc613cfa50396b422180b331d4a"
+      },
+      "strings/_R_new_chronicle_s0.nls": {
+        "size": 247,
+        "sha256": "7f51b71afe373f24baf45e4d28a0545c82540ed1dad32f82e1f117c2016e1960"
+      },
+      "ui/M_2464008cc0b8.nui": {
+        "size": 975,
+        "sha256": "e2a35cd8997ca59e84beb27809ad8d3479fdc7a66c93c9203f38dea4a3bb13c5"
+      },
+      "strings/R_new_chronicle_custom.nls": {
+        "size": 70,
+        "sha256": "1d376417bd394ebb05f5378bb5b336b434b1fd41f776018bdadcd59569884268"
+      },
+      "codex/R_new_chronicle_s0_Passive.class": {
+        "size": 215,
+        "sha256": "584e13f521aa48116bd6f15327f11bbc751edf00222ecaac895061986fbe380e"
+      },
+      "codex/R_new_chronicle_s0_Scene.class": {
+        "size": 32266,
+        "sha256": "6f0507918c58bb9c1f2442f394dd7a87a479d93222311a37946ad1617de63406"
+      }
+    },
+    "source_unchanged": true,
+    "geometry_in_package": false,
+    "package_sha256": "371ab130c753744964712d36c4a33aabc125a89dcbb227273bebe86418b668a5",
+    "build_report_sha256": "13d6341640da7bc8445896103358fbc45db78659c68f5967be2df885b3a53395",
+    "format_validation": {
+      "files_checked": 12,
+      "conversations": 0,
+      "classfiles": 2,
+      "classfile_budgets": {
+        "codex/R_new_chronicle_s0_Passive.class": {
+          "version": "45.3",
+          "class": "R_new_chronicle_s0_Passive",
+          "superclass": "Codex",
+          "access_flags": 33,
+          "constant_pool_entries": 12,
+          "constant_pool_limit": 65534,
+          "largest_method_bytes": 5,
+          "method_limit_bytes": 65535,
+          "methods": [
+            {
+              "name": "<init>",
+              "descriptor": "()V",
+              "code_bytes": 5,
+              "access_flags": 1
+            }
+          ]
+        },
+        "codex/R_new_chronicle_s0_Scene.class": {
+          "version": "45.3",
+          "class": "R_new_chronicle_s0_Scene",
+          "superclass": "Codex",
+          "access_flags": 33,
+          "constant_pool_entries": 1326,
+          "constant_pool_limit": 65534,
+          "largest_method_bytes": 1110,
+          "method_limit_bytes": 65535,
+          "methods": [
+            {
+              "name": "<init>",
+              "descriptor": "()V",
+              "code_bytes": 645,
+              "access_flags": 1
+            },
+            {
+              "name": "trace",
+              "descriptor": "(Ljava/lang/String;)V",
+              "code_bytes": 201,
+              "access_flags": 2
+            },
+            {
+              "name": "local",
+              "descriptor": "(I)Z",
+              "code_bytes": 67,
+              "access_flags": 2
+            },
+            {
+              "name": "localPlayer",
+              "descriptor": "(I)I",
+              "code_bytes": 77,
+              "access_flags": 2
+            },
+            {
+              "name": "alive",
+              "descriptor": "(I)Z",
+              "code_bytes": 50,
+              "access_flags": 2
+            },
+            {
+              "name": "inventory",
+              "descriptor": "(ILjava/lang/String;)I",
+              "code_bytes": 76,
+              "access_flags": 2
+            },
+            {
+              "name": "owns",
+              "descriptor": "(ILjava/lang/String;)Z",
+              "code_bytes": 13,
+              "access_flags": 2
+            },
+            {
+              "name": "give",
+              "descriptor": "(II)Z",
+              "code_bytes": 244,
+              "access_flags": 2
+            },
+            {
+              "name": "template",
+              "descriptor": "(I)Ljava/lang/String;",
+              "code_bytes": 52,
+              "access_flags": 2
+            },
+            {
+              "name": "spawn",
+              "descriptor": "(I)V",
+              "code_bytes": 384,
+              "access_flags": 2
+            },
+            {
+              "name": "beginscene",
+              "descriptor": "(II)V",
+              "code_bytes": 73,
+              "access_flags": 1
+            },
+            {
+              "name": "timer",
+              "descriptor": "(IFFFF)V",
+              "code_bytes": 25,
+              "access_flags": 1
+            },
+            {
+              "name": "poll",
+              "descriptor": "()V",
+              "code_bytes": 39,
+              "access_flags": 2
+            },
+            {
+              "name": "pollImpl",
+              "descriptor": "()V",
+              "code_bytes": 614,
+              "access_flags": 2
+            },
+            {
+              "name": "volume",
+              "descriptor": "(I)Z",
+              "code_bytes": 66,
+              "access_flags": 2
+            },
+            {
+              "name": "dispatch",
+              "descriptor": "(Ljava/lang/String;Ljava/lang/String;I)V",
+              "code_bytes": 229,
+              "access_flags": 2
+            },
+            {
+              "name": "event0",
+              "descriptor": "()Z",
+              "code_bytes": 80,
+              "access_flags": 2
+            },
+            {
+              "name": "event1",
+              "descriptor": "()Z",
+              "code_bytes": 120,
+              "access_flags": 2
+            },
+            {
+              "name": "event2",
+              "descriptor": "()Z",
+              "code_bytes": 132,
+              "access_flags": 2
+            },
+            {
+              "name": "event3",
+              "descriptor": "()Z",
+              "code_bytes": 74,
+              "access_flags": 2
+            },
+            {
+              "name": "releaseCamera",
+              "descriptor": "()V",
+              "code_bytes": 25,
+              "access_flags": 2
+            },
+            {
+              "name": "conversation",
+              "descriptor": "(I)Z",
+              "code_bytes": 165,
+              "access_flags": 2
+            },
+            {
+              "name": "clicked",
+              "descriptor": "(III)V",
+              "code_bytes": 198,
+              "access_flags": 1
+            },
+            {
+              "name": "convreached",
+              "descriptor": "(IIIII)V",
+              "code_bytes": 148,
+              "access_flags": 1
+            },
+            {
+              "name": "convended",
+              "descriptor": "(IZI)V",
+              "code_bytes": 115,
+              "access_flags": 1
+            },
+            {
+              "name": "finishDialogue",
+              "descriptor": "()V",
+              "code_bytes": 102,
+              "access_flags": 2
+            },
+            {
+              "name": "completeEntry",
+              "descriptor": "(Ljava/lang/String;)Z",
+              "code_bytes": 24,
+              "access_flags": 2
+            },
+            {
+              "name": "quest",
+              "descriptor": "(Ljava/lang/String;I)Z",
+              "code_bytes": 2,
+              "access_flags": 2
+            },
+            {
+              "name": "save",
+              "descriptor": "(I)V",
+              "code_bytes": 145,
+              "access_flags": 1
+            },
+            {
+              "name": "restore",
+              "descriptor": "(I)V",
+              "code_bytes": 152,
+              "access_flags": 1
+            },
+            {
+              "name": "restored",
+              "descriptor": "(I)V",
+              "code_bytes": 206,
+              "access_flags": 1
+            },
+            {
+              "name": "createAt",
+              "descriptor": "(I[F[F)I",
+              "code_bytes": 248,
+              "access_flags": 2
+            },
+            {
+              "name": "positionText",
+              "descriptor": "(I)Ljava/lang/String;",
+              "code_bytes": 63,
+              "access_flags": 2
+            },
+            {
+              "name": "travel",
+              "descriptor": "(Ljava/lang/String;Ljava/lang/String;)Z",
+              "code_bytes": 146,
+              "access_flags": 2
+            },
+            {
+              "name": "arrive",
+              "descriptor": "()Z",
+              "code_bytes": 240,
+              "access_flags": 2
+            },
+            {
+              "name": "patrolActor",
+              "descriptor": "(I)I",
+              "code_bytes": 4,
+              "access_flags": 2
+            },
+            {
+              "name": "patrolTarget",
+              "descriptor": "(I)[F",
+              "code_bytes": 4,
+              "access_flags": 2
+            },
+            {
+              "name": "patrolSpeed",
+              "descriptor": "(I)F",
+              "code_bytes": 6,
+              "access_flags": 2
+            },
+            {
+              "name": "commandPatrol",
+              "descriptor": "(I)Z",
+              "code_bytes": 207,
+              "access_flags": 2
+            },
+            {
+              "name": "startPatrol",
+              "descriptor": "(I)Z",
+              "code_bytes": 43,
+              "access_flags": 2
+            },
+            {
+              "name": "stopPatrol",
+              "descriptor": "(I)V",
+              "code_bytes": 66,
+              "access_flags": 2
+            },
+            {
+              "name": "holdPatrols",
+              "descriptor": "()V",
+              "code_bytes": 81,
+              "access_flags": 2
+            },
+            {
+              "name": "resumePatrols",
+              "descriptor": "()V",
+              "code_bytes": 41,
+              "access_flags": 2
+            },
+            {
+              "name": "pollPatrols",
+              "descriptor": "()V",
+              "code_bytes": 321,
+              "access_flags": 2
+            },
+            {
+              "name": "conversationID",
+              "descriptor": "(I)Ljava/lang/String;",
+              "code_bytes": 6,
+              "access_flags": 2
+            },
+            {
+              "name": "resumeEvents",
+              "descriptor": "()V",
+              "code_bytes": 30,
+              "access_flags": 2
+            },
+            {
+              "name": "dialogueCamera",
+              "descriptor": "(II)V",
+              "code_bytes": 6,
+              "access_flags": 2
+            },
+            {
+              "name": "dialoguePartner",
+              "descriptor": "(I)I",
+              "code_bytes": 4,
+              "access_flags": 2
+            },
+            {
+              "name": "faceDialogue",
+              "descriptor": "(II)V",
+              "code_bytes": 49,
+              "access_flags": 2
+            },
+            {
+              "name": "prepareDialogue",
+              "descriptor": "(II)V",
+              "code_bytes": 72,
+              "access_flags": 2
+            },
+            {
+              "name": "schedulePoll",
+              "descriptor": "()V",
+              "code_bytes": 20,
+              "access_flags": 2
+            },
+            {
+              "name": "dialogueMotion",
+              "descriptor": "(III)V",
+              "code_bytes": 6,
+              "access_flags": 2
+            },
+            {
+              "name": "resetArrivalMotion",
+              "descriptor": "()V",
+              "code_bytes": 47,
+              "access_flags": 2
+            },
+            {
+              "name": "finitePose",
+              "descriptor": "([F)Z",
+              "code_bytes": 47,
+              "access_flags": 2
+            },
+            {
+              "name": "savePlayerPose",
+              "descriptor": "()V",
+              "code_bytes": 200,
+              "access_flags": 2
+            },
+            {
+              "name": "readPlayerPose",
+              "descriptor": "()V",
+              "code_bytes": 121,
+              "access_flags": 2
+            },
+            {
+              "name": "restorePlayerPose",
+              "descriptor": "()Z",
+              "code_bytes": 222,
+              "access_flags": 2
+            },
+            {
+              "name": "showNote",
+              "descriptor": "(Ljava/lang/String;)Z",
+              "code_bytes": 193,
+              "access_flags": 2
+            },
+            {
+              "name": "textended",
+              "descriptor": "(I)V",
+              "code_bytes": 33,
+              "access_flags": 1
+            },
+            {
+              "name": "finishNote",
+              "descriptor": "()V",
+              "code_bytes": 66,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicConfigure",
+              "descriptor": "()V",
+              "code_bytes": 14,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicPosition",
+              "descriptor": "(IIIZ)[F",
+              "code_bytes": 18,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicPointName",
+              "descriptor": "(III)Ljava/lang/String;",
+              "code_bytes": 20,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicPoints",
+              "descriptor": "(II)I",
+              "code_bytes": 9,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicPhases",
+              "descriptor": "(I)V",
+              "code_bytes": 3,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicNotify",
+              "descriptor": "(Ljava/lang/String;II)V",
+              "code_bytes": 69,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicHealth",
+              "descriptor": "(IZFLjava/lang/String;)Z",
+              "code_bytes": 153,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicRoleGuid",
+              "descriptor": "(II)I",
+              "code_bytes": 97,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicCount",
+              "descriptor": "(ILjava/lang/String;I)I",
+              "code_bytes": 166,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicOwned",
+              "descriptor": "(II)Z",
+              "code_bytes": 60,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicKilled",
+              "descriptor": "(II)V",
+              "code_bytes": 168,
+              "access_flags": 2
+            },
+            {
+              "name": "killed",
+              "descriptor": "(III)V",
+              "code_bytes": 103,
+              "access_flags": 1
+            },
+            {
+              "name": "dynamicRetire",
+              "descriptor": "(I)Z",
+              "code_bytes": 83,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicError",
+              "descriptor": "(ILjava/lang/String;)V",
+              "code_bytes": 94,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicReset",
+              "descriptor": "(IZ)Z",
+              "code_bytes": 245,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicBegin",
+              "descriptor": "(Z)V",
+              "code_bytes": 140,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicCommand",
+              "descriptor": "(II)Z",
+              "code_bytes": 499,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicEntry",
+              "descriptor": "(I)I",
+              "code_bytes": 244,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicSpawn",
+              "descriptor": "(II)Z",
+              "code_bytes": 1110,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicComplete",
+              "descriptor": "(I)V",
+              "code_bytes": 89,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicPoll",
+              "descriptor": "()V",
+              "code_bytes": 1077,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicSave",
+              "descriptor": "()V",
+              "code_bytes": 327,
+              "access_flags": 2
+            },
+            {
+              "name": "dynamicRestore",
+              "descriptor": "()V",
+              "code_bytes": 614,
+              "access_flags": 2
+            },
+            {
+              "name": "originalFlag",
+              "descriptor": "(II)I",
+              "code_bytes": 174,
+              "access_flags": 2
+            },
+            {
+              "name": "originalBit",
+              "descriptor": "(II)Z",
+              "code_bytes": 10,
+              "access_flags": 2
+            },
+            {
+              "name": "originalSet",
+              "descriptor": "(IIZ)V",
+              "code_bytes": 28,
+              "access_flags": 2
+            },
+            {
+              "name": "originalError",
+              "descriptor": "(ILjava/lang/String;)Z",
+              "code_bytes": 49,
+              "access_flags": 2
+            },
+            {
+              "name": "originalNear",
+              "descriptor": "([FDDD)Z",
+              "code_bytes": 66,
+              "access_flags": 2
+            },
+            {
+              "name": "originalMatches",
+              "descriptor": "(II)Z",
+              "code_bytes": 238,
+              "access_flags": 2
+            },
+            {
+              "name": "originalFind",
+              "descriptor": "(I)I",
+              "code_bytes": 90,
+              "access_flags": 2
+            },
+            {
+              "name": "originalApply",
+              "descriptor": "(IIIFZ)Z",
+              "code_bytes": 580,
+              "access_flags": 2
+            },
+            {
+              "name": "originalReapply",
+              "descriptor": "()V",
+              "code_bytes": 83,
+              "access_flags": 2
+            },
+            {
+              "name": "clickMatches",
+              "descriptor": "(II)Z",
+              "code_bytes": 47,
+              "access_flags": 2
+            },
+            {
+              "name": "findClick",
+              "descriptor": "(I)I",
+              "code_bytes": 133,
+              "access_flags": 2
+            },
+            {
+              "name": "bindClick",
+              "descriptor": "(I)V",
+              "code_bytes": 181,
+              "access_flags": 2
+            },
+            {
+              "name": "debugPosition",
+              "descriptor": "(I)Ljava/lang/String;",
+              "code_bytes": 71,
+              "access_flags": 2
+            },
+            {
+              "name": "traceState",
+              "descriptor": "()V",
+              "code_bytes": 65,
+              "access_flags": 2
+            },
+            {
+              "name": "traceStack",
+              "descriptor": "(Ljava/lang/Throwable;)V",
+              "code_bytes": 45,
+              "access_flags": 2
+            }
+          ]
+        }
+      },
+      "native_engine_test": false
+    },
+    "compiler_warnings": 15,
+    "compiler_errors": 0
+  },
+  "canonical_builds": [
+    {
+      "example": "tutorial",
+      "id": "rcm_tutor",
+      "successful": true,
+      "classes": 5,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "3980af804d2d1399fc589c1032db51579e1c79217f8691c6c0a4e4277954b562",
+      "nob_sha256": "9ffa45c2463e08191f1c743406165fd4c0462b186608c884aa4fdf797e912f86",
+      "geometry_included": false,
+      "native_game_test": false
+    },
+    {
+      "example": "mini_chronicle",
+      "id": "rcm_mini",
+      "successful": true,
+      "classes": 7,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "602c7c94c00619cd31cae135627ea1f114ec74b0ac9efa599981fedc24083bfc",
+      "nob_sha256": "db0cb98e6a09312c1d174900d8d0adb39817f07287b959e9a16bc0a21e0bf817",
+      "geometry_included": false,
+      "native_game_test": false
+    },
+    {
+      "example": "showcase",
+      "id": "rcm_showcase",
+      "successful": true,
+      "classes": 9,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "0eea90b8547f1e91c1cd024ed02d8b78d097f30619b8cfcdddc91970240bce45",
+      "nob_sha256": "c5551e2fd3a1230ab0f5df4cfe735879148f207f6b9529892f19bcbb31c802bd",
+      "geometry_included": false,
+      "native_game_test": false
+    },
+    {
+      "example": "dynamic_lab",
+      "id": "rcm_dynamic",
+      "successful": true,
+      "classes": 2,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "271bddf5a1a96174e210ac10cc380aab72db99414cd4b3a2b468fbf8327b3e98",
+      "nob_sha256": "426dec546c6706242d8e84fbe711517ca35005037bc38113e8c51103b2df4807",
+      "geometry_included": false,
+      "native_game_test": false
+    },
+    {
+      "example": "director_acceptance",
+      "id": "rcm_director",
+      "successful": true,
+      "classes": 4,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "081cf420bf0d827dabc4948ad993bad37ed483443e9ec27c05fefcd7732d0772",
+      "nob_sha256": "38b4986ac6bc9713bea9f1d7a3d1e74b344838661c430c41ffa294e3128f07ee",
+      "geometry_included": false,
+      "native_game_test": false
+    },
+    {
+      "example": "strict_acceptance",
+      "id": "rcm_strict",
+      "successful": true,
+      "classes": 4,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "b1def60564779ed816aa3c9e6c6f553ecfdcfc250cfca3e276d7ccfe9d83a2be",
+      "nob_sha256": "9a38845aa52e60fe630b98bc63380c42828259b17bfc03e07c81c9998d87a194",
+      "geometry_included": false,
+      "native_game_test": false
+    },
+    {
+      "example": "completion_lab",
+      "id": "rcm_complete",
+      "successful": true,
+      "classes": 4,
+      "class_versions": [
+        "45.3"
+      ],
+      "source_sha256": "45a56d4799e719eadbeb103b296b2845a6ad416e3559108ae60a7f46b8c9b2c2",
+      "nob_sha256": "3abf7fe638d274e32de61bb1dfd0782984cbd6a1cbf66e0bd6c91a371b6cd0aa",
+      "geometry_included": false,
+      "native_game_test": false
+    }
+  ],
+  "canonical_sources_and_packages_identical": true,
+  "portable": {
+    "successful": true,
+    "executable_sha256": "818510b29e6d04a9569386e9f18e4034a12f8ad79245f11ba70cce503516ce7d",
+    "matching_modules": 112,
+    "bilingual_receipt": "portable_checks.json"
+  },
+  "evidence_sha256": {
+    "build/tests/quality_report.json": "dc51760bd12deeb8a663958eb88fd42089192ddb0b4f1930f2125b5d9417acf7",
+    "build/tests/test_report.json": "88cbda653333b15942762209c70eb683b51c015fa498b66dfa76d21efff3ea0d",
+    "build/tests/tests.log": "9b1ea9a6c27f367dc11551d5625247ed6d6e189d6e3c4a8af7b5f47490626115",
+    "research/authoring_completion/final_routes.json": "ee0e5803fc14e09b545e8dea1e8b72dc7bfc728df1ce44cf557790059e54b2ff",
+    "tools/test.py": "64b5be8a256d73ea6c7c1a1095795a005dc5eb22c4e88a88efea87c75fe12726",
+    "tools/test_workspace.py": "1b663d34bf4dc02254b7a11bffc1583c09775d438a14aa933ec00bc3bf905c4c",
+    "tests/test_runner_isolation.py": "6460a294c24d24b95ae9b8743bb9ae91b3a6998b37e4844564c3abbee65513d0",
+    ".gitignore": "6957deb3d3678a3e699ae282fae83e651e0b0b4f54d98d55a82df76608086bba"
+  },
+  "native_engine_test": false,
+  "manual_checklist": "docs/MANUAL_RUNTIME_CHECKLIST.md",
+  "independent_machine_test": false,
+  "physical_gpu_dpi_test": false
+}

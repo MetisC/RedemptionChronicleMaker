@@ -49,9 +49,14 @@ cache/
 workspace/
 runtime_trace.log
 *.log
+*.log.*
+.rcm_project.lock
 
 # Temporary / backup files
+*.autosave
+*.autosave.*
 *.tmp
+*.tmp.*
 *.temp
 *.bak
 *.old

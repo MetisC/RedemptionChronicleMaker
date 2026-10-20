@@ -193,3 +193,10 @@ fuentes tutorial/mini. El gate completo y el EXE se recogen en delivery.json
 cuando concluyen; un resultado focalizado no sustituye ese gate.
 final_routes.json enlaza las58 capacidades con archivos y tests que realmente
 pasaron en el gate, sin convertir compilación o doubles en aceptación nativa.
+
+La auditoría vigente de main del 20/10/2026 está en MAIN_AUDIT.md y main_audit.json:
+634 pruebas completas, dos regresiones de aislamiento de backups, compilación
+real de los siete ejemplos y new_chronicle, y portable bilingüe del EXE actual.
+Se retiraron del índice 16 temporales conservando sus archivos locales; las
+huellas de los 1.868 archivos de proyectos/datos originales siguen coincidiendo.
+No se cambian versión, releases ni aceptación nativa.

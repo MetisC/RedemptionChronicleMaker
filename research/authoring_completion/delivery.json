@@ -1,8 +1,8 @@
 {
-  "date": "2026-10-20T05:37:21.407799+02:00",
+  "date": "2026-10-20T16:06:50.385695+00:00",
   "version": "1.0.0-rc7",
   "branch": "main",
-  "base_commit": "13a103ac595f40ef24c0687f5b513f90e3e85e6b",
+  "base_commit": "77fae480a1025615471be8f645908bfe3e79ce9e",
   "development_scope": "Closed under FINAL_REQUIREMENTS.md: direct authoring and sufficient functional alternatives; native acceptance remains separate.",
   "source_sha256": {
     "src/rcm/__init__.py": "c9a1e69803f8370e6cac12a589e2dfd431cdc3a0f5e977fc8951893d5dbc6b28",
@@ -120,12 +120,12 @@
     "src/rcm/editor/assets/en.json": "2707be7dc8b9367fd8aa7f222e314964da364234ed225d4c7dc30f70d461260f"
   },
   "quality": {
-    "tests": 617,
+    "tests": 634,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
     "successful": true,
-    "elapsed_seconds": 747.1987189000001,
+    "elapsed_seconds": 748.4262420000014,
     "category": "offline-integration-gui-model-build-format",
     "native_engine_test": false,
     "failures_detail": [],
@@ -289,7 +289,7 @@
     "translations_match": true,
     "bilingual_moved_path": true,
     "root_shortcut": "Redemption Chronicle Maker.lnk",
-    "bilingual_moved_path_executable_sha256": "a0cf01af5d5bbe647b8c252477c5dc42601759152aaafe63aa28a9f6496f34b1"
+    "bilingual_moved_path_executable_sha256": "818510b29e6d04a9569386e9f18e4034a12f8ad79245f11ba70cce503516ce7d"
   },
   "gui_checks": "gui_checks.json",
   "portable_checks": "portable_checks.json",
@@ -317,9 +317,10 @@
     "COMP01/02: timed camera/imported NCP and native-script region callbacks/ownership",
     "COMP04/05/06 and DYN01â€“12: map/actor/difficulty combinations, save/load, travel and reentry; network only if used"
   ],
-  "coverage_claim": "611 automated tests and seven real Codex builds; no gameplay acceptance inferred from doubles or compilation.",
+  "coverage_claim": "634 automated tests, seven refreshed canonical Codex builds and new_chronicle real Codex45.3 compilation. No native gameplay acceptance inferred.",
   "original_maps": "original_maps.json",
   "map_picker_fix": "map_picker_fix.json",
-  "current_verification_scope": "Previous full suite617; current local project deletion verified with18 focused tests plus28 safety tests, Ruff/mypy and112 frozen modules. Full suite not rerun for this editor-only change.",
-  "project_deletion": "project_deletion.json"
+  "current_verification_scope": "Complete634-test gate after test-backup isolation; Ruff/mypy; seven fresh real Codex builds byte-identical; new_chronicle valid and compiled; current112-module EXE and fresh bilingual moved/PATH-restricted probes. Original1868 personal files and16 untracked temporaries preserved by exact hashes.",
+  "project_deletion": "project_deletion.json",
+  "main_audit": "main_audit.json"
 }

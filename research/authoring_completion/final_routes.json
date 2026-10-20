@@ -365,7 +365,7 @@
       "name": "Own illustrated maps and location points",
       "status": "IMPLEMENTADA",
       "route": "maps",
-      "normal_ui": "Chronicle > Maps and locations; Campaign > Addâ€¦",
+      "normal_ui": "Chronicle > Maps and locations; Campaign > Add…",
       "native_contract": "NUI/TGA, NLS, NSC SHOWINMAP8/HAVEN16",
       "manual_check": "COMP04; informational hover, not click travel"
     },
@@ -484,7 +484,7 @@
       "route": "encounters",
       "normal_ui": "Campaign / assistants / ground context menu",
       "native_contract": "Existing RC4 GUID manager",
-      "manual_check": "DYN01â€“12 remain manual; no verified multi-client claim"
+      "manual_check": "DYN01–12 remain manual; no verified multi-client claim"
     },
     {
       "number": 55,
@@ -516,7 +516,7 @@
     {
       "number": 58,
       "name": "Per-key camera FOV",
-      "status": "LIMITACIÃ“N DEMOSTRADA",
+      "status": "LIMITACIÓN DEMOSTRADA",
       "route": "director",
       "normal_ui": "Sequence / shot presets",
       "native_contract": "NCP104 position/Euler only; CodexCamera has no demonstrated lens setter; SetShot last float is lerpTime",
@@ -1229,6 +1229,8 @@
         "test_original_maps.OriginalMaps.test_default_preview_follows_active_level_without_mutating_project",
         "test_original_maps.OriginalMaps.test_game_picker_defaults_to_current_level_cancel_apply_undo_and_save",
         "test_original_maps.OriginalMaps.test_original_background_build_references_tiles_without_copying_original_assets",
+        "test_original_maps.OriginalMaps.test_raveclub_can_choose_each_original_background_through_button_without_qt_errors",
+        "test_original_maps.OriginalMaps.test_foreign_background_and_unselected_level_use_valid_names_and_persist",
         "test_original_maps.OriginalMaps.test_project_export_import_keeps_only_original_map_reference_formats_9_10",
         "test_original_maps.OriginalMaps.test_invalid_map_sources_and_native_ui_names_are_rejected"
       ],
@@ -1878,15 +1880,15 @@
   "counts": {
     "IMPLEMENTADA": 36,
     "IMPLEMENTADA MEDIANTE ALTERNATIVA": 21,
-    "LIMITACIÃ“N DEMOSTRADA": 1
+    "LIMITACIÓN DEMOSTRADA": 1
   },
   "full_gate": {
-    "tests": 617,
+    "tests": 634,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
     "successful": true,
-    "elapsed_seconds": 747.1987189000001,
+    "elapsed_seconds": 748.4262420000014,
     "category": "offline-integration-gui-model-build-format",
     "native_engine_test": false,
     "failures_detail": []
@@ -1984,7 +1986,7 @@
       "native_game_test": false
     }
   ],
-  "tests_log_sha256": "e18f0c7292d2475dc991a9e1395819098e4112940223d75686a365092c13100e",
+  "tests_log_sha256": "6b86c7c1f2cbd6d22254d2069475227bb54a1635eb165c9afc48fd82b2b73ee7",
   "source_sha256": {
     "src/rcm/actor_traits.py": "9e801cc165766a185d0adbbd17f5b31c9113520465b18843148f8eac54afbd6e",
     "src/rcm/app_settings.py": "f718536bf61f77816de2bb32d7e9820c45b52d4bfded032114907449bcff3901",
@@ -2012,11 +2014,11 @@
     "src/rcm/editor/graph_panel.py": "92213d3877d27201644f505a4ea5d4305a25e443a983f6081e3628aa766cb22c",
     "src/rcm/editor/inspector.py": "0d66f696900f740b8bebc93297db8dcc4016a184974c6dd59f23d7f27df5a20c",
     "src/rcm/editor/instance_overrides.py": "2abb4458693900dc0d7e672d2ee3271b97bb1245625eafade2835f30b006d23d",
-    "src/rcm/editor/maps.py": "abca6e4f6bf5e14105454435e7c42bdee806e253aaf6e94a349534e694e3d3dc",
+    "src/rcm/editor/maps.py": "41ddaf7ae2086ede0b5a2f829c37acad668fc984b35bd7416705c88379f4ed98",
     "src/rcm/editor/native_scripts.py": "53a6cb619386d4de0107f0865a696f69ab9a67043ffa149806d6eeca378dedb8",
     "src/rcm/editor/original_objects.py": "cedf0c5194f29b0fe79eafca643124dc81e93c4440f8d60e7a86f505d4eca78d",
     "src/rcm/editor/package_panel.py": "b4a71f4ff1144d37be5419cb6f2231b80309c54425603210fd1dfa11b3ff3428",
-    "src/rcm/editor/product_ui.py": "647dc7ca4f09a758987d833889178696221b5087c538f6ce2f73a02f31eee5ac",
+    "src/rcm/editor/product_ui.py": "00e069a9591e418a537006ce91ce1a34f9528d964422ad8e6a08082af2f4bac3",
     "src/rcm/editor/recipe_wizard.py": "ea20181d69e37acfc33ada6e45c0cd3188891d24caf8fcefc74bd718e7653f32",
     "src/rcm/editor/resource_panel.py": "952bfe55bd4dc298fff72c737bf21008f6f70949110d48bf74cd25fbcb8f0c49",
     "src/rcm/editor/theme.py": "7be7492facf8d5ba1e0356e4f4cff4cf6ac297f080139e8a48783cf0786d629b",
@@ -2048,6 +2050,5 @@
     "src/rcm/wtd.py": "16b5f67593b9f3d64f4dee2fff41481a3d5e5ee10c273ed1e380e673d9d12186"
   },
   "note": "Executed integration routes; no assertion of native rendering, audio, network or gameplay acceptance.",
-  "native_engine_test": false,
-  "supplemental_verification": "map_picker_fix.json"
+  "native_engine_test": false
 }

@@ -23,7 +23,6 @@ if args.coverage:
     sys.path.insert(0,str(ROOT/'cache/devtools'))
     from coverage import Coverage
     coverage=Coverage(branch=True,source=[str(ROOT/'src/rcm')],data_file=str(ROOT/'build/tests/.coverage'));coverage.start()
-suite=unittest.defaultTestLoader.discover(str(ROOT / "tests"),pattern=args.pattern or ('test_safety_unit.py' if args.fast else 'test_*.py'))
 class ProgressBuffer(io.StringIO):
     """Keep the current test visible on disk even if a Qt modal blocks a run."""
     def write(self,value):
@@ -35,7 +34,10 @@ class ProgressBuffer(io.StringIO):
 (ROOT/'build/tests/progress.log').write_text('',encoding='utf8')
 output=ProgressBuffer()
 started=time.perf_counter()
-result=unittest.TextTestRunner(stream=output,verbosity=2).run(suite)
+from test_workspace import isolated_repository_backups
+with isolated_repository_backups(ROOT):
+    suite=unittest.defaultTestLoader.discover(str(ROOT / "tests"),pattern=args.pattern or ('test_safety_unit.py' if args.fast else 'test_*.py'))
+    result=unittest.TextTestRunner(stream=output,verbosity=2).run(suite)
 text=output.getvalue()
 dest=ROOT / "build/tests"
 dest.mkdir(parents=True,exist_ok=True)

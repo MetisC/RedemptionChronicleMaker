@@ -1,12 +1,12 @@
 {
   "successful": true,
-  "executable_sha256": "a0cf01af5d5bbe647b8c252477c5dc42601759152aaafe63aa28a9f6496f34b1",
+  "executable_sha256": "818510b29e6d04a9569386e9f18e4034a12f8ad79245f11ba70cce503516ce7d",
   "checks": [
     {
       "language": "en",
       "phase": "fresh",
       "returncode": 0,
-      "elapsed_seconds": 79.93439239999998,
+      "elapsed_seconds": 79.36015029999908,
       "path_restricted": true,
       "gui_authored_valid": true,
       "fresh_settings": true,
@@ -54,6 +54,20 @@
         "wtd_actor_traits_valid": true,
         "wtd_traits_compile_real_api": true,
         "wtd_traits_single_undo": true
+      },
+      "director": {
+        "example_valid": true,
+        "existing_tab_controls": true,
+        "points_and_modeless": true,
+        "atomic_edit": true,
+        "atomic_undo": true,
+        "line_actions": true,
+        "native_staging_control": true,
+        "help_example": true,
+        "compiled_real_api": true,
+        "ncp_packaged": true,
+        "native_staging_records": true,
+        "temporary_music_compiled": true
       },
       "native_engine_test": false
     },
@@ -61,7 +75,7 @@
       "language": "es",
       "phase": "fresh",
       "returncode": 0,
-      "elapsed_seconds": 82.36167130000013,
+      "elapsed_seconds": 82.29134669999985,
       "path_restricted": true,
       "gui_authored_valid": true,
       "fresh_settings": true,
@@ -109,6 +123,20 @@
         "wtd_actor_traits_valid": true,
         "wtd_traits_compile_real_api": true,
         "wtd_traits_single_undo": true
+      },
+      "director": {
+        "example_valid": true,
+        "existing_tab_controls": true,
+        "points_and_modeless": true,
+        "atomic_edit": true,
+        "atomic_undo": true,
+        "line_actions": true,
+        "native_staging_control": true,
+        "help_example": true,
+        "compiled_real_api": true,
+        "ncp_packaged": true,
+        "native_staging_records": true,
+        "temporary_music_compiled": true
       },
       "native_engine_test": false
     }
