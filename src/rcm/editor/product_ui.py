@@ -5,7 +5,7 @@ import json
 import time
 
 from PySide6.QtCore import Qt,QTimer,QThread,QObject,Signal,QByteArray,QUrl
-from PySide6.QtGui import QAction,QDesktopServices
+from PySide6.QtGui import QAction,QDesktopServices,QKeySequence,QShortcut
 from PySide6.QtWidgets import (QWidget,QVBoxLayout,QHBoxLayout,QLabel,QPushButton,
     QDialog,QFormLayout,QLineEdit,QComboBox,QDialogButtonBox,QFileDialog,QMessageBox,
     QStackedWidget,QListWidget,QCheckBox,QSpinBox,QToolBar,QInputDialog,QMenu)
@@ -62,6 +62,13 @@ class Welcome(QWidget):
             elif name=='welcome_install':b.setFlat(True);layout.addSpacing(10)
             layout.addWidget(b)
         layout.addWidget(QLabel(tr('Proyectos recientes')));self.recents=QListWidget();self.recents.setObjectName('recent_projects');self.recents.itemActivated.connect(self.open_recent);self.recents.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu);self.recents.customContextMenuRequested.connect(self.context);layout.addWidget(self.recents,1)
+        self.delete_button=QPushButton(tr('Eliminar crónica…'));self.delete_button.setObjectName('welcome_delete')
+        self.delete_button.setEnabled(False);self.delete_button.clicked.connect(lambda:self.win.guard(self.delete_recent))
+        self.recents.currentItemChanged.connect(lambda item,previous:self.delete_button.setEnabled(item is not None))
+        row=QHBoxLayout();row.addStretch();row.addWidget(self.delete_button);layout.addLayout(row)
+        self.delete_shortcut=QShortcut(QKeySequence(Qt.Key.Key_Delete),self.recents)
+        self.delete_shortcut.setContext(Qt.ShortcutContext.WidgetShortcut)
+        self.delete_shortcut.activated.connect(lambda:self.win.guard(self.delete_recent))
         self.status=QLabel();self.status.setWordWrap(True);layout.addWidget(self.status);self.refresh()
     def refresh(self):
         self.recents.clear();prefs=getattr(self.win.backend.ws,'app_settings',None)
@@ -73,13 +80,32 @@ class Welcome(QWidget):
         self.status.setText(tr('✓ Redemption configurado · ✓ Catálogos listos')+'\n'+__version__)
     def open_recent(self,item):
         self.win.guard(lambda:self.win.open_path(item.data(Qt.ItemDataRole.UserRole)))
+    def delete_recent(self):
+        item=self.recents.currentItem()
+        if not item:return
+        from ..project_safety import project_deletion_target,delete_project
+        ws=self.win.backend.ws;path=Path(item.data(Qt.ItemDataRole.UserRole))
+        if not path.is_file():
+            if QMessageBox.question(self,tr('Quitar de recientes'),tr('El archivo ya no existe. ¿Quitar esta crónica de recientes?'),
+                    QMessageBox.StandardButton.Yes|QMessageBox.StandardButton.No,QMessageBox.StandardButton.No)==QMessageBox.StandardButton.Yes:
+                ws.app_settings.remove_recent(path);self.refresh()
+            return
+        target=project_deletion_target(ws,path)
+        message=tr('¿Eliminar esta crónica definitivamente?')+'\n\n'+item.text()+'\n'+str(target)+'\n\n'
+        message+=tr('Se eliminarán su carpeta y todos sus archivos. Esta operación no se puede deshacer.') if target.is_dir() else tr('Se eliminarán el archivo del proyecto y su recuperación automática. Los demás archivos se conservarán.')
+        message+='\n'+tr('Las crónicas instaladas en el juego y las partidas guardadas se conservarán.')
+        if QMessageBox.warning(self,tr('Eliminar crónica'),message,QMessageBox.StandardButton.Yes|QMessageBox.StandardButton.No,
+                QMessageBox.StandardButton.No)!=QMessageBox.StandardButton.Yes:return
+        delete_project(ws,path);self.refresh();self.status.setText(tr('Crónica eliminada.'))
     def context(self,pos):
         item=self.recents.itemAt(pos)
         if not item:return
+        self.recents.setCurrentItem(item)
         path=item.data(Qt.ItemDataRole.UserRole);menu=QMenu(self)
         menu.addAction(tr('Abrir'),lambda:self.open_recent(item));menu.addAction(tr('Abrir carpeta'),lambda:open_folder(Path(path).parent))
         prefs=getattr(self.win.backend.ws,'app_settings',None)
         if prefs:menu.addAction(tr('Quitar de recientes'),lambda:(prefs.remove_recent(path),self.refresh()))
+        menu.addSeparator();menu.addAction(tr('Eliminar crónica…'),lambda:self.win.guard(self.delete_recent))
         menu.exec(self.recents.mapToGlobal(pos))
 
 

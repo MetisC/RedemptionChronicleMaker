@@ -1,0 +1,38 @@
+{
+  "tests": 18,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "elapsed_seconds": 9.968931899999916,
+  "suites": [
+    "test_project_deletion",
+    "test_product_close.ProductTests.test_release_translation_keys_cover_editor_calls",
+    "test_product_close.ProductTests.test_recents_dedupe_limit_missing_remove_does_not_delete",
+    "test_product_close.ProductTests.test_second_lock_warns_and_released_lock_is_recoverable",
+    "test_product_close.ProductGuiTests.test_welcome_actions_and_new_project_scenario_are_real_widgets",
+    "test_rc3_product.ProductUI.test_welcome_hierarchy_and_help_names_keep_essential_actions"
+  ],
+  "native_engine_test": false,
+  "date": "2026-10-20T03:47:47.230037+00:00",
+  "version": "1.0.0-rc7",
+  "quality_fast": {
+    "tests": 28,
+    "successful": true,
+    "ruff": true,
+    "mypy": true
+  },
+  "portable": {
+    "executable_sha256": "818510b29e6d04a9569386e9f18e4034a12f8ad79245f11ba70cce503516ce7d",
+    "matching_modules": 112,
+    "successful": true
+  },
+  "source_sha256": {
+    "src/rcm/project_safety.py": "f744630cdc5b54fb7ee2e6d91bf5c7ab08998a36cf2fa6fdc4e81a3bdae398e8",
+    "src/rcm/editor/product_ui.py": "00e069a9591e418a537006ce91ce1a34f9528d964422ad8e6a08082af2f4bac3",
+    "src/rcm/editor/assets/en.json": "2707be7dc8b9367fd8aa7f222e314964da364234ed225d4c7dc30f70d461260f",
+    "tests/test_project_deletion.py": "8080eef284e53d44a779ccf6fe1e3afd7100e42755451de4557858c2f900938c"
+  },
+  "user_projects_modified": false,
+  "game_modified": false,
+  "full_suite_rerun": false
+}

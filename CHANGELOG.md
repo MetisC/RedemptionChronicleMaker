@@ -1,5 +1,7 @@
 # Changes · 1.0.0-rc7
 
+- Welcome screen: confirmed local chronicle deletion via button, context menu and Delete key, with persistent recent-list cleanup and protections for open projects, bundled originals, shared YAML folders and filesystem links. Installed modules and saved games are preserved.
+
 - Editor usability: project-tree search (Ctrl+F), keyboard search/resource/recent-project navigation, recoverable empty lists, safe resource selection refresh, persistent collapsed groups, invalid-edit navigation guards and repaired global flag/ordinary-entity forms. Runtime and tutorial unchanged. See docs/USABILITY_REVIEW.md.
 
 - Opening a chronicle now shows a wait cursor and “Opening chronicle…” before loading, including recent-project double-clicks. Repeated opens are blocked during loading; failures restore the cursor and controls. Feedback is translated into English/Spanish.

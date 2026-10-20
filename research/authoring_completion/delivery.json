@@ -56,7 +56,7 @@
     "src/rcm/editor/original_objects.py": "cedf0c5194f29b0fe79eafca643124dc81e93c4440f8d60e7a86f505d4eca78d",
     "src/rcm/editor/package_panel.py": "b4a71f4ff1144d37be5419cb6f2231b80309c54425603210fd1dfa11b3ff3428",
     "src/rcm/editor/product_probe.py": "220cc1089ac2ac5b6c3c266430f634ab1beaf426e2cf2df95aaa4710d1daa06a",
-    "src/rcm/editor/product_ui.py": "647dc7ca4f09a758987d833889178696221b5087c538f6ce2f73a02f31eee5ac",
+    "src/rcm/editor/product_ui.py": "00e069a9591e418a537006ce91ce1a34f9528d964422ad8e6a08082af2f4bac3",
     "src/rcm/editor/recipe_wizard.py": "ea20181d69e37acfc33ada6e45c0cd3188891d24caf8fcefc74bd718e7653f32",
     "src/rcm/editor/resource_panel.py": "952bfe55bd4dc298fff72c737bf21008f6f70949110d48bf74cd25fbcb8f0c49",
     "src/rcm/editor/script_metadata.py": "40c02c86dd7d7594f4f8d25939b9516bedbe48f7fa29201510b162bec0803525",
@@ -95,7 +95,7 @@
     "src/rcm/product_edit.py": "a17d1650c8d8d4c25fac909cf8b08bb5a8d7aa80c8e944e5159be24d8132ac21",
     "src/rcm/profile_compatibility.py": "6178661ea5c7c6185b1de27baf4cd214b8d094aa4eb9463dd434de0716b73bac",
     "src/rcm/project_resources.py": "bb3b70bd827343d251d4a78a6ad0eb6e5070786a38c8ae51828b044dbb75d666",
-    "src/rcm/project_safety.py": "c693aad0140305e5631ee99a53accc6c323f79d71eca35386175ebef168594fb",
+    "src/rcm/project_safety.py": "f744630cdc5b54fb7ee2e6d91bf5c7ab08998a36cf2fa6fdc4e81a3bdae398e8",
     "src/rcm/recipes.py": "4c09d166051ccf852b27e1ba17b28e94f87c203c5913372fcdc2b3e66b236d70",
     "src/rcm/runtime9.py": "cc9d8a22f5649a219d1d0bfd3242c2e06a46e443897755ecdc7e23955c27231b",
     "src/rcm/safe_edit.py": "cb388097eba853ca276977eadf6e419305947d4eb53be4b46f35a717e79b0387",
@@ -117,7 +117,7 @@
     "src/rcm/versioning.py": "485d7139fedecb40598e1fbe2ec63d2851958f486525e7da7f0375014b0473fe",
     "src/rcm/world_effects.py": "aa070b6ef9cce7a5f4b9ac2001d8d559e0c1c1ed16e3b089bcb5ce98cefb640e",
     "src/rcm/wtd.py": "16b5f67593b9f3d64f4dee2fff41481a3d5e5ee10c273ed1e380e673d9d12186",
-    "src/rcm/editor/assets/en.json": "d2baffe2034eef53acddc92a22ac9aa6fd6a4838ca273678c4fe2533de2db74e"
+    "src/rcm/editor/assets/en.json": "2707be7dc8b9367fd8aa7f222e314964da364234ed225d4c7dc30f70d461260f"
   },
   "quality": {
     "tests": 617,
@@ -284,7 +284,7 @@
   "routes": "final_routes.json",
   "portable": {
     "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
-    "sha256": "7e314f7c8ebac6f9aca9a5ca19024b3693e539f9084555b82311aca1ee0da77e",
+    "sha256": "818510b29e6d04a9569386e9f18e4034a12f8ad79245f11ba70cce503516ce7d",
     "matching_modules": 112,
     "translations_match": true,
     "bilingual_moved_path": true,
@@ -320,5 +320,6 @@
   "coverage_claim": "611 automated tests and seven real Codex builds; no gameplay acceptance inferred from doubles or compilation.",
   "original_maps": "original_maps.json",
   "map_picker_fix": "map_picker_fix.json",
-  "current_verification_scope": "Previous full suite617 plus ten current focused tests; full619 not rerun for this UI-only fallback fix."
+  "current_verification_scope": "Previous full suite617; current local project deletion verified with18 focused tests plus28 safety tests, Ruff/mypy and112 frozen modules. Full suite not rerun for this editor-only change.",
+  "project_deletion": "project_deletion.json"
 }

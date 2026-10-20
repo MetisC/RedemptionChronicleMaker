@@ -1,5 +1,7 @@
 # Using the editor
 
+To delete a chronicle, select it in **Recent projects** and choose **Delete chronicle…**, press Delete or use the context menu. Confirmation shows the exact path: deletion permanently removes the local project and its resource folder. For a standalone YAML, only that file and its autosave are removed. Installed chronicles and saved games are kept. **Remove from recent** only hides the entry and keeps all files. Projects open in another editor and bundled original examples cannot be deleted.
+
 **Welcome:** create, open or return to a recent project. Tutorial and Showcase are working copies: creating a clean copy preserves earlier work.
 
 **3D Space:** place entries, NPCs, objects and trigger areas on the ground. Start focuses the player entry. F focuses selection. Original geometry cannot be modified.

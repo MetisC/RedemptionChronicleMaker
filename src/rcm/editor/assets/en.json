@@ -2143,5 +2143,22 @@
   "Original automático: {0}": "Automatic original: {0}",
   "Sin mapa original asociado": "No associated original map",
   "Imagen original del juego; las localizaciones de esta crónica son editables.": "Original game image; this chronicle’s locations are editable.",
-  "Vista del mapa original asociado al nivel. Usa «Usar mapa del juego…» para crear localizaciones propias.": "Original map associated with this level. Use “Use game map…” to create your own locations."
+  "Vista del mapa original asociado al nivel. Usa «Usar mapa del juego…» para crear localizaciones propias.": "Original map associated with this level. Use “Use game map…” to create your own locations.",
+  "Eliminar crónica…": "Delete chronicle…",
+  "Eliminar crónica": "Delete chronicle",
+  "¿Eliminar esta crónica definitivamente?": "Permanently delete this chronicle?",
+  "Se eliminarán su carpeta y todos sus archivos. Esta operación no se puede deshacer.": "Its folder and all its files will be deleted. This cannot be undone.",
+  "Se eliminarán el archivo del proyecto y su recuperación automática. Los demás archivos se conservarán.": "The project file and its autosave will be deleted. Other files will be kept.",
+  "Las crónicas instaladas en el juego y las partidas guardadas se conservarán.": "Installed game chronicles and saved games will be kept.",
+  "Crónica eliminada.": "Chronicle deleted.",
+  "El archivo ya no existe. ¿Quitar esta crónica de recientes?": "The file no longer exists. Remove this chronicle from recent projects?",
+  "No se encuentra el archivo de la crónica.": "The chronicle file could not be found.",
+  "Esta ubicación contiene archivos del programa y no se puede eliminar desde aquí.": "This location contains application files and cannot be deleted here.",
+  "La crónica debe estar en una carpeta propia para eliminarla.": "The chronicle needs its own folder before it can be deleted.",
+  "Este es un ejemplo original del programa. Crea una copia para editarlo o eliminarlo.": "This is a bundled original example. Create a working copy to edit or delete it.",
+  "Esta carpeta pertenece a otra crónica. No se ha eliminado nada.": "This folder belongs to another chronicle. Nothing was deleted.",
+  "La crónica contiene enlaces. No se ha eliminado nada.": "The chronicle contains filesystem links. Nothing was deleted.",
+  "Esta carpeta contiene un repositorio. No se ha eliminado nada.": "This folder contains a repository. Nothing was deleted.",
+  "La carpeta contiene otros archivos YAML. Separa las crónicas antes de eliminarla.": "The folder contains other YAML files. Separate the chronicles before deleting it.",
+  "Esta crónica está abierta en otro editor. Cierra esa ventana antes de eliminarla.": "This chronicle is open in another editor. Close that window before deleting it."
 }

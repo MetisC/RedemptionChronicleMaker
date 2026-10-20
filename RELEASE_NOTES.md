@@ -1,5 +1,7 @@
 # Redemption Chronicle Maker 1.0.0-rc7
 
+- Delete local chronicles from the welcome screen using the visible button, context menu or Delete key. Confirmation shows the folder/file being removed; installed game modules and saves stay intact. Open projects, bundled originals, filesystem links and folders containing other YAML files are protected. Removing an entry from recent projects remains a separate action.
+
 - Opening a chronicle now shows a wait cursor and “Opening chronicle…” before loading, including recent-project double-clicks. Repeated opens are blocked during loading; failures restore the cursor and controls. Feedback is translated into English/Spanish.
 
 This release builds on RC5 with clickable original scenery, corrected arrival navigation, optional Within The Darkness content import and safer editing workflows. Original level geometry remains unchanged.

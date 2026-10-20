@@ -2,6 +2,8 @@
 
 **Bienvenida:** crea, abre o vuelve a un proyecto reciente. Tutorial y Showcase son copias de trabajo: crear una copia limpia conserva la anterior.
 
+Para borrar una crónica, selecciónala en **Proyectos recientes** y pulsa **Eliminar crónica…**, Supr o la misma opción del menú contextual. La confirmación muestra la ruta exacta: elimina definitivamente el proyecto local y su carpeta de recursos. Si abriste un YAML suelto, sólo elimina ese archivo y su recuperación automática. Las crónicas instaladas y partidas guardadas se conservan. **Quitar de recientes** sólo oculta la entrada, sin borrar archivos. No se pueden eliminar proyectos abiertos en otro editor ni los ejemplos originales del programa.
+
 **Espacio 3D:** coloca entradas, NPC, objetos y zonas en el suelo. Inicio enfoca la entrada del jugador. F enfoca la selección. La geometría original no se modifica.
 
 **Historia / Recursos:** selecciona un actor, conversación, nodo o respuesta y edita Propiedades. Los textos completos aparecen en tooltips. El buscador de recursos filtra tipo, familia y procedencia; puedes guardar favoritos.
