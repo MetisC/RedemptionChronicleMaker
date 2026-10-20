@@ -325,5 +325,6 @@
   "main_audit": "main_audit.json",
   "rc8_release": "rc8_release.json",
   "full_suite_tested_commit": "f15eaa1755b7769455b963b5901fb4fb552ff73a",
-  "full_suite_tested_version": "1.0.0-rc7"
+  "full_suite_tested_version": "1.0.0-rc7",
+  "rc8_publication": "rc8_publication.json"
 }

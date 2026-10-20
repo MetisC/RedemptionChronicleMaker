@@ -1,0 +1,45 @@
+{
+  "id": 418614801,
+  "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/tag/v1.0.0-rc8",
+  "tag": "v1.0.0-rc8",
+  "prerelease": true,
+  "draft": false,
+  "published_at": "2026-10-20T16:21:16Z",
+  "assets": [
+    {
+      "id": 659836793,
+      "name": "RedemptionChronicleMaker-1.0.0-rc8-win64.zip",
+      "state": "uploaded",
+      "size": 93094107,
+      "digest": "sha256:20b46e1971ad2e70cd8477fb13d12254d2699a913b2d6551ef9c4e9ce8534e29",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/download/v1.0.0-rc8/RedemptionChronicleMaker-1.0.0-rc8-win64.zip"
+    },
+    {
+      "id": 659836795,
+      "name": "release_manifest.json",
+      "state": "uploaded",
+      "size": 340,
+      "digest": "sha256:4dfab76001dc50ce93d0b5c23bccde6af390d574a7c5e2bbdf7396e2a40cefba",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/download/v1.0.0-rc8/release_manifest.json"
+    },
+    {
+      "id": 659836794,
+      "name": "SHA256SUMS.txt",
+      "state": "uploaded",
+      "size": 112,
+      "digest": "sha256:53fd522888484e014d52dfe034eac74e117e6b562f5954cfbbefd17d8a58756c",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/download/v1.0.0-rc8/SHA256SUMS.txt"
+    }
+  ],
+  "release_commit": "bb2a46a6c29c4fe99300262bb2dbd13f6bddb0a4",
+  "release_workflow": {
+    "id": 39456410324,
+    "conclusion": "success",
+    "url": "https://github.com/MetisC/RedemptionChronicleMaker/actions/runs/39456410324"
+  },
+  "ci_workflow": {
+    "id": 39456409412,
+    "conclusion": "success",
+    "url": "https://github.com/MetisC/RedemptionChronicleMaker/actions/runs/39456409412"
+  }
+}

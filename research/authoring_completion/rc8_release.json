@@ -60,10 +60,23 @@
   "portable_checks": "research/authoring_completion/portable_checks.json",
   "release_notes_sha256": "6baf3e75ca3f09f29ec5d2e844692710e0845a0cb17a193f70cbf7383ee612bc",
   "publication": {
-    "status": "ready-for-tag-publication",
+    "status": "published",
     "release_url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/tag/v1.0.0-rc8",
     "publisher": "existing tag-triggered GitHub Actions release workflow",
-    "local_and_github_archive_hashes_are_separate": true
+    "local_and_github_archive_hashes_are_separate": true,
+    "receipt": "rc8_publication.json",
+    "release_commit": "bb2a46a6c29c4fe99300262bb2dbd13f6bddb0a4",
+    "release_workflow": {
+      "id": 39456410324,
+      "conclusion": "success",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/actions/runs/39456410324"
+    },
+    "ci_workflow": {
+      "id": 39456409412,
+      "conclusion": "success",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/actions/runs/39456409412"
+    },
+    "public_zip_sha256": "sha256:20b46e1971ad2e70cd8477fb13d12254d2699a913b2d6551ef9c4e9ce8534e29"
   },
   "preserved_personal_files": 1868,
   "native_engine_test": false,
