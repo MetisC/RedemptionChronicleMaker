@@ -11,6 +11,12 @@ copy if you already have an older personal copy, then start a new game via F5.
   copies nothing; OK is one undoable project change. Location flags Actions and
   the Location visible condition control discovery. This is the original kind
   of informational map, with hover names and no click travel.
+  The panel defaults to the active level's original map, including interiors.
+  “Use game map…” selects one of the eight discovered original backgrounds and
+  creates editable chronicle locations, suggesting the current map and original
+  marker position. Generated controls reference game tiles; original images are
+  not copied into the project or exported package. “Automatic original” in scene
+  bindings restores the original association.
 - **Stationary turn/hold:** Sequence → Create/edit own camera path → Time per
   segment. Duplicate a point and change its orientation to turn in place. Keep
   both position and orientation to wait. Set seconds to the next point; native

@@ -176,7 +176,7 @@ def prepare(ws,source,catalogue):
         payload[not_path]=NotFile([x[0] for x in resolved.values()]).encode();templates += [x[1] for x in resolved.values()]
     for k in EXTENSIONS:root.pop(k,None)
     from .chronicle_maps import prepare as prepare_maps
-    map_payload,authored_maps,map_names=prepare_maps(ws,source)
+    map_payload,authored_maps,map_names=prepare_maps(ws,source,catalogue)
     payload.update(map_payload)
     merged={**catalogue,'entries':entries,'templates':templates,'authored_maps':authored_maps}
     if any('native_script' in row or 'native_frames' in row or row.get('native_region') for s in root.get('scenes',[]) for row in s.get('actors',[])+s.get('objects',[])+s.get('triggers',[])):

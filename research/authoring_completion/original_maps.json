@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-20T05:30:05.055239+02:00",
+  "original_maps": [
+    {
+      "file": "mapLondonEast.nui",
+      "name": "London East",
+      "tiles": 12,
+      "points": 5
+    },
+    {
+      "file": "mapLondonWest.nui",
+      "name": "London West",
+      "tiles": 12,
+      "points": 4
+    },
+    {
+      "file": "mapNYCdocks.nui",
+      "name": "NYCdocks",
+      "tiles": 12,
+      "points": 5
+    },
+    {
+      "file": "mapNYCmidtown.nui",
+      "name": "NYCmidtown",
+      "tiles": 12,
+      "points": 6
+    },
+    {
+      "file": "mapPragueNQ.nui",
+      "name": "Prague NQ",
+      "tiles": 12,
+      "points": 4
+    },
+    {
+      "file": "mapPragueOT.nui",
+      "name": "Prague OT",
+      "tiles": 12,
+      "points": 20
+    },
+    {
+      "file": "mapTemesvar.nui",
+      "name": "Temesvar",
+      "tiles": 12,
+      "points": 5
+    },
+    {
+      "file": "mapVienna.nui",
+      "name": "Vienna",
+      "tiles": 12,
+      "points": 14
+    }
+  ],
+  "associated_level_ids": 127,
+  "new_regression_tests": 6,
+  "full_gate": {
+    "tests": 617,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 747.1987189000001,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "native_map_example_class_versions": {
+    "R_native_map_s0_Scene": "45.3",
+    "R_native_map_s0_Passive": "45.3"
+  },
+  "original_images_in_export": false,
+  "automatic_preview_does_not_modify_source": true,
+  "all_seven_existing_example_sources_and_packages_unchanged": true,
+  "native_engine_test": false,
+  "game_installation_modified": false
+}

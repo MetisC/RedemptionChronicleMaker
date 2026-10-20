@@ -151,6 +151,12 @@ El bloque de iluminación examinado en4c44c0 reparte dwords entre grupos de
 vértices; no se escribe como una caja puntual. Véase la evidencia vigente en
 research/authoring_completion/EVIDENCE.md. No se genera geometría ni lightmaps.
 
+Los mapas propios admiten una imagen `source` o un fondo del juego `original`
+(nombre NUI), excluyentes. El segundo modo reutiliza sus doce teselas por
+referencia y genera únicamente controles NUI y etiquetas NLS propios. Las
+asociaciones automáticas nivel/mapa/localización se leen de NSC; no se deducen
+de los nombres de la geometría ni se guardan listas manuales de ciudades.
+
 ## Java, WAV y reproducibilidad
 
 ECJ 3.26.0 se ejecuta con `-1.3 -proc:none`, bootclasspath `cache/toolchain/classes.zip` y classpath de clases originales extraídas. El resultado se comprueba byte a byte en su cabecera: `CA FE BA BE 00 03 00 2D` = 45.3. No se rebajan clases Java modernas parcheando su número de versión.

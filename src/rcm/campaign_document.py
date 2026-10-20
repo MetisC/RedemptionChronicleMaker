@@ -57,7 +57,7 @@ class CampaignDocument(Document):
                     from .camera_paths import authored
                     authored(row.get('points'),row.get('timed',False))
                 if key=='maps':
-                    if not isinstance(row.get('name'),str) or not isinstance(row.get('source'),str) or not isinstance(row.get('points'),list) or len(row['points'])>128:raise ValueError('Map: invalid editable structure')
+                    if not isinstance(row.get('name'),str) or ('source' in row)==('original' in row) or not isinstance(row.get('source',row.get('original')),str) or not isinstance(row.get('points'),list) or len(row['points'])>128:raise ValueError('Map: invalid editable structure')
                     for point in row['points']:
                         if not isinstance(point,dict) or any(not isinstance(point.get(k),str) for k in ('id','name')) or not isinstance(point.get('position'),list) or len(point['position'])!=2 or any(type(v) not in (int,float) or not math.isfinite(v) for v in point['position']):raise ValueError('Map point: invalid editable structure')
         if not isinstance(data.get('scenes'),list) or not data['scenes']:raise ValueError('Campaña sin escenas')

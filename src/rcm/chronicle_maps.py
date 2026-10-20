@@ -21,9 +21,9 @@ def map_image(path):
 
 
 def validate(row,scenes):
-    mapping(row,{'id','name','source','points'},{'id','name','source','points'},'Map')
+    mapping(row,{'id','name','source','original','points'},{'id','name','points'},'Map')
     identifier(row['id'],'map.id',16);text(row['name'],'map.name')
-    if not isinstance(row['source'],str):raise ValueError('Map image source required')
+    if ('source' in row)==('original' in row) or not isinstance(row.get('source',row.get('original')),str):raise ValueError('Choose one map image source: own image or original game map')
     if not isinstance(row['points'],list) or len(row['points'])>128:raise ValueError('Map: maximum 128 locations')
     seen=set()
     for point in row['points']:
@@ -40,18 +40,24 @@ def validate(row,scenes):
             value.encode('cp1252')
 
 
-def prepare(ws,source):
+def prepare(ws,source,resources=None):
     payload={};catalogue={};names={};ids=set()
     if len(source.get('resources',{}).get('maps',[]))>16:raise ValueError('Map authoring budget: maximum 16 maps')
     for row in source.get('resources',{}).get('maps',[]):
         validate(row,source['scenes'])
         if row['id'].casefold() in ids:raise ValueError('Duplicate map ID')
-        ids.add(row['id'].casefold());path=ws.output(row['source'])
-        image=map_image(path)
+        ids.add(row['id'].casefold())
         stem=labels(source['chronicle']['id'],row['id']);lines=['name='+stem,'pos=0,0']
+        if 'original' in row:
+            from .original_maps import read
+            original=read(ws,resources or {},row['original'])
+            for quad in original['quads']:
+                x,y=quad['position'];w,h=quad['size'];lines.append(f'quad mat={quad["material"]} pos={x},{y} size={w},{h}')
+        else:
+            image=map_image(ws.output(row['source']))
         # Original NUI Y axis is bottom-up; TGA maintains ordinary image rows.
         index=0
-        for bottom,height in ((224,256),(96,128),(32,64),(0,32)):
+        for bottom,height in (() if 'original' in row else ((224,256),(96,128),(32,64),(0,32))):
             for left,width in ((0,256),(256,256),(512,128)):
                 index+=1;name=stem+f'_{index:02d}.tga';tile=image.crop((left,480-bottom-height,left+width,480-bottom));out=io.BytesIO();tile.save(out,format='TGA')
                 payload['ui/Materials/'+name]=out.getvalue();lines.append(f'quad mat={name} pos={left},{bottom} size={width},{height}')

@@ -1,8 +1,8 @@
 {
-  "date": "2026-10-20T04:56:30.343738+02:00",
+  "date": "2026-10-20T05:37:21.407799+02:00",
   "version": "1.0.0-rc7",
   "branch": "main",
-  "base_commit": "d4b521ecfa1a9f3045b16de43109278ace9fb695",
+  "base_commit": "13a103ac595f40ef24c0687f5b513f90e3e85e6b",
   "development_scope": "Closed under FINAL_REQUIREMENTS.md: direct authoring and sufficient functional alternatives; native acceptance remains separate.",
   "source_sha256": {
     "src/rcm/__init__.py": "c9a1e69803f8370e6cac12a589e2dfd431cdc3a0f5e977fc8951893d5dbc6b28",
@@ -14,11 +14,11 @@
     "src/rcm/camera_paths.py": "32c73937167f2c47dd6e69391d00bde173f86c2880c81d58fdfaffb52165f3b5",
     "src/rcm/camera_presets.py": "11027a43c21a1faa2d7d06a81be866aba0347c3f99b9b7e0a49557a24e00a3af",
     "src/rcm/campaign.py": "db7c0319089cb9d5e873b4f78e89a03a0f5c94e700f68bb4516c9fa03c9a1c88",
-    "src/rcm/campaign_document.py": "7127107ffcffe2afd10cefe612e289178ead19c38b8a08031a1d4cfe049882c9",
+    "src/rcm/campaign_document.py": "e16991a661fc016df4ddaa12d03039e2f0bcf2ad774e26ef8d1dfad71a6e3c4e",
     "src/rcm/campaign_generator.py": "3004f7cb50c8e989cc53928b30baa53adae3648e7691d5f0ee00757780e7f609",
     "src/rcm/campaign_relations.py": "7967f90bd9a418c727a74873feb9517d51dd9b803f1b82b3d1b473dcc7e2ffca",
     "src/rcm/catalogue.py": "6abfc7140df874150f3862adae0d76fd38b56738ca30406cc4f1f5e4a618e1c1",
-    "src/rcm/chronicle_maps.py": "d0c49febdd6403258087c3f4a47e09c6cb92f21fa915170dce3c09f8c2d613d6",
+    "src/rcm/chronicle_maps.py": "8e9ae22b55da89531cfdb09a40ae9ad359b40c2576801c9b188186f32633026c",
     "src/rcm/cinematics.py": "de715578baaf1f4c23518bb435247231ac74c0f2d5534a2627a82df48ff19d02",
     "src/rcm/classfile_limits.py": "891e3c84eaf3f16b000e7072ea619c0556335efcab5542fc08f3ac36613cfa85",
     "src/rcm/cli.py": "50f5ad2781eb5f6ee4efea0007e71a5a5db1351620c6db4eb7e4960b6f0a85aa",
@@ -51,7 +51,7 @@
     "src/rcm/editor/identity.py": "4e92b8f29f4931a5dcc662569f59549afa2529c494861f28a7845803e4357609",
     "src/rcm/editor/inspector.py": "0d66f696900f740b8bebc93297db8dcc4016a184974c6dd59f23d7f27df5a20c",
     "src/rcm/editor/instance_overrides.py": "2abb4458693900dc0d7e672d2ee3271b97bb1245625eafade2835f30b006d23d",
-    "src/rcm/editor/maps.py": "1287c7f68692ddbb1258913c44cca0647e6b09f7ded2bbecc1ce5f2dae988e25",
+    "src/rcm/editor/maps.py": "41ddaf7ae2086ede0b5a2f829c37acad668fc984b35bd7416705c88379f4ed98",
     "src/rcm/editor/native_scripts.py": "53a6cb619386d4de0107f0865a696f69ab9a67043ffa149806d6eeca378dedb8",
     "src/rcm/editor/original_objects.py": "cedf0c5194f29b0fe79eafca643124dc81e93c4440f8d60e7a86f505d4eca78d",
     "src/rcm/editor/package_panel.py": "b4a71f4ff1144d37be5419cb6f2231b80309c54425603210fd1dfa11b3ff3428",
@@ -84,16 +84,17 @@
     "src/rcm/not_library.py": "0f5ec6242edcf47c81aea87a2ee587e2bbccf4294eeac72107a7d01a9afdd1aa",
     "src/rcm/notes.py": "cdc08f7538cf94054f09a809518d4263a6973ed5a5e6d2a5ee7eb1a8668b5653",
     "src/rcm/notes_runtime.py": "c28b9db21e6375ee8b564f7f01f362e0fd3c796a557ac0f624c628148046670d",
+    "src/rcm/original_maps.py": "996caeb955109dcc181882ba7c07c80928875bf96f59e4c0c24af21026ed84e1",
     "src/rcm/original_objects.py": "fa914a168ee7c37207fb993eba7cbc3aaeda18d4e46ceed568318afd5b4a8039",
     "src/rcm/original_runtime.py": "9b35cacde818594dc15839d23d4d10d07e4a8733cda9ac2e68fbe31277c2fa73",
     "src/rcm/output_validation.py": "1e269e72ca1e210cd9cccb4cd56d3c207dd852ff1391e19a51a4bcf6ef93c19a",
-    "src/rcm/packages.py": "da3b258eb38ca2803b86e3014113566665ea0105235feb46a141dc0729a8f222",
+    "src/rcm/packages.py": "07cca8a4dd984b38018f0e9c9c735894d661289c10d313385b080fa378b5ca9c",
     "src/rcm/paths.py": "562ce3be2a87bad630f12c9f60625f7508dfe6922ad26163c65edb38e7879eab",
     "src/rcm/playtest.py": "8ba0509db8d5f083fb645ca8ef3428a7d6459dae4729e9fcff3c818eabb98852",
     "src/rcm/product.py": "ae7742494e9f6cdf6b663ba76942ca787a6d86141d2908891b07737d8b6b1d59",
     "src/rcm/product_edit.py": "a17d1650c8d8d4c25fac909cf8b08bb5a8d7aa80c8e944e5159be24d8132ac21",
     "src/rcm/profile_compatibility.py": "6178661ea5c7c6185b1de27baf4cd214b8d094aa4eb9463dd434de0716b73bac",
-    "src/rcm/project_resources.py": "fbe6a5dc29652fad8773777beee0c82f39b31276026d45af66f7ec5b287b09d0",
+    "src/rcm/project_resources.py": "bb3b70bd827343d251d4a78a6ad0eb6e5070786a38c8ae51828b044dbb75d666",
     "src/rcm/project_safety.py": "c693aad0140305e5631ee99a53accc6c323f79d71eca35386175ebef168594fb",
     "src/rcm/recipes.py": "4c09d166051ccf852b27e1ba17b28e94f87c203c5913372fcdc2b3e66b236d70",
     "src/rcm/runtime9.py": "cc9d8a22f5649a219d1d0bfd3242c2e06a46e443897755ecdc7e23955c27231b",
@@ -101,7 +102,7 @@
     "src/rcm/scene_profiles.py": "63242a93078f7f970ed837ff5c3203f9c23082a74b7ddd4b06cedfa064247bd0",
     "src/rcm/scene_zones.py": "c854c60b3c8565cfb922e977aa6764aad7e7abaee98f0ee41f3256a6e673614a",
     "src/rcm/script_parameters.py": "5d921eb2dfc956836dc05e69d29a488ccd989c9f47f62e3059867393de4971d8",
-    "src/rcm/service.py": "c6604fc615597e236a9b430e7e801ab89438fa90a9ede9256698372f9e196bc5",
+    "src/rcm/service.py": "7f296d10127c386e92d5fa1a7b69e9e32efd93b4ae8846752ba0f56412eff668",
     "src/rcm/shortcut.py": "dfd120127a82aa0fdd71629ea18e762075b6df76741e100ec4b0107531e6d4b7",
     "src/rcm/spatial/__init__.py": "0b46a35bac1399c36fc41f0087cd21851d0f0d4a76c0ac2c0acd37f7d7791941",
     "src/rcm/spatial/assets.py": "fec8ec8191e1b4078b11c44a43184cf64239200d8bd2d48ad6f050025fc772a0",
@@ -116,15 +117,15 @@
     "src/rcm/versioning.py": "485d7139fedecb40598e1fbe2ec63d2851958f486525e7da7f0375014b0473fe",
     "src/rcm/world_effects.py": "aa070b6ef9cce7a5f4b9ac2001d8d559e0c1c1ed16e3b089bcb5ce98cefb640e",
     "src/rcm/wtd.py": "16b5f67593b9f3d64f4dee2fff41481a3d5e5ee10c273ed1e380e673d9d12186",
-    "src/rcm/editor/assets/en.json": "42ed448bdca80f789c1c2ce4a7cbb50c9b165512bbb4cb372b60d9eab5b32985"
+    "src/rcm/editor/assets/en.json": "d2baffe2034eef53acddc92a22ac9aa6fd6a4838ca273678c4fe2533de2db74e"
   },
   "quality": {
-    "tests": 611,
+    "tests": 617,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
     "successful": true,
-    "elapsed_seconds": 751.9837096000001,
+    "elapsed_seconds": 747.1987189000001,
     "category": "offline-integration-gui-model-build-format",
     "native_engine_test": false,
     "failures_detail": [],
@@ -277,17 +278,18 @@
   "matrix": {
     "IMPLEMENTADA": 36,
     "IMPLEMENTADA MEDIANTE ALTERNATIVA": 21,
-    "LIMITACIÓN DEMOSTRADA": 1,
+    "LIMITACIÃ“N DEMOSTRADA": 1,
     "PENDIENTE": 0
   },
   "routes": "final_routes.json",
   "portable": {
     "executable": "H:\\Repositorios\\RedemptionChronicleMaker\\build\\portable\\RedemptionChronicleMaker\\RedemptionChronicleMaker.exe",
-    "sha256": "fdc23abedfa557e02e1b8edd137b69d9488621b5a6663dbab86d28a97b2a64c9",
-    "matching_modules": 111,
+    "sha256": "7e314f7c8ebac6f9aca9a5ca19024b3693e539f9084555b82311aca1ee0da77e",
+    "matching_modules": 112,
     "translations_match": true,
     "bilingual_moved_path": true,
-    "root_shortcut": "Redemption Chronicle Maker.lnk"
+    "root_shortcut": "Redemption Chronicle Maker.lnk",
+    "bilingual_moved_path_executable_sha256": "a0cf01af5d5bbe647b8c252477c5dc42601759152aaafe63aa28a9f6496f34b1"
   },
   "gui_checks": "gui_checks.json",
   "portable_checks": "portable_checks.json",
@@ -313,7 +315,10 @@
   "prioritized_native_checks": [
     "COMP03: sound/light flag gates, overrides, exit cleanup, EAX provider and active save/load",
     "COMP01/02: timed camera/imported NCP and native-script region callbacks/ownership",
-    "COMP04/05/06 and DYN01–12: map/actor/difficulty combinations, save/load, travel and reentry; network only if used"
+    "COMP04/05/06 and DYN01â€“12: map/actor/difficulty combinations, save/load, travel and reentry; network only if used"
   ],
-  "coverage_claim": "611 automated tests and seven real Codex builds; no gameplay acceptance inferred from doubles or compilation."
+  "coverage_claim": "611 automated tests and seven real Codex builds; no gameplay acceptance inferred from doubles or compilation.",
+  "original_maps": "original_maps.json",
+  "map_picker_fix": "map_picker_fix.json",
+  "current_verification_scope": "Previous full suite617 plus ten current focused tests; full619 not rerun for this UI-only fallback fix."
 }

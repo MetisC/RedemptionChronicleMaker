@@ -70,6 +70,7 @@ def export_project(ws,source,destination):
     root=copy.deepcopy(source);files={};owned=root.get('resources',{})
     for kind in ['scripts','textures','maps']:
         for row in owned.get(kind,[]):
+            if kind=='maps' and 'original' in row:continue
             path=ws.output(row['source']);name='assets/'+kind+'/'+row['id']+path.suffix;archive_path(name)
             if name in files:raise ValueError('Recurso exportado duplicado')
             files[name]=path.read_bytes();row['source']=name
@@ -92,6 +93,7 @@ def import_project(ws,archive,directory):
     if root['chronicle']['id']!=m['id']:raise ValueError('ID de fuente y manifest distintos')
     for kind in ['scripts','textures','maps']:
         for row in root.get('resources',{}).get(kind,[]):
+            if kind=='maps' and 'original' in row:continue
             name=row['source'];archive_path(name)
             if not name.startswith('assets/'+kind+'/') or name not in files:raise ValueError('Recurso propio ausente del proyecto')
             allowed.add(name);row['source']=str((target/name).relative_to(ws.root)).replace('\\','/')

@@ -69,7 +69,9 @@ La evidencia y pruebas están en research/combat_difficulty/EVIDENCE.md.
 
 El editor permite imágenes y localizaciones propias mediante Mapas y localizaciones.
 Los mapas son informativos como en el juego original: nombres al señalar,
-visibilidad/descubrimiento y refugios; no se atribuye viaje al pulsar. La imagen
+visibilidad/descubrimiento y refugios; no se atribuye viaje al pulsar. El panel muestra el mapa original asociado al nivel activo por defecto y permite
+elegir entre los ocho fondos originales para crear localizaciones propias. Se
+guarda sólo la referencia al NUI y se generan controles propios. La imagen
 original sólo se referencia; una imagen nueva pertenece al autor del proyecto.
 
 ## Contenido preservado y ejemplos
@@ -85,7 +87,7 @@ grupos de interés sin reescribir el tutorial. Su observación nativa queda pend
 
 ## Evidencia y verificación
 
-La batería completa vigente pasó 611 pruebas, sin fallos, errores ni omisiones. Ruff y el alcance configurado de mypy pasaron. Los siete ejemplos se compilaron contra Codex real (JVM45.3). El cierre añade 12 regresiones de integración sobre las 599 anteriores: zonas/flags/propiedad, roles dinámicos, Qt, importación NCP independiente y compilación. La revisión de navegación y selección se conserva en USABILITY_REVIEW.md.
+La batería completa vigente pasó 617 pruebas, sin fallos, errores ni omisiones. Ruff y el alcance configurado de mypy pasaron. Los siete ejemplos se compilaron contra Codex real (JVM45.3). El cierre añade 12 regresiones de integración sobre las 599 anteriores: zonas/flags/propiedad, roles dinámicos, Qt, importación NCP independiente y compilación. La revisión de navegación y selección se conserva en USABILITY_REVIEW.md.
 
 Los resultados vigentes de la batería completa se guardan en
 build/tests/quality_report.json y test_report.json; el recibo de esta entrega es

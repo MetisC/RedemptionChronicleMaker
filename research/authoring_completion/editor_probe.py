@@ -10,7 +10,7 @@ os.environ['QT_QPA_PLATFORM']='offscreen'
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--language',choices=['en','es'],required=True);args=parser.parse_args()
-    from PySide6.QtWidgets import QApplication,QDialog,QLabel,QPushButton,QComboBox
+    from PySide6.QtWidgets import QApplication,QDialog,QLabel,QPushButton,QComboBox,QInputDialog
     from PySide6.QtGui import QFont,QFontDatabase
     from rcm.paths import Workspace
     from rcm.app_settings import AppSettings
@@ -31,7 +31,7 @@ def main():
     app.setFont(QFont('Segoe UI',10));app.setPalette(editor_palette(app.palette()))
     output=ROOT/'build/tests/completion_editor'/args.language;output.mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as temporary:
-        ws=Workspace(ROOT);ws.app_settings=AppSettings(Path(temporary)/'settings');save_language(ws,args.language);configure(ws);install_qt(app)
+        ws=Workspace(ROOT,Path(r'H:\GOG\Vampire The Masquerade - Redemption'));ws.app_settings=AppSettings(Path(temporary)/'settings');save_language(ws,args.language);configure(ws);install_qt(app)
         backend=Backend(ws);win=MainWindow(backend);win.doc=Document.load(ws,'chronicles/completion_lab/project.yaml');win.refresh();win.show();app.processEvents();before=win.doc.snapshot();screens=[];untranslated=[]
         def capture(widget,name):
             widget.show();app.processEvents();widget.grab().save(str(output/(name+'.png')));screens.append(name)
@@ -40,6 +40,15 @@ def main():
                 for box in widget.findChildren(QComboBox):texts.extend(box.itemText(i) for i in range(box.count()))
                 untranslated.extend(t for t in texts if t in catalogue() and catalogue()[t]!=t)
         dialog=MapDialog(win);capture(dialog,'maps');dialog.reject()
+        # RaveClub has foobar.nui (no original map). Inspect a temporary scene
+        # view using EastLondon to cover the actual automatic association.
+        from rcm.campaign_document import CampaignDocument
+        saved_doc=win.doc;map_source=saved_doc.snapshot();map_source['scenes'][0]['level']['source']='EastLondon';map_source['scenes'][0].pop('map_location',None)
+        try:
+            win.doc=CampaignDocument(ws,map_source);dialog=MapDialog(win);assert dialog.default_map;capture(dialog,'maps_original_default')
+            with patch.object(QInputDialog,'getItem',side_effect=lambda *args:(args[3][args[4]],True)):dialog.add_original()
+            assert 'original' in dialog.row();capture(dialog,'maps_original_editable');dialog.reject()
+        finally:win.doc=saved_doc
         dialog=EnvironmentDialog(win);capture(dialog,'environment');dialog.reject()
         scene=win.doc.campaign['scenes'][0];native=NativeScriptDialog(win,scene['triggers'][0]);capture(native,'native_region');native.reject()
         saved=win.spatial.viewport

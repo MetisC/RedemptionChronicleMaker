@@ -1,14 +1,22 @@
 {
   "removed": [
-    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\tests\\final_closure_portable",
-    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\tests\\final_closure_portable_current\\Moved App",
-    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\tests\\final_closure_portable_current\\Prueba con espacios \u00f1",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\tests\\original_maps_portable\\Moved App",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\tests\\original_maps_portable\\Prueba con espacios \u00f1",
     "H:\\Repositorios\\RedemptionChronicleMaker\\build\\pyinstaller_work",
     "H:\\Repositorios\\RedemptionChronicleMaker\\build\\pyinstaller_spec",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\native_map_test",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\native_map",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\native_map_s0",
     "H:\\Repositorios\\RedemptionChronicleMaker\\build\\final_test",
-    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\final_test_s0"
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\final_test_s0",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\pyinstaller_work",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\pyinstaller_spec",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\native_map",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\native_map_s0",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\complete_test",
+    "H:\\Repositorios\\RedemptionChronicleMaker\\build\\complete_test_s0"
   ],
-  "user_projects_modified": false,
   "game_installation_modified": false,
+  "user_projects_modified": false,
   "generated_test_files_restored_from_main": 8
 }

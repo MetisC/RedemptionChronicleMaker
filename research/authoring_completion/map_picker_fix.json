@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-20T05:37:21.407799+02:00",
+  "cause": "The fallback for an unassociated or different background called nonexistent Backend.level_name.",
+  "fix": "Use Backend.level_label for known levels, authored level name when present, or scene ID for an unselected level.",
+  "focused_tests": {
+    "command": "python -m unittest -v test_original_maps test_authoring_completion.Completion.test_map_editor_cancel_apply_drag_delete_and_undo test_product_close.ProductTests.test_release_translation_keys_cover_editor_calls",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "successful": true,
+    "elapsed_seconds": 20.463
+  },
+  "cases": [
+    "RaveClub: each of the eight backgrounds through the Qt button with exception-hook assertions",
+    "EastLondon: different background",
+    "Unselected level: scene-name fallback",
+    "Cancel, save/reopen, undo/redo, formats9/10, real Codex build and export without original image assets"
+  ],
+  "prior_full_suite": {
+    "tests": 617,
+    "successful": true,
+    "current_fix_included": false
+  },
+  "ruff_passed": true,
+  "configured_mypy_passed": true,
+  "source_sha256": "41ddaf7ae2086ede0b5a2f829c37acad668fc984b35bd7416705c88379f4ed98",
+  "executable_sha256": "7e314f7c8ebac6f9aca9a5ca19024b3693e539f9084555b82311aca1ee0da77e",
+  "frozen_modules_match": 112,
+  "native_engine_test": false,
+  "user_projects_modified": false,
+  "game_installation_modified": false
+}

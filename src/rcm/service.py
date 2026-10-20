@@ -341,6 +341,7 @@ def build_inputs_fingerprint(ws,source):
     files={}
     for kind in ['scripts','textures','maps']:
         for row in (data.get('resources') or {}).get(kind,[]):
+            if kind=='maps' and 'original' in row:continue
             path=ws.output(row['source']);files[row['source']]=hashlib.sha256(path.read_bytes()).hexdigest()
     profiles={}
     level_file=ws.output('cache/levels.json');hint_file=ws.output('cache/scene_hints.json')

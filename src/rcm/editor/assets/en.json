@@ -2138,5 +2138,10 @@
   "Contenido importado: {0} plantillas y {1} recursos.": "Imported content: {0} templates and {1} resources.",
   "Siempre activa": "Always active",
   "Activación por flag": "Flag activation",
-  "Cuando el flag está activado": "When the flag is set"
+  "Cuando el flag está activado": "When the flag is set",
+  "Usar mapa del juego…": "Use game map…",
+  "Original automático: {0}": "Automatic original: {0}",
+  "Sin mapa original asociado": "No associated original map",
+  "Imagen original del juego; las localizaciones de esta crónica son editables.": "Original game image; this chronicle’s locations are editable.",
+  "Vista del mapa original asociado al nivel. Usa «Usar mapa del juego…» para crear localizaciones propias.": "Original map associated with this level. Use “Use game map…” to create your own locations."
 }

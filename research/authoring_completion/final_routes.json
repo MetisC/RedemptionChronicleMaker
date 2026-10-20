@@ -365,7 +365,7 @@
       "name": "Own illustrated maps and location points",
       "status": "IMPLEMENTADA",
       "route": "maps",
-      "normal_ui": "Chronicle > Maps and locations; Campaign > Add…",
+      "normal_ui": "Chronicle > Maps and locations; Campaign > Addâ€¦",
       "native_contract": "NUI/TGA, NLS, NSC SHOWINMAP8/HAVEN16",
       "manual_check": "COMP04; informational hover, not click travel"
     },
@@ -484,7 +484,7 @@
       "route": "encounters",
       "normal_ui": "Campaign / assistants / ground context menu",
       "native_contract": "Existing RC4 GUID manager",
-      "manual_check": "DYN01–12 remain manual; no verified multi-client claim"
+      "manual_check": "DYN01â€“12 remain manual; no verified multi-client claim"
     },
     {
       "number": 55,
@@ -516,7 +516,7 @@
     {
       "number": 58,
       "name": "Per-key camera FOV",
-      "status": "LIMITACIÓN DEMOSTRADA",
+      "status": "LIMITACIÃ“N DEMOSTRADA",
       "route": "director",
       "normal_ui": "Sequence / shot presets",
       "native_contract": "NCP104 position/Euler only; CodexCamera has no demonstrated lens setter; SetShot last float is lerpTime",
@@ -1194,13 +1194,15 @@
         "src/rcm/editor/campaign_panel.py"
       ],
       "implementation": [
+        "src/rcm/original_maps.py",
         "src/rcm/chronicle_maps.py",
         "src/rcm/campaign.py",
         "src/rcm/campaign_generator.py",
         "src/rcm/campaign_document.py"
       ],
       "test_modules": [
-        "test_authoring_completion"
+        "test_authoring_completion",
+        "test_original_maps"
       ],
       "passed_tests": [
         "test_authoring_completion.Completion.test_timed_native_polynomials_rotate_hold_and_keep_legacy_rejection",
@@ -1222,7 +1224,13 @@
         "test_authoring_completion.Completion.test_new_fields_reject_corrupt_editable_shapes_and_region_conflicts",
         "test_authoring_completion.Completion.test_oversized_map_header_fails_in_backend_and_import_without_copying",
         "test_authoring_completion.Completion.test_native_ownership_rejects_nested_conversation_creation",
-        "test_authoring_completion.Completion.test_lights_wait_for_missing_actor_and_clear_departed_dynamic_target"
+        "test_authoring_completion.Completion.test_lights_wait_for_missing_actor_and_clear_departed_dynamic_target",
+        "test_original_maps.OriginalMaps.test_catalogue_uses_actual_nsc_associations_and_renders_all_eight_images",
+        "test_original_maps.OriginalMaps.test_default_preview_follows_active_level_without_mutating_project",
+        "test_original_maps.OriginalMaps.test_game_picker_defaults_to_current_level_cancel_apply_undo_and_save",
+        "test_original_maps.OriginalMaps.test_original_background_build_references_tiles_without_copying_original_assets",
+        "test_original_maps.OriginalMaps.test_project_export_import_keeps_only_original_map_reference_formats_9_10",
+        "test_original_maps.OriginalMaps.test_invalid_map_sources_and_native_ui_names_are_rejected"
       ],
       "save_model": "src/rcm/campaign_document.py",
       "real_compilation": "src/rcm/service.py",
@@ -1870,15 +1878,15 @@
   "counts": {
     "IMPLEMENTADA": 36,
     "IMPLEMENTADA MEDIANTE ALTERNATIVA": 21,
-    "LIMITACIÓN DEMOSTRADA": 1
+    "LIMITACIÃ“N DEMOSTRADA": 1
   },
   "full_gate": {
-    "tests": 611,
+    "tests": 617,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
     "successful": true,
-    "elapsed_seconds": 751.9837096000001,
+    "elapsed_seconds": 747.1987189000001,
     "category": "offline-integration-gui-model-build-format",
     "native_engine_test": false,
     "failures_detail": []
@@ -1976,17 +1984,17 @@
       "native_game_test": false
     }
   ],
-  "tests_log_sha256": "0dd4b6221227555c10dd961607cd1f2243e78f377ea4d0364d3d872934e43894",
+  "tests_log_sha256": "e18f0c7292d2475dc991a9e1395819098e4112940223d75686a365092c13100e",
   "source_sha256": {
     "src/rcm/actor_traits.py": "9e801cc165766a185d0adbbd17f5b31c9113520465b18843148f8eac54afbd6e",
     "src/rcm/app_settings.py": "f718536bf61f77816de2bb32d7e9820c45b52d4bfded032114907449bcff3901",
     "src/rcm/audio.py": "c7b900858b806a2b14d0939b1972328cdf1c996e2b258b80ae27d3605c22d109",
     "src/rcm/camera_paths.py": "32c73937167f2c47dd6e69391d00bde173f86c2880c81d58fdfaffb52165f3b5",
     "src/rcm/campaign.py": "db7c0319089cb9d5e873b4f78e89a03a0f5c94e700f68bb4516c9fa03c9a1c88",
-    "src/rcm/campaign_document.py": "7127107ffcffe2afd10cefe612e289178ead19c38b8a08031a1d4cfe049882c9",
+    "src/rcm/campaign_document.py": "e16991a661fc016df4ddaa12d03039e2f0bcf2ad774e26ef8d1dfad71a6e3c4e",
     "src/rcm/campaign_generator.py": "3004f7cb50c8e989cc53928b30baa53adae3648e7691d5f0ee00757780e7f609",
     "src/rcm/catalogue.py": "6abfc7140df874150f3862adae0d76fd38b56738ca30406cc4f1f5e4a618e1c1",
-    "src/rcm/chronicle_maps.py": "d0c49febdd6403258087c3f4a47e09c6cb92f21fa915170dce3c09f8c2d613d6",
+    "src/rcm/chronicle_maps.py": "8e9ae22b55da89531cfdb09a40ae9ad359b40c2576801c9b188186f32633026c",
     "src/rcm/cinematics.py": "de715578baaf1f4c23518bb435247231ac74c0f2d5534a2627a82df48ff19d02",
     "src/rcm/click_interactions.py": "2d529cf35d67a56d82ff66092acbdd640839d94cc38d3b818a30f5c51b32fc29",
     "src/rcm/combat_difficulty.py": "7687c309c97bd02a1c49887f5d2edc2d9ac833aed53a6ac7c553a5d2298207e6",
@@ -2004,7 +2012,7 @@
     "src/rcm/editor/graph_panel.py": "92213d3877d27201644f505a4ea5d4305a25e443a983f6081e3628aa766cb22c",
     "src/rcm/editor/inspector.py": "0d66f696900f740b8bebc93297db8dcc4016a184974c6dd59f23d7f27df5a20c",
     "src/rcm/editor/instance_overrides.py": "2abb4458693900dc0d7e672d2ee3271b97bb1245625eafade2835f30b006d23d",
-    "src/rcm/editor/maps.py": "1287c7f68692ddbb1258913c44cca0647e6b09f7ded2bbecc1ce5f2dae988e25",
+    "src/rcm/editor/maps.py": "abca6e4f6bf5e14105454435e7c42bdee806e253aaf6e94a349534e694e3d3dc",
     "src/rcm/editor/native_scripts.py": "53a6cb619386d4de0107f0865a696f69ab9a67043ffa149806d6eeca378dedb8",
     "src/rcm/editor/original_objects.py": "cedf0c5194f29b0fe79eafca643124dc81e93c4440f8d60e7a86f505d4eca78d",
     "src/rcm/editor/package_panel.py": "b4a71f4ff1144d37be5419cb6f2231b80309c54425603210fd1dfa11b3ff3428",
@@ -2026,18 +2034,20 @@
     "src/rcm/native_regions.py": "2091bf3a83e119aa84899d4f4721f26802fc82aeb34df02add39a90e33a1d267",
     "src/rcm/native_scripts.py": "fcc461153222a3f938fe5c2bc5b378b7558d8bc40cc815be038d7840aa6cc771",
     "src/rcm/notes.py": "cdc08f7538cf94054f09a809518d4263a6973ed5a5e6d2a5ee7eb1a8668b5653",
+    "src/rcm/original_maps.py": "996caeb955109dcc181882ba7c07c80928875bf96f59e4c0c24af21026ed84e1",
     "src/rcm/original_objects.py": "fa914a168ee7c37207fb993eba7cbc3aaeda18d4e46ceed568318afd5b4a8039",
-    "src/rcm/packages.py": "da3b258eb38ca2803b86e3014113566665ea0105235feb46a141dc0729a8f222",
+    "src/rcm/packages.py": "07cca8a4dd984b38018f0e9c9c735894d661289c10d313385b080fa378b5ca9c",
     "src/rcm/profile_compatibility.py": "6178661ea5c7c6185b1de27baf4cd214b8d094aa4eb9463dd434de0716b73bac",
-    "src/rcm/project_resources.py": "fbe6a5dc29652fad8773777beee0c82f39b31276026d45af66f7ec5b287b09d0",
+    "src/rcm/project_resources.py": "bb3b70bd827343d251d4a78a6ad0eb6e5070786a38c8ae51828b044dbb75d666",
     "src/rcm/safe_edit.py": "cb388097eba853ca276977eadf6e419305947d4eb53be4b46f35a717e79b0387",
     "src/rcm/scene_profiles.py": "63242a93078f7f970ed837ff5c3203f9c23082a74b7ddd4b06cedfa064247bd0",
     "src/rcm/scene_zones.py": "c854c60b3c8565cfb922e977aa6764aad7e7abaee98f0ee41f3256a6e673614a",
     "src/rcm/script_parameters.py": "5d921eb2dfc956836dc05e69d29a488ccd989c9f47f62e3059867393de4971d8",
-    "src/rcm/service.py": "c6604fc615597e236a9b430e7e801ab89438fa90a9ede9256698372f9e196bc5",
+    "src/rcm/service.py": "7f296d10127c386e92d5fa1a7b69e9e32efd93b4ae8846752ba0f56412eff668",
     "src/rcm/world_effects.py": "aa070b6ef9cce7a5f4b9ac2001d8d559e0c1c1ed16e3b089bcb5ce98cefb640e",
     "src/rcm/wtd.py": "16b5f67593b9f3d64f4dee2fff41481a3d5e5ee10c273ed1e380e673d9d12186"
   },
   "note": "Executed integration routes; no assertion of native rendering, audio, network or gameplay acceptance.",
-  "native_engine_test": false
+  "native_engine_test": false,
+  "supplemental_verification": "map_picker_fix.json"
 }

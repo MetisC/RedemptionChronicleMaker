@@ -14,6 +14,13 @@ abre **Ayuda → Laboratorio de autoría**. Solicita una copia nueva si ya tení
    Eventos → flags de localización permite descubrir/ocultar y marcar refugios;
    la condición de localización visible usa la API nativa. Es un mapa informativo,
    sin viaje al pulsar. Se generan NUI,12teselas TGA, etiquetas NLS y enlace NSC.
+   El panel muestra por defecto el mapa original asociado al nivel de la escena
+   activa, también en interiores. «Usar mapa del juego…» permite elegir entre
+   los ocho mapas originales detectados y crear localizaciones propias; propone
+   el mapa actual y sitúa su primer punto en la localización original. En este
+   modo se generan controles y etiquetas propios que referencian las teselas del
+   juego: no se copian sus imágenes al proyecto ni al paquete exportado. Volver
+   a «Original automático» en la asignación de escena restaura la asociación.
 2. **Giro y espera de cámara:** selecciona una secuencia → Crear/editar travelling
    propio → Tiempo por tramo. Duplica un punto sin desplazarlo y cambia Yaw/Pitch
    para girar; dos posiciones/orientaciones iguales son una espera. Edita los

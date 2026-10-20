@@ -14,3 +14,13 @@ asignación de escenas, undo/referencias y empaquetado. Genera NUI/TGA/NLS/NSC.
 La visibilidad usa las APIs Get/Set/ClearLocationFlags. No se ofrece viaje por
 clic en el mapa. Las pruebas offline de formato/UI/paquete no certifican el
 render nativo; COMP04 permanece pendiente del usuario.
+
+El catálogo original ahora se obtiene de las referencias NSC y los NUI/TGA reales
+mediante original_maps.py. El editor muestra la asociación del nivel activo por
+defecto y permite elegir cualquier fondo original para un layout propio. Los
+proyectos guardan `original: mapLondonEast.nui` en lugar de `source` de imagen;
+ambos son excluyentes. Se genera NUI/NLS propio referenciando las teselas nativas,
+sin redistribuir imágenes del juego. Exportar/importar conserva sólo esa referencia.
+Las referencias MP `foobar.nui` no prueban una asociación de mapa: por ejemplo,
+P1_INN4.nil se reutiliza en MossyHearth (Temesvar) e Inn4Stags (Praga). No se
+deduce una ciudad a partir del NIL; el autor puede elegir el fondo explícitamente.

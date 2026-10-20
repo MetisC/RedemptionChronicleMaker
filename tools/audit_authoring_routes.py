@@ -28,7 +28,7 @@ GROUPS={
     'click':group('click_actions original_objects viewport','click_interactions original_objects campaign campaign_generator','click_interactions original_picking phase9_gui'),
     'libraries':group('content_libraries browser','content_libraries project_resources service packages','content_libraries final_closure'),
     'editor':group('window theme product_ui','app_settings campaign_document safe_edit','usability editor_fixes delete_flow round0'),
-    'maps':group('maps campaign_panel','chronicle_maps campaign campaign_generator campaign_document','authoring_completion'),
+    'maps':group('maps campaign_panel','original_maps chronicle_maps campaign campaign_generator campaign_document','authoring_completion original_maps'),
     'dynamic_targets':group('inspector zones click_actions','dynamic_targets campaign campaign_generator dynamic_runtime','authoring_completion final_closure'),
     'inventory':group('inspector click_actions','campaign campaign_generator profile_compatibility','campaign round0 profile_startup lan_startup'),
     'traits':group('wtd inspector click_actions','actor_traits wtd campaign campaign_generator','wtd authoring_completion'),

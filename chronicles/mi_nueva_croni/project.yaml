@@ -1,0 +1,29 @@
+schema: 2
+project_format: 10
+chronicle:
+  id: mi_nueva_croni
+  name: Mi nueva crónica 2
+  description: ''
+state:
+  flags: {}
+entry: scene1
+scenes:
+- id: scene1
+  level:
+    source: RaveClub
+  actors: []
+  objects: []
+  conversations: []
+  events: []
+  triggers: []
+  encounters: []
+  sequences: []
+  entries: []
+  waypoints: []
+  paths: []
+quests: []
+resources: {}
+metadata:
+  version: 0.1.0
+build_options:
+  debug: true
