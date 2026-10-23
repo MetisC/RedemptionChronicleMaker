@@ -17,3 +17,5 @@
 Viewport: right mouse + WASD/QE flies; left drag moves and turns; left+right pans; Alt+left orbits; middle pans. Spatial shortcuts require viewport focus. Geometry remains read-only.
 
 Enter opens a recent project or a chronicle search result. In resource search, Enter moves to the results; Enter on a selected resource chooses it. Search fields have a clear button; resource filters can be reset together.
+
+Rotation: 0° is free; another value enables angular snapping. Each drag has one undo step. In the actor/object picker, arrows turn the preview without placing anything. The context menu for an authored actor/object includes + Conversation.

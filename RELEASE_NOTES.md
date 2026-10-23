@@ -1,26 +1,20 @@
-# Redemption Chronicle Maker 1.0.0-rc8
+# Redemption Chronicle Maker 1.0.0-rc9
 
-RC8 packages the audited main branch with the latest authoring, map and project-management fixes. This is a **pre-release**, not final 1.0. Projects remain outside the program folder; formats 9 and 10 remain supported.
+This release improves everyday actor and object authoring in the desktop editor.
 
-## Authoring and maps
-
-- Choose original game map illustrations, with automatic defaults for levels that have an associated map. Use a different original illustration when needed, or create a custom map with editable names, markers, visibility and refuges. Fixed the game-map picker failing when a selected map had no associated level.
-- The existing editor panels cover scene layers, actors/objects, clickable scenery, conversations, notes, quests, flags, inventories, dynamic encounters, cinematics, audio and environment controls. Original level geometry stays immutable.
-- Author native script parameters and box regions, instance overrides, interest groups, temporary music, party conversation staging, camera paths and timed camera turns through the existing tools. Sound/light activation zones and narrative actor actions provide the documented functional alternatives; private campaign scripts and arbitrary external binary code are not universally supported.
-- Optional local content libraries and Within The Darkness imports retain their existing ownership and dependency checks. Original game and mod assets are not included in the application ZIP.
-
-## Project management and safety
-
-- Delete a local chronicle from the welcome screen using the button, context menu or Delete key. Confirmation shows its exact location. Installed game modules and saved games are preserved. Removing an entry from recent projects remains a separate action.
-- Opening a chronicle shows loading feedback and blocks repeated activation until loading finishes. Failed opens restore the cursor and controls.
-- Project search, resource filtering, keyboard navigation, readable controls and persistent English/Spanish selection remain available.
-- Automated tests now isolate shared-fixture rolling backups in a disposable directory. Two regressions verify retention and preservation of existing local recovery files. Autosaves, backup files, locks and rotated logs have preventive Git exclusions; existing local recovery data is preserved.
+- **Choose once:** an actor/object selected while the level is loading stays queued. When loading finishes, click the floor to place it. Escape or changing project/scene cancels the pending placement.
+- **Preview before placing:** the resource picker displays the actual NOD model with its original textures. Turn the preview with the arrow buttons. Loading runs in the background; browsing does not modify the chronicle. This is a static model preview, not an animation preview.
+- **Smooth rotation:** free rotation is the default. Set an angle step to enable snapping. Dragging no longer serializes the entire chronicle on every mouse move; each drag has one undo step.
+- **Contextual conversations:** right-click an authored actor or object in the 3D view or project tree and choose **+ Conversation**. The actor is bound directly. For objects, choose the character who speaks when clicked. Ordinary actions are preserved; replacing a note, cutscene or journey requires confirmation and supports undo.
 
 ## Verification and compatibility
 
-- The immediately preceding audited main completed **634 tests with zero failures, errors or skips**, plus Ruff and the configured mypy checks. Seven canonical examples recompiled against the real Codex API with Java class format **45.3**, retaining identical source/package hashes. A separate authored project also validated and compiled without editing its YAML.
-- RC8 packaging is checked separately for version consistency, archive hashes, frozen-source matching and bilingual portable startup. GitHub Actions builds the published Windows archive from the exact release tag and attaches its manifest and SHA-256 checksum.
-- The accepted format-9 tutorial and mini chronicle are preserved. Dynamic encounters remain opt-in format 10. Startup inventory definitions remain available before LAN character restoration.
-- **Manual runtime checks remain required** for the applicable native save/load, re-entry, cameras/audio, encounters and multiplayer cases. Portable checks on the build machine do not certify a separate PC, physical DPI or GPU behaviour. See the included manual checklist.
+The complete offline gate passed **648 tests, with zero failures, errors or skips**, plus Ruff and the configured mypy checks.
 
-Requires your own complete installation of Vampire: The Masquerade - Redemption. Normal authoring does not require any original authoring tool.
+A final focused pass also passed **15 actor-authoring/preview regressions**, including cache invalidation when project resources change.
+
+Automated editor regressions cover first acceptance, delayed placement, cancellation, previews, original textures/UVs, continuous rotation, undo and dialogue bindings. Complete gate results and portable verification are recorded with the release evidence in the repository.
+
+The accepted format-9 tutorial and mini chronicle are preserved. Dynamic encounters remain opt-in format 10. Original game/mod assets are not included in the application ZIP. Original geometry remains immutable; no legacy authoring tools are required.
+
+This remains a release candidate. Native save/load, re-entry, encounters, multiplayer and the other cases in the manual checklist still require user acceptance. Offline tests and portable startup checks do not certify gameplay or another PC/GPU/DPI configuration.

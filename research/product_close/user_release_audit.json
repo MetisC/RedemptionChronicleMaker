@@ -1,27 +1,27 @@
 {
-  "version": "1.0.0-rc8",
+  "version": "1.0.0-rc9",
   "successful": true,
   "errors": [],
   "files": {
     "CHANGELOG.md": {
-      "size": 1318,
-      "sha256": "91fc78b00b87abee7ada630eb758410fb0da4554cb93a0d2a72d50460c3f096f"
+      "size": 1227,
+      "sha256": "ac497a8a1f682be96e4bad936d9cba66091fb3596f6baf045863b5fa13de31ba"
     },
     "README.txt": {
       "size": 532,
-      "sha256": "4d24356e5475eab143c22ac9cd2abbcbc71ffa34ef595c6b557cf0619cc8ebe2"
+      "sha256": "023c775fc7708946a91acdeb525dfa59faef9972e328e38964aec4505595fa62"
     },
     "RedemptionChronicleMaker.exe": {
-      "size": 4526844,
-      "sha256": "29c38dd9d4c756758006dc965ab5a36f3d655ec927c40d73c2fa1f47a45cf694"
+      "size": 4693224,
+      "sha256": "deeea60e46b9817d2ec7e450b1f57754a159cc744a1edc2298bbe3d830977a0d"
     },
     "RELEASE_NOTES.md": {
-      "size": 3586,
-      "sha256": "6baf3e75ca3f09f29ec5d2e844692710e0845a0cb17a193f70cbf7383ee612bc"
+      "size": 2241,
+      "sha256": "94897c4e8ff4a47099c8319d26d8ce413edee90afbfd031e147a1fbc9a75bd20"
     },
     "VERSION": {
       "size": 10,
-      "sha256": "6b22ff7b6ae97cf35eb4cc2919c2d34463c0fa12c6e977ea907e9b689278c52f"
+      "sha256": "81c6f23c65dae4e6cb2018e36cf30f75b321e1e0a1824cd70ebd6282d4e2741e"
     },
     "docs/ADVANCED_LIMITATIONS.en.md": {
       "size": 2914,
@@ -89,19 +89,19 @@
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.en.md": {
       "size": 19607,
-      "sha256": "6efdb3dd87ba368ec89756db10acf035b842bf82f5f347e46e7f62da564658b8"
+      "sha256": "108a5d82d43c444393a2d924d5847ce1e71851581b076c565e8e14d2f0b35157"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.md": {
       "size": 20920,
-      "sha256": "52c9a729f128fa4a2f53abd8b3fffc99b187a2ceb7109f72e9b050d9822a0e5f"
+      "sha256": "651bd37a7f2e06c0568fa2eb2fa97ba0a50145d3750e895abe4272b30527ddd8"
     },
     "docs/SHORTCUTS.en.md": {
-      "size": 845,
-      "sha256": "8c0475605675ab4141b90e97427172c104cc7753e007454db692d0fc2e77f74e"
+      "size": 1089,
+      "sha256": "fcd404458209361afd28df17c1d5c2bd8d0731ea03941d3433c4d8342f068e67"
     },
     "docs/SHORTCUTS.md": {
-      "size": 994,
-      "sha256": "bcc0781098017895b5a6a71ab84c904591627103ae3e512dc35e7dc1ca5ce509"
+      "size": 1267,
+      "sha256": "1eb95352046f0bdce46b2561e59d043a1fed30290de419d81ee252fe8a0a13b0"
     },
     "docs/SHOWCASE.en.md": {
       "size": 1259,
@@ -673,7 +673,7 @@
     },
     "_internal/base_library.zip": {
       "size": 880490,
-      "sha256": "e5780d55a0d3f492b0e33910fac7e7b1df8d55ce7fe00fafe5075757e448e155"
+      "sha256": "a89811ec623f2d911c79875d95a1df2a719c90129aad85804c3ae4575fef82af"
     },
     "_internal/libcrypto-1_1.dll": {
       "size": 3439512,
@@ -1463,6 +1463,10 @@
       "size": 99,
       "sha256": "24e226954491689549a1a1990db3b8cb78888008d8163b2fd2442b772b6d1b5f"
     },
+    "_internal/pywin32_system32/pywintypes310.dll": {
+      "size": 135168,
+      "sha256": "d14a89c503599be257b733cafdd66ff8d0e77bc657360dee921d40374820c415"
+    },
     "_internal/rcm/editor/assets/chronicle.ico": {
       "size": 27918,
       "sha256": "93d1832606c6e50d9cb0906c6195b8571dcc8fbf98aa1c06188264b051960d46"
@@ -1476,8 +1480,8 @@
       "sha256": "64d133dc8fff64da79b3671e02c6bdda3f83944c4984e196a1a748a2497409ef"
     },
     "_internal/rcm/editor/assets/en.json": {
-      "size": 163509,
-      "sha256": "2707be7dc8b9367fd8aa7f222e314964da364234ed225d4c7dc30f70d461260f"
+      "size": 164977,
+      "sha256": "78b478240a41852004e78e2e0d3189ec47f48d793fe57861a473a13320eca5f1"
     },
     "_internal/rcm/editor/assets/wtd_policy.json": {
       "size": 19452,
@@ -1494,6 +1498,18 @@
     "_internal/translations/qtbase_es.qm": {
       "size": 165170,
       "sha256": "4ffda56ba3bb5414ab0482d1dde64a6f226e3488f6b7f3f11a150e01f53fa4c8"
+    },
+    "_internal/win32/win32api.pyd": {
+      "size": 137728,
+      "sha256": "24040005bb9c9407f539aaa085e1495d047788ed1e6c51d163ebe0277e582563"
+    },
+    "_internal/win32/win32evtlog.pyd": {
+      "size": 76288,
+      "sha256": "d835eec78df7fbf4cd5b8dd6eb9e04d71705ce1ed3bc46aaa6dc6f31c7944184"
+    },
+    "_internal/win32/win32pdh.pyd": {
+      "size": 33792,
+      "sha256": "6de9be7566fc99e09301021b7f5b207c7a2e105d9fa490ca2dd7666f195ed611"
     }
   },
   "native_game_verified": false,

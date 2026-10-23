@@ -1,4 +1,4 @@
-# Redemption Chronicle Maker · 1.0.0-rc8
+# Redemption Chronicle Maker · 1.0.0-rc9
 
 Create chronicles for **Vampire: The Masquerade — Redemption** using an independent editor and generators. Original level geometry is a reusable, immutable base. Normal authoring does not require Embrace, NOT Editor or another original authoring program.
 
@@ -28,7 +28,8 @@ Help opens editable example copies. Existing personal copies are not overwritten
 
 ## Authoring
 
-- Actors, objects, inventory, transforms, starts, waypoints, patrols, triggers and persistent flags.
+- Actors, objects, inventory, transforms, starts, waypoints, patrols, triggers and persistent flags. Preview textured actor/object models in the resource picker before placing them; use its arrows to turn the preview. Rotation is free by default (set a degree step to snap).
+- Right-click an authored actor/object in the viewport or project tree to create and bind a conversation. Objects use a chosen speaking character; existing modal actions require confirmation before replacement.
 - Branching conversations, line actions, camera presets, quests, notes, events and scene/layout changes.
 - Native hover/click actions on original objects and bounded selectable overlays on fixed surfaces. Existing Actions handle conversations, events and travel; self-scene links are rejected.
 - Compatible original door/prop control without geometry changes. Fixed surfaces do not acquire invented frame animations.

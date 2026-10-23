@@ -1,4 +1,4 @@
-# Producto vigente · 1.0.0-rc8
+# Producto vigente · 1.0.0-rc9
 
 RCM crea crónicas sobre geometría original inmutable mediante autoría visual,
 formatos propios y originales generados directamente, y Java compilado contra
@@ -114,3 +114,11 @@ Geometría, CSG, UV/texturizado estructural, lightmaps y edición estructural de
 sectores/portales quedan fuera de alcance. Las fuentes originales se usan en
 lectura; las comprobaciones de despliegue usan instalaciones sintéticas dentro
 del workspace. Esta entrega no modifica la instalación real del juego.
+
+## RC9 · selección y edición de actores
+
+El editor conserva el recurso aceptado mientras carga la geometría, y activa su colocación al terminar. El selector muestra modelos NOD originales con texturas, giro de previsualización y ajuste completo a la ventana; no instancia actores ni reproduce animaciones. La caché se invalida al cambiar los recursos, el proyecto o la instalación.
+
+El giro es libre por defecto y permite ajuste angular optativo. Los arrastres actualizan el visor sin serializar la crónica en cada movimiento; se guardan como una sola operación de deshacer al terminar. El menú contextual del visor y del árbol crea conversaciones para actores/objetos propios. Los actores conservan las rutas condicionales; los objetos eligen quién habla. Reemplazar una nota, escena o viaje existente exige confirmación; se conservan las demás acciones.
+
+Evidencia de esta release: research/authoring_completion/rc9_release.json. Distingue la batería general, las regresiones específicas finales, la compilación contra Codex, el portable bilingüe y la aceptación nativa todavía pendiente. El tutorial aceptado, la mini crónica y los datos personales permanecen intactos.

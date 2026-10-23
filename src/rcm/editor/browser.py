@@ -1,7 +1,7 @@
 from .i18n import tr
 from PySide6.QtCore import Qt, Signal, QEvent
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QComboBox,
-    QTableWidget, QTableWidgetItem, QHeaderView, QLabel, QPushButton, QDialog, QDialogButtonBox,QCheckBox)
+    QTableWidget, QTableWidgetItem, QHeaderView, QLabel, QPushButton, QDialog, QDialogButtonBox,QCheckBox,QSplitter)
 
 
 class ResourceBrowser(QWidget):
@@ -57,7 +57,12 @@ class ResourceBrowser(QWidget):
         self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
         self.table.setColumnWidth(2, 210)
         self.table.setColumnWidth(3, 165)
-        layout.addWidget(self.table, 1)
+        from .model_preview import ModelPreview
+        self.preview = ModelPreview(backend, self)
+        split = QSplitter(Qt.Orientation.Horizontal)
+        split.addWidget(self.table); split.addWidget(self.preview)
+        split.setStretchFactor(0, 3); split.setStretchFactor(1, 1)
+        layout.addWidget(split, 1)
         summary = QHBoxLayout()
         self.result_count = QLabel()
         self.result_count.setObjectName('resource_result_count')
@@ -255,6 +260,9 @@ class ResourceBrowser(QWidget):
 
     def show_details(self):
         selected = self.selected()
+        kind = self.category.currentData()
+        self.preview.setVisible(kind in {'actors','items','.nod'})
+        self.preview.select(kind, selected[0] if selected else '')
         owned=bool(selected and any(t['id']==selected[0] and t.get('project_owned') for t in self.backend.resources['templates']))
         self.clone_button.setEnabled(bool(selected and self.category.currentData() in {'actors','items'} and not owned))
         if selected:
@@ -289,7 +297,7 @@ class ResourceDialog(QDialog):
     def __init__(self, backend, category, parent=None):
         super().__init__(parent)
         self.setWindowTitle({"levels": tr("Elegir escenario base"), "actors": tr("Elegir plantilla de actor"), "items": tr("Elegir plantilla de objeto"),'.nai':tr('Elegir perfil AI')}.get(category,tr('Elegir recurso')))
-        self.resize(950, 600)
+        self.resize(1120, 680)
         self.selection = None
         layout = QVBoxLayout(self)
         self.browser = ResourceBrowser(backend, category, self)

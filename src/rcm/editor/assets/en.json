@@ -2160,5 +2160,17 @@
   "La crónica contiene enlaces. No se ha eliminado nada.": "The chronicle contains filesystem links. Nothing was deleted.",
   "Esta carpeta contiene un repositorio. No se ha eliminado nada.": "This folder contains a repository. Nothing was deleted.",
   "La carpeta contiene otros archivos YAML. Separa las crónicas antes de eliminarla.": "The folder contains other YAML files. Separate the chronicles before deleting it.",
-  "Esta crónica está abierta en otro editor. Cierra esa ventana antes de eliminarla.": "This chronicle is open in another editor. Close that window before deleting it."
+  "Esta crónica está abierta en otro editor. Cierra esa ventana antes de eliminarla.": "This chronicle is open in another editor. Close that window before deleting it.",
+  "Selecciona un actor u objeto para ver su modelo.": "Select an actor or object to preview its model.",
+  "Girar previsualización": "Rotate preview",
+  "Cargando modelo…": "Loading model…",
+  "Sin modelo para previsualizar.": "No model to preview.",
+  "No se pudo previsualizar el modelo.": "Could not preview the model.",
+  "Vista del modelo original; las animaciones se ejecutan en el juego.": "Original model preview; animations run in the game.",
+  "Giro libre con 0; elige un ángulo para activar el ajuste por pasos.": "Free rotation at 0; choose an angle to enable rotation snapping.",
+  "Cargando escenario; tu selección se conserva. Esc cancela.": "Loading scenery; your selection is kept. Esc cancels.",
+  "Añade primero el personaje que hablará al usar este objeto. Para un texto sin interlocutor, usa una nota.": "First add the character who will speak when this object is used. For text without a speaker, use a note.",
+  "Personaje que habla al usar este objeto": "Character who speaks when this object is used",
+  "Este objeto ya abre una nota, una escena o un viaje. ¿Sustituir esa acción por la conversación? Las demás acciones se conservan y puedes deshacer el cambio.": "This object already opens a note, a cutscene or a journey. Replace that action with the conversation? Other actions are kept and you can undo the change.",
+  "Modelo estático · no reproduce animaciones.": "Static model · animations are not played."
 }

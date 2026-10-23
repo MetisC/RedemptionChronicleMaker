@@ -1,7 +1,7 @@
 # Usabilidad vigente del editor
 
 Esta revisión se centra en encontrar contenido, elegir recursos, navegar sin
-ratón, conservar el contexto y corregir errores de edición. Mantiene rc7, los
+ratón, conservar el contexto y corregir errores de edición. Mantiene los contratos de runtime de rc7, los
 formatos, el tutorial aceptado y el runtime. No añade pestañas principales.
 
 ## Cambios aplicados
@@ -43,3 +43,11 @@ GPU física, todas las escalas de Windows ni comodidad en una sesión larga de
 autoría. Las pruebas dentro de Redemption corresponden al usuario; esta revisión
 no modifica lógica ni recursos del juego. Evidencia del ejecutable y resultados
 actuales: `research/usability/verification.json`.
+
+## Selección y edición espacial · rc9
+
+- El selector muestra el modelo NOD con texturas originales antes de colocarlo; las flechas permiten verlo desde otros ángulos. Es una pose estática. La lectura y el render se hacen fuera del hilo de interfaz, con selección diferida, un trabajo activo por panel y rechazo de resultados obsoletos.
+- Aceptar un actor mientras carga el escenario conserva la selección y activa la colocación al terminar. El mensaje explica que hay que hacer clic en el suelo. Esc, un fallo de carga o un cambio de proyecto/escena cancela la colocación pendiente.
+- El giro es libre con ajuste angular 0; un valor mayor activa pasos de ese tamaño. Durante el arrastre se actualiza el modelo y los controles numéricos, sin serializar toda la crónica. Al soltar o perder el foco se registra una operación de deshacer y se reanuda la validación.
+- El menú contextual del viewport y el árbol permite crear una conversación para actores/objetos propios. El actor queda vinculado directamente o por su evento de clic existente. Los objetos eligen el personaje que habla. Sustituir una nota, escena o viaje existente exige confirmación; las demás acciones se conservan. Las rutas condicionales existentes permanecen.
+- La previsualización no ejecuta AI ni animaciones, no instancia entidades y no cambia archivos originales. Las superficies originales siguen usando su interacción al hacer clic; una vez creada, ese objeto propio admite el acceso contextual a conversación.

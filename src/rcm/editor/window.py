@@ -469,6 +469,7 @@ class MainWindow(QMainWindow):
         return [control for control in controls if getattr(control, '_rcm_pending', False)]
 
     def commit_properties(self):
+        self.spatial.finish_gesture()
         for control in self.pending_properties():
             if not control._rcm_commit():
                 return False
@@ -1034,6 +1035,7 @@ class MainWindow(QMainWindow):
             return
         from PySide6.QtWidgets import QMenu
         menu = QMenu(self)
+        self.add_conversation_action(menu,tuple(item.data(0, ROLE)))
         menu.addAction(tr('Buscar referencias'), lambda: self.find_references(tuple(item.data(0, ROLE))))
         menu.exec(self.nav.mapToGlobal(position))
 
@@ -1101,12 +1103,49 @@ class MainWindow(QMainWindow):
                 path = path[:-1]
             self.select(tuple(path))
 
-    def add_conversation(self):
+    def conversation_target(self,path):
+        if not self.doc or len(path)!=2 or path[0] not in {'actors','objects'}:return False
+        try:entity=self.at(path)
+        except (KeyError,IndexError,TypeError):return False
+        modern=hasattr(self.doc,'campaign') and self.doc.campaign.get('project_format') in (9,10)
+        return isinstance(entity,dict) and (path[0]=='actors' or modern)
+
+    def add_conversation_action(self,menu,path):
+        path=tuple(path)
+        if not self.conversation_target(path):return
+        action=menu.addAction(tr('+ Conversación'))
+        action.setObjectName('context_add_conversation')
+        action.setEnabled(not self.busy)
+        action.triggered.connect(lambda checked=False:self.guard(lambda:self.conversation_for(path)))
+
+    def conversation_for(self,path):
+        if not self.conversation_target(path) or self.busy or not self.commit_properties():return
+        entity=self.at(path);actors=self.doc.data['actors'];speaker=None
+        if path[0]=='actors':speaker=entity['id']
+        else:
+            if not actors:
+                QMessageBox.information(self,tr('+ Conversación'),tr('Añade primero el personaje que hablará al usar este objeto. Para un texto sin interlocutor, usa una nota.'))
+                return
+            if len(actors)==1:speaker=actors[0]['id']
+            else:
+                from PySide6.QtWidgets import QInputDialog
+                labels=[a['name']+' · '+a['id'] for a in actors]
+                label,ok=QInputDialog.getItem(self,tr('+ Conversación'),tr('Personaje que habla al usar este objeto'),labels,0,False)
+                if not ok:return
+                speaker=actors[labels.index(label)]['id']
+        when,key=('actor_clicked','actor') if path[0]=='actors' else ('object_clicked','object')
+        modal={'show_note','play_sequence','travel','jump'}
+        conflicts=any(e['when']==when and e.get(key)==entity['id'] and not e.get('conditions') and any(modal.intersection(a) for a in e['actions']) for e in self.doc.data['events'])
+        if conflicts and QMessageBox.question(self,tr('+ Conversación'),tr('Este objeto ya abre una nota, una escena o un viaje. ¿Sustituir esa acción por la conversación? Las demás acciones se conservan y puedes deshacer el cambio.'),QMessageBox.StandardButton.Yes|QMessageBox.StandardButton.No,QMessageBox.StandardButton.No)!=QMessageBox.StandardButton.Yes:return
+        self.add_conversation(speaker=speaker,target=path)
+
+    def add_conversation(self,*,speaker=None,target=None):
         if not self.doc or self.busy:
             return
         actors = self.doc.data["actors"]
-        speaker = actors[0]["id"] if actors else ""
-        if self.selection[0]=='actors' and len(self.selection)>1 and self.selection[1]<len(actors):speaker=actors[self.selection[1]]['id']
+        if speaker is None:
+            speaker = actors[0]["id"] if actors else ""
+            if self.selection[0]=='actors' and len(self.selection)>1 and self.selection[1]<len(actors):speaker=actors[self.selection[1]]['id']
         conv = {"id": self.doc.unique_id("conversations", "conv"), "speaker": speaker, "entry": "opening",
                 "nodes": [{"id": "opening", "lines": [{"speaker": speaker, "text": tr("Escribe el diálogo.")}],
                            "choices": [{"text": tr("Continuar."), "result": 1}, {"text": tr("Me voy."), "result": 2}]}]}
@@ -1114,6 +1153,29 @@ class MainWindow(QMainWindow):
             from ..camera_presets import DEFAULT_DIALOGUE_CAMERA
             conv['camera']=DEFAULT_DIALOGUE_CAMERA
         self.doc.data["conversations"].append(conv)
+        if target:
+            entity=self.at(target)
+            events=self.doc.data['events']
+            when,key=('actor_clicked','actor') if target[0]=='actors' else ('object_clicked','object')
+            clicks=[e for e in events if e['when']==when and e.get(key)==entity['id']]
+            if target[0]=='actors' and not clicks:
+                entity.setdefault('conversation',{})['default']=conv['id']
+            else:
+                # Direct actor bindings and actor_clicked events are exclusive.
+                # Keep conditional routes and add/update the unconditional fallback.
+                if target[0]=='actors':entity.pop('conversation',None)
+                event=next((e for e in clicks if not e.get('conditions')),None)
+                if event is None:
+                    event=dict(id=self.doc.unique_id('events','use'),when=when,once=False,actions=[])
+                    event[key]=entity['id']
+                    events.append(event)
+                # The caller confirms replacement of an existing modal action.
+                event['actions'][:]=[a for a in event['actions'] if not {'show_note','play_sequence','travel','jump'}.intersection(a)]
+                existing=next((a for a in event['actions'] if 'start_conversation' in a),None)
+                if existing is not None:existing['start_conversation']=conv['id']
+                else:
+                    at=next((i for i,a in enumerate(event['actions']) if 'travel' in a or 'jump' in a),len(event['actions']))
+                    event['actions'].insert(at,{'start_conversation':conv['id']})
         self.selection = ("conversations", len(self.doc.data["conversations"])-1)
         self.changed(True)
 

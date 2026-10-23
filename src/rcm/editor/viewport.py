@@ -93,6 +93,8 @@ class Viewport(QOpenGLWidget):
     placed = Signal(object)
     message = Signal(str)
     gesture_started = Signal()
+    gesture_finished = Signal()
+    operation_cancelled = Signal()
     mode_requested = Signal(str)
     menu_requested = Signal(object)
     def __init__(self, parent=None):
@@ -115,7 +117,7 @@ class Viewport(QOpenGLWidget):
         self.paths = []
         self.mode = 'move'
         self.grid = 0.
-        self.angle_step = 15.
+        self.angle_step = 0.
         self.snap_surface = True
         self.walk = False
         self.placing = None
@@ -593,6 +595,7 @@ class Viewport(QOpenGLWidget):
         if event.key()==Qt.Key.Key_F:
             self.focus_selection()
         elif event.key()==Qt.Key.Key_Escape:
+            self.gesture_finished.emit();self.operation_cancelled.emit()
             self.placing=None;self.drag=None;self.looking=False;self.warp_target=None;self.releaseMouse();self.unsetCursor();self.message.emit(tr('Operación cancelada'))
         elif key in (Qt.Key.Key_1,Qt.Key.Key_2,Qt.Key.Key_3):
             self.mode_requested.emit({Qt.Key.Key_1:'move',Qt.Key.Key_2:'rotate',Qt.Key.Key_3:'scale'}[key])
@@ -609,6 +612,7 @@ class Viewport(QOpenGLWidget):
         if not event.isAutoRepeat():
             self.keys.discard(self.navigation_key(event))
     def focusOutEvent(self,event):
+        if self.drag:self.gesture_finished.emit();self.drag=None
         self.keys.clear();self.looking=False;self.orbiting=False;self.warp_target=None;self.releaseMouse();self.unsetCursor()
         self.right_origin=None;self.right_dragged=False;self.left_pending=None;self.left_origin=None;self.nav_buttons=Qt.MouseButton.NoButton;self.fov=60.
         super().focusOutEvent(event)
@@ -628,9 +632,11 @@ class Viewport(QOpenGLWidget):
         self.last_mouse=event.position()
         self.nav_buttons=event.buttons()
         if event.button()==Qt.MouseButton.RightButton:
+            if self.drag:self.gesture_finished.emit()
             self.right_origin=event.position();self.right_dragged=False;self.left_pending=None;self.drag=None
             self.warp_target=None;self.looking=True;self.grabMouse();self.setCursor(Qt.CursorShape.BlankCursor);return
         if event.button()==Qt.MouseButton.MiddleButton:
+            if self.drag:self.gesture_finished.emit()
             self.drag=None;self.left_pending=None;return
         if event.buttons() & Qt.MouseButton.RightButton:return
         if event.button()!=Qt.MouseButton.LeftButton or not self.level:
@@ -745,6 +751,7 @@ class Viewport(QOpenGLWidget):
         self.last_mouse=event.position();self.update()
 
     def mouseReleaseEvent(self,event):
+        if self.drag:self.gesture_finished.emit()
         if event.button()==Qt.MouseButton.LeftButton and self.left_pending is not None:
             self.selected.emit(self.left_pending)
         if event.button()==Qt.MouseButton.RightButton:
@@ -758,6 +765,7 @@ class SpatialPanel(QWidget):
         super().__init__()
         self.win=window;self.loading=False;self.loaded_name=None;self.assets=None;self.pending_resource=None;self.request_name=None;self.requested_templates=set()
         self.document = None
+        self.gesture_active=False;self.gesture_changed=False;self.gesture_inspect=False
         layout=QVBoxLayout(self);layout.setContentsMargins(0,0,0,0)
         toolbar=QHBoxLayout()
         self.mode_buttons = {}
@@ -774,7 +782,7 @@ class SpatialPanel(QWidget):
         self.ground=QCheckBox(tr('Suelo'));self.ground.setToolTip(tr('Altura de cámara sobre suelo; no sustituye colisión del motor'));options.addWidget(self.ground)
         self.surface=QCheckBox(tr('Snap suelo'));self.surface.setChecked(True);options.addWidget(self.surface)
         self.grid=QDoubleSpinBox();self.grid.setRange(0,512);self.grid.setSpecialValueText(tr('Libre'));self.grid.setPrefix('Grid ');options.addWidget(self.grid)
-        self.angle=QDoubleSpinBox();self.angle.setRange(0,90);self.angle.setValue(15);self.angle.setSpecialValueText(tr('Libre'));self.angle.setSuffix('°');options.addWidget(self.angle)
+        self.angle=QDoubleSpinBox();self.angle.setRange(0,90);self.angle.setValue(0);self.angle.setSpecialValueText(tr('Libre'));self.angle.setSuffix('°');self.angle.setToolTip(tr('Giro libre con 0; elige un ángulo para activar el ajuste por pasos.'));options.addWidget(self.angle)
         self.links=QCheckBox(tr('Relaciones'));self.links.setChecked(True);options.addWidget(self.links)
         options.addStretch();layout.addLayout(options)
         self.status=QLabel(tr('Carga pendiente'));self.status.setWordWrap(True);layout.addWidget(self.status)
@@ -787,6 +795,8 @@ class SpatialPanel(QWidget):
             self.viewport.placed.connect(self.place)
             self.viewport.message.connect(self.status.setText)
             self.viewport.gesture_started.connect(self.start_gesture)
+            self.viewport.gesture_finished.connect(self.finish_gesture)
+            self.viewport.operation_cancelled.connect(self.cancel_place)
             self.viewport.mode_requested.connect(self.set_mode)
             self.viewport.menu_requested.connect(self.context_menu)
             self.ground.toggled.connect(lambda v:setattr(self.viewport,'walk',v))
@@ -815,6 +825,7 @@ class SpatialPanel(QWidget):
                 except ValueError as error:self.status.setText(str(error))
         for label,cb in [(tr('Enfocar selección · F'),self.viewport.focus_selection),(tr('Mover · 1'),lambda:self.set_mode('move')),(tr('Girar · 2'),lambda:self.set_mode('rotate')),(tr('Tamaño · 3'),lambda:self.set_mode('scale')),(tr('+ Actor…'),self.win.add_actor),(tr('+ Objeto…'),self.add_object),('+ Trigger',self.add_trigger),(tr('+ Entrada'),lambda:self.win.campaign_panel.add_marker('entries')),('+ Waypoint',lambda:self.win.campaign_panel.add_marker('waypoints')),(tr('Ajustar al suelo'),self.snap_selected),(tr('Buscar referencias'),self.win.find_references),(tr('Eliminar · Supr'),self.win.delete_selected)]:
             action=menu.addAction(label);action.triggered.connect(lambda checked=False,cb=cb:self.win.guard(cb))
+        self.win.add_conversation_action(menu,path or self.win.selection)
         from .dynamic_wizard import open_dynamic
         from .original_objects import use_selected,object_label
         label=tr('Objeto original / crear paso…')
@@ -849,24 +860,43 @@ class SpatialPanel(QWidget):
             if mode=='scale' and self.win.selection[0]!='triggers':
                 self.status.setText(tr('Tamaño sólo se aplica a volúmenes; los actores conservan su escala original.'))
     def start_gesture(self):
+        self.finish_gesture()
+        self.gesture_active=True;self.gesture_changed=False;self.gesture_inspect=False
+        self.win.validation_timer.stop()
         self.win.history_time = 0
+    def finish_gesture(self):
+        changed=self.gesture_changed;inspect=self.gesture_inspect
+        self.gesture_active=False;self.gesture_changed=False;self.gesture_inspect=False
+        if changed and self.win.doc:
+            self.win.changed()
+            # Each mouse gesture is a single undo operation, including long drags.
+            self.win.history_time=0
+            if inspect:self.win.inspect()
+    def cancel_place(self):
+        self.pending_resource=None
+        if self.viewport:self.viewport.placing=None;self.viewport.unsetCursor()
     def relationships(self,value):
         self.viewport.show_relations=value;self.viewport.update()
     def sync(self):
         if self.viewport and self.win.doc:
             scene_key=getattr(self.win.doc, 'active', None)
-            if self.document is not self.win.doc or getattr(self,'scene_key',None)!=scene_key or (self.viewport.level and self.viewport.level.name != self.win.doc.data['level'].get('source')):
+            source=self.win.doc.data['level'].get('source')
+            if self.document is not self.win.doc or getattr(self,'scene_key',None)!=scene_key or getattr(self,'source_name',None)!=source:
+                self.gesture_active=False;self.gesture_changed=False;self.gesture_inspect=False
                 self.viewport.placing = None
                 self.viewport.drag = None
                 self.pending_resource = None
                 self.viewport.hidden={('original',)}
             self.scene_key=scene_key
+            self.source_name=source
             self.document = self.win.doc
             self.viewport.paths=self.win.doc.campaign['scenes'][self.win.doc.active].get('paths',[]) if hasattr(self.win.doc,'campaign') else []
             self.viewport.sync(self.win.doc.data,self.win.selection)
 
     def geometry_matches(self):
         return self.viewport is None or (self.viewport.level is not None and self.win.doc is not None and self.viewport.level.name == self.win.doc.data['level'].get('source'))
+    def load_identity(self):
+        return (id(self.win.doc),getattr(self.win.doc,'active',None),self.win.doc.data['level'].get('source')) if self.win.doc else None
     def ensure_loaded(self):
         if not self.win.doc or not self.viewport:
             return
@@ -879,6 +909,7 @@ class SpatialPanel(QWidget):
         if self.loading or (name==self.loaded_name and templates<=self.requested_templates and models==getattr(self,'requested_models',None)):
             return
         self.loading=True;self.status.setText(tr('Leyendo escenario…'))
+        self.loading_identity=self.load_identity()
         self.requested_templates=templates
         self.requested_models=models
         self.thread=QThread(self);self.worker=LoadWorker(self.win.backend,name,templates,self.assets);self.worker.moveToThread(self.thread)
@@ -891,7 +922,7 @@ class SpatialPanel(QWidget):
             # failed load is retried explicitly with the button, not in a loop
             QTimer.singleShot(0,self.ensure_loaded)
     def loaded(self,level,assets):
-        if not self.win.doc or level.name!=self.win.doc.data['level'].get('source'):
+        if not self.win.doc or level.name!=self.win.doc.data['level'].get('source') or getattr(self,'loading_identity',self.load_identity())!=self.load_identity():
             return
         self.assets=assets;self.loaded_name=level.name;self.viewport.set_level(level);self.sync()
         if getattr(self,'pending_start_focus',False):self.pending_start_focus=False;self.viewport.focus_selection()
@@ -899,9 +930,12 @@ class SpatialPanel(QWidget):
         for warning in level.warnings:
             self.win.log.appendPlainText('Viewport warning: '+warning)
         self.win.refresh()
+        self.arm_place()
     def failed(self,error):
+        if getattr(self,'loading_identity',self.load_identity())!=self.load_identity():return
         self.status.setText(tr('No se pudo cargar el level; consulta Build / Log.'));self.win.log.appendPlainText(error)
         self.request_name=None
+        self.cancel_place()
     def select(self,path):
         if not self.win.commit_properties():
             return
@@ -924,8 +958,11 @@ class SpatialPanel(QWidget):
         for key in ('size','radius'):
             if key in change and path[0]=='triggers':
                 entity[key]=[float(v) for v in change[key]] if key=='size' else float(change[key])
-        self.win.changed()
-        if was_relative:
+        if self.gesture_active:
+            self.gesture_changed=True;self.gesture_inspect |= was_relative
+            self.viewport.update()
+        else:self.win.changed()
+        if was_relative and not self.gesture_active:
             self.win.inspect()
         else:
             panel=self.win.properties.widget()
@@ -948,11 +985,15 @@ class SpatialPanel(QWidget):
     def begin_place(self,kind,template=''):
         if not self.win.doc or self.win.busy:
             return
-        self.win.center_tabs.setCurrentIndex(0);self.ensure_loaded()
-        if not self.viewport or not self.viewport.level or self.loaded_name!=self.win.doc.data['level'].get('source'):
-            self.status.setText(tr('Espera a que termine de cargar el level y vuelve a elegir el recurso.'));return
-        self.pending_resource=(kind,template);self.viewport.placing=(kind,template);self.viewport.setFocus();self.viewport.setCursor(Qt.CursorShape.CrossCursor)
+        self.win.center_tabs.setCurrentIndex(0);self.sync()
+        if not self.viewport:return
+        self.pending_resource=(kind,template);self.ensure_loaded();self.viewport.setFocus()
+        if not self.arm_place():self.status.setText(tr('Cargando escenario; tu selección se conserva. Esc cancela.'))
+    def arm_place(self):
+        if not self.pending_resource or not self.viewport or not self.geometry_matches():return False
+        self.viewport.placing=self.pending_resource;self.viewport.setCursor(Qt.CursorShape.CrossCursor)
         self.status.setText(tr('Haz click en el suelo para colocar. Esc cancela.'))
+        return True
     def add_trigger(self):
         self.begin_place('triggers')
     def place(self,position):

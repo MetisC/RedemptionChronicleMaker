@@ -1,10 +1,10 @@
 {
   "successful": true,
-  "executable_sha256": "29c38dd9d4c756758006dc965ab5a36f3d655ec927c40d73c2fa1f47a45cf694",
+  "executable_sha256": "deeea60e46b9817d2ec7e450b1f57754a159cc744a1edc2298bbe3d830977a0d",
   "modules": [
     {
       "module": "rcm",
-      "source_sha256": "ec4a0b839e002a2c781047b67597afeb3cd267670f8becb6ce5b9849995335f7",
+      "source_sha256": "30e9f006564423c81a6acedf7a9034feebddf3f3b85c2686c5b35a8bec8d66ca",
       "matches": true
     },
     {
@@ -154,7 +154,7 @@
     },
     {
       "module": "rcm.editor.browser",
-      "source_sha256": "5b1119600266e2d8e8b57409b2631cf7f05c13da4f5ddaf3e6657ddf639a672c",
+      "source_sha256": "09c85a08ae3680070e86d1df07153b5425d6168ac425552201ce99b346ada80f",
       "matches": true
     },
     {
@@ -238,6 +238,11 @@
       "matches": true
     },
     {
+      "module": "rcm.editor.model_preview",
+      "source_sha256": "bc9e30164ae373472f1e87f192c326f6ce7db0316c2a91ab5008443059decbaf",
+      "matches": true
+    },
+    {
       "module": "rcm.editor.native_scripts",
       "source_sha256": "53a6cb619386d4de0107f0865a696f69ab9a67043ffa149806d6eeca378dedb8",
       "matches": true
@@ -289,12 +294,12 @@
     },
     {
       "module": "rcm.editor.viewport",
-      "source_sha256": "e4e129438543272a187cd2bfa3b7d902b4d00aa2162579dba362c654b4168d56",
+      "source_sha256": "4f678710d44ffe049ff49132b4b4345e0a8ca7d76e244465fc537b6e1a5cc3f5",
       "matches": true
     },
     {
       "module": "rcm.editor.window",
-      "source_sha256": "a1fe2a95769b7877095856e3c00baabba3d3a70f04b818695f2b537b9ae315d0",
+      "source_sha256": "fca8c129a227eaa42b7a4543705d8609d14b0a79f058da867adda975ddec8694",
       "matches": true
     },
     {
@@ -563,6 +568,6 @@
       "matches": true
     }
   ],
-  "translations_sha256": "2707be7dc8b9367fd8aa7f222e314964da364234ed225d4c7dc30f70d461260f",
+  "translations_sha256": "78b478240a41852004e78e2e0d3189ec47f48d793fe57861a473a13320eca5f1",
   "native_engine_test": false
 }
