@@ -1,0 +1,47 @@
+{
+  "id": 421462993,
+  "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/tag/v1.0.0-rc9",
+  "tag": "v1.0.0-rc9",
+  "source_commit": "1fa1bb7c3ca2b254e9856993459a4ac7b4f737a5",
+  "prerelease": true,
+  "draft": false,
+  "published_at": "2026-10-23T04:53:20Z",
+  "ci": {
+    "id": 39902482206,
+    "conclusion": "success",
+    "url": "https://github.com/MetisC/RedemptionChronicleMaker/actions/runs/39902482206"
+  },
+  "release_workflow": {
+    "id": 39902481976,
+    "conclusion": "success",
+    "url": "https://github.com/MetisC/RedemptionChronicleMaker/actions/runs/39902481976"
+  },
+  "assets": [
+    {
+      "id": 668007326,
+      "name": "RedemptionChronicleMaker-1.0.0-rc9-win64.zip",
+      "state": "uploaded",
+      "size": 93107662,
+      "digest": "sha256:50dfa2823cabfd90aa20e74b02c2fa8b27e795c7f7d00105c84c71de1b79f94d",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/download/v1.0.0-rc9/RedemptionChronicleMaker-1.0.0-rc9-win64.zip"
+    },
+    {
+      "id": 668007334,
+      "name": "release_manifest.json",
+      "state": "uploaded",
+      "size": 340,
+      "digest": "sha256:d0793636ddcbe39c3209166c7a1d146ab6ad3108a96631d03339497d5a91dcf1",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/download/v1.0.0-rc9/release_manifest.json"
+    },
+    {
+      "id": 668007328,
+      "name": "SHA256SUMS.txt",
+      "state": "uploaded",
+      "size": 112,
+      "digest": "sha256:3651249dbb003c18d94bbc7003600407386ba95e59f9b7197e7a363da46b3f4e",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/download/v1.0.0-rc9/SHA256SUMS.txt"
+    }
+  ],
+  "native_game_test": false,
+  "independent_machine_test": false
+}
