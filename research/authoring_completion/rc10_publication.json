@@ -1,0 +1,61 @@
+{
+  "id": 422698886,
+  "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/tag/v1.0.0-rc10",
+  "tag": "v1.0.0-rc10",
+  "prerelease": true,
+  "draft": false,
+  "published_at": "2026-10-24T11:46:03Z",
+  "assets": [
+    {
+      "id": 672130713,
+      "name": "RedemptionChronicleMaker-1.0.0-rc10-win64.zip",
+      "size": 93142610,
+      "sha256": "e19808d1ae3379d9535270905c32d5164785bf23b08d3d0275bcebb16feb3c0e",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/download/v1.0.0-rc10/RedemptionChronicleMaker-1.0.0-rc10-win64.zip"
+    },
+    {
+      "id": 672130712,
+      "name": "release_manifest.json",
+      "size": 342,
+      "sha256": "123867dbca223dfe530fbed056628a00ef647ace042eccdbbb3074d217df1337",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/download/v1.0.0-rc10/release_manifest.json"
+    },
+    {
+      "id": 672130708,
+      "name": "SHA256SUMS.txt",
+      "size": 113,
+      "sha256": "0a300f1620e26656cd60b58df553d7a96d33f764f502885dea4a2cf0b1e3b688",
+      "url": "https://github.com/MetisC/RedemptionChronicleMaker/releases/download/v1.0.0-rc10/SHA256SUMS.txt"
+    }
+  ],
+  "published_manifest": {
+    "version": "1.0.0-rc10",
+    "user_zip": "RedemptionChronicleMaker-1.0.0-rc10-win64.zip",
+    "sha256": "e19808d1ae3379d9535270905c32d5164785bf23b08d3d0275bcebb16feb3c0e",
+    "size": 93142610,
+    "files": 394,
+    "all_hashes_verified": true,
+    "source_archive_separate": true,
+    "native_game_verified": false,
+    "clean_machine_verified": false
+  },
+  "download_verified": true,
+  "zip_crc_verified": true,
+  "native_game_test": false,
+  "source_commit": "d30ee7c32ed6659cfa266d3533ab932bf2db513b",
+  "verified_at": "2026-10-24T11:49:50.986790+00:00",
+  "ci": {
+    "id": 40091040051,
+    "conclusion": "success",
+    "url": "https://github.com/MetisC/RedemptionChronicleMaker/actions/runs/40091040051"
+  },
+  "release_workflow": {
+    "id": 40091042303,
+    "conclusion": "success",
+    "url": "https://github.com/MetisC/RedemptionChronicleMaker/actions/runs/40091042303",
+    "bundled_source_and_translation_verification": "success"
+  },
+  "repository_visibility": "private",
+  "local_release_evidence": "research/authoring_completion/rc10_release.json",
+  "manual_runtime_checklist": "docs/MANUAL_RUNTIME_CHECKLIST.md"
+}
