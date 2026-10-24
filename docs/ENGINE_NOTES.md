@@ -44,6 +44,8 @@ SendActorToPos(float[],float), LookAtThing, StopActorAction y métodos de motion
 
 ### Conversaciones, notas y callbacks
 
+`MON3_Main.convended` del Codex.nob instalado elimina la máscara 133 (INVUL=1, AIPAUSED=4, TALKTO=128) antes de AIOn cuando termina sin abortar. `ARC3_Erik` elimina NEUTRAL=262144 al reactivar al actor. Ver research/engine_evidence/dialogue_hostility.txt. Esto confirma las operaciones de flags originales; no acredita por sí solo nuestro preset ni el comportamiento de cada plantilla.
+
 NCO/NVO contienen EVENT, LINE, ANSWERGOTO y ANSWERRETURN. ExecuteConversation lanza el diálogo; convreached y convended reciben los eventos/resultados usados por Java. La entrada se serializa primero. Los scripts originales encadenan conversaciones mediante timer desde convended, dejando terminar la limpieza del diálogo anterior.
 
 SetupCutscene inicia el modo de cámara; Release y EndCutscene liberan controles. La limpieza nativa de conversación elimina recursos y termina retirando su puntero global. Nuestros callbacks difieren la continuación para respetar ese orden.
@@ -103,6 +105,10 @@ Reaparición en RC4: el perfil actual conserva `R_rcm_showcase_s1_key`, pero el 
 El selector propio reconoce patrones acotados de tags en el NSD estático asociado al NIL; no es un codec completo ni una prueba de que todos los candidatos estén presentes en runtime. La correlación posición NSD/frame 0 requiere prueba nativa para cada puerta. El generador verifica plantilla/ubicación y coincidencia única a ocho unidades; si no puede identificarlo, no actúa.
 
 ## IMPLEMENTADO Y COMPROBADO OFFLINE
+
+Las respuestas RETURN pueden incluir `actions` propias, compiladas como eventos internos normales y ejecutadas por el resultado de conversación tras su limpieza nativa diferida. El flag de la respuesta se aplica primero; abortar no aplica ninguno de estos efectos. Las notas de estas acciones se incluyen en NTX. GOTO mantiene su contrato original; sus efectos se pueden colocar en la primera línea del nodo destino.
+
+`flag_changed` compara GetChronicleFlag con el valor observado anteriormente; inicializa esa observación antes de los eventos de entrada y conserva la tabla `previous` en Save/Restore. No es un callback nativo nuevo: es muestreo del generador propio. El preset hostil de `actor_behavior` usa TEAM_ENEMY0=12 y elimina AIPAUSED, NEUTRAL y TALKTO; el neutral usa TEAM_PEDESTRIANS=10, pausa AI, marca NEUTRAL y recupera TALKTO si hay una conversación/clic de actor de nuestra crónica. Conserva los demás atributos, incluida invulnerabilidad. Firmas y constantes originales: research/API_SIGNATURES.txt, CodexActor.SetActorTeam/SetActorFlags/ClearActorFlags y CodexSequence.Get/Set/ClearChronicleFlag. La compilación contra Codex y doubles verifican orden, abortos, repetición, AI, flags y guardado; no certifican el combate ni la interfaz dentro de Redemption.
 
 RCM añade props de brush seleccionable a su NSD propio, sobre la superficie original, con wrapper NOT y etiqueta NLS propia. No reescribe NIL ni NSD estático original. El evento es `object_clicked`, con las mismas acciones que los demás eventos. La capa recupera las superficies del objeto original o el componente conectado del material NIL señalado, conserva UV/material y separa las dos puertas de Tenebrae. El escritor limita triángulos/materiales, valida degenerados, índices, sectores y floats; sólo genera entidades sin frames/parámetros/luz y seis planos axiales. La compilación real y el readback no certifican hover ni pathfinding nativos.
 

@@ -1,3 +1,4 @@
+from .text_commit import bind_filter
 """Review a selected template library; never import an entire mod implicitly."""
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QDialog,QVBoxLayout,QHBoxLayout,QLabel,QPushButton,QFileDialog,QComboBox,QTreeWidget,QTreeWidgetItem,QDialogButtonBox,QMessageBox,QLineEdit
@@ -28,7 +29,7 @@ def open_import(win):
                     item.setHidden(all(item.child(j).isHidden() for j in range(item.childCount())))
                     if query:item.setExpanded(True)
                 else:item.setHidden(query not in item.text(0).casefold())
-        search.textChanged.connect(filter_rows)
+        bind_filter(search,filter_rows)
         def populate():
             tree.clear()
             for name in libraries.get(choose.currentData(),[]):

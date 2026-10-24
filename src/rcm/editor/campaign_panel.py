@@ -1,3 +1,4 @@
+from .text_commit import bind_text, bind_spin, bind_filter
 from .i18n import tr
 """Campaign authoring controls over the existing window/document and event inspector."""
 import copy
@@ -35,7 +36,7 @@ class CampaignPanel(QWidget):
         guided=QPushButton(tr('Asistente…'));guided.setObjectName('open_recipe');guided.clicked.connect(lambda:win.guard(lambda:open_wizard(win)));spatial.addWidget(guided)
         extra=QPushButton(tr('Añadir…'));extra.setMenu(more);extra.setObjectName('campaign_add_more');spatial.addWidget(extra)
         layout.addLayout(top);layout.addLayout(spatial);layout.addLayout(story);self.dashboard=QLabel();self.dashboard.setWordWrap(True);layout.addWidget(self.dashboard)
-        self.search=QLineEdit();self.search.setObjectName('global_search');self.search.setPlaceholderText(tr('Buscar en toda la crónica · Ctrl+Shift+F'));self.search.setClearButtonEnabled(True);self.search.textChanged.connect(self.refresh_rows);self.search.returnPressed.connect(self.open_search_result);layout.addWidget(self.search)
+        self.search=QLineEdit();self.search.setObjectName('global_search');self.search.setPlaceholderText(tr('Buscar en toda la crónica · Ctrl+Shift+F'));self.search.setClearButtonEnabled(True);bind_filter(self.search,self.refresh_rows);self.search.returnPressed.connect(self.open_search_result);layout.addWidget(self.search)
         self.search_status=QLabel();self.search_status.setObjectName('campaign_search_status');self.search_status.setWordWrap(True);layout.addWidget(self.search_status)
         self.panes=QSplitter(Qt.Orientation.Vertical);self.panes.setObjectName('campaign_panes');layout.addWidget(self.panes,1)
         self.tree=QTreeWidget();self.tree.setHeaderLabels([tr('Elemento'),tr('Detalle')]);self.tree.setColumnWidth(0,260);self.tree.setObjectName('campaign_tree');self.tree.itemClicked.connect(self.selected);self.tree.itemActivated.connect(self.selected);self.panes.addWidget(self.tree)
@@ -226,16 +227,7 @@ class CampaignPanel(QWidget):
                         rename_references(root,coll,old,w.text(),root['scenes'][self.path[1]]['id'])
                     else:row[key]=w.text()
                 return self.win.guard(lambda:self.mutate(change))
-            w._rcm_pending=False
-            def mark(value): w._rcm_pending=True; self.win._title()
-            def safe_commit():
-                if getattr(w,'_rcm_committing',False):return False
-                w._rcm_committing=True
-                try:
-                    result=commit();w._rcm_pending=result is False;return result is not False
-                finally:w._rcm_committing=False
-            w.textChanged.connect(mark);w._rcm_commit=safe_commit
-            w.editingFinished.connect(lambda:safe_commit() if w._rcm_pending else True);form.addRow(label,w)
+            bind_text(w,lambda value:commit(),self.win);form.addRow(label,w)
         def combo(label,key,choices,name):
             w=QComboBox();w.setObjectName(name)
             for choice_label,value in choices:w.addItem(choice_label,value)
@@ -253,9 +245,9 @@ class CampaignPanel(QWidget):
         line('ID','id','campaign_id',True)
         if self.path[0]=='quests':
             line(tr('Título'),'title','quest_title');line(tr('Descripción'),'description','quest_description')
-            xp=QSpinBox();xp.setObjectName('quest_reward');xp.setRange(0,1000000);xp.setValue(row.get('reward_xp',0));xp.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('reward_xp',v)));form.addRow(tr('Experiencia al completar'),xp)
+            xp=QSpinBox();xp.setObjectName('quest_reward');xp.setRange(0,1000000);xp.setValue(row.get('reward_xp',0));bind_spin(xp,self.win);xp.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('reward_xp',v)));form.addRow(tr('Experiencia al completar'),xp)
             for i,step in enumerate(row['steps']):
-                w=QLineEdit(step);w.setObjectName('quest_step_'+str(i));w.textChanged.connect(lambda text,i=i:self.mutate(lambda:row['steps'].__setitem__(i,text)));form.addRow(tr('Paso ')+str(i+1),w)
+                w=QLineEdit(step);w.setObjectName('quest_step_'+str(i));bind_text(w,lambda text,i=i:self.mutate(lambda:row['steps'].__setitem__(i,text)),self.win);form.addRow(tr('Paso ')+str(i+1),w)
             b=QPushButton(tr('+ Paso'));b.setObjectName('add_quest_step');b.clicked.connect(lambda:self.mutate(lambda:row['steps'].append(tr('Siguiente objetivo')),True));form.addRow(b)
             b=QPushButton(tr('Quitar último paso'));b.setObjectName('delete_quest_step');b.clicked.connect(lambda:self.mutate(lambda:row['steps'].pop() if len(row['steps'])>1 else None,True));form.addRow(b)
             label=QLabel(tr('Los eventos Iniciar / Avanzar / Completar quest controlan este journal nativo. Completar requiere todos los pasos.'));label.setWordWrap(True);form.addRow(label)
@@ -285,6 +277,8 @@ class CampaignPanel(QWidget):
             for label,key in [('Plano','shot'),('Secuencia de planos','timeline'),('Travelling','ncp')]:mode.addItem(tr(label),key)
             current_mode='ncp' if row.get('camera_path') else 'timeline' if row.get('steps') else 'shot'
             mode.setCurrentIndex(mode.findData(current_mode));form.addRow(tr('Tipo de cámara'),mode)
+            if current_mode=='shot':
+                hint=QLabel(tr('Para enlazar acciones al terminar, elige Secuencia de planos o Travelling. Un plano simple sólo ajusta la cámara.'));hint.setWordWrap(True);form.addRow(hint)
             def change_mode():
                 selected=mode.currentData()
                 if selected==current_mode:return
@@ -305,7 +299,7 @@ class CampaignPanel(QWidget):
                 combo(tr('Preset narrativo'),'preset',[(tr('Usar plano simple'),None)]+[(tr(v[0]),k) for k,v in PRESETS.items()],'sequence_preset')
                 combo(tr('Actor en movimiento'),'move_path',[(tr('Sin movimiento'),None)]+[(p['name'],p['id']) for p in s.get('paths',[])],'sequence_move_path')
                 if row.get('move_path'):
-                    when=QDoubleSpinBox();when.setRange(0,max(0,row['duration']-.1));when.setSuffix(' s');when.setValue(row.get('move_at',0));when.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('move_at',v)));form.addRow(tr('Empieza a caminar'),when)
+                    when=QDoubleSpinBox();when.setRange(0,max(0,row['duration']-.1));when.setSuffix(' s');when.setValue(row.get('move_at',0));bind_spin(when,self.win);when.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('move_at',v)));form.addRow(tr('Empieza a caminar'),when)
                 prop=QComboBox();prop.setObjectName('sequence_moving_prop');prop.addItem(tr('Sin decorado móvil'),None)
                 for obj in s.get('objects',[]):
                     if obj['transform'].get('placement')=='absolute':prop.addItem(obj['name'],obj['id'])
@@ -320,14 +314,14 @@ class CampaignPanel(QWidget):
                 if row.get('prop_motion'):
                     motion=row['prop_motion']
                     for key,label in [('at',tr('Apertura empieza')),('duration',tr('Apertura dura'))]:
-                        value=QDoubleSpinBox();value.setRange(0 if key=='at' else .1,row['duration']);value.setSuffix(' s');value.setValue(motion[key]);value.valueChanged.connect(lambda v,key=key:self.mutate(lambda:motion.__setitem__(key,v)));form.addRow(label,value)
+                        value=QDoubleSpinBox();value.setRange(0 if key=='at' else .1,row['duration']);value.setSuffix(' s');value.setValue(motion[key]);bind_spin(value,self.win);value.valueChanged.connect(lambda v,key=key:self.mutate(lambda:motion.__setitem__(key,v)));form.addRow(label,value)
                     axes=QWidget();axisbar=QHBoxLayout(axes);axisbar.setContentsMargins(0,0,0,0)
                     for axis,label in enumerate(['X','Y','Z']):
-                        value=QDoubleSpinBox();value.setRange(-10000,10000);value.setPrefix(label+' ');value.setValue(motion['translation'][axis]);value.valueChanged.connect(lambda v,axis=axis:self.mutate(lambda:motion['translation'].__setitem__(axis,v)));axisbar.addWidget(value)
+                        value=QDoubleSpinBox();value.setRange(-10000,10000);value.setPrefix(label+' ');value.setValue(motion['translation'][axis]);bind_spin(value,self.win);value.valueChanged.connect(lambda v,axis=axis:self.mutate(lambda:motion['translation'].__setitem__(axis,v)));axisbar.addWidget(value)
                     form.addRow(tr('Desplazamiento'),axes)
                 if not row.get('steps'):
                     combo(tr('Travelling'),'camera_path',[(tr('Sin recorrido de cámara'),None)]+[(tr('Del proyecto')+' · '+e['id'] if e.get('project_owned') else tr('Original')+' · '+e['id'],e['id']) for e in self.win.backend.resources['entries'] if e['extension'].lower()=='.ncp'],'sequence_camera_path')
-                    speed=QDoubleSpinBox();speed.setObjectName('sequence_path_speed');speed.setRange(.01,100);speed.setValue(row.get('path_speed',30));speed.setEnabled(not any(e.get('timed') and e['id']==row.get('camera_path') for e in self.win.backend.resources['entries']));speed.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('path_speed',v)));form.addRow(tr('Velocidad del travelling'),speed)
+                    speed=QDoubleSpinBox();speed.setObjectName('sequence_path_speed');speed.setRange(.01,100);speed.setValue(row.get('path_speed',30));speed.setEnabled(not any(e.get('timed') and e['id']==row.get('camera_path') for e in self.win.backend.resources['entries']));bind_spin(speed,self.win);speed.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('path_speed',v)));form.addRow(tr('Velocidad del travelling'),speed)
                 if current_mode!='ncp':
                     def add_shot():
                         def change():
@@ -337,7 +331,7 @@ class CampaignPanel(QWidget):
                     b=QPushButton(tr('+ Plano en timeline'));b.setObjectName('sequence_add_shot');b.clicked.connect(add_shot);form.addRow(b)
                     for i,step in enumerate(row.get('steps',[])):
                         controls=QWidget();bar=QHBoxLayout(controls);bar.setContentsMargins(0,0,0,0)
-                        at=QDoubleSpinBox();at.setRange(0,119.9);at.setSuffix(' s');at.setValue(step['at']);at.setEnabled(i>0);at.valueChanged.connect(lambda v,st=step:self.mutate(lambda:st.__setitem__('at',v)));bar.addWidget(at)
+                        at=QDoubleSpinBox();at.setRange(0,119.9);at.setSuffix(' s');at.setValue(step['at']);at.setEnabled(i>0);bind_spin(at,self.win);at.valueChanged.connect(lambda v,st=step:self.mutate(lambda:st.__setitem__('at',v)));bar.addWidget(at)
                         actor=QComboBox()
                         actor.addItem(tr('Jugador'),'Player')
                         for a in s['actors']:actor.addItem(a['name'],a['id'])
@@ -350,7 +344,7 @@ class CampaignPanel(QWidget):
                         preset=QComboBox()
                         for key,value in PRESETS.items():preset.addItem(tr(value[0]),key)
                         preset.setCurrentIndex(preset.findData(step['preset']));preset.currentIndexChanged.connect(lambda _,c=preset,st=step:self.mutate(lambda:st.__setitem__('preset',c.currentData())));bar.addWidget(preset)
-                        transition=QDoubleSpinBox();transition.setRange(0,10);transition.setValue(step.get('transition',.3));transition.setToolTip(tr('Transición entre planos, segundos'));transition.valueChanged.connect(lambda v,st=step:self.mutate(lambda:st.__setitem__('transition',v)));bar.addWidget(transition)
+                        transition=QDoubleSpinBox();transition.setRange(0,10);transition.setValue(step.get('transition',.3));transition.setToolTip(tr('Transición entre planos, segundos'));bind_spin(transition,self.win);transition.valueChanged.connect(lambda v,st=step:self.mutate(lambda:st.__setitem__('transition',v)));bar.addWidget(transition)
                         if i>0:
                             remove=QPushButton('−');remove.clicked.connect(lambda checked=False,i=i:self.mutate(lambda:row['steps'].pop(i),True));bar.addWidget(remove)
                         form.addRow(tr('Plano ')+str(i+1),controls)
@@ -368,7 +362,7 @@ class CampaignPanel(QWidget):
                         angle.setCurrentIndex(angle.findData(step.get('angle','medium')))
                         angle.currentIndexChanged.connect(lambda _,c=angle,st=step:self.mutate(lambda:st.__setitem__('angle',c.currentData())))
                         form.addRow(tr('Ángulo (plano ')+str(i+1)+')',angle)
-            w=QDoubleSpinBox();w.setObjectName('sequence_duration');w.setRange(.1,120);w.setValue(row['duration']);w.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('duration',v)));form.addRow(tr('Duración (s)'),w)
+            w=QDoubleSpinBox();w.setObjectName('sequence_duration');w.setRange(.1,120);w.setValue(row['duration']);bind_spin(w,self.win);w.valueChanged.connect(lambda v:self.mutate(lambda:row.__setitem__('duration',v)));form.addRow(tr('Duración (s)'),w)
             b=QPushButton(tr('Enfocar actor en viewport'));b.clicked.connect(lambda:self.preview_sequence(row));form.addRow(b)
             if root.get('project_format') in (9,10):
                 from .director import cue_controls,open_camera_path
@@ -402,8 +396,11 @@ class CampaignPanel(QWidget):
                 b=QPushButton(title);b.clicked.connect(lambda checked=False,d=delta:edit_route(lambda:move(d)));form.addRow(b)
             b=QPushButton(tr('Quitar waypoint'));b.clicked.connect(lambda:edit_route(lambda:row['points'].pop(route.currentRow())) if route.currentRow()>=0 else None);form.addRow(b)
             for label,key,lo,hi,default in [(tr('Tolerancia de llegada'),'tolerance',1,256,24),(tr('Parámetro de movimiento'),'speed',1,1000,90)]:
-                w=QDoubleSpinBox();w.setObjectName('path_'+key);w.setRange(lo,hi);w.setValue(row.get(key,default));w.valueChanged.connect(lambda v,k=key:self.mutate(lambda:row.__setitem__(k,v)));form.addRow(label,w)
+                w=QDoubleSpinBox();w.setObjectName('path_'+key);w.setRange(lo,hi);w.setValue(row.get(key,default));bind_spin(w,self.win);w.valueChanged.connect(lambda v,k=key:self.mutate(lambda:row.__setitem__(k,v)));form.addRow(label,w)
             form.addRow(QLabel(tr('Usa Iniciar / Detener recorrido en un evento. Navegación, colisiones y velocidad pendientes de prueba manual en Redemption.')))
+        from .linked_events import controls as linked_controls
+        linked=linked_controls(self.win,self.path)
+        if linked:form.addRow(linked)
         layout.addStretch()
         layout.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         panel.setMinimumHeight(layout.sizeHint().height())
@@ -418,13 +415,14 @@ def event_properties(ins):
         ins.line('ID',e.get('id',''),ins.rename_event,'event_id',True)
         def when(v):
             e['when']=v
-            for k in ['actor','object','conversation','trigger','item','encounter','sequence','result','seconds','generator','wave','phase']:e.pop(k,None)
+            for k in ['actor','object','conversation','trigger','item','encounter','sequence','result','seconds','generator','wave','phase','flag','is_set']:e.pop(k,None)
             fk={'object_clicked':('object','objects'),'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters'),'sequence_ended':('sequence','sequences')}.get(v)
             if fk:e[fk[0]]=next((x['id'] for x in s.get(fk[1],[])),'')
             if v.startswith(('generator_','wave_')):e['generator']=next((g['id'] for g in s.get('generators',[])),'')
             if v=='timer':e['seconds']=1.0
+            if v=='flag_changed':e.update(flag=next(iter(w.doc.data.get('state',{}).get('flags',{})),''),is_set=True)
             w.changed(True)
-        ins.combo(tr('CUANDO'),[(tr(label),key) for key,label in WHEN.items() if key!='generator_threshold' and (w.doc.campaign.get('project_format')==10 or not key.startswith(('generator_','wave_'))) and (w.doc.campaign.get('project_format') in (9,10) or key not in {'object_clicked','note_closed'})],e['when'],when,'event_when')
+        ins.combo(tr('CUANDO'),[(tr(label),key) for key,label in WHEN.items() if key!='generator_threshold' and (w.doc.campaign.get('project_format')==10 or not key.startswith(('generator_','wave_'))) and (w.doc.campaign.get('project_format') in (9,10) or key not in {'object_clicked','note_closed','flag_changed'})],e['when'],when,'event_when')
         fk={'object_clicked':('object','objects'),'actor_clicked':('actor','actors'),'actor_killed':('actor','actors'),'conversation_ended':('conversation','conversations'),'trigger_enter':('trigger','triggers'),'trigger_leave':('trigger','triggers'),'item_picked_up':('item','objects'),'encounter_complete':('encounter','encounters'),'sequence_ended':('sequence','sequences')}.get(e['when'])
         if fk:ins.combo(tr('Origen'),[(x.get('name',x['id']),x['id']) for x in s.get(fk[1],[])],e.get(fk[0],''),lambda v:ins.set(p+(fk[0],),v),'event_'+fk[0])
         if e['when'].startswith(('generator_','wave_')):
@@ -432,6 +430,10 @@ def event_properties(ins):
             if e['when'].startswith('wave_'):ins.spin(tr('Oleada (0 = cualquiera)'),e.get('wave',0),lambda v:ins.set(p+('wave',),v if v else None,True),'event_wave',maximum=32)
         if e['when']=='conversation_ended':ins.spin(tr('RETURN (0 = cualquiera)'),e.get('result',0),lambda v:ins.set(p+('result',),v if v else None,True),'event_result')
         if e['when']=='timer':ins.spin(tr('Segundos'),e.get('seconds',1),lambda v:ins.set(p+('seconds',),v),'event_seconds',True,.15,86400)
+        if e['when']=='flag_changed':
+            ins.combo('Flag',[(tr('Elige…'),'')]+ins.flags(),e.get('flag',''),lambda v:ins.set(p+('flag',),v),'event_flag')
+            ins.combo(tr('Nuevo estado'),[(tr('Elige…'),None),(tr('Activado'),True),(tr('Desactivado'),False)],e.get('is_set'),lambda v:ins.set(p+('is_set',),v),'event_flag_state')
+            ins.note(tr('Se ejecuta cuando el flag pasa al estado elegido. No se dispara sólo porque la escena comience con ese estado.'))
         ins.combo(tr('Repetición'),[(tr('Cada vez'),False),(tr('Una sola vez'),True)],e.get('once',e['when'] in {'actor_killed','item_picked_up','encounter_complete','timer','state_changed'}),lambda v:ins.set(p+('once',),v),'event_once')
         ins.note(tr('Las condiciones de la lista se combinan con AND; cada grupo puede usar ALL, ANY o NOT. Eventos de estado, muerte, pickup, encuentro y timer se ejecutan una vez por defecto.'))
     elif p[-2]=='actions':
@@ -440,7 +442,8 @@ def event_properties(ins):
             from ..cinematics import DIRECTOR_ACTIONS
             if v=='set_room_type':a.clear();a[v]=0;w.changed(True);return
             if v in ('move_actor','actor_inventory','actor_behavior'):
-                a.clear();a[v]=dict(actor='Player',**(dict(waypoint='',speed=90) if v=='move_actor' else dict(item='',operation='give') if v=='actor_inventory' else dict(team=12,paused=False)));w.changed(True);return
+                actor=next((row['id'] for row in s['actors']),'Player') if v=='actor_behavior' else 'Player'
+                a.clear();a[v]=dict(actor=actor,**(dict(waypoint='',speed=90) if v=='move_actor' else dict(item='',operation='give') if v=='actor_inventory' else dict(team=12,paused=False)));w.changed(True);return
             if v=='set_location_flags':a.clear();a[v]=dict(scene=s['id'],visible=True,haven=False);w.changed(True);return
             if v=='push_music':
                 a.clear();a[v]=dict(resource=next((r['id'] for r in w.backend.resources['entries'] if r['path'].lower().startswith('sounds/music/') and r['extension'].lower()=='.mp3'),''),volume=50);w.changed(True);return
@@ -467,7 +470,15 @@ def event_properties(ins):
                 items=[(r['name'],r['id']) for r in s.get('objects',[]) if templates.get(r['template']) in ('items','weapons','armour')]
                 ins.combo(tr('Objeto'),items,value['item'],lambda v:ins.set(p+(kind,'item'),v),'control_item');ins.combo(tr('Acción'),[(tr('Dar'),'give'),(tr('Quitar'),'take')],value['operation'],lambda v:ins.set(p+(kind,'operation'),v),'control_inventory')
             else:
-                ins.combo(tr('Equipo'),[(tr('Equipo')+' '+str(i),i) for i in range(20)],value['team'],lambda v:ins.set(p+(kind,'team'),v),'control_team');ins.combo(tr('AI pausada'),[(tr('Sí'),True),(tr('No'),False)],value['paused'],lambda v:ins.set(p+(kind,'paused'),v),'control_paused')
+                def preset(mode):
+                    if mode:
+                        from .dialogue_actions import behavior_action
+                        value.update(behavior_action(value['actor'],mode)['actor_behavior'])
+                    else:value.pop('behavior',None)
+                    w.changed(True)
+                ins.combo(tr('Comportamiento'),[(tr('Equipo y actividad avanzados'),''),(tr('NPC neutral'),'npc'),(tr('Enemigo · AI original'),'enemy')],value.get('behavior',''),preset,'control_behavior')
+                if not value.get('behavior'):
+                    ins.combo(tr('Equipo'),[(tr('Equipo')+' '+str(i),i) for i in range(20)],value['team'],lambda v:ins.set(p+(kind,'team'),v),'control_team');ins.combo(tr('AI pausada'),[(tr('Sí'),True),(tr('No'),False)],value['paused'],lambda v:ins.set(p+(kind,'paused'),v),'control_paused')
         elif category=='map_flags':
             value=a[kind]
             ins.combo(tr('Escena'),[(r['id'],r['id']) for r in w.doc.campaign['scenes']],value['scene'],lambda v:ins.set(p+(kind,'scene'),v),'map_flags_scene')

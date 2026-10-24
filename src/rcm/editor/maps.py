@@ -7,6 +7,7 @@ from PySide6.QtCore import Qt,QPointF
 from PySide6.QtGui import QPixmap,QImage,QBrush,QColor,QPen
 from PySide6.QtWidgets import QDialog,QVBoxLayout,QHBoxLayout,QFormLayout,QComboBox,QPushButton,QLineEdit,QListWidget,QLabel,QCheckBox,QDialogButtonBox,QFileDialog,QGraphicsView,QGraphicsScene,QGraphicsEllipseItem,QScrollArea,QWidget,QMessageBox,QInputDialog
 from .i18n import tr,diagnostic
+from .text_commit import bind_text
 
 
 class Marker(QGraphicsEllipseItem):
@@ -39,14 +40,14 @@ class MapDialog(QDialog):
             button=QPushButton(tr(label));button.setObjectName(name);button.clicked.connect(callback);bar.addWidget(button)
             if name=='map_original':button.setEnabled(bool(self.originals))
             if name in ('map_image','map_delete'):self.edit_buttons.append(button)
-        form=QFormLayout();layout.addLayout(form);self.name=QLineEdit();self.name.setObjectName('map_name');form.addRow(tr('Nombre'),self.name);self.name.textEdited.connect(lambda value:self.row().update(name=value) if self.row() else None)
+        form=QFormLayout();layout.addLayout(form);self.name=QLineEdit();self.name.setObjectName('map_name');form.addRow(tr('Nombre'),self.name);self.name_target=None;bind_text(self.name,self.rename_map)
         body=QHBoxLayout();layout.addLayout(body,1);left=QVBoxLayout();body.addLayout(left,1)
         self.points=QListWidget();self.points.setObjectName('map_points');left.addWidget(self.points,1)
         buttons=QHBoxLayout();left.addLayout(buttons);self.point_buttons=[]
         for label,name,callback in [('+ Localización','map_point_add',self.add_point),('Eliminar','map_point_delete',self.delete_point)]:
             button=QPushButton(tr(label));button.setObjectName(name);button.clicked.connect(callback);buttons.addWidget(button)
             self.point_buttons.append(button)
-        self.point_name=QLineEdit();self.point_name.setObjectName('map_point_name');left.addWidget(self.point_name);self.point_name.textEdited.connect(self.rename_point)
+        self.point_name=QLineEdit();self.point_name.setObjectName('map_point_name');left.addWidget(self.point_name);self.point_target=None;bind_text(self.point_name,self.rename_point)
         self.visible=QCheckBox(tr('Visible en el mapa'));self.visible.setObjectName('map_point_visible');left.addWidget(self.visible)
         self.haven=QCheckBox(tr('Refugio'));self.haven.setObjectName('map_point_haven');left.addWidget(self.haven)
         for box,key in ((self.visible,'visible'),(self.haven,'haven')):box.toggled.connect(lambda value,k=key:self.point().update({k:value}) if self.point() else None)
@@ -71,7 +72,9 @@ class MapDialog(QDialog):
         if index is None:index=next((i for i,r in enumerate(self.rows) if r['id']==self.active_scene.get('map_location',{}).get('map')),len(self.rows))
         self.maps.setCurrentIndex(max(0,min(index,self.maps.count()-1)));self.maps.blockSignals(False);self.refresh_map()
     def refresh_map(self,*_):
+        self.name._rcm_commit();self.point_name._rcm_commit()
         row=self.row();self.name.setText(row['name'] if row else self.default_map['name'] if self.default_map else '');self.name.setEnabled(bool(row))
+        self.name_target=row;self.name._rcm_reset()
         for button in self.edit_buttons+self.point_buttons:button.setEnabled(bool(row))
         self.origin.setText(tr('Imagen original del juego; las localizaciones de esta crónica son editables.') if row and 'original' in row else tr('Vista del mapa original asociado al nivel. Usa «Usar mapa del juego…» para crear localizaciones propias.') if not row and self.default_map else '')
         self.refresh_points();self.refresh_bindings()
@@ -88,6 +91,7 @@ class MapDialog(QDialog):
             return self.native_image(original)
         return self.pending.get(row['source']) or self.win.doc.ws.output(row['source']).read_bytes()
     def refresh_points(self,index=0):
+        self.point_name._rcm_commit()
         row=self.row();self.points.blockSignals(True);self.points.clear();self.canvas.clear()
         if row:
             for point in row['points']:self.points.addItem(point['name'])
@@ -102,11 +106,26 @@ class MapDialog(QDialog):
                 marker=self.canvas.addEllipse(x,464-y,16,16,QPen(QColor('#111111'),2),QBrush(QColor('#f2c66d' if point==self.default_point else '#89a5b8')));marker.setToolTip(point['name'])
         self.points.setCurrentRow(min(index,self.points.count()-1));self.points.blockSignals(False);self.select_point();self.view.fitInView(self.canvas.sceneRect(),Qt.AspectRatioMode.KeepAspectRatio)
     def select_point(self,*_):
+        self.point_name._rcm_commit()
         point=self.point();self.point_name.setText(point['name'] if point else '');self.point_name.setEnabled(bool(point))
+        self.point_target=point;self.point_name._rcm_reset()
         for box,key in ((self.visible,'visible'),(self.haven,'haven')):box.blockSignals(True);box.setChecked(bool(point and point.get(key,False)));box.setEnabled(bool(point));box.blockSignals(False)
     def rename_point(self,value):
-        point=self.point()
-        if point:point['name']=value;self.points.currentItem().setText(value)
+        point=self.point_target
+        if point:
+            point['name']=value
+            row=self.row()
+            if row and any(p is point for p in row['points']):
+                index=next(i for i,p in enumerate(row['points']) if p is point)
+                if index<self.points.count():self.points.item(index).setText(value)
+            self.refresh_bindings()
+    def rename_map(self,value):
+        row=self.name_target
+        if row:
+            row['name']=value
+            index=next((i for i,r in enumerate(self.rows) if r is row),-1)
+            if index>=0:self.maps.setItemText(index,value)
+            self.refresh_bindings()
     def refresh_bindings(self):
         while self.bindings.rowCount():self.bindings.removeRow(0)
         options=[(tr('Mapa original'),None)]+[(row['name']+' / '+point['name'],dict(map=row['id'],point=point['id'])) for row in self.rows for point in row['points']]
@@ -175,10 +194,13 @@ class MapDialog(QDialog):
         row['points'].remove(point);self.refresh_points();self.refresh_bindings()
     def accept(self):
         try:
+            self.name._rcm_commit();self.point_name._rcm_commit()
             if self.win.doc.snapshot()!=self.initial:raise ValueError('Project changed while editing map')
             from ..chronicle_maps import validate
             for row in self.rows:validate(row,self.root['scenes'])
             if not self.rows and 'maps' not in self.initial.get('resources',{}):self.root['resources'].pop('maps',None)
+            if not self.root.get('resources') and 'resources' not in self.initial:self.root.pop('resources',None)
+            if self.root==self.initial:super().accept();return
             # Commit imported files only after OK, never while browsing/cancelling.
             from ..file_transaction import replace_files
             ws=self.win.doc.ws;used={r['source'] for r in self.rows if 'source' in r};files={ws.output(name):data for name,data in self.pending.items() if name in used}

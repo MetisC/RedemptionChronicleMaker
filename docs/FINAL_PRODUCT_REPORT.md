@@ -1,4 +1,4 @@
-# Producto vigente · 1.0.0-rc9
+# Producto vigente · 1.0.0-rc10
 
 RCM crea crónicas sobre geometría original inmutable mediante autoría visual,
 formatos propios y originales generados directamente, y Java compilado contra
@@ -115,10 +115,18 @@ sectores/portales quedan fuera de alcance. Las fuentes originales se usan en
 lectura; las comprobaciones de despliegue usan instalaciones sintéticas dentro
 del workspace. Esta entrega no modifica la instalación real del juego.
 
-## RC9 · selección y edición de actores
+## Selección y edición de actores
 
 El editor conserva el recurso aceptado mientras carga la geometría, y activa su colocación al terminar. El selector muestra modelos NOD originales con texturas, giro de previsualización y ajuste completo a la ventana; no instancia actores ni reproduce animaciones. La caché se invalida al cambiar los recursos, el proyecto o la instalación.
 
 El giro es libre por defecto y permite ajuste angular optativo. Los arrastres actualizan el visor sin serializar la crónica en cada movimiento; se guardan como una sola operación de deshacer al terminar. El menú contextual del visor y del árbol crea conversaciones para actores/objetos propios. Los actores conservan las rutas condicionales; los objetos eligen quién habla. Reemplazar una nota, escena o viaje existente exige confirmación; se conservan las demás acciones.
 
-Evidencia de esta release: research/authoring_completion/rc9_release.json. Distingue la batería general, las regresiones específicas finales, la compilación contra Codex, el portable bilingüe y la aceptación nativa todavía pendiente. El tutorial aceptado, la mini crónica y los datos personales permanecen intactos.
+Evidencia de rc9: research/authoring_completion/rc9_release.json. Distingue la batería general, las regresiones específicas finales, la compilación contra Codex, el portable bilingüe y la aceptación nativa todavía pendiente. El tutorial aceptado, la mini crónica y los datos personales permanecen intactos.
+
+## RC10 · autoría vinculada y edición estable
+
+Los textos se aplican al terminar la edición y sólo si cambiaron. Crear una conversación lleva a su editor y eliminar nodos conserva ese contexto. Las respuestas RETURN admiten acciones propias y un acceso directo al comportamiento hostil; los flags ofrecen reacciones al activarse/desactivarse. La API original de equipos y flags de actor se documenta en ENGINE_NOTES.md y su evidencia de bytecode.
+
+Los elementos ofrecen acciones vinculadas y navegación a sus eventos normales, con condiciones y repetición en la misma ventana: escena, muerte de actor, uso/posesión de objeto, entrada/salida de zona, fin de conversación, secuencia con timeline/travelling, derrota de grupo, estados/pasos de misión y callbacks dinámicos optativos. Se reutilizan rutas existentes sin perder filtros ni referencias. docs/USABILITY_REVIEW.md detalla cada semántica, los límites y las pruebas. El botón de diálogo de un objeto usa la misma selección de hablante y apertura inmediata que el contexto.
+
+La publicación rc10 se genera mediante el workflow Release de GitHub Actions. Las verificaciones locales y la publicación remota se registran en research/authoring_completion/rc10_release.json y rc10_publication.json. Permanecen pendientes DLGFX01–03 y QOL01–04, además del checklist vigente. No se declara aceptación nativa a partir del CI.

@@ -1,8 +1,8 @@
 {
-  "version": "1.0.0-rc9",
-  "user_zip": "RedemptionChronicleMaker-1.0.0-rc9-win64.zip",
-  "sha256": "892dc4bb7ec3160377741dfb07c05003523ca7ae89b9eef27d0b076ac53951e7",
-  "size": 89538221,
+  "version": "1.0.0-rc10",
+  "user_zip": "RedemptionChronicleMaker-1.0.0-rc10-win64.zip",
+  "sha256": "909aa82da3885158de3f05bfcb9f95e171a9dfc83dfbe812d87739267c139539",
+  "size": 89559133,
   "files": 377,
   "all_hashes_verified": true,
   "source_archive_separate": true,

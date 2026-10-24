@@ -3,6 +3,7 @@ import copy
 from PySide6.QtCore import Qt,QTimer
 from PySide6.QtWidgets import (QDialog,QWizard,QWizardPage,QVBoxLayout,QHBoxLayout,QFormLayout,QLabel,QLineEdit,QComboBox,QSpinBox,QDoubleSpinBox,QPushButton,QListWidget,QListWidgetItem,QCheckBox,QGroupBox,QScrollArea,QDialogButtonBox,QMessageBox,QInputDialog)
 from .i18n import tr,diagnostic
+from .text_commit import commit_edits
 from .browser import ResourceDialog
 from ..dynamic_encounters import MODES
 from ..campaign_document import CampaignDocument
@@ -31,10 +32,14 @@ class ActionsDialog(QDialog):
         selected=self.list.currentRow();self.list.blockSignals(True);self.list.clear()
         for a in self.actions:self.list.addItem(tr(ACTIONS.get(next(iter(a)),(next(iter(a)),None))[0]))
         self.list.setCurrentRow(min(max(0,selected),len(self.actions)-1));self.list.blockSignals(False);self.render()
-    def add(self):self.actions.append({'reward_xp':1});self.refresh();self.list.setCurrentRow(len(self.actions)-1)
+    def add(self):
+        if not commit_edits(self.scroll.widget()):return
+        self.actions.append({'reward_xp':1});self.refresh();self.list.setCurrentRow(len(self.actions)-1)
     def remove(self):
+        if not commit_edits(self.scroll.widget()):return
         if self.list.currentRow()>=0:self.actions.pop(self.list.currentRow());self.refresh()
     def render(self):
+        if not commit_edits(self.scroll.widget()):return
         index=self.list.currentRow();old=self.scroll.takeWidget()
         if old:old.deleteLater()
         if index<0:return
@@ -62,10 +67,7 @@ class ActionsDialog(QDialog):
             def relationships(self):pass
         self.scroll.setWidget(ActionInspector(Proxy()))
     def accept(self):
-        inspector=self.scroll.widget()
-        if inspector:
-            for control in inspector.findChildren(QLineEdit):
-                if getattr(control,'_rcm_pending',False) and not control._rcm_commit():return
+        if not commit_edits(self.scroll.widget()):return
         super().accept()
 
 class DynamicWizard(QWizard):
@@ -165,10 +167,10 @@ class DynamicWizard(QWizard):
         page=QWizardPage();page.setTitle(title);scroll=QScrollArea();scroll.setWidgetResizable(True);container=__import__('PySide6.QtWidgets',fromlist=['QWidget']).QWidget();layout=QVBoxLayout(container);scroll.setWidget(container);outer=QVBoxLayout(page);outer.addWidget(scroll);self.addPage(page);return layout
     @staticmethod
     def spin(name,lo,hi,value):
-        c=QSpinBox();c.setObjectName(name);c.setRange(lo,hi);c.setValue(value);return c
+        c=QSpinBox();c.setKeyboardTracking(False);c.setObjectName(name);c.setRange(lo,hi);c.setValue(value);return c
     @staticmethod
     def decimal(name,lo,hi,value):
-        c=QDoubleSpinBox();c.setObjectName(name);c.setRange(lo,hi);c.setDecimals(2);c.setValue(value);return c
+        c=QDoubleSpinBox();c.setKeyboardTracking(False);c.setObjectName(name);c.setRange(lo,hi);c.setDecimals(2);c.setValue(value);return c
     @staticmethod
     def advanced(title,layout):
         group=QGroupBox(title);group.setCheckable(True);group.setChecked(False);outer=QVBoxLayout(group);body=__import__('PySide6.QtWidgets',fromlist=['QWidget']).QWidget();form=QFormLayout(body);outer.addWidget(body);body.hide();group.toggled.connect(body.setVisible);layout.addWidget(group);return group,form

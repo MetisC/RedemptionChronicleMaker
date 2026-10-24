@@ -1,27 +1,27 @@
 {
-  "version": "1.0.0-rc9",
+  "version": "1.0.0-rc10",
   "successful": true,
   "errors": [],
   "files": {
     "CHANGELOG.md": {
-      "size": 1227,
-      "sha256": "ac497a8a1f682be96e4bad936d9cba66091fb3596f6baf045863b5fa13de31ba"
+      "size": 1689,
+      "sha256": "3c074534cb539a5d29ab3b71bac58f926c9971a4f035a8af39c72f7e07c10a20"
     },
     "README.txt": {
-      "size": 532,
-      "sha256": "023c775fc7708946a91acdeb525dfa59faef9972e328e38964aec4505595fa62"
+      "size": 533,
+      "sha256": "689467543869e29c629aaf4aca3eeb93903569a1902081b89a42f5909e174056"
     },
     "RedemptionChronicleMaker.exe": {
-      "size": 4693224,
-      "sha256": "deeea60e46b9817d2ec7e450b1f57754a159cc744a1edc2298bbe3d830977a0d"
+      "size": 4709335,
+      "sha256": "be6d9baa6a1fea96d4174a5e10c0213e3edbc4f2e0c6d5e32ae6a39fc49644b6"
     },
     "RELEASE_NOTES.md": {
-      "size": 2241,
-      "sha256": "94897c4e8ff4a47099c8319d26d8ce413edee90afbfd031e147a1fbc9a75bd20"
+      "size": 2845,
+      "sha256": "beced9480d6695f13a3358c7d2dc301c93472e90983d4569757092678c41ef6c"
     },
     "VERSION": {
-      "size": 10,
-      "sha256": "81c6f23c65dae4e6cb2018e36cf30f75b321e1e0a1824cd70ebd6282d4e2741e"
+      "size": 11,
+      "sha256": "8cc9e594328bebdb2975162d83f91a6383537df5b4b8ca6121d2d7986d1e6acb"
     },
     "docs/ADVANCED_LIMITATIONS.en.md": {
       "size": 2914,
@@ -64,12 +64,12 @@
       "sha256": "8dc4883b24821630e1bd03cb5466a71ccaf48be17a9850bb097fbb78fe0e35aa"
     },
     "docs/EDITOR_GUIDE.en.md": {
-      "size": 8025,
-      "sha256": "835f0c7feeb0726ef74444efcd99c4acd36d9fcecfe0ba79de6183120e943085"
+      "size": 11264,
+      "sha256": "e97866fa062b7501267c5db5122e31757515b5cced2ab54b4c5fcfb4c5ac4dcd"
     },
     "docs/EDITOR_GUIDE.md": {
-      "size": 9164,
-      "sha256": "93478e8c72081dd6406d4a23a125b9150c368548c034fe35aa4e922f176d7bb5"
+      "size": 13000,
+      "sha256": "4065d9344ff18c3a1513f37651981ffebc0517eefcc5f62420194190e1f3698e"
     },
     "docs/FIRST_RUN.en.md": {
       "size": 848,
@@ -88,12 +88,12 @@
       "sha256": "bf27b5c999824830b70c7fdbe4b2b2b27c57cd0ec359587b7680cd88c96db506"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.en.md": {
-      "size": 19607,
-      "sha256": "108a5d82d43c444393a2d924d5847ce1e71851581b076c565e8e14d2f0b35157"
+      "size": 21028,
+      "sha256": "d6a9a27d8a7ae2993ce79b4c99bd37a9f1cb70dd3a3c2ce0bae0e629c4497778"
     },
     "docs/MANUAL_RUNTIME_CHECKLIST.md": {
-      "size": 20920,
-      "sha256": "651bd37a7f2e06c0568fa2eb2fa97ba0a50145d3750e895abe4272b30527ddd8"
+      "size": 22465,
+      "sha256": "521ffb62d5fb72f7ce5814c343944324ef46a1112d66364dcc0ea75a3ff038c3"
     },
     "docs/SHORTCUTS.en.md": {
       "size": 1089,
@@ -673,7 +673,7 @@
     },
     "_internal/base_library.zip": {
       "size": 880490,
-      "sha256": "a89811ec623f2d911c79875d95a1df2a719c90129aad85804c3ae4575fef82af"
+      "sha256": "043410cbff983555728254e36728c5bfe2590085ad1cae674a9136ffa40e4679"
     },
     "_internal/libcrypto-1_1.dll": {
       "size": 3439512,
@@ -1480,8 +1480,8 @@
       "sha256": "64d133dc8fff64da79b3671e02c6bdda3f83944c4984e196a1a748a2497409ef"
     },
     "_internal/rcm/editor/assets/en.json": {
-      "size": 164977,
-      "sha256": "78b478240a41852004e78e2e0d3189ec47f48d793fe57861a473a13320eca5f1"
+      "size": 169387,
+      "sha256": "fad8f71b4552966eab5653412ccd680728d4d52bfff091efa0794ae26209d074"
     },
     "_internal/rcm/editor/assets/wtd_policy.json": {
       "size": 19452,

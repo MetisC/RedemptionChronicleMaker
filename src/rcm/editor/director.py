@@ -1,3 +1,4 @@
+from .text_commit import bind_spin
 """Small director controls inside existing Sequences and conversation inspectors."""
 import copy
 from PySide6.QtCore import Qt
@@ -113,12 +114,12 @@ def at(root,path):
     return root
 
 
-def edit_actions(win,actions,apply):
+def edit_actions(win,actions,apply,*,title=None):
     """Transactional reuse of the ordinary action inspector, with one undo."""
     if not win.commit_properties():return
     root=win.doc.snapshot();scene=root['scenes'][win.doc.active]
     scene['events'].append(dict(id='director_draft',when='manual',actions=copy.deepcopy(actions)))
-    dialog=QDialog(win);dialog.setWindowTitle(tr('Acciones de escena'));dialog.resize(690,630)
+    dialog=QDialog(win);dialog.setWindowTitle(title or tr('Acciones de escena'));dialog.resize(690,630)
     layout=QVBoxLayout(dialog);error=QLabel();error.setWordWrap(True)
     controls=ClickActions(win,root,len(scene['events'])-1,error,dialog);layout.addWidget(controls,1);layout.addWidget(error)
     buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Ok|QDialogButtonBox.StandardButton.Cancel);layout.addWidget(buttons)
@@ -129,7 +130,12 @@ def edit_actions(win,actions,apply):
 
 def action_summary(actions):
     from ..campaign import ACTIONS
-    return ', '.join(tr(ACTIONS.get(next(iter(a)),(next(iter(a)),''))[0]) for a in actions)
+    def label(action):
+        value=action.get('actor_behavior',{})
+        if value.get('behavior') in ('npc','enemy'):
+            return tr('NPC neutral' if value['behavior']=='npc' else 'Enemigo · AI original')+' · '+value['actor']
+        return tr(ACTIONS.get(next(iter(action)),(next(iter(action)),''))[0])
+    return ', '.join(label(a) for a in actions)
 
 
 def cue_controls(panel,form,row):
@@ -140,7 +146,7 @@ def cue_controls(panel,form,row):
     def edit(index=None):
         if index is not None and index<0:return
         cues=row.get('cues',[]);cue=copy.deepcopy(cues[index]) if index is not None else dict(at=min(max([c['at'] for c in cues],default=-1)+1,max(0,row['duration']-.15)),actions=[{'camera_fade':dict(initial=0,target=255,duration=1)}])
-        dialog=QDialog(win);dialog.setWindowTitle(tr('Acción de escena'));layout=QVBoxLayout(dialog);time=QDoubleSpinBox();time.setDecimals(2);time.setRange(0,max(0,row['duration']-.01));time.setSuffix(' s');time.setValue(cue['at']);layout.addWidget(time)
+        dialog=QDialog(win);dialog.setWindowTitle(tr('Acción de escena'));layout=QVBoxLayout(dialog);time=QDoubleSpinBox();time.setKeyboardTracking(False);time.setDecimals(2);time.setRange(0,max(0,row['duration']-.01));time.setSuffix(' s');time.setValue(cue['at']);layout.addWidget(time)
         label=QLabel(action_summary(cue['actions']));label.setWordWrap(True);layout.addWidget(label)
         button=QPushButton(tr('Editar acciones…'));button.clicked.connect(lambda:edit_actions(win,cue['actions'],lambda values:(cue.update(actions=values),label.setText(action_summary(values)))));layout.addWidget(button)
         choices=QDialogButtonBox(QDialogButtonBox.StandardButton.Ok|QDialogButtonBox.StandardButton.Cancel);layout.addWidget(choices);choices.accepted.connect(dialog.accept);choices.rejected.connect(dialog.reject)
@@ -177,7 +183,7 @@ class CameraPathDialog(QDialog):
         if self.main_binding:sequence['camera_path']=self.row['id'];sequence.pop('steps',None);sequence.setdefault('path_speed',30)
         self.sequence=sequence
         layout=QVBoxLayout(self);form=QFormLayout();self.name=QLineEdit(self.row.get('name',self.row['id']));self.name.setObjectName('camera_path_name');form.addRow(tr('Nombre'),self.name);layout.addLayout(form)
-        self.speed=QDoubleSpinBox();self.speed.setRange(.01,100);self.speed.setValue(sequence.get('path_speed',30));self.speed.setObjectName('camera_path_speed')
+        self.speed=QDoubleSpinBox();self.speed.setKeyboardTracking(False);self.speed.setRange(.01,100);self.speed.setValue(sequence.get('path_speed',30));self.speed.setObjectName('camera_path_speed')
         if self.main_binding:form.addRow(tr('Velocidad del travelling'),self.speed)
         self.timed=QCheckBox(tr('Tiempo por tramo (permite giros y esperas sin desplazamiento)'));self.timed.setObjectName('camera_path_timed');self.timed.setChecked(self.row.get('timed',False));form.addRow(self.timed)
         def timing(value):
@@ -215,10 +221,10 @@ class CameraPathDialog(QDialog):
         if index<0:return
         point=self.row['points'][index]
         if self.row.get('timed') and index<len(self.row['points'])-1:
-            duration=QDoubleSpinBox();duration.setRange(.15,120);duration.setDecimals(2);duration.setSuffix(' s');duration.setValue(point.get('duration',1));duration.setObjectName('camera_point_duration');duration.valueChanged.connect(lambda v:point.update(duration=v));self.axes_form.addRow(tr('Tiempo hasta el siguiente punto'),duration)
+            duration=QDoubleSpinBox();duration.setKeyboardTracking(False);duration.setRange(.15,120);duration.setDecimals(2);duration.setSuffix(' s');duration.setValue(point.get('duration',1));duration.setObjectName('camera_point_duration');bind_spin(duration);duration.valueChanged.connect(lambda v:point.update(duration=v));self.axes_form.addRow(tr('Tiempo hasta el siguiente punto'),duration)
         for key,labels in [('position',['X','Y','Z']),('orientation',[tr('Inclinación vertical'),tr('Inclinación lateral'),tr('Orientación')])]:
             for axis,label in enumerate(labels):
-                value=QDoubleSpinBox();value.setDecimals(3);value.setRange(-1e6,1e6);value.setValue(point[key][axis]);value.setObjectName('camera_point_'+key+'_'+str(axis));value.valueChanged.connect(lambda v,key=key,axis=axis:self.change_point(key,axis,v));self.axes_form.addRow(label,value)
+                value=QDoubleSpinBox();value.setKeyboardTracking(False);value.setDecimals(3);value.setRange(-1e6,1e6);value.setValue(point[key][axis]);value.setObjectName('camera_point_'+key+'_'+str(axis));bind_spin(value);value.valueChanged.connect(lambda v,key=key,axis=axis:self.change_point(key,axis,v));self.axes_form.addRow(label,value)
         self.preview()
     def change_point(self,key,axis,value):self.row['points'][self.list.currentRow()][key][axis]=value;self.preview()
     def add(self):self.row['points'].append(self.capture());self.refresh(len(self.row['points'])-1)

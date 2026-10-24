@@ -1,9 +1,11 @@
-# Changes · 1.0.0-rc9
+# Changes · 1.0.0-rc10
 
-- Keep the chosen actor/object while the 3D level is loading; the first acceptance arms placement as soon as the level is ready. Escape, failed loads and project/scene changes cancel pending placement.
-- Preview real textured NOD models in the resource picker, with turntable buttons, asynchronous loading, complete framing on resize and stale-result protection. Cached previews are invalidated when project resources or the installation change. Browsing does not add entities to the project.
-- Rotate freely by default, with optional degree snapping. Dragging updates the viewport immediately and records one undo operation on release instead of serializing the project on every mouse move.
-- Create and bind conversations from the viewport/project-tree context menu for authored actors and objects. Objects choose a speaking character. Preserve ordinary actions; confirm replacing an existing note, cutscene or journey.
-- Preserve the accepted tutorial, mini chronicle, geometry and generated runtime contracts. Manual native acceptance remains separate.
+- Apply authored text and typed numbers after editing, only when modified. Avoid per-keystroke validation, snapshots, scene refreshes and resource filtering; Save/Build first commit pending fields. Preserve invalid drafts and multiline paragraphs.
+- Open the conversation editor immediately after contextual creation. Keep the current conversation view when deleting a node, line or response.
+- Give RETURN responses ordinary actions, including a one-click hostile speaker preset, after native dialogue cleanup. Add genuine boolean flag-change reactions, saved observation state and clear flag-index explanations.
+- Edit linked actions from actors, objects, areas, conversations, scenes, quests, completed groups, timeline/travelling sequences and optional format-10 dynamic encounters. Reuse ordinary events with their filters, extra conditions and repetition; navigate directly to them.
+- Reuse conditional routes instead of making duplicates. Preserve cancellation, no-op, pending ID changes and one-step undo. Prevent removing a called event's last actions without the normal reference review.
+- Unify object/actor conversation creation with the speaking-character chooser. Modern area links no longer choose arbitrary Chronicle Flags.
+- Keep English and Spanish UI/guide coverage. Verify packaged Python sources and translations in the release workflow.
 
-No geometry editing or original authoring tools. Native game acceptance remains subject to the manual checklist; this is not final 1.0.
+The accepted tutorial, mini chronicle, immutable original geometry and legacy generation contracts are preserved. No original authoring tools or original game/mod assets are distributed. Native DLGFX/QOL and the existing manual checklist remain pending user acceptance; this is not final 1.0.

@@ -4,6 +4,7 @@ from PySide6.QtWidgets import (QWidget, QVBoxLayout, QFormLayout, QLabel, QLineE
 
 from PySide6.QtCore import Qt
 from ..model import identifier
+from .text_commit import bind_text, bind_spin
 
 
 class Inspector(QWidget):
@@ -23,6 +24,8 @@ class Inspector(QWidget):
             self.note(tr("Crea una crónica o abre un proyecto existente."))
         else:
             self.render()
+            from .linked_events import attach
+            attach(self)
             self.relationships()
         layout.addStretch()
 
@@ -36,27 +39,7 @@ class Inspector(QWidget):
     def line(self, label, value, callback, name=None, finished=False):
         control = QLineEdit(str(value))
         control.setObjectName(name or label)
-        if finished:
-            control._rcm_pending = False
-            def mark_pending(value):
-                control._rcm_pending = True
-                self.win._title()
-            def commit():
-                if getattr(control,'_rcm_committing',False):return False
-                if not control._rcm_pending:
-                    return True
-                control._rcm_committing=True
-                try:
-                    result = self.win.guard(lambda: callback(control.text()))
-                    control._rcm_pending = result is False
-                    self.win._title()
-                    return result is not False
-                finally:control._rcm_committing=False
-            control._rcm_commit = commit
-            control.textChanged.connect(mark_pending)
-            control.editingFinished.connect(commit)
-        else:
-            control.textChanged.connect(lambda v: self.win.guard(lambda: callback(v)))
+        bind_text(control, callback, self.win)
         self.form.addRow(label, control)
         return control
 
@@ -65,7 +48,7 @@ class Inspector(QWidget):
         control.setObjectName(name)
         control.setMinimumHeight(95)
         control.setMaximumHeight(150)
-        control.textChanged.connect(lambda: self.win.guard(lambda: callback(control.toPlainText())))
+        bind_text(control, callback, self.win)
         self.form.addRow(label, control)
         return control
 
@@ -97,6 +80,7 @@ class Inspector(QWidget):
             control.setDecimals(3)
             control.setSingleStep(1)
         control.setValue(value)
+        bind_spin(control, self.win)
         control.valueChanged.connect(lambda v: self.win.guard(lambda: callback(v)))
         self.form.addRow(label, control)
         return control
@@ -228,10 +212,13 @@ class Inspector(QWidget):
             self.line("Alias", alias, rename_flag, "flag_alias", True)
             self.spin(tr("Índice"), data["state"]["flags"][alias], lambda v: self.set(p, v), "flag_index", maximum=255)
             self.note(tr("Estado booleano de la crónica. El backend actual admite índices 0–255; los índices deben ser únicos."))
+            from .dialogue_actions import flag_controls
+            flag_controls(self,alias)
         else:
             self.note(tr("Selecciona un elemento de la lista para editarlo."))
 
     def object_interaction(self,kind):
+        if kind=='start_conversation':return self.win.conversation_for(self.path)
         ident=self.win.at(self.path)['id'];data=self.win.doc.data
         existing=next((i for i,e in enumerate(data['events']) if e['when']=='object_clicked' and e.get('object')==ident),None)
         if existing is not None:
@@ -328,6 +315,7 @@ class Inspector(QWidget):
                 self.win.inspect()
             choices = [(tr("Ninguna"), "")] + [(c["id"], c["id"]) for c in self.win.doc.data["conversations"] if c["speaker"] == actor["id"]]
             self.combo(tr("Al hablar"), choices, binding.get("default", ""), lambda v: binding_field("default", v), "actor_conversation")
+            self.button(tr('+ Conversación'),lambda:self.win.conversation_for(p),'actor_add_conversation')
             flags = self.combo(tr("Si el flag está activo"), self.flags(True), binding.get("when_flag", ""), lambda v: binding_field("when_flag", v), "actor_when_flag")
             flags.setEnabled(bool(binding.get("default")))
             then = self.combo(tr("Conversación alternativa"), choices, binding.get("then", ""), lambda v: binding_field("then", v), "actor_then")
@@ -384,7 +372,8 @@ class Inspector(QWidget):
         if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
             self.combo(tr('Región nativa para scripts'),[(tr('No'),None),(tr('Sí'),True)],True if t.get('native_script') else t.get('native_region'),lambda v:self.set(p+('native_region',),v,True),'trigger_native_region').setEnabled(not bool(t.get('native_script')))
         self.note(tr('CUANDO un jugador entra en el volumen. Configura condiciones y acciones en sus eventos de entrada. La posición indica el centro del volumen.'))
-        self.button(tr('Añadir evento de entrada'), self.add_trigger_event, 'trigger_event')
+        if not hasattr(self.win.doc,'campaign') or self.win.doc.campaign.get('project_format') not in (9,10):
+            self.button(tr('Añadir evento de entrada'), self.add_trigger_event, 'trigger_event')
         if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
             from .zones import edit_zone
             self.button(tr('Zona sonora…'),lambda:edit_zone(self.win,t,'sound'),'trigger_sound_zone')
@@ -509,6 +498,11 @@ class Inspector(QWidget):
             nodes = conv.get("nodes", [])
             def mode(value):
                 if value == "goto":
+                    if answer.get('actions'):
+                        from PySide6.QtWidgets import QMessageBox
+                        if QMessageBox.question(self,tr('Cambiar destino'),tr('Esta respuesta tiene acciones al terminar. ¿Quitarlas para continuar a otro nodo?'),QMessageBox.StandardButton.Yes|QMessageBox.StandardButton.No,QMessageBox.StandardButton.No)!=QMessageBox.StandardButton.Yes:
+                            self.win.inspect();return
+                        answer.pop('actions',None)
                     answer.pop("result", None)
                     answer.pop("set_flag", None)
                     answer.pop("clear_flag", None)
@@ -534,6 +528,8 @@ class Inspector(QWidget):
                 self.combo(tr("Cambiar estado"), [(tr("Sin cambio"), ""), (tr("Activar flag"), "set_flag"), (tr("Desactivar flag"), "clear_flag")], current, effect, "answer_effect")
                 if current:
                     self.combo("Flag", self.flags(), answer[current], lambda v: self.set(p + (current,), v), "answer_flag")
+            from .dialogue_actions import response_controls
+            response_controls(self,conv,answer,p)
 
     def event_properties(self):
         if hasattr(self.win.doc, 'campaign'):

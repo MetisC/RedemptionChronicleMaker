@@ -1,5 +1,19 @@
 # Using the editor
 
+**Link actions without assembling events by hand:** select an actor, object, area, conversation or level. Choose when to react in the linked-actions selector, then **Actions…**. The context menu also offers **Linked actions**. Set actions, additional conditions (AND/ALL/ANY/NOT) and **Once only** in the same window. Cancel keeps everything. **View event** opens the ordinary event with its filters and references; when several routes exist, choose which one to edit. Conditional routes are kept and reopening a shortcut does not create another event.
+
+In Campaign / Overview, select an encounter to react to its defeat, a shot sequence or travelling to react on completion, or a quest to react to its state/step. For example, completing a film can spawn an encounter and advance a quest; an enemy death can give an item and experience; leaving an area can restore music. Inventory, deaths and quest states use existing engine/generator checks, including scene entry. Format-10 dynamic encounters offer start, wave, completion and stop reactions. Native-script regions keep their own callbacks. Note closure is scene-wide: it means **any** note, not one specific letter.
+
+Quest steps are numbered from 1 in the selector; internal indices are preserved. Quest links belong to the active scene; add them to other scenes if needed there. A particular response has **Actions when choosing this response…**. The conversation-level link reacts to its final result and can retain an existing RETURN filter.
+
+**Make a dialogue response turn an NPC hostile:** select the response, choose **Destination → End (RETURN)** and click **Make the speaker hostile**. **Actions when choosing this response…** lets you edit this effect or add other actions. Effects run after that response ends the dialogue, after its flag change and native conversation cleanup. Cancelling the dialogue runs no response actions. For a GOTO branch, use actions on the destination node's first line.
+
+**React to flag changes:** select the flag alias under Chronicle Flags, then **Actions when enabled…** or **Actions when disabled…**. Add **Actor / Team and activity**, select the NPC and choose **Behaviour → Enemy · Original AI**. The other state can make it neutral. These are ordinary **WHEN → A flag changes** events in the active scene, editable in Events. **Every time** means once per genuine transition, not continuously while enabled. Initial state does not trigger the event; **A condition becomes true** also checks initial state. **Index** identifies flag storage, not its in-game value. Requires project format 9/10.
+
+**Uninterrupted typing:** authored text is applied when you leave the field; single-line fields also accept Enter. Enter in multiline fields keeps adding paragraphs. Saving, validating, building or changing selection first applies pending edits. Typing does not rebuild the scene or record every keystroke as a project change. Returning to the original value applies nothing. Typed numbers also wait until editing finishes; their arrow buttons still work immediately.
+
+Searches apply on Enter or when leaving the field, so lists and model previews are not rebuilt while typing. The × resets results directly.
+
 To delete a chronicle, select it in **Recent projects** and choose **Delete chronicle…**, press Delete or use the context menu. Confirmation shows the exact path: deletion permanently removes the local project and its resource folder. For a standalone YAML, only that file and its autosave are removed. Installed chronicles and saved games are kept. **Remove from recent** only hides the entry and keeps all files. Projects open in another editor and bundled original examples cannot be deleted.
 
 **Welcome:** create, open or return to a recent project. Tutorial and Showcase are working copies: creating a clean copy preserves earlier work.

@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, Q
 from ..document import Document
 from ..model import identifier
 from .browser import ResourceBrowser, ResourceDialog
+from .text_commit import bind_text, bind_filter
 
 ROLE = Qt.ItemDataRole.UserRole
 ACTION_LABELS = {"spawn": tr("Crear"), "start_conversation": tr("Iniciar conversación"), "set_flag": tr("Activar flag"), "clear_flag": tr("Desactivar flag")}
@@ -42,7 +43,7 @@ class NewProjectDialog(QDialog):
             path=str(workspace.output('chronicles')/text)
             if self.directory.text()==self._auto_directory:self.directory.setText(path)
             self._auto_directory=path
-        self.pid.textChanged.connect(update_directory)
+        bind_text(self.pid, update_directory)
         path_row = QWidget()
         path_layout = QHBoxLayout(path_row)
         path_layout.setContentsMargins(0, 0, 0, 0)
@@ -70,7 +71,7 @@ class NewProjectDialog(QDialog):
         def derive(value):
             if hasattr(self,'advanced') and self.advanced.isChecked():return
             self.pid.setText(project_id(value,self.ws.root))
-        self.name.textChanged.connect(derive)
+        bind_text(self.name, derive)
         self.level=QComboBox();self.level.setObjectName('new_level');self.level.addItem(tr('Elige un escenario…'),'')
         self.level.setEditable(True);self.level.setInsertPolicy(QComboBox.InsertPolicy.NoInsert)
         if parent and hasattr(parent,'backend'):
@@ -91,6 +92,8 @@ class NewProjectDialog(QDialog):
 
     def check_accept(self):
         try:
+            self.name._rcm_commit()
+            self.pid._rcm_commit()
             identifier(self.pid.text(), tr("ID de crónica"), 14)
             self.ws.output(self.directory.text())
             if not self.name.text().strip():
@@ -272,7 +275,7 @@ class MainWindow(QMainWindow):
         self.nav_search.setObjectName('project_search')
         self.nav_search.setPlaceholderText(tr('Buscar en el proyecto · Ctrl+F'))
         self.nav_search.setClearButtonEnabled(True)
-        self.nav_search.textChanged.connect(self.filter_project_tree)
+        bind_filter(self.nav_search,self.filter_project_tree)
         self.nav_search.returnPressed.connect(self.activate_project_result)
         navigation_layout.addWidget(self.nav_search)
         navigation_layout.addWidget(self.nav, 1)
@@ -461,11 +464,8 @@ class MainWindow(QMainWindow):
         return labels.get(path[0], tr("Elemento")), str(len(value)) if isinstance(value, list) else ""
 
     def pending_properties(self):
-        panel = self.properties.widget()
-        controls = panel.findChildren(QLineEdit) if panel else []
-        controls += self.campaign_panel.findChildren(QLineEdit)
-        controls += self.project_resources_panel.findChildren(QLineEdit)
-        controls += self.project_resources_panel.findChildren(QPlainTextEdit)
+        panels = (self.properties.widget(), self.campaign_panel.scroll.widget(), self.project_resources_panel.scroll.widget())
+        controls = [control for panel in panels if panel for control in panel.findChildren(QWidget)]
         return [control for control in controls if getattr(control, '_rcm_pending', False)]
 
     def commit_properties(self):
@@ -476,8 +476,12 @@ class MainWindow(QMainWindow):
         return True
 
     def _title(self):
+        self._committed_modified = bool(self.doc and self.doc.modified)
+        self.pending_title()
+
+    def pending_title(self):
         name = self.doc.data.get("chronicle", {}).get("name", tr("Proyecto")) if self.doc else tr("Sin proyecto")
-        self.setWindowTitle(("* " if self.doc and (self.doc.modified or self.pending_properties()) else "") + name + " — Redemption Chronicle Maker")
+        self.setWindowTitle(("* " if self.doc and (getattr(self, '_committed_modified', False) or self.pending_properties()) else "") + name + " — Redemption Chronicle Maker")
 
     def refresh(self):
         if self.doc:
@@ -488,10 +492,12 @@ class MainWindow(QMainWindow):
             self.nav_search.blockSignals(True)
             self.nav_search.clear()
             self.nav_search.blockSignals(False)
+            self.nav_search._rcm_reset()
             self._nav_filtering = False
             self.campaign_panel.search.blockSignals(True)
             self.campaign_panel.search.clear()
             self.campaign_panel.search.blockSignals(False)
+            self.campaign_panel.search._rcm_reset()
             self.campaign_panel.path = None
             self.history_document = self.doc
             self.history = [self.doc.snapshot()] if self.doc else []
@@ -1036,6 +1042,8 @@ class MainWindow(QMainWindow):
         from PySide6.QtWidgets import QMenu
         menu = QMenu(self)
         self.add_conversation_action(menu,tuple(item.data(0, ROLE)))
+        from .linked_events import context_menu
+        context_menu(self,menu,tuple(item.data(0,ROLE)))
         menu.addAction(tr('Buscar referencias'), lambda: self.find_references(tuple(item.data(0, ROLE))))
         menu.exec(self.nav.mapToGlobal(position))
 
@@ -1178,6 +1186,8 @@ class MainWindow(QMainWindow):
                     event['actions'].insert(at,{'start_conversation':conv['id']})
         self.selection = ("conversations", len(self.doc.data["conversations"])-1)
         self.changed(True)
+        self.center_tabs.setCurrentIndex(1)
+        self.content.setFocus()
 
     def graph_conversation(self):
         if not self.doc or self.selection[0] != "conversations" or len(self.selection) < 2:
@@ -1303,9 +1313,16 @@ class MainWindow(QMainWindow):
         except ValueError as error:
             QMessageBox.warning(self,tr('No se puede eliminar'),diagnostic(error));return
         if candidate is None:return
+        conversation_id=self.doc.data['conversations'][p[1]]['id'] if p[0]=='conversations' and len(p)>2 else None
+        previous_tab=self.center_tabs.currentWidget()
         self.doc.data=candidate
-        self.selection = ('chronicle',)
+        if p[0]=='conversations':
+            index=next((i for i,c in enumerate(self.doc.data['conversations']) if c['id']==conversation_id),None)
+            self.selection=('conversations',index) if index is not None else ('conversations',)
+        else:self.selection = ('chronicle',)
         self.changed(True)
+        if p[0]=='conversations':
+            self.center_tabs.setCurrentWidget(previous_tab if previous_tab in (self.center_tabs.widget(1),self.graph_panel) else self.center_tabs.widget(1))
 
     def move_selected(self, delta):
         p = self.selection

@@ -1,3 +1,4 @@
+from .text_commit import bind_filter
 """Pick scenery and author native hover/click interactions or prop operations."""
 import copy
 import re
@@ -31,7 +32,7 @@ class OriginalObjectPicker(QDialog):
         for row in self.rows:
             item=QTreeWidgetItem(self.tree,[object_label(row),str(row.get('position',tr('Sin posición'))),row.get('cast_id','')]);item.setData(0,Qt.ItemDataRole.UserRole,selector(row));item.setToolTip(0,object_label(row)+'\n'+row['origin'])
             if selected and selector(row)==selector(selected):self.tree.setCurrentItem(item)
-        self.search.textChanged.connect(lambda text:[self.tree.topLevelItem(i).setHidden(text.casefold() not in ' '.join(self.tree.topLevelItem(i).text(c) for c in range(3)).casefold()) for i in range(self.tree.topLevelItemCount())])
+        bind_filter(self.search,lambda:[self.tree.topLevelItem(i).setHidden(self.search.text().casefold() not in ' '.join(self.tree.topLevelItem(i).text(c) for c in range(3)).casefold()) for i in range(self.tree.topLevelItemCount())])
         self.tree.itemDoubleClicked.connect(lambda *_:self.accept())
         locate=QPushButton(tr('Localizar en 3D'));locate.setObjectName('locate_original_object');layout.addWidget(locate)
         def focus():

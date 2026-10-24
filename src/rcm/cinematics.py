@@ -143,14 +143,26 @@ def choreography_events(scene):
 
 def compile_scene(scene):
     events,cues,dialogue=choreography_events(scene)
+    answers={}
+    for ci,conversation in enumerate(scene['conversations']):
+        choices=conversation.get('choices',[])+[c for n in conversation.get('nodes',[]) for c in n['choices']]
+        for choice in choices:
+            if choice.get('actions'):
+                index=len(scene['events'])+len(events)
+                events.append(dict(id='rcm_director_'+str(index),when='manual',actions=choice['actions']))
+                answers[ci,choice['result']]=index
     if not events:return scene
-    result=copy.deepcopy(scene);result['events']+=events;result['_director_cues']=cues;result['_director_lines']=dialogue;return result
+    result=copy.deepcopy(scene);result['events']+=events;result['_director_cues']=cues;result['_director_lines']=dialogue
+    if answers:result['_director_answers']=answers
+    return result
 
 
 def conversation_source(row):
     result=copy.deepcopy(row);result.pop('camera',None);result.pop('staging',None)
     for node in result.get('nodes',[]):
         for line in node['lines']:line.pop('actions',None)
+        for choice in node['choices']:choice.pop('actions',None)
+    for choice in result.get('choices',[]):choice.pop('actions',None)
     return result
 
 

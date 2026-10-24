@@ -1,4 +1,4 @@
-# Redemption Chronicle Maker — 1.0.0-rc9
+# Redemption Chronicle Maker — 1.0.0-rc10
 
 In this workspace, open **Redemption Chronicle Maker.lnk** from the root folder.
 

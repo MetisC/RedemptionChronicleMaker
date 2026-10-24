@@ -148,6 +148,27 @@ class ActorAuthoring(TestCase):
         self.assertTrue(self.backend.validate(self.win.doc.snapshot()).valid)
         self.win.undo_project();self.assertEqual(self.win.doc.snapshot(),before)
 
+    def test_context_conversation_opens_story_editor_from_spatial_overview_and_graph(self):
+        speaker=self.win.doc.data['actors'][0]
+        label=speaker['name']+' · '+speaker['id']
+        for path in [('actors',1),('objects',0)]:
+            for tab in [0,2,self.win.center_tabs.indexOf(self.win.graph_panel)]:
+                with self.subTest(target=path,tab=tab):
+                    self.win.select(path)
+                    self.win.center_tabs.setCurrentIndex(tab)
+                    menu=QMenu();self.win.add_conversation_action(menu,path)
+                    action=next(a for a in menu.actions() if a.objectName()=='context_add_conversation')
+                    with patch('PySide6.QtWidgets.QInputDialog.getItem',return_value=(label,True)),patch.object(QMessageBox,'question',return_value=QMessageBox.StandardButton.Yes):
+                        action.trigger()
+                    index=len(self.win.doc.data['conversations'])-1
+                    conv=self.win.doc.data['conversations'][index]
+                    self.assertEqual(self.win.center_tabs.currentIndex(),1)
+                    self.assertEqual(self.win.selection,('conversations',index))
+                    self.assertEqual(self.win.heading.text(),conv['id'])
+                    self.assertIn(('conversations',index,'nodes',0,'lines',0),self.win.content_items)
+                    self.assertIn(('conversations',index,'nodes',0,'choices',0),self.win.content_items)
+                    self.assertTrue(self.backend.validate(self.win.doc.snapshot()).valid)
+
     def test_actor_click_override_and_new_object_click_use_the_new_conversation(self):
         actor=self.win.doc.data['actors'][1]
         event=dict(id='dialog_click',when='actor_clicked',actor=actor['id'],once=False,

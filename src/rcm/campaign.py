@@ -57,6 +57,7 @@ WHEN['generator_threshold']='Cruza umbral de vida del jefe'
 ACTIONS['set_location_flags']=('Mapa / Visibilidad y refugio','map_flags')
 ACTIONS['set_room_type']=('Audio / Reverberación EAX','room_type')
 ACTIONS.update({'move_actor':('Actor / Ir a un punto','actor_move'),'actor_inventory':('Inventario / Objeto de un actor','actor_inventory'),'actor_behavior':('Actor / Equipo y actividad','actor_behavior')})
+WHEN['flag_changed']='Cambia un flag'
 
 @dataclass(frozen=True)
 class Campaign:
@@ -245,7 +246,7 @@ def parse_campaign(source, levels, resources):
                 return
             if kind in ('actor_move','actor_inventory','actor_behavior'):
                 fields={'actor_move':{'actor','waypoint','speed'},'actor_inventory':{'actor','item','operation'},'actor_behavior':{'actor','team','paused'}}[kind]
-                mapping(v,fields,fields,kind)
+                mapping(v,fields|({'behavior'} if kind=='actor_behavior' else set()),fields,kind)
                 if not modern:raise ValueError('Actor control requires format 9 or 10')
                 if v['actor']!='Player':ref(v['actor'],control_actors,'actor')
                 if kind=='actor_move':
@@ -256,6 +257,9 @@ def parse_campaign(source, levels, resources):
                     item(v['item'])
                     if v['operation'] not in ('give','take'):raise ValueError('Inventory operation: give/take')
                 elif type(v['team']) is not int or not 0<=v['team']<=19 or type(v['paused']) is not bool:raise ValueError('Actor team 0..19 and paused boolean required')
+                if kind=='actor_behavior' and 'behavior' in v:
+                    presets={'npc':(10,True),'enemy':(12,False)}
+                    if not isinstance(v['behavior'],str) or v['behavior'] not in presets or (v['team'],v['paused'])!=presets[v['behavior']]:raise ValueError('Actor behavior preset must be npc (10, paused) or enemy (12, active)')
                 return
             if kind=='map_flags':
                 mapping(v,{'scene','visible','haven'},{'scene','visible','haven'},'Map flags');ref(v['scene'],scenes,'map location')
@@ -334,7 +338,7 @@ def parse_campaign(source, levels, resources):
                 for eid in [v] if k=='spawn' else groups[v]['actors']: spawn_owners[eid]=spawn_owners.get(eid,0)+1
         events=indexed(s['events'],label+' events')
         for e in events.values():
-            mapping(e,{'id','when','actions','conditions','actor','object','conversation','result','trigger','item','encounter','sequence','seconds','once','generator','wave','phase'}, {'id','when','actions'},'event '+e['id'])
+            mapping(e,{'id','when','actions','conditions','actor','object','conversation','result','trigger','item','encounter','sequence','seconds','once','generator','wave','phase','flag','is_set'}, {'id','when','actions'},'event '+e['id'])
             w=e['when']
             if w not in WHEN: raise ValueError('Callback no soportado: '+str(w))
             if w in (*GENERATOR_EVENTS,'generator_threshold'):
@@ -355,6 +359,9 @@ def parse_campaign(source, levels, resources):
             if w=='item_picked_up': item(e['item'])
             if w=='timer' and (type(e.get('seconds')) not in (int,float) or not math.isfinite(e['seconds']) or not .15<=e['seconds']<=86400): raise ValueError('Timer requiere seconds 0.15..86400')
             if w=='state_changed' and not e.get('conditions'): raise ValueError('state_changed requiere condición')
+            if w=='flag_changed':
+                if not modern or not isinstance(e.get('flag'),str) or e['flag'] not in flags or type(e.get('is_set')) is not bool:raise ValueError('flag_changed requires format 9/10, a declared flag and boolean is_set')
+            elif 'flag' in e or 'is_set' in e:raise ValueError('Flag change filters require flag_changed')
             if 'result' in e:
                 choices=convs[e['conversation']].get('choices',[]) + [c for n in convs[e['conversation']].get('nodes',[]) for c in n['choices']]
                 if type(e['result']) is not int or e['result'] not in [c.get('result') for c in choices]: raise ValueError('RETURN de conversación no existe')
@@ -387,6 +394,14 @@ def parse_campaign(source, levels, resources):
                     for a in line['actions']:
                         if any(k in a for k in ('start_conversation','play_sequence','show_note','jump','travel')):raise ValueError('La línea no puede abrir otra interfaz ni abandonar la conversación; usa conversación terminada')
                         action(a)
+        for conversation in convs.values():
+            answers=conversation.get('choices',[])+[c for n in conversation.get('nodes',[]) for c in n['choices']]
+            for answer in answers:
+                if 'actions' not in answer:continue
+                if not modern or 'goto' in answer or not isinstance(answer['actions'],list) or not 1<=len(answer['actions'])<=32:raise ValueError('Response actions require format 9/10, RETURN and 1..32 actions')
+                for a in answer['actions']:action(a)
+                if sum(any(k in a for k in ('show_note','start_conversation','play_sequence','travel','jump')) for a in answer['actions'])>1:raise ValueError('A response can open only one conversation, note, sequence or journey')
+                if any('jump' in a or 'travel' in a for a in answer['actions'][:-1]):raise ValueError('Response travel must be the last action')
         # Reject recursive event chains before they can exhaust the old JVM's
         # stack. Runtime has a second guard for synchronous native callbacks.
         visiting=set();visited=set()

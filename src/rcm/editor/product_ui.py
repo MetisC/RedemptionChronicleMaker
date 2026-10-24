@@ -31,10 +31,11 @@ class SetupDialog(QDialog):
         hint=QLabel(tr('Tus crónicas se guardan fuera del programa. Los archivos originales del juego se conservan.'));hint.setWordWrap(True);layout.addWidget(hint)
         self.status=QLabel();self.status.setWordWrap(True);layout.addWidget(self.status)
         buttons=QDialogButtonBox(QDialogButtonBox.StandardButton.Ok|QDialogButtonBox.StandardButton.Cancel);buttons.button(QDialogButtonBox.StandardButton.Ok).setText(tr('Preparar RCM'));buttons.accepted.connect(self.check);buttons.rejected.connect(self.reject);layout.addWidget(buttons)
-        self.exe.textChanged.connect(self.inspect);self.inspect()
+        from .text_commit import bind_text
+        bind_text(self.exe,lambda value:self.inspect());self.inspect()
     def pick_exe(self):
         path,_=QFileDialog.getOpenFileName(self,tr('Selecciona Vampire.exe'),self.exe.text(),tr('Redemption (Vampire.exe)'))
-        if path:self.exe.setText(path)
+        if path:self.exe.setText(path);self.exe._rcm_commit()
     def inspect(self):
         game=Path(self.exe.text()).parent
         self.status.setText('\n'.join(('✓ ' if (game/name).is_file() else '✗ ')+name for name in ('Vampire.exe','Resource.nob','classes.zip')))

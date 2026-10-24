@@ -1,0 +1,20 @@
+Original installed archive (read only): H:\GOG\Vampire The Masquerade - Redemption\Codex.nob
+SHA256: 97961807413424796f5cbee284ddd2cdb155f316b97d7f6d8b35ff5cc74c6e54
+Tool: JDK javap -c -p (no script execution).
+MON3_Main.convended clears 133 = INVUL(1)|AIPAUSED(4)|TALKTO(128), then calls AIOn. ARC3_Erik clears NEUTRAL(262144). Constants verified in research/API_SIGNATURES.txt. These are original-file observations; native acceptance of our new presets is pending.
+
+public class MON3_Main extends Codex {
+       8: ifne          22
+      11: aload_0
+      12: getfield      #142                // Field _Mercurio:LCodexActor;
+      15: sipush        133
+      18: invokevirtual #147                // Method CodexActor.ClearActorFlags:(I)I
+      21: pop
+
+public class ARC3_Erik extends Codex {
+      29: pop
+      30: aload_0
+      31: getfield      #22                 // Field _Erik:LCodexPlayer;
+      34: ldc           #62                 // int 262144
+      36: invokevirtual #61                 // Method CodexActor.ClearActorFlags:(I)I
+      39: pop

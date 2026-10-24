@@ -47,6 +47,9 @@ class EditorTests(unittest.TestCase):
         self.w.doc.save(ROOT / "build/tests/editor_actor.yaml")
         self.w.select(("actors", 0))
         self.control(QLineEdit, "actor_name").setText("Victoria del Támesis")
+        self.assertFalse(self.w.doc.modified)
+        self.assertTrue(self.w.pending_properties())
+        self.assertTrue(self.w.commit_properties())
         self.assertTrue(self.w.doc.modified)
         self.assertTrue(self.w.windowTitle().startswith("*"))
         v = self.backend.validate(self.w.doc.data)
@@ -194,6 +197,32 @@ class EditorTests(unittest.TestCase):
             self.w.delete_selected()
         question.assert_not_called()
         self.assertEqual(self.w.doc.data,original)
+
+    def test_deleting_conversation_node_keeps_its_editor_and_supports_undo(self):
+        self.w.select(('conversations',0))
+        self.w.add_node()
+        before=self.w.doc.snapshot()
+        with patch.object(QMessageBox,'question',return_value=QMessageBox.StandardButton.Yes):
+            QTest.mouseClick(self.w.buttons['delete'],Qt.MouseButton.LeftButton)
+        self.assertEqual(self.w.selection,('conversations',0))
+        self.assertEqual(self.w.center_tabs.currentIndex(),1)
+        self.assertEqual(self.w.heading.text(),self.w.doc.data['conversations'][0]['id'])
+        self.assertEqual(len(self.w.doc.data['conversations'][0]['nodes']),len(before['conversations'][0]['nodes'])-1)
+        self.assertIn(('conversations',0,'nodes',0,'lines',0),self.w.content_items)
+        self.w.undo_project()
+        self.assertEqual(self.w.doc.snapshot(),before)
+
+    def test_deleting_dialogue_parts_keeps_conversation_and_current_story_view(self):
+        for add in (self.w.add_line,self.w.add_answer,self.w.add_node):
+            with self.subTest(add=add.__name__):
+                self.w.select(('conversations',0))
+                add()
+                self.w.center_tabs.setCurrentWidget(self.w.graph_panel)
+                with patch.object(QMessageBox,'question',return_value=QMessageBox.StandardButton.Yes):
+                    self.w.delete_selected()
+                self.assertEqual(self.w.selection,('conversations',0))
+                self.assertIs(self.w.center_tabs.currentWidget(),self.w.graph_panel)
+                self.assertTrue(self.backend.validate(self.w.doc.snapshot()).valid)
 
     def test_transform_during_level_switch_does_not_write_old_geometry_coordinates(self):
         from types import SimpleNamespace

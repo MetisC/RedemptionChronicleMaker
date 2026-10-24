@@ -177,6 +177,18 @@ same weak enemy in Normal, Easy, Hard and Nightmare; do not overwrite your saves
 
 ## Current priority: authoring laboratory
 
+- DLGFX01 (pending): a RETURN response with **Make the speaker hostile**. Verify dialogue closes, HUD/cursor return and the actor becomes an enemy with its original AI. Cancelling or choosing another response must run no effect.
+- DLGFX02 (pending): enabled/disabled flag reactions. Initial state and setting the same value must not fire them. Check both edges, once-only mode and save/load without replaying rewards or reverting behaviour.
+- DLGFX03 (pending): a note or travel as a final response action; verify assets and no overlap with the conversation. Compilation and doubles do not certify these three native cases.
+
 COMP01–06 in AUTHORING_COMPLETION.en.md are the six short new checks. All remain
 pending user observation; existing DYN/EMB, native save/reentry, networking and
 independent GPU/DPI checks are not replaced by offline compilation or doubles.
+
+
+## QOL · linked event authoring (pending native acceptance)
+
+- QOL01: link a reward to an actor death and an inventory change to item possession. Verify each intended occurrence, once/repeat, save/load and absence of duplicates.
+- QOL02: use entry/leave actions with additional flag/item conditions; verify the correct scene/zone, repetition and native-script ownership.
+- QOL03: finish a timeline/travelling, spawn an encounter, advance a quest, then react to group defeat and active/completed quest steps. Check ordering and restored state; initial-state checks are deliberate.
+- QOL04: dynamic start/wave/complete/stop routes keep wave/phase filters; scene-wide note-close reactions affect any note. Exercise View event, save/reopen and native host/client behaviour separately.

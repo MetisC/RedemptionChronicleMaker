@@ -1,10 +1,10 @@
 {
   "successful": true,
-  "executable_sha256": "deeea60e46b9817d2ec7e450b1f57754a159cc744a1edc2298bbe3d830977a0d",
+  "executable_sha256": "be6d9baa6a1fea96d4174a5e10c0213e3edbc4f2e0c6d5e32ae6a39fc49644b6",
   "modules": [
     {
       "module": "rcm",
-      "source_sha256": "30e9f006564423c81a6acedf7a9034feebddf3f3b85c2686c5b35a8bec8d66ca",
+      "source_sha256": "279131eb30383ec2097ed40460c9139ec97980a973694381d25689947ab7497e",
       "matches": true
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "module": "rcm.campaign",
-      "source_sha256": "db7c0319089cb9d5e873b4f78e89a03a0f5c94e700f68bb4516c9fa03c9a1c88",
+      "source_sha256": "08d1ef547fee2e19c805c76c03a3a0767f7c5bb322c2adaf702e645956bf1091",
       "matches": true
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "module": "rcm.campaign_generator",
-      "source_sha256": "3004f7cb50c8e989cc53928b30baa53adae3648e7691d5f0ee00757780e7f609",
+      "source_sha256": "a4de353bb1b33cb8f07d68d540f3c3c0ae497f37350c65b6e2c4da52f94c32b8",
       "matches": true
     },
     {
@@ -74,7 +74,7 @@
     },
     {
       "module": "rcm.cinematics",
-      "source_sha256": "de715578baaf1f4c23518bb435247231ac74c0f2d5534a2627a82df48ff19d02",
+      "source_sha256": "6c897e1c48c1140c3bc670ca43500583151ef1aac3bf19de576b586caa9ece55",
       "matches": true
     },
     {
@@ -154,7 +154,7 @@
     },
     {
       "module": "rcm.editor.browser",
-      "source_sha256": "09c85a08ae3680070e86d1df07153b5425d6168ac425552201ce99b346ada80f",
+      "source_sha256": "3de12e94b7854dc91d8eb09f5723c78d736bdb2b3c646e69a2fcf9e858ae3787",
       "matches": true
     },
     {
@@ -164,17 +164,17 @@
     },
     {
       "module": "rcm.editor.campaign_panel",
-      "source_sha256": "84a99c4fb85bc851825cf260bab590fb50bdae015654d42c5afa33961904f5a6",
+      "source_sha256": "f9cccac0ffe8b3fbc52e71388239a8ff3714f30e5197142875aa2c6ee82dcf37",
       "matches": true
     },
     {
       "module": "rcm.editor.click_actions",
-      "source_sha256": "97a2c10e5e877559e367ebecd8618bf746ff130f1dd67e88b3581d4e46caf8c3",
+      "source_sha256": "2d7c4191043b316d09135cb0ccd7ff940e8b21ea99a873e880fb43f1c0590ab2",
       "matches": true
     },
     {
       "module": "rcm.editor.content_libraries",
-      "source_sha256": "b4a0c166b7f0682278e35426e6355fa78f5a900b494f618a5ad563d7c64c14cc",
+      "source_sha256": "fa25b4631fd3e7af4dab765d9782a457ca19437a4e82eac1d92fd313f7f96539",
       "matches": true
     },
     {
@@ -188,13 +188,18 @@
       "matches": true
     },
     {
+      "module": "rcm.editor.dialogue_actions",
+      "source_sha256": "78be6311d93c76eeff33aa71d8040e902740765c0f8729b0d6bae62a75e6557b",
+      "matches": true
+    },
+    {
       "module": "rcm.editor.director",
-      "source_sha256": "8d961e9dfd96e39b8ec8e9f20dbcc69a222983474bee4d3db11c3f1ac7cc72da",
+      "source_sha256": "4583771295bc52b047884ee6a4b6878a033d07e3961ce2801dacde999231bbc3",
       "matches": true
     },
     {
       "module": "rcm.editor.dynamic_wizard",
-      "source_sha256": "eed9ff8f1ebcb0569c576e6e6b51f67c6ff5766a939317e9881c69f1df7f219c",
+      "source_sha256": "7f6607b0e6797a92c7d5595e1120b74100f76c1a3a91561d636976b3da830002",
       "matches": true
     },
     {
@@ -224,7 +229,7 @@
     },
     {
       "module": "rcm.editor.inspector",
-      "source_sha256": "0d66f696900f740b8bebc93297db8dcc4016a184974c6dd59f23d7f27df5a20c",
+      "source_sha256": "23ac75b4b19703ad446ed8e3e37625b68facbcb90063f626dce8dd171f8201cc",
       "matches": true
     },
     {
@@ -233,8 +238,13 @@
       "matches": true
     },
     {
+      "module": "rcm.editor.linked_events",
+      "source_sha256": "42604e628692d0a1ce2474acec5fc1676740a2535153967ffcbcd7af49240379",
+      "matches": true
+    },
+    {
       "module": "rcm.editor.maps",
-      "source_sha256": "41ddaf7ae2086ede0b5a2f829c37acad668fc984b35bd7416705c88379f4ed98",
+      "source_sha256": "c848b8b0385457b46c0f77a5c2a30cf075071943c76fe457628dec98ba589847",
       "matches": true
     },
     {
@@ -249,7 +259,7 @@
     },
     {
       "module": "rcm.editor.original_objects",
-      "source_sha256": "cedf0c5194f29b0fe79eafca643124dc81e93c4440f8d60e7a86f505d4eca78d",
+      "source_sha256": "29fe9b894bd4135ca47963e8f5d0315d75accaab1e2627d3686055f10e7287ab",
       "matches": true
     },
     {
@@ -264,17 +274,17 @@
     },
     {
       "module": "rcm.editor.product_ui",
-      "source_sha256": "00e069a9591e418a537006ce91ce1a34f9528d964422ad8e6a08082af2f4bac3",
+      "source_sha256": "4f01f9e01075f7e98e25613fc240473eff686e7b9dd7f7cdac20c8748ad0aa8e",
       "matches": true
     },
     {
       "module": "rcm.editor.recipe_wizard",
-      "source_sha256": "ea20181d69e37acfc33ada6e45c0cd3188891d24caf8fcefc74bd718e7653f32",
+      "source_sha256": "cd08721e2f0dccc5b35762679398c99c4c760d64bf33401fadc201635ce6a079",
       "matches": true
     },
     {
       "module": "rcm.editor.resource_panel",
-      "source_sha256": "952bfe55bd4dc298fff72c737bf21008f6f70949110d48bf74cd25fbcb8f0c49",
+      "source_sha256": "13a8ed996627091f7c4919cdb1a1b036f800c5786e2c5acd91ce9b7dbab9f74a",
       "matches": true
     },
     {
@@ -288,18 +298,23 @@
       "matches": true
     },
     {
+      "module": "rcm.editor.text_commit",
+      "source_sha256": "f0f33f96b31346e533f65818035c2cfac610d60eaf3d2612f757d1cd8873d28b",
+      "matches": true
+    },
+    {
       "module": "rcm.editor.theme",
       "source_sha256": "7be7492facf8d5ba1e0356e4f4cff4cf6ac297f080139e8a48783cf0786d629b",
       "matches": true
     },
     {
       "module": "rcm.editor.viewport",
-      "source_sha256": "4f678710d44ffe049ff49132b4b4345e0a8ca7d76e244465fc537b6e1a5cc3f5",
+      "source_sha256": "de44ac7fd4a0a7b65f98ec4c11be464738d8e91481997783776e6fb907db7752",
       "matches": true
     },
     {
       "module": "rcm.editor.window",
-      "source_sha256": "fca8c129a227eaa42b7a4543705d8609d14b0a79f058da867adda975ddec8694",
+      "source_sha256": "b6fbf204f6a38c44205b67ea0acea23419a4819666340f9d9bc5a9ec0cc3b6d8",
       "matches": true
     },
     {
@@ -474,7 +489,7 @@
     },
     {
       "module": "rcm.safe_edit",
-      "source_sha256": "cb388097eba853ca276977eadf6e419305947d4eb53be4b46f35a717e79b0387",
+      "source_sha256": "9bb5452fb0e60ebe00e2b33e75402d65932734b12aea3e31b318ed15b969fba9",
       "matches": true
     },
     {
@@ -568,6 +583,6 @@
       "matches": true
     }
   ],
-  "translations_sha256": "78b478240a41852004e78e2e0d3189ec47f48d793fe57861a473a13320eca5f1",
+  "translations_sha256": "fad8f71b4552966eab5653412ccd680728d4d52bfff091efa0794ae26209d074",
   "native_engine_test": false
 }

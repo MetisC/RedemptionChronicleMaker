@@ -1,3 +1,4 @@
+from .text_commit import bind_filter
 from .i18n import tr
 from PySide6.QtCore import Qt, Signal, QEvent
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QComboBox,
@@ -91,7 +92,7 @@ class ResourceBrowser(QWidget):
             selected=self.selected();parent=self.window()
             if selected and hasattr(parent,'project_resources_panel'):parent.guard(lambda:parent.project_resources_panel.clone_original(selected[0]))
         self.clone_button.clicked.connect(clone)
-        self.search.textChanged.connect(self.refresh)
+        bind_filter(self.search,self.refresh)
         self.category.currentIndexChanged.connect(self.refresh)
         self.table.itemSelectionChanged.connect(self.show_details)
         self.table.itemActivated.connect(self.choose)
@@ -209,10 +210,12 @@ class ResourceBrowser(QWidget):
         self.bases.setChecked(False)
         if hasattr(self, 'collection'):self.collection.setCurrentIndex(0)
         for control in controls:control.blockSignals(False)
+        self.search._rcm_reset()
         self.refresh()
         self.search.setFocus()
 
     def focus_results(self):
+        self.search._rcm_commit()
         if not self.table.rowCount():return
         if not self.selected():self.table.selectRow(0)
         self.table.setFocus()

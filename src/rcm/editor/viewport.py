@@ -826,6 +826,8 @@ class SpatialPanel(QWidget):
         for label,cb in [(tr('Enfocar selección · F'),self.viewport.focus_selection),(tr('Mover · 1'),lambda:self.set_mode('move')),(tr('Girar · 2'),lambda:self.set_mode('rotate')),(tr('Tamaño · 3'),lambda:self.set_mode('scale')),(tr('+ Actor…'),self.win.add_actor),(tr('+ Objeto…'),self.add_object),('+ Trigger',self.add_trigger),(tr('+ Entrada'),lambda:self.win.campaign_panel.add_marker('entries')),('+ Waypoint',lambda:self.win.campaign_panel.add_marker('waypoints')),(tr('Ajustar al suelo'),self.snap_selected),(tr('Buscar referencias'),self.win.find_references),(tr('Eliminar · Supr'),self.win.delete_selected)]:
             action=menu.addAction(label);action.triggered.connect(lambda checked=False,cb=cb:self.win.guard(cb))
         self.win.add_conversation_action(menu,path or self.win.selection)
+        from .linked_events import context_menu
+        if path:context_menu(self.win,menu,path)
         from .dynamic_wizard import open_dynamic
         from .original_objects import use_selected,object_label
         label=tr('Objeto original / crear paso…')
@@ -982,6 +984,7 @@ class SpatialPanel(QWidget):
                 control=panel.findChild(QDoubleSpinBox,name)
                 if control:
                     control.blockSignals(True);control.setValue(value);control.blockSignals(False)
+                    if hasattr(control,'_rcm_reset'):control._rcm_reset()
     def begin_place(self,kind,template=''):
         if not self.win.doc or self.win.busy:
             return

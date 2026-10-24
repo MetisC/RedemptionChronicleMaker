@@ -83,6 +83,10 @@ jobs:
         shell: pwsh
         run: python tools/build_portable.py
 
+      - name: Verify bundled source and translations
+        shell: pwsh
+        run: python tools/verify_frozen_sources.py
+
       - name: Audit and package release
         shell: pwsh
         run: python tools/product_release.py

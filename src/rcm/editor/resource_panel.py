@@ -1,3 +1,4 @@
+from .text_commit import bind_text, bind_spin
 from .i18n import tr
 """Project template/AI library; never edits an original library."""
 from pathlib import Path
@@ -123,7 +124,7 @@ class ProjectResourcesPanel(QWidget):
                 if v=='':props.pop(k,None)
                 else:props[k]=v
             self.win.changed(kind=='templates')
-        field=QLineEdit(row['id']);field.setObjectName('resource_id');form.addRow(tr('ID propio'),field);field._rcm_pending=False
+        field=QLineEdit(row['id']);field.setObjectName('resource_id');form.addRow(tr('ID propio'),field)
         def rename():
             new=resource_identifier(field.text());old=row['id']
             if kind=='scripts' and new!=old:raise ValueError(tr('No renombres una clase Java desde su recurso'))
@@ -132,10 +133,8 @@ class ProjectResourcesPanel(QWidget):
                 node=root
                 for k in path[:-1]:node=node[k]
                 node[path[-1]]=new
-            row['id']=new;self.win.changed(False);field._rcm_pending=False;return True
-        def mark(value):field._rcm_pending=True;self.win._title()
-        field.textChanged.connect(mark);field._rcm_commit=lambda:self.win.guard(rename)
-        field.editingFinished.connect(lambda:field._rcm_commit() if field._rcm_pending else True)
+            row['id']=new;self.win.changed(False);return True
+        bind_text(field,lambda value:rename(),self.win)
         def combo(label,key,choices,current,fn=None):
             box=QComboBox();box.setObjectName('resource_'+key)
             for title,value in choices:box.addItem(title,value)
@@ -163,9 +162,9 @@ class ProjectResourcesPanel(QWidget):
                     value=hover.text()
                     if value.strip():row['hover_text']=value
                     else:row.pop('hover_text',None)
-                    hover._rcm_pending=False;self.win.changed(False);return True
+                    self.win.changed(False);return True
                 return self.win.guard(update)
-            hover._rcm_pending=False;hover.textChanged.connect(lambda value:setattr(hover,'_rcm_pending',True));hover._rcm_commit=save_hover;hover.editingFinished.connect(lambda:save_hover() if hover._rcm_pending else True)
+            bind_text(hover,lambda value:save_hover(),self.win)
             base=next((t for t in self.win.backend.resources['templates'] if t['id']==row['base']),{})
             if base.get('kind')=='containers':
                 from ..treasure import catalogue,label as treasure_label
@@ -183,9 +182,9 @@ class ProjectResourcesPanel(QWidget):
                 def update():
                     if bits.text().strip():props['actor_flags']=int(bits.text(),0)
                     else:props.pop('actor_flags',None)
-                    bits._rcm_pending=False;self.win.changed(False);return True
+                    self.win.changed(False);return True
                 return self.win.guard(update)
-            bits._rcm_pending=False;bits.textChanged.connect(lambda value:setattr(bits,'_rcm_pending',True));bits._rcm_commit=save_bits;bits.editingFinished.connect(lambda:save_bits() if bits._rcm_pending else True)
+            bind_text(bits,lambda value:save_bits(),self.win)
             raw=QPlainTextEdit(json.dumps(row,ensure_ascii=False,indent=2));raw.setReadOnly(True);form.addRow(tr('Definición propia'),raw)
         elif kind=='ai_profiles':
             base=original_entry(self.win.backend.original_resources,'.nai',row['base']);text=original_bytes(self.win.backend.ws,base).decode('cp1252')
@@ -203,7 +202,7 @@ class ProjectResourcesPanel(QWidget):
                 import re
                 match=re.search(r'^[ \t]*'+key+r'[ \t]+(-?[0-9.]+)',text,re.M)
                 if not match:continue
-                spin=QDoubleSpinBox();spin.setObjectName('ai_'+key);spin.setRange(low,high);spin.setDecimals(0 if key=='interestNum' else 3);spin.setValue(props.get(key,float(match[1])));spin.valueChanged.connect(lambda v,k=key:change(k,int(v) if k=='interestNum' else v));form.addRow(labels[key],spin)
+                spin=QDoubleSpinBox();spin.setObjectName('ai_'+key);spin.setRange(low,high);spin.setDecimals(0 if key=='interestNum' else 3);spin.setValue(props.get(key,float(match[1])));bind_spin(spin,self.win);spin.valueChanged.connect(lambda v,k=key:change(k,int(v) if k=='interestNum' else v));form.addRow(labels[key],spin)
             note=QLabel(tr('Son ajustes de campos del perfil base, no un árbol de comportamiento. La afinidad y pausa del actor se controlan aparte; verifica su resultado en partida.'));note.setWordWrap(True);form.addRow(note)
             raw=QPlainTextEdit(text);raw.setReadOnly(True);form.addRow(tr('Base original; líneas desconocidas preservadas'),raw)
         elif kind=='camera_paths':
@@ -215,13 +214,10 @@ class ProjectResourcesPanel(QWidget):
             from .script_metadata import edit_metadata
             metadata=QPushButton(tr('Parámetros del constructor…'));metadata.setObjectName('custom_script_parameters');metadata.clicked.connect(lambda:edit_metadata(self.win,row));form.addRow(metadata)
             path=self.win.backend.ws.output(row['source']);editor=QPlainTextEdit(path.read_text(encoding='utf8'));editor.setObjectName('custom_java');form.addRow(tr('Java propio, no generado por Build'),editor)
-            editor._rcm_pending=False
-            def mark_java():editor._rcm_pending=True;self.win._title()
-            editor.textChanged.connect(mark_java)
             def save_java():
                 self.win.doc._atomic_write(path.with_name(path.name+'.backup'),path.read_text(encoding='utf8'))
-                self.win.doc._atomic_write(path,editor.toPlainText());editor._rcm_pending=False;self.win._title();return True
-            editor._rcm_commit=lambda:self.win.guard(save_java)
+                self.win.doc._atomic_write(path,editor.toPlainText());self.win._title();return True
+            bind_text(editor,lambda value:save_java(),self.win)
             b=QPushButton(tr('Guardar Java propio'));b.setObjectName('save_custom_java');b.clicked.connect(editor._rcm_commit);form.addRow(b)
         else:
             from PIL import Image

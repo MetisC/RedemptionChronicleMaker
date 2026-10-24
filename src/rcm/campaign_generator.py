@@ -105,8 +105,10 @@ def runtime(campaign,scene,p):
         modifier=manual_call(campaign.source,a,i)
         if modifier:code.append(modifier)
         code += [' break;']
+    flag_baselines=''.join(f' previous[{i}]=CodexSequence.GetChronicleFlag({flags[e["flag"]]});' for i,e in enumerate(scene['events']) if e['when']=='flag_changed')
+    flag_baselines=' if(!restoredState) {'+flag_baselines+' }' if flag_baselines else ''
     code += [' } trace("spawn "+template(i)+" guid="+things[i]); }',
-             ' public void beginscene(int who,int capture) { if(NetIsClient()) return; player=localPlayer(who); active=-1; starter=0; transitioning=false; if(!restoredState) { ticks=0; pendingStart=true; } restoredState=false; poll(); }',
+             ' public void beginscene(int who,int capture) { if(NetIsClient()) return; player=localPlayer(who); active=-1; starter=0; transitioning=false; if(!restoredState) { ticks=0; pendingStart=true; }'+flag_baselines+' restoredState=false; poll(); }',
              ' public void timer(int id,float a,float b,float c,float d) { if(id==9400&&!NetIsClient()&&!transitioning) poll(); }',
              ' private void poll() { try { pollImpl(); } catch(Throwable error) { trace("runtime exception: "+error); SetTimer(0.15f,9400); } } private void pollImpl() { player=localPlayer(player); if(pendingStart && player!=0) { pendingStart=false; dispatch("scene_start","",0); } if(transitioning) return; ticks++; if(cameraTicks>0 && --cameraTicks==0) releaseCamera(); for(int i=0;i<enabled.length;i++) if(enabled[i]) spawn(i); if(player!=0 && active==-1 && !transitioning) {']
     for ti,t in enumerate(p.triggers):
@@ -114,6 +116,11 @@ def runtime(campaign,scene,p):
         code += [f' boolean now{ti}=volume({ti}); if(now{ti}&&!inside[{ti}]) dispatch("trigger_enter",{js(t.id)},0); if(!now{ti}&&inside[{ti}]) dispatch("trigger_leave",{js(t.id)},0); inside[{ti}]=now{ti};']
     for ei,e in enumerate(scene['events']):
         w=e['when']; test=None
+        if w=='flag_changed':
+            current=f'CodexSequence.GetChronicleFlag({flags[e["flag"]]})'
+            desired='true' if e['is_set'] else 'false'
+            code += [f' boolean flagNow{ei}={current}; if(flagNow{ei}!=previous[{ei}]) {{ if(flagNow{ei}!={desired} || event{ei}()) previous[{ei}]=flagNow{ei}; }}']
+            continue
         if w=='actor_killed': test=f'createdOnce[{entities[e["actor"]]}] && IsActorGuid(things[{entities[e["actor"]]}]) && new CodexActor(things[{entities[e["actor"]]}]).GetActorHealth()<=0.0f'
         elif w=='item_picked_up':test=f'owns(player,{js(p.prefix+"_"+e["item"])})'
         elif w=='encounter_complete':test=' && '.join(f'createdOnce[{entities[a]}] && IsActorGuid(things[{entities[a]}]) && new CodexActor(things[{entities[a]}]).GetActorHealth()<=0.0f' for a in groups[e['encounter']]['actors'])
@@ -146,6 +153,7 @@ def runtime(campaign,scene,p):
         marker='e/'+scene['id']+'/'+e['id'];once=marker in reserved
         guards=['transitioning']+([flag(marker)] if once else [])
         check=' && '.join(cond(c) for c in e.get('conditions',[])) or 'true'
+        if e['when']=='flag_changed':check=f'({check}) && '+('' if e['is_set'] else '!')+f'CodexSequence.GetChronicleFlag({flags[e["flag"]]})'
         progress_marker='progress/'+scene['id']+'/'+e['id']
         if progress_marker in reserved:check='('+flag(progress_marker)+' || ('+check+'))'
         code += [f' // source: scene {scene["id"]} event {e["id"]}',f' private boolean event{ei}() {{ if('+ ' || '.join(guards)+f' || !({check})) return false;']
@@ -167,7 +175,12 @@ def runtime(campaign,scene,p):
                 elif k=='actor_inventory':
                     if v['operation']=='give':statement+=f'if(!give({entities[v["item"]]},{guid})) return false;'
                     else:statement+=f'{{ int item=inventory({guid},{js(p.prefix+"_"+v["item"])}); if(item!=0) {{ new CodexItem(item).RemoveItemFromInventory(); new CodexThing(item).Remove(); }} }}'
-                else:statement+=f'new CodexActor({guid}).SetActorTeam({v["team"]}); new CodexActor({guid}).'+('SetActorFlags' if v['paused'] else 'ClearActorFlags')+'(THING_AF_AIPAUSED);'
+                else:
+                    statement+=f'new CodexActor({guid}).SetActorTeam({v["team"]}); new CodexActor({guid}).'+('SetActorFlags' if v['paused'] else 'ClearActorFlags')+'(THING_AF_AIPAUSED);'
+                    if v.get('behavior')=='enemy':statement+=f' new CodexActor({guid}).ClearActorFlags(THING_AF_NEUTRAL|THING_AF_TALKTO);'
+                    elif v.get('behavior')=='npc':
+                        statement+=f' new CodexActor({guid}).SetActorFlags(THING_AF_NEUTRAL);'
+                        if actors.get(v['actor'],{}).get('conversation') or any(e['when']=='actor_clicked' and e.get('actor')==v['actor'] for e in scene['events']):statement+=f' new CodexActor({guid}).SetActorFlags(THING_AF_TALKTO);'
             elif k=='set_location_flags':
                 bits=(8 if v['visible'] else 0)|(16 if v['haven'] else 0)
                 statement=f'CodexSequence.ClearLocationFlags({js(v["scene"])},24); CodexSequence.SetLocationFlags({js(v["scene"])},{bits});'
@@ -264,7 +277,9 @@ def runtime(campaign,scene,p):
         code+=[f' case {convs[c.id]}: switch(result) {{']
         for ch in c.choices:
             if ch.result is not None:
-                code+=[f' case {ch.result}: '+(f'CodexSequence.{"SetChronicleFlag" if ch.value else "ClearChronicleFlag"}({flags[ch.flag]}); ' if ch.flag else '')+f'dispatch("conversation_ended",{js(c.id)},result); break;']
+                answer_event=scene.get('_director_answers',{}).get((convs[c.id],ch.result))
+                answer_code=f'event{answer_event}(); ' if answer_event is not None else ''
+                code+=[f' case {ch.result}: '+(f'CodexSequence.{"SetChronicleFlag" if ch.value else "ClearChronicleFlag"}({flags[ch.flag]}); ' if ch.flag else '')+answer_code+f'dispatch("conversation_ended",{js(c.id)},result); break;']
         code+=[' } break;']
     code+=[' } }',' private boolean completeEntry(String name) { int q=CodexQuest.Load(name); if(q<0) return false; new CodexQuest(q).Complete(); return true; }',' private boolean quest(String id,int action) {']
     for qi,(qid,q) in enumerate(quests.items()):
@@ -362,7 +377,8 @@ def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress
     payload['strings/_'+prefix+'.nls']=('\r\n'.join(nls)+'\r\n').encode('cp1252')
     payload['chronicles/'+prefix+'.nmf']+=('NLS _'+prefix+'.nls\r\n').encode('cp1252')
     from .notes import encode_notes,note_id
-    notes=[(note_id(p.prefix,ei,ai),a['show_note']) for scene,p in campaign.scenes for ei,e in enumerate(scene['events']) for ai,a in enumerate(e['actions']) if 'show_note' in a]
+    from .cinematics import compile_scene
+    notes=[(note_id(p.prefix,ei,ai),a['show_note']) for scene,p in campaign.scenes for ei,e in enumerate(compile_scene(scene)['events']) for ai,a in enumerate(e['actions']) if 'show_note' in a]
     if notes:
         payload['strings/'+prefix+'.ntx']=encode_notes(notes)
         payload['chronicles/'+prefix+'.nmf']+=('NTX '+prefix+'.ntx\r\n').encode('cp1252')

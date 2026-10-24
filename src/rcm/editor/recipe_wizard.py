@@ -104,11 +104,11 @@ class RecipeWizard(QWizard):
             if multi:control.setMaximumHeight(110)
             self.put(key, control);form.addRow(tr(label), control)
         def number(key, label, default, maximum=1000000):
-            control = QDoubleSpinBox();control.setRange(0, maximum);control.setValue(data.get(key, default));self.put(key, control);form.addRow(tr(label), control)
+            control = QDoubleSpinBox();control.setKeyboardTracking(False);control.setRange(0, maximum);control.setValue(data.get(key, default));self.put(key, control);form.addRow(tr(label), control)
         def vector(key, label):
             box = QWidget();bar = QHBoxLayout(box);bar.setContentsMargins(0,0,0,0);axes=[]
             for i, axis in enumerate('XYZ'):
-                c=QDoubleSpinBox();c.setRange(-1000000,1000000);c.setPrefix(axis+' ');c.setValue(data.get(key, start)[i]);bar.addWidget(c);axes.append(c)
+                c=QDoubleSpinBox();c.setKeyboardTracking(False);c.setRange(-1000000,1000000);c.setPrefix(axis+' ');c.setValue(data.get(key, start)[i]);bar.addWidget(c);axes.append(c)
             self.controls[key]=axes;form.addRow(tr(label),box)
         def combo(key, label, options, selected):
             c=QComboBox()
@@ -173,7 +173,7 @@ class RecipeWizard(QWizard):
     def add_action_control(self,form,scene,action):
         from ..campaign import ACTIONS
         key=next(iter(action));box=QWidget();bar=QHBoxLayout(box);bar.setContentsMargins(0,0,0,0)
-        types=QComboBox();target=QComboBox();amount=QSpinBox();amount.setRange(0,1000000)
+        types=QComboBox();target=QComboBox();amount=QSpinBox();amount.setKeyboardTracking(False);amount.setRange(0,1000000)
         common=('set_flag','clear_flag','spawn','remove','start_quest','advance_quest','complete_quest','play_sequence','reward_xp')
         for kind in common:types.addItem(tr(ACTIONS[kind][0]),kind)
         if key not in common:types.addItem(key,key)

@@ -2,6 +2,10 @@
 
 ## Fuente actual
 
+En formato 9/10, una respuesta RETURN admite `actions` (1–32 acciones normales). Se conservan en YAML y se retiran antes de generar NCO/NVO; su resultado llama un evento Java interno tras terminar la conversación. No se añaden instrucciones inventadas al formato nativo. `set_flag`/`clear_flag` de la respuesta se aplican antes de sus acciones. Las notas de estas acciones generan entradas NTX propias. Una respuesta GOTO no admite acciones de finalización.
+
+Un evento `when: flag_changed` requiere `flag: alias` e `is_set: true/false`; admite condiciones y `once` como los demás eventos. Usa observación del flag booleano, nunca su índice como valor. `actor_behavior` mantiene `actor`, `team`, `paused`; el campo opcional `behavior` selecciona `enemy` (team 12, paused false, sin NEUTRAL/TALKTO) o `npc` (team 10, paused true, NEUTRAL y TALKTO si tiene diálogo/clic de actor propio). Sin ese campo, el contrato avanzado anterior permanece intacto.
+
 `schema:2`, `project_format:9` habilita entries/waypoints/paths y acciones nuevas. Formato5 y schema1 conservan compatibilidad de generación. `prepare` introduce un perfil interno phase9; el editor guarda autoría, no geometría ni Java generado.
 
 ```yaml

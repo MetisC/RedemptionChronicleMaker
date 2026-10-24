@@ -185,6 +185,18 @@ same weak enemy in Normal, Easy, Hard and Nightmare; do not overwrite your saves
 
 ## Prioridad actual: laboratorio de autoría
 
+- DLGFX01 (pendiente): respuesta RETURN con **Volver hostil al interlocutor**. Verificar que se cierra la conversación, se recuperan GUI/ratón y el actor cambia al equipo enemigo con su AI original. Otra respuesta o cancelar no deben ejecutar el efecto.
+- DLGFX02 (pendiente): reacciones de activar/desactivar un flag. No deben dispararse por el estado inicial ni repetir al establecer el mismo valor. Comprobar las dos transiciones, la opción una sola vez y guardar/cargar sin repetir recompensas ni revertir el comportamiento.
+- DLGFX03 (pendiente): una nota o un viaje como acción final de respuesta; comprobar recursos y ausencia de superposición con la conversación. La compilación y los doubles no certifican estos tres casos nativos.
+
 COMP01–06 en AUTHORING_COMPLETION.md son las seis comprobaciones cortas nuevas.
 Siguen pendientes hasta observación del usuario. No sustituyen los casos DYN/EMB
 ni acreditan red, restore nativo o GPU/DPI a partir de Qt/doubles/compilación.
+
+
+## QOL · linked event authoring (pending native acceptance)
+
+- QOL01: link a reward to an actor death and an inventory change to item possession. Verify each intended occurrence, once/repeat, save/load and absence of duplicates.
+- QOL02: use entry/leave actions with additional flag/item conditions; verify the correct scene/zone, repetition and native-script ownership.
+- QOL03: finish a timeline/travelling, spawn an encounter, advance a quest, then react to group defeat and active/completed quest steps. Check ordering and restored state; initial-state checks are deliberate.
+- QOL04: dynamic start/wave/complete/stop routes keep wave/phase filters; scene-wide note-close reactions affect any note. Exercise View event, save/reopen and native host/client behaviour separately.

@@ -41,6 +41,8 @@ class StabilityGuiTests(TestCase):
         form=self.win.properties.widget();self.assertIsNotNone(form.findChild(QLineEdit,'note_title'))
         self.assertGreaterEqual(form.findChild(QPlainTextEdit,'note_text').minimumHeight(),180)
         self.win.history_time=0;form.findChild(QPlainTextEdit,'note_text').setPlainText('Uno.\n\nDos.')
+        self.assertNotEqual(event['actions'][0]['show_note']['text'],'Uno.\n\nDos.')
+        self.assertTrue(self.win.commit_properties())
         self.assertEqual(event['actions'][0]['show_note']['text'],'Uno.\n\nDos.')
         self.win.undo_project();self.assertNotEqual(self.win.doc.data['events'][-1]['actions'][0]['show_note']['text'],'Uno.\n\nDos.')
         with tempfile.TemporaryDirectory(dir=ROOT/'build/tests') as temp:
@@ -49,10 +51,16 @@ class StabilityGuiTests(TestCase):
 
     def test_object_dialogue_shortcut_and_existing_event_navigation(self):
         import copy
+        from unittest.mock import patch
+        from PySide6.QtWidgets import QInputDialog
         row=copy.deepcopy(self.win.doc.data['objects'][0]);row['id']='new_dialogue';row['name']='Interacción'
         self.win.doc.data['objects'].append(row);self.win.changed(True)
         path=('objects',len(self.win.doc.data['objects'])-1);self.win.select(path)
-        self.win.properties.widget().findChild(QPushButton,'object_dialogue').click()
+        speaker=self.win.doc.data['actors'][0]
+        with patch.object(QInputDialog,'getItem',return_value=(speaker['name']+' · '+speaker['id'],True)):
+            self.win.properties.widget().findChild(QPushButton,'object_dialogue').click()
+        self.assertEqual(self.win.selection,('conversations',len(self.win.doc.data['conversations'])-1))
+        self.assertEqual(self.win.center_tabs.currentIndex(),1)
         event=self.win.doc.data['events'][-1];self.assertIn('start_conversation',event['actions'][0])
         count=len(self.win.doc.data['events']);self.win.select(path)
         self.win.properties.widget().findChild(QPushButton,'object_note').click()
