@@ -443,7 +443,9 @@ def event_properties(ins):
             if v=='set_room_type':a.clear();a[v]=0;w.changed(True);return
             if v in ('move_actor','actor_inventory','actor_behavior'):
                 actor=next((row['id'] for row in s['actors']),'Player') if v=='actor_behavior' else 'Player'
-                a.clear();a[v]=dict(actor=actor,**(dict(waypoint='',speed=90) if v=='move_actor' else dict(item='',operation='give') if v=='actor_inventory' else dict(team=12,paused=False)));w.changed(True);return
+                from .dialogue_actions import behavior_action
+                value=behavior_action(actor)[v] if v=='actor_behavior' else dict(actor=actor,**(dict(waypoint='',speed=90) if v=='move_actor' else dict(item='',operation='give')))
+                a.clear();a[v]=value;w.changed(True);return
             if v=='set_location_flags':a.clear();a[v]=dict(scene=s['id'],visible=True,haven=False);w.changed(True);return
             if v=='push_music':
                 a.clear();a[v]=dict(resource=next((r['id'] for r in w.backend.resources['entries'] if r['path'].lower().startswith('sounds/music/') and r['extension'].lower()=='.mp3'),''),volume=50);w.changed(True);return
@@ -479,6 +481,7 @@ def event_properties(ins):
                 ins.combo(tr('Comportamiento'),[(tr('Equipo y actividad avanzados'),''),(tr('NPC neutral'),'npc'),(tr('Enemigo · AI original'),'enemy')],value.get('behavior',''),preset,'control_behavior')
                 if not value.get('behavior'):
                     ins.combo(tr('Equipo'),[(tr('Equipo')+' '+str(i),i) for i in range(20)],value['team'],lambda v:ins.set(p+(kind,'team'),v),'control_team');ins.combo(tr('AI pausada'),[(tr('Sí'),True),(tr('No'),False)],value['paused'],lambda v:ins.set(p+(kind,'paused'),v),'control_paused')
+                ins.note(tr('Enemigo activa la IA original, asigna un bando enemigo y retira neutralidad y conversación. NPC neutral lo devuelve a un estado pacífico. El modo avanzado conserva los demás flags.'))
         elif category=='map_flags':
             value=a[kind]
             ins.combo(tr('Escena'),[(r['id'],r['id']) for r in w.doc.campaign['scenes']],value['scene'],lambda v:ins.set(p+(kind,'scene'),v),'map_flags_scene')
@@ -556,7 +559,17 @@ def event_properties(ins):
             else:choices=[(r.get('name',r['id']),r['id']) for r in s.get(category,[])]
             if category=='actors':
                 choices+=dynamic_choices(s)
-            ins.combo(tr('Objetivo'),[(tr('Elige…'),'')]+choices,a.get(kind,''),lambda v:ins.set(p+(kind,),v),'action_target')
+            target=ins.combo(tr('Objetivo'),[(tr('Elige…'),'')]+choices,a.get(kind,''),lambda v:ins.set(p+(kind,),v),'action_target')
+            if kind=='enable_ai':
+                ins.note(tr('Reanudar IA sólo quita la pausa: conserva el bando y la neutralidad. Para que un NPC ataque al jugador, usa Comportamiento → Enemigo · AI original.'))
+                def make_hostile():
+                    from .dialogue_actions import behavior_action
+                    action=w.at(p);actor=action.get('enable_ai')
+                    if not actor:return
+                    action.clear();action.update(behavior_action(actor));w.history_time=0;w.changed(True)
+                button=ins.button(tr('Convertir esta acción en volver hostil'),make_hostile,'ai_make_hostile')
+                button.setEnabled(bool(target.currentData()))
+                target.currentIndexChanged.connect(lambda *_:button.setEnabled(bool(target.currentData())))
     elif p[-2]=='conditions':render_condition(ins,w.at(p),p)
 
 

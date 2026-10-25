@@ -1,0 +1,168 @@
+{
+  "date": "2026-10-25",
+  "project": "chronicles/new_chronicle/project.yaml",
+  "project_name": "Mi nueva crónica",
+  "source_sha256": "bcc1183f5d58196c1b3d362ee62062ee8c4c02a5c222ef42b0cf2509c3ab1246",
+  "valid": true,
+  "problems": [
+    {
+      "severity": "WARNING",
+      "message": "cocoenfadado: el flag nunca se lee"
+    },
+    {
+      "severity": "INFO",
+      "message": "scene1: AnezkaMod: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+    },
+    {
+      "severity": "INFO",
+      "message": "scene1: alligator: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+    },
+    {
+      "severity": "INFO",
+      "message": "scene1: Salida: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+    },
+    {
+      "severity": "INFO",
+      "message": "scene1: VELA: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+    },
+    {
+      "severity": "INFO",
+      "message": "scene1: VELA 2: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+    },
+    {
+      "severity": "INFO",
+      "message": "scene1: Grafitti: coordenadas válidas como datos; el suelo y la colisión deben comprobarse en el juego."
+    }
+  ],
+  "compiled_status": "compiled-unverified-in-game",
+  "class_versions": {
+    "R_new_chronicle_s0_Scene": "45.3",
+    "R_new_chronicle_s0_Passive": "45.3"
+  },
+  "rebuild_changes": [],
+  "package_sha256": "ec33e95371c62421a782d35166a577bd9ff777880f77fac06701bcbe5611c059",
+  "deployed_package_sha256": "ec33e95371c62421a782d35166a577bd9ff777880f77fac06701bcbe5611c059",
+  "deployed_matches_build": true,
+  "last_playtest": {
+    "chronicle": "new_chronicle",
+    "pid": 38700,
+    "started_utc": "2026-10-25T02:43:49.588865+00:00",
+    "ended_utc": "2026-10-25T02:44:19.585323+00:00",
+    "exit_code": 3221225477,
+    "relevant_to_campaign_failure": false
+  },
+  "trace_last_modified_utc": "2026-10-24T05:29:02.516964+00:00",
+  "conclusions": [
+    "The user explicitly excludes the earlier WON/Internet failure from the LAN problem.",
+    "Current-source regeneration produces identical generated files and matches the installed package.",
+    "The manually operated LAN retry loaded scene1, spawned both actors and completed conv1. The initial campaign-load crash was not reproduced in that retry; no runtime repair is claimed.",
+    "A later captured execution fault points to the external controller plugin VampireGamepad.asi, after the scene and conversation worked. Its relationship to voluntary game shutdown is pending user confirmation.",
+    "The general-button conversation binding defect is fixed independently. The only user source change assigns conv2 to actor2. Original game resources and external plugins remain untouched."
+  ],
+  "user_source_modified": true,
+  "game_launched": false,
+  "native_acceptance": false,
+  "user_observation": {
+    "stage": "Immediately after selecting the campaign, while it loads.",
+    "unrelated_won_failure": "User confirms the WON crash came from mistakenly entering Internet before selecting the campaign; exclude it from the chronicle diagnosis."
+  },
+  "discarded_unrelated_crash": {
+    "module": "WONDLL.dll",
+    "exception": "0xc0000005",
+    "module_offset": "0x0003d36d",
+    "relevant_to_campaign_failure": false
+  },
+  "native_retry": {
+    "user_report": "Ahora no ha cascado !",
+    "process_id": 41920,
+    "user_operated_game": true,
+    "gameplay_automated": false,
+    "game_launched_by_agent": false,
+    "load_observed": true,
+    "evidence": [
+      "SCENE scene1",
+      "ARRIVAL scene1/entry1",
+      "spawn R_new_chronicle_s0_actor1",
+      "spawn R_new_chronicle_s0_actor2",
+      "DIALOGUE_END scene1/conv1 return=1 aborted=false"
+    ],
+    "trace_path": "RCM/new_chronicle/runtime_trace.log",
+    "trace_sha256": "ec5ef6ea9f41fb10742481e187c8bb1012841e84c11f66b8b86516d6ba2f4bdd",
+    "capture_sha256": "570fae4f066852019dc601b81c360df4a12fb71f378d8c4b0670de6312fc9fbc",
+    "later_exception": {
+      "module": "Miles/VampireGamepad.asi",
+      "sha256": "b4ecc34138bb62772b2a9866191cc2a8410a5ceedb241f9808cb00dfc76a7d03",
+      "loaded_base": "0x62020000",
+      "first_exception": {
+        "kind": "exception",
+        "code": "0xc0000005",
+        "address": "0x620280c7",
+        "first_chance": true,
+        "thread": 42908,
+        "info": [
+          "0x8",
+          "0x620280c7"
+        ],
+        "time": 1792897841.770695,
+        "registers": {
+          "edi": "0x76122810",
+          "esi": "0x7612b6a0",
+          "ebx": "0x0",
+          "edx": "0x0",
+          "ecx": "0xe1925e71",
+          "eax": "0x0",
+          "ebp": "0x1386ff74",
+          "eip": "0x620280c7",
+          "esp": "0x1386ff28"
+        }
+      },
+      "final_exception": {
+        "kind": "exception",
+        "code": "0xc0000005",
+        "address": "0x6205e05d",
+        "first_chance": false,
+        "thread": 42908,
+        "info": [
+          "0x8",
+          "0x6205e05d"
+        ],
+        "time": 1792897850.004703,
+        "registers": {
+          "edi": "0x0",
+          "esi": "0x0",
+          "ebx": "0x0",
+          "edx": "0x77356200",
+          "ecx": "0x6205e05d",
+          "eax": "0x0",
+          "ebp": "0x13771600",
+          "eip": "0x6205e05d",
+          "esp": "0x137715e0"
+        }
+      },
+      "first_module_offset": "0x80c7",
+      "final_module_offset": "0x3e05d",
+      "worker_code": [
+        "0x100080bb: push dword ptr [0x10051224]",
+        "0x100080c1: call dword ptr [0x10040090]",
+        "0x100080c7: mov al, byte ptr [0x10050000]",
+        "0x100080cc: test al, al",
+        "0x100080ce: jne 0x10007f35"
+      ],
+      "sleep_import": "0x10040090",
+      "exception_access_type_8": "Attempt to execute a non-executable address. The first fault is exactly the instruction following the plugin worker Sleep call.",
+      "shutdown_context_pending_user_confirmation": false,
+      "original_plugin_modified": false,
+      "user_context": "User cannot confirm whether this later plugin failure followed voluntary shutdown; no direct link to initial campaign loading is claimed."
+    },
+    "source_sha256": "fd76bf9a39280ba86466982972fa7e7ed8799897cce153a1d8503c498b864001"
+  },
+  "initial_source_sha256": "fd76bf9a39280ba86466982972fa7e7ed8799897cce153a1d8503c498b864001",
+  "source_fix": {
+    "path": "scenes[0].actors[1].conversation.default",
+    "value": "conv2",
+    "reason": "General conversation creation picked the selected actor as speaker but did not assign an interaction route.",
+    "all_other_source_bytes_preserved": true,
+    "native_talk_to_flag_emitted": true,
+    "native_animal_dialogue_verification_pending": true
+  }
+}

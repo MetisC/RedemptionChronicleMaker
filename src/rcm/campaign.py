@@ -20,7 +20,7 @@ ACTIONS = {
  'push_music': ('Audio / Música temporal','temporary_music'), 'pop_music': ('Audio / Restaurar música anterior','none'),
  'start_ambient': ('Audio / Ambiente','ambient'), 'stop_ambient': ('Audio / Detener ambiente','none'),
  'play_sequence': ('Cámara / Secuencia','sequences'), 'release_camera': ('Cámara / Devolver control','none'),
- 'enable_ai': ('AI / Activar','actors'), 'disable_ai': ('AI / Pausar','actors'),
+ 'enable_ai': ('IA / Reanudar (conserva bando)','actors'), 'disable_ai': ('AI / Pausar','actors'),
  'travel': ('Viaje / Escena y punto de llegada','arrival'),
  'start_patrol': ('Movimiento / Seguir recorrido','paths'), 'stop_patrol': ('Movimiento / Detener actor','actors'),
  'open_exit': ('Salida original / Abrir','native_exit'), 'close_exit': ('Salida original / Cerrar','native_exit'),
@@ -56,7 +56,7 @@ WHEN.update({key:label for key,label in zip(GENERATOR_EVENTS,('Empieza encuentro
 WHEN['generator_threshold']='Cruza umbral de vida del jefe'
 ACTIONS['set_location_flags']=('Mapa / Visibilidad y refugio','map_flags')
 ACTIONS['set_room_type']=('Audio / Reverberación EAX','room_type')
-ACTIONS.update({'move_actor':('Actor / Ir a un punto','actor_move'),'actor_inventory':('Inventario / Objeto de un actor','actor_inventory'),'actor_behavior':('Actor / Equipo y actividad','actor_behavior')})
+ACTIONS.update({'move_actor':('Actor / Ir a un punto','actor_move'),'actor_inventory':('Inventario / Objeto de un actor','actor_inventory'),'actor_behavior':('Actor / Comportamiento hostil o neutral','actor_behavior')})
 WHEN['flag_changed']='Cambia un flag'
 
 @dataclass(frozen=True)

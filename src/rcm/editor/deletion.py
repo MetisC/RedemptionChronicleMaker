@@ -32,9 +32,9 @@ class DeleteDialog(QDialog):
         self.references=QTreeWidget();self.references.setObjectName('delete_reference_list');self.references.setHeaderLabels([tr('Se usa en'),tr('Referencia')]);layout.addWidget(self.references,1)
         self.references.header().setSectionResizeMode(0,QHeaderView.ResizeMode.Stretch)
         self.references.header().setSectionResizeMode(1,QHeaderView.ResizeMode.ResizeToContents)
-        for link in reference_links(win.doc,path):
-            item=QTreeWidgetItem(self.references,[win.reference_label(link.source),reference_kind(link.label)])
-            item.setData(0,Qt.ItemDataRole.UserRole,editable_reference(win.doc.snapshot(),link.detail));item.setToolTip(0,win.reference_label(link.detail))
+        from .reference_view import add_reference_groups
+        self.references.setHeaderLabels([tr('Referencia'),tr('Se usa en')])
+        add_reference_groups(self.references,win,reference_links(win.doc,path),'source')
         go=QPushButton(tr('Ir a la referencia seleccionada'));go.setObjectName('delete_go_to_reference');go.clicked.connect(lambda:self.go());layout.addWidget(go)
         self.references.itemDoubleClicked.connect(lambda *_:self.go())
         label=QLabel(tr('Al confirmar se eliminará:'));layout.addWidget(label)

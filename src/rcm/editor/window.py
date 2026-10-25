@@ -1082,14 +1082,10 @@ class MainWindow(QMainWindow):
         else:
             incoming, outgoing = references(self.doc.data, path)
         self.reference_tree.clear()
+        from .reference_view import add_reference_groups
         for label, links, attr in [(tr('Referenciado por'), incoming, 'source'), (tr('Referencia a'), outgoing, 'target')]:
             parent = QTreeWidgetItem(self.reference_tree, [label, ''])
-            for link in links:
-                target = getattr(link, attr)
-                from .deletion import editable_reference,reference_kind
-                item = QTreeWidgetItem(parent, [reference_kind(link.label), self.reference_label(target)])
-                item.setData(0, ROLE, editable_reference(self.doc.snapshot(),link.detail) if attr == 'source' else target)
-                item.setToolTip(0,self.reference_label(link.detail));item.setToolTip(1,self.reference_label(target))
+            add_reference_groups(parent, self, links, attr)
             parent.setExpanded(True)
         self.show_bottom(2)
 
@@ -1150,6 +1146,10 @@ class MainWindow(QMainWindow):
     def add_conversation(self,*,speaker=None,target=None):
         if not self.doc or self.busy:
             return
+        # The toolbar/menu must bind a selected actor just like its context menu.
+        # A speaker alone is not an interaction route in the runtime.
+        if speaker is None and target is None and self.selection[:1] == ('actors',) and len(self.selection) >= 2:
+            return self.conversation_for(self.selection[:2])
         actors = self.doc.data["actors"]
         if speaker is None:
             speaker = actors[0]["id"] if actors else ""

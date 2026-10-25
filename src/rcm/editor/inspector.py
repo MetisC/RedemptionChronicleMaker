@@ -401,7 +401,8 @@ class Inspector(QWidget):
         if not self.win.doc or self.path[0] not in {'actors','objects','triggers','events','conversations','state'}:
             return
         from ..spatial.relations import references
-        from PySide6.QtWidgets import QListWidget, QListWidgetItem
+        from PySide6.QtWidgets import QTreeWidget
+        from .reference_view import add_reference_groups
         from PySide6.QtCore import Qt
         path = self.path if self.path[0] == 'state' else self.path[:2]
         if hasattr(self.win.doc, 'campaign'):
@@ -423,15 +424,14 @@ class Inspector(QWidget):
             if not rows:
                 self.note(tr('Sin referencias declaradas'))
                 continue
-            listing = QListWidget()
-            listing.setMaximumHeight(120)
-            for link in rows:
-                target = getattr(link, attr)
-                labels = {'spawn':tr('Crear'), 'set_flag':tr('Activar flag'), 'clear_flag':tr('Desactivar flag'), 'start_conversation':tr('Iniciar conversación'), 'speaker':tr('Actor principal'), 'default':tr('Al hablar'), 'when_flag':tr('Condición'), 'then':tr('Conversación alternativa')}
-                item = QListWidgetItem(labels.get(link.label,link.label) + tr(' · ') + self.win.reference_label(target))
-                item.setData(Qt.ItemDataRole.UserRole, target)
-                listing.addItem(item)
-            listing.itemDoubleClicked.connect(lambda item: self.win.navigate_reference(item.data(Qt.ItemDataRole.UserRole)))
+            listing = QTreeWidget()
+            listing.setObjectName('incoming_references' if attr == 'source' else 'outgoing_references')
+            listing.setHeaderHidden(True)
+            listing.setColumnCount(2)
+            listing.setMaximumHeight(160)
+            add_reference_groups(listing, self.win, rows, attr)
+            listing.resizeColumnToContents(0)
+            listing.itemDoubleClicked.connect(lambda item, column: self.win.navigate_reference(item.data(0, Qt.ItemDataRole.UserRole)))
             self.form.addRow(listing)
             if attr == 'source':
                 for link in rows:

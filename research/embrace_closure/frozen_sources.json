@@ -1,6 +1,6 @@
 {
   "successful": true,
-  "executable_sha256": "be6d9baa6a1fea96d4174a5e10c0213e3edbc4f2e0c6d5e32ae6a39fc49644b6",
+  "executable_sha256": "39d41b54fcee12d076971c1a7362daea7261a640087c2c54c8380603bf24ee02",
   "modules": [
     {
       "module": "rcm",
@@ -44,7 +44,7 @@
     },
     {
       "module": "rcm.campaign",
-      "source_sha256": "08d1ef547fee2e19c805c76c03a3a0767f7c5bb322c2adaf702e645956bf1091",
+      "source_sha256": "698a48c927fa9ea1e3727fe8b4becbf1b4b6ea4a07f7637d20f811a695d9c8ff",
       "matches": true
     },
     {
@@ -164,7 +164,7 @@
     },
     {
       "module": "rcm.editor.campaign_panel",
-      "source_sha256": "f9cccac0ffe8b3fbc52e71388239a8ff3714f30e5197142875aa2c6ee82dcf37",
+      "source_sha256": "4501545f93b3553de4c111e9a2305ea5ce5863834dee47710b88fb7ffcd8daec",
       "matches": true
     },
     {
@@ -184,7 +184,7 @@
     },
     {
       "module": "rcm.editor.deletion",
-      "source_sha256": "5b3ad851aeca1425bb5c80c85165ff764cbb6a21f90c4ce01209cc9e926d427d",
+      "source_sha256": "af3500e379d804855aef0d46de9add424e7c25fcc16884197b716055187a20f3",
       "matches": true
     },
     {
@@ -229,7 +229,7 @@
     },
     {
       "module": "rcm.editor.inspector",
-      "source_sha256": "23ac75b4b19703ad446ed8e3e37625b68facbcb90063f626dce8dd171f8201cc",
+      "source_sha256": "c3c3215a52ed837d25a80999864e0ce340988a4600e08e683f1bdf0366685b0c",
       "matches": true
     },
     {
@@ -283,6 +283,11 @@
       "matches": true
     },
     {
+      "module": "rcm.editor.reference_view",
+      "source_sha256": "01630db80d05480f95213df3d9d3b3b8da8872c217910bdbdfea5698d411c705",
+      "matches": true
+    },
+    {
       "module": "rcm.editor.resource_panel",
       "source_sha256": "13a8ed996627091f7c4919cdb1a1b036f800c5786e2c5acd91ce9b7dbab9f74a",
       "matches": true
@@ -314,7 +319,7 @@
     },
     {
       "module": "rcm.editor.window",
-      "source_sha256": "b6fbf204f6a38c44205b67ea0acea23419a4819666340f9d9bc5a9ec0cc3b6d8",
+      "source_sha256": "aa710ba7c9d0c5ed8d23e37c20a8096175a3aab55bebe7e07a26a2407279b9cb",
       "matches": true
     },
     {
@@ -583,6 +588,6 @@
       "matches": true
     }
   ],
-  "translations_sha256": "fad8f71b4552966eab5653412ccd680728d4d52bfff091efa0794ae26209d074",
+  "translations_sha256": "3418d88f10bbda820471853781799e439ec88c144bed4ede912d553edf29f125",
   "native_engine_test": false
 }

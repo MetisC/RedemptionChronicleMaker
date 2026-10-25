@@ -5,13 +5,44 @@ chronicle:
   name: Mi nueva crónica
   description: ''
 state:
-  flags: {}
+  flags:
+    cocoenfadado: 0
 entry: scene1
 scenes:
 - id: scene1
   level:
     source: RaveClub
-  actors: []
+  actors:
+  - id: actor1
+    name: AnezkaMod
+    template: AnezkaMod
+    transform:
+      placement: absolute
+      position:
+      - 1166.0822639424673
+      - -422.340936057514
+      - -512.0
+      orientation:
+      - 0.0
+      - 0.0
+      - 84.66666666666663
+    conversation:
+      default: conv1
+  - id: actor2
+    name: alligator
+    template: alligator
+    transform:
+      placement: absolute
+      position:
+      - 449.885
+      - -407.468
+      - -512.0
+      orientation:
+      - 0.0
+      - 0.0
+      - 287.66666666666663
+    conversation:
+      default: conv2
   objects:
   - id: click1
     name: Salida
@@ -12391,7 +12422,40 @@ scenes:
       - 0
       - 0
       sector: 20
-  conversations: []
+  conversations:
+  - id: conv1
+    speaker: actor1
+    entry: opening
+    nodes:
+    - id: opening
+      lines:
+      - speaker: actor1
+        text: Hola guapo
+      choices:
+      - text: Hola!
+        result: 1
+      - text: Me voy.
+        result: 2
+    camera: speaker_close
+  - id: conv2
+    speaker: actor2
+    entry: opening
+    nodes:
+    - id: opening
+      lines:
+      - speaker: actor2
+        text: GRRAAAAAAAAAAAAAAH!
+      choices:
+      - text: Me voy.
+        result: 2
+        actions:
+        - actor_behavior:
+            actor: actor2
+            behavior: enemy
+            team: 12
+            paused: false
+        set_flag: cocoenfadado
+    camera: ots_speaker_close
   events:
   - id: click1
     when: object_clicked
@@ -12422,6 +12486,22 @@ scenes:
     once: false
     actions:
     - start_ambient: amb_rainfall_heavy
+  - id: event1
+    when: scene_start
+    actions:
+    - spawn: actor1
+    - spawn: actor2
+  - id: on_cocoenfadado_set1
+    when: flag_changed
+    flag: cocoenfadado
+    is_set: true
+    once: false
+    actions:
+    - actor_behavior:
+        actor: actor2
+        behavior: enemy
+        team: 12
+        paused: false
   triggers: []
   encounters: []
   sequences: []

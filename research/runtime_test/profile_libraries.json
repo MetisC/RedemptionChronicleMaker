@@ -1,14 +1,10 @@
 {
   "updated": [
-    "east_demo",
-    "new_chronicle",
-    "rcm_director"
+    "new_chronicle"
   ],
   "files": [
-    "east_demo/.rcm_deployment.json",
-    "new_chronicle/.rcm_deployment.json",
-    "rcm_director/.rcm_deployment.json"
+    "new_chronicle/.rcm_deployment.json"
   ],
-  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\profile_libraries_1792315301458606300.zip",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\profile_libraries_1792900817666276600.zip",
   "native_engine_test": false
 }

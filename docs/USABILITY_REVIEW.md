@@ -82,3 +82,17 @@ No se crean flags implícitos para una zona nueva. El botón de conversación de
 `tests/test_linked_events.py` cubre creación y reutilización por origen, filtros/condiciones, cancelación, deshacer, borrado referenciado, cambio de ID pendiente, ventanas Qt reales, no-op, validación de drafts, formatos, compilación contra Codex y guardado/reapertura. `test_dialogue_effects.py` comprueba efectos RETURN, flags y AI; `test_text_commit.py` conserva el contrato de escritura diferida. La batería completa y el ejecutable empaquetado se verifican antes de publicar.
 
 No se ejecuta Redemption automáticamente. Los casos DLGFX y QOL del checklist permanecen pendientes de observación nativa. No se equiparan los tests Qt/doubles, la compilación, el CI y una prueba real de juego, guardado o multijugador. El muestreo de flags/estados no garantiza observar un cambio transitorio que se deshaga antes del siguiente tick.
+
+## Referencias con varios usos
+
+El inspector, Buscar referencias y la revisión previa al borrado agrupan una relación repetida en una fila con su número de usos. Desplegarla muestra cada ubicación, por ejemplo el interlocutor general de una conversación y el hablante de una línea concreta. Cada uso permite navegar al registro editable; los textos completos también están en las ayudas emergentes. Las acciones usan sus nombres legibles en ambos idiomas.
+
+Esta agrupación sólo afecta a la presentación: el grafo conserva todas las ubicaciones para renombrar y retirar referencias sin dejar usos ocultos. `tests/test_reference_view.py` comprueba ambas direcciones, navegación exacta, revisión de borrado, ausencia de cambios en los datos y traducciones.
+
+Crear una conversación desde el botón o menú general con un actor seleccionado usa el mismo enlace que su menú contextual: se asigna en «Al hablar» y se abre el editor de diálogo. Elegir sólo el hablante de una conversación no constituye un enlace de interacción. Se conserva la creación de conversaciones sin asignar cuando no hay un actor seleccionado. La habilitación nativa depende del flag `THING_AF_TALKTO`, no de una lista de modelos humanos; la regresión incluye el actor original `alligator` y compilación contra Codex.
+
+## Reanudar IA y cambiar hostilidad
+
+`enable_ai` conserva su contrato: sólo retira `THING_AF_AIPAUSED`. El editor lo presenta como «IA / Reanudar (conserva bando)», explica el efecto y permite convertir esa acción al preset enemigo conservando el actor elegido. La nueva acción «Actor / Comportamiento hostil o neutral» comienza con el preset enemigo completo; las acciones avanzadas existentes no se reinterpretan. La conversión funciona en eventos y en los editores transaccionales de respuestas y reacciones a flags, y se puede deshacer.
+
+`tests/test_ai_hostility.py` comprueba bando, neutralidad, pausa y conversación después del cierre del diálogo por respuesta, flag y ambas rutas, usando el actor original `alligator`. Conserva la semántica de reanudar, la AI original del recurso, la compilación contra Codex, las traducciones y el modo avanzado. Estas pruebas no sustituyen observar el combate dentro de Redemption.

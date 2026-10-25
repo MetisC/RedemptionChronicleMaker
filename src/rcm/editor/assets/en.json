@@ -2219,5 +2219,12 @@
   "Sin acciones vinculadas. Pulsa «Acciones…» para añadirlas.": "No linked actions. Choose Actions… to add them.",
   "Ver eventos del flag…": "View flag events…",
   "Para enlazar acciones al terminar, elige Secuencia de planos o Travelling. Un plano simple sólo ajusta la cámara.": "To link completion actions, choose Shot sequence or Travelling. A single shot only adjusts the camera.",
-  "Mostrar condiciones adicionales": "Show additional conditions"
+  "Mostrar condiciones adicionales": "Show additional conditions",
+  "usos": "uses",
+  "Línea": "Line",
+  "IA / Reanudar (conserva bando)": "AI / Resume (keep allegiance)",
+  "Actor / Comportamiento hostil o neutral": "Actor / Hostile or neutral behaviour",
+  "Enemigo activa la IA original, asigna un bando enemigo y retira neutralidad y conversación. NPC neutral lo devuelve a un estado pacífico. El modo avanzado conserva los demás flags.": "Enemy activates the original AI, assigns an enemy team and clears neutrality and conversation. Neutral NPC restores peaceful behaviour. Advanced mode preserves the other flags.",
+  "Reanudar IA sólo quita la pausa: conserva el bando y la neutralidad. Para que un NPC ataque al jugador, usa Comportamiento → Enemigo · AI original.": "Resuming AI only removes the pause: allegiance and neutrality stay unchanged. To make an NPC attack the player, choose Behaviour → Enemy · Original AI.",
+  "Convertir esta acción en volver hostil": "Convert this action to make hostile"
 }

@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0-rc10",
+  "full_gate_before_final_general_button_fix": {
+    "tests": 711,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "elapsed_seconds": 890.9887623999966,
+    "category": "offline-integration-gui-model-build-format",
+    "native_engine_test": false,
+    "failures_detail": []
+  },
+  "final_targeted_regression": {
+    "successful": true,
+    "tests": 53,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 80.5519388000248,
+    "modules": [
+      "test_actor_authoring",
+      "test_reference_view",
+      "test_dialogue_effects",
+      "test_campaign_editor",
+      "test_delete_flow"
+    ],
+    "native_engine_test": false
+  },
+  "final_ruff": "passed",
+  "final_configured_mypy": "passed",
+  "final_packaged_sources_verified": true,
+  "packaged_modules": 117,
+  "executable": "build/portable/RedemptionChronicleMaker/RedemptionChronicleMaker.exe",
+  "executable_sha256": "794b688fcdc11da085196903c1c790ea1089555a276fee68c24559c38d5a1918",
+  "source_sha256": "bcc1183f5d58196c1b3d362ee62062ee8c4c02a5c222ef42b0cf2509c3ab1246",
+  "class_versions": {
+    "R_new_chronicle_s0_Scene": "45.3",
+    "R_new_chronicle_s0_Passive": "45.3"
+  },
+  "installed_files_verified": {
+    "codex/R_new_chronicle_s0_Passive.class": "584e13f521aa48116bd6f15327f11bbc751edf00222ecaac895061986fbe380e",
+    "codex/R_new_chronicle_s0_Scene.class": "8897e9855d318329a6fb88ad8760401c639f9494a503e577813f643a35b2b3f1",
+    "new_chronicle.nob": "ec33e95371c62421a782d35166a577bd9ff777880f77fac06701bcbe5611c059"
+  },
+  "preservation": {
+    "previous_files": 1882,
+    "changed": [
+      "chronicles\\new_chronicle\\project.yaml",
+      "research\\runtime_test\\deployment_new_chronicle.json"
+    ],
+    "only_source_change_is_conv2_binding": true
+  },
+  "manual_status": {
+    "original_load_retry": "User confirmed load; trace confirms both actors and conv1.",
+    "alligator_conversation_after_binding_fix": "pending user verification",
+    "external_gamepad_fault": "captured; original plugin untouched",
+    "initial_load_crash_root_cause": "not established; WON explicitly excluded"
+  },
+  "gameplay_automated": false,
+  "new_release_published": false
+}

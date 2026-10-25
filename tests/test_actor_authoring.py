@@ -148,6 +148,40 @@ class ActorAuthoring(TestCase):
         self.assertTrue(self.backend.validate(self.win.doc.snapshot()).valid)
         self.win.undo_project();self.assertEqual(self.win.doc.snapshot(),before)
 
+    def test_general_conversation_button_binds_selected_animal_and_supports_undo(self):
+        actor=self.animal_dialogue_project();self.win.select(('actors',1));before=self.win.doc.snapshot()
+        self.win.buttons['conversation'].click()
+        conv=self.win.doc.data['conversations'][-1]
+        self.assertEqual(conv['speaker'],actor['id'])
+        self.assertEqual(actor['conversation']['default'],conv['id'])
+        self.assertEqual(self.win.selection,('conversations',len(self.win.doc.data['conversations'])-1))
+        self.assertEqual(self.win.center_tabs.currentIndex(),1)
+        self.assertTrue(self.backend.validate(self.win.doc.snapshot()).valid)
+        self.win.undo_project();self.assertEqual(self.win.doc.snapshot(),before)
+        self.win.redo_project();self.assertEqual(self.win.doc.data['actors'][1]['conversation']['default'],conv['id'])
+
+    def test_general_creation_without_actor_selection_keeps_explicit_draft(self):
+        self.win.select(('conversations',0));before=[dict(a.get('conversation',{})) for a in self.win.doc.data['actors']]
+        self.win.add_conversation()
+        self.assertEqual([a.get('conversation',{}) for a in self.win.doc.data['actors']],before)
+
+    def test_animal_dialogue_route_emits_native_talk_flag_and_compiles(self):
+        self.animal_dialogue_project();self.win.select(('actors',1));self.win.add_conversation()
+        source=self.win.doc.snapshot();source['chronicle']['id']='talk_binding'
+        report=self.backend.build(source)
+        self.assertEqual(set(report['class_versions'].values()),{'45.3'})
+        java='\n'.join(p.read_text(encoding='utf-8') for p in (ROOT/'build/talk_binding/generated/java').glob('*Scene.java'))
+        self.assertIn('SetActorFlags(THING_AF_TALKTO)',java)
+        self.assertIn(source['scenes'][0]['actors'][1]['conversation']['default'],java)
+
+    def animal_dialogue_project(self):
+        from rcm.campaign_document import CampaignDocument
+        from test_release10 import blank
+        root=blank();root['scenes'][0]['actors']=[dict(id=key,name=key,template=template,
+            transform=dict(position=[-62,-768,384],orientation=[0,0,0])) for key,template in [('human','AnezkaMod'),('gator','alligator')]]
+        self.win.doc=CampaignDocument(self.backend.ws,root);self.win.refresh()
+        return self.win.doc.data['actors'][1]
+
     def test_context_conversation_opens_story_editor_from_spatial_overview_and_graph(self):
         speaker=self.win.doc.data['actors'][0]
         label=speaker['name']+' · '+speaker['id']

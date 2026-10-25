@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-25",
+  "version": "1.0.0-rc10",
+  "cause": "Both authored routes used enable_ai. It only clears AIPAUSED; the actor remained a neutral NPC on team 10.",
+  "source_fix": {
+    "project": "chronicles/new_chronicle/project.yaml",
+    "actor": "actor2",
+    "response": "conv2/opening/result=2",
+    "flag_event": "on_cocoenfadado_set1",
+    "action": {
+      "actor_behavior": {
+        "actor": "actor2",
+        "behavior": "enemy",
+        "team": 12,
+        "paused": false
+      }
+    }
+  },
+  "runtime_contract": "Existing enemy preset clears AIPAUSED, NEUTRAL and TALKTO and selects enemy team 12. The original AI profile is retained. enable_ai semantics and existing advanced team actions remain unchanged.",
+  "original_evidence": {
+    "api": "research/engine_evidence/api_and_original_bytecode.txt",
+    "hostility_scripts": "research/engine_evidence/dialogue_hostility.txt",
+    "profile_archive": "Resource.nob",
+    "profile_path": "misc/AI/enemyGhoulAlligator.nai",
+    "profile_sha256": "f3b506fb9a1edccd59afafd542e6d2755c0e3c5d4a8a37ca2f6023ca22068a36"
+  },
+  "ui_changes": [
+    "Resume label explicitly preserves allegiance",
+    "Resume action can be converted to enemy preset while keeping its selected actor",
+    "New behaviour actions start with the complete enemy preset",
+    "Existing advanced actions are preserved",
+    "English and Spanish controls/guides updated"
+  ],
+  "source_preservation": {
+    "only_two_hostility_actions_changed": true,
+    "positions_text_inventory_and_flags_preserved": true,
+    "source_sha256": "96d1de45e76b2921ae8ce07c21306a82aafd0dbd71000f3c997933be0379937f"
+  },
+  "quality": {
+    "successful": true,
+    "tests": 721,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "checks": [
+      {
+        "command": [
+          "tools/prepare_native_sectors.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "command": [
+          "-m",
+          "ruff",
+          "check",
+          "src",
+          "tools",
+          "tests"
+        ],
+        "returncode": 0
+      },
+      {
+        "command": [
+          "-m",
+          "mypy",
+          "--follow-imports=skip",
+          "--check-untyped-defs",
+          "--cache-dir",
+          "build/tests/mypy_cache",
+          "src/rcm/paths.py",
+          "src/rcm/input_limits.py",
+          "src/rcm/file_transaction.py"
+        ],
+        "returncode": 0
+      },
+      {
+        "command": [
+          "tools/test.py"
+        ],
+        "returncode": 0
+      }
+    ]
+  },
+  "regressions": "tests/test_ai_hostility.py",
+  "compiled_class_versions": {
+    "R_new_chronicle_s0_Scene": "45.3",
+    "R_new_chronicle_s0_Passive": "45.3"
+  },
+  "packaged_source_modules": 117,
+  "packaged_executable_sha256": "39d41b54fcee12d076971c1a7362daea7261a640087c2c54c8380603bf24ee02",
+  "installed_files_sha256": {
+    "new_chronicle\\rcm_wtd_content.nob": "5216338894a4cd5a4d60f0ff4146687f35bd88caa51750891086d350733f78f9",
+    "new_chronicle\\codex\\R_new_chronicle_s0_Passive.class": "584e13f521aa48116bd6f15327f11bbc751edf00222ecaac895061986fbe380e",
+    "new_chronicle\\codex\\R_new_chronicle_s0_Scene.class": "c7dff9fbc94a2ef7b73655a16156cc37278225f17fadcbf932f5341a09e272c0",
+    "new_chronicle\\new_chronicle.nob": "ec33e95371c62421a782d35166a577bd9ff777880f77fac06701bcbe5611c059",
+    "new_chronicle\\rcm_compat.nob": "5059126e67d9ddc0af10db1b29ac7b522b9015f4e5b53d795c91193b5cb0f856",
+    "new_chronicle\\codex\\R_rcm_showcase_s0_Passive.class": "2a50f5a85b67eeb73573c7fc2c513cad6653970e8c43c5399eb5bd85d5803f86",
+    "new_chronicle\\.rcm_deployment.json": "6fd9f3f12764ff0a8e17ab3edff05064a43a9db018e951412aa04ba11544cd50"
+  },
+  "native_acceptance_pending": true,
+  "gameplay_automated": false,
+  "new_release": false
+}
