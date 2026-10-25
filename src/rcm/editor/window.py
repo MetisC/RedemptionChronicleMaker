@@ -1041,12 +1041,13 @@ class MainWindow(QMainWindow):
             template=MODES[mode],
             transform=dict(placement='absolute', position=[float(v) for v in position], orientation=[0, 0, 0]),
             geometry=dict(shape='box', size=[float(v) for v in payload['size']],
-                          material=payload['material'], uv_scale=payload.get('uv_scale', 64), mode=mode)))
+                          material=payload['material'], uv_scale=payload.get('uv_scale', 64),
+                          uv_mode=payload.get('uv_mode', 'tile'), mode=mode)))
         event = next((e for e in data['events'] if e['when'] == 'scene_start' and not e.get('conditions')), None)
         if event is None:
             event = dict(id=self.doc.unique_id('events', 'event'), when='scene_start', actions=[])
             data['events'].append(event)
-        event['actions'].append({'spawn': ident})
+        event.setdefault('actions', []).append({'spawn': ident})
         self.selection = ('objects', len(objects) - 1)
         self.changed(True)
 
@@ -1090,7 +1091,7 @@ class MainWindow(QMainWindow):
             if event is None:
                 event = dict(id=self.doc.unique_id('events', 'event'), when='scene_start', actions=[])
                 data['events'].append(event)
-            event['actions'].append({'spawn': ident})
+            event.setdefault('actions', []).append({'spawn': ident})
         self.selection = ('objects', len(objects) - 1)
         self.changed(True)
 

@@ -36,6 +36,7 @@ scenes:
       material: London\SLcrate3_2_L
       uv_scale: 64
       mode: decor
+      uv_mode: tile
   - id: wall1
     name: Muro RCM
     template: tracker_thing_nohilite
@@ -58,6 +59,7 @@ scenes:
       material: London\wall01_6_L
       uv_scale: 64
       mode: solid
+      uv_mode: tile
   - id: barrier1
     name: Barrera RCM
     template: tracker_thing_blocker
@@ -80,6 +82,7 @@ scenes:
       material: Prague\wall1_P
       uv_scale: 64
       mode: barrier
+      uv_mode: tile
   - id: panel1
     name: Panel RCM
     template: tracker_thing
@@ -102,6 +105,7 @@ scenes:
       material: London\wall01_9_L
       uv_scale: 64
       mode: interactive
+      uv_mode: tile
   - id: column1
     name: Columna RCM
     template: tracker_thing_null
@@ -124,6 +128,30 @@ scenes:
       material: New_York\steelPlate1_NY
       uv_scale: 64
       mode: decor
+      uv_mode: tile
+  - id: decor1
+    name: Decoración
+    template: tracker_thing
+    transform:
+      placement: absolute
+      position:
+      - -295.81038611644385
+      - -758.9390943290165
+      - 384.0
+      orientation:
+      - 0
+      - 0
+      - 0
+    geometry:
+      shape: box
+      size:
+      - 50.1
+      - 8.0
+      - 96.0
+      material: London\door2_1_L
+      uv_scale: 64.0
+      mode: interactive
+      uv_mode: stretch
   events:
   - id: setup
     when: scene_start
@@ -133,6 +161,7 @@ scenes:
     - spawn: barrier1
     - spawn: panel1
     - spawn: column1
+    - spawn: decor1
   - id: use_panel
     when: object_clicked
     object: panel1
@@ -141,6 +170,14 @@ scenes:
     - show_note:
         title: SCENERY04
         text: La pieza interactiva respondió al clic.
+  - id: use1
+    when: object_clicked
+    object: decor1
+    once: false
+    actions:
+    - show_note:
+        title: Nota
+        text: HAS ABIERTO !!
   conversations: []
   triggers: []
   sequences: []

@@ -70,5 +70,10 @@ def affected(data, path):
     links = graph(data)
     neighborhood = {tuple(path)}
     if path and path[0] in ('actors', 'objects', 'triggers','generators'):
-        neighborhood |= {x.source for x in links if x.target == tuple(path) and x.source[0] == 'events'}
+        rows = data.get(path[0], [])
+        current = rows[path[1]] if len(path) > 1 and isinstance(path[1], int) and path[1] < len(rows) else {}
+        # Scenery pieces only share the scene_start spawn fan-out: expanding
+        # it would link every sibling decor object, which carries no meaning.
+        if 'geometry' not in current:
+            neighborhood |= {x.source for x in links if x.target == tuple(path) and x.source[0] == 'events'}
     return {x.target for x in links if x.source in neighborhood and x.target[0] in ('actors', 'objects', 'triggers','waypoints')}

@@ -288,6 +288,11 @@ class Viewport(QOpenGLWidget):
         if path[0] == 'triggers':
             extent = np.array(e.get('size', [2 * e.get('radius', 60)] * 3)) / 2
             return -extent, extent
+        if 'geometry' in e:
+            # Scenery boxes are authored base-centred; live bounds keep the
+            # overlay in sync while a scale gesture is still in progress.
+            size = np.asarray(e['geometry']['size'], float)
+            return np.array([-size[0]/2, -size[1]/2, 0.]), np.array([size[0]/2, size[1]/2, size[2]])
         if self.level and self.model_key(e) in self.level.models:
             return self.level.models[self.model_key(e)][0].bounds
         return np.array([-16., -16., 0.]), np.array([16., 16., 110. if path[0] == 'actors' else 32.])
@@ -534,9 +539,12 @@ class Viewport(QOpenGLWidget):
             return []
         scale = max(35., np.linalg.norm(pos - self.pos) * .14)
         basis = np.eye(3)
-        if self.mode == 'scale' and self.data and self.selection[0] == 'triggers':
-            entity = self.data['triggers'][self.selection[1]]
-            basis = rotation(entity['transform'].get('orientation', [0,0,0])[2]).T
+        if self.mode == 'scale' and self.data and len(self.selection) > 1 and isinstance(self.selection[1], int):
+            kind, idx = self.selection[:2]
+            rows = self.data.get(kind, [])
+            entity = rows[idx] if 0 <= idx < len(rows) else {}
+            if kind == 'triggers' or (kind == 'objects' and 'geometry' in entity):
+                basis = rotation(entity['transform'].get('orientation', [0,0,0])[2]).T
         return [(axis, origin, self.project(pos + basis[axis]*scale), scale) for axis in range(3)]
 
     def draw_gizmo(self, painter, pos):
@@ -650,7 +658,9 @@ class Viewport(QOpenGLWidget):
             self.orbiting=True;return
         if self.placing:
             o,d=self.screen_ray(event.position().x(),event.position().y());hit=self.raycaster.cast(o,d)
-            if hit and abs(hit.normal[2])>.65:
+            # Decor/prefab pieces may sit on walls or float; other entities
+            # keep the floor-normal requirement.
+            if hit and (self.placing[0] in ('decor','prefab') or abs(hit.normal[2])>.65):
                 pos=hit.position
                 if self.grid:
                     pos=snap(pos,self.grid);floor=self.raycaster.ground(pos,20,40);pos=floor.position if floor else hit.position
@@ -666,7 +676,7 @@ class Viewport(QOpenGLWidget):
                 if any(self.line_distance(event.position(),a,b)<10 for a,b in zip(ring,ring[1:])):
                     self.gesture_started.emit()
                     self.drag=(path,'rotate',None,event.position(),pos.copy(),e['transform'].get('orientation',[0,0,0])[:],e.get('size',[1,1,1])[:],e.get('radius',60));return
-            elif self.mode=='move' or (self.mode=='scale' and path[0]=='triggers'):
+            elif self.mode=='move' or (self.mode=='scale' and (path[0]=='triggers' or 'geometry' in e)):
                 for axis,start,end,scale in self.gizmo_segments(pos):
                     if end and self.line_distance(event.position(),start,end)<10:
                         self.gesture_started.emit()
@@ -742,7 +752,12 @@ class Viewport(QOpenGLWidget):
                     change['position']=moved.tolist()
                 else:
                     entity=self.data[path[0]][path[1]]
-                    if entity['shape']=='sphere':
+                    if 'geometry' in entity:
+                        # Scenery boxes sit on their base: Z grows one-sided,
+                        # X/Y stay centred like trigger extents.
+                        factor=1. if axis==2 else 2.
+                        resized=list(entity['geometry']['size']);resized[axis]=max(1.,resized[axis]+amount*factor);change['geometry_size']=resized
+                    elif entity.get('shape')=='sphere':
                         change['radius']=max(1.,radius+amount)
                     else:
                         resized=list(size);resized[axis]=max(1.,size[axis]+amount*2);change['size']=resized
@@ -828,13 +843,23 @@ class SpatialPanel(QWidget):
                     surface=dict(level=self.win.doc.data['level']['source'],position=center,material=material,fixed_surface=True,interaction=mesh)
                 except ValueError as error:self.status.setText(str(error))
         # The menu point doubles as the drop position for decor/prefabs: the
-        # user right-clicks where the piece should appear; without a valid
-        # floor hit they fall back to click-to-place like the other entities.
+        # user right-clicks where the piece should appear. Decor pieces may
+        # sit on any surface (walls, floating panels), so any geometry hit
+        # qualifies; with no hit at all the piece drops ahead of the camera
+        # so Accept always produces a visible result.
         menu_ground=None
         if self.viewport.level and self.win.doc and self.geometry_matches():
             o,d=self.viewport.screen_ray(local.x(),local.y());gh=self.viewport.raycaster.cast(o,d)
-            if gh and abs(gh.normal[2])>.65:menu_ground=gh.position.tolist()
-        for label,cb in [(tr('Enfocar selección · F'),self.viewport.focus_selection),(tr('Mover · 1'),lambda:self.set_mode('move')),(tr('Girar · 2'),lambda:self.set_mode('rotate')),(tr('Tamaño · 3'),lambda:self.set_mode('scale')),(tr('+ Actor…'),self.win.add_actor),(tr('+ Objeto…'),self.add_object),('+ Trigger',self.add_trigger),(tr('+ Decoración…'),lambda:self.add_decor(menu_ground)),(tr('+ Decorado…'),lambda:self.place_prefab(menu_ground)),(tr('Guardar como decorado…'),self.save_prefab),(tr('+ Entrada'),lambda:self.win.campaign_panel.add_marker('entries')),('+ Waypoint',lambda:self.win.campaign_panel.add_marker('waypoints')),(tr('Duplicar'),self.duplicate_selected),(tr('Ajustar al suelo'),self.snap_selected),(tr('Buscar referencias'),self.win.find_references),(tr('Eliminar · Supr'),self.win.delete_selected)]:
+            if gh:menu_ground=gh.position.tolist()
+            else:menu_ground=(self.viewport.pos+self.viewport.forward()*400).tolist()
+        entries=[(tr('Enfocar selección · F'),self.viewport.focus_selection),(tr('Mover · 1'),lambda:self.set_mode('move')),(tr('Girar · 2'),lambda:self.set_mode('rotate')),(tr('Tamaño · 3'),lambda:self.set_mode('scale')),(tr('+ Actor…'),self.win.add_actor),(tr('+ Objeto…'),self.add_object),('+ Trigger',self.add_trigger),(tr('+ Decoración…'),lambda:self.add_decor(menu_ground)),(tr('+ Decorado…'),lambda:self.place_prefab(menu_ground)),(tr('Guardar como decorado…'),self.save_prefab)]
+        sel=path or self.win.selection
+        try:row=self.win.at(sel[:2]) if len(sel)>1 and self.win.doc else None
+        except (KeyError,IndexError,TypeError):row=None
+        if isinstance(row,dict) and sel[0]=='objects' and 'geometry' in row:
+            entries.append((tr('Editar decoración…'),lambda:self.edit_decor(sel[:2])))
+        entries+=[(tr('+ Entrada'),lambda:self.win.campaign_panel.add_marker('entries')),('+ Waypoint',lambda:self.win.campaign_panel.add_marker('waypoints')),(tr('Duplicar'),self.duplicate_selected),(tr('Ajustar al suelo'),self.snap_selected),(tr('Buscar referencias'),self.win.find_references),(tr('Eliminar · Supr'),self.win.delete_selected)]
+        for label,cb in entries:
             action=menu.addAction(label);action.triggered.connect(lambda checked=False,cb=cb:self.win.guard(cb))
         self.win.add_conversation_action(menu,path or self.win.selection)
         from .linked_events import context_menu
@@ -874,10 +899,29 @@ class SpatialPanel(QWidget):
         from .scenery import DecorDialog
         from PySide6.QtWidgets import QDialog
         dialog=DecorDialog(self,self.viewport.level if self.viewport else None,self.assets)
-        if dialog.exec()!=QDialog.DialogCode.Accepted:return
+        if dialog.exec()!=QDialog.DialogCode.Accepted or dialog.payload is None:return
         if position is not None:
-            self.win.add_decor(dialog.payload,position);self.status.setText(tr('Entidad colocada. Mover · 1 / Girar · 2 / F enfocar'))
+            self.win.add_decor(dialog.payload,position)
+            self.status.setText(tr('Entidad colocada. Mover · 1 / Girar · 2 / F enfocar'))
+            if self.viewport:self.viewport.focus_selection()
         else:self.begin_place('decor',dialog.payload)
+
+    def edit_decor(self, path):
+        # Same dialog as creation, prefilled with the piece's current record.
+        row=self.win.at(tuple(path))
+        if not isinstance(row,dict) or 'geometry' not in row:return
+        from .scenery import DecorDialog
+        from ..scenery import MODES
+        from PySide6.QtWidgets import QDialog
+        dialog=DecorDialog(self,self.viewport.level if self.viewport else None,self.assets,initial=row['geometry'])
+        if dialog.exec()!=QDialog.DialogCode.Accepted or dialog.payload is None:return
+        payload=dialog.payload;mode=payload['mode']
+        row['geometry'].update(size=[float(v) for v in payload['size']],
+                               material=payload['material'],
+                               uv_scale=payload.get('uv_scale',64),
+                               uv_mode=payload.get('uv_mode','tile'),mode=mode)
+        row['template']=MODES[mode]
+        self.win.selection=tuple(path);self.win.changed(True);self.win.inspect()
 
     def place_prefab(self, position=None):
         if not self.win.doc:return
@@ -888,9 +932,11 @@ class SpatialPanel(QWidget):
         from .scenery import PrefabPickDialog
         from PySide6.QtWidgets import QDialog
         dialog=PrefabPickDialog(self,prefabs)
-        if dialog.exec()!=QDialog.DialogCode.Accepted:return
+        if dialog.exec()!=QDialog.DialogCode.Accepted or dialog.payload is None:return
         if position is not None:
-            self.win.add_prefab(dialog.payload,position);self.status.setText(tr('Entidad colocada. Mover · 1 / Girar · 2 / F enfocar'))
+            self.win.add_prefab(dialog.payload,position)
+            self.status.setText(tr('Entidad colocada. Mover · 1 / Girar · 2 / F enfocar'))
+            if self.viewport:self.viewport.focus_selection()
         else:self.begin_place('prefab',dialog.payload)
 
     def save_prefab(self):
@@ -1009,6 +1055,8 @@ class SpatialPanel(QWidget):
         for key in ('size','radius'):
             if key in change and path[0]=='triggers':
                 entity[key]=[float(v) for v in change[key]] if key=='size' else float(change[key])
+        if 'geometry_size' in change and 'geometry' in entity:
+            entity['geometry']['size']=[float(v) for v in change['geometry_size']]
         if self.gesture_active:
             self.gesture_changed=True;self.gesture_inspect |= was_relative
             self.viewport.update()
@@ -1022,6 +1070,9 @@ class SpatialPanel(QWidget):
                 for i,axis in enumerate('xyz'):
                     values['position_'+axis]=entity['transform'].get('position',[0,0,0])[i]
                     values['orientation_'+str(i)]=entity['transform']['orientation'][i]
+                if 'geometry' in entity:
+                    for i,axis in enumerate('xyz'):
+                        values['decor_size_'+axis]=entity['geometry']['size'][i]
             elif path[0]=='triggers':
                 for i,axis in enumerate('XYZ'):
                     values['trigger_position_'+axis]=entity['transform']['position'][i]

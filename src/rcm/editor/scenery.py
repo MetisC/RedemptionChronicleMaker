@@ -3,9 +3,10 @@
 The piece is authored as a normal scene object with a `geometry` record;
 native collision modes are marked experimental until verified in game.
 """
-from PySide6.QtWidgets import (QCheckBox, QComboBox, QDialog, QDialogButtonBox,
-                               QDoubleSpinBox, QFormLayout, QLabel, QLineEdit,
-                               QScrollArea, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QCheckBox, QComboBox, QCompleter, QDialog,
+                               QDialogButtonBox, QDoubleSpinBox, QFormLayout,
+                               QLabel, QLineEdit, QScrollArea, QVBoxLayout,
+                               QWidget)
 from PySide6.QtGui import QImage, QPixmap
 from PySide6.QtCore import Qt
 from ..scenery import MODES, PRESETS
@@ -20,12 +21,17 @@ MODE_LABELS = {
 
 
 class DecorDialog(QDialog):
-    """Preset + size + native material for a parametric box piece."""
+    """Preset + size + native material for a parametric box piece.
 
-    def __init__(self, parent, level=None, assets=None):
+    With `initial` (a geometry record) the dialog edits the piece: fields are
+    prefilled and the preset row shows "(personalizada)" so picking a preset
+    still re-templates the piece.
+    """
+
+    def __init__(self, parent, level=None, assets=None, initial=None):
         super().__init__(parent)
         self.setObjectName('decor_dialog')
-        self.setWindowTitle(tr('Nueva decoración'))
+        self.setWindowTitle(tr('Editar decoración') if initial else tr('Nueva decoración'))
         self.payload = None
         self.assets = assets
         layout = QVBoxLayout(self)
@@ -45,13 +51,22 @@ class DecorDialog(QDialog):
             spin.setRange(1, 50000); spin.setDecimals(1); spin.setValue(64)
             self.size.append(spin)
             form.addRow(tr('Tamaño ') + axis, spin)
+        self.material_names = (sorted(set(level.mesh.materials))
+                               if level is not None and getattr(level, 'mesh', None) is not None
+                               else ['Prague\\wall1_P'])
         self.material = QComboBox(); self.material.setObjectName('decor_material')
+        # The field itself is the search box: typing opens a live-filtered
+        # popup (contains, case-insensitive); Enter picks a match there
+        # instead of submitting the dialog.
         self.material.setEditable(True)
-        if level is not None and getattr(level, 'mesh', None) is not None:
-            for name in sorted(set(level.mesh.materials)):
-                self.material.addItem(name)
-        else:
-            self.material.addItem('Prague\\wall1_P')
+        self.material.addItems(self.material_names)
+        if self.material.lineEdit():
+            self.material.lineEdit().setPlaceholderText(tr('Escribe para buscar…'))
+        completer = QCompleter(self.material_names, self.material)
+        completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+        completer.setFilterMode(Qt.MatchFlag.MatchContains)
+        completer.setCompletionMode(QCompleter.CompletionMode.PopupCompletion)
+        self.material.setCompleter(completer)
         form.addRow(tr('Material'), self.material)
         self.material_preview = QLabel(); self.material_preview.setObjectName('decor_material_preview')
         self.material_preview.setFixedSize(96, 96)
@@ -60,6 +75,12 @@ class DecorDialog(QDialog):
         form.addRow('', self.material_preview)
         self.material.currentTextChanged.connect(self.update_material_preview)
         self.update_material_preview(self.material.currentText())
+        self.uv_mode = QComboBox(); self.uv_mode.setObjectName('decor_uv_mode')
+        self.uv_mode.addItem(tr('Repetida (tiled)'), 'tile')
+        self.uv_mode.addItem(tr('Ajustada a la cara (expanded)'), 'stretch')
+        self.uv_mode.setToolTip(tr('Repetida: la textura se repite según la escala. Ajustada: la textura cubre cada cara entera.'))
+        self.uv_mode.currentIndexChanged.connect(lambda _i: self.uv_scale.setEnabled(self.uv_mode.currentData() == 'tile'))
+        form.addRow(tr('Textura'), self.uv_mode)
         self.uv_scale = QDoubleSpinBox(); self.uv_scale.setObjectName('decor_uv_scale')
         self.uv_scale.setRange(4, 4096); self.uv_scale.setValue(64)
         self.uv_scale.setToolTip(tr('Unidades del mundo por repetición de textura'))
@@ -69,13 +90,28 @@ class DecorDialog(QDialog):
         note.setWordWrap(True)
         layout.addWidget(note)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
-        buttons.accepted.connect(self.accepted)
+        buttons.accepted.connect(self.on_accepted)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
-        self.apply_preset(0)
+        if initial is None:
+            self.apply_preset(0)
+        else:
+            self.preset.insertItem(0, tr('(personalizada)'), None)
+            self.preset.setCurrentIndex(0)
+            if initial.get('mode', 'decor') in MODES:
+                self.mode.setCurrentIndex(list(MODES).index(initial['mode']))
+            for spin, value in zip(self.size, list(initial.get('size', [64, 64, 64]))[:3]):
+                spin.setValue(float(value))
+            if initial.get('material'):
+                self.material.setCurrentText(initial['material'])
+            self.uv_scale.setValue(float(initial.get('uv_scale', 64)))
+            self.uv_mode.setCurrentIndex(1 if initial.get('uv_mode') == 'stretch' else 0)
 
     def apply_preset(self, index):
-        mode, size = self.preset.itemData(index)
+        data = self.preset.itemData(index)
+        if data is None:
+            return
+        mode, size = data
         self.mode.setCurrentIndex(list(MODES).index(mode))
         for spin, value in zip(self.size, size):
             spin.setValue(value)
@@ -97,11 +133,12 @@ class DecorDialog(QDialog):
         self.material_preview.setPixmap(pixmap or QPixmap())
         self.material_preview.setToolTip(tooltip)
 
-    def accepted(self):
+    def on_accepted(self):
         self.payload = dict(mode=self.mode.currentData(),
                             size=[spin.value() for spin in self.size],
                             material=self.material.currentText().strip(),
-                            uv_scale=self.uv_scale.value())
+                            uv_scale=self.uv_scale.value(),
+                            uv_mode=self.uv_mode.currentData())
         self.accept()
 
 
@@ -170,11 +207,11 @@ class PrefabDialog(QDialog):
         scroll.setWidget(body)
         layout.addWidget(scroll)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
-        buttons.accepted.connect(self.accepted)
+        buttons.accepted.connect(self.on_accepted)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
 
-    def accepted(self):
+    def on_accepted(self):
         from PySide6.QtWidgets import QMessageBox
         chosen = [i for check, i in self.checks if check.isChecked()]
         if not chosen or not self.name.text().strip():
@@ -200,10 +237,10 @@ class PrefabPickDialog(QDialog):
         form.addRow(tr('Decorado'), self.combo)
         layout.addLayout(form)
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
-        buttons.accepted.connect(self.accepted)
+        buttons.accepted.connect(self.on_accepted)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
 
-    def accepted(self):
+    def on_accepted(self):
         self.payload = self.combo.currentData()
         self.accept()

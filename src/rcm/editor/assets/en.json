@@ -2258,5 +2258,13 @@
   "La escenografía requiere formato de proyecto 9 o 10.": "Scenery requires project format 9 or 10.",
   "Elige un nombre y al menos un objeto.": "Choose a name and at least one object.",
   "Decorado guardado: ": "Prefab saved: ",
-  " · copia": " · copy"
+  " · copia": " · copy",
+  "Textura": "Texture",
+  "Repetida (tiled)": "Tiled (repeat)",
+  "Ajustada a la cara (expanded)": "Stretched to face (expanded)",
+  "Escribe para buscar…": "Type to search…",
+  "Repetida: la textura se repite según la escala. Ajustada: la textura cubre cada cara entera.": "Tiled: the texture repeats at the chosen scale. Stretched: the texture covers each whole face.",
+  "Editar decoración": "Edit decoration",
+  "Editar decoración…": "Edit decoration…",
+  "(personalizada)": "(custom)"
 }

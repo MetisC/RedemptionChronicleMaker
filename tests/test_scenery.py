@@ -23,8 +23,8 @@ from test_stability_revision import compile_scenario
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def geometry(mode='decor', size=(64, 32, 128), material='London\\SLwall1_L', uv_scale=64):
-    return dict(shape='box', size=list(size), material=material, uv_scale=uv_scale, mode=mode)
+def geometry(mode='decor', size=(64, 32, 128), material='London\\SLwall1_L', uv_scale=64, uv_mode='tile'):
+    return dict(shape='box', size=list(size), material=material, uv_scale=uv_scale, uv_mode=uv_mode, mode=mode)
 
 
 def source(mode='decor', object_id='decor1', position=(-62, -768, 384), **kw):
@@ -93,6 +93,22 @@ class GeometrySpec(TestCase):
         valid = validate_geometry(dict(base))
         self.assertEqual(valid['mode'], 'decor')
         self.assertEqual(valid['uv_scale'], 64)
+
+    def test_stretch_uv_mode_maps_each_face_to_unit_square(self):
+        g = geometry(size=(64, 32, 128), uv_mode='stretch')
+        value = spec(g, 3)
+        us = [p[3] for p in value['vertices']]
+        vs = [p[4] for p in value['vertices']]
+        self.assertEqual((min(us), max(us)), (0.0, 1.0))
+        self.assertEqual((min(vs), max(vs)), (0.0, 1.0))
+        # Each of the six quads covers the full 0..1 square on its own.
+        for quad in range(0, 36, 6):
+            usq = {round(p[3], 6) for p in value['vertices'][quad:quad + 6]}
+            vsq = {round(p[4], 6) for p in value['vertices'][quad:quad + 6]}
+            self.assertEqual(usq, {0.0, 1.0})
+            self.assertEqual(vsq, {0.0, 1.0})
+        with self.assertRaises(ValueError):
+            validate_geometry(geometry(uv_mode='mirrored'))
 
 
 class SceneryCampaign(TestCase):
@@ -251,3 +267,74 @@ class SceneryCampaign(TestCase):
         root['authoring']['prefabs'][0] = bad
         with self.assertRaises(ValueError):
             validate_authoring(root)
+
+    def test_dialog_accept_places_decor_at_position(self):
+        """Aceptar must create the piece immediately at the menu point."""
+        from rcm.editor.window import MainWindow
+        import rcm.editor.scenery as scn
+        from PySide6.QtWidgets import QDialog
+        root = source('solid')
+        doc = CampaignDocument.load_data(self.backend.ws, copy.deepcopy(root), ROOT / 'chronicles/test_decor.yaml')
+        win = MainWindow(self.backend)
+        win.doc = doc
+        win.refresh()
+        self.addCleanup(lambda: (setattr(win, 'doc', None), win.close()))
+
+        class AutoAccept:
+            def __init__(self, *a, **k):
+                self.payload = dict(mode='decor', size=[64., 64., 64.], material='London\\SLwall1_L', uv_scale=64.)
+
+            def exec(self):
+                return QDialog.DialogCode.Accepted
+
+        previous = scn.DecorDialog
+        scn.DecorDialog = lambda *a, **k: AutoAccept()
+        try:
+            win.spatial.add_decor([30., -690., 440.])
+        finally:
+            scn.DecorDialog = previous
+        objects = doc.campaign['scenes'][0]['objects']
+        self.assertEqual(len(objects), 2)
+        self.assertEqual(objects[-1]['transform']['position'], [30., -690., 440.])
+        self.assertEqual(objects[-1]['geometry']['mode'], 'decor')
+        self.assertEqual(win.selection, ('objects', 1))
+        event = next(e for e in doc.campaign['scenes'][0]['events'] if e['when'] == 'scene_start')
+        self.assertIn({'spawn': objects[-1]['id']}, event['actions'])
+
+    def test_edit_decor_updates_existing_record_in_place(self):
+        """The edit dialog rewrites the same object, keeping id and position."""
+        from rcm.editor.window import MainWindow
+        import rcm.editor.scenery as scn
+        from PySide6.QtWidgets import QDialog
+        root = source('decor', size=(64, 32, 128))
+        doc = CampaignDocument.load_data(self.backend.ws, copy.deepcopy(root), ROOT / 'chronicles/test_decor.yaml')
+        win = MainWindow(self.backend)
+        win.doc = doc
+        win.refresh()
+        self.addCleanup(lambda: (setattr(win, 'doc', None), win.close()))
+
+        captured = {}
+
+        class AutoEdit:
+            def __init__(self, *a, **k):
+                captured['initial_size'] = list(k.get('initial')['size'])
+                self.payload = dict(mode='solid', size=[200., 24., 96.],
+                                    material='London\\door3_1_L', uv_scale=128., uv_mode='stretch')
+
+            def exec(self):
+                return QDialog.DialogCode.Accepted
+
+        previous = scn.DecorDialog
+        scn.DecorDialog = lambda *a, **k: AutoEdit(*a, **k)
+        try:
+            win.spatial.edit_decor(('objects', 0))
+        finally:
+            scn.DecorDialog = previous
+        row = doc.campaign['scenes'][0]['objects'][0]
+        self.assertEqual(captured['initial_size'], [64, 32, 128])
+        self.assertEqual(row['id'], 'decor1')
+        self.assertEqual(row['geometry']['size'], [200., 24., 96.])
+        self.assertEqual(row['geometry']['mode'], 'solid')
+        self.assertEqual(row['geometry']['uv_mode'], 'stretch')
+        self.assertEqual(row['template'], 'tracker_thing_nohilite')
+        self.assertEqual(row['transform']['position'], [-62, -768, 384])

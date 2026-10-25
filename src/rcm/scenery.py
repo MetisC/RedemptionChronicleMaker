@@ -43,7 +43,7 @@ PRESETS = (
 
 def validate_geometry(value):
     """Authoring-level checks; raises ValueError with a readable message."""
-    geometry = mapping(value, {'shape', 'size', 'material', 'uv_scale', 'mode'},
+    geometry = mapping(value, {'shape', 'size', 'material', 'uv_scale', 'uv_mode', 'mode'},
                        {'shape', 'size', 'material'}, 'geometry')
     if geometry['shape'] != 'box':
         raise ValueError('Escenografía: forma no soportada (sólo box)')
@@ -63,6 +63,10 @@ def validate_geometry(value):
     if mode not in MODES:
         raise ValueError('Escenografía: modo inválido')
     geometry['mode'] = mode
+    uv_mode = geometry.get('uv_mode', 'tile')
+    if uv_mode not in ('tile', 'stretch'):
+        raise ValueError('Escenografía: uv_mode inválido (tile o stretch)')
+    geometry['uv_mode'] = uv_mode
     return geometry
 
 
@@ -83,9 +87,18 @@ def spec(geometry, sector):
         ([(w, d, 0), (-w, d, 0), (-w, d, h), (w, d, h)], (0, 2)),     # +y
         ([(-w, -d, 0), (w, -d, 0), (w, -d, h), (-w, -d, h)], (0, 2)), # -y
     ]
+    stretch = g.get('uv_mode', 'tile') == 'stretch'
     vertices = []
     for corners, axes in faces:
-        quad = [[p[0], p[1], p[2], p[axes[0]] / us, p[axes[1]] / us] for p in corners]
+        if stretch:
+            # 0..1 per face: the texture fills the whole surface once instead
+            # of repeating at uv_scale, so framed art (doors, posters) fits.
+            a0 = [p[axes[0]] for p in corners]; a1 = [p[axes[1]] for p in corners]
+            lo0, lo1 = min(a0), min(a1)
+            r0, r1 = max(max(a0) - lo0, 1e-6), max(max(a1) - lo1, 1e-6)
+            quad = [[p[0], p[1], p[2], (p[axes[0]] - lo0) / r0, (p[axes[1]] - lo1) / r1] for p in corners]
+        else:
+            quad = [[p[0], p[1], p[2], p[axes[0]] / us, p[axes[1]] / us] for p in corners]
         for tri in ((0, 1, 2), (0, 2, 3)):
             vertices.extend(quad[i] for i in tri)
     return dict(materials=[g['material']], vertices=vertices,

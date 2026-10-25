@@ -247,7 +247,10 @@ class Inspector(QWidget):
         if geometry['material'] not in materials:
             materials = [geometry['material']] + materials
         self.combo(tr('Material'), [(m, m) for m in materials], geometry['material'], lambda v: self.set(p + ('geometry', 'material'), v), 'decor_material')
+        uv_modes = [(tr('Repetida (tiled)'), 'tile'), (tr('Ajustada a la cara (expanded)'), 'stretch')]
+        self.combo(tr('Textura'), uv_modes, geometry.get('uv_mode', 'tile'), lambda v: self.set(p + ('geometry', 'uv_mode'), v), 'decor_uv_mode')
         self.spin(tr('Escala de textura'), geometry.get('uv_scale', 64), lambda v: self.set(p + ('geometry', 'uv_scale'), v), 'decor_uv_scale', True, 4, 4096)
+        self.button(tr('Editar decoración…'), lambda: self.win.spatial.edit_decor(p[:2]), 'edit_decor_dialog')
         if geometry.get('mode') in ('solid', 'barrier'):
             self.note(tr('EXPERIMENTAL: la colisión nativa está pendiente de verificación dentro del juego. No la des por física real hasta confirmarla en Redemption.'))
         if geometry.get('mode') == 'interactive':
