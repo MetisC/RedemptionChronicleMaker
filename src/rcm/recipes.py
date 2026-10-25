@@ -159,7 +159,7 @@ def unique(rows, stem):
 def values(root, recipe):
     """Read current entities, including edits made outside this wizard."""
     get = lambda role: resolve(root, recipe['refs'][role]) if role in recipe['refs'] else None
-    result = {}
+    result: dict = {}
     entity = get('actor') or get('object') or get('enemy')
     if entity:
         result.update(name=entity['name'], template=entity['template'], position=entity['transform'].get('position', [0, 0, 0]), orientation=entity['transform'].get('orientation', [0, 0, 0]))

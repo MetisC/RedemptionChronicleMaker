@@ -8,6 +8,6 @@ Desarrollo: coverage 7.10.6, Ruff 0.14.0, mypy 1.18.2, types-PyYAML 6.0.12.20250
 
 El portable contiene módulos Python/Qt, JVM y compiler modernos. No contiene Embrace, NOT Editor, ejecutable del juego, classes.zip original, Codex.nob, Resource.nob, modelos, levels ni texturas originales. Esos datos se leen/copian en el workspace privado al escanear la instalación legítima del usuario. Un paquete de crónica incluye únicamente nuestra capa generada y recursos propios; el metadata de entorno/anchor necesario se deriva de escenas originales.
 
-No se ha fijado una licencia pública para el código propio de RCM ni se ha publicado la aplicación. Esta lista es inventario técnico de avisos, no aprobación legal de distribución pública. Qt permanece como bibliotecas dinámicas en carpeta visible. No entregar un EXE suelto que descarte bibliotecas, avisos y JVM.
+El código propio de RCM se publica bajo licencia MIT (`LICENSE` en la raíz, incluida en la raíz del portable). Esta lista es inventario técnico de avisos de terceros; no cubre el juego, herramientas originales ni mods, que nunca se distribuyen. Qt permanece como bibliotecas dinámicas en carpeta visible. No entregar un EXE suelto que descarte bibliotecas, avisos y JVM.
 
 Referencias técnicas de herramientas: [Ruff](https://docs.astral.sh/ruff/linter/), [PyInstaller onedir](https://pyinstaller.org/en/stable/operating-mode.html), [tipos PyYAML](https://pypi.org/project/types-PyYAML/6.0.12.20250915/).

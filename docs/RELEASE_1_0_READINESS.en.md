@@ -1,4 +1,4 @@
-# Current readiness · rc9
+# Current readiness · rc10
 
 Implemented authoring includes scenes over immutable NIL, actors/objects, native interactions, dialogue/notes/quests/state, encounters/generators and the Cinematic Director. Closure adds own linear NCPs, timed/line Actions, staging and small runtime sound/light/weather controls. No extra main tab or conversion on opening.
 

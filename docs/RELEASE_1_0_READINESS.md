@@ -1,4 +1,4 @@
-# Preparación vigente · rc9
+# Preparación vigente · rc10
 
 Autoría implementada: escenas sobre NIL inmutable, actores/objetos, interacción nativa, diálogo/notas/quests/estado, encuentros/generadores y Director de escenas. El cierre añade NCP lineal propio, Actions temporales/de línea, staging y pequeños controles runtime de sonido/luz/clima. Sin pestaña nueva ni conversión al abrir.
 

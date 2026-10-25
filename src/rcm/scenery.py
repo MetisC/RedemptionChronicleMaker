@@ -88,7 +88,7 @@ def spec(geometry, sector):
         ([(-w, -d, 0), (w, -d, 0), (w, -d, h), (-w, -d, h)], (0, 2)), # -y
     ]
     stretch = g.get('uv_mode', 'tile') == 'stretch'
-    vertices = []
+    vertices: list = []
     for corners, axes in faces:
         if stretch:
             # 0..1 per face: the texture fills the whole surface once instead

@@ -45,10 +45,11 @@ The release workflow refuses to publish if the Git tag and the application versi
 
 Before tagging:
 
-1. Update `src/rcm/__init__.py` to the version you intend to publish.
-2. Update `RELEASE_NOTES.md` for that version.
-3. Commit and push those changes to `main`.
-4. Create and push the matching tag.
+1. Run the complete local quality gate on the exact commit to be tagged: `python tools/quality.py --no-coverage`. The CI fast gate covers only `test_safety_unit.py`; GUI, Java, catalogue and Qt checks run in the full suite.
+2. Update `src/rcm/__init__.py` to the version you intend to publish.
+3. Update `RELEASE_NOTES.md` for that version.
+4. Commit and push those changes to `main`.
+5. Create and push the matching tag.
 
 Example:
 
@@ -118,3 +119,5 @@ The workflow stops before publication if any of these fail:
 - checksum generation.
 
 Do not bypass a failed gate by manually uploading an unverified ZIP under the same release tag. Fix the source, move to a new tag/version when appropriate, and let the workflow build the public artifact from tagged source.
+
+Only artifacts produced by the release workflow are published. A locally rebuilt portable can differ from the CI artifact under the same version string; never attach a local ZIP to a release — bump the version and tag instead.

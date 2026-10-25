@@ -83,4 +83,8 @@ Windows link/process checks need the relevant OS permissions. Synthetic deployme
 - [Engine evidence](docs/ENGINE_NOTES.md) and [formats](docs/FORMAT_NOTES.md)
 - [Tests](docs/TESTING.md) and [manual acceptance](docs/MANUAL_RUNTIME_CHECKLIST.en.md)
 
+## License
+
+Redemption Chronicle Maker's own code and documentation are released under the [MIT License](LICENSE). Third-party notices live in `docs/licenses/portable/` and ship inside the portable build.
+
 This unofficial fan project requires a legitimate installation of Redemption. It does not distribute original game assets, proprietary authoring tools or imported mod content.

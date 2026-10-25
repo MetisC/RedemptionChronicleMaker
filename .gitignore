@@ -125,3 +125,7 @@ $RECYCLE.BIN/
 /RedemptionChronicleMaker*.zip
 /backups
 /research/package_backups
+
+# Frozen legacy application snapshot kept on disk only; contains extracted
+# original game data that must never enter the repository or its history
+/user_workspaces/legacy_portable/

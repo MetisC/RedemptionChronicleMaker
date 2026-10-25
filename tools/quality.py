@@ -5,7 +5,7 @@ ROOT=Path(__file__).resolve().parents[1]
 if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8',errors='replace')
 parser=argparse.ArgumentParser();parser.add_argument('--fast',action='store_true');parser.add_argument('--no-coverage',action='store_true',help='Run the complete suite without tracing coverage');args=parser.parse_args()
 env=dict(os.environ,PYTHONIOENCODING='utf-8',PYTHONPATH=os.pathsep.join([str(ROOT/'cache/devtools'),str(ROOT/'cache/vendor'),str(ROOT/'src')]))
-commands=[['-m','ruff','check','src','tools','tests'],['-m','mypy','--follow-imports=skip','--check-untyped-defs','--cache-dir','build/tests/mypy_cache','src/rcm/paths.py','src/rcm/input_limits.py','src/rcm/file_transaction.py'],['tools/test.py',*(['--fast'] if args.fast else ([] if args.no_coverage else ['--coverage']))]]
+commands=[['-m','ruff','check','src','tools','tests'],['-m','mypy','--follow-imports=skip','--check-untyped-defs','--cache-dir','build/tests/mypy_cache','src/rcm/paths.py','src/rcm/input_limits.py','src/rcm/file_transaction.py','src/rcm/model.py','src/rcm/document.py','src/rcm/app_settings.py','src/rcm/diagnostics.py','src/rcm/scenery.py','src/rcm/audio.py','src/rcm/cli.py','src/rcm/recipes.py'],['tools/test.py',*(['--fast'] if args.fast else ([] if args.no_coverage else ['--coverage']))]]
 if not args.fast:commands.insert(0,['tools/prepare_native_sectors.py'])
 records=[]
 for cmd in commands:

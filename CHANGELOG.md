@@ -1,5 +1,7 @@
 # Changes · 1.0.0-rc10
 
+- Publish the project under the MIT License and ship `LICENSE` inside the portable root. Remove the frozen legacy application snapshot — including extracted original game data — from repository history; it stays on disk only.
+- Merge the optional native parametric scenery layer (decor/solid/interactive brush entities) with its scenery lab example; native acceptance SCENERY01–10 stays on the manual checklist.
 - Apply authored text and typed numbers after editing, only when modified. Avoid per-keystroke validation, snapshots, scene refreshes and resource filtering; Save/Build first commit pending fields. Preserve invalid drafts and multiline paragraphs.
 - Open the conversation editor immediately after contextual creation. Keep the current conversation view when deleting a node, line or response.
 - Give RETURN responses ordinary actions, including a one-click hostile speaker preset, after native dialogue cleanup. Add genuine boolean flag-change reactions, saved observation state and clear flag-index explanations.

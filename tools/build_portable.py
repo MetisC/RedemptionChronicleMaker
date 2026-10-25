@@ -47,7 +47,7 @@ def main(argv=None):
     docs.mkdir()
     for stem in USER_DOCS:
         for suffix in ('.md','.en.md'):shutil.copy2(ROOT/'docs'/(stem+suffix),docs/(stem+suffix))
-    for name in ['CHANGELOG.md','RELEASE_NOTES.md']:shutil.copy2(ROOT/name,app/name)
+    for name in ['CHANGELOG.md','RELEASE_NOTES.md','LICENSE']:shutil.copy2(ROOT/name,app/name)
     ws.write(app/'README.txt','Redemption Chronicle Maker '+__version__+'\n\nOpen RedemptionChronicleMaker.exe. Choose Vampire.exe when requested. Projects stay in Documents, outside this program. Open Quick tutorial or Full showcase, then press F5 to playtest.\n\nAbre RedemptionChronicleMaker.exe. Selecciona Vampire.exe. Tus proyectos se guardan en Documentos, fuera del programa. Abre Tutorial rapido o Showcase completo y pulsa F5 para probar.\n\nUnofficial fan-made authoring tool for Vampire: The Masquerade - Redemption. Requires your own complete game installation.\n')
     ws.write(app/'VERSION',__version__+'\n')
     for folder in ('tutorial','showcase','mini_chronicle','dynamic_lab','director_acceptance','strict_acceptance','completion_lab','scenery_lab'):

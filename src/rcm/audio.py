@@ -44,7 +44,7 @@ def extend_music(java,scene):
 
 
 def loops(scene):
-    found={}
+    found: dict = {}
     def visit(value):
         if isinstance(value,list):
             for child in value:visit(child)

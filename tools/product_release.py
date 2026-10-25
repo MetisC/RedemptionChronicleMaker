@@ -10,7 +10,7 @@ def audit(folder):
     from rcm import __version__
     from build_portable import USER_DOCS
     folder=Path(folder);files={};errors=[]
-    allowed={'_internal','runtime','examples','docs','THIRD_PARTY_NOTICES','RedemptionChronicleMaker.exe','README.txt','VERSION','CHANGELOG.md','RELEASE_NOTES.md'}
+    allowed={'_internal','runtime','examples','docs','THIRD_PARTY_NOTICES','RedemptionChronicleMaker.exe','README.txt','VERSION','CHANGELOG.md','RELEASE_NOTES.md','LICENSE'}
     if {p.name for p in folder.iterdir()}-allowed:errors.append('Unexpected top-level content')
     if (folder/'VERSION').read_text().strip()!=__version__:errors.append('Wrong product version')
     docs={stem+suffix for stem in USER_DOCS for suffix in ('.md','.en.md')}

@@ -226,7 +226,7 @@ def parse_project(data: str, levels: dict, resources: dict, allow_empty=False, a
             raise ValueError("Índices de flags admitidos por la herramienta: 0..255")
     if len(set(flags.values())) != len(flags):
         raise ValueError("Dos flags no pueden compartir índice")
-    catalogue = {}
+    catalogue: dict = {}
     for t in resources["templates"]:
         catalogue.setdefault(t["id"], []).append(t)
     entities, entity_ids = [], set()
