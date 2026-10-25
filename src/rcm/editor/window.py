@@ -459,6 +459,8 @@ class MainWindow(QMainWindow):
         if len(path) == 2 and path[0] in {"actors", "objects", "conversations", "events", "triggers", "entries", "waypoints", "generators"}:
             label = value.get("name", value.get("id", (tr('Evento ') + f'{path[1] + 1}')))
             detail = value.get("template", value.get("speaker", TRIGGER_LABELS.get(value.get("when"), value.get("when", ""))))
+            if 'geometry' in value:
+                detail = tr('Escenografía · ') + detail
             return label, detail
         labels = {"actors": tr("Actores"), "objects": tr("Objetos"), "conversations": tr("Conversaciones"), "events": tr("Eventos"), "triggers": "Triggers","generators":tr("Encuentros dinámicos")}
         return labels.get(path[0], tr("Elemento")), str(len(value)) if isinstance(value, list) else ""
@@ -1024,6 +1026,100 @@ class MainWindow(QMainWindow):
         if self.spatial.viewport and template not in self.spatial.viewport.level.models:
             self.spatial.loaded_name = None
             self.spatial.ensure_loaded()
+
+    def add_decor(self, payload, position):
+        """Native brush scenery piece; the object row stays a normal object."""
+        from ..scenery import MODES
+        if not hasattr(self.doc, 'campaign') or self.doc.campaign.get('project_format') not in (9, 10):
+            self.statusBar().showMessage(tr('La escenografía requiere formato de proyecto 9 o 10.'))
+            return
+        data = self.doc.data
+        ident = self.doc.unique_id('objects', 'decor')
+        objects = data.setdefault('objects', [])
+        mode = payload['mode']
+        objects.append(dict(id=ident, name=payload.get('name') or tr('Decoración'),
+            template=MODES[mode],
+            transform=dict(placement='absolute', position=[float(v) for v in position], orientation=[0, 0, 0]),
+            geometry=dict(shape='box', size=[float(v) for v in payload['size']],
+                          material=payload['material'], uv_scale=payload.get('uv_scale', 64), mode=mode)))
+        event = next((e for e in data['events'] if e['when'] == 'scene_start' and not e.get('conditions')), None)
+        if event is None:
+            event = dict(id=self.doc.unique_id('events', 'event'), when='scene_start', actions=[])
+            data['events'].append(event)
+        event['actions'].append({'spawn': ident})
+        self.selection = ('objects', len(objects) - 1)
+        self.changed(True)
+
+    def save_prefab(self):
+        """Capture chosen scene objects as a reusable prefab composition."""
+        from PySide6.QtWidgets import QDialog
+        from .scenery import PrefabDialog, capture_prefab
+        objects = self.doc.data.get('objects', [])
+        dialog = PrefabDialog(self, objects)
+        if dialog.exec() != QDialog.DialogCode.Accepted:
+            return
+        name, indices = dialog.payload
+        prefab = capture_prefab(name, [objects[i] for i in indices])
+        prefab['id'] = 'prefab' + str(len(self.doc.campaign.setdefault('authoring', {}).setdefault('prefabs', [])) + 1)
+        while any(p['id'] == prefab['id'] for p in self.doc.campaign['authoring']['prefabs']):
+            prefab['id'] += 'x'
+        self.doc.campaign['authoring']['prefabs'].append(prefab)
+        from ..recipes import validate_authoring
+        validate_authoring(self.doc.campaign)
+        self.changed(True)
+        self.statusBar().showMessage(tr('Decorado guardado: ') + prefab['name'])
+
+    def add_prefab(self, index, position):
+        """Instantiate a stored prefab as normal editable objects."""
+        import copy
+        from .scenery import instantiate_prefab
+        if not hasattr(self.doc, 'campaign') or self.doc.campaign.get('project_format') not in (9, 10):
+            self.statusBar().showMessage(tr('Los decorados requieren formato de proyecto 9 o 10.'))
+            return
+        prefabs = self.doc.campaign.get('authoring', {}).get('prefabs', [])
+        if not 0 <= index < len(prefabs):
+            raise ValueError('Decorado no encontrado')
+        data = self.doc.data
+        objects = data.setdefault('objects', [])
+        event = next((e for e in data['events'] if e['when'] == 'scene_start' and not e.get('conditions')), None)
+        for source in instantiate_prefab(prefabs[index], position):
+            ident = self.doc.unique_id('objects', 'decor' if 'geometry' in source else 'object')
+            row = copy.deepcopy(source)
+            row['id'] = ident
+            objects.append(row)
+            if event is None:
+                event = dict(id=self.doc.unique_id('events', 'event'), when='scene_start', actions=[])
+                data['events'].append(event)
+            event['actions'].append({'spawn': ident})
+        self.selection = ('objects', len(objects) - 1)
+        self.changed(True)
+
+    def duplicate_selected(self):
+        """Clone the selected spatial row into a new editable entity."""
+        import copy
+        p = self.selection[:2]
+        if len(p) != 2 or p[0] not in ('actors', 'objects', 'triggers', 'entries', 'waypoints'):
+            return
+        data = self.doc.data
+        rows = data[p[0]]
+        source = rows[p[1]]
+        clone = copy.deepcopy(source)
+        clone['id'] = self.doc.unique_id(p[0], source['id'])
+        clone['name'] = source.get('name', source['id']) + tr(' · copia')
+        transform = clone.get('transform', {})
+        if isinstance(transform.get('position'), list):
+            transform['position'] = [transform['position'][0] + 40, *transform['position'][1:]]
+        rows.append(clone)
+        if p[0] in ('actors', 'objects'):
+            spawned = any(a.get('spawn') == source['id'] for e in data['events'] for a in e['actions'])
+            if spawned:
+                event = next((e for e in data['events'] if e['when'] == 'scene_start' and not e.get('conditions')), None)
+                if event is None:
+                    event = dict(id=self.doc.unique_id('events', 'event'), when='scene_start', actions=[])
+                    data['events'].append(event)
+                event['actions'].append({'spawn': clone['id']})
+        self.selection = (p[0], len(rows) - 1)
+        self.changed(True)
 
     def visibility_changed(self, item, column):
         path = item.data(0, ROLE)

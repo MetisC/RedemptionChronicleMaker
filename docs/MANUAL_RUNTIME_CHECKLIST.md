@@ -200,3 +200,22 @@ ni acreditan red, restore nativo o GPU/DPI a partir de Qt/doubles/compilación.
 - QOL02: use entry/leave actions with additional flag/item conditions; verify the correct scene/zone, repetition and native-script ownership.
 - QOL03: finish a timeline/travelling, spawn an encounter, advance a quest, then react to group defeat and active/completed quest steps. Check ordering and restored state; initial-state checks are deliberate.
 - QOL04: dynamic start/wave/complete/stop routes keep wave/phase filters; scene-wide note-close reactions affect any note. Exercise View event, save/reopen and native host/client behaviour separately.
+
+## Escenografía nativa · SCENERY01–10 (pendiente de aceptación nativa)
+
+Abre `chronicles/scenery_lab/project.yaml`, guarda y pulsa F5 con el juego cerrado. En LAN → New Game elige **RCM · Scenery Lab** con partida nueva. Todas las piezas son entidades brush NSD añadidas; el NIL original no se toca. La colisión es EXPERIMENTAL hasta que estos casos la observen.
+
+| Caso | Prueba y resultado esperado |
+|---|---|
+| SCENERY01 | Junto a la llegada se ve la Caja RCM (caja 64³, material de caja London) y la Columna RCM girada 30°. Si no se ven o se ven corruptas: FAIL. |
+| SCENERY02 | El Muro RCM (pared 192×16×160, material de muro London) se ve íntegro desde ambos lados y de cerca, sin caras invertidas ni textura distorsionada. |
+| SCENERY03 | La textura de cada pieza usa el material declarado con escala coherente (sin estirar en exceso). |
+| SCENERY04 | Clic en el Panel RCM (visible junto a la llegada, en el aire a media altura): muestra la nota SCENERY04. Sin highlight ni respuesta en las demás piezas. |
+| SCENERY05 | Guarda y carga: las cinco piezas siguen visibles, sin duplicados ni desplazamientos. |
+| SCENERY06 | Viaja a otra escena y regresa (o reabre la crónica): piezas presentes, interacción del panel sigue activa. |
+| SCENERY07 | EXPERIMENTAL · camina contra el Muro RCM: ¿te detiene? Atraviesa deliberadamente la zona de la Barrera RCM (invisible): ¿hay una pared invisible? Anota si la colisión existe, es parcial o ausente. |
+| SCENERY08 | EXPERIMENTAL · empuja o espera a un NPC contra el muro/barrera y observa si la AI lo atraviesa. No se afirma pathing dinámico en ningún caso. |
+| SCENERY09 | Con `remove`/`show_note` sobre piezas o al ocultarlas por evento: desaparecen sin dejar handles ni duplicados tras reentrar. |
+| SCENERY10 | En una copia del lab añade enemigos/cámaras/eventos existentes junto a las piezas: la crónica completa sigue funcionando. |
+
+Si SCENERY07/08 fallan, el modo `solid`/`barrier` se documenta como sólo visual hasta nueva evidencia; el resto de la escenografía permanece válido.

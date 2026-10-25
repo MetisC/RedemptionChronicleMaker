@@ -27,7 +27,7 @@ def extend(java,campaign,scene,project):
            ' private boolean travel(String destination,String entry) { if(player==0 || active!=-1) return false; int flag=-1;']
     # New click links and any unvalidated legacy self-link get an independent
     # runtime guard. Accepted projects without this feature keep their bytes.
-    guarded_travel=any('interaction' in o for o in scene.get('objects',[])) or any('run_event' in a or a.get('travel',{}).get('scene')==scene['id'] for e in scene['events'] for a in e['actions'])
+    guarded_travel=any('interaction' in o or o.get('geometry',{}).get('mode')=='interactive' for o in scene.get('objects',[])) or any('run_event' in a or a.get('travel',{}).get('scene')==scene['id'] for e in scene['events'] for a in e['actions'])
     if guarded_travel:
         lines[-1]=lines[-1].replace('if(player==0 || active!=-1)',f'if(transitioning || destination.equals({js(scene["id"])}) || player==0 || active!=-1)')
     # Keep the original world factory first. Its zero result in the native
@@ -212,7 +212,7 @@ def extend(java,campaign,scene,project):
     # Native TeleportPartyToEntrance resets movement (Thing.Stop) and cancels
     # the actor action after relocation; SetPosition alone omits both calls.
     # Opt in for format 10/new click layers; preserve the accepted format 9.
-    if campaign.source.get('runtime_profile')=='phase10' or any('interaction' in o for o in scene.get('objects',[])):
+    if campaign.source.get('runtime_profile')=='phase10' or any('interaction' in o or o.get('geometry',{}).get('mode')=='interactive' for o in scene.get('objects',[])):
         pose=pose.replace('if(!actor.SetPosition(savedPosition) || !actor.SetOrientation(savedOrientation))', 'if(!actor.SetPosition(savedPosition))')
         pose=pose.replace('restorePosePending=false; needsArrival=false; pendingStart=false; trace("RESTORE_POSE player=', 'resetArrivalMotion(); if(!actor.SetOrientation(savedOrientation)) return false; restorePosePending=false; needsArrival=false; pendingStart=false; trace("RESTORE_POSE player=')
         lines.append(' private void resetArrivalMotion() { CodexActor actor=new CodexActor(player); actor.Stop(); actor.CancelActorAction(); trace("ARRIVAL_MOTION_RESET player="+player); }')

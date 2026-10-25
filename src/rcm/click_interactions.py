@@ -135,9 +135,12 @@ def target_mesh(backend,target):
 
 
 def extend(java,scene,project):
-    objects={o['id']:o for o in scene.get('objects',[]) if 'interaction' in o}
+    objects={o['id']:o for o in scene.get('objects',[]) if 'interaction' in o or 'geometry' in o}
     if not objects:return java
-    indices=[i for i,e in enumerate(project.entities) if e.id in objects]
+    def interactive(o):return 'interaction' in o or o.get('geometry',{}).get('mode')=='interactive'
+    clicks=[i for i,e in enumerate(project.entities) if e.id in objects and interactive(objects[e.id])]
+    decor=[i for i,e in enumerate(project.entities) if e.id in objects and not interactive(objects[e.id])]
+    indices=clicks+decor
     # These objects are instantiated by NSD with an actual native brush. Do not
     # fall back to CreateThing: it would silently create an unselectable ghost.
     for i in indices:
@@ -151,7 +154,9 @@ def extend(java,scene,project):
     # A single binding per GUID; duplicate captures can duplicate native clicks.
     choices=' || '.join('i=='+str(i) for i in indices)
     java=java.replace('things[i]=CodexThing.GuidFromCastID(template(i));',f'things[i]=({choices})?findClick(i):CodexThing.GuidFromCastID(template(i));',1)
-    java=java.replace('CaptureThing(things[i],i+1);',f'if({choices}) bindClick(i); else CaptureThing(things[i],i+1);',1)
+    click_choices=' || '.join('i=='+str(i) for i in clicks) or 'false'
+    decor_choices=' || '.join('i=='+str(i) for i in decor) or 'false'
+    java=java.replace('CaptureThing(things[i],i+1);',f'if({click_choices}) bindClick(i); else if({decor_choices}) bindDecor(i); else CaptureThing(things[i],i+1);',1)
     helper=''' private boolean clickMatches(int i,int guid) {
  if(!IsPropGuid(guid) || !local(guid) || guid==GetGUID()) return false;
  CodexThing item=new CodexThing(guid);
@@ -166,7 +171,14 @@ def extend(java,scene,project):
  }
  return guid==0?found:0;
  }
- private void bindClick(int i) {
+ private void bindDecor(int i) {
+ if(!local(things[i])) return;
+ CodexThing piece=new CodexThing(things[i]);
+ piece.ClearThingFlags(THING_FLAG_SAVENEVER|THING_FLAG_SAVESUSPEND);
+ piece.SetThingFlags(THING_FLAG_SAVEALWAYS|THING_FLAG_NOSTDELETE);
+ }
+'''
+    helper+=''' private void bindClick(int i) {
  if(!local(things[i]) || clickCaptured[i]==things[i]) return;
  CodexThing clickable=new CodexThing(things[i]);
  clickable.ClearThingFlags(THING_FLAG_NOHIGHLIGHT|THING_FLAG_BLOCKSELECT|THING_FLAG_PROXIMITYTRIGGER|THING_FLAG_VISBLOCK|THING_FLAG_CAMERABLOCK|THING_FLAG_DISABLECOLLIDE|THING_FLAG_NOBLOCK);
@@ -177,9 +189,9 @@ def extend(java,scene,project):
 '''
     from .original_objects import targets,key
     originals=list(targets(scene));follow=[]
-    for i in indices:
+    for i in clicks:
         obj=objects[project.entities[i].id]
-        if 'source' not in obj['interaction']:continue
+        if 'source' not in obj.get('interaction',{}):continue
         index=originals.index(key(obj['interaction']['source']))
         follow.append(f''' if(local(things[{i}])) {{
  int base=clickSources[{i}]; if(!originalMatches({index},base) && (base!=0 || ticks%10==0)) base=clickSources[{i}]=originalFind({index});
@@ -188,7 +200,8 @@ def extend(java,scene,project):
  else {{ CodexThing source=new CodexThing(base); overlay.SetPosition(source.GetPosition()); overlay.SetOrientation(source.GetOrientation()); overlay.ClearRenderFlags(THING_RENDERFLAG_DONTRENDER); overlay.ClearThingFlags(THING_FLAG_NOHIGHLIGHT|THING_FLAG_DISABLECOLLIDE); }}
  }}''')
     if follow:helper+=f' private int[] clickSources=new int[{len(project.entities)}];\n'
-    setup=' '.join(f'if(!createdOnce[{i}]) spawn({i}); bindClick({i});' for i in indices)+' '.join(follow)
+    setup=' '.join(f'if(!createdOnce[{i}]) spawn({i}); bindClick({i});' for i in clicks)
+    setup+=' '.join(f'if(!createdOnce[{i}]) spawn({i}); bindDecor({i});' for i in decor)+' '.join(follow)
     if 'private void pollImpl() { originalReapply();' in java:marker='private void pollImpl() { originalReapply();'
     java=java.replace(marker,marker+' '+setup,1)
     java=java.replace('public void restored(int capture) {','public void restored(int capture) { for(int i=0;i<clickCaptured.length;i++) clickCaptured[i]=0;',1)
@@ -200,7 +213,7 @@ def extend(java,scene,project):
 def guard_events(java,scene):
     """Synchronous native callbacks and nested event calls cannot recurse."""
     from .generator import java_string as js
-    if not any('interaction' in o for o in scene.get('objects',[])) and not any('run_event' in a for e in scene['events'] for a in e['actions']):return java
+    if not any('interaction' in o or 'geometry' in o for o in scene.get('objects',[])) and not any('run_event' in a for e in scene['events'] for a in e['actions']):return java
     java=java.replace('{','{\n private boolean[] eventRunning=new boolean['+str(len(scene['events']))+'];',1)
     for i,event in enumerate(scene['events']):
         start=f'private boolean event{i}() {{'

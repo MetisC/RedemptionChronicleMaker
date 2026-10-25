@@ -31,3 +31,5 @@ Esta limpieza afecta sólo al workspace, no a la instalación del juego.
 - La calidad se comprueba con tools/quality.py y tools/test.py. Los resultados offline no sustituyen la verificación dentro del juego.
 
 - Ejecutar tools/quality.py sin compilaciones independientes concurrentes en el mismo workspace: las pruebas de atomicidad comprueban que build/.staging quede vacía.
+
+- SIEMPRE que se haga cualquier cambio en este proyecto (código, i18n, docs de usuario o ejemplos de chronicles/), reconstruir el portable con `python tools/build_portable.py`. El acceso directo del usuario («Redemption Chronicle Maker.lnk») apunta a `build/portable/RedemptionChronicleMaker/RedemptionChronicleMaker.exe`: sin esa recompilación el usuario ejecuta código obsoleto. La compilación tarda varios minutos y requiere jlink (JAVA_HOME ya configurado).

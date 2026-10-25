@@ -1,0 +1,165 @@
+schema: 2
+project_format: 10
+chronicle:
+  id: scenery_lab
+  name: RCM · Scenery Lab
+  description: Laboratorio de escenografía nativa SCENERY01-10
+state:
+  flags: {}
+entry: lab
+scenes:
+- id: lab
+  level:
+    source: EastLondon
+    environment_scene: EAST_28_1.nsd
+  actors: []
+  objects:
+  - id: crate1
+    name: Caja RCM
+    template: tracker_thing_null
+    transform:
+      placement: absolute
+      position:
+      - 18
+      - -768
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 0
+    geometry:
+      shape: box
+      size:
+      - 64
+      - 64
+      - 64
+      material: London\SLcrate3_2_L
+      uv_scale: 64
+      mode: decor
+  - id: wall1
+    name: Muro RCM
+    template: tracker_thing_nohilite
+    transform:
+      placement: absolute
+      position:
+      - -62
+      - -688
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 0
+    geometry:
+      shape: box
+      size:
+      - 192
+      - 16
+      - 160
+      material: London\wall01_6_L
+      uv_scale: 64
+      mode: solid
+  - id: barrier1
+    name: Barrera RCM
+    template: tracker_thing_blocker
+    transform:
+      placement: absolute
+      position:
+      - -62
+      - -848
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 0
+    geometry:
+      shape: box
+      size:
+      - 128
+      - 16
+      - 192
+      material: Prague\wall1_P
+      uv_scale: 64
+      mode: barrier
+  - id: panel1
+    name: Panel RCM
+    template: tracker_thing
+    transform:
+      placement: absolute
+      position:
+      - 30
+      - -690
+      - 440
+      orientation:
+      - 0
+      - 0
+      - 0
+    geometry:
+      shape: box
+      size:
+      - 96
+      - 8
+      - 96
+      material: London\wall01_9_L
+      uv_scale: 64
+      mode: interactive
+  - id: column1
+    name: Columna RCM
+    template: tracker_thing_null
+    transform:
+      placement: absolute
+      position:
+      - 98
+      - -688
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 30
+    geometry:
+      shape: box
+      size:
+      - 32
+      - 32
+      - 192
+      material: New_York\steelPlate1_NY
+      uv_scale: 64
+      mode: decor
+  events:
+  - id: setup
+    when: scene_start
+    actions:
+    - spawn: crate1
+    - spawn: wall1
+    - spawn: barrier1
+    - spawn: panel1
+    - spawn: column1
+  - id: use_panel
+    when: object_clicked
+    object: panel1
+    once: false
+    actions:
+    - show_note:
+        title: SCENERY04
+        text: La pieza interactiva respondió al clic.
+  conversations: []
+  triggers: []
+  sequences: []
+  encounters: []
+  paths: []
+  waypoints: []
+  entries:
+  - id: start
+    name: Llegada
+    transform:
+      position:
+      - -62
+      - -768
+      - 384
+      orientation:
+      - 0
+      - 0
+      - 180
+  default_entry: start
+  generators: []
+quests: []
+resources: {}

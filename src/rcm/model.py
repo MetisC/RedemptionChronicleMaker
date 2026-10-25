@@ -232,6 +232,8 @@ def parse_project(data: str, levels: dict, resources: dict, allow_empty=False, a
     entities, entity_ids = [], set()
     for kind, key in [("actor", "actors"), ("object", "objects")]:
         for row in sequence(root.get(key, []), key):
+            if isinstance(row, dict) and "geometry" in row:
+                raise ValueError("La escenografía requiere formato de proyecto 9 o 10")
             v = mapping(row, {"id", "template", "name", "transform", "conversation", "comment", "level"}, {"id", "template", "name", "transform"}, key)
             if "level" in v and v["level"] != level:
                 raise ValueError("Solo se admite una ubicación por proyecto; el actor debe usar el level base")

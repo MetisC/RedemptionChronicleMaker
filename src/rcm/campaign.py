@@ -185,6 +185,15 @@ def parse_campaign(source, levels, resources):
                 if 'source' in o['interaction']:
                     from .original_objects import validate as validate_original
                     validate_original(dict(o['interaction']['source'],operation='hide'),resources,s['level']['source'])
+            if 'geometry' in o:
+                from .scenery import MODES,validate_geometry
+                if not modern:raise ValueError('La escenografía requiere formato de proyecto 9 o 10')
+                if 'interaction' in o:raise ValueError('Escenografía: una pieza no puede ser a la vez superficie pulsable')
+                if 'native_script' in o or 'native_frames' in o:raise ValueError('Escenografía: incompatible con script nativo o frames de movimiento')
+                if o.get('quest_item'):raise ValueError('Escenografía: una pieza no puede ser objeto de quest')
+                geometry=validate_geometry(o['geometry'])
+                if o['template']!=MODES[geometry['mode']]:raise ValueError('Escenografía: la plantilla debe ser '+MODES[geometry['mode']]+' en modo '+geometry['mode'])
+                if o['transform'].get('placement','absolute')!='absolute':raise ValueError('Escenografía: la pieza requiere posición absoluta')
             if type(o.get('quest_item',False)) is not bool: raise ValueError('quest_item requiere booleano')
             if o.get('quest_item'): item(o['id'])
         for g in groups.values():
@@ -356,6 +365,7 @@ def parse_campaign(source, levels, resources):
             for fk in ('actor','object','conversation','trigger','item','encounter','sequence','result','seconds'):
                 if fk in e and fk != filter_key and not (fk=='result' and w=='conversation_ended') and not(fk=='seconds' and w=='timer'): raise ValueError('Filtro incompatible con '+w+': '+fk)
             if filter_key: ref(e.get(filter_key), {'object':objects,'actor':actors,'conversation':convs,'trigger':triggers,'item':objects,'encounter':groups,'sequence':shots}[filter_key],filter_key)
+            if w=='object_clicked' and 'geometry' in objects[e['object']] and objects[e['object']]['geometry'].get('mode','decor')!='interactive':raise ValueError('Escenografía: '+e['object']+' no es interactiva; elige el modo interactivo para recibir clics')
             if w=='item_picked_up': item(e['item'])
             if w=='timer' and (type(e.get('seconds')) not in (int,float) or not math.isfinite(e['seconds']) or not .15<=e['seconds']<=86400): raise ValueError('Timer requiere seconds 0.15..86400')
             if w=='state_changed' and not e.get('conditions'): raise ValueError('state_changed requiere condición')
@@ -424,7 +434,7 @@ def parse_campaign(source, levels, resources):
         from .cinematics import conversation_source
         legacy={'schema':1,'chronicle':{**{k:v for k,v in chron.items() if k!='difficulty'},'id':chron['id']+'_s'+str(si)},'state':{'flags':flags},'level':s['level'],
                 'actors':[{k:v for k,v in a.items() if k not in {'behavior','inventory','traits','native_script','native_frames'}} for a in actors.values()],
-                'objects':[{k:v for k,v in a.items() if k not in {'quest_item','interaction','native_script','native_frames','_native_item'}} for a in objects.values()],
+                'objects':[{k:v for k,v in a.items() if k not in {'quest_item','interaction','geometry','native_script','native_frames','_native_item'}} for a in objects.values()],
                 'conversations':[conversation_source(c) for c in s['conversations']],'triggers':[{k:v for k,v in t.items() if k not in ('native_script','native_region','sound_zone','light_zone','zone_flag')} for t in s.get('triggers',[])],
                 'events':[{'when':'scene_start','actions':[{'spawn':eid} for eid in entities]}] if entities else []}
         parsed.append((s,parse_project(yaml.safe_dump(legacy,sort_keys=False),levels,resources,allow_empty=True,allow_motions=modern)))
@@ -474,7 +484,8 @@ def integrity(campaign,resources=None):
         inventory={it for a in s['actors'] for it in a.get('inventory',[])}
         for k in ['actors','objects']:
             for i,e in enumerate(s.get(k,[])):
-                if 'interaction' not in e and e['id'] not in spawned|inventory and not any(a.get('give_item')==e['id'] for a in local_actions): findings.append(Problem('WARNING',e['name']+': nunca se crea',('scenes',si,k,i)))
+                if 'interaction' not in e and 'geometry' not in e and e['id'] not in spawned|inventory and not any(a.get('give_item')==e['id'] for a in local_actions): findings.append(Problem('WARNING',e['name']+': nunca se crea',('scenes',si,k,i)))
+                if 'geometry' in e and e['geometry'].get('mode','decor') in ('solid','barrier'):findings.append(Problem('INFO',e['name']+': la colisión nativa de la escenografía está pendiente de verificación dentro del juego',('scenes',si,k,i)))
         for ei,e in enumerate(s['events']):
             if e['when']=='actor_clicked' and any(a.get('conversation') for a in s['actors'] if a['id']==e['actor']): findings.append(Problem('ERROR','Actor con vínculo directo y evento de clic; elige uno',('scenes',si,'events',ei)))
     for qi,q in enumerate(campaign.source.get('quests',[])):

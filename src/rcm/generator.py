@@ -298,6 +298,21 @@ def build(ws: Workspace, p: Project, levels, resources, hints, compile_java=True
         scene_model.entities.append([Tag.text(0,name),Tag.vector(1,trans['orientation']),Tag.vector(2,trans['position']),Tag.integer(3,obj['interaction']['sector']),Tag.text(11,prefix+'_Passive'),Tag.text(81,name),Tag.text(82,name)])
         if scene_model.brushes is None:scene_model.brushes={}
         scene_model.brushes[index]=brush(obj['interaction'])
+    # Campaign-only parametric scenery: real brush entities parented on the
+    # stock tracker_thing variants that own the native flag contract.
+    geometry_objects=getattr(runtime_factory,'geometry_objects',[])
+    if geometry_objects:
+        from .native_arrivals import planes,sector_at
+        from .scenery import spec
+        from .click_interactions import brush
+        sectors=planes(ws,level)
+        for obj in geometry_objects:
+            name=prefix+'_'+obj['id'];trans=obj['transform']
+            sector=sector_at(sectors,trans['position'])
+            index=len(scene_model.entities)
+            scene_model.entities.append([Tag.text(0,name),Tag.vector(1,trans['orientation']),Tag.vector(2,trans['position']),Tag.integer(3,sector),Tag.text(11,prefix+'_Passive'),Tag.text(81,name),Tag.text(82,name)])
+            if scene_model.brushes is None:scene_model.brushes={}
+            scene_model.brushes[index]=brush(spec(obj['geometry'],sector))
     native_scene=getattr(runtime_factory,'native_arrivals',None)
     if native_scene:
         from .native_arrivals import records,conversation_records

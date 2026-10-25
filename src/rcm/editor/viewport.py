@@ -204,17 +204,18 @@ class Viewport(QOpenGLWidget):
         self.data, self.selection = data, tuple(path)
         if self.level:
             import hashlib,json
-            clicks=[e for e in data.get('objects',[]) if 'interaction' in e]
-            signature=(id(self.level),tuple((e['id'],hashlib.sha256(json.dumps(e['interaction'],sort_keys=True).encode()).hexdigest()) for e in clicks))
+            clicks=[e for e in data.get('objects',[]) if 'interaction' in e or 'geometry' in e]
+            signature=(id(self.level),tuple((e['id'],hashlib.sha256(json.dumps(e.get('interaction',e.get('geometry')),sort_keys=True).encode()).hexdigest()) for e in clicks))
             if signature!=getattr(self,'click_signature',None):
                 self.click_signature=signature
                 for key in list(self.level.models):
-                    if key.startswith('@click/'):del self.level.models[key]
+                    if key.startswith('@click/') or key.startswith('@geo/'):del self.level.models[key]
                 from ..click_interactions import validate
+                from ..scenery import spec as scenery_spec
                 from ..spatial.geometry import Mesh
                 for e in clicks:
                     try:
-                        value=validate(e['interaction']);mesh=Mesh(np.asarray(value['vertices'],dtype=np.float32),np.asarray(value['material_ids'],dtype=np.int32),value['materials'],0,0,[])
+                        value=validate(e['interaction']) if 'interaction' in e else scenery_spec(e['geometry'],0);mesh=Mesh(np.asarray(value['vertices'],dtype=np.float32),np.asarray(value['material_ids'],dtype=np.int32),value['materials'],0,0,[])
                         parent=self.parent();assets=getattr(parent,'assets',None)
                         if assets:materials=[assets.material(m) for m in mesh.materials]
                         else:
@@ -245,7 +246,10 @@ class Viewport(QOpenGLWidget):
         return out
 
     @staticmethod
-    def model_key(e):return '@click/'+e['id'] if 'interaction' in e else e.get('preview_model',e.get('template'))
+    def model_key(e):
+        if 'interaction' in e:return '@click/'+e['id']
+        if 'geometry' in e:return '@geo/'+e['id']
+        return e.get('preview_model',e.get('template'))
 
     @staticmethod
     def object_rotation(ori):
@@ -260,7 +264,7 @@ class Viewport(QOpenGLWidget):
             candidates += [(('original',i),e,True) for i,e in enumerate(self.level.references) if ('original',i) not in self.hidden and (self.model_key(e) in self.level.models or ('original',) not in self.hidden)]
         for path,e,ro in candidates:
             pos=self.position(path,e);low,high=self.entity_bounds(path,e);ori=e.get('orientation',[0,0,0]) if ro else e['transform'].get('orientation',[0,0,0]);inv=self.object_rotation(ori).T;origin=inv@(o-pos);direction=inv@d
-            if (ro or 'interaction' in e) and self.model_key(e) in self.level.models:
+            if (ro or 'interaction' in e or 'geometry' in e) and self.model_key(e) in self.level.models:
                 key=self.model_key(e)
                 if key not in self.original_rays:self.original_rays[key]=Raycaster(self.level.models[key][0])
                 hit=self.original_rays[key].cast(origin,direction,max_distance=min(distance,nearest.distance+.05) if nearest else distance);t=hit.distance if hit else None
@@ -823,7 +827,14 @@ class SpatialPanel(QWidget):
                     center,mesh=click_surface(self.viewport.level.mesh,hit.triangle,normal)
                     surface=dict(level=self.win.doc.data['level']['source'],position=center,material=material,fixed_surface=True,interaction=mesh)
                 except ValueError as error:self.status.setText(str(error))
-        for label,cb in [(tr('Enfocar selección · F'),self.viewport.focus_selection),(tr('Mover · 1'),lambda:self.set_mode('move')),(tr('Girar · 2'),lambda:self.set_mode('rotate')),(tr('Tamaño · 3'),lambda:self.set_mode('scale')),(tr('+ Actor…'),self.win.add_actor),(tr('+ Objeto…'),self.add_object),('+ Trigger',self.add_trigger),(tr('+ Entrada'),lambda:self.win.campaign_panel.add_marker('entries')),('+ Waypoint',lambda:self.win.campaign_panel.add_marker('waypoints')),(tr('Ajustar al suelo'),self.snap_selected),(tr('Buscar referencias'),self.win.find_references),(tr('Eliminar · Supr'),self.win.delete_selected)]:
+        # The menu point doubles as the drop position for decor/prefabs: the
+        # user right-clicks where the piece should appear; without a valid
+        # floor hit they fall back to click-to-place like the other entities.
+        menu_ground=None
+        if self.viewport.level and self.win.doc and self.geometry_matches():
+            o,d=self.viewport.screen_ray(local.x(),local.y());gh=self.viewport.raycaster.cast(o,d)
+            if gh and abs(gh.normal[2])>.65:menu_ground=gh.position.tolist()
+        for label,cb in [(tr('Enfocar selección · F'),self.viewport.focus_selection),(tr('Mover · 1'),lambda:self.set_mode('move')),(tr('Girar · 2'),lambda:self.set_mode('rotate')),(tr('Tamaño · 3'),lambda:self.set_mode('scale')),(tr('+ Actor…'),self.win.add_actor),(tr('+ Objeto…'),self.add_object),('+ Trigger',self.add_trigger),(tr('+ Decoración…'),lambda:self.add_decor(menu_ground)),(tr('+ Decorado…'),lambda:self.place_prefab(menu_ground)),(tr('Guardar como decorado…'),self.save_prefab),(tr('+ Entrada'),lambda:self.win.campaign_panel.add_marker('entries')),('+ Waypoint',lambda:self.win.campaign_panel.add_marker('waypoints')),(tr('Duplicar'),self.duplicate_selected),(tr('Ajustar al suelo'),self.snap_selected),(tr('Buscar referencias'),self.win.find_references),(tr('Eliminar · Supr'),self.win.delete_selected)]:
             action=menu.addAction(label);action.triggered.connect(lambda checked=False,cb=cb:self.win.guard(cb))
         self.win.add_conversation_action(menu,path or self.win.selection)
         from .linked_events import context_menu
@@ -853,6 +864,44 @@ class SpatialPanel(QWidget):
         from PySide6.QtWidgets import QDialog
         dialog=ResourceDialog(self.win.backend,'items',self)
         if dialog.exec()==QDialog.DialogCode.Accepted:self.begin_place('objects',dialog.selection)
+
+    def add_decor(self, position=None):
+        # Scenery emits campaign NSD entities; single-scene drafts reject the
+        # geometry key in the legacy parser before it can be stripped.
+        if not self.win.doc or not hasattr(self.win.doc,'campaign') or self.win.doc.campaign.get('project_format') not in (9,10):
+            self.status.setText(tr('La escenografía requiere formato de proyecto 9 o 10.'))
+            return
+        from .scenery import DecorDialog
+        from PySide6.QtWidgets import QDialog
+        dialog=DecorDialog(self,self.viewport.level if self.viewport else None,self.assets)
+        if dialog.exec()!=QDialog.DialogCode.Accepted:return
+        if position is not None:
+            self.win.add_decor(dialog.payload,position);self.status.setText(tr('Entidad colocada. Mover · 1 / Girar · 2 / F enfocar'))
+        else:self.begin_place('decor',dialog.payload)
+
+    def place_prefab(self, position=None):
+        if not self.win.doc:return
+        prefabs=self.win.doc.campaign.get('authoring',{}).get('prefabs',[]) if hasattr(self.win.doc,'campaign') else []
+        if not prefabs:
+            self.status.setText(tr('No hay decorados guardados. Usa Guardar como decorado… sobre los objetos de la escena.'))
+            return
+        from .scenery import PrefabPickDialog
+        from PySide6.QtWidgets import QDialog
+        dialog=PrefabPickDialog(self,prefabs)
+        if dialog.exec()!=QDialog.DialogCode.Accepted:return
+        if position is not None:
+            self.win.add_prefab(dialog.payload,position);self.status.setText(tr('Entidad colocada. Mover · 1 / Girar · 2 / F enfocar'))
+        else:self.begin_place('prefab',dialog.payload)
+
+    def save_prefab(self):
+        if not self.win.doc or not hasattr(self.win.doc,'campaign'):return
+        if self.win.doc.campaign.get('project_format') not in (9,10):
+            self.status.setText(tr('Los decorados requieren formato de proyecto 9 o 10.'))
+            return
+        self.win.save_prefab()
+
+    def duplicate_selected(self):
+        self.win.duplicate_selected()
 
     def set_mode(self,mode):
         for key,button in self.mode_buttons.items():
@@ -1010,6 +1059,10 @@ class SpatialPanel(QWidget):
             data=self.win.doc.data;ident=self.win.doc.unique_id('triggers','trigger');index=len(data.setdefault('triggers',[]))
             data['triggers'].append(dict(id=ident,name=tr('Nuevo trigger'),shape='box',transform=dict(position=[position[0],position[1],position[2]+60],orientation=[0,0,0]),size=[160,160,120],once=True))
             self.win.selection=('triggers',index);self.win.changed(True)
+        elif kind=='decor':
+            self.win.add_decor(template,position)
+        elif kind=='prefab':
+            self.win.add_prefab(template,position)
         else:
             self.win.add_spatial_entity(kind,template,position)
         self.viewport.unsetCursor();self.status.setText(tr('Entidad colocada. Mover · 1 / Girar · 2 / F enfocar'))

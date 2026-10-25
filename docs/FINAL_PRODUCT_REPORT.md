@@ -130,3 +130,14 @@ Los textos se aplican al terminar la edición y sólo si cambiaron. Crear una co
 Los elementos ofrecen acciones vinculadas y navegación a sus eventos normales, con condiciones y repetición en la misma ventana: escena, muerte de actor, uso/posesión de objeto, entrada/salida de zona, fin de conversación, secuencia con timeline/travelling, derrota de grupo, estados/pasos de misión y callbacks dinámicos optativos. Se reutilizan rutas existentes sin perder filtros ni referencias. docs/USABILITY_REVIEW.md detalla cada semántica, los límites y las pruebas. El botón de diálogo de un objeto usa la misma selección de hablante y apertura inmediata que el contexto.
 
 La publicación rc10 se genera mediante el workflow Release de GitHub Actions. Las verificaciones locales y la publicación remota se registran en research/authoring_completion/rc10_release.json y rc10_publication.json. Permanecen pendientes DLGFX01–03 y QOL01–04, además del checklist vigente. No se declara aceptación nativa a partir del CI.
+
+## Escenografía nativa (rama rcm-3d-scenography, en curso)
+
+La autoría paramétrica de decoración añade piezas caja (paneles, muros,
+columnas, plataformas, barreras invisibles e interactivas) como entidades brush
+del NSD sobre plantillas originales tracker_thing*, sin tocar el NIL. Modos:
+decor (visual), solid/barrier (colisión EXPERIMENTAL), interactive (clic por
+CaptureThing). Los decorados reutilizables viven en authoring.prefabs del YAML
+sin persistencia paralela. Evidencia y matriz de viabilidad:
+research/scenography/FINDINGS.md; laboratorio: chronicles/scenery_lab; aceptación
+nativa pendiente: SCENERY01–10 en MANUAL_RUNTIME_CHECKLIST.md.

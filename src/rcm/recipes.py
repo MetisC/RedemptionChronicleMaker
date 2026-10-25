@@ -1,5 +1,6 @@
 """Reusable authoring recipes. References only; the normal source remains truth."""
 import copy
+import math
 from .model import identifier, mapping, sequence
 
 TYPES = ('talk', 'go_to_place', 'trigger_actions', 'trigger_cinematic', 'pickup',
@@ -9,7 +10,7 @@ COLLECTIONS = {'actors', 'objects', 'conversations', 'events', 'triggers',
 
 
 def validate_authoring(root):
-    authoring = mapping(root.get('authoring', {}), {'recipes'}, label='authoring')
+    authoring = mapping(root.get('authoring', {}), {'recipes', 'prefabs'}, label='authoring')
     seen = set()
     for recipe in sequence(authoring.get('recipes', []), 'authoring.recipes'):
         mapping(recipe, {'id', 'type', 'version', 'scene', 'refs'},
@@ -27,6 +28,32 @@ def validate_authoring(root):
             identifier(ref['id'], 'recipe reference', 24)
             if ref['collection'] not in {'quests', 'flags'}:
                 identifier(ref.get('scene'), 'recipe reference scene', 16)
+    prefab_ids = set()
+    for prefab in sequence(authoring.get('prefabs', []), 'authoring.prefabs'):
+        mapping(prefab, {'id', 'name', 'items'}, {'id', 'name', 'items'}, 'prefab')
+        ident = identifier(prefab['id'], 'prefab.id', 16)
+        if ident in prefab_ids or not isinstance(prefab['name'], str):
+            raise ValueError('Invalid or duplicate authoring prefab')
+        prefab_ids.add(ident)
+        items = sequence(prefab['items'], 'prefab.items')
+        if not 1 <= len(items) <= 64:
+            raise ValueError('Prefab requires 1..64 items')
+        for item in items:
+            mapping(item, {'name', 'template', 'geometry', 'offset', 'orientation'},
+                    {'name', 'offset'}, 'prefab item')
+            if not isinstance(item['name'], str):
+                raise ValueError('Prefab item requires a name')
+            if ('template' in item) == ('geometry' in item):
+                raise ValueError('Prefab item requires exactly one of template or geometry')
+            if 'template' in item and not isinstance(item['template'], str):
+                raise ValueError('Prefab item template requires text')
+            if 'geometry' in item:
+                from .scenery import validate_geometry
+                validate_geometry(item['geometry'])
+            for key in ('offset', 'orientation'):
+                vector = item.get(key, [0, 0, 0])
+                if not isinstance(vector, list) or len(vector) != 3 or any(type(v) not in (int, float) or not math.isfinite(v) for v in vector):
+                    raise ValueError('Prefab item requires 3 finite numbers in ' + key)
 
 
 def recipes(root):

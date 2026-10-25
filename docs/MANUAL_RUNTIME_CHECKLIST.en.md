@@ -192,3 +192,22 @@ independent GPU/DPI checks are not replaced by offline compilation or doubles.
 - QOL02: use entry/leave actions with additional flag/item conditions; verify the correct scene/zone, repetition and native-script ownership.
 - QOL03: finish a timeline/travelling, spawn an encounter, advance a quest, then react to group defeat and active/completed quest steps. Check ordering and restored state; initial-state checks are deliberate.
 - QOL04: dynamic start/wave/complete/stop routes keep wave/phase filters; scene-wide note-close reactions affect any note. Exercise View event, save/reopen and native host/client behaviour separately.
+
+## Native scenery · SCENERY01–10 (pending native acceptance)
+
+Open `chronicles/scenery_lab/project.yaml`, save and press F5 with the game closed. On LAN → New Game pick **RCM · Scenery Lab** with a fresh save. All pieces are added NSD brush entities; the original NIL is untouched. Collision is EXPERIMENTAL until these cases observe it.
+
+| Case | Test and expected result |
+|---|---|
+| SCENERY01 | By the arrival you can see the RCM box (64³ crate, London crate material) and the 30°-rotated RCM column. Missing or corrupted pieces: FAIL. |
+| SCENERY02 | The RCM wall (192×16×160, London wall material) looks solid from both sides and up close, no inverted faces or distorted texture. |
+| SCENERY03 | Each piece uses its declared material at a coherent scale (no extreme stretching). |
+| SCENERY04 | Click the RCM panel (visible by the arrival, at half height): the SCENERY04 note opens. Other pieces show no highlight and no response. |
+| SCENERY05 | Save and load: the five pieces remain visible, no duplicates or displacement. |
+| SCENERY06 | Travel to another scene and return (or reopen the chronicle): pieces present, panel interaction still works. |
+| SCENERY07 | EXPERIMENTAL · walk into the RCM wall: does it stop you? Deliberately cross the invisible RCM barrier: is there an invisible wall? Record whether collision exists, is partial or absent. |
+| SCENERY08 | EXPERIMENTAL · push or wait for an NPC against the wall/barrier; observe whether its AI passes through. Dynamic pathing is not claimed in any case. |
+| SCENERY09 | `remove`/hide pieces via an event: they disappear without stale handles or duplicates after reentry. |
+| SCENERY10 | In a lab copy add existing enemies/cameras/events next to the pieces: the chronicle still works. |
+
+If SCENERY07/08 fail, `solid`/`barrier` modes are documented as visual-only pending new evidence; the rest of the scenery feature remains valid.

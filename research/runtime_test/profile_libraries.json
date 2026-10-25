@@ -1,10 +1,10 @@
 {
   "updated": [
-    "new_chronicle"
+    "scenery_lab"
   ],
   "files": [
-    "new_chronicle/.rcm_deployment.json"
+    "scenery_lab/.rcm_deployment.json"
   ],
-  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\profile_libraries_1792900817666276600.zip",
+  "backup": "H:\\Repositorios\\RedemptionChronicleMaker\\research\\runtime_test\\backups\\profile_libraries_1792914159178434200.zip",
   "native_engine_test": false
 }

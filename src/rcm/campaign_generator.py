@@ -335,6 +335,7 @@ def build_campaign(ws,campaign,levels,resources,hints,compile_java=True,progress
             ws.write(root/'source_map.json',json.dumps(source_map,indent=2))
             return name,java
         make_runtime.click_objects=[o for o in scene.get('objects',[]) if 'interaction' in o]
+        make_runtime.geometry_objects=[o for o in scene.get('objects',[]) if 'geometry' in o]
         from .native_arrivals import enabled as native_arrivals_enabled
         make_runtime.native_arrivals=scene if native_arrivals_enabled(campaign,scene) else None
         make_runtime.native_scripts=scene if scene.get('_native_entities') else None

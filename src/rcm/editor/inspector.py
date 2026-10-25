@@ -227,6 +227,36 @@ class Inspector(QWidget):
         data['events'].append(dict(id=self.win.doc.unique_id('events','use'),when='object_clicked',object=ident,once=False,actions=[{kind:value}]))
         self.win.selection=('events',len(data['events'])-1,'actions',0);self.win.changed(True)
 
+    def scenery(self, actor, p):
+        from ..scenery import MODES
+        from .scenery import MODE_LABELS
+        geometry = actor['geometry']
+        self.note(tr('Escenografía nativa: pieza paramétrica que el compilador convierte en entidad brush del NSD. La geometría original no se modifica.'))
+        def set_mode(mode):
+            geometry['mode'] = mode
+            actor['template'] = MODES[mode]
+            self.win.changed(True)
+            self.win.inspect()
+        self.combo(tr('Comportamiento'), [(MODE_LABELS[key], key) for key in MODES], geometry.get('mode', 'decor'), set_mode, 'decor_mode')
+        for i, axis in enumerate('XYZ'):
+            self.spin(tr('Tamaño ') + axis, geometry['size'][i], lambda v, i=i: self.set(p + ('geometry', 'size', i), v), 'decor_size_' + axis.lower(), True, 1, 50000)
+        materials = []
+        viewport = self.win.spatial.viewport
+        if viewport and viewport.level is not None and getattr(viewport.level, 'mesh', None) is not None:
+            materials = sorted(set(viewport.level.mesh.materials))
+        if geometry['material'] not in materials:
+            materials = [geometry['material']] + materials
+        self.combo(tr('Material'), [(m, m) for m in materials], geometry['material'], lambda v: self.set(p + ('geometry', 'material'), v), 'decor_material')
+        self.spin(tr('Escala de textura'), geometry.get('uv_scale', 64), lambda v: self.set(p + ('geometry', 'uv_scale'), v), 'decor_uv_scale', True, 4, 4096)
+        if geometry.get('mode') in ('solid', 'barrier'):
+            self.note(tr('EXPERIMENTAL: la colisión nativa está pendiente de verificación dentro del juego. No la des por física real hasta confirmarla en Redemption.'))
+        if geometry.get('mode') == 'interactive':
+            def edit():
+                index = next((i for i, e in enumerate(self.win.doc.data['events']) if e['when'] == 'object_clicked' and e.get('object') == actor['id']), None)
+                if index is not None: self.win.select(('events', index))
+                else: self.object_interaction('show_note')
+            self.button(tr('Editar acciones al hacer clic…'), edit, 'edit_click_actions')
+
     def actor(self):
         p = self.path
         actor = self.win.at(p)
@@ -240,13 +270,16 @@ class Inspector(QWidget):
                 else:self.object_interaction('show_note')
             self.button(tr('Editar acciones al hacer clic…'),edit,'edit_click_actions')
             return
-        self.note(tr("Plantilla: ") + (actor.get("template") or tr("Sin elegir")))
-        self.button(tr("Elegir plantilla…"), lambda: self.win.choose_template(p), "choose_template")
-        if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
-            from .instance_overrides import edit_overrides
-            self.button(tr('Propiedades de esta instancia…'),lambda:edit_overrides(self.win,actor,p[0]=='actors'),'edit_instance_overrides')
-            from .native_scripts import edit_native_script
-            self.button(tr('Script nativo · avanzado…'),lambda:edit_native_script(self.win,actor),'edit_native_script')
+        if 'geometry' in actor:
+            self.scenery(actor, p)
+        else:
+            self.note(tr("Plantilla: ") + (actor.get("template") or tr("Sin elegir")))
+            self.button(tr("Elegir plantilla…"), lambda: self.win.choose_template(p), "choose_template")
+            if hasattr(self.win.doc,'campaign') and self.win.doc.campaign.get('project_format') in (9,10):
+                from .instance_overrides import edit_overrides
+                self.button(tr('Propiedades de esta instancia…'),lambda:edit_overrides(self.win,actor,p[0]=='actors'),'edit_instance_overrides')
+                from .native_scripts import edit_native_script
+                self.button(tr('Script nativo · avanzado…'),lambda:edit_native_script(self.win,actor),'edit_native_script')
         self.note("Level: " + self.win.doc.data["level"].get("source", tr("Sin elegir")))
         if hasattr(self.win.doc, 'campaign'):
             if p[0] == 'actors':
@@ -258,7 +291,7 @@ class Inspector(QWidget):
                 if (self.win.backend.resources.get('wtd') or self.win.backend.resources.get('base_traits')) and self.win.doc.campaign.get('project_format') in (9,10):
                     from .wtd import TraitsDialog
                     self.button(tr('Clan y disciplinas…'),lambda:TraitsDialog(self.win,actor).exec(),'actor_traits')
-            else:
+            elif 'geometry' not in actor:
                 self.combo(tr('Objeto de quest'), [(tr('No'), False), (tr('Sí'), True)], actor.get('quest_item', False), lambda v: self.set(p+('quest_item',), v), 'object_quest_item')
         trans = actor["transform"]
         placement = trans.get("placement", "absolute")

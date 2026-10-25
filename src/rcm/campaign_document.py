@@ -89,6 +89,9 @@ class CampaignDocument(Document):
                         kind=parameter['type'];value=parameter['value']
                         if kind=='integer' and type(value) is not int or kind=='float' and (type(value) not in (int,float) or not math.isfinite(value)) or kind not in ('integer','float') and not isinstance(value,(str,type(None))):raise ValueError('Native parameter: invalid value shape')
                 if 'native_region' in record and type(record['native_region']) is not bool:raise ValueError('Native region requires boolean')
+                if 'geometry' in record:
+                    from .scenery import validate_geometry
+                    validate_geometry(record['geometry'])
                 if 'zone_flag' in record:
                     gate=record['zone_flag']
                     if not isinstance(gate,dict) or set(gate)!={'flag','is_set'} or not isinstance(gate['flag'],str) or type(gate['is_set']) is not bool:raise ValueError('Zone flag: invalid editable structure')
