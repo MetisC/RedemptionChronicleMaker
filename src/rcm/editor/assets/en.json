@@ -2266,5 +2266,7 @@
   "Repetida: la textura se repite según la escala. Ajustada: la textura cubre cada cara entera.": "Tiled: the texture repeats at the chosen scale. Stretched: the texture covers each whole face.",
   "Editar decoración": "Edit decoration",
   "Editar decoración…": "Edit decoration…",
-  "(personalizada)": "(custom)"
+  "(personalizada)": "(custom)",
+  "Sin vista previa": "No preview",
+  "Entidad brush nativa en el NSD; la geometría original no se modifica.": "Native brush entity in the NSD; the original geometry is not modified."
 }

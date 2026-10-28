@@ -37,9 +37,9 @@ def audit(folder):
     return dict(version=__version__,successful=not errors,errors=errors,files=files,native_game_verified=False,clean_machine_verified=False)
 
 
-def release(folder,output):
+def release(folder,output,manifest_path='release_manifest.json',report_path='research/product_close/user_release_audit.json'):
     ws=Workspace(ROOT);folder=ws.output(folder);output=ws.output(output);report=audit(folder)
-    ws.write('research/product_close/user_release_audit.json',json.dumps(report,indent=2))
+    ws.write(report_path,json.dumps(report,indent=2))
     if not report['successful']:raise ValueError(report['errors'])
     with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
         for name in sorted(report['files']):archive.write(folder/name,'RedemptionChronicleMaker/'+name)
@@ -48,9 +48,9 @@ def release(folder,output):
         for name,row in report['files'].items():
             assert hashlib.sha256(archive.read('RedemptionChronicleMaker/'+name)).hexdigest()==row['sha256'],name
     manifest=dict(version=report['version'],user_zip=output.name,sha256=hashlib.sha256(output.read_bytes()).hexdigest(),size=output.stat().st_size,files=len(report['files']),all_hashes_verified=True,source_archive_separate=True,native_game_verified=False,clean_machine_verified=False)
-    ws.write('release_manifest.json',json.dumps(manifest,indent=2));return manifest
+    ws.write(manifest_path,json.dumps(manifest,indent=2));return manifest
 
 
 if __name__=='__main__':
     from rcm import __version__
-    parser=argparse.ArgumentParser();parser.add_argument('--folder',default='build/portable/RedemptionChronicleMaker');parser.add_argument('--output',default='RedemptionChronicleMaker-'+__version__+'-win64.zip');args=parser.parse_args();print(json.dumps(release(args.folder,args.output),indent=2))
+    parser=argparse.ArgumentParser();parser.add_argument('--folder',default='build/portable/RedemptionChronicleMaker');parser.add_argument('--output',default='RedemptionChronicleMaker-'+__version__+'-win64.zip');parser.add_argument('--manifest',default='release_manifest.json');parser.add_argument('--report',default='research/product_close/user_release_audit.json');args=parser.parse_args();print(json.dumps(release(args.folder,args.output,args.manifest,args.report),indent=2))

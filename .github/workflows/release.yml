@@ -1,9 +1,16 @@
 name: Release
 
+# Releases are built, audited and published locally with tools/release_local.ps1
+# (see docs/RELEASING.md); no GitHub Actions minutes are consumed. This workflow
+# is kept only as a recoverable reference for the historical remote pipeline and
+# therefore requires an explicit manual dispatch instead of reacting to v* tags:
+#
+#   push:
+#     tags:
+#       - "v*"
+#
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -141,8 +148,7 @@ jobs:
 
           gh release view $tag --repo "${{ github.repository }}" *> $null
           if ($LASTEXITCODE -eq 0) {
-            gh release upload $tag @assets --clobber --repo "${{ github.repository }}"
-            if ($LASTEXITCODE -ne 0) { throw "Could not refresh release assets" }
+            throw "Release $tag already exists; published assets are immutable. Use a new version."
           } else {
             $args = @(
               "release", "create", $tag,

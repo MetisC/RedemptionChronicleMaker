@@ -33,3 +33,17 @@ Esta limpieza afecta sólo al workspace, no a la instalación del juego.
 - Ejecutar tools/quality.py sin compilaciones independientes concurrentes en el mismo workspace: las pruebas de atomicidad comprueban que build/.staging quede vacía.
 
 - SIEMPRE que se haga cualquier cambio en este proyecto (código, i18n, docs de usuario o ejemplos de chronicles/), reconstruir el portable con `python tools/build_portable.py`. El acceso directo del usuario («Redemption Chronicle Maker.lnk») apunta a `build/portable/RedemptionChronicleMaker/RedemptionChronicleMaker.exe`: sin esa recompilación el usuario ejecuta código obsoleto. La compilación tarda varios minutos y requiere jlink (JAVA_HOME ya configurado).
+
+## Releases locales (sin GitHub Actions)
+
+Las releases se compilan y publican LOCALMENTE. Ningún push ni tag puede consumir minutos de GitHub Actions: ci.yml y release.yml quedaron sólo como workflow_dispatch de referencia recuperable.
+
+Procedimiento oficial — `tools/release_local.ps1` (lógica en tools/release_local.py, pruebas en tests/test_release_local.py):
+
+- `-Check` diagnóstico del equipo; `-Build` suite completa + artefactos en `build/release/<version>/`; `-DryRun` plan remoto sin escrituras; `-Publish` exige confirmación explícita (tag tecleado o `-ConfirmTag`); `-Verify` redescarga y verifica; `-Notes` genera borrador de notas.
+- Publicar exige: versión nueva no publicada, suite completa aprobada (`quality.py --no-coverage`), HEAD==origin/main, inputs de producto limpios, tag→commit verificado, release en dos pasos (draft → verificación de bytes → publicar).
+- Los tags publicados son inmutables: jamás --clobber, retag ni force-push. Una release publicada nunca se modifica; un error posterior exige nueva versión.
+- `-Stable` obligatorio para publicar versiones finales X.Y.Z; los -rcN salen siempre como prerelease sin Latest.
+- Nunca incluir recursos originales de Vampire ni datos privados: la auditoría de product_release.py es requisito previo.
+- GitHub CLI (`gh`) es el único canal remoto; los tokens viven fuera del repo (gh auth / credential manager).
+- Recibos: build_receipt.json (COMPILED_LOCALLY) y publish_receipt.json (PUBLISHED_TO_GITHUB + REMOTE_DOWNLOAD_VERIFIED) distinguen los tres estados.

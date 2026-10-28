@@ -198,7 +198,7 @@ class Completion(TestCase):
         source_=yaml.safe_load((ROOT/'chronicles/completion_lab/project.yaml').read_text(encoding='utf8'));result=self.backend.validate(source_)
         self.assertTrue(result.valid,[p.message for p in result.problems]);self.assertFalse([p.message for p in result.problems if p.severity=='WARNING'])
         for name in ('tutorial','mini_chronicle'):
-            original=subprocess.check_output(['git','show','76cf263:chronicles/'+name+'/project.yaml']);self.assertEqual(original,(ROOT/'chronicles'/name/'project.yaml').read_bytes())
+            original=subprocess.check_output(['git','show','be54749:chronicles/'+name+'/project.yaml']);self.assertEqual(original,(ROOT/'chronicles'/name/'project.yaml').read_bytes())
 
     def test_new_fields_reject_corrupt_editable_shapes_and_region_conflicts(self):
         for change in ('nan','parameter','zone'):

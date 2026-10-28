@@ -1,84 +1,110 @@
-# Automated releases
+# Local releases
 
-Redemption Chronicle Maker uses GitHub Actions for CI and tagged Windows releases.
+Redemption Chronicle Maker releases are built, audited and published **from the
+developer's machine**. GitHub is used only as the Git repository, tag store and
+GitHub Releases host. **No GitHub Actions minutes are consumed** by pushes,
+pull requests or releases: `.github/workflows/ci.yml` and
+`.github/workflows/release.yml` keep their historical job definitions as
+reference but run only on explicit manual dispatch (`workflow_dispatch`).
 
-## CI
-
-`.github/workflows/ci.yml` runs on every push to `main`, on pull requests and on manual dispatch.
-
-The CI job uses Python 3.12 on `windows-latest`, installs the backend/development dependencies into the same workspace-local locations used by the project and runs:
+The official entry point is:
 
 ```powershell
-python tools/quality.py --fast
+.\tools\release_local.ps1 -<mode>
 ```
 
-This is an offline gate. It does not launch or automate Vampire: The Masquerade — Redemption.
+`tools/release_local.ps1` is a thin, safe PowerShell front-end over
+`tools/release_local.py`, which contains the testable pipeline logic.
+
+## Modes
+
+```powershell
+.\tools\release_local.ps1 -Check
+```
+
+Environment diagnostics only: Python (>= 3.10; CI reference is 3.12),
+`cache/vendor` and `cache/devtools` dependencies, JDK 21 + `jlink`,
+`cache/toolchain/ecj-3.26.0.jar` against its pinned SHA-256, Git repository and
+`origin` remote, GitHub CLI presence, `gh auth status`, effective repository
+permissions, free disk space and workspace write access.
+
+```powershell
+.\tools\release_local.ps1 -Prepare
+```
+
+Validates the version in `src/rcm/__init__.py` (`X.Y.Z` or `X.Y.Z-rcN`), that
+`RELEASE_NOTES.md` and `CHANGELOG.md` contain a heading for it, the state of
+`main` against `origin/main`, local and remote `v*` tags, and whether any
+product inputs (sources, tools, docs, chronicles, manifests of dependencies)
+have uncommitted changes.
+
+```powershell
+.\tools\release_local.ps1 -Build
+```
+
+Runs the complete offline quality suite `python tools/quality.py --no-coverage`
+(the fast 28-test gate is **not** sufficient for a release), then
+`tools/build_portable.py`, `tools/verify_frozen_sources.py`, and
+`tools/product_release.py`; verifies the manifest, archive name, size and every
+file hash; regenerates `SHA256SUMS.txt`; and re-reads the ZIP. All output is
+staged under `build/release/<version>/` together with `build_receipt.json`
+(state `COMPILED_LOCALLY`). **Nothing is uploaded and no tag is created.**
+`-SkipQuality` exists only for diagnostics: a build whose receipt lacks a
+passed full suite can never be published.
+
+```powershell
+.\tools\release_local.ps1 -DryRun
+```
+
+Verifies remote readiness read-only: `gh` authentication, push permission on
+`MetisC/RedemptionChronicleMaker`, that `HEAD` is pushed, that the remote tag
+does not already exist on another commit, that no published release already
+occupies the tag, and that the staged build receipt matches `HEAD` with a
+passed quality suite. Prints the exact plan. **Zero remote writes.**
+
+```powershell
+.\tools\release_local.ps1 -Publish
+```
+
+Requires every `-DryRun` gate to pass, plus an explicit human confirmation
+(type the exact tag, or pass `-ConfirmTag <tag>`). Publishing a stable `X.Y.Z`
+additionally requires `-Stable`; `-rcN` versions publish as prereleases marked
+`--latest=false`. The flow is:
+
+1. create annotated tag `v<version>` on the recorded source commit (never
+   moved if it exists), push it, and verify the remote peeled SHA;
+2. create a **draft** release with title, `RELEASE_NOTES.md` notes and the
+   three assets, or reuse/fix an existing draft (missing assets only);
+3. verify draft assets by name, size and downloaded bytes;
+4. flip the draft to published (`draft=false`);
+5. re-download every published asset and compare SHA-256 with the staged
+   files;
+6. write `build/release/<version>/publish_receipt.json` distinguishing
+   `COMPILED_LOCALLY`, `PUBLISHED_TO_GITHUB` and `REMOTE_DOWNLOAD_VERIFIED`.
+
+```powershell
+.\tools\release_local.ps1 -Verify [ -Tag v<X.Y.Z> ]
+```
+
+Re-checks a published release afterwards: not a draft, correct prerelease
+flag, expected asset set, and byte-for-byte SHA-256 of re-downloaded assets
+against the local staging manifest/SHA256SUMS.
+
+```powershell
+.\tools\release_local.ps1 -Notes
+```
+
+Writes `build/release/notes_draft.md` — an editable draft summarising commits
+and changed files since the previous tag. Draft only: final notes must be
+reviewed by a human in `RELEASE_NOTES.md` before publishing.
 
 ## Release source of truth
 
-The application version lives in:
+The application version lives in `src/rcm/__init__.py`. Supported public
+versions are `X.Y.Z` and `X.Y.Z-rcN`. Windows executable metadata, the
+portable `VERSION` file and the release ZIP name derive from it.
 
-```text
-src/rcm/__init__.py
-```
-
-Supported public release versions are:
-
-```text
-X.Y.Z
-X.Y.Z-rcN
-```
-
-Examples:
-
-```text
-1.0.0-rc4
-1.0.0
-1.1.0-rc1
-```
-
-Windows executable metadata, the portable `VERSION` file and the default release ZIP name are derived from that application version. RC builds map the RC number to the fourth integer in Windows file-version metadata; final releases use zero there.
-
-The release workflow refuses to publish if the Git tag and the application version differ.
-
-## Publishing a release
-
-Before tagging:
-
-1. Run the complete local quality gate on the exact commit to be tagged: `python tools/quality.py --no-coverage`. The CI fast gate covers only `test_safety_unit.py`; GUI, Java, catalogue and Qt checks run in the full suite.
-2. Update `src/rcm/__init__.py` to the version you intend to publish.
-3. Update `RELEASE_NOTES.md` for that version.
-4. Commit and push those changes to `main`.
-5. Create and push the matching tag.
-
-Example:
-
-```powershell
-git tag v1.0.0-rc5
-git push origin v1.0.0-rc5
-```
-
-That tag push triggers `.github/workflows/release.yml`.
-
-## What the release workflow does
-
-On a `v*` tag the Windows release job:
-
-1. checks out the exact tagged source;
-2. installs Python 3.12;
-3. installs Temurin JDK 21;
-4. installs backend, editor and build dependencies into `cache/vendor` / `cache/devtools`;
-5. downloads ECJ 3.26.0 and verifies its pinned SHA-256;
-6. checks that `v<app-version>` exactly matches the pushed tag;
-7. runs the fast quality gate;
-8. builds the portable application with `tools/build_portable.py`;
-9. audits and packages it with `tools/product_release.py`;
-10. verifies `release_manifest.json` and the expected archive name;
-11. generates `SHA256SUMS.txt`;
-12. preserves the release files as a GitHub Actions artifact for 30 days;
-13. creates the GitHub Release and uploads the verified files.
-
-Published assets are:
+Published assets:
 
 ```text
 RedemptionChronicleMaker-<version>-win64.zip
@@ -86,38 +112,38 @@ SHA256SUMS.txt
 release_manifest.json
 ```
 
-GitHub supplies its normal source-code archives separately.
+## Immutability policy
 
-Release candidates such as `v1.0.0-rc5` are published as **pre-releases**. A final tag such as `v1.0.0` is marked as the latest release.
-
-If the GitHub Release already exists (for example after rerunning a partially failed workflow), the workflow refreshes its generated assets with `--clobber` instead of creating a duplicate release.
+- Once a release is published its assets are immutable: the tool never uses
+  `--clobber`, never moves tags and never deletes drafts or assets on its own.
+- A remote tag already pointing at the expected commit is reused (resume
+  path); pointing anywhere else blocks the release — bump the version.
+- An already-published release for the tag blocks unconditionally.
+- If publication fails mid-flight, the pushed tag and any partial draft are
+  left in place; re-running `-Publish` resumes from them safely.
+- Errors after publication require a **new** version, never an overwrite.
 
 ## What is deliberately not automated
 
-GitHub-hosted runners do not contain a licensed Redemption installation. The release workflow therefore does not claim native-engine verification and does not run the game.
-
-Native/manual acceptance remains separate from:
-
-- static analysis;
-- synthetic/unit tests;
-- generated Java tests/doubles;
-- portable packaging;
-- release auditing.
-
-See [MANUAL_RUNTIME_CHECKLIST.md](MANUAL_RUNTIME_CHECKLIST.md) for native tests.
+Local builds do not claim native-engine verification and do not run the game.
+The release remains a release candidate until the human acceptance items
+(`DYN01-12`, `docs/MANUAL_RUNTIME_CHECKLIST.md`) pass in Vampire itself.
+Offline tests, doubles, compilation against the real Codex API and packaging
+audits do not certify gameplay.
 
 ## A failed gate means no new release
 
-The workflow stops before publication if any of these fail:
+`-Build` and `-Publish` stop on any failure: version/tag mismatch, ECJ hash
+mismatch, quality suite failure, portable build failure, product audit
+failure, archive/manifest mismatch, checksum mismatch, missing push
+permission, occupied tag or pre-existing published release.
 
-- version/tag match;
-- ECJ hash verification;
-- fast quality gate;
-- portable build;
-- product audit;
-- archive/manifest verification;
-- checksum generation.
+Do not bypass a failed gate by manually uploading an unverified ZIP under an
+existing release. Fix the source, move to a new version, rebuild and publish
+through the tool.
 
-Do not bypass a failed gate by manually uploading an unverified ZIP under the same release tag. Fix the source, move to a new tag/version when appropriate, and let the workflow build the public artifact from tagged source.
+## GitHub CLI
 
-Only artifacts produced by the release workflow are published. A locally rebuilt portable can differ from the CI artifact under the same version string; never attach a local ZIP to a release — bump the version and tag instead.
+Install once with `winget install --id GitHub.cli`, then `gh auth login`
+(or reuse the Git credential-manager token). The tool never stores tokens in
+the repository; `gh` handles authentication.
