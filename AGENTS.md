@@ -38,7 +38,7 @@ Esta limpieza afecta sólo al workspace, no a la instalación del juego.
 
 Las releases se compilan y publican LOCALMENTE. Ningún push ni tag puede consumir minutos de GitHub Actions: ci.yml y release.yml quedaron sólo como workflow_dispatch de referencia recuperable.
 
-Procedimiento oficial — `tools/release_local.ps1` (lógica en tools/release_local.py, pruebas en tests/test_release_local.py):
+Procedimiento oficial — `tools/release/release_local.ps1` (lógica en tools/release/release_local.py, pruebas en tools/release/test_release_local.py). `tools/release/` es local del mantenedor: excluido vía `.git/info/exclude`, no se distribuye en el repo público.
 
 - `-Check` diagnóstico del equipo; `-Build` suite completa + artefactos en `build/release/<version>/`; `-DryRun` plan remoto sin escrituras; `-Publish` exige confirmación explícita (tag tecleado o `-ConfirmTag`); `-Verify` redescarga y verifica; `-Notes` genera borrador de notas.
 - Publicar exige: versión nueva no publicada, suite completa aprobada (`quality.py --no-coverage`), HEAD==origin/main, inputs de producto limpios, tag→commit verificado, release en dos pasos (draft → verificación de bytes → publicar).

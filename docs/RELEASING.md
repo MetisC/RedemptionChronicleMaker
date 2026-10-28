@@ -10,16 +10,20 @@ reference but run only on explicit manual dispatch (`workflow_dispatch`).
 The official entry point is:
 
 ```powershell
-.\tools\release_local.ps1 -<mode>
+.\tools\release\release_local.ps1 -<mode>
 ```
 
-`tools/release_local.ps1` is a thin, safe PowerShell front-end over
-`tools/release_local.py`, which contains the testable pipeline logic.
+`tools/release/release_local.ps1` is a thin, safe PowerShell front-end over
+`tools/release/release_local.py`, which contains the testable pipeline logic.
+**The `tools/release/` directory is maintainer-local**: it is excluded via
+`.git/info/exclude` and intentionally not distributed in the public repository.
+Clones do not contain the release tooling; only the maintainer's machine can
+publish, because publication requires `gh` authenticated with write access.
 
 ## Modes
 
 ```powershell
-.\tools\release_local.ps1 -Check
+.\tools\release\release_local.ps1 -Check
 ```
 
 Environment diagnostics only: Python (>= 3.10; CI reference is 3.12),
@@ -29,7 +33,7 @@ Environment diagnostics only: Python (>= 3.10; CI reference is 3.12),
 permissions, free disk space and workspace write access.
 
 ```powershell
-.\tools\release_local.ps1 -Prepare
+.\tools\release\release_local.ps1 -Prepare
 ```
 
 Validates the version in `src/rcm/__init__.py` (`X.Y.Z` or `X.Y.Z-rcN`), that
@@ -39,7 +43,7 @@ product inputs (sources, tools, docs, chronicles, manifests of dependencies)
 have uncommitted changes.
 
 ```powershell
-.\tools\release_local.ps1 -Build
+.\tools\release\release_local.ps1 -Build
 ```
 
 Runs the complete offline quality suite `python tools/quality.py --no-coverage`
@@ -53,7 +57,7 @@ staged under `build/release/<version>/` together with `build_receipt.json`
 passed full suite can never be published.
 
 ```powershell
-.\tools\release_local.ps1 -DryRun
+.\tools\release\release_local.ps1 -DryRun
 ```
 
 Verifies remote readiness read-only: `gh` authentication, push permission on
@@ -63,7 +67,7 @@ occupies the tag, and that the staged build receipt matches `HEAD` with a
 passed quality suite. Prints the exact plan. **Zero remote writes.**
 
 ```powershell
-.\tools\release_local.ps1 -Publish
+.\tools\release\release_local.ps1 -Publish
 ```
 
 Requires every `-DryRun` gate to pass, plus an explicit human confirmation
@@ -83,7 +87,7 @@ additionally requires `-Stable`; `-rcN` versions publish as prereleases marked
    `COMPILED_LOCALLY`, `PUBLISHED_TO_GITHUB` and `REMOTE_DOWNLOAD_VERIFIED`.
 
 ```powershell
-.\tools\release_local.ps1 -Verify [ -Tag v<X.Y.Z> ]
+.\tools\release\release_local.ps1 -Verify [ -Tag v<X.Y.Z> ]
 ```
 
 Re-checks a published release afterwards: not a draft, correct prerelease
@@ -91,7 +95,7 @@ flag, expected asset set, and byte-for-byte SHA-256 of re-downloaded assets
 against the local staging manifest/SHA256SUMS.
 
 ```powershell
-.\tools\release_local.ps1 -Notes
+.\tools\release\release_local.ps1 -Notes
 ```
 
 Writes `build/release/notes_draft.md` — an editable draft summarising commits
