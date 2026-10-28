@@ -1,4 +1,19 @@
-# Redemption Chronicle Maker 1.0.0-rc10
+# Redemption Chronicle Maker 1.0.0-rc11
+
+This release adds native parametric scenery, smoother reference navigation and a fully local, verified release process.
+
+- **Place native scenery:** decor, solid and interactive elements can now be authored as parametric NSD brush entities on top of the immutable original geometry. The decor dialog and scenery editing workflow were rounded out; the scenery lab example ships an optional wave-based dynamic encounter.
+- **Navigate and configure faster:** linked references are easier to follow and hostility authoring is clearer across actors and dialogue responses.
+- **Licensed openly:** the project is published under the MIT License, with proprietary snapshot data purged from repository history and shipped `LICENSE` inside the portable build.
+- **Releases are built and verified locally:** compilation, the complete test suite, product auditing, hashing and GitHub publication now run on the developer's machine through an explicit, receipt-backed pipeline. GitHub no longer consumes Actions minutes; it stores the repository, tags and published assets only.
+
+## Verification and compatibility
+
+The complete offline gate passed **767 tests** plus Ruff and the configured mypy checks, followed by packaged-source verification (119 modules, no mismatches) and a full product audit of the shipped archive (379 files, all hashes verified). The published ZIP, manifest and checksums were re-downloaded after publication and verified byte-for-byte before the release went live.
+
+The accepted format-9 tutorial and mini chronicle are preserved. Dynamic encounters remain opt-in format 10. Original game/mod assets are not included in the application ZIP. Original geometry remains immutable; no legacy authoring tools are required.
+
+This remains a release candidate. Native scenery SCENERY01–10, DLGFX01–03/QOL01–04 and the existing save/load, encounters, multiplayer and manual cases still require user acceptance. Offline tests, doubles, compilation and packaged-source checks do not certify gameplay or another PC/GPU/DPI configuration.
 
 This release makes linked story behaviour easier to author and removes interruptions while editing text.
 

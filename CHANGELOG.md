@@ -1,3 +1,12 @@
+# Changes · 1.0.0-rc11
+
+- Author native parametric scenery as NSD brush entities (decor, solid, interactive layers) over the immutable original geometry; fix decor dialog accept behaviour and round out the scenery editing UX. The scenery lab gains an optional wave-based Rat dynamic-encounter example.
+- Improve reference navigation and hostility authoring across actors, dialogues and contextual responses; add the missing English UI strings for the new scenery tooling.
+- Publish the project under the MIT License and purge proprietary snapshot data from repository history; ship `LICENSE` in the portable root.
+- Replace GitHub Actions releases with a maintainer-local pipeline: local quality gate, portable build, packaged-source verification, product audit, staged artifacts, explicit draft-then-publish via authenticated GitHub CLI, post-publication byte verification and immutable published releases. Workflows keep manual-dispatch definitions only; no push or tag consumes hosted minutes.
+
+The accepted tutorial, mini chronicle, immutable original geometry and legacy generation contracts are preserved. No original authoring tools or original game/mod assets are distributed. Native SCENERY/DLGFX/QOL and the existing manual checklist remain pending user acceptance; this is not final 1.0.
+
 # Changes · 1.0.0-rc10
 
 - Publish the project under the MIT License and ship `LICENSE` inside the portable root. Remove the frozen legacy application snapshot — including extracted original game data — from repository history; it stays on disk only.

@@ -178,6 +178,11 @@ scenes:
     - show_note:
         title: Nota
         text: HAS ABIERTO !!
+  - id: dynamic_start1
+    when: scene_start
+    once: false
+    actions:
+    - start_generator: dynamic1
   conversations: []
   triggers: []
   sequences: []
@@ -197,6 +202,37 @@ scenes:
       - 0
       - 180
   default_entry: start
-  generators: []
+  generators:
+  - id: dynamic1
+    name: Encuentro de enemigos
+    mode: waves
+    waves:
+    - groups:
+      - role: enemy
+        template: Rat
+        count: 3
+      delay: 2.0
+    - groups:
+      - role: enemy
+        template: Rat
+        count: 3
+      delay: 2
+    - groups:
+      - role: enemy
+        template: Rat
+        count: 3
+      delay: 2
+    max_alive: 5
+    spawn_points: []
+    placement: near_player
+    interval: 5.0
+    max_total: 0
+    target_alive: 0
+    persistence: once
+    cooldown: 30.0
+    selection: round_robin
+    point_selection: round_robin
+    retry_limit: 3
+    remove_on_stop: false
 quests: []
 resources: {}
